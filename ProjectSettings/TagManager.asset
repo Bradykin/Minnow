@@ -41,3 +41,54 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3654201983
+    locked: 0
+  - name: TileBackground
+    uniqueID: 2934858929
+    locked: 0
+  - name: TileMidground
+    uniqueID: 2077653749
+    locked: 0
+  - name: TileForground
+    uniqueID: 2127231827
+    locked: 0
+  - name: TileText
+    uniqueID: 3613479433
+    locked: 0
+  - name: EntityBackground
+    uniqueID: 141563519
+    locked: 0
+  - name: EntityMidground
+    uniqueID: 1902510847
+    locked: 0
+  - name: EntityForground
+    uniqueID: 1493129697
+    locked: 0
+  - name: EntityText
+    uniqueID: 510882381
+    locked: 0
+  - name: UIBackground
+    uniqueID: 503742501
+    locked: 0
+  - name: UIMidground
+    uniqueID: 3337547173
+    locked: 0
+  - name: UIForground
+    uniqueID: 3956644511
+    locked: 0
+  - name: UIText
+    uniqueID: 2400614357
+    locked: 0
+  - name: TooltipBackground
+    uniqueID: 3298567185
+    locked: 0
+  - name: TooltipMidground
+    uniqueID: 2374655691
+    locked: 0
+  - name: TooltipForground
+    uniqueID: 2758884607
+    locked: 0
+  - name: TooltipText
+    uniqueID: 627343547
+    locked: 0
