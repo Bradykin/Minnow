@@ -4,13 +4,11 @@ using UnityEngine;
 
 public static class Constants
 {
-    //Decide if using square or hexagon grid
-    public static bool IsSquareGrid = true;
-    
     //Sizing for a "square" hexagon grid
-    public static int GridSizeX = 50;
-    public static int GridSizeY = 50;
+    public static int GridSizeX = 20;
+    public static int GridSizeY = 20;
 
-    //Sizing for a "hexagon" hexagon grid
-    public static int GridDiameter = 49;
+    //Sizing of hexagons
+    public static float HexagonInnerRadius = 2.65f;
+    public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 }
