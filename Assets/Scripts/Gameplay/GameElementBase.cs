@@ -7,6 +7,7 @@ public class GameElementBase
     public string m_name { get; protected set; }
     public string m_desc { get; protected set; }
     public Sprite m_icon { get; protected set; }
+    protected Color m_color { get; set; }
 
     public virtual UITooltipController InitTooltip()
     {
@@ -26,5 +27,10 @@ public class GameElementBase
     {
         UITooltipController tooltipController = UITooltipController.m_instance;
         tooltipController.gameObject.SetActive(false);
+    }
+
+    public virtual Color GetColor()
+    {
+        return m_color;
     }
 }

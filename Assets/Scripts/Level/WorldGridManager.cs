@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class WorldGridManager : MonoBehaviour
 {
-    private GridTile[] m_gridArray;
+    private WorldGridTile[] m_gridArray;
 
     [SerializeField]
-    private GridTile m_gridTilePrefab;
+    private WorldGridTile m_gridTilePrefab;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     public void SetupSquareGrid()
     {
         int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
-        m_gridArray = new GridTile[numGridTiles];
+        m_gridArray = new WorldGridTile[numGridTiles];
 
         for (int i = 0; i < numGridTiles; i++)
         {

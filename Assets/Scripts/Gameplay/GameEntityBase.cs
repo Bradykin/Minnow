@@ -71,16 +71,22 @@ public abstract class GameEntityBase : GameElementBase
     public override UITooltipController InitTooltip()
     {
         UITooltipController tooltipController = base.InitTooltip();
+        tooltipController.m_titleBackground.color = GetColor();
 
+        return tooltipController;
+    }
+
+    public override Color GetColor()
+    {
         if (GetTeam() == Team.Player)
         {
-            tooltipController.m_titleBackground.color = Color.blue;
+            return Color.blue;
         }
         else if (GetTeam() == Team.Enemy)
         {
-            tooltipController.m_titleBackground.color = Color.red;
+            return Color.red;
         }
 
-        return tooltipController;
+        return Color.white;
     }
 }

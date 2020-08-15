@@ -6,7 +6,7 @@ namespace Game.Util
 {
     public static class GridTileExtensions
     {
-        public static Vector2Int? Left(this GridTile gridTile)
+        public static Vector2Int? Left(this WorldGridTile gridTile)
         {
             Vector2Int currentPosition = gridTile.GridPosition;
 
@@ -18,7 +18,7 @@ namespace Game.Util
             return null;
         }
 
-        public static Vector2Int? Right(this GridTile gridTile)
+        public static Vector2Int? Right(this WorldGridTile gridTile)
         {
             Vector2Int currentPosition = gridTile.GridPosition;
 
