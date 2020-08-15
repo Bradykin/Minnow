@@ -8,12 +8,23 @@ public class GameElementBase
     public string m_desc { get; protected set; }
     public Sprite m_icon { get; protected set; }
 
-    public virtual void InitTooltip(UITooltipController tooltipController)
+    public virtual UITooltipController InitTooltip()
     {
+        UITooltipController tooltipController = UITooltipController.m_instance;
+        tooltipController.gameObject.SetActive(true);
+
         tooltipController.m_titleText.text = m_name;
         tooltipController.m_descText.text = m_desc;
 
         tooltipController.m_titleBackground.color = Color.gray;
         tooltipController.m_descBackground.color = Color.gray;
+
+        return tooltipController;
+    }
+
+    public virtual void ClearTooltip()
+    {
+        UITooltipController tooltipController = UITooltipController.m_instance;
+        tooltipController.gameObject.SetActive(false);
     }
 }

@@ -68,9 +68,9 @@ public abstract class GameEntityBase : GameElementBase
         return m_toughness;
     }
 
-    public override void InitTooltip(UITooltipController tooltipController)
+    public override UITooltipController InitTooltip()
     {
-        base.InitTooltip(tooltipController);
+        UITooltipController tooltipController = base.InitTooltip();
 
         if (GetTeam() == Team.Player)
         {
@@ -80,5 +80,7 @@ public abstract class GameEntityBase : GameElementBase
         {
             tooltipController.m_titleBackground.color = Color.red;
         }
+
+        return tooltipController;
     }
 }
