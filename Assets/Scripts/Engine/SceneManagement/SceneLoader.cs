@@ -70,6 +70,7 @@ namespace Game.Util
         {
             lastScene = currentScene;
             currentScene = sceneName;
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
             
             return SetSceneObjectsActive(sceneName, true);
         }

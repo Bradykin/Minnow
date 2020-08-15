@@ -1,17 +1,31 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldGridManager : MonoBehaviour
+public class WorldGridManager : MonoBehaviour, IReset
 {
     private WorldGridTile[] m_gridArray;
 
-    [SerializeField]
-    private WorldGridTile m_gridTilePrefab;
+    private bool m_setup;
 
     void Start()
     {
-        SetupSquareGrid();
+        
+    }
+
+    public void Activate()
+    {
+        if (!m_setup)
+        {
+            SetupSquareGrid();
+            m_setup = true;
+        }
+    }
+
+    public void Reset()
+    {
+
     }
 
     public void SetupSquareGrid()
@@ -21,7 +35,7 @@ public class WorldGridManager : MonoBehaviour
 
         for (int i = 0; i < numGridTiles; i++)
         {
-            m_gridArray[i] = GameObject.Instantiate(m_gridTilePrefab);
+            m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldGridTileFactory>().CreateObject<WorldGridTile>();
 
             int x = i % Constants.GridSizeX;
             int y = i / Constants.GridSizeX;

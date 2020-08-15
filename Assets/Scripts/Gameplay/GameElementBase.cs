@@ -11,7 +11,7 @@ public class GameElementBase
 
     public virtual UITooltipController InitTooltip()
     {
-        UITooltipController tooltipController = UITooltipController.m_instance;
+        UITooltipController tooltipController = UITooltipController.Instance;
         tooltipController.gameObject.SetActive(true);
 
         tooltipController.m_titleText.text = m_name;
@@ -25,7 +25,7 @@ public class GameElementBase
 
     public virtual void ClearTooltip()
     {
-        UITooltipController tooltipController = UITooltipController.m_instance;
+        UITooltipController tooltipController = UITooltipController.Instance;
         tooltipController.gameObject.SetActive(false);
     }
 

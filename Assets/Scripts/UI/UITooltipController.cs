@@ -1,12 +1,11 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITooltipController : MonoBehaviour
+public class UITooltipController : Singleton<UITooltipController>
 {
-    public static UITooltipController m_instance;
-
     public Text m_titleText;
     public Text m_descText;
     public SpriteRenderer m_titleBackground;
@@ -14,11 +13,6 @@ public class UITooltipController : MonoBehaviour
 
     void Start()
     {
-        if (!m_instance)
-        {
-            m_instance = this;
-        }
-
         gameObject.SetActive(false);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Util
 {
-    public static class GridTileExtensions
+    public static class WorldGridTileExtensions
     {
         public static Vector2Int? Left(this WorldGridTile gridTile)
         {
