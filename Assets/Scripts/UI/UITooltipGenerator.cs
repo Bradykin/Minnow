@@ -12,7 +12,6 @@ public class UITooltipGenerator : MonoBehaviour
         if (m_element != null)
         {
             m_element.InitTooltip();
-            print("Entering!" + m_element.m_name);
         }
     }
 
@@ -21,7 +20,6 @@ public class UITooltipGenerator : MonoBehaviour
         if (m_element != null)
         {
             m_element.ClearTooltip();
-            print("Exiting!");
         }
     }
 }

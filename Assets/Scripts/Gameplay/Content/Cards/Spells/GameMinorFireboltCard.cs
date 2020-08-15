@@ -10,6 +10,8 @@ public class GameMinorFireboltCard : GameCardSpellBase
 
         m_name = "Minor Firebolt";
         m_desc = "Blast an enemy entity for " + GetSpellValue() + " damage.";
+        m_typeline = "Spell - Enemy";
+        m_cost = 1;
         m_icon = null;
     }
 
