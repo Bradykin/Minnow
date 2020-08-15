@@ -9,6 +9,6 @@ public static class Constants
     public static int GridSizeY = 20;
 
     //Sizing of hexagons
-    public static float HexagonInnerRadius = 2.23f;
+    public static float HexagonInnerRadius = 1.338f;
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 }

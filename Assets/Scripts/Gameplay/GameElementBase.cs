@@ -17,8 +17,8 @@ public class GameElementBase
         tooltipController.m_titleText.text = m_name;
         tooltipController.m_descText.text = m_desc;
 
-        tooltipController.m_titleBackground.color = Color.gray;
-        tooltipController.m_descBackground.color = Color.gray;
+        tooltipController.m_titleBackground.color = Color.black;
+        tooltipController.m_descBackground.color = Color.white;
 
         return tooltipController;
     }

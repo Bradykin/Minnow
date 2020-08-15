@@ -24,6 +24,12 @@ public class UITooltipController : MonoBehaviour
 
     void Update()
     {
-        
+        Vector3 pos = Input.mousePosition;
+        pos.z = transform.position.z - Camera.main.transform.position.z;
+
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
+        worldPoint.x = worldPoint.x + 1.3f;
+        worldPoint.y = worldPoint.y - 0.3f;
+        transform.position = worldPoint;
     }
 }
