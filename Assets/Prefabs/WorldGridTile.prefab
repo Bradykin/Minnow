@@ -180,7 +180,7 @@ MonoBehaviour:
   GridPosition: {x: 0, y: 0}
   m_entityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
     type: 3}
-  m_tintRenderer: {fileID: 0}
+  m_tintRenderer: {fileID: 4928966533008818889}
 --- !u!60 &673635331
 PolygonCollider2D:
   m_ObjectHideFlags: 0
