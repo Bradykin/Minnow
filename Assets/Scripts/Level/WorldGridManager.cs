@@ -80,7 +80,7 @@ public class WorldGridManager : MonoBehaviour, IReset
             int y = i / Constants.GridSizeX;
 
             m_gridArray[i].Init(x, y);
-            m_gridArray[i].transform.position = new Vector3((x + y * 0.5f - y / 2) * Constants.HexagonInnerRadius * 2.0f, y * Constants.HexagonOuterRadius * 1.5f, 0.0f);
+            m_gridArray[i].transform.position = UIHelper.GetScreenPositionForWorldGridElement(x, y);
         }
     }
 

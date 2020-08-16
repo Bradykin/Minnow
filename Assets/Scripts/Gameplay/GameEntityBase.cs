@@ -20,6 +20,8 @@ public abstract class GameEntityBase : GameElementBase
     protected int m_power = 3;
     protected int m_toughness = 1;
 
+    public GameTile m_curTile;
+
     protected virtual void LateInit()
     {
         m_curHealth = m_maxHealth;
@@ -88,5 +90,21 @@ public abstract class GameEntityBase : GameElementBase
         }
 
         return Color.white;
+    }
+
+    public bool CanMoveTo(WorldGridTile tile)
+    {
+        if (tile.m_gameTile.IsOccupied())
+        {
+            return false;
+        }
+        
+        return true;
+    }
+
+    public void MoveTo(WorldGridTile tile)
+    {
+        m_curTile.ClearEntity();
+        tile.m_gameTile.PlaceEntity(this);
     }
 }

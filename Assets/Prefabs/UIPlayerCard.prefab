@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 690855378}
   - component: {fileID: 690855380}
   - component: {fileID: 690855379}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TypelineText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 820935990}
   - component: {fileID: 820935992}
   - component: {fileID: 820935991}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1051691384}
   - component: {fileID: 1051691386}
   - component: {fileID: 1051691385}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 1413690562}
   - component: {fileID: 1413690564}
   - component: {fileID: 1413690563}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: DescText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 1527683114}
   - component: {fileID: 1527683113}
   - component: {fileID: 1527683112}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,9 +421,8 @@ GameObject:
   - component: {fileID: 5460108890643989911}
   - component: {fileID: 5460108890643989910}
   - component: {fileID: 5460108890643989909}
-  - component: {fileID: 5460108890643989908}
   - component: {fileID: 1524608996}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UIPlayerCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,18 +510,6 @@ MonoBehaviour:
   m_costText: {fileID: 820935991}
   m_typelineText: {fileID: 690855379}
   m_descText: {fileID: 1413690563}
---- !u!114 &5460108890643989908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5460108890643989907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1524608996
 BoxCollider2D:
   m_ObjectHideFlags: 0
