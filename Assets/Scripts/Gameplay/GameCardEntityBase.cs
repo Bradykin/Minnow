@@ -5,4 +5,9 @@ using UnityEngine;
 public class GameCardEntityBase : GameCard
 {
     protected GameEntityBase m_entity { get; set; }
+
+    public GameEntityBase GetEntity()
+    {
+        return m_entity;
+    }
 }

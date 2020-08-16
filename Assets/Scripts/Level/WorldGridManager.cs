@@ -40,7 +40,10 @@ public class WorldGridManager : MonoBehaviour, IReset
         if (Input.GetKeyDown(KeyCode.X))
             m_currentTile = GetWorldGridTileAtPosition(m_currentTile.DownRight());
 
-        m_testMovementObject.transform.position = m_currentTile.transform.position;
+        if (m_testMovementObject != null)
+        {
+            m_testMovementObject.transform.position = m_currentTile.transform.position;
+        }
     }
 
     public void Activate()
@@ -51,7 +54,11 @@ public class WorldGridManager : MonoBehaviour, IReset
             m_setup = true;
 
             m_currentTile = GetWorldGridTileAtPosition(3, 3);
-            m_testMovementObject.transform.position = m_currentTile.transform.position;
+
+            if (m_testMovementObject != null)
+            {
+                m_testMovementObject.transform.position = m_currentTile.transform.position;
+            }
         }
     }
 

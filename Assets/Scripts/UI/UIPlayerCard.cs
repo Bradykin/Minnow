@@ -10,18 +10,24 @@ public class UIPlayerCard : WorldElementBase
     public Text m_typelineText;
     public Text m_descText;
 
+    private GameCard m_card;
+
     void Start()
     {
-        m_gameElement = new GameGoblinCard();
+        m_card = new GameGoblinCard();
+        if (m_card is GameCardEntityBase)
+        {
+            m_gameElement = ((GameCardEntityBase)m_card).GetEntity();
+        }
 
-        SetCardData((GameCard)m_gameElement);
+        SetCardData();
     }
 
-    private void SetCardData(GameCard card)
+    private void SetCardData()
     {
-        m_nameText.text = card.m_name;
-        m_costText.text = card.m_cost + "";
-        m_typelineText.text = card.m_typeline;
-        m_descText.text = card.m_desc;
+        m_nameText.text = m_card.m_name;
+        m_costText.text = m_card.m_cost + "";
+        m_typelineText.text = m_card.m_typeline;
+        m_descText.text = m_card.m_desc;
     }
 }
