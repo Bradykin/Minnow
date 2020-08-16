@@ -20,7 +20,7 @@ public abstract class GameEntityBase : GameElementBase
     protected int m_power = 3;
     protected int m_toughness = 1;
 
-    public GameTile m_curTile;
+    public WorldGridTile m_curTile;
 
     protected virtual void LateInit()
     {
@@ -94,7 +94,14 @@ public abstract class GameEntityBase : GameElementBase
 
     public bool CanMoveTo(WorldGridTile tile)
     {
-        if (tile.m_gameTile.IsOccupied())
+        if (tile.IsOccupied())
+        {
+            return false;
+        }
+
+        List<WorldGridTile> path = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile);
+
+        if (path.Count > m_curAP)
         {
             return false;
         }
@@ -105,6 +112,6 @@ public abstract class GameEntityBase : GameElementBase
     public void MoveTo(WorldGridTile tile)
     {
         m_curTile.ClearEntity();
-        tile.m_gameTile.PlaceEntity(this);
+        tile.PlaceEntity(this);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTile
 {
-    private GameEntityBase m_occupyingEntity;
+    public GameEntityBase m_occupyingEntity { get; private set; }
 
     public void PlaceEntity(GameEntityBase newEntity)
     {
@@ -14,10 +14,6 @@ public class GameTile
         }
 
         m_occupyingEntity = newEntity;
-
-        newEntity.m_curTile = this;
-
-        EngineLog.LogInfo("Placing entity");
     }
 
     public void ClearEntity()
@@ -28,8 +24,6 @@ public class GameTile
         }
 
         m_occupyingEntity = null;
-
-        EngineLog.LogInfo("Clearing entity");
     }
 
     public bool IsOccupied()

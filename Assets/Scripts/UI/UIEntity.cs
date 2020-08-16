@@ -8,11 +8,14 @@ public class UIEntity : WorldElementBase
 
     void Start()
     {
-        m_gameElement = new GameGoblinEntity();
-
         m_renderer = GetComponent<SpriteRenderer>();
 
         gameObject.AddComponent<UITooltipGenerator>();
+    }
+
+    public void Init(GameEntityBase entity)
+    {
+        m_gameElement = entity;
     }
 
     void Update()

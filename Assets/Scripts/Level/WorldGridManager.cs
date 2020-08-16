@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WorldGridManager : MonoBehaviour, IReset
+public class WorldGridManager : Singleton<WorldGridManager>, IReset
 {
     private WorldGridTile[] m_gridArray;
 

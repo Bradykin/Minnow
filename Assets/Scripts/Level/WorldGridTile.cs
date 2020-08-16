@@ -6,8 +6,8 @@ public class WorldGridTile : WorldElementBase
 {
     public Vector2Int GridPosition;
     public GameObject m_entityPrefab;
-    public GameTile m_gameTile { get; private set; }
 
+    private GameTile m_gameTile;
     private SpriteRenderer m_renderer;
     private GameObject m_occupyingEntity;
 
@@ -37,6 +37,8 @@ public class WorldGridTile : WorldElementBase
             {
                 m_occupyingEntity.transform.parent = uiParent.transform;
             }
+
+            m_occupyingEntity.GetComponent<UIEntity>().Init(m_gameTile.m_occupyingEntity);
         }
         else if (!m_gameTile.IsOccupied() && m_occupyingEntity != null)
         {
@@ -71,5 +73,22 @@ public class WorldGridTile : WorldElementBase
                 gameEntity.MoveTo(this);
             }
         }
+    }
+
+    public bool IsOccupied()
+    {
+        return m_gameTile.IsOccupied();
+    }
+
+    public void PlaceEntity(GameEntityBase newEntity)
+    {
+        m_gameTile.PlaceEntity(newEntity);
+
+        newEntity.m_curTile = this;
+    }
+
+    public void ClearEntity()
+    {
+        m_gameTile.ClearEntity();
     }
 }
