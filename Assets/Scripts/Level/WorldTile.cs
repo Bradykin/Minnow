@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Util;
 
 public class WorldTile : WorldElementBase
 {
@@ -25,7 +26,7 @@ public class WorldTile : WorldElementBase
     {
         if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {
-            m_occupyingEntityObj = Instantiate(m_entityPrefab, UIHelper.GetScreenPositionForWorldGridElement(m_gameTile.m_gridPosition.x, m_gameTile.m_gridPosition.y), Quaternion.identity);
+            m_occupyingEntityObj = Instantiate(m_entityPrefab, this.GetScreenPosition(), Quaternion.identity);
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)

@@ -77,7 +77,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             int y = i / Constants.GridSizeX;
 
             m_gridArray[i].Init(x, y);
-            m_gridArray[i].transform.position = UIHelper.GetScreenPositionForWorldGridElement(x, y);
+            m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
         }
     }
 
