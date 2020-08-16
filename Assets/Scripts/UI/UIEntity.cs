@@ -31,7 +31,7 @@ public class UIEntity : WorldElementBase
         Globals.m_selectedCard = null;
     }
 
-    public bool CanReachWorldTileFromCurPosition(WorldGridTile toReach)
+    public bool CanReachWorldTileFromCurPosition(GameTile toReach)
     {
         return ((GameEntityBase)m_gameElement).CanMoveTo(toReach);
     }

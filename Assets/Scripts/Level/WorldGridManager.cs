@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class WorldGridManager : Singleton<WorldGridManager>
 {
-    private WorldGridTile[] m_gridArray;
+    private WorldTile[] m_gridArray;
 
     private bool m_setup;
 
@@ -58,7 +58,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
             foreach (var tile in m_gridArray)
             {
-                Recycler.Recycle<WorldGridTile>(tile);
+                Recycler.Recycle<WorldTile>(tile);
             }
         }
     }
@@ -66,11 +66,11 @@ public class WorldGridManager : Singleton<WorldGridManager>
     private void SetupSquareGrid(Transform parent)
     {
         int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
-        m_gridArray = new WorldGridTile[numGridTiles];
+        m_gridArray = new WorldTile[numGridTiles];
 
         for (int i = 0; i < numGridTiles; i++)
         {
-            m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldGridTileFactory>().CreateObject<WorldGridTile>();
+            m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldGridTileFactory>().CreateObject<WorldTile>();
             m_gridArray[i].transform.parent = parent;
 
             int x = i % Constants.GridSizeX;
@@ -81,19 +81,32 @@ public class WorldGridManager : Singleton<WorldGridManager>
         }
     }
 
-    public WorldGridTile GetWorldGridTileAtPosition(int x, int y)
+    public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
         return m_gridArray[x + y * Constants.GridSizeX];
     }
 
-    public WorldGridTile GetWorldGridTileAtPosition(Vector2Int position)
+    public WorldTile GetWorldGridTileAtPosition(Vector2Int position)
     {
         return GetWorldGridTileAtPosition(position.x, position.y);
     }
 
     //============================================================================================================//
 
-    public List<WorldGridTile> CalculateAStarPath(WorldGridTile startingGridTile, WorldGridTile targetGridTile)
+    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile)
+    {
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile);
+
+        int length = 0;
+        for (int i = 1; i < path.Count; i++)
+        {
+            length += path[i].m_terrain.m_costToPass;
+        }
+
+        return length;
+    }
+
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile)
     {
         Location current = null;
         int g = 0;
@@ -120,7 +133,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             // if we added the destination to the closed list, we've found a path
             if (closedList.FirstOrDefault(l => l.X == target.X && l.Y == target.Y) != null)
             {
-                List<WorldGridTile> path = new List<WorldGridTile>();
+                List<GameTile> path = new List<GameTile>();
                 while (current != null)
                 {
                     path.Add(current.GridTile);
@@ -131,7 +144,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
 
             var adjacentSquares = current.GridTile.AdjacentTiles();
-            g += current.GridTile.CostToPass;
+            g += current.GridTile.m_terrain.m_costToPass;
 
             foreach (var adjacentTile in adjacentSquares)
             {
@@ -140,9 +153,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
                         && l.Y == adjacentTile.y) != null)
                     continue;
 
-                WorldGridTile adjacentGridTile = GetWorldGridTileAtPosition(adjacentTile);
+                GameTile adjacentGridTile = GetWorldGridTileAtPosition(adjacentTile).m_gameTile;
 
-                if (!adjacentGridTile.IsPassable)
+                if (!adjacentGridTile.m_terrain.m_isPassable)
                     continue;
 
                 // if it's not in the open list...

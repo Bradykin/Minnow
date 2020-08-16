@@ -20,7 +20,7 @@ public abstract class GameEntityBase : GameElementBase
     protected int m_power = 3;
     protected int m_toughness = 1;
 
-    public WorldGridTile m_curTile;
+    public GameTile m_curTile;
 
     protected virtual void LateInit()
     {
@@ -100,16 +100,14 @@ public abstract class GameEntityBase : GameElementBase
         return Color.white;
     }
 
-    public bool CanMoveTo(WorldGridTile tile)
+    public bool CanMoveTo(GameTile tile)
     {
         if (tile.IsOccupied())
         {
             return false;
         }
 
-        List<WorldGridTile> path = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile);
-
-        if (path.Count > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile) > m_curAP)
         {
             return false;
         }
@@ -117,11 +115,9 @@ public abstract class GameEntityBase : GameElementBase
         return true;
     }
 
-    public void MoveTo(WorldGridTile tile)
+    public void MoveTo(GameTile tile)
     {
-        List<WorldGridTile> path = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile);
-
-        m_curAP -= path.Count;
+        m_curAP -= WorldGridManager.Instance.GetPathLength(m_curTile, tile);
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);

@@ -10,5 +10,8 @@ public class GameGrassTerrain : GameTerrainBase
         m_desc = "When there isn't a war going on; these meadows are peaceful!";
         m_icon = null;
         m_color = Color.green;
+
+        m_isPassable = true;
+        m_costToPass = 1;
     }
 }

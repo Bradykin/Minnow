@@ -10,24 +10,24 @@ public class Location
     public int G;
     public int H;
     public Location Parent;
-    public WorldGridTile GridTile;
+    public GameTile GridTile;
 
-    public Location(WorldGridTile gridTile, WorldGridTile targetGridTile, int g, Location parent)
+    public Location(GameTile gridTile, GameTile targetGridTile, int g, Location parent)
     {
-        X = gridTile.GridPosition.x;
-        Y = gridTile.GridPosition.y;
+        X = gridTile.m_gridPosition.x;
+        Y = gridTile.m_gridPosition.y;
         GridTile = gridTile;
         Parent = parent;
 
         G = g;
-        H = Math.Abs(targetGridTile.GridPosition.x - X) + Math.Abs(targetGridTile.GridPosition.y - Y);
+        H = Math.Abs(targetGridTile.m_gridPosition.x - X) + Math.Abs(targetGridTile.m_gridPosition.y - Y);
         F = G + H;
     }
 
-    public Location(WorldGridTile gridTile)
+    public Location(GameTile gridTile)
     {
-        X = gridTile.GridPosition.x;
-        Y = gridTile.GridPosition.y;
+        X = gridTile.m_gridPosition.x;
+        Y = gridTile.m_gridPosition.y;
         GridTile = gridTile;
     }
 }

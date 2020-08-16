@@ -5,6 +5,13 @@ using UnityEngine;
 public class GameTile
 {
     public GameEntityBase m_occupyingEntity { get; private set; }
+    public Vector2Int m_gridPosition;
+    public GameTerrainBase m_terrain { get; private set; }
+
+    public GameTile()
+    {
+        m_terrain = new GameGrassTerrain();
+    }
 
     public void PlaceEntity(GameEntityBase newEntity)
     {
@@ -14,6 +21,7 @@ public class GameTile
         }
 
         m_occupyingEntity = newEntity;
+        newEntity.m_curTile = this;
     }
 
     public void ClearEntity()

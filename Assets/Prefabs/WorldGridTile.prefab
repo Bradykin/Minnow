@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4995393579826288997}
   - component: {fileID: 4995393579826288996}
-  - component: {fileID: 9052361688213494878}
   - component: {fileID: 673635331}
+  - component: {fileID: 3095368927674224554}
   m_Layer: 9
   m_Name: WorldGridTile
   m_TagString: Untagged
@@ -165,22 +165,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9052361688213494878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4995393579826288999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be80a348d4fa4da43a843a4be70e1b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridPosition: {x: 0, y: 0}
-  m_entityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
-    type: 3}
-  m_tintRenderer: {fileID: 4928966533008818889}
 --- !u!60 &673635331
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -252,3 +236,18 @@ PolygonCollider2D:
       - {x: 0.42999998, y: -2.35}
       - {x: 0.77, y: -2.1499999}
       - {x: 0.93, y: -2.06}
+--- !u!114 &3095368927674224554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995393579826288999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beb2f1d11e24a64380f329adb1bd556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_entityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
+    type: 3}
+  m_tintRenderer: {fileID: 4928966533008818889}

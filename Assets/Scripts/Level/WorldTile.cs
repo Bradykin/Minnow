@@ -2,26 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldGridTile : WorldElementBase
+public class WorldTile : WorldElementBase
 {
-    public Vector2Int GridPosition;
     public GameObject m_entityPrefab;
     public SpriteRenderer m_tintRenderer;
+    public GameTile m_gameTile { get; private set; } = new GameTile();
 
-    private GameTile m_gameTile;
     private SpriteRenderer m_renderer;
-    private GameObject m_occupyingEntity;
-
-    public bool IsPassable => true;
-    public int CostToPass => 1;
+    private GameObject m_occupyingEntityObj;
 
     void Start()
     {
-        m_gameTile = new GameTile();
         m_renderer = GetComponent<SpriteRenderer>();
 
-        m_gameElement = new GameGrassTerrain();
-
+        m_gameElement = m_gameTile.m_terrain;
         m_renderer.color = m_gameElement.GetColor();
 
         gameObject.AddComponent<UITooltipGenerator>();
@@ -29,27 +23,27 @@ public class WorldGridTile : WorldElementBase
 
     void Update()
     {
-        if (m_gameTile.IsOccupied() && m_occupyingEntity == null)
+        if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {
-            m_occupyingEntity = Instantiate(m_entityPrefab, UIHelper.GetScreenPositionForWorldGridElement(GridPosition.x, GridPosition.y), Quaternion.identity);
+            m_occupyingEntityObj = Instantiate(m_entityPrefab, UIHelper.GetScreenPositionForWorldGridElement(m_gameTile.m_gridPosition.x, m_gameTile.m_gridPosition.y), Quaternion.identity);
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)
             {
-                m_occupyingEntity.transform.parent = uiParent.transform;
+                m_occupyingEntityObj.transform.parent = uiParent.transform;
             }
 
-            m_occupyingEntity.GetComponent<UIEntity>().Init(m_gameTile.m_occupyingEntity);
+            m_occupyingEntityObj.GetComponent<UIEntity>().Init(m_gameTile.m_occupyingEntity);
         }
-        else if (!m_gameTile.IsOccupied() && m_occupyingEntity != null)
+        else if (!m_gameTile.IsOccupied() && m_occupyingEntityObj != null)
         {
-            Destroy(m_occupyingEntity);
+            Destroy(m_occupyingEntityObj);
         }
     }
 
     public void Init(int x, int y)
     {
-        GridPosition = new Vector2Int(x, y);
+        m_gameTile.m_gridPosition = new Vector2Int(x, y);
     }
 
     void OnMouseDown()
@@ -60,7 +54,6 @@ public class WorldGridTile : WorldElementBase
             if (selectedCard.GetCard().IsValidToPlay(m_gameTile))
             {
                 selectedCard.GetCard().PlayCard(m_gameTile);
-                EngineLog.LogInfo("Placing on tile: " + GridPosition);
                 return;
             }
         }
@@ -69,9 +62,9 @@ public class WorldGridTile : WorldElementBase
         if (selectedEntity != null)
         {
             GameEntityBase gameEntity = (GameEntityBase)(selectedEntity.GetElement());
-            if (gameEntity.CanMoveTo(this))
+            if (gameEntity.CanMoveTo(m_gameTile))
             {
-                gameEntity.MoveTo(this);
+                gameEntity.MoveTo(m_gameTile);
             }
         }
     }
@@ -80,7 +73,7 @@ public class WorldGridTile : WorldElementBase
     {
         if (Globals.m_selectedEntity != null)
         {
-           UIHelper.SetValidGameobjectColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(this));
+           UIHelper.SetValidGameobjectColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(m_gameTile));
         }
     }
 
@@ -90,22 +83,5 @@ public class WorldGridTile : WorldElementBase
         {
             m_tintRenderer.color = Color.white;
         }
-    }
-
-    public bool IsOccupied()
-    {
-        return m_gameTile.IsOccupied();
-    }
-
-    public void PlaceEntity(GameEntityBase newEntity)
-    {
-        m_gameTile.PlaceEntity(newEntity);
-
-        newEntity.m_curTile = this;
-    }
-
-    public void ClearEntity()
-    {
-        m_gameTile.ClearEntity();
     }
 }
