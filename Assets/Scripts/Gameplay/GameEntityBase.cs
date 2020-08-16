@@ -47,7 +47,7 @@ public abstract class GameEntityBase : GameElementBase
 
     public virtual void Die()
     {
-        EngineLog.LogInfo(m_name + " has died!");
+        Debug.Log(m_name + " has died!");
     }
 
     public virtual void Heal(int toHeal)

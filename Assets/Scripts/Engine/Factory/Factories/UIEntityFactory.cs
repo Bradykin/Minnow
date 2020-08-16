@@ -25,12 +25,10 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public GameObject CreateGameObject(WorldTile tile)
+        public T CreateObject<T>(WorldTile tile)
         {
-            Vector2 pos = UIHelper.GetScreenPositionForWorldGridElement(tile.m_gameTile.m_gridPosition.x, tile.m_gameTile.m_gridPosition.y);
-
             GameObject obj = CreateGameObject();
-            obj.transform.position = pos;
+            obj.transform.position = tile.GetScreenPosition();
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)
@@ -40,7 +38,7 @@ namespace Game.Util
 
             obj.GetComponent<UIEntity>().Init(tile.m_gameTile.m_occupyingEntity);
 
-            return obj;
+            return obj.GetComponent<T>();
         }
 
         public override T CreateObject<T>()

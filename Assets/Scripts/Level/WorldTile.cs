@@ -9,7 +9,7 @@ public class WorldTile : WorldElementBase
     public GameTile m_gameTile { get; private set; } = new GameTile();
 
     private SpriteRenderer m_renderer;
-    private GameObject m_occupyingEntityObj;
+    private UIEntity m_occupyingEntityObj;
 
     void Start()
     {
@@ -25,11 +25,12 @@ public class WorldTile : WorldElementBase
     {
         if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {
-            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateGameObject();
+            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
         else if (!m_gameTile.IsOccupied() && m_occupyingEntityObj != null)
         {
-            Destroy(m_occupyingEntityObj);
+            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
+            m_occupyingEntityObj = null;
         }
     }
 

@@ -19,8 +19,6 @@ namespace Game.Util
             if (Instance != null)
             {
                 Destroy(gameObject);
-                //throw new Exception($"An instance of {typeof(T)} already exists.");
-                Debug.Log($"An instance of {typeof(T)} already exists.");
                 return;
             }
 

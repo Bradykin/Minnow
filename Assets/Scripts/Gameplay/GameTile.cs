@@ -17,7 +17,7 @@ public class GameTile
     {
         if (IsOccupied())
         {
-            EngineLog.LogWarning("Placing new entity " + newEntity.m_name + " over existing entity " + m_occupyingEntity.m_name + ".");
+            Debug.LogWarning("Placing new entity " + newEntity.m_name + " over existing entity " + m_occupyingEntity.m_name + ".");
         }
 
         m_occupyingEntity = newEntity;
@@ -28,7 +28,7 @@ public class GameTile
     {
         if (!IsOccupied())
         {
-            EngineLog.LogWarning("Clearing entity on a tile, but no entity currently exists on this tile.");
+            Debug.LogWarning("Clearing entity on a tile, but no entity currently exists on this tile.");
         }
 
         m_occupyingEntity = null;

@@ -12,9 +12,9 @@ namespace Game.Util
         //============================================================================================================//
 
         [SerializeField]
-        private GameObject m_worldTilePrefab;
+        private GameObject m_worldTilePrefab = null;
         [SerializeField]
-        private GameObject m_uiEntityPrefab;
+        private GameObject m_uiEntityPrefab = null;
 
         //============================================================================================================//;
 
