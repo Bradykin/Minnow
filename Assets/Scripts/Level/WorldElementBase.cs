@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldElementBase : MonoBehaviour
 {
     protected GameElementBase m_gameElement;
+    public bool m_showTooltip { get; protected set; } = true;
 
     public virtual GameElementBase GetElement()
     {

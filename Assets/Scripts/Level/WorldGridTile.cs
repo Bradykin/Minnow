@@ -56,9 +56,9 @@ public class WorldGridTile : WorldElementBase
         UIPlayerCard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {
-            if (selectedCard.m_card.IsValidToPlay(m_gameTile))
+            if (selectedCard.GetCard().IsValidToPlay(m_gameTile))
             {
-                selectedCard.m_card.PlayCard(m_gameTile);
+                selectedCard.GetCard().PlayCard(m_gameTile);
                 EngineLog.LogInfo("Placing on tile: " + GridPosition);
                 return;
             }
