@@ -6,6 +6,7 @@ public class WorldGridTile : WorldElementBase
 {
     public Vector2Int GridPosition;
     public GameObject m_entityPrefab;
+    public SpriteRenderer m_tintRenderer;
 
     private GameTile m_gameTile;
     private SpriteRenderer m_renderer;
@@ -72,6 +73,22 @@ public class WorldGridTile : WorldElementBase
             {
                 gameEntity.MoveTo(this);
             }
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if (Globals.m_selectedEntity != null)
+        {
+           UIHelper.SetValidGameobjectColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(this));
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (Globals.m_selectedEntity != null)
+        {
+            m_tintRenderer.color = Color.white;
         }
     }
 
