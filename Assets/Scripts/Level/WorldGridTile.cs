@@ -8,6 +8,9 @@ public class WorldGridTile : WorldElementBase
     private GameTile m_gameTile;
     private SpriteRenderer m_renderer;
 
+    public bool IsPassable => true;
+    public int CostToPass => 1;
+
     void Start()
     {
         m_gameTile = new GameTile();

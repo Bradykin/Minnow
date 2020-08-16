@@ -22,6 +22,15 @@ public class WorldGridManager : MonoBehaviour, IReset
     {
         if (!m_setup)
             return;
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            List<WorldGridTile> AStarPath = CalculateAStarPath(GetWorldGridTileAtPosition(1, 1), GetWorldGridTileAtPosition(3, 7));
+            foreach (var tile in AStarPath)
+            {
+                GameObject.Instantiate(m_testMovementObject).transform.position = tile.transform.position;
+            }
+        }
         
         if (Input.GetKeyDown(KeyCode.A))
             m_currentTile = GetWorldGridTileAtPosition(m_currentTile.Left());
@@ -76,6 +85,7 @@ public class WorldGridManager : MonoBehaviour, IReset
         for (int i = 0; i < numGridTiles; i++)
         {
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldGridTileFactory>().CreateObject<WorldGridTile>();
+            m_gridArray[i].transform.parent = transform;
 
             int x = i % Constants.GridSizeX;
             int y = i / Constants.GridSizeX;
@@ -100,11 +110,11 @@ public class WorldGridManager : MonoBehaviour, IReset
     public List<WorldGridTile> CalculateAStarPath(WorldGridTile startingGridTile, WorldGridTile targetGridTile)
     {
         Location current = null;
+        int g = 0;
         var start = new Location(startingGridTile, targetGridTile, g, null);
         var target = new Location(targetGridTile);
         var openList = new List<Location>();
         var closedList = new List<Location>();
-        int g = 0;
 
         // start by adding the original position to the open list
         openList.Add(start);
@@ -131,11 +141,11 @@ public class WorldGridManager : MonoBehaviour, IReset
                     current = current.Parent;
                 }
                 path.Reverse();
-                break;
+                return path;
             }
 
             var adjacentSquares = current.GridTile.AdjacentTiles();
-            g++;
+            g += current.GridTile.CostToPass;
 
             foreach (var adjacentTile in adjacentSquares)
             {
@@ -144,12 +154,17 @@ public class WorldGridManager : MonoBehaviour, IReset
                         && l.Y == adjacentTile.y) != null)
                     continue;
 
+                WorldGridTile adjacentGridTile = GetWorldGridTileAtPosition(adjacentTile);
+
+                if (!adjacentGridTile.IsPassable)
+                    continue;
+
                 // if it's not in the open list...
                 var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.x
                         && l.Y == adjacentTile.y);
                 if (adjacent == null)
                 {
-                    Location adjacentLocation = new Location(GetWorldGridTileAtPosition(adjacentTile), targetGridTile, g, current);
+                    Location adjacentLocation = new Location(adjacentGridTile, targetGridTile, g, current);
                     openList.Insert(0, adjacentLocation);
                 }
                 else if (g + adjacent.H < adjacent.F)
