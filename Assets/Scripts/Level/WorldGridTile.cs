@@ -11,6 +11,9 @@ public class WorldGridTile : WorldElementBase
     private SpriteRenderer m_renderer;
     private GameObject m_occupyingEntity;
 
+    public bool IsPassable => true;
+    public int CostToPass => 1;
+
     void Start()
     {
         m_gameTile = new GameTile();

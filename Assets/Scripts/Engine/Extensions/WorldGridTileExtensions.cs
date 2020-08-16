@@ -6,6 +6,37 @@ namespace Game.Util
 {
     public static class WorldGridTileExtensions
     {
+        public static List<Vector2Int> AdjacentTiles (this WorldGridTile gridTile)
+        {
+            List<Vector2Int> adjacentTiles = new List<Vector2Int>();
+
+            Vector2Int tileLeftCoordinates = gridTile.Left();
+            if (tileLeftCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileLeftCoordinates);
+
+            Vector2Int tileRightCoordinates = gridTile.Right();
+            if (tileRightCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileRightCoordinates);
+
+            Vector2Int tileUpLeftCoordinates = gridTile.UpLeft();
+            if (tileUpLeftCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileUpLeftCoordinates);
+
+            Vector2Int tileUpRightCoordinates = gridTile.UpRight();
+            if (tileUpRightCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileUpRightCoordinates);
+
+            Vector2Int tileDownLeftCoordinates = gridTile.DownLeft();
+            if (tileDownLeftCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileDownLeftCoordinates);
+
+            Vector2Int tileDownRightCoordinates = gridTile.DownRight();
+            if (tileDownRightCoordinates != gridTile.GridPosition)
+                adjacentTiles.Add(tileDownRightCoordinates);
+
+            return adjacentTiles;
+        }
+        
         public static Vector2Int Left(this WorldGridTile gridTile)
         {
             Vector2Int currentPosition = gridTile.GridPosition;
