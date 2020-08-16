@@ -11,6 +11,7 @@ public class UIEntity : WorldElementBase
     void Start()
     {
         m_renderer = GetComponent<SpriteRenderer>();
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
 
         gameObject.AddComponent<UITooltipGenerator>();
     }
@@ -22,7 +23,7 @@ public class UIEntity : WorldElementBase
 
     void Update()
     {
-        UIHelper.SelectGameobject(m_tintRenderer, Globals.m_selectedEntity == this);
+        UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
     }
 
     void OnMouseDown()

@@ -22,13 +22,14 @@ public class UIPlayerCard : WorldElementBase
         SetCardData();
 
         m_renderer = GetComponent<SpriteRenderer>();
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
 
         gameObject.AddComponent<UITooltipGenerator>();
     }
 
     void Update() 
     {
-        UIHelper.SelectGameobject(m_tintRenderer, Globals.m_selectedCard == this);
+        UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
     }
 
     private void SetCardData()

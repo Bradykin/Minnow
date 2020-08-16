@@ -102,7 +102,7 @@ public abstract class GameEntityBase : GameElementBase
 
     public bool CanMoveTo(GameTile tile)
     {
-        if (tile.IsOccupied())
+        if (tile.IsOccupied() && tile.m_occupyingEntity != this)
         {
             return false;
         }

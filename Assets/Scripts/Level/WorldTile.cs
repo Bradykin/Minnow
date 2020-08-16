@@ -17,6 +17,7 @@ public class WorldTile : WorldElementBase
 
         m_gameElement = m_gameTile.m_terrain;
         m_renderer.color = m_gameElement.GetColor();
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
 
         gameObject.AddComponent<UITooltipGenerator>();
     }
@@ -66,7 +67,7 @@ public class WorldTile : WorldElementBase
     {
         if (Globals.m_selectedEntity != null)
         {
-           UIHelper.SetValidGameobjectColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(m_gameTile));
+           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(m_gameTile));
         }
     }
 
@@ -74,7 +75,7 @@ public class WorldTile : WorldElementBase
     {
         if (Globals.m_selectedEntity != null)
         {
-            m_tintRenderer.color = Color.white;
+            UIHelper.SetDefaultTintColor(m_tintRenderer);
         }
     }
 }
