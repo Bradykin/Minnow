@@ -18,7 +18,6 @@ public abstract class GameEntity : GameElementBase
     protected int m_apRegen = 3;
     protected int m_maxAP = 6;
     protected int m_power = 3;
-    protected int m_toughness = 1;
 
     public GameTile m_curTile;
 
@@ -30,14 +29,12 @@ public abstract class GameEntity : GameElementBase
 
     public virtual void Hit(int damage)
     {
-        int damageToDeal = damage - GetToughness();
-
-        if (damageToDeal <= 0)
+        if (damage <= 0)
         {
-            damageToDeal = 1; //Always deal at least 1 damage
+            damage = 1; //Always deal at least 1 damage
         }
 
-        m_curHealth -= damageToDeal;
+        m_curHealth -= damage;
 
         if (m_curHealth <= 0)
         {
@@ -65,11 +62,6 @@ public abstract class GameEntity : GameElementBase
         return m_team;
     }
 
-    public int GetToughness()
-    {
-        return m_toughness;
-    }
-
     public int GetCurAP()
     {
         return m_curAP;
@@ -80,8 +72,10 @@ public abstract class GameEntity : GameElementBase
         UITooltipController tooltipController = base.InitTooltip();
         tooltipController.m_titleBackground.color = GetColor();
 
-        string apString = "AP: " + m_curAP + "//" + m_maxAP + "(" + m_apRegen + ")";
-        tooltipController.m_descText.text += "\n" + apString;
+        string healthString = "Health: " + m_curHealth + "/" + m_maxHealth;
+        string powerString = "Power: " + m_power;
+        string apString = "AP: " + m_curAP + "/" + m_maxAP + "(+" + m_apRegen + "/turn)";
+        tooltipController.m_descText.text += "\n" + healthString + "\n" + powerString + "\n" + apString;
 
         return tooltipController;
     }

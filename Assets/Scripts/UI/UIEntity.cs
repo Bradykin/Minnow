@@ -5,15 +5,12 @@ using UnityEngine;
 public class UIEntity : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
-
-    private SpriteRenderer m_renderer;
+    public SpriteRenderer m_renderer;
 
     private bool m_isHovered;
 
     void Start()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
-        m_renderer.color = m_gameElement.GetColor();
         UIHelper.SetDefaultTintColor(m_tintRenderer);
 
         gameObject.AddComponent<UITooltipGenerator>();
@@ -22,6 +19,9 @@ public class UIEntity : WorldElementBase
     public void Init(GameEntity entity)
     {
         m_gameElement = entity;
+
+        m_renderer.color = m_gameElement.GetColor();
+        m_renderer.sprite = m_gameElement.m_icon;
     }
 
     void Update()
@@ -50,7 +50,7 @@ public class UIEntity : WorldElementBase
         m_isHovered = true;
         if (Globals.m_selectedCard != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.GetCard().IsValidToPlay(GetEntity()));
+            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
         }
     }
 

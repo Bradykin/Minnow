@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static UIPlayerCard m_selectedCard;
+    public static UICard m_selectedCard;
     public static UIEntity m_selectedEntity;
 }

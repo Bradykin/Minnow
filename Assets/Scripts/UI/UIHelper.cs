@@ -40,4 +40,14 @@ public static class UIHelper
     {
         renderer.color = m_default;
     }
+
+    public static Sprite GetIconCard(string cardName)
+    {
+        return Resources.Load<Sprite>("Cards/" + cardName) as Sprite;
+    }
+
+    public static Sprite GetIconEntity(string cardName)
+    {
+        return Resources.Load<Sprite>("Entities/" + cardName) as Sprite;
+    }
 }

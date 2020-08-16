@@ -28,7 +28,7 @@ namespace Game.Util
         public T CreateObject<T>(WorldTile tile)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = tile.GetScreenPosition();
+            obj.transform.position = tile.GetScreenPositionForEntity();
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)

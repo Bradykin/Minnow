@@ -53,6 +53,9 @@ TagManager:
   - name: TileForground
     uniqueID: 2127231827
     locked: 0
+  - name: TileTint
+    uniqueID: 1576772459
+    locked: 0
   - name: TileText
     uniqueID: 3613479433
     locked: 0
@@ -65,6 +68,9 @@ TagManager:
   - name: EntityForground
     uniqueID: 1493129697
     locked: 0
+  - name: EntityTint
+    uniqueID: 3879267233
+    locked: 0
   - name: EntityText
     uniqueID: 510882381
     locked: 0
@@ -76,6 +82,9 @@ TagManager:
     locked: 0
   - name: UIForground
     uniqueID: 3956644511
+    locked: 0
+  - name: UITint
+    uniqueID: 3339889783
     locked: 0
   - name: UIText
     uniqueID: 2400614357

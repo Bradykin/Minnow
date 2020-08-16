@@ -42,12 +42,12 @@ public class WorldTile : WorldElementBase
 
     void OnMouseDown()
     {
-        UIPlayerCard selectedCard = Globals.m_selectedCard;
+        UICard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {
-            if (selectedCard.GetCard().IsValidToPlay(m_gameTile))
+            if (selectedCard.m_card.IsValidToPlay(m_gameTile))
             {
-                selectedCard.GetCard().PlayCard(m_gameTile);
+                selectedCard.m_card.PlayCard(m_gameTile);
                 Destroy(selectedCard.gameObject);
                 Globals.m_selectedCard = null;
                 return;
@@ -74,7 +74,7 @@ public class WorldTile : WorldElementBase
 
         if (Globals.m_selectedCard != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.GetCard().IsValidToPlay(m_gameTile));
+            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile));
         }
     }
 

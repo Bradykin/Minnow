@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPlayerCard : WorldElementBase
+public class UICard : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
 
     public Text m_nameText;
     public Text m_costText;
+    public SpriteRenderer m_imageRenderer;
     public Text m_typelineText;
     public Text m_descText;
 
-    private SpriteRenderer m_renderer;
+    public GameCard m_card { get; private set; }
 
     void Start()
     {
-        m_gameElement = new GameGoblinCard();
-        m_showTooltip = false;
+        m_card = new GameGoblinCard();
+        m_imageRenderer.sprite = m_card.m_icon;
+        
+        if (m_card is GameCardEntityBase)
+        {
+            m_gameElement = ((GameCardEntityBase)m_card).m_entity;
+        }
+        else
+        {
+            m_showTooltip = false;
+        }
 
         SetCardData();
 
-        m_renderer = GetComponent<SpriteRenderer>();
         UIHelper.SetDefaultTintColor(m_tintRenderer);
 
         gameObject.AddComponent<UITooltipGenerator>();
@@ -34,20 +43,15 @@ public class UIPlayerCard : WorldElementBase
 
     private void SetCardData()
     {
-        m_nameText.text = GetCard().m_name;
-        m_costText.text = GetCard().m_cost + "";
-        m_typelineText.text = GetCard().m_typeline;
-        m_descText.text = GetCard().m_desc;
+        m_nameText.text = m_card.m_name;
+        m_costText.text = m_card.m_cost + "";
+        m_typelineText.text = m_card.m_typeline;
+        m_descText.text = m_card.m_desc;
     }
 
     void OnMouseDown()
     {
         Globals.m_selectedCard = this;
         Globals.m_selectedEntity = null;
-    }
-
-    public GameCard GetCard()
-    {
-        return (GameCard)m_gameElement;
     }
 }

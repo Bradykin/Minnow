@@ -10,13 +10,12 @@ public class GameEntitySlimeEnemy : GameEntity
         m_maxAP = 3;
         m_apRegen = 3;
         m_power = 1;
-        m_toughness = 0;
 
         m_team = Team.Enemy;
 
         m_name = "Slime";
         m_desc = "What a basic slime.  LOL!";
-        m_icon = null;
+        m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
     }
