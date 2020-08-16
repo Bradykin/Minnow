@@ -27,9 +27,4 @@ public static class UIHelper
             renderer.color = Color.red;
         }
     }
-
-    public static Vector3 GetScreenPositionForWorldGridElement(int x, int y)
-    {
-        return new Vector3((x + y * 0.5f - y / 2) * Constants.HexagonInnerRadius * 2.0f, y * Constants.HexagonOuterRadius * 1.5f, 0.0f);
-    }
 }
