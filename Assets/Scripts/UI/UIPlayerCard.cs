@@ -10,17 +10,12 @@ public class UIPlayerCard : WorldElementBase
     public Text m_typelineText;
     public Text m_descText;
 
-    public GameCard m_card { get; private set; }
-
     private SpriteRenderer m_renderer;
 
     void Start()
     {
-        m_card = new GameGoblinCard();
-        if (m_card is GameCardEntityBase)
-        {
-            m_gameElement = ((GameCardEntityBase)m_card).GetEntity();
-        }
+        m_gameElement = new GameGoblinCard();
+        m_showTooltip = false;
 
         SetCardData();
 
@@ -36,15 +31,20 @@ public class UIPlayerCard : WorldElementBase
 
     private void SetCardData()
     {
-        m_nameText.text = m_card.m_name;
-        m_costText.text = m_card.m_cost + "";
-        m_typelineText.text = m_card.m_typeline;
-        m_descText.text = m_card.m_desc;
+        m_nameText.text = GetCard().m_name;
+        m_costText.text = GetCard().m_cost + "";
+        m_typelineText.text = GetCard().m_typeline;
+        m_descText.text = GetCard().m_desc;
     }
 
     void OnMouseDown()
     {
         Globals.m_selectedCard = this;
         Globals.m_selectedEntity = null;
+    }
+
+    public GameCard GetCard()
+    {
+        return (GameCard)m_gameElement;
     }
 }

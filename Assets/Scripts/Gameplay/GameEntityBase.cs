@@ -70,10 +70,18 @@ public abstract class GameEntityBase : GameElementBase
         return m_toughness;
     }
 
+    public int GetCurAP()
+    {
+        return m_curAP;
+    }
+
     public override UITooltipController InitTooltip()
     {
         UITooltipController tooltipController = base.InitTooltip();
         tooltipController.m_titleBackground.color = GetColor();
+
+        string apString = "AP: " + m_curAP + "//" + m_maxAP + "(" + m_apRegen + ")";
+        tooltipController.m_descText.text += "\n" + apString;
 
         return tooltipController;
     }
@@ -111,6 +119,10 @@ public abstract class GameEntityBase : GameElementBase
 
     public void MoveTo(WorldGridTile tile)
     {
+        List<WorldGridTile> path = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile);
+
+        m_curAP -= path.Count;
+
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);
     }

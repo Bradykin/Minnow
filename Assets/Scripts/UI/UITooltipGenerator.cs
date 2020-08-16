@@ -8,8 +8,9 @@ public class UITooltipGenerator : MonoBehaviour
 
     void OnMouseOver()
     {
-        m_element = GetComponent<WorldElementBase>().GetElement();
-        if (m_element != null)
+        WorldElementBase worldElement = GetComponent<WorldElementBase>();
+        m_element = worldElement.GetElement();
+        if (m_element != null && worldElement.m_showTooltip)
         {
             m_element.InitTooltip();
         }
