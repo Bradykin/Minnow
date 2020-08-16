@@ -3,19 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WorldGridManager : Singleton<WorldGridManager>, IReset
+public class WorldGridManager : Singleton<WorldGridManager>
 {
     private WorldGridTile[] m_gridArray;
 
     private bool m_setup;
 
-    public GameObject m_testMovementObject;
-    private WorldGridTile m_currentTile;
-
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -23,61 +21,49 @@ public class WorldGridManager : Singleton<WorldGridManager>, IReset
         if (!m_setup)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneLoader.ActivateScene("AlexTestScene", SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneLoader.ActivateScene("NickTestScene", SceneManager.GetActiveScene().name);
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.Y))
         {
             List<WorldGridTile> AStarPath = CalculateAStarPath(GetWorldGridTileAtPosition(1, 1), GetWorldGridTileAtPosition(3, 7));
             foreach (var tile in AStarPath)
             {
-                GameObject.Instantiate(m_testMovementObject).transform.position = tile.transform.position;
+                GameObject.Instantiate(m_testMovementObjectPrefab).transform.position = tile.transform.position;
             }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.A))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.Left());
-
-        if (Input.GetKeyDown(KeyCode.D))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.Right());
-
-        if (Input.GetKeyDown(KeyCode.W))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.UpLeft());
-
-        if (Input.GetKeyDown(KeyCode.E))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.UpRight());
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.DownLeft());
-
-        if (Input.GetKeyDown(KeyCode.X))
-            m_currentTile = GetWorldGridTileAtPosition(m_currentTile.DownRight());
-
-        if (m_testMovementObject != null)
-        {
-            m_testMovementObject.transform.position = m_currentTile.transform.position;
-        }
+        }*/
     }
 
-    public void Activate()
+    public void Setup(Transform parent)
     {
         if (!m_setup)
         {
-            SetupSquareGrid();
+            SetupSquareGrid(parent);
             m_setup = true;
+        }
+    }
 
-            m_currentTile = GetWorldGridTileAtPosition(3, 3);
+    public void RecycleGrid()
+    {
+        if (m_setup)
+        {
+            m_setup = false;
 
-            if (m_testMovementObject != null)
+            foreach (var tile in m_gridArray)
             {
-                m_testMovementObject.transform.position = m_currentTile.transform.position;
+                Recycler.Recycle<WorldGridTile>(tile);
             }
         }
     }
 
-    public void Reset()
-    {
-
-    }
-
-    public void SetupSquareGrid()
+    private void SetupSquareGrid(Transform parent)
     {
         int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
         m_gridArray = new WorldGridTile[numGridTiles];
@@ -85,7 +71,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, IReset
         for (int i = 0; i < numGridTiles; i++)
         {
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldGridTileFactory>().CreateObject<WorldGridTile>();
-            m_gridArray[i].transform.parent = transform;
+            m_gridArray[i].transform.parent = parent;
 
             int x = i % Constants.GridSizeX;
             int y = i / Constants.GridSizeX;

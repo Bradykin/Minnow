@@ -84,7 +84,7 @@ namespace Game.Util
         {
             lastScene = sceneNameToDeload;
             currentScene = sceneName;
-            
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
             
             SetSceneObjectsActive(sceneNameToDeload, false);
             
