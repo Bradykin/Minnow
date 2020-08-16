@@ -10,10 +10,12 @@ namespace Game.Util
     public class FactoryManager : Singleton<FactoryManager>
     {
         //============================================================================================================//
-        
+
         [SerializeField]
-        private GameObject m_worldGridTilePrefab;
-        
+        private GameObject m_worldTilePrefab;
+        [SerializeField]
+        private GameObject m_uiEntityPrefab;
+
         //============================================================================================================//;
 
         private Dictionary<Type, FactoryBase> _factoryBases;
@@ -43,8 +45,10 @@ namespace Game.Util
             var type = typeof(T);
             switch (true)
             {
-                case bool _ when type == typeof(WorldGridTileFactory):
-                    return new WorldGridTileFactory(m_worldGridTilePrefab) as T;
+                case bool _ when type == typeof(WorldTileFactory):
+                    return new WorldTileFactory(m_worldTilePrefab) as T;
+                case bool _ when type == typeof(UIEntityFactory):
+                    return new UIEntityFactory(m_uiEntityPrefab) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }

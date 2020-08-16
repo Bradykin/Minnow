@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Util;
 
 public class WorldTile : WorldElementBase
 {
-    public GameObject m_entityPrefab;
     public SpriteRenderer m_tintRenderer;
     public GameTile m_gameTile { get; private set; } = new GameTile();
 
@@ -25,15 +25,7 @@ public class WorldTile : WorldElementBase
     {
         if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {
-            m_occupyingEntityObj = Instantiate(m_entityPrefab, UIHelper.GetScreenPositionForWorldGridElement(m_gameTile.m_gridPosition.x, m_gameTile.m_gridPosition.y), Quaternion.identity);
-
-            GameObject uiParent = GameObject.Find("UI");
-            if (uiParent != null)
-            {
-                m_occupyingEntityObj.transform.parent = uiParent.transform;
-            }
-
-            m_occupyingEntityObj.GetComponent<UIEntity>().Init(m_gameTile.m_occupyingEntity);
+            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateGameObject();
         }
         else if (!m_gameTile.IsOccupied() && m_occupyingEntityObj != null)
         {

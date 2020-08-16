@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662f0f4c40096514c9a290100f16d0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_worldGridTilePrefab: {fileID: 4995393579826288999, guid: 7202d2a57e1e06241bc0b70d07daeb7f,
+  m_worldTilePrefab: {fileID: 4995393579826288999, guid: 7202d2a57e1e06241bc0b70d07daeb7f,
+    type: 3}
+  m_uiEntityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
     type: 3}
