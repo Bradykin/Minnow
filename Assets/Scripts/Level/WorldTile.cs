@@ -48,6 +48,8 @@ public class WorldTile : WorldElementBase
             if (selectedCard.GetCard().IsValidToPlay(m_gameTile))
             {
                 selectedCard.GetCard().PlayCard(m_gameTile);
+                Destroy(selectedCard.gameObject);
+                Globals.m_selectedCard = null;
                 return;
             }
         }
@@ -55,7 +57,7 @@ public class WorldTile : WorldElementBase
         UIEntity selectedEntity = Globals.m_selectedEntity;
         if (selectedEntity != null)
         {
-            GameEntityBase gameEntity = (GameEntityBase)(selectedEntity.GetElement());
+            GameEntity gameEntity = (GameEntity)(selectedEntity.GetElement());
             if (gameEntity.CanMoveTo(m_gameTile))
             {
                 gameEntity.MoveTo(m_gameTile);
@@ -69,13 +71,15 @@ public class WorldTile : WorldElementBase
         {
            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(m_gameTile));
         }
+
+        if (Globals.m_selectedCard != null)
+        {
+            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.GetCard().IsValidToPlay(m_gameTile));
+        }
     }
 
     void OnMouseExit()
     {
-        if (Globals.m_selectedEntity != null)
-        {
-            UIHelper.SetDefaultTintColor(m_tintRenderer);
-        }
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGoblinEntity : GameEntityBase
+public class GameGoblinEntity : GameEntity
 {
     public GameGoblinEntity()
     {

@@ -4,10 +4,30 @@ using UnityEngine;
 
 public class GameCardEntityBase : GameCard
 {
-    protected GameEntityBase m_entity { get; set; }
+    protected GameEntity m_entity { get; set; }
 
-    public GameEntityBase GetEntity()
+    public GameEntity GetEntity()
     {
         return m_entity;
+    }
+
+    public override void PlayCard(GameTile targetTile)
+    {
+        if (!IsValidToPlay(targetTile))
+        {
+            return;
+        }
+
+        targetTile.PlaceEntity(m_entity);
+    }
+
+    public override bool IsValidToPlay(GameTile targetTile)
+    {
+        if (targetTile.IsOccupied())
+        {
+            return false;
+        }
+
+        return true;
     }
 }

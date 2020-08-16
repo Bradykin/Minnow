@@ -9,6 +9,9 @@ public static class UIHelper
     public static Color m_valid = new Color(Color.green.r, Color.green.g, Color.green.b, 0.3f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
 
+    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
+    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
+
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
     {
         if (isSelected)

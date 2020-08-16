@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTile
 {
-    public GameEntityBase m_occupyingEntity { get; private set; }
+    public GameEntity m_occupyingEntity { get; private set; }
     public Vector2Int m_gridPosition;
     public GameTerrainBase m_terrain { get; private set; }
 
@@ -13,7 +13,7 @@ public class GameTile
         m_terrain = new GameGrassTerrain();
     }
 
-    public void PlaceEntity(GameEntityBase newEntity)
+    public void PlaceEntity(GameEntity newEntity)
     {
         if (IsOccupied())
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEntitySlimeEnemy : GameEntityBase
+public class GameEntitySlimeEnemy : GameEntity
 {
     public GameEntitySlimeEnemy()
     {

@@ -8,7 +8,7 @@ public enum Team
     Enemy
 }
 
-public abstract class GameEntityBase : GameElementBase
+public abstract class GameEntity : GameElementBase
 {
     protected Team m_team;
 
@@ -90,11 +90,11 @@ public abstract class GameEntityBase : GameElementBase
     {
         if (GetTeam() == Team.Player)
         {
-            return Color.blue;
+            return UIHelper.m_playerColor;
         }
         else if (GetTeam() == Team.Enemy)
         {
-            return Color.red;
+            return UIHelper.m_enemyColor;
         }
 
         return Color.white;
@@ -102,7 +102,7 @@ public abstract class GameEntityBase : GameElementBase
 
     public bool CanMoveTo(GameTile tile)
     {
-        if (tile.IsOccupied() && tile.m_occupyingEntity != this)
+        if (tile.IsOccupied())
         {
             return false;
         }

@@ -15,7 +15,7 @@ public class GameCureLightWoundsCard : GameCardSpellBase
         m_icon = null;
     }
 
-    public override void PlayCard(GameEntityBase targetEntity)
+    public override void PlayCard(GameEntity targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {
@@ -25,7 +25,7 @@ public class GameCureLightWoundsCard : GameCardSpellBase
         targetEntity.Heal(GetSpellValue());
     }
 
-    public override bool IsValidToPlay(GameEntityBase targetEntity)
+    public override bool IsValidToPlay(GameEntity targetEntity)
     {
         if (targetEntity.GetTeam() == Team.Enemy)
         {

@@ -14,24 +14,4 @@ public class GameGoblinCard : GameCardEntityBase
 
         m_entity = new GameGoblinEntity();
     }
-
-    public override void PlayCard(GameTile targetTile)
-    {
-        if (!IsValidToPlay(targetTile))
-        {
-            return;
-        }
-
-        targetTile.PlaceEntity(m_entity);
-    }
-
-    public override bool IsValidToPlay(GameTile targetTile)
-    {
-        if (targetTile.IsOccupied())
-        {
-            return false;
-        }
-
-        return true;
-    }
 }
