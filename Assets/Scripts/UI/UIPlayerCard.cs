@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIPlayerCard : WorldElementBase
 {
+    public SpriteRenderer m_tintRenderer;
+
     public Text m_nameText;
     public Text m_costText;
     public Text m_typelineText;
@@ -26,7 +28,7 @@ public class UIPlayerCard : WorldElementBase
 
     void Update() 
     {
-        UIHelper.SelectGameobject(m_renderer, Globals.m_selectedCard == this);
+        UIHelper.SelectGameobject(m_tintRenderer, Globals.m_selectedCard == this);
     }
 
     private void SetCardData()
