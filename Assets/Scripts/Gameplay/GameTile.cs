@@ -7,10 +7,13 @@ public class GameTile
     public GameEntity m_occupyingEntity { get; private set; }
     public Vector2Int m_gridPosition;
     public GameTerrainBase m_terrain { get; private set; }
+    public GameEvent m_event { get; private set; }
 
     public GameTile()
     {
         m_terrain = new GameGrassTerrain();
+
+        m_event = new GameDragonDenEvent(this);
     }
 
     public void PlaceEntity(GameEntity newEntity)
@@ -37,5 +40,10 @@ public class GameTile
     public bool IsOccupied()
     {
         return m_occupyingEntity != null;
+    }
+
+    public bool HasAvailableEvent()
+    {
+        return m_event != null;
     }
 }

@@ -47,3 +47,5 @@ MonoBehaviour:
     type: 3}
   m_uiEntityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
     type: 3}
+  m_uiEventPrefab: {fileID: 3514070705531117766, guid: b4bbb8e94a14c1b449d9738aaf23efa0,
+    type: 3}

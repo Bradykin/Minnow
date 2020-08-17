@@ -6,10 +6,11 @@ using Game.Util;
 public class WorldTile : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
-    public GameTile m_gameTile { get; private set; } = new GameTile();
+    public GameTile m_gameTile { get; private set; }
 
     private SpriteRenderer m_renderer;
     private UIEntity m_occupyingEntityObj;
+    private UIEvent m_occupyingEventObj;
 
     void Start()
     {
@@ -33,10 +34,21 @@ public class WorldTile : WorldElementBase
             Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
         }
+
+        if (m_gameTile.HasAvailableEvent() && m_occupyingEventObj == null)
+        {
+            m_occupyingEventObj = FactoryManager.Instance.GetFactory<UIEventFactory>().CreateObject<UIEvent>(this);
+        }
+        else if (!m_gameTile.HasAvailableEvent() && m_occupyingEventObj != null)
+        {
+            Recycler.Recycle<UIEvent>(m_occupyingEventObj);
+            m_occupyingEventObj = null;
+        }
     }
 
     public void Init(int x, int y)
     {
+        m_gameTile = new GameTile();
         m_gameTile.m_gridPosition = new Vector2Int(x, y);
     }
 

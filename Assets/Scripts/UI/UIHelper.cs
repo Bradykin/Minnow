@@ -46,9 +46,14 @@ public static class UIHelper
         return Resources.Load<Sprite>("Cards/" + cardName) as Sprite;
     }
 
-    public static Sprite GetIconEntity(string cardName)
+    public static Sprite GetIconEntity(string entityName)
     {
-        return Resources.Load<Sprite>("Entities/" + cardName) as Sprite;
+        return Resources.Load<Sprite>("Entities/" + entityName) as Sprite;
+    }
+
+    public static Sprite GetIconEvent(string eventName)
+    {
+        return Resources.Load<Sprite>("Events/" + eventName) as Sprite;
     }
 
     public static void SelectEntity(UIEntity entity)

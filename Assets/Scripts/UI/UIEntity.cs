@@ -30,23 +30,29 @@ public class UIEntity : WorldElementBase
         {
             UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
         }
+
+        if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
+        {
+            Globals.m_selectedEntity = null;
+        }
     }
 
     void OnMouseDown()
     {
-        if (Globals.m_selectedCard == null)
+        if (CanSelect())
         {
             UIHelper.SelectEntity(this);
 
             UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
         }
-        else
+        else if (Globals.m_selectedCard != null)
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 Destroy(Globals.m_selectedCard.gameObject);
                 Globals.m_selectedCard = null;
+                UIHelper.SetDefaultTintColor(m_tintRenderer);
             }
         }
     }
@@ -62,6 +68,10 @@ public class UIEntity : WorldElementBase
         if (Globals.m_selectedCard != null)
         {
             UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
+        } 
+        else
+        {
+            UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
         }
     }
 
@@ -77,5 +87,20 @@ public class UIEntity : WorldElementBase
     public GameEntity GetEntity()
     {
         return (GameEntity)m_gameElement;
+    }
+
+    private bool CanSelect()
+    {
+        if (Globals.m_selectedCard != null)
+        {
+            return false;
+        }
+
+        if (GetEntity().GetCurAP() <= 0)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -111,9 +111,14 @@ public abstract class GameEntity : GameElementBase
 
     public void MoveTo(GameTile tile)
     {
-        m_curAP -= WorldGridManager.Instance.GetPathLength(m_curTile, tile);
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile));
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);
+    }
+
+    public void SpendAP(int toSpend)
+    {
+        m_curAP -= toSpend;
     }
 }
