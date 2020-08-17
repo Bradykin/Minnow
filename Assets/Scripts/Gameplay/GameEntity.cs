@@ -23,7 +23,7 @@ public abstract class GameEntity : GameElementBase
 
     protected virtual void LateInit()
     {
-        m_curHealth = m_maxHealth;
+        m_curHealth = m_maxHealth - 7;
         m_curAP = m_maxAP;
     }
 

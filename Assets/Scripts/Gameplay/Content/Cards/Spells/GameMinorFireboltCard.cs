@@ -9,10 +9,10 @@ public class GameMinorFireboltCard : GameCardSpellBase
         m_spellEffect = 3;
 
         m_name = "Minor Firebolt";
-        m_desc = "Blast an enemy entity for " + GetSpellValue() + " damage.";
+        m_desc = "Blast an enemy for " + GetSpellValue() + " damage.";
         m_typeline = "Spell - Enemy";
         m_cost = 1;
-        m_icon = null;
+        m_icon = UIHelper.GetIconCard(m_name);
     }
 
     public override void PlayCard(GameEntity targetEntity)

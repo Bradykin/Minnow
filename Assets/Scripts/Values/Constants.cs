@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class Constants
 {
+    public static int InitialHandSize = 5;
+
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
     public static int GridSizeY = 20;

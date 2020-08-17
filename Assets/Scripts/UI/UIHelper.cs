@@ -50,4 +50,30 @@ public static class UIHelper
     {
         return Resources.Load<Sprite>("Entities/" + cardName) as Sprite;
     }
+
+    public static void SelectEntity(UIEntity entity)
+    {
+        if (Globals.m_selectedEntity == entity)
+        {
+            Globals.m_selectedEntity = null;
+        }
+        else
+        {
+            Globals.m_selectedEntity = entity;
+            Globals.m_selectedCard = null;
+        }
+    }
+
+    public static void SelectCard(UICard card)
+    {
+        if (Globals.m_selectedCard == card)
+        {
+            Globals.m_selectedCard = null;
+        }
+        else
+        {
+            Globals.m_selectedEntity = null;
+            Globals.m_selectedCard = card;
+        }
+    }
 }

@@ -12,7 +12,7 @@ public class GameCureLightWoundsCard : GameCardSpellBase
         m_desc = "Heal a freindly entity for " + GetSpellValue() + " health.";
         m_typeline = "Spell - Ally";
         m_cost = 1;
-        m_icon = null;
+        m_icon = UIHelper.GetIconCard(m_name);
     }
 
     public override void PlayCard(GameEntity targetEntity)

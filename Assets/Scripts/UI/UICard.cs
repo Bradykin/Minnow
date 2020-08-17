@@ -15,9 +15,18 @@ public class UICard : WorldElementBase
 
     public GameCard m_card { get; private set; }
 
+    public bool m_isSpellCard; //This is a testing variable and can be removed once we have a real hand being drawn
+
     void Start()
     {
-        m_card = new GameGoblinCard();
+        if (m_isSpellCard)
+        {
+            m_card = new GameCureLightWoundsCard();
+        }
+        else
+        {
+            m_card = new GameGoblinCard();
+        }
         m_imageRenderer.sprite = m_card.m_icon;
         
         if (m_card is GameCardEntityBase)
@@ -51,7 +60,6 @@ public class UICard : WorldElementBase
 
     void OnMouseDown()
     {
-        Globals.m_selectedCard = this;
-        Globals.m_selectedEntity = null;
+        UIHelper.SelectCard(this);
     }
 }

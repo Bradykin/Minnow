@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929266444150017572}
   - component: {fileID: 2167714852317903761}
-  - component: {fileID: 665714304}
+  - component: {fileID: 4135876347484072491}
   m_Layer: 10
   m_Name: Entity
   m_TagString: Untagged
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tintRenderer: {fileID: 28897412925903876}
   m_renderer: {fileID: 7836011148731078566}
---- !u!61 &665714304
-BoxCollider2D:
+--- !u!58 &4135876347484072491
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,18 +143,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &5932508924198874720
 GameObject:
   m_ObjectHideFlags: 0

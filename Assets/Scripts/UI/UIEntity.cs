@@ -34,10 +34,21 @@ public class UIEntity : WorldElementBase
 
     void OnMouseDown()
     {
-        Globals.m_selectedEntity = this;
-        Globals.m_selectedCard = null;
+        if (Globals.m_selectedCard == null)
+        {
+            UIHelper.SelectEntity(this);
 
-        UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+        }
+        else
+        {
+            if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
+            {
+                Globals.m_selectedCard.m_card.PlayCard(GetEntity());
+                Destroy(Globals.m_selectedCard.gameObject);
+                Globals.m_selectedCard = null;
+            }
+        }
     }
 
     public bool CanReachWorldTileFromCurPosition(GameTile toReach)
