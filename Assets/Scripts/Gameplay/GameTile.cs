@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTile
 {
-    public GameEntity m_occupyingEntity { get; private set; }
+    public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
     public GameTerrainBase m_terrain { get; private set; }
     public GameEvent m_event { get; private set; }
@@ -16,6 +16,11 @@ public class GameTile
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEvent))
         {
             m_event = GameEventFactory.GetRandomEvent(this);
+        }
+
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
+        {
+            PlaceEntity(GameEnemyFactory.GetRandomEnemy());
         }
     }
 

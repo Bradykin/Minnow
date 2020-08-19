@@ -20,7 +20,6 @@ public class UIEntity : WorldElementBase
     {
         m_gameElement = entity;
 
-        m_renderer.color = m_gameElement.GetColor();
         m_renderer.sprite = m_gameElement.m_icon;
     }
 
@@ -97,6 +96,11 @@ public class UIEntity : WorldElementBase
         }
 
         if (GetEntity().GetCurAP() <= 0)
+        {
+            return false;
+        }
+
+        if (GetEntity().GetTeam() == Team.Enemy)
         {
             return false;
         }

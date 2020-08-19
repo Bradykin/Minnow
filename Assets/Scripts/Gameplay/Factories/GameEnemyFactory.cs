@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameEventFactory
+public class GameEnemyFactory
 {
-    public static GameEvent GetRandomEvent(GameTile tile)
+    public static GameEntity GetRandomEnemy()
     {
         int r = Random.Range(0, 1);
 
         switch (r)
         {
             case 0:
-                return new GameDragonDenEvent(tile);
+                return new GameEntitySlimeEnemy();
             default:
                 return null;
         }

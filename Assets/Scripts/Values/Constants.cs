@@ -9,6 +9,7 @@ public static class Constants
 
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
+    public static int PercentChanceForTileToContainEnemy = 12;
 
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
