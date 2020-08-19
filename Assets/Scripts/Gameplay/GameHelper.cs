@@ -9,4 +9,10 @@ public static class GameHelper
     {
         return (Random.Range(1, 101) <= percent);
     }
+
+    public static void MakePlayerEntity(GameTile targetTile, GameEntity entity)
+    {
+        targetTile.PlaceEntity(entity);
+        WorldController.Instance.m_gameController.m_player.AddControlledEntity(entity);
+    }
 }

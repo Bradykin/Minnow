@@ -9,11 +9,14 @@ public class GamePlayer : GameElementBase
 
     public List<GameCard> m_hand { get; private set; }
 
+    public List<GameEntity> m_controlledEntities { get; private set; }
+
     public GamePlayer()
     {
         m_deck = new GameDeck();
         m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
+        m_controlledEntities = new List<GameEntity>();
 
         ResetCurDeck();
 
@@ -33,4 +36,13 @@ public class GamePlayer : GameElementBase
         }
     }
 
+    public void AddControlledEntity(GameEntity toAdd)
+    {
+        m_controlledEntities.Add(toAdd);
+    }
+
+    public void RemoveControlledEntity(GameEntity toRemove)
+    {
+        m_controlledEntities.Remove(toRemove);
+    }
 }
