@@ -13,7 +13,10 @@ public class GameTile
     {
         m_terrain = new GameGrassTerrain();
 
-        m_event = new GameDragonDenEvent(this);
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEvent))
+        {
+            m_event = GameEventFactory.GetRandomEvent(this);
+        }
     }
 
     public void PlaceEntity(GameEntity newEntity)

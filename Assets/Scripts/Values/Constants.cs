@@ -4,7 +4,11 @@ using UnityEngine;
 
 public static class Constants
 {
+    //Game Data
     public static int InitialHandSize = 5;
+
+    //Map Gen Data
+    public static int PercentChanceForTileToContainEvent = 5;
 
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
