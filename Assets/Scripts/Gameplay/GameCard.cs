@@ -6,6 +6,7 @@ public abstract class GameCard : GameElementBase
 {
     public int m_cost;
     public string m_typeline;
+    public string m_playDesc;
 
     public virtual void PlayCard() { }
     public virtual void PlayCard(GameTile targetTile) { }

@@ -27,8 +27,19 @@ public class UIEvent : WorldElementBase
     {
         if (IsValidToUse())
         {
-            print("Play event: " + GetEvent().m_name);
+            UIHelper.CreateWorldElementNotification("WIP - The event has been activated!", true, this);
             GetEvent().m_tile.m_occupyingEntity.SpendAP(GetEvent().m_APCost);
+        }
+        else
+        {
+            if (!HasValidOccupant())
+            {
+                UIHelper.CreateWorldElementNotification("You need a unit on this tile!", false, this);
+            }
+            else if (!OccupantHasValidAP())
+            {
+                UIHelper.CreateWorldElementNotification("The unit on this tile needs " + GetEvent().m_APCost + " AP to activate this event!", false, this);
+            }
         }
     }
 
@@ -49,11 +60,26 @@ public class UIEvent : WorldElementBase
 
     private bool IsValidToUse()
     {
-        if (!GetEvent().m_tile.IsOccupied())
+        if (!HasValidOccupant())
         {
             return false;
         }
 
+        if (!OccupantHasValidAP())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool HasValidOccupant()
+    {
+        return GetEvent().m_tile.IsOccupied() && GetEvent().m_tile.m_occupyingEntity.GetTeam() == Team.Player;
+    }
+
+    private bool OccupantHasValidAP()
+    {
         return GetEvent().m_tile.m_occupyingEntity.GetCurAP() >= GetEvent().m_APCost;
     }
 }

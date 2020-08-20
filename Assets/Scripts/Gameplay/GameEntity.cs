@@ -10,16 +10,22 @@ public enum Team
 
 public abstract class GameEntity : GameElementBase
 {
+    //General data.  This should be set for every entity
     protected Team m_team;
+    protected int m_curHealth;
+    protected int m_maxHealth;
+    protected int m_curAP;
+    protected int m_apRegen;
+    protected int m_maxAP;
+    protected int m_power;
 
-    protected int m_curHealth = 10;
-    protected int m_maxHealth = 10;
-    protected int m_curAP = 0;
-    protected int m_apRegen = 3;
-    protected int m_maxAP = 6;
-    protected int m_power = 3;
+    //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
+    protected int m_range = 1;
+    protected int m_apToAttack = 2;
 
+    //Functionality
     public GameTile m_curTile;
+    public bool m_isDead;
 
     protected virtual void LateInit()
     {
@@ -27,7 +33,7 @@ public abstract class GameEntity : GameElementBase
         m_curAP = m_maxAP;
     }
 
-    public virtual void Hit(int damage)
+    public virtual int Hit(int damage)
     {
         if (damage <= 0)
         {
@@ -40,11 +46,13 @@ public abstract class GameEntity : GameElementBase
         {
             Die();
         }
+
+        return damage;
     }
 
     public virtual void Die()
     {
-        Debug.Log(m_name + " has died!");
+        m_isDead = true;
     }
 
     public virtual void Heal(int toHeal)
@@ -57,6 +65,56 @@ public abstract class GameEntity : GameElementBase
         }
     }
 
+    public virtual bool CanHitEntity(GameEntity other)
+    {
+        if (!IsInRangeOfEntity(other))
+        {
+            return false;
+        }
+
+        if (!HasAPToAttack())
+        {
+            return false;
+        }
+
+        if (GetTeam() == other.GetTeam()) //Can't attack your own team
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool IsInRangeOfEntity(GameEntity other)
+    {
+        int distance = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile).Count;
+
+        if ((distance - 1) > m_range)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool HasAPToAttack()
+    {
+        if (m_curAP < m_apToAttack)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual int HitEntity(GameEntity other)
+    {
+        m_curAP -= m_apToAttack;
+        int damageTaken = other.Hit(GetPower());
+
+        return damageTaken;
+    }
+
     public Team GetTeam()
     {
         return m_team;
@@ -65,6 +123,16 @@ public abstract class GameEntity : GameElementBase
     public int GetCurAP()
     {
         return m_curAP;
+    }
+
+    public int GetRange()
+    {
+        return m_range;
+    }
+
+    public int GetPower()
+    {
+        return m_power;
     }
 
     public override UITooltipController InitTooltip()

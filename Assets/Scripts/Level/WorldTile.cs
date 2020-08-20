@@ -60,6 +60,7 @@ public class WorldTile : WorldElementBase
             if (selectedCard.m_card.IsValidToPlay(m_gameTile))
             {
                 selectedCard.m_card.PlayCard(m_gameTile);
+                Globals.m_selectedCard.CardPlayed(this);
                 Destroy(selectedCard.gameObject);
                 Globals.m_selectedCard = null;
                 return;
@@ -81,7 +82,7 @@ public class WorldTile : WorldElementBase
     {
         if (Globals.m_selectedEntity != null)
         {
-           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanReachWorldTileFromCurPosition(m_gameTile));
+           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(m_gameTile));
         }
 
         if (Globals.m_selectedCard != null)

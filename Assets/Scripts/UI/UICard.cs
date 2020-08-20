@@ -62,4 +62,9 @@ public class UICard : WorldElementBase
     {
         UIHelper.SelectCard(this);
     }
+
+    public void CardPlayed(WorldElementBase target)
+    {
+        UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
+    }
 }

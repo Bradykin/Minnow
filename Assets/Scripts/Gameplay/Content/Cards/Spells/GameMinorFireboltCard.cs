@@ -10,6 +10,7 @@ public class GameMinorFireboltCard : GameCardSpellBase
 
         m_name = "Minor Firebolt";
         m_desc = "Blast an enemy for " + GetSpellValue() + " damage.";
+        m_playDesc = "A bolt of fire strikes the foe for " + GetSpellValue();
         m_typeline = "Spell - Enemy";
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);

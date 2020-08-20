@@ -10,6 +10,7 @@ public class GameCureLightWoundsCard : GameCardSpellBase
 
         m_name = "Cure Light Wounds";
         m_desc = "Heal a freindly entity for " + GetSpellValue() + " health.";
+        m_playDesc = "A stream of healing heals for " + GetSpellValue();
         m_typeline = "Spell - Ally";
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);

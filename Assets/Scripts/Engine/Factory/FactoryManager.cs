@@ -14,9 +14,11 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_worldTilePrefab = null;
         [SerializeField]
-        private GameObject m_uiEntityPrefab = null; 
+        private GameObject m_uiEntityPrefab = null;
         [SerializeField]
         private GameObject m_uiEventPrefab = null;
+        [SerializeField]
+        private GameObject m_uiWorldElementNotificationPrefab = null;
 
         //============================================================================================================//;
 
@@ -53,6 +55,8 @@ namespace Game.Util
                     return new UIEntityFactory(m_uiEntityPrefab) as T;
                 case bool _ when type == typeof(UIEventFactory):
                     return new UIEventFactory(m_uiEventPrefab) as T;
+                case bool _ when type == typeof(UIWorldElementNotificationFactory):
+                    return new UIWorldElementNotificationFactory(m_uiWorldElementNotificationPrefab) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }
