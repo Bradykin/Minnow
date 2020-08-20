@@ -41,7 +41,7 @@ public class GameDeck
 
     public void ClearDeck()
     {
-        m_cards.Clear();
+        m_cards = new List<GameCard>();
     }
 
     public GameCard GetCardByIndex(int index)
@@ -90,7 +90,7 @@ public class GameDeck
     private void ShuffleDiscard()
     {
         m_cards.AddRange(m_discard);
-        m_discard.Clear();
+        m_discard = new List<GameCard>();
 
         Shuffle();
     }
