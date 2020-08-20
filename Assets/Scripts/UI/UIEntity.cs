@@ -31,6 +31,14 @@ public class UIEntity : WorldElementBase
             UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
         }
 
+        if (Globals.m_selectedEntity != null)
+        {
+            if (Globals.m_selectedEntity.GetEntity() == GetEntity())
+            {
+                Globals.m_selectedEntity = this;
+            }
+        }
+
         if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
         {
             Globals.m_selectedEntity = null;
@@ -110,7 +118,7 @@ public class UIEntity : WorldElementBase
         {
             UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
         } 
-        else
+        else if (Globals.m_selectedEntity == null)
         {
             UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
         }

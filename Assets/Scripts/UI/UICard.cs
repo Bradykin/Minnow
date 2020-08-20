@@ -21,7 +21,7 @@ public class UICard : WorldElementBase
     {
         if (m_isSpellCard)
         {
-            m_card = new GameMinorFireboltCard();
+            m_card = new GameCureLightWoundsCard();
         }
         else
         {
