@@ -14,6 +14,7 @@ public class GamePlayer : GameElementBase
     public GamePlayer()
     {
         m_deck = new GameDeck();
+        m_deck.FillStartingDeck();
         m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();

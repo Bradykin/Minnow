@@ -9,6 +9,10 @@ public class GameDeck
 
     public GameDeck()
     {
+    }
+
+    public void FillStartingDeck()
+    {
         for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new GameGoblinCard());
@@ -28,6 +32,16 @@ public class GameDeck
     public int Count()
     {
         return m_cards.Count;
+    }
+
+    public int DiscardCount()
+    {
+        return m_discard.Count;
+    }
+
+    public void ClearDeck()
+    {
+        m_cards.Clear();
     }
 
     public GameCard GetCardByIndex(int index)
