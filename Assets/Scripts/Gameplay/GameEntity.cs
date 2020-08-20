@@ -189,4 +189,19 @@ public abstract class GameEntity : GameElementBase
     {
         m_curAP -= toSpend;
     }
+
+    public void EndTurn()
+    {
+        RegenAP();
+    }
+
+    private void RegenAP()
+    {
+        m_curAP += m_apRegen;
+
+        if (m_curAP > m_maxAP)
+        {
+            m_curAP = m_maxAP;
+        }
+    }
 }

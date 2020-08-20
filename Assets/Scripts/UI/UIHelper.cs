@@ -88,9 +88,7 @@ public static class UIHelper
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, WorldElementBase worldElement)
     {
-        UIWorldElementNotificationFactory factory = FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>();
-            
-        factory.CreateObject<UIWorldElementNotification>(message, color, worldElement);
+        FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, worldElement);
     }
 
     public static void CreateWorldElementNotification(string message, bool isPositive, WorldElementBase worldElement)

@@ -12,29 +12,29 @@ public class UICameraController : MonoBehaviour
     void Update()
     {
         HandleMovement();
-        HandleScrolling();
+        //HandleScrolling();
     }
 
     private void HandleMovement()
     {
         Vector3 movementVec = new Vector3();
 
-        if (Input.mousePosition.x <= m_cameraBound)
+        if (Input.mousePosition.x <= m_cameraBound && Input.mousePosition.x >= 0)
         {
             movementVec.x -= m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.x >= Screen.width - m_cameraBound)
+        if (Input.mousePosition.x >= Screen.width - m_cameraBound && Input.mousePosition.x <= Screen.width)
         {
             movementVec.x += m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.y <= m_cameraBound)
+        if (Input.mousePosition.y <= m_cameraBound && Input.mousePosition.y >= 0)
         {
             movementVec.y -= m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.y >= Screen.height - m_cameraBound)
+        if (Input.mousePosition.y >= Screen.height - m_cameraBound && Input.mousePosition.y <= Screen.height)
         {
             movementVec.y += m_cameraSpeed * Time.deltaTime;
         }

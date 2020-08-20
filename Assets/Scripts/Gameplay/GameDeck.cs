@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameDeck
 {
     private List<GameCard> m_cards = new List<GameCard>();
+    private List<GameCard> m_discard = new List<GameCard>();
 
     public GameDeck()
     {
@@ -39,6 +40,11 @@ public class GameDeck
         m_cards.Add(card);
     }
 
+    public void AddToDiscard(GameCard card)
+    {
+        m_discard.Add(card);
+    }
+
     public void Shuffle()
     {
         for (int i = 0; i < m_cards.Count; i++)
@@ -52,8 +58,26 @@ public class GameDeck
 
     public GameCard DrawCard()
     {
+        if (m_cards.Count == 0)
+        {
+            ShuffleDiscard();
+        }
+
+        if (m_cards.Count == 0) //This means that both the deck and the discard are empty
+        {
+            return null;
+        }
+
         GameCard toReturn = m_cards[0];
         m_cards.RemoveAt(0);
         return toReturn;
+    }
+
+    private void ShuffleDiscard()
+    {
+        m_cards.AddRange(m_discard);
+        m_discard.Clear();
+
+        Shuffle();
     }
 }

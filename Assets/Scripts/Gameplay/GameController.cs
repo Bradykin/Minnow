@@ -10,4 +10,9 @@ public class GameController
     {
         m_player = new GamePlayer();
     }
+
+    public void EndTurn()
+    {
+        m_player.EndTurn();
+    }
 }

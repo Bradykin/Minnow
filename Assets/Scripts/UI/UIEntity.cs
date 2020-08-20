@@ -63,9 +63,7 @@ public class UIEntity : WorldElementBase
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
-                Globals.m_selectedCard.CardPlayed(this);
-                Destroy(Globals.m_selectedCard.gameObject);
-                Globals.m_selectedCard = null;
+                WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
                 UIHelper.SetDefaultTintColor(m_tintRenderer);
             }
         }

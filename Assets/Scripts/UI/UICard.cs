@@ -15,20 +15,19 @@ public class UICard : WorldElementBase
 
     public GameCard m_card { get; private set; }
 
-    public bool m_isSpellCard; //This is a testing variable and can be removed once we have a real hand being drawn
-
     void Start()
     {
-        if (m_isSpellCard)
-        {
-            m_card = new GameCureLightWoundsCard();
-        }
-        else
-        {
-            m_card = new GameGoblinCard();
-        }
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
+
+        gameObject.AddComponent<UITooltipGenerator>();
+    }
+
+    public void Init(GameCard card)
+    {
+        m_card = card;
+
         m_imageRenderer.sprite = m_card.m_icon;
-        
+
         if (m_card is GameCardEntityBase)
         {
             m_gameElement = ((GameCardEntityBase)m_card).m_entity;
@@ -40,9 +39,7 @@ public class UICard : WorldElementBase
 
         SetCardData();
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        gameObject.AddComponent<UITooltipGenerator>();
+        m_card = card;
     }
 
     void Update() 

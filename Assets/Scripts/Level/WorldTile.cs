@@ -60,9 +60,7 @@ public class WorldTile : WorldElementBase
             if (selectedCard.m_card.IsValidToPlay(m_gameTile))
             {
                 selectedCard.m_card.PlayCard(m_gameTile);
-                Globals.m_selectedCard.CardPlayed(this);
-                Destroy(selectedCard.gameObject);
-                Globals.m_selectedCard = null;
+                WorldController.Instance.PlayCard(selectedCard, this);
                 return;
             }
         }

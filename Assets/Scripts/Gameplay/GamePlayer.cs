@@ -22,10 +22,33 @@ public class GamePlayer : GameElementBase
 
         m_curDeck.Shuffle();
 
+        DrawHand();
+    }
+
+    private void DrawHand()
+    {
+        for (int i = 0; i < m_hand.Count; i++)
+        {
+            m_deck.AddToDiscard(m_hand[i]);
+        }
+
+        m_hand.Clear();
+
         for (int i = 0; i < Constants.InitialHandSize; i++)
         {
-            m_hand.Add(m_curDeck.DrawCard());
+            GameCard card = m_curDeck.DrawCard();
+
+            if (card != null) //This can be null if the deck and discard are both empty
+            {
+                m_hand.Add(m_curDeck.DrawCard());
+            }
         }
+    }
+
+    public void PlayCard(GameCard card)
+    {
+        m_deck.AddToDiscard(card);
+        m_hand.Remove(card);
     }
 
     private void ResetCurDeck()
@@ -44,5 +67,15 @@ public class GamePlayer : GameElementBase
     public void RemoveControlledEntity(GameEntity toRemove)
     {
         m_controlledEntities.Remove(toRemove);
+    }
+
+    public void EndTurn()
+    {
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            m_controlledEntities[i].EndTurn();
+        }
+
+        DrawHand();
     }
 }

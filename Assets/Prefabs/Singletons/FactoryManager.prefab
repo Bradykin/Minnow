@@ -49,5 +49,7 @@ MonoBehaviour:
     type: 3}
   m_uiEventPrefab: {fileID: 3514070705531117766, guid: b4bbb8e94a14c1b449d9738aaf23efa0,
     type: 3}
+  m_uiCardPrefab: {fileID: 757981490098818967, guid: 7e83a66c522e72e42923a0ad883b8f21,
+    type: 3}
   m_uiWorldElementNotificationPrefab: {fileID: 3599552122858822999, guid: 9be644c790a93154cb9d6bd04a016df2,
     type: 3}
