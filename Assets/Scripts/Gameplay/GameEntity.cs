@@ -22,10 +22,12 @@ public abstract class GameEntity : GameElementBase
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected int m_range = 1;
     protected int m_apToAttack = 2;
+    protected int m_regen = 0;
 
     //Functionality
     public GameTile m_curTile;
     public bool m_isDead;
+    public UIEntity m_uiEntity;
 
     protected virtual void LateInit()
     {
@@ -193,6 +195,12 @@ public abstract class GameEntity : GameElementBase
     public void EndTurn()
     {
         RegenAP();
+
+        if (m_regen > 0)
+        {
+            Heal(m_regen);
+            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + m_regen, true, m_uiEntity);
+        }
     }
 
     private void RegenAP()

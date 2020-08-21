@@ -18,6 +18,11 @@ public class GameDeck
             m_cards.Add(new GameGoblinCard());
         }
 
+        for (int i = 0; i < 3; i++)
+        {
+            m_cards.Add(new GameInjuredTrollCard());
+        }
+
         for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new GameCureLightWoundsCard());

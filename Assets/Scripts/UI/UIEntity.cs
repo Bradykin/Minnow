@@ -20,6 +20,7 @@ public class UIEntity : WorldElementBase
     public void Init(GameEntity entity)
     {
         m_gameElement = entity;
+        entity.m_uiEntity = this;
 
         m_renderer.sprite = m_gameElement.m_icon;
     }
@@ -79,11 +80,13 @@ public class UIEntity : WorldElementBase
 
                 if (GetEntity().m_isDead)
                 {
-                    UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, this);
+                    UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, Globals.m_selectedEntity);
+                    UIHelper.CreateWorldElementNotification(GetEntity().m_name + " dies.", false, this);
                 }
                 else
                 {
-                    UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + " damage!", true, this);
+                    UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
+                    UIHelper.CreateWorldElementNotification(GetEntity().m_name + " takes " + damageDealt + " damage.", false, this);
                 }
             }
             else

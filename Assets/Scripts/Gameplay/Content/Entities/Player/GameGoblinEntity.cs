@@ -14,7 +14,6 @@ public class GameGoblinEntity : GameEntity
         m_team = Team.Player;
 
         m_name = "Goblin";
-        m_desc = "Has 1 extra power when attacking.";
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
