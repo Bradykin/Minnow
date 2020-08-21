@@ -7,6 +7,8 @@ public class GamePlayer : GameElementBase
     public int m_curEnergy;
     public int m_maxEnergy;
 
+    public GameWallet m_wallet;
+
     public GameDeck m_deckBase { get; private set; }
     public GameDeck m_curDeck { get; private set; }
 
@@ -21,6 +23,7 @@ public class GamePlayer : GameElementBase
         m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();
+        m_wallet = new GameWallet(0, 3, 10);
 
         m_maxEnergy = Constants.StartingEnergy;
         m_curEnergy = m_maxEnergy;
