@@ -11,7 +11,8 @@ public class GameMinorFireboltCard : GameCardSpellBase
         m_name = "Minor Firebolt";
         m_desc = "Blast an enemy for " + GetSpellValue() + " damage.";
         m_playDesc = "A bolt of fire strikes the foe for " + GetSpellValue();
-        m_typeline = "Spell - Enemy";
+        m_targetType = Target.Enemy;
+        m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);
     }
@@ -24,15 +25,5 @@ public class GameMinorFireboltCard : GameCardSpellBase
         }
 
         targetEntity.Hit(GetSpellValue());
-    }
-
-    public override bool IsValidToPlay(GameEntity targetEntity)
-    {
-        if (targetEntity.GetTeam() == Team.Player)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

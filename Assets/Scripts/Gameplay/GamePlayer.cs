@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GamePlayer : GameElementBase
 {
+    public int m_curEnergy;
+    public int m_maxEnergy;
+
     public GameDeck m_deckBase { get; private set; }
     public GameDeck m_curDeck { get; private set; }
 
@@ -18,6 +21,9 @@ public class GamePlayer : GameElementBase
         m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();
+
+        m_maxEnergy = Constants.StartingEnergy;
+        m_curEnergy = m_maxEnergy;
 
         ResetCurDeck();
 
@@ -48,6 +54,8 @@ public class GamePlayer : GameElementBase
 
     public void PlayCard(GameCard card)
     {
+        m_curEnergy -= card.m_cost;
+
         m_curDeck.AddToDiscard(card);
         m_hand.Remove(card);
     }
@@ -78,5 +86,7 @@ public class GamePlayer : GameElementBase
         }
 
         DrawHand();
+
+        m_curEnergy = m_maxEnergy;
     }
 }

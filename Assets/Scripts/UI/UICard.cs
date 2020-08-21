@@ -57,7 +57,14 @@ public class UICard : WorldElementBase
 
     void OnMouseDown()
     {
-        UIHelper.SelectCard(this);
+        if (m_card.IsValidToPlay())
+        {
+            UIHelper.SelectCard(this);
+        }
+        else
+        {
+            UIHelper.CreateWorldElementNotification("Not energy energy.", false, this);
+        }
     }
 
     public void CardPlayed(WorldElementBase target)

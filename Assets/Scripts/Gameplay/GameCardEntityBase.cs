@@ -23,6 +23,11 @@ public class GameCardEntityBase : GameCard
 
     public override bool IsValidToPlay(GameTile targetTile)
     {
+        if (!base.IsValidToPlay(targetTile))
+        {
+            return false;
+        }
+
         if (targetTile.IsOccupied())
         {
             return false;

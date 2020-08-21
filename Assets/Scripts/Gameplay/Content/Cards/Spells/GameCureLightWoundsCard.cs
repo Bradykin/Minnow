@@ -11,7 +11,8 @@ public class GameCureLightWoundsCard : GameCardSpellBase
         m_name = "Cure Light Wounds";
         m_desc = "Heal a freindly entity for " + GetSpellValue() + " health.";
         m_playDesc = "A stream of healing heals for " + GetSpellValue();
-        m_typeline = "Spell - Ally";
+        m_targetType = Target.Ally;
+        m_typeline = "Spell - " + m_targetType.ToString();
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);
     }
@@ -24,15 +25,5 @@ public class GameCureLightWoundsCard : GameCardSpellBase
         }
 
         targetEntity.Heal(GetSpellValue());
-    }
-
-    public override bool IsValidToPlay(GameEntity targetEntity)
-    {
-        if (targetEntity.GetTeam() == Team.Enemy)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

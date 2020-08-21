@@ -6,6 +6,7 @@ public static class Constants
 {
     //Game Data
     public static int InitialHandSize = 5;
+    public static int StartingEnergy = 3;
 
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
