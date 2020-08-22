@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class GameEventOption
 {
+    public bool m_hasTooltip;
     public string m_message { get; protected set; }
 
     public abstract void AcceptOption();
@@ -13,4 +14,6 @@ public abstract class GameEventOption
     {
         UIEventController.Instance.EndEvent();
     }
+
+    public virtual void BuildTooltip() { }
 }

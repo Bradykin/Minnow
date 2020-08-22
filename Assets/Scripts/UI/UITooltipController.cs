@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class UITooltipController : Singleton<UITooltipController>
 {
-    public List<UITooltipBase> m_tooltipStack;
-    public List<UITooltipBase> m_secondTooltipStack;
+    private List<UITooltipBase> m_tooltipStack;
+    private List<UITooltipBase> m_secondTooltipStack;
 
     void Start()
     {

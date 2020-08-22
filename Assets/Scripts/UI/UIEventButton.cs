@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIEventButton : MonoBehaviour
+public class UIEventButton : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
     public GameEventOption m_eventOption { get; private set; }
@@ -39,5 +39,13 @@ public class UIEventButton : MonoBehaviour
     void OnMouseExit()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
+    }
+
+    public override void HandleTooltip()
+    {
+        if (m_eventOption.m_hasTooltip)
+        {
+            m_eventOption.BuildTooltip();
+        }
     }
 }

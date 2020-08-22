@@ -38,13 +38,20 @@ public class GameEventTakeDragonGoldOption : GameEventOption
 
 public class GameEventTameDragonOption : GameEventOption
 {
-    GameCard card;
+    GameCardEntityBase card;
 
     public GameEventTameDragonOption()
     {
         card = new GameCaveDragonCard();
 
         m_message = "Tame the dragon, <b>permanently</b> adding it to your deck!";
+
+        m_hasTooltip = true;
+    }
+
+    public override void BuildTooltip()
+    {
+        UIHelper.CreateEntityTooltip(card.GetEntity());
     }
 
     public override void AcceptOption()
