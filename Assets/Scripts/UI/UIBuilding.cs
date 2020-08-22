@@ -54,6 +54,7 @@ public class UIBuilding : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, m_gameElement.m_desc));
+        string desc = m_gameElement.m_desc + "\n" + "Health: " + GetBuilding().m_curHealth + "/" + GetBuilding().m_maxHealth;
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, desc));
     }
 }

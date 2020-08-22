@@ -12,7 +12,9 @@ public class GameTowerBuilding : GameBuildingBase
         m_name = "Tower";
         m_desc = "Shoots at enemies on all surrounding tiles (but not this tile) with " + m_power + " power at the start of your turn.";
 
-        m_icon = UIHelper.GetIconBuilding(m_name);
+        m_maxHealth = 40;
+
+        LateInit();
     }
 
     public override void EndTurn()
