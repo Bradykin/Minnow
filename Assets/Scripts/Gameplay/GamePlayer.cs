@@ -30,7 +30,6 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
-        m_relics.m_relics.Add(new GameOrbOfHealthRelic());
         m_wallet = new GameWallet(0, 3, 10);
 
         m_maxEnergy = Constants.StartingEnergy;

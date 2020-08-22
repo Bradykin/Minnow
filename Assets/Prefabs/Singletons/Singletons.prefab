@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1250641326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250641327}
+  - component: {fileID: 1250641328}
+  m_Layer: 0
+  m_Name: Relics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1250641327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250641326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7887937380994782522}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250641328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250641326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe936793dda240448155c0bfee90803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7887937380952266150
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +258,7 @@ Transform:
   - {fileID: 7887937381586679743}
   - {fileID: 7887937381374052093}
   - {fileID: 7887937381950260037}
+  - {fileID: 1250641327}
   m_Father: {fileID: 7887937382358607673}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4193,6 +4237,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: FactoryManager
       objectReference: {fileID: 0}
+    - target: {fileID: 48864574957171594, guid: 850c5b178a492c448a0e21f636201b83,
+        type: 3}
+      propertyPath: m_uiRelicPrefab
+      value: 
+      objectReference: {fileID: 422705487106061522, guid: f1fa454c167b2d9479c6baa4a37e2b31,
+        type: 3}
     - target: {fileID: 48864574957171595, guid: 850c5b178a492c448a0e21f636201b83,
         type: 3}
       propertyPath: m_LocalPosition.x

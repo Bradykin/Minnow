@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class GameRelicHolder
 {
-    public List<GameRelic> m_relics;
+    private List<GameRelic> m_relics;
 
     public GameRelicHolder()
     {
         m_relics = new List<GameRelic>();
+    }
+
+    public void AddRelic(GameRelic relic)
+    {
+        m_relics.Add(relic);
+        UIRelicController.Instance.AddRelic(relic);
     }
 
     public T GetRelic<T>()
