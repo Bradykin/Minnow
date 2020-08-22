@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 58755381}
   - component: {fileID: 58755383}
   - component: {fileID: 58755382}
+  - component: {fileID: 58755384}
   m_Layer: 0
   m_Name: Energy
   m_TagString: Untagged
@@ -362,7 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_countText: {fileID: 1578360197}
-  m_tintRenderer: {fileID: 914996841}
 --- !u!61 &58755383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -389,6 +389,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4162145, y: 2.2941418}
   m_EdgeRadius: 0
+--- !u!114 &58755384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58755380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &81626476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2403,7 @@ GameObject:
   - component: {fileID: 1047330487}
   - component: {fileID: 1047330489}
   - component: {fileID: 1047330488}
+  - component: {fileID: 1047330490}
   m_Layer: 0
   m_Name: EndTurnButton
   m_TagString: Untagged
@@ -2454,6 +2467,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4162145, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1047330490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047330486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1059879030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,6 +2490,7 @@ GameObject:
   - component: {fileID: 1059879031}
   - component: {fileID: 1059879033}
   - component: {fileID: 1059879032}
+  - component: {fileID: 1059879034}
   m_Layer: 0
   m_Name: Wallet
   m_TagString: Untagged
@@ -2530,6 +2556,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4162145, y: 3.5043597}
   m_EdgeRadius: 0
+--- !u!114 &1059879034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059879030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1060909210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2653,6 +2691,7 @@ GameObject:
   - component: {fileID: 1186590434}
   - component: {fileID: 1186590436}
   - component: {fileID: 1186590435}
+  - component: {fileID: 1186590437}
   m_Layer: 0
   m_Name: Discard
   m_TagString: Untagged
@@ -2717,6 +2756,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4162145, y: 2.2941418}
   m_EdgeRadius: 0
+--- !u!114 &1186590437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186590433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1207418585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3539,7 @@ GameObject:
   - component: {fileID: 1561700503}
   - component: {fileID: 1561700505}
   - component: {fileID: 1561700504}
+  - component: {fileID: 1561700506}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -3552,6 +3604,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4162145, y: 2.2671804}
   m_EdgeRadius: 0
+--- !u!114 &1561700506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561700502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1578360195
 GameObject:
   m_ObjectHideFlags: 0

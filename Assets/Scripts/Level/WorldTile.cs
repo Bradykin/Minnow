@@ -19,8 +19,6 @@ public class WorldTile : WorldElementBase
         m_gameElement = m_gameTile.m_terrain;
         m_renderer.color = m_gameElement.GetColor();
         UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        gameObject.AddComponent<UITooltipGenerator>();
     }
 
     void Update()
@@ -92,5 +90,10 @@ public class WorldTile : WorldElementBase
     void OnMouseExit()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
+    }
+
+    public override void HandleTooltip()
+    {
+        //UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, m_gameElement.m_desc));
     }
 }

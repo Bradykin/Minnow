@@ -22,6 +22,10 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_uiWorldElementNotificationPrefab = null;
 
+        //Tooltips
+        [SerializeField]
+        private GameObject m_uiSimpleTooltipPrefab = null;
+
         //============================================================================================================//;
 
         private Dictionary<Type, FactoryBase> _factoryBases;
@@ -61,6 +65,8 @@ namespace Game.Util
                     return new UICardFactory(m_uiCardPrefab) as T;
                 case bool _ when type == typeof(UIWorldElementNotificationFactory):
                     return new UIWorldElementNotificationFactory(m_uiWorldElementNotificationPrefab) as T;
+                case bool _ when type == typeof(UISimpleTooltipFactory):
+                    return new UISimpleTooltipFactory(m_uiSimpleTooltipPrefab) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }

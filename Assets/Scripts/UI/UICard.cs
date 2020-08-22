@@ -18,8 +18,6 @@ public class UICard : WorldElementBase
     void Start()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        gameObject.AddComponent<UITooltipGenerator>();
     }
 
     public void Init(GameCard card)
@@ -70,5 +68,15 @@ public class UICard : WorldElementBase
     public void CardPlayed(WorldElementBase target)
     {
         UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
+    }
+
+    public override void HandleTooltip()
+    {
+        if (m_card is GameCardEntityBase)
+        {
+            GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
+
+            UIHelper.CreateEntityTooltip(entity);
+        }
     }
 }

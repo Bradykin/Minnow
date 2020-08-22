@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class UITooltipGenerator : MonoBehaviour
 {
-    public GameElementBase m_element;
+    private WorldElementBase m_worldElement;
+
+    private bool m_isShowingTooltip;
+
+    void Start()
+    {
+        m_worldElement = GetComponent<WorldElementBase>();
+    }
 
     void OnMouseOver()
     {
-        WorldElementBase worldElement = GetComponent<WorldElementBase>();
-        m_element = worldElement.GetElement();
-        if (m_element != null && worldElement.m_showTooltip)
+        if (!m_isShowingTooltip)
         {
-            m_element.InitTooltip();
+            m_worldElement.HandleTooltip();
+
+            m_isShowingTooltip = true;
         }
     }
 
     void OnMouseExit()
     {
-        if (m_element != null)
-        {
-            m_element.ClearTooltip();
-        }
+        UITooltipController.Instance.ClearTooltipStack();
+
+        m_isShowingTooltip = false;
     }
 }

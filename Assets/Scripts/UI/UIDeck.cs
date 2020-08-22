@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDeck : MonoBehaviour
+public class UIDeck : WorldElementBase
 {
     public Text m_countText;
 
@@ -23,5 +23,10 @@ public class UIDeck : MonoBehaviour
     void OnMouseExit()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
+    }
+
+    public override void HandleTooltip()
+    {
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Deck", "This is your deck!  When you run out of cards here, your discard will shuffle back in."));
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIEndTurnButton : MonoBehaviour
+public class UIEndTurnButton : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
 
@@ -24,5 +24,10 @@ public class UIEndTurnButton : MonoBehaviour
     void OnMouseExit()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
+    }
+
+    public override void HandleTooltip()
+    {
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn", "This will refresh your energy and regen some AP for your units.  You will also discard your hand a draw a new one.  Your enemies will all take their turns."));
     }
 }

@@ -53,3 +53,5 @@ MonoBehaviour:
     type: 3}
   m_uiWorldElementNotificationPrefab: {fileID: 3599552122858822999, guid: 9be644c790a93154cb9d6bd04a016df2,
     type: 3}
+  m_uiSimpleTooltipPrefab: {fileID: 9079615657806812307, guid: be135c587f2994147b3fb954b8068cba,
+    type: 3}

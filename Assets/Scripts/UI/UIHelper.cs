@@ -116,4 +116,25 @@ public static class UIHelper
 
         CreateWorldElementNotificationImpl(message, color, worldElement);
     }
+
+    public static UISimpleTooltip CreateSimpleTooltip(string name, string desc)
+    {
+        return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc);
+    }
+
+    public static void CreateEntityTooltip(GameEntity entity)
+    {
+        string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
+        string powerString = "Power: " + entity.GetPower();
+        string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
+        string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
+
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString));
+
+        List<GameKeywordBase> keyWords = entity.GetKeywordHolder().m_keywords;
+        for (int i = 0; i < keyWords.Count; i++)
+        {
+            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc));
+        }
+    }
 }

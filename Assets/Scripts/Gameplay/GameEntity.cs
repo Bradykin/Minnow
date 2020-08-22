@@ -20,9 +20,8 @@ public abstract class GameEntity : GameElementBase
     protected int m_power;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
-    protected int m_range = 1;
+    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_apToAttack = 2;
-    protected int m_regen = 0;
 
     //Functionality
     public GameTile m_curTile;
@@ -91,7 +90,7 @@ public abstract class GameEntity : GameElementBase
     {
         int distance = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile).Count;
 
-        if ((distance - 1) > m_range)
+        if ((distance - 1) > GetRange())
         {
             return false;
         }
@@ -127,9 +126,20 @@ public abstract class GameEntity : GameElementBase
         return m_curAP;
     }
 
+    public GameKeywordHolder GetKeywordHolder()
+    {
+        return m_keywordHolder;
+    }
+
     public int GetRange()
     {
-        return m_range;
+        GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
+        if (rangeKeyword != null)
+        {
+            return rangeKeyword.m_range;
+        }
+
+        return 1;
     }
 
     public int GetPower()
@@ -137,17 +147,24 @@ public abstract class GameEntity : GameElementBase
         return m_power;
     }
 
-    public override UITooltipController InitTooltip()
+    public int GetCurHealth()
     {
-        UITooltipController tooltipController = base.InitTooltip();
-        tooltipController.m_titleBackground.color = GetColor();
+        return m_curHealth;
+    }
 
-        string healthString = "Health: " + m_curHealth + "/" + m_maxHealth;
-        string powerString = "Power: " + m_power;
-        string apString = "AP: " + m_curAP + "/" + m_maxAP + "(+" + m_apRegen + "/turn)";
-        tooltipController.m_descText.text += "\n" + healthString + "\n" + powerString + "\n" + apString;
+    public int GetMaxHealth()
+    {
+        return m_maxHealth;
+    }
 
-        return tooltipController;
+    public int GetMaxAP()
+    {
+        return m_maxAP;
+    }
+
+    public int GetAPRegen()
+    {
+        return m_apRegen;
     }
 
     public override Color GetColor()
@@ -196,11 +213,24 @@ public abstract class GameEntity : GameElementBase
     {
         RegenAP();
 
-        if (m_regen > 0)
+        GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        if (regenKeyword != null)
         {
-            Heal(m_regen);
-            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + m_regen, true, m_uiEntity);
+            Heal(regenKeyword.m_regenVal);
+            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenKeyword.m_regenVal, true, m_uiEntity);
         }
+    }
+
+    public string GetDesc()
+    {
+        string descString = m_desc + "\n";
+
+        for (int i = 0; i < m_keywordHolder.m_keywords.Count; i++)
+        {
+            descString += "<b>" + m_keywordHolder.m_keywords[i].m_name + "</b>  ";
+        }
+
+        return descString;
     }
 
     private void RegenAP()

@@ -18,11 +18,21 @@ public class UIEventButton : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (m_eventOption == null)
+        {
+            return;
+        }
+
         m_eventOption.AcceptOption();
     }
 
     void OnMouseOver()
     {
+        if (m_eventOption == null)
+        {
+            return;
+        }
+
         UIHelper.SetValidTintColor(m_tintRenderer, m_eventOption.IsOptionValid());
     }
 

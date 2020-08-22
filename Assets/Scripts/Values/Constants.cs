@@ -8,6 +8,9 @@ public static class Constants
     public static int InitialHandSize = 5;
     public static int StartingEnergy = 3;
 
+    //UI Data
+    public static float TooltipWidth = 2.75f;
+
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
     public static int PercentChanceForTileToContainEnemy = 12;

@@ -13,8 +13,6 @@ public class UIEntity : WorldElementBase
     void Start()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        gameObject.AddComponent<UITooltipGenerator>();
     }
 
     public void Init(GameEntity entity)
@@ -157,5 +155,10 @@ public class UIEntity : WorldElementBase
         }
 
         return true;
+    }
+
+    public override void HandleTooltip()
+    {
+        UIHelper.CreateEntityTooltip(GetEntity());
     }
 }

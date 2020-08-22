@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIEnergy : MonoBehaviour
+public class UIEnergy : WorldElementBase
 {
     public Text m_countText;
-
-    public SpriteRenderer m_tintRenderer;
 
     void Update()
     {
@@ -15,13 +13,8 @@ public class UIEnergy : MonoBehaviour
         m_countText.text = player.m_curEnergy + "/" + player.m_maxEnergy;
     }
 
-    void OnMouseOver()
+    public override void HandleTooltip()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
     }
 }

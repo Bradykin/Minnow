@@ -10,13 +10,12 @@ public class GameInjuredTrollEntity : GameEntity
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 4;
-        m_regen = 4;
+        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(4));
 
         m_team = Team.Player;
 
         m_name = "Injured Troll";
-        m_desc = "<b>Regenerate</b> " + m_regen + ".\n" +
-            "Starts at 1 health and 0 AP.";
+        m_desc = "Starts at 1 health and 0 AP.";
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

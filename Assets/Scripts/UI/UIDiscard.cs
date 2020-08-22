@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDiscard : MonoBehaviour
+public class UIDiscard : WorldElementBase
 {
     public Text m_countText;
 
@@ -23,5 +23,10 @@ public class UIDiscard : MonoBehaviour
     void OnMouseExit()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
+    }
+
+    public override void HandleTooltip()
+    {
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Discard", "After you play cards, they will go here!  When you run out of cards in your deck, your discard will shuffle back in."));
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldElementBase : MonoBehaviour
+public abstract class WorldElementBase : MonoBehaviour
 {
     protected GameElementBase m_gameElement;
     public bool m_showTooltip { get; protected set; } = true;
@@ -11,4 +11,6 @@ public class WorldElementBase : MonoBehaviour
     {
         return m_gameElement;
     }
+
+    public abstract void HandleTooltip();
 }

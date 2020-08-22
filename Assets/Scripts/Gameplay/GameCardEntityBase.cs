@@ -11,6 +11,13 @@ public class GameCardEntityBase : GameCard
         return m_entity;
     }
 
+    public void FillBasicData()
+    {
+        m_name = m_entity.m_name;
+        m_desc = m_entity.GetDesc();
+        m_icon = UIHelper.GetIconCard(m_name);
+    }
+
     public override void PlayCard(GameTile targetTile)
     {
         if (!IsValidToPlay(targetTile))

@@ -12,8 +12,6 @@ public class UIEvent : WorldElementBase
     void Start()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        gameObject.AddComponent<UITooltipGenerator>();
     }
 
     void Update()
@@ -90,5 +88,11 @@ public class UIEvent : WorldElementBase
     private bool OccupantHasValidAP()
     {
         return GetEvent().m_tile.m_occupyingEntity.GetCurAP() >= GetEvent().m_APCost;
+    }
+
+    public override void HandleTooltip()
+    {
+        string descString = m_gameElement.m_desc + "\n Cost: " + GetEvent().m_APCost + "AP";
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, descString));
     }
 }
