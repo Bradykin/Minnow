@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayer : GameElementBase
+public class GamePlayer : GameElementBase, ITurns
 {
     public int m_curEnergy;
     public int m_maxEnergy;
@@ -93,8 +95,33 @@ public class GamePlayer : GameElementBase
         m_controlledBuildings.Remove(toRemove);
     }
 
+    public void AddCardToDeck(GameCard card)
+    {
+        m_curDeck.AddToDiscard(card);
+        m_deckBase.AddCard(card);
+    }
+
+    //============================================================================================================//
+
+    public void StartTurn()
+    {
+        Debug.Log("Start player turn");
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            m_controlledEntities[i].StartTurn();
+        }
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            m_controlledBuildings[i].StartTurn();
+        }
+
+        m_curEnergy = m_maxEnergy;
+    }
+
     public void EndTurn()
     {
+        Debug.Log("End player turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();
@@ -106,13 +133,5 @@ public class GamePlayer : GameElementBase
         }
 
         DrawHand();
-
-        m_curEnergy = m_maxEnergy;
-    }
-
-    public void AddCardToDeck(GameCard card)
-    {
-        m_curDeck.AddToDiscard(card);
-        m_deckBase.AddCard(card);
     }
 }

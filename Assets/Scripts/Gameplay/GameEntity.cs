@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public enum Team
     Enemy
 }
 
-public abstract class GameEntity : GameElementBase
+public abstract class GameEntity : GameElementBase, ITurns
 {
     //General data.  This should be set for every entity
     protected Team m_team;
@@ -214,18 +215,6 @@ public abstract class GameEntity : GameElementBase
         m_curAP -= toSpend;
     }
 
-    public void EndTurn()
-    {
-        RegenAP();
-
-        GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
-        if (regenKeyword != null)
-        {
-            Heal(regenKeyword.m_regenVal);
-            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenKeyword.m_regenVal, true, m_uiEntity);
-        }
-    }
-
     public string GetDesc()
     {
         string descString = m_desc + "\n";
@@ -240,6 +229,23 @@ public abstract class GameEntity : GameElementBase
         if (m_curAP > m_maxAP)
         {
             m_curAP = m_maxAP;
+        }
+    }
+
+
+    //============================================================================================================//
+
+    public virtual void StartTurn() { }
+
+    public virtual void EndTurn()
+    {
+        RegenAP();
+
+        GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        if (regenKeyword != null)
+        {
+            Heal(regenKeyword.m_regenVal);
+            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenKeyword.m_regenVal, true, m_uiEntity);
         }
     }
 }

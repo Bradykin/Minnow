@@ -11,7 +11,7 @@ public class UIEndTurnButton : WorldElementBase
         Globals.m_selectedCard = null;
         Globals.m_selectedEntity = null;
 
-        WorldController.Instance.EndTurn();
+        WorldController.Instance.MoveToNextTurn();
 
         UIHelper.SetDefaultTintColor(m_tintRenderer);
     }

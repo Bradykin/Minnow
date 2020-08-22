@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameBuildingBase : GameElementBase
+public abstract class GameBuildingBase : GameElementBase, ITurns
 {
     protected WorldTile m_tile;
 
@@ -41,6 +42,10 @@ public abstract class GameBuildingBase : GameElementBase
     {
         m_isDestroyed = true;
     }
+
+    //============================================================================================================//
+
+    public virtual void StartTurn() { }
 
     public virtual void EndTurn() { }
 }

@@ -73,11 +73,11 @@ public class WorldController : Singleton<WorldController>
         return false;
     }
 
-    public void EndTurn()
+    public void MoveToNextTurn()
     {
         ClearHand();
 
-        m_gameController.EndTurn();
+        m_gameController.MoveToNextTurn();
     }
 
     private void ClearHand()
