@@ -24,6 +24,9 @@ public class UIEventButton : WorldElementBase
         }
 
         m_eventOption.AcceptOption();
+
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        GetComponent<UITooltipGenerator>().ClearTooltip();
     }
 
     void OnMouseOver()

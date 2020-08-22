@@ -25,6 +25,11 @@ public class UITooltipGenerator : MonoBehaviour
 
     void OnMouseExit()
     {
+        ClearTooltip();
+    }
+
+    public void ClearTooltip()
+    {
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isShowingTooltip = false;
