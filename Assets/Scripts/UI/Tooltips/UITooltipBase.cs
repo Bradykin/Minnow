@@ -10,6 +10,12 @@ public abstract class UITooltipBase : MonoBehaviour
 
     protected void FrameUpdate()
     {
-        gameObject.transform.localPosition = new Vector3(m_horizontalIndex * Constants.TooltipWidth, m_yVal, 0);
+        float multiplier = 1.0f;
+        if (UITooltipController.Instance.m_flipStackHorizontal)
+        {
+            multiplier = -1.0f * multiplier;
+        }
+
+        gameObject.transform.localPosition = new Vector3(m_horizontalIndex * Constants.TooltipWidth * multiplier, m_yVal, 0);
     }
 }

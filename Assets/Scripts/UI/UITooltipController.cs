@@ -8,6 +8,9 @@ public class UITooltipController : Singleton<UITooltipController>
     private List<UITooltipBase> m_tooltipStack;
     private List<UITooltipBase> m_secondTooltipStack;
 
+    public bool m_flipStackHorizontal;
+    public bool m_flipStackVertical;
+
     void Start()
     {
         m_tooltipStack = new List<UITooltipBase>();
@@ -16,12 +19,41 @@ public class UITooltipController : Singleton<UITooltipController>
 
     void Update()
     {
+        print(Input.mousePosition);
+
+        if (Input.mousePosition.x >= Screen.width * 0.7f)
+        {
+            m_flipStackHorizontal = true;
+        }
+        else
+        {
+            m_flipStackHorizontal = false;
+        }
+
+        if (Input.mousePosition.y <= Screen.height * 0.5f)
+        {
+            m_flipStackVertical = true;
+        }
+        else
+        {
+            m_flipStackVertical = false;
+        }
+
+
+
         //Update the stack to position vertically
         float curY = 0.0f;
         for (int i = 0; i < m_tooltipStack.Count; i++)
         {
             m_tooltipStack[i].m_yVal = curY;
-            curY -= m_tooltipStack[i].m_height;
+            if (m_flipStackVertical)
+            {
+                curY += m_tooltipStack[i].m_height;
+            }
+            else
+            {
+                curY -= m_tooltipStack[i].m_height;
+            }
         }
 
         //Update the second stack
@@ -29,7 +61,14 @@ public class UITooltipController : Singleton<UITooltipController>
         for (int i = 0; i < m_secondTooltipStack.Count; i++)
         {
             m_secondTooltipStack[i].m_yVal = secondStackCurY;
-            secondStackCurY -= m_secondTooltipStack[i].m_height;
+            if (m_flipStackVertical)
+            {
+                secondStackCurY += m_secondTooltipStack[i].m_height;
+            }
+            else
+            {
+                secondStackCurY -= m_secondTooltipStack[i].m_height;
+            }
         }
 
         //Update the controller position
@@ -70,8 +109,23 @@ public class UITooltipController : Singleton<UITooltipController>
         pos.z = transform.position.z - Camera.main.transform.position.z;
 
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
-        worldPoint.x = worldPoint.x + 2.5f;
-        worldPoint.y = worldPoint.y - 0.6f;
+        if (m_flipStackHorizontal)
+        {
+            worldPoint.x = worldPoint.x - 2.5f;
+        }
+        else
+        {
+            worldPoint.x = worldPoint.x + 2.5f;
+        }
+
+        if (m_flipStackVertical)
+        {
+            worldPoint.y = worldPoint.y + 3.0f;
+        }
+        else
+        {
+            worldPoint.y = worldPoint.y - 0.6f;
+        }
 
         transform.position = worldPoint;
     }
