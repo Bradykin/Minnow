@@ -16,15 +16,6 @@ public class UITooltipController : Singleton<UITooltipController>
 
     void Update()
     {
-        //Update the controller position
-        Vector3 pos = Input.mousePosition;
-        pos.z = transform.position.z - Camera.main.transform.position.z;
-
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
-        worldPoint.x = worldPoint.x + 1.3f;
-        worldPoint.y = worldPoint.y - 0.3f;
-        transform.position = worldPoint;
-
         //Update the stack to position vertically
         float curY = 0.0f;
         for (int i = 0; i < m_tooltipStack.Count; i++)
@@ -40,6 +31,9 @@ public class UITooltipController : Singleton<UITooltipController>
             m_secondTooltipStack[i].m_yVal = secondStackCurY;
             secondStackCurY -= m_secondTooltipStack[i].m_height;
         }
+
+        //Update the controller position
+        UpdatePosition();
     }
 
     public void AddTooltipToStack(UITooltipBase newTooltip)
@@ -68,5 +62,17 @@ public class UITooltipController : Singleton<UITooltipController>
 
         m_tooltipStack = new List<UITooltipBase>();
         m_secondTooltipStack = new List<UITooltipBase>();
+    }
+
+    private void UpdatePosition()
+    {
+        Vector3 pos = Input.mousePosition;
+        pos.z = transform.position.z - Camera.main.transform.position.z;
+
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
+        worldPoint.x = worldPoint.x + 2.5f;
+        worldPoint.y = worldPoint.y - 0.6f;
+
+        transform.position = worldPoint;
     }
 }

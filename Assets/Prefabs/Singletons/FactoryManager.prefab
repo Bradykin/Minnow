@@ -55,5 +55,7 @@ MonoBehaviour:
     type: 3}
   m_uiAPBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,
     type: 3}
+  m_uiBuildingPrefab: {fileID: 3093712704905668287, guid: 9254476220ccf7049af53ae121593cd9,
+    type: 3}
   m_uiSimpleTooltipPrefab: {fileID: 9079615657806812307, guid: be135c587f2994147b3fb954b8068cba,
     type: 3}

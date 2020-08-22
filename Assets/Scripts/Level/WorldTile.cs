@@ -11,6 +11,7 @@ public class WorldTile : WorldElementBase
     private SpriteRenderer m_renderer;
     private UIEntity m_occupyingEntityObj;
     private UIEvent m_occupyingEventObj;
+    private UIBuilding m_occupyingBuildingObj;
 
     void Start()
     {
@@ -41,6 +42,16 @@ public class WorldTile : WorldElementBase
         {
             Recycler.Recycle<UIEvent>(m_occupyingEventObj);
             m_occupyingEventObj = null;
+        }
+
+        if (m_gameTile.HasBuilding() && m_occupyingBuildingObj == null)
+        {
+            m_occupyingBuildingObj = FactoryManager.Instance.GetFactory<UIBuildingFactory>().CreateObject<UIBuilding>(m_gameTile.m_building, this);
+        }
+        else if (!m_gameTile.HasBuilding() && m_occupyingBuildingObj != null)
+        {
+            Recycler.Recycle<UIBuilding>(m_occupyingBuildingObj);
+            m_occupyingBuildingObj = null;
         }
     }
 

@@ -8,6 +8,7 @@ public class GameTile
     public Vector2Int m_gridPosition;
     public GameTerrainBase m_terrain { get; private set; }
     public GameEvent m_event { get; private set; }
+    public GameBuildingBase m_building { get; private set; }
 
     public GameTile()
     {
@@ -22,6 +23,11 @@ public class GameTile
         {
             PlaceEntity(GameEnemyFactory.GetRandomEnemy());
         }
+
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
+        {
+            GameHelper.MakePlayerBuilding(this, new GameTowerBuilding());
+        }
     }
 
     public void PlaceEntity(GameEntity newEntity)
@@ -33,6 +39,16 @@ public class GameTile
 
         m_occupyingEntity = newEntity;
         newEntity.m_curTile = this;
+    }
+
+    public void PlaceBuilding(GameBuildingBase newBuilding)
+    {
+        if (HasBuilding())
+        {
+            Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_occupyingEntity.m_name + ".");
+        }
+
+        m_building = newBuilding;
     }
 
     public void ClearEntity()
@@ -53,5 +69,10 @@ public class GameTile
     public bool HasAvailableEvent()
     {
         return m_event != null;
+    }
+
+    public bool HasBuilding()
+    {
+        return m_building != null;
     }
 }

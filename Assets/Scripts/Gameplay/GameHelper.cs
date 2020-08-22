@@ -15,4 +15,10 @@ public static class GameHelper
         targetTile.PlaceEntity(entity);
         WorldController.Instance.m_gameController.m_player.AddControlledEntity(entity);
     }
+
+    public static void MakePlayerBuilding(GameTile targetTile, GameBuildingBase building)
+    {
+        targetTile.PlaceBuilding(building);
+        WorldController.Instance.m_gameController.m_player.AddControlledBuilding(building);
+    }
 }

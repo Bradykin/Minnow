@@ -10,7 +10,7 @@ public class UISimpleTooltip : UITooltipBase
 
     public void Init(string title, string desc)
     {
-        m_height = 2.0f;
+        m_height = 4.0f;
 
         m_titleText.text = title;
         m_descText.text = desc;

@@ -15,6 +15,7 @@ public class GamePlayer : GameElementBase
     public List<GameCard> m_hand { get; private set; }
 
     public List<GameEntity> m_controlledEntities { get; private set; }
+    public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
     public GamePlayer()
     {
@@ -23,6 +24,7 @@ public class GamePlayer : GameElementBase
         m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();
+        m_controlledBuildings = new List<GameBuildingBase>();
         m_wallet = new GameWallet(0, 3, 10);
 
         m_maxEnergy = Constants.StartingEnergy;
@@ -76,9 +78,19 @@ public class GamePlayer : GameElementBase
         m_controlledEntities.Add(toAdd);
     }
 
+    public void AddControlledBuilding(GameBuildingBase toAdd)
+    {
+        m_controlledBuildings.Add(toAdd);
+    }
+
     public void RemoveControlledEntity(GameEntity toRemove)
     {
         m_controlledEntities.Remove(toRemove);
+    }
+
+    public void RemoveControlledBuilding(GameBuildingBase toRemove)
+    {
+        m_controlledBuildings.Remove(toRemove);
     }
 
     public void EndTurn()
@@ -86,6 +98,11 @@ public class GamePlayer : GameElementBase
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();
+        }
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            m_controlledBuildings[i].EndTurn();
         }
 
         DrawHand();

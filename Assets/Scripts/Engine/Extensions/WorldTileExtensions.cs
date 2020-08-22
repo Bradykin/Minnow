@@ -31,5 +31,16 @@ namespace Game.Util
 
             return screenPos;
         }
+
+        public static Vector3 GetScreenPositionForBuilding(this WorldTile worldTile)
+        {
+            Vector3 screenPos = GetScreenPosition(worldTile);
+
+            screenPos.x -= 0.5f;
+            screenPos.y -= 0.5f;
+            screenPos.z = -1f;
+
+            return screenPos;
+        }
     }
 }

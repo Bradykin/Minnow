@@ -9,11 +9,12 @@ public static class Constants
     public static int StartingEnergy = 3;
 
     //UI Data
-    public static float TooltipWidth = 2.75f;
+    public static float TooltipWidth = 5.5f;
 
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
     public static int PercentChanceForTileToContainEnemy = 12;
+    public static int PercentChanceForTileToContainBuilding = 6; //For testing
 
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
