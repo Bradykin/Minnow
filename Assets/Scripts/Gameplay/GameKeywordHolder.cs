@@ -36,4 +36,16 @@ public class GameKeywordHolder
 
         return default(T);
     }
+
+    public string GetDesc()
+    {
+        string descString = "";
+
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            descString += "<b>" + m_keywords[i].m_name + "</b>  ";
+        }
+
+        return descString;
+    }
 }

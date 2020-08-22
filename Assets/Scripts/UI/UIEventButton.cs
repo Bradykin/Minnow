@@ -43,6 +43,11 @@ public class UIEventButton : WorldElementBase
 
     public override void HandleTooltip()
     {
+        if (m_eventOption == null)
+        {
+            return;
+        }
+
         if (m_eventOption.m_hasTooltip)
         {
             m_eventOption.BuildTooltip();

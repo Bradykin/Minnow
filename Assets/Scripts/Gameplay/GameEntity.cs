@@ -126,6 +126,11 @@ public abstract class GameEntity : GameElementBase
         return m_curAP;
     }
 
+    public void FillAP()
+    {
+        m_curAP = m_maxAP;
+    }
+
     public GameKeywordHolder GetKeywordHolder()
     {
         return m_keywordHolder;

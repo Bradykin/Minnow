@@ -55,7 +55,7 @@ public class WorldController : Singleton<WorldController>
 
         for (int i = 0; i < m_playerHand.Count; i++)
         {
-            Vector3 pos = new Vector3(-10.0f + i * 3.0f, -7.0f, 0.0f);
+            Vector3 pos = new Vector3(-10.0f + i * 3.75f, -6.6f, 0.0f);
             m_playerHand[i].gameObject.transform.localPosition = pos;
         }
     }
