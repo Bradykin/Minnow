@@ -230,11 +230,6 @@ public abstract class GameEntity : GameElementBase
     {
         string descString = m_desc + "\n";
 
-        for (int i = 0; i < m_keywordHolder.m_keywords.Count; i++)
-        {
-            descString += "<b>" + m_keywordHolder.m_keywords[i].m_name + "</b>  ";
-        }
-
         return descString;
     }
 
