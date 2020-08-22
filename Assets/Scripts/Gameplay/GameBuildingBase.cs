@@ -37,9 +37,11 @@ public abstract class GameBuildingBase : GameElementBase
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         m_isDestroyed = true;
+
+        UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_tile);
     }
 
     public virtual void EndTurn() { }
