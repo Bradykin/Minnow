@@ -11,7 +11,9 @@ public static class UIHelper
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
+    public static Color m_validAlt = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
+    public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 
     public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
@@ -37,6 +39,30 @@ public static class UIHelper
         else
         {
             renderer.color = m_invalidTint;
+        }
+    }
+
+    public static void SetValidColor(SpriteRenderer renderer, bool isValid)
+    {
+        if (isValid)
+        {
+            renderer.color = m_valid;
+        }
+        else
+        {
+            renderer.color = m_invalid;
+        }
+    }
+
+    public static void SetValidColorAlt(SpriteRenderer renderer, bool isValid)
+    {
+        if (isValid)
+        {
+            renderer.color = m_validAlt;
+        }
+        else
+        {
+            renderer.color = m_invalidAlt;
         }
     }
 

@@ -15,6 +15,7 @@ public class UICard : WorldElementBase
     public Text m_keywordText;
     public Text m_powerText;
     public Text m_healthText;
+    public UIAPContainer m_apContainer;
 
     public GameCard m_card { get; private set; }
 
@@ -66,6 +67,8 @@ public class UICard : WorldElementBase
             m_keywordText.text = entityCard.m_entity.GetKeywordHolder().GetDesc();
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
+
+            m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP());
         }
     }
 

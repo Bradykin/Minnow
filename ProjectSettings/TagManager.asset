@@ -83,6 +83,9 @@ TagManager:
   - name: UIForground
     uniqueID: 3956644511
     locked: 0
+  - name: UIOverlay
+    uniqueID: 737313411
+    locked: 0
   - name: UITint
     uniqueID: 3339889783
     locked: 0
