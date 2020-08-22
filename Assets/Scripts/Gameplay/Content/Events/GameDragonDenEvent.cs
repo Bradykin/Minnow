@@ -42,7 +42,7 @@ public class GameEventTameDragonOption : GameEventOption
 
     public GameEventTameDragonOption()
     {
-        card = new GameInjuredTrollCard();
+        card = new GameCaveDragonCard();
 
         m_message = "Tame the dragon, <b>permanently</b> adding it to your deck!";
     }
