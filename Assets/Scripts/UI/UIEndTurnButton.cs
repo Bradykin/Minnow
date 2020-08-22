@@ -8,6 +8,9 @@ public class UIEndTurnButton : MonoBehaviour
 
     void OnMouseDown()
     {
+        Globals.m_selectedCard = null;
+        Globals.m_selectedEntity = null;
+
         WorldController.Instance.EndTurn();
 
         UIHelper.SetDefaultTintColor(m_tintRenderer);

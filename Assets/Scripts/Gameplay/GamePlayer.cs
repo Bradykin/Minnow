@@ -92,4 +92,10 @@ public class GamePlayer : GameElementBase
 
         m_curEnergy = m_maxEnergy;
     }
+
+    public void AddCardToDeck(GameCard card)
+    {
+        m_curDeck.AddToDiscard(card);
+        m_deckBase.AddCard(card);
+    }
 }

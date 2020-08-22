@@ -62,6 +62,11 @@ public static class UIHelper
 
     public static void SelectEntity(UIEntity entity)
     {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
         if (Globals.m_selectedEntity == entity)
         {
             Globals.m_selectedEntity = null;
@@ -75,6 +80,11 @@ public static class UIHelper
 
     public static void SelectCard(UICard card)
     {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
         if (Globals.m_selectedCard == card)
         {
             Globals.m_selectedCard = null;

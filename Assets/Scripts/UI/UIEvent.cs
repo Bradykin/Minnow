@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Util;
 
 public class UIEvent : WorldElementBase
 {
@@ -15,6 +16,14 @@ public class UIEvent : WorldElementBase
         gameObject.AddComponent<UITooltipGenerator>();
     }
 
+    void Update()
+    {
+        if (GetEvent().m_isComplete)
+        {
+            Recycler.Recycle<UIEvent>(this);
+        }
+    }
+
     public void Init(GameEvent gameEvent)
     {
         m_gameElement = gameEvent;
@@ -27,8 +36,8 @@ public class UIEvent : WorldElementBase
     {
         if (IsValidToUse())
         {
-            UIHelper.CreateWorldElementNotification("WIP - The event has been activated!", true, this);
             GetEvent().m_tile.m_occupyingEntity.SpendAP(GetEvent().m_APCost);
+            UIEventController.Instance.Init(GetEvent());
         }
         else
         {
