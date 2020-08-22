@@ -45,7 +45,7 @@ public class GameTile
     {
         if (HasBuilding())
         {
-            Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_occupyingEntity.m_name + ".");
+            Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_building.m_name + ".");
         }
 
         m_building = newBuilding;
