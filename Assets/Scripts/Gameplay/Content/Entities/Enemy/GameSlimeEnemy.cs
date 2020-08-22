@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEntitySlimeEnemy : GameEntity
+public class GameSlimeEnemy : GameEntity
 {
-    public GameEntitySlimeEnemy()
+    public GameSlimeEnemy()
     {
         m_maxHealth = 4;
         m_maxAP = 3;

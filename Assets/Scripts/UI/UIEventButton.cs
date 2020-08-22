@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIEventButton : MonoBehaviour
 {
+    public SpriteRenderer m_tintRenderer;
     public GameEventOption m_eventOption { get; private set; }
     public Text m_descText;
 
@@ -18,5 +19,15 @@ public class UIEventButton : MonoBehaviour
     void OnMouseDown()
     {
         m_eventOption.AcceptOption();
+    }
+
+    void OnMouseOver()
+    {
+        UIHelper.SetValidTintColor(m_tintRenderer, m_eventOption.IsOptionValid());
+    }
+
+    void OnMouseExit()
+    {
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 }
