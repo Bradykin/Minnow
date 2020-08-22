@@ -18,6 +18,16 @@ public class WorldController : Singleton<WorldController>
     void Update()
     {
         HandlePlayerHand();
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneLoader.ActivateScene("NickTestScene", "AlexTestScene");
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            SceneLoader.ActivateScene("AlexTestScene", "NickTestScene");
+        }
     }
 
     public void PlayCard(UICard card, WorldElementBase worldElementTarget)

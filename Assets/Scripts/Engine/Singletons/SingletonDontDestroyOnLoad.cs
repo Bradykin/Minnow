@@ -8,7 +8,7 @@ namespace Game.Util
     /// Used for Scene Dependent Singletons (Destoy Object on Load)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SceneSingleton<T> : MonoBehaviour where T: Object
+    public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T: Object
     {
         public static T Instance => _instance;
         private static T _instance;
@@ -16,15 +16,12 @@ namespace Game.Util
         {
             if (Instance != null)
             {
-                throw new Exception($"An instance of {nameof(T)} already exists.");
+                Destroy(gameObject);
+                return;
             }
 
             _instance = this as T;
-        }
-
-        protected virtual void OnDestroy()
-        {
-            _instance = null;
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

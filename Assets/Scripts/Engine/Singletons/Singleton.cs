@@ -14,7 +14,7 @@ namespace Game.Util
     {
         public static T Instance => _instance;
         private static T _instance;
-        private void Awake()
+        protected virtual void Awake()
         {
             if (Instance != null)
             {
@@ -23,7 +23,6 @@ namespace Game.Util
             }
 
             _instance = this as T;
-            DontDestroyOnLoad(gameObject);
         }
     }
 }

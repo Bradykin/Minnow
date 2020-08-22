@@ -6,16 +6,17 @@ using UnityEngine;
 public class GameController
 {
     public List<ITurns> m_teamTurns;
-
     public GamePlayer m_player;
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
     
+
     private int m_currentTurnIndex = 0;
     
 
     public GameController()
     {
         m_player = new GamePlayer();
+        m_teamTurns = new List<ITurns>();
         m_teamTurns.Add(m_player);
         m_teamTurns.Add(new GameOpponent());
     }
