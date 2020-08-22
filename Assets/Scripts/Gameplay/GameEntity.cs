@@ -134,6 +134,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         m_curAP = m_maxAP;
     }
 
+    public void EmptyAP()
+    {
+        m_curAP = 0;
+    }
+
     public GameKeywordHolder GetKeywordHolder()
     {
         return m_keywordHolder;
