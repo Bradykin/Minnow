@@ -11,19 +11,6 @@ public class GameKeywordHolder
         m_keywords = new List<GameKeywordBase>();
     }
 
-    public bool HasKeyword(GameKeywordBase toCheck)
-    {
-        for (int i = 0; i < m_keywords.Count; i++)
-        {
-            if (toCheck.m_name == m_keywords[i].m_name)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public T GetKeyword<T>()
     {
         for (int i = 0; i < m_keywords.Count; i++)

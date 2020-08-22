@@ -19,6 +19,8 @@ public class GamePlayer : GameElementBase, ITurns
     public List<GameEntity> m_controlledEntities { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
+    public GameRelicHolder m_relics;
+
     public GamePlayer()
     {
         m_deckBase = new GameDeck();
@@ -27,6 +29,8 @@ public class GamePlayer : GameElementBase, ITurns
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
+        m_relics = new GameRelicHolder();
+        m_relics.m_relics.Add(new GameOrbOfHealthRelic());
         m_wallet = new GameWallet(0, 3, 10);
 
         m_maxEnergy = Constants.StartingEnergy;
@@ -63,7 +67,15 @@ public class GamePlayer : GameElementBase, ITurns
     {
         m_curEnergy -= card.m_cost;
 
-        m_curDeck.AddToDiscard(card);
+        if (card is GameCardSpellBase)
+        {
+            m_curDeck.AddToDiscard(card);
+        }
+        else
+        {
+            m_curDeck.RemoveCard(card);
+        }
+
         m_hand.Remove(card);
     }
 

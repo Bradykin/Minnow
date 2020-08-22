@@ -15,7 +15,6 @@ public class GameSlimeEnemy : GameEntity
 
         m_name = "Slime";
         m_desc = "What a basic slime.  LOL!";
-        m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
     }

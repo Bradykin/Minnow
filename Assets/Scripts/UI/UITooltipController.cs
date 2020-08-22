@@ -19,8 +19,6 @@ public class UITooltipController : Singleton<UITooltipController>
 
     void Update()
     {
-        //print(Input.mousePosition);
-
         if (Input.mousePosition.x >= Screen.width * 0.7f)
         {
             m_flipStackHorizontal = true;
