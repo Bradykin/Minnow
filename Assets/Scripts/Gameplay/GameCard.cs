@@ -9,7 +9,8 @@ public abstract class GameCard : GameElementBase
         Tile,
         Ally,
         Enemy,
-        Entity
+        Entity,
+        Building
     }
 
     public int m_cost;
@@ -20,6 +21,7 @@ public abstract class GameCard : GameElementBase
     public virtual void PlayCard() { }
     public virtual void PlayCard(GameTile targetTile) { }
     public virtual void PlayCard(GameEntity targetEntity) { }
+    public virtual void PlayCard(GameBuildingBase targetBuilding) { }
 
     public virtual bool IsValidToPlay() 
     { 
@@ -69,5 +71,20 @@ public abstract class GameCard : GameElementBase
         }
 
         return false; 
+    }
+
+    public virtual bool IsValidToPlay(GameBuildingBase targetBuilding)
+    {
+        if (!IsValidToPlay())
+        {
+            return false;
+        }
+
+        if (m_targetType == Target.Building)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

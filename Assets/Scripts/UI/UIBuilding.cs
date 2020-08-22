@@ -28,7 +28,18 @@ public class UIBuilding : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        bool isValid = true;
+        if (Globals.m_selectedEntity != null)
+        {
+            isValid = false;
+        }
+
+        if (Globals.m_selectedCard != null)
+        {
+            isValid = Globals.m_selectedCard.m_card.IsValidToPlay(GetBuilding());
+        }
+
+        UIHelper.SetValidTintColor(m_tintRenderer, isValid);
     }
 
     void OnMouseExit()
