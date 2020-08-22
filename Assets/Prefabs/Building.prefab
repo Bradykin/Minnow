@@ -229,7 +229,7 @@ SpriteRenderer:
   m_SortingLayerID: 1902510847
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 943b73bf612e9664ba0aa8a0a23e4b27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07a4a231fa328d946bd6ca2889b77d55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8385413159618741762}
   m_Layer: 10
-  m_Name: EntityArt
+  m_Name: BuildingArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -86,6 +86,11 @@ public static class UIHelper
         return Resources.Load<Sprite>("Events/" + eventName) as Sprite;
     }
 
+    public static Sprite GetIconBuilding(string buildingName)
+    {
+        return Resources.Load<Sprite>("Buildings/" + buildingName) as Sprite;
+    }
+
     public static void SelectEntity(UIEntity entity)
     {
         if (!Globals.m_canSelect)

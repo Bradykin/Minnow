@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Util;
 
 public class GameTowerBuilding : GameBuildingBase
 {
@@ -9,24 +10,32 @@ public class GameTowerBuilding : GameBuildingBase
     public GameTowerBuilding()
     {
         m_name = "Tower";
-        m_desc = "Shoots at enemies on this tile with " + m_power + " power at the start of your turn.";
+        m_desc = "Shoots at enemies on all surrounding tiles (but not this tile) with " + m_power + " power at the start of your turn.";
+
+        m_icon = UIHelper.GetIconBuilding(m_name);
     }
 
     public override void EndTurn()
     {
-        GameEntity entity = m_tile.m_gameTile.m_occupyingEntity;
+        List<WorldTile> surroundingTiles;
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 1);
 
-        if (entity == null)
+        for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            return;
-        }
+            GameEntity entity = surroundingTiles[i].m_gameTile.m_occupyingEntity;
 
-        if (entity.GetTeam() == Team.Player)
-        {
-            return;
-        }
+            if (entity == null)
+            {
+                return;
+            }
 
-        UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, m_tile);
-        entity.Hit(m_power);
+            if (entity.GetTeam() == Team.Player)
+            {
+                return;
+            }
+
+            UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, surroundingTiles[i]);
+            entity.Hit(m_power);
+        }
     }
 }

@@ -24,7 +24,6 @@ public class UIBuilding : WorldElementBase
         building.SetWorldTile(tile);
 
         m_renderer.sprite = GetBuilding().GetIcon();
-        m_mask.sprite = GetBuilding().GetIcon();
     }
 
     void OnMouseOver()

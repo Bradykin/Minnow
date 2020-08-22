@@ -81,6 +81,16 @@ public class WorldGridManager : Singleton<WorldGridManager>
         }
     }
 
+    //Range 1 = surrounding tiles (but not middle tiles)
+    public List<WorldTile> GetSurroundingTiles(WorldTile middle, int range)
+    {
+        List<WorldTile> returnList = new List<WorldTile>();
+
+        //TODO: ashulman: Can you fill in this function?  It's so that things like towers can hit surrounding tiles
+
+        return returnList;
+    }
+
     public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
         return m_gridArray[x + y * Constants.GridSizeX];
