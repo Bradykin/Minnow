@@ -21,7 +21,6 @@ public class GameSeigebreakerEntity : GameEntity
 
         m_name = "Seigebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";
-        m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
 

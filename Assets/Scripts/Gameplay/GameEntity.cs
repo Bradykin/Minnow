@@ -30,8 +30,10 @@ public abstract class GameEntity : GameElementBase
 
     protected virtual void LateInit()
     {
-        m_curHealth = m_maxHealth;
+        m_curHealth = GetMaxHealth();
         m_curAP = m_maxAP;
+
+        m_icon = UIHelper.GetIconEntity(m_name);
     }
 
     public virtual int Hit(int damage)
@@ -60,9 +62,9 @@ public abstract class GameEntity : GameElementBase
     {
         m_curHealth += toHeal;
 
-        if (m_curHealth >= m_maxHealth)
+        if (m_curHealth >= GetMaxHealth())
         {
-            m_curHealth = m_maxHealth;
+            m_curHealth = GetMaxHealth();
         }
     }
 
@@ -159,7 +161,36 @@ public abstract class GameEntity : GameElementBase
 
     public int GetMaxHealth()
     {
-        return m_maxHealth;
+        int toReturn = m_maxHealth;
+        if (WorldController.Instance == null)
+        {
+            return toReturn;
+        }
+
+        if (WorldController.Instance.m_gameController == null)
+        {
+            return toReturn;
+        }
+
+        if (WorldController.Instance.m_gameController.m_player == null)
+        {
+            return toReturn;
+        }
+
+        if (WorldController.Instance.m_gameController.m_player.m_relics == null)
+        {
+            return toReturn;
+        }
+
+        if (WorldController.Instance.m_gameController.m_player.m_relics.GetRelic<GameOrbOfHealthRelic>() != null)
+        {
+            if (GetTeam() == Team.Player)
+            {
+                toReturn += 3;
+            }
+        }
+
+        return toReturn;
     }
 
     public int GetMaxAP()

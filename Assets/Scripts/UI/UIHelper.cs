@@ -91,6 +91,11 @@ public static class UIHelper
         return Resources.Load<Sprite>("Buildings/" + buildingName) as Sprite;
     }
 
+    public static Sprite GetIconRelic(string relicName)
+    {
+        return Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
+    }
+
     public static void SelectEntity(UIEntity entity)
     {
         if (!Globals.m_canSelect)

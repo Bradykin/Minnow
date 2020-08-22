@@ -59,6 +59,11 @@ public class GameDeck
         return m_cards[index];
     }
 
+    public void RemoveCard(GameCard toRemove)
+    {
+        m_cards.Remove(toRemove);
+    }
+
     public void AddCard(GameCard card)
     {
         m_cards.Add(card);
