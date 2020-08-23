@@ -31,7 +31,7 @@ public class GamePlayer : GameElementBase, ITurns
 
 
         m_relics.AddRelic(new GameDominerickRefrainRelic());
-        m_relics.AddRelic(new GameOrbOfHealthRelic());
+        m_relics.AddRelic(new GameMysticRuneRelic());
     }
 
     public void LateInit()
@@ -66,9 +66,15 @@ public class GamePlayer : GameElementBase, ITurns
 
             if (card != null) //This can be null if the deck and discard are both empty
             {
-                m_hand.Add(card);
+                DrawCard(card);
             }
         }
+    }
+
+    private void DrawCard(GameCard card)
+    {
+        m_hand.Add(card);
+        card.OnDraw();
     }
 
     public void PlayCard(GameCard card)
@@ -135,6 +141,8 @@ public class GamePlayer : GameElementBase, ITurns
         int toReturn = Constants.InitialHandSize;
 
         toReturn += 1 * GameHelper.RelicCount<GameMaskOfAgesRelic>();
+
+        toReturn += 2 * GameHelper.RelicCount<GameMysticRuneRelic>();
 
         return toReturn;
     }

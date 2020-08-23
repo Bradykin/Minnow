@@ -23,6 +23,14 @@ public abstract class GameCard : GameElementBase
     public virtual void PlayCard(GameEntity targetEntity) { }
     public virtual void PlayCard(GameBuildingBase targetBuilding) { }
 
+    public virtual void OnDraw()
+    {
+        if (GameHelper.RelicCount<GameMysticRuneRelic>() > 0)
+        {
+            m_cost = Random.Range(0, 4);
+        }
+    }
+
     public virtual bool IsValidToPlay() 
     {
         GamePlayer player = GameHelper.GetPlayer();
