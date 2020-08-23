@@ -11,7 +11,7 @@ public class ContentSpinnerEnemy : GameEntity
     public ContentSpinnerEnemy()
     {
         m_maxHealth = 7;
-        m_maxAP = 2;
+        m_maxAP = 4;
         m_apRegen = 2;
         m_power = 3;
         m_apToAttack = 0;

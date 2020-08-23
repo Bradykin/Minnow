@@ -14,6 +14,8 @@ public class ContentGoblinEntity : GameEntity
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
+        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainEnergyActionKeyword()));
+
         m_name = "Goblin";
         m_icon = UIHelper.GetIconEntity(m_name);
 

@@ -32,7 +32,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     protected virtual void LateInit()
     {
         m_curHealth = GetMaxHealth();
-        m_curAP = m_maxAP;
+        m_curAP = GetMaxAP();
 
         m_icon = UIHelper.GetIconEntity(m_name);
     }
@@ -45,6 +45,12 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
 
         m_curHealth -= damage;
+
+        GameEnrageKeyword enrageKeyword = m_keywordHolder.GetKeyword<GameEnrageKeyword>();
+        if (enrageKeyword != null)
+        {
+            enrageKeyword.DoAction();
+        }
 
         if (m_curHealth <= 0)
         {
@@ -144,7 +150,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void FillAP()
     {
-        m_curAP = m_maxAP;
+        m_curAP = GetMaxAP();
     }
 
     public void EmptyAP()
@@ -199,12 +205,23 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public int GetMaxAP()
     {
-        return m_maxAP;
+        int toReturn = m_maxAP;
+
+        if (GetTeam() == Team.Player)
+        {
+            toReturn += 1 * GameHelper.RelicCount<ContentHourglassOfSpeedRelic>();
+        }
+
+        return toReturn;
     }
 
     public int GetAPRegen()
     {
-        return m_apRegen;
+        int toReturn = m_apRegen;
+
+        toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
+
+        return toReturn;
     }
 
     public override Color GetColor()
@@ -258,11 +275,11 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     private void RegenAP()
     {
-        m_curAP += m_apRegen;
+        m_curAP += GetAPRegen();
 
-        if (m_curAP > m_maxAP)
+        if (m_curAP > GetMaxAP())
         {
-            m_curAP = m_maxAP;
+            m_curAP = GetMaxAP();
         }
     }
 

@@ -32,6 +32,7 @@ public class GamePlayer : GameElementBase, ITurns
 
         m_relics.AddRelic(new ContentDominerickRefrainRelic());
         m_relics.AddRelic(new ContentMorlemainsSkullRelic());
+        m_relics.AddRelic(new ContentSecretSoupRelic());
     }
 
     public void LateInit()
