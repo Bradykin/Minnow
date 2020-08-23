@@ -23,19 +23,23 @@ public class GamePlayer : GameElementBase, ITurns
 
     public GamePlayer()
     {
-        m_deckBase = new GameDeck();
-        m_deckBase.FillStartingDeck();
-        m_curDeck = new GameDeck();
         m_hand = new List<GameCard>();
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(0, 3, 10);
 
+
+        m_relics.AddRelic(new GameDominerickRefrainRelic());
+        m_relics.AddRelic(new GameOrbOfHealthRelic());
     }
 
     public void LateInit()
     {
+        m_deckBase = new GameDeck();
+        m_deckBase.FillStartingDeck();
+        m_curDeck = new GameDeck();
+
         m_maxEnergy = Constants.StartingEnergy;
         m_curEnergy = GetMaxEnergy();
 

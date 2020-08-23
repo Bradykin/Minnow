@@ -8,6 +8,10 @@ public class GameCardSpellBase : GameCard
 
     protected virtual int GetSpellValue()
     {
-        return m_spellEffect;
+        int toReturn = m_spellEffect;
+
+        toReturn += 5 * GameHelper.RelicCount<GameDominerickRefrainRelic>();
+
+        return toReturn;
     }
 }
