@@ -26,6 +26,8 @@ public class GameCardEntityBase : GameCard
             return;
         }
 
+        base.PlayCard(targetTile);
+
         GameHelper.MakePlayerEntity(targetTile, m_entity);
     }
 

@@ -23,6 +23,8 @@ public class ContentEnergizeCard : GameCardSpellBase
             return;
         }
 
+        base.PlayCard(targetEntity);
+
         targetEntity.FillAP();
     }
 }
