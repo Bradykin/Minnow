@@ -23,9 +23,6 @@ public class GameDrawCardAction : GameAction
             return;
         }
 
-        for (int i = 0; i < m_toDraw; i++)
-        {
-            player.DrawCard();
-        }
+        player.DrawCards(m_toDraw);
     }
 }

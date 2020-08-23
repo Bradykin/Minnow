@@ -71,16 +71,33 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            Debug.LogError("Cannot kill entity as player doesn't exist.");
+            return;
+        }
+
         if (GetTeam() == Team.Enemy)
         {
-            GamePlayer player = GameHelper.GetPlayer();
-            if (player != null)
+            int numSkulls = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
+            if (numSkulls > 0)
             {
-                int numRelics = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
-                if (numRelics > 0)
-                {
-                    player.AddEnergy(numRelics);
-                }
+                player.AddEnergy(numSkulls);
+            }
+
+            int numCatchers = GameHelper.RelicCount<ContentSpiritCatcherRelic>();
+            if (numCatchers > 0)
+            {
+                player.DrawCards(numCatchers);
+            }
+        }
+        else if (GetTeam() == Team.Player)
+        {
+            int numRelics = GameHelper.RelicCount<ContentSoulTrapRelic>();
+            if (numRelics > 0)
+            {
+                player.DrawCards(numRelics);
             }
         }
 

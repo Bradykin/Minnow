@@ -86,6 +86,14 @@ public class GamePlayer : GameElementBase, ITurns
         }
     }
 
+    public void DrawCards(int toDraw, bool triggerKnowledgeable = true)
+    {
+        for (int i = 0; i < toDraw; i++)
+        {
+            DrawCard(triggerKnowledgeable);
+        }
+    }
+
     public void PlayCard(GameCard card)
     {
         if (card is GameCardSpellBase)
