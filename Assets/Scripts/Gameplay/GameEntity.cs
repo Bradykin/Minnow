@@ -32,9 +32,18 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     protected virtual void LateInit()
     {
         m_curHealth = GetMaxHealth();
-        m_curAP = m_maxAP;
+        m_curAP = GetMaxAP();
 
         m_icon = UIHelper.GetIconEntity(m_name);
+    }
+
+    public virtual void OnSummon()
+    {
+        GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
+        if (summonKeyword != null)
+        {
+            summonKeyword.DoAction();
+        }
     }
 
     public virtual int Hit(int damage)
@@ -46,6 +55,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
         m_curHealth -= damage;
 
+        GameEnrageKeyword enrageKeyword = m_keywordHolder.GetKeyword<GameEnrageKeyword>();
+        if (enrageKeyword != null)
+        {
+            enrageKeyword.DoAction();
+        }
+
         if (m_curHealth <= 0)
         {
             Die();
@@ -56,6 +71,42 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual void Die()
     {
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            Debug.LogError("Cannot kill entity as player doesn't exist.");
+            return;
+        }
+
+        if (GetTeam() == Team.Enemy)
+        {
+            int numSkulls = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
+            if (numSkulls > 0)
+            {
+                player.AddEnergy(numSkulls);
+            }
+
+            int numCatchers = GameHelper.RelicCount<ContentSpiritCatcherRelic>();
+            if (numCatchers > 0)
+            {
+                player.DrawCards(numCatchers);
+            }
+        }
+        else if (GetTeam() == Team.Player)
+        {
+            int numRelics = GameHelper.RelicCount<ContentSoulTrapRelic>();
+            if (numRelics > 0)
+            {
+                player.DrawCards(numRelics);
+            }
+        }
+
+        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
+        if (deathKeyword != null)
+        {
+            deathKeyword.DoAction();
+        }
+
         m_isDead = true;
     }
 
@@ -101,6 +152,24 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         return true;
     }
 
+    public void SpellCast()
+    {
+        GameSpellcraftKeyword spellcraftKeyword = m_keywordHolder.GetKeyword<GameSpellcraftKeyword>();
+        if (spellcraftKeyword != null)
+        {
+            spellcraftKeyword.DoAction();
+        }
+    }
+
+    public void DrawCard()
+    {
+        GameKnowledgeableKeyword knowledgeableKeyword = m_keywordHolder.GetKeyword<GameKnowledgeableKeyword>();
+        if (knowledgeableKeyword != null)
+        {
+            knowledgeableKeyword.DoAction();
+        }
+    }
+
     public virtual bool HasAPToAttack()
     {
         if (m_curAP < m_apToAttack)
@@ -115,6 +184,21 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     {
         m_curAP -= m_apToAttack;
         int damageTaken = other.Hit(GetPower());
+
+        GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        if (momentumKeyword != null)
+        {
+            momentumKeyword.DoAction();
+        }
+
+        if (other.m_isDead)
+        {
+            GameVictoriousKeyword victoriousKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+            if (victoriousKeyword != null)
+            {
+                victoriousKeyword.DoAction();
+            }
+        }
 
         return damageTaken;
     }
@@ -131,12 +215,22 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public void FillAP()
     {
-        m_curAP = m_maxAP;
+        m_curAP = GetMaxAP();
     }
 
     public void EmptyAP()
     {
         m_curAP = 0;
+    }
+
+    public void GainAP(int toGain)
+    {
+        m_curAP += toGain;
+
+        if (m_curAP > m_maxAP)
+        {
+            m_curAP = m_maxAP;
+        }
     }
 
     public GameKeywordHolder GetKeywordHolder()
@@ -186,12 +280,23 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public int GetMaxAP()
     {
-        return m_maxAP;
+        int toReturn = m_maxAP;
+
+        if (GetTeam() == Team.Player)
+        {
+            toReturn += 1 * GameHelper.RelicCount<ContentHourglassOfSpeedRelic>();
+        }
+
+        return toReturn;
     }
 
     public int GetAPRegen()
     {
-        return m_apRegen;
+        int toReturn = m_apRegen;
+
+        toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
+
+        return toReturn;
     }
 
     public override Color GetColor()
@@ -245,12 +350,17 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     private void RegenAP()
     {
-        m_curAP += m_apRegen;
+        m_curAP += GetAPRegen();
 
-        if (m_curAP > m_maxAP)
+        if (m_curAP > GetMaxAP())
         {
-            m_curAP = m_maxAP;
+            m_curAP = GetMaxAP();
         }
+    }
+
+    public void AddPower(int m_toAdd)
+    {
+        m_power += m_toAdd;
     }
 
     //============================================================================================================//

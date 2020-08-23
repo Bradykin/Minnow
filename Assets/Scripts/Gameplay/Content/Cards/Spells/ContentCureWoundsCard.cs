@@ -25,6 +25,8 @@ public class ContentCureWoundsCard : GameCardSpellBase
             return;
         }
 
+        base.PlayCard(targetEntity);
+
         targetEntity.Heal(GetSpellValue());
     }
 }

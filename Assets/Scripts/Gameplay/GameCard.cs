@@ -18,10 +18,25 @@ public abstract class GameCard : GameElementBase
     public string m_playDesc;
     public Target m_targetType;
 
-    public virtual void PlayCard() { }
-    public virtual void PlayCard(GameTile targetTile) { }
-    public virtual void PlayCard(GameEntity targetEntity) { }
-    public virtual void PlayCard(GameBuildingBase targetBuilding) { }
+    public virtual void PlayCard() 
+    {
+        PayCost();
+    }
+
+    public virtual void PlayCard(GameTile targetTile) 
+    {
+        PayCost();
+    }
+
+    public virtual void PlayCard(GameEntity targetEntity) 
+    {
+        PayCost();
+    }
+
+    public virtual void PlayCard(GameBuildingBase targetBuilding) 
+    {
+        PayCost();
+    }
 
     public virtual void OnDraw()
     {
@@ -29,6 +44,17 @@ public abstract class GameCard : GameElementBase
         {
             m_cost = Random.Range(0, 4);
         }
+    }
+
+    protected virtual void PayCost()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
+        player.SpendEnergy(m_cost);
     }
 
     public virtual bool IsValidToPlay() 

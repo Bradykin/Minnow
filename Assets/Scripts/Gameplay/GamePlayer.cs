@@ -31,7 +31,8 @@ public class GamePlayer : GameElementBase, ITurns
 
 
         m_relics.AddRelic(new ContentDominerickRefrainRelic());
-        m_relics.AddRelic(new ContentMysticRuneRelic());
+        m_relics.AddRelic(new ContentMorlemainsSkullRelic());
+        m_relics.AddRelic(new ContentSecretSoupRelic());
     }
 
     public void LateInit()
@@ -62,25 +63,39 @@ public class GamePlayer : GameElementBase, ITurns
         int handSize = GetDrawHandSize();
         for (int i = 0; i < handSize; i++)
         {
-            GameCard card = m_curDeck.DrawCard();
+            DrawCard(false);
+        }
+    }
 
-            if (card != null) //This can be null if the deck and discard are both empty
+    public void DrawCard(bool triggerKnowledgeable = true)
+    {
+        GameCard card = m_curDeck.DrawCard();
+
+        if (card != null) //This can be null if the deck and discard are both empty
+        {
+            m_hand.Add(card);
+            card.OnDraw();
+
+            if (triggerKnowledgeable)
             {
-                DrawCard(card);
+                for (int i = 0; i < m_controlledEntities.Count; i++)
+                {
+                    m_controlledEntities[i].DrawCard();
+                }
             }
         }
     }
 
-    private void DrawCard(GameCard card)
+    public void DrawCards(int toDraw, bool triggerKnowledgeable = true)
     {
-        m_hand.Add(card);
-        card.OnDraw();
+        for (int i = 0; i < toDraw; i++)
+        {
+            DrawCard(triggerKnowledgeable);
+        }
     }
 
     public void PlayCard(GameCard card)
     {
-        m_curEnergy -= card.m_cost;
-
         if (card is GameCardSpellBase)
         {
             m_curDeck.AddToDiscard(card);
@@ -93,11 +108,31 @@ public class GamePlayer : GameElementBase, ITurns
         m_hand.Remove(card);
     }
 
+    public void SpendEnergy(int toSpend)
+    {
+        m_curEnergy -= toSpend;
+        if (m_curEnergy < 0)
+        {
+            Debug.LogWarning("Somehow spent below 0 energy.");
+            m_curEnergy = 0;
+        }
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)
         {
             m_curDeck.AddCard(m_deckBase.GetCardByIndex(i));
+        }
+    }
+
+    public void AddEnergy(int toAdd)
+    {
+        m_curEnergy += toAdd;
+
+        if (m_curEnergy > m_maxEnergy)
+        {
+            m_curEnergy = m_maxEnergy;
         }
     }
 

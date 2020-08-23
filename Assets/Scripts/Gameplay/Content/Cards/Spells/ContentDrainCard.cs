@@ -23,6 +23,8 @@ public class ContentDrainCard : GameCardSpellBase
             return;
         }
 
+        base.PlayCard(targetEntity);
+
         targetEntity.EmptyAP();
     }
 }

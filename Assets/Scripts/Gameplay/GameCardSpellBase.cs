@@ -14,4 +14,47 @@ public class GameCardSpellBase : GameCard
 
         return toReturn;
     }
+
+    public override void PlayCard()
+    {
+        base.PlayCard();
+
+        TriggerSpellcraft();
+    }
+
+    public override void PlayCard(GameBuildingBase targetBuilding)
+    {
+        base.PlayCard(targetBuilding);
+
+        TriggerSpellcraft();
+    }
+
+    public override void PlayCard(GameEntity targetEntity)
+    {
+        base.PlayCard(targetEntity);
+
+        TriggerSpellcraft();
+    }
+
+    public override void PlayCard(GameTile targetTile)
+    {
+        base.PlayCard(targetTile);
+
+        TriggerSpellcraft();
+    }
+
+    private void TriggerSpellcraft()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < player.m_controlledEntities.Count; i++)
+        {
+            player.m_controlledEntities[i].SpellCast();
+        }
+    }
 }

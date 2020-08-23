@@ -11,7 +11,7 @@ public class ContentFireboltCard : GameCardSpellBase
         m_name = "Firebolt";
         m_desc = "Blast an enemy for " + GetSpellValue() + " damage.";
         m_playDesc = "A bolt of fire strikes the foe for " + GetSpellValue();
-        m_targetType = Target.Enemy;
+        m_targetType = Target.Entity;
         m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);
@@ -24,6 +24,8 @@ public class ContentFireboltCard : GameCardSpellBase
         {
             return;
         }
+
+        base.PlayCard(targetEntity);
 
         targetEntity.Hit(GetSpellValue());
     }
