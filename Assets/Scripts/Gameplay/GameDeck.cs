@@ -18,29 +18,39 @@ public class GameDeck
             m_cards.Add(new ContentGoblinCard());
         }
 
+        for (int i = 0; i < 5; i++)
+        {
+            m_cards.Add(new ContentElvenRogueCard());
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            m_cards.Add(new ContentElvenWizardCard());
+        }
+
         for (int i = 0; i < 1; i++)
         {
             m_cards.Add(new ContentElvenSentinelCard());
         }
 
-        for (int i = 0; i < 1; i++)
-        {
-            m_cards.Add(new ContentElvenWizardCard());
-        }
-
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new ContentCureWoundsCard());
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new ContentFireboltCard());
         }
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 3; i++)
         {
             m_cards.Add(new ContentDrainCard());
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            m_cards.Add(new ContentEnergizeCard());
         }
     }
 
