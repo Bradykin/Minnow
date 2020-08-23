@@ -17,16 +17,17 @@ public class GameRelicHolder
         UIRelicController.Instance.AddRelic(relic);
     }
 
-    public T GetRelic<T>()
+    public int GetNumRelics<T>()
     {
+        int count = 0;
         for (int i = 0; i < m_relics.Count; i++)
         {
             if (m_relics[i] is T val)
             {
-                return val;
+                count++;
             }
         }
 
-        return default(T);
+        return count;
     }
 }

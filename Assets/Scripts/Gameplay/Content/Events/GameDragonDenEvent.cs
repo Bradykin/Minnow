@@ -31,7 +31,14 @@ public class GameEventTakeDragonGoldOption : GameEventOption
 
     public override void AcceptOption()
     {
-        WorldController.Instance.m_gameController.m_player.m_wallet.m_gold += m_gold;
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        player.m_wallet.m_gold += m_gold;
         EndEvent();
     }
 }
@@ -56,7 +63,14 @@ public class GameEventTameDragonOption : GameEventOption
 
     public override void AcceptOption()
     {
-        WorldController.Instance.m_gameController.m_player.AddCardToDeck(card);
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        player.AddCardToDeck(card);
         EndEvent();
     }
 }

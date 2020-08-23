@@ -12,6 +12,7 @@ public class WorldController : Singleton<WorldController>
     void Start()
     {
         m_gameController = new GameController();
+        m_gameController.LateInit();
         m_playerHand = new List<UICard>();
     }
 

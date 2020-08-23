@@ -24,6 +24,11 @@ public class GameController
         BeginTurnSequence();
     }
 
+    public void LateInit()
+    {
+        m_player.LateInit();
+    }
+
     public void BeginTurnSequence()
     {
         m_currentTurn.StartTurn();

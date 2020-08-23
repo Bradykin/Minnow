@@ -7,7 +7,7 @@ using UnityEngine;
 public class GamePlayer : GameElementBase, ITurns
 {
     public int m_curEnergy;
-    public int m_maxEnergy;
+    private int m_maxEnergy;
 
     public GameWallet m_wallet;
 
@@ -32,8 +32,12 @@ public class GamePlayer : GameElementBase, ITurns
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(0, 3, 10);
 
+    }
+
+    public void LateInit()
+    {
         m_maxEnergy = Constants.StartingEnergy;
-        m_curEnergy = m_maxEnergy;
+        m_curEnergy = GetMaxEnergy();
 
         ResetCurDeck();
 
@@ -51,7 +55,8 @@ public class GamePlayer : GameElementBase, ITurns
 
         m_hand = new List<GameCard>();
 
-        for (int i = 0; i < Constants.InitialHandSize; i++)
+        int handSize = GetDrawHandSize();
+        for (int i = 0; i < handSize; i++)
         {
             GameCard card = m_curDeck.DrawCard();
 
@@ -112,6 +117,24 @@ public class GamePlayer : GameElementBase, ITurns
         m_deckBase.AddCard(card);
     }
 
+    public int GetMaxEnergy()
+    {
+        int toReturn = m_maxEnergy;
+
+        toReturn += 1 * GameHelper.RelicCount<GameOrbOfEnergyRelic>();
+
+        return toReturn;
+    }
+
+    private int GetDrawHandSize()
+    {
+        int toReturn = Constants.InitialHandSize;
+
+        toReturn += 1 * GameHelper.RelicCount<GameMaskOfAgesRelic>();
+
+        return toReturn;
+    }
+
     //============================================================================================================//
 
     public void StartTurn()
@@ -127,7 +150,7 @@ public class GamePlayer : GameElementBase, ITurns
             m_controlledBuildings[i].StartTurn();
         }
 
-        m_curEnergy = m_maxEnergy;
+        m_curEnergy = GetMaxEnergy();
     }
 
     public void EndTurn()

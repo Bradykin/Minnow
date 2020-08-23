@@ -157,7 +157,14 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public int GetPower()
     {
-        return m_power;
+        int toReturn = m_power;
+
+        if (GetTeam() == Team.Player)
+        {
+            toReturn += 1 * GameHelper.RelicCount<GameWolvenFangRelic>();
+        }
+
+        return toReturn;
     }
 
     public int GetCurHealth()
@@ -168,32 +175,10 @@ public abstract class GameEntity : GameElementBase, ITurns
     public int GetMaxHealth()
     {
         int toReturn = m_maxHealth;
-        if (WorldController.Instance == null)
-        {
-            return toReturn;
-        }
 
-        if (WorldController.Instance.m_gameController == null)
+        if (GetTeam() == Team.Player)
         {
-            return toReturn;
-        }
-
-        if (WorldController.Instance.m_gameController.m_player == null)
-        {
-            return toReturn;
-        }
-
-        if (WorldController.Instance.m_gameController.m_player.m_relics == null)
-        {
-            return toReturn;
-        }
-
-        if (WorldController.Instance.m_gameController.m_player.m_relics.GetRelic<GameOrbOfHealthRelic>() != null)
-        {
-            if (GetTeam() == Team.Player)
-            {
-                toReturn += 3;
-            }
+            toReturn += 3 * GameHelper.RelicCount<GameOrbOfHealthRelic>();
         }
 
         return toReturn;

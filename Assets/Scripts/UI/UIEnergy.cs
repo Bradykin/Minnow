@@ -9,8 +9,14 @@ public class UIEnergy : WorldElementBase
 
     void Update()
     {
-        GamePlayer player = WorldController.Instance.m_gameController.m_player;
-        m_countText.text = player.m_curEnergy + "/" + player.m_maxEnergy;
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
     }
 
     public override void HandleTooltip()

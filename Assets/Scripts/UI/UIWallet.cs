@@ -11,7 +11,14 @@ public class UIWallet : WorldElementBase
 
     void Update()
     {
-        GameWallet playerWallet = WorldController.Instance.m_gameController.m_player.m_wallet;
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        GameWallet playerWallet = player.m_wallet;
 
         m_goldText.text = "Gold: " + playerWallet.m_gold;
         m_magicText.text = "Magic: " + playerWallet.m_magic;

@@ -12,13 +12,55 @@ public static class GameHelper
 
     public static void MakePlayerEntity(GameTile targetTile, GameEntity entity)
     {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
         targetTile.PlaceEntity(entity);
-        WorldController.Instance.m_gameController.m_player.AddControlledEntity(entity);
+
+        player.AddControlledEntity(entity);
     }
 
     public static void MakePlayerBuilding(GameTile targetTile, GameBuildingBase building)
     {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
         targetTile.PlaceBuilding(building);
-        WorldController.Instance.m_gameController.m_player.AddControlledBuilding(building);
+        player.AddControlledBuilding(building);
+    }
+
+    public static GamePlayer GetPlayer()
+    {
+        if (WorldController.Instance == null)
+        {
+            return null;
+        }
+
+        if (WorldController.Instance.m_gameController == null)
+        {
+            return null;
+        }
+
+        return WorldController.Instance.m_gameController.m_player;
+    }
+
+    public static int RelicCount<T>()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return 0;
+        }
+
+        return player.m_relics.GetNumRelics<T>();
     }
 }

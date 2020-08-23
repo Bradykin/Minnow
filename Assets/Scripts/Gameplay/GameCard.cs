@@ -24,8 +24,15 @@ public abstract class GameCard : GameElementBase
     public virtual void PlayCard(GameBuildingBase targetBuilding) { }
 
     public virtual bool IsValidToPlay() 
-    { 
-        if (WorldController.Instance.m_gameController.m_player.m_curEnergy >= m_cost)
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return false;
+        }
+
+        if (player.m_curEnergy >= m_cost)
         {
             return true;
         }

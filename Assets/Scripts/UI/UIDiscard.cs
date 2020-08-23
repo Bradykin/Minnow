@@ -11,8 +11,14 @@ public class UIDiscard : WorldElementBase
 
     void Update()
     {
-        GameDeck deck = WorldController.Instance.m_gameController.m_player.m_curDeck;
-        m_countText.text = deck.DiscardCount() + "";
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        m_countText.text = player.m_curDeck.DiscardCount() + "";
     }
 
     void OnMouseOver()
