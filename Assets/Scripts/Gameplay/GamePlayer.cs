@@ -30,8 +30,8 @@ public class GamePlayer : GameElementBase, ITurns
         m_wallet = new GameWallet(0, 3, 10);
 
 
-        m_relics.AddRelic(new GameDominerickRefrainRelic());
-        m_relics.AddRelic(new GameMysticRuneRelic());
+        m_relics.AddRelic(new ContentDominerickRefrainRelic());
+        m_relics.AddRelic(new ContentMysticRuneRelic());
     }
 
     public void LateInit()
@@ -131,7 +131,7 @@ public class GamePlayer : GameElementBase, ITurns
     {
         int toReturn = m_maxEnergy;
 
-        toReturn += 1 * GameHelper.RelicCount<GameOrbOfEnergyRelic>();
+        toReturn += 1 * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
 
         return toReturn;
     }
@@ -140,9 +140,9 @@ public class GamePlayer : GameElementBase, ITurns
     {
         int toReturn = Constants.InitialHandSize;
 
-        toReturn += 1 * GameHelper.RelicCount<GameMaskOfAgesRelic>();
+        toReturn += 1 * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
 
-        toReturn += 2 * GameHelper.RelicCount<GameMysticRuneRelic>();
+        toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
 
         return toReturn;
     }

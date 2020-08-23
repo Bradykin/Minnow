@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 
-public class GameTowerBuilding : GameBuildingBase
+public class ContentTowerBuilding : GameBuildingBase
 {
     public int m_power = 5;
 
-    public GameTowerBuilding()
+    public ContentTowerBuilding()
     {
         m_name = "Tower";
         m_desc = "Shoots at enemies on all surrounding tiles (but not this tile) with " + m_power + " power at the start of your turn.";
 
         m_maxHealth = 40;
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

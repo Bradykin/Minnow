@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDragonDenEvent : GameEvent
+public class ContentDragonDenEvent : GameEvent
 {
-    public GameDragonDenEvent(GameTile tile)
+    public ContentDragonDenEvent(GameTile tile)
     {
         m_name = "Dragon's Den";
         m_desc = "A strange den lies here... I wonder what could be inside?";
         m_eventDesc = "You approach the dragons den, and see a mound of gold!  You might be able to steal the gold and get out; or you tame the dragon, but lose the gold for some reason!";
         m_tile = tile;
         m_icon = UIHelper.GetIconEvent(m_name);
+        m_rarity = GameRarity.Uncommon;
 
         m_APCost = 2;
 
@@ -49,7 +50,7 @@ public class GameEventTameDragonOption : GameEventOption
 
     public GameEventTameDragonOption()
     {
-        card = new GameCaveDragonCard();
+        card = new ContentCaveDragonCard();
 
         m_message = "Tame the dragon, <b>permanently</b> adding it to your deck!";
 

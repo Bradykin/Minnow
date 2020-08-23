@@ -25,7 +25,7 @@ public abstract class GameCard : GameElementBase
 
     public virtual void OnDraw()
     {
-        if (GameHelper.RelicCount<GameMysticRuneRelic>() > 0)
+        if (GameHelper.RelicCount<ContentMysticRuneRelic>() > 0)
         {
             m_cost = Random.Range(0, 4);
         }

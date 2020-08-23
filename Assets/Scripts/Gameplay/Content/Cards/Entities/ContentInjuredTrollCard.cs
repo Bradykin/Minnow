@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInjuredTrollCard : GameCardEntityBase
+public class ContentInjuredTrollCard : GameCardEntityBase
 {
-    public GameInjuredTrollCard()
+    public ContentInjuredTrollCard()
     {
-        m_entity = new GameInjuredTrollEntity();
+        m_entity = new ContentInjuredTrollEntity();
 
         FillBasicData();
 

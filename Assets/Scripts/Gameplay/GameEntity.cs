@@ -161,7 +161,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 1 * GameHelper.RelicCount<GameWolvenFangRelic>();
+            toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
         }
 
         return toReturn;
@@ -178,7 +178,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 3 * GameHelper.RelicCount<GameOrbOfHealthRelic>();
+            toReturn += 3 * GameHelper.RelicCount<ContentOrbOfHealthRelic>();
         }
 
         return toReturn;

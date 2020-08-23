@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCaveDragonCard : GameCardEntityBase
+public class ContentCaveDragonCard : GameCardEntityBase
 {
-    public GameCaveDragonCard()
+    public ContentCaveDragonCard()
     {
-        m_entity = new GameCaveDragonEntity();
+        m_entity = new ContentCaveDragonEntity();
 
         FillBasicData();
 

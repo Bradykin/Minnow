@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDrainCard : GameCardSpellBase
+public class ContentEnergizeCard : GameCardSpellBase
 {
-    public GameDrainCard()
+    public ContentEnergizeCard()
     {
-        m_name = "Drain";
-        m_desc = "Set an entities AP to 0.";
-        m_playDesc = "The target gets drained!";
+        m_name = "Energize";
+        m_desc = "Maximize an entities AP.";
+        m_playDesc = "The target gets energized!";
         m_targetType = Target.Entity;
         m_typeline = "Spell - " + m_targetType;
-        m_cost = 1;
+        m_cost = 2;
         m_icon = UIHelper.GetIconCard(m_name);
+        m_rarity = GameRarity.Uncommon;
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -22,6 +23,6 @@ public class GameDrainCard : GameCardSpellBase
             return;
         }
 
-        targetEntity.EmptyAP();
+        targetEntity.FillAP();
     }
 }

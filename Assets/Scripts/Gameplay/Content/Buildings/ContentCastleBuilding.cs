@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCastleBuilding : GameBuildingBase
+public class ContentCastleBuilding : GameBuildingBase
 {
-    public GameCastleBuilding()
+    public ContentCastleBuilding()
     {
         m_name = "Castle";
         m_desc = "This is your home base.  Lose this, and it's game over!";
+        m_rarity = GameRarity.Unique;
 
         m_maxHealth = 100;
 

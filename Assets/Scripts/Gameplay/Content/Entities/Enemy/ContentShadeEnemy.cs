@@ -6,9 +6,9 @@ using UnityEngine;
 //For AI:
 //Goes for units exclusivly.  Doesn't target buildings.
 //Hit and run if possible.  Meant to be really annoying to pin down
-public class GameShadeEnemy : GameEntity
+public class ContentShadeEnemy : GameEntity
 {
-    public GameShadeEnemy()
+    public ContentShadeEnemy()
     {
         m_maxHealth = 7;
         m_maxAP = 4;
@@ -16,6 +16,7 @@ public class GameShadeEnemy : GameEntity
         m_power = 2;
 
         m_team = Team.Enemy;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Shade";
         m_desc = "Hit and run, with some irritating healing.  Try focusing it with magic!";

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSlimeEnemy : GameEntity
+public class ContentSlimeEnemy : GameEntity
 {
-    public GameSlimeEnemy()
+    public ContentSlimeEnemy()
     {
         m_maxHealth = 4;
         m_maxAP = 3;
@@ -12,6 +12,7 @@ public class GameSlimeEnemy : GameEntity
         m_power = 1;
 
         m_team = Team.Enemy;
+        m_rarity = GameRarity.Common;
 
         m_name = "Slime";
         m_desc = "What a basic slime.  LOL!";

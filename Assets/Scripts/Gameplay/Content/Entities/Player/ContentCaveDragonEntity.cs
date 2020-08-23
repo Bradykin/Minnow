@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCaveDragonEntity : GameEntity
+public class ContentCaveDragonEntity : GameEntity
 {
-    public GameCaveDragonEntity()
+    public ContentCaveDragonEntity()
     {
         m_maxHealth = 50;
         m_maxAP = 9;
@@ -15,6 +15,7 @@ public class GameCaveDragonEntity : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(3));
 
         m_team = Team.Player;
+        m_rarity = GameRarity.Unique;
 
         m_name = "Cave Dragon";
         m_icon = UIHelper.GetIconEntity(m_name);

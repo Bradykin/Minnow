@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGrassTerrain : GameTerrainBase
+public class ContentGrassTerrain : GameTerrainBase
 {
-    public GameGrassTerrain()
+    public ContentGrassTerrain()
     {
         m_name = "Grasslands";
         m_desc = "When there isn't a war going on; these meadows are peaceful!";
