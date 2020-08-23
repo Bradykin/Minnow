@@ -183,7 +183,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     public virtual int HitEntity(GameEntity other)
     {
         m_curAP -= m_apToAttack;
-        int damageTaken = other.Hit(GetPower());
+        int damageTaken = other.Hit(GetDamageToDealTo(other));
 
         GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
         if (momentumKeyword != null)
@@ -201,6 +201,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
 
         return damageTaken;
+    }
+
+    protected virtual int GetDamageToDealTo(GameEntity target)
+    {
+        return GetPower();
     }
 
     public Team GetTeam()

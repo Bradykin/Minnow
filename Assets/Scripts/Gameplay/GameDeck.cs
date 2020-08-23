@@ -20,7 +20,7 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentInjuredTrollCard());
+            m_cards.Add(new ContentElvenSentinelCard());
         }
 
         for (int i = 0; i < 3; i++)
