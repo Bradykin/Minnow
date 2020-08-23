@@ -63,19 +63,27 @@ public class GamePlayer : GameElementBase, ITurns
         int handSize = GetDrawHandSize();
         for (int i = 0; i < handSize; i++)
         {
-            GameCard card = m_curDeck.DrawCard();
-
-            if (card != null) //This can be null if the deck and discard are both empty
-            {
-                DrawCard(card);
-            }
+            DrawCard(false);
         }
     }
 
-    private void DrawCard(GameCard card)
+    public void DrawCard(bool triggerKnowledgeable = true)
     {
-        m_hand.Add(card);
-        card.OnDraw();
+        GameCard card = m_curDeck.DrawCard();
+
+        if (card != null) //This can be null if the deck and discard are both empty
+        {
+            m_hand.Add(card);
+            card.OnDraw();
+
+            if (triggerKnowledgeable)
+            {
+                for (int i = 0; i < m_controlledEntities.Count; i++)
+                {
+                    m_controlledEntities[i].DrawCard();
+                }
+            }
+        }
     }
 
     public void PlayCard(GameCard card)

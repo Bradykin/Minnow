@@ -37,6 +37,15 @@ public abstract class GameEntity : GameElementBase, ITurns
         m_icon = UIHelper.GetIconEntity(m_name);
     }
 
+    public virtual void OnSummon()
+    {
+        GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
+        if (summonKeyword != null)
+        {
+            summonKeyword.DoAction();
+        }
+    }
+
     public virtual int Hit(int damage)
     {
         if (damage <= 0)
@@ -73,6 +82,12 @@ public abstract class GameEntity : GameElementBase, ITurns
                     player.AddEnergy(numRelics);
                 }
             }
+        }
+
+        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
+        if (deathKeyword != null)
+        {
+            deathKeyword.DoAction();
         }
 
         m_isDead = true;
@@ -120,6 +135,24 @@ public abstract class GameEntity : GameElementBase, ITurns
         return true;
     }
 
+    public void SpellCast()
+    {
+        GameSpellcraftKeyword spellcraftKeyword = m_keywordHolder.GetKeyword<GameSpellcraftKeyword>();
+        if (spellcraftKeyword != null)
+        {
+            spellcraftKeyword.DoAction();
+        }
+    }
+
+    public void DrawCard()
+    {
+        GameKnowledgeableKeyword knowledgeableKeyword = m_keywordHolder.GetKeyword<GameKnowledgeableKeyword>();
+        if (knowledgeableKeyword != null)
+        {
+            knowledgeableKeyword.DoAction();
+        }
+    }
+
     public virtual bool HasAPToAttack()
     {
         if (m_curAP < m_apToAttack)
@@ -134,6 +167,21 @@ public abstract class GameEntity : GameElementBase, ITurns
     {
         m_curAP -= m_apToAttack;
         int damageTaken = other.Hit(GetPower());
+
+        GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        if (momentumKeyword != null)
+        {
+            momentumKeyword.DoAction();
+        }
+
+        if (other.m_isDead)
+        {
+            GameVictoriousKeyword victoriousKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+            if (victoriousKeyword != null)
+            {
+                victoriousKeyword.DoAction();
+            }
+        }
 
         return damageTaken;
     }
@@ -156,6 +204,16 @@ public abstract class GameEntity : GameElementBase, ITurns
     public void EmptyAP()
     {
         m_curAP = 0;
+    }
+
+    public void GainAP(int toGain)
+    {
+        m_curAP += toGain;
+
+        if (m_curAP > m_maxAP)
+        {
+            m_curAP = m_maxAP;
+        }
     }
 
     public GameKeywordHolder GetKeywordHolder()
@@ -283,6 +341,10 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
     }
 
+    public void AddPower(int m_toAdd)
+    {
+        m_power += m_toAdd;
+    }
 
     //============================================================================================================//
 

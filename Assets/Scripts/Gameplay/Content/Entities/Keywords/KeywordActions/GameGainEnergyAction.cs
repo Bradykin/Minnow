@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainEnergyActionKeyword : GameAction
+public class GameGainEnergyAction : GameAction
 {
-    public GameGainEnergyActionKeyword()
+    private int m_toGain;
+
+    public GameGainEnergyAction(int toGain)
     {
+        m_toGain = toGain;
+
         m_name = "Gain Energy";
-        m_desc = "Gain 1 energy.";
+        m_desc = "Gain " + m_toGain + " energy.";
     }
 
     public override void DoAction()
@@ -19,6 +23,6 @@ public class GameGainEnergyActionKeyword : GameAction
             return;
         }
 
-        player.AddEnergy(1);
+        player.AddEnergy(m_toGain);
     }
 }

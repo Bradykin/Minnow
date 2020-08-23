@@ -29,6 +29,8 @@ public class GameCardEntityBase : GameCard
         base.PlayCard(targetTile);
 
         GameHelper.MakePlayerEntity(targetTile, m_entity);
+
+        m_entity.OnSummon();
     }
 
     public override bool IsValidToPlay(GameTile targetTile)

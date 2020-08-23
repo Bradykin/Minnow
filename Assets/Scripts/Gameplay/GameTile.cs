@@ -24,7 +24,7 @@ public class GameTile
             PlaceEntity(GameEnemyFactory.GetRandomEnemy());
         }
 
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainBuilding))
         {
             GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
         }

@@ -58,4 +58,9 @@ public class GameWallet
     {
         return cost.m_bricks <= m_bricks;
     }
+
+    public override string ToString()
+    {
+        return m_gold + " Gold, " + m_magic + " Magic," + m_bricks + " Bricks";
+    }
 }
