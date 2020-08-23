@@ -6,7 +6,7 @@ public class GameEnemyFactory
 {
     public static GameEntity GetRandomEnemy()
     {
-        int r = Random.Range(0, 3);
+        int r = Random.Range(0, 4);
 
         switch (r)
         {
@@ -16,6 +16,8 @@ public class GameEnemyFactory
                 return new ContentSeigebreakerEntity();
             case 2:
                 return new ContentShadeEnemy();
+            case 3:
+                return new ContentSpinnerEnemy();
             default:
                 return null;
         }
