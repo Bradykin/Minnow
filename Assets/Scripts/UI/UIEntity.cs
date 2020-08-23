@@ -61,6 +61,7 @@ public class UIEntity : WorldElementBase
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
+                GameHelper.GetPlayer().SpendEnergy(Globals.m_selectedCard.m_card.m_cost);
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
                 UIHelper.SetDefaultTintColor(m_tintRenderer);

@@ -68,6 +68,7 @@ public class WorldTile : WorldElementBase
         {
             if (selectedCard.m_card.IsValidToPlay(m_gameTile))
             {
+                GameHelper.GetPlayer().SpendEnergy(Globals.m_selectedCard.m_card.m_cost);
                 selectedCard.m_card.PlayCard(m_gameTile);
                 WorldController.Instance.PlayCard(selectedCard, this);
                 return;

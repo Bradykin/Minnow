@@ -56,6 +56,19 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
+        if (GetTeam() == Team.Enemy)
+        {
+            GamePlayer player = GameHelper.GetPlayer();
+            if (player != null)
+            {
+                int numRelics = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
+                if (numRelics > 0)
+                {
+                    player.AddEnergy(numRelics);
+                }
+            }
+        }
+
         m_isDead = true;
     }
 

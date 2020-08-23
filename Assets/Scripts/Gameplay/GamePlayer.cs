@@ -31,7 +31,7 @@ public class GamePlayer : GameElementBase, ITurns
 
 
         m_relics.AddRelic(new ContentDominerickRefrainRelic());
-        m_relics.AddRelic(new ContentMysticRuneRelic());
+        m_relics.AddRelic(new ContentMorlemainsSkullRelic());
     }
 
     public void LateInit()
@@ -79,8 +79,6 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void PlayCard(GameCard card)
     {
-        m_curEnergy -= card.m_cost;
-
         if (card is GameCardSpellBase)
         {
             m_curDeck.AddToDiscard(card);
@@ -93,11 +91,31 @@ public class GamePlayer : GameElementBase, ITurns
         m_hand.Remove(card);
     }
 
+    public void SpendEnergy(int toSpend)
+    {
+        m_curEnergy -= toSpend;
+        if (m_curEnergy < 0)
+        {
+            Debug.LogWarning("Somehow spent below 0 energy.");
+            m_curEnergy = 0;
+        }
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)
         {
             m_curDeck.AddCard(m_deckBase.GetCardByIndex(i));
+        }
+    }
+
+    public void AddEnergy(int toAdd)
+    {
+        m_curEnergy += toAdd;
+
+        if (m_curEnergy > m_maxEnergy)
+        {
+            m_curEnergy = m_maxEnergy;
         }
     }
 
