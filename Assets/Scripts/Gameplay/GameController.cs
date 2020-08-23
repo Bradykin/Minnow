@@ -7,6 +7,7 @@ public class GameController
 {
     public List<ITurns> m_teamTurns;
     public GamePlayer m_player;
+    public GameOpponent m_gameOpponent;
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
     
 
@@ -16,9 +17,10 @@ public class GameController
     public GameController()
     {
         m_player = new GamePlayer();
+        m_gameOpponent = new GameOpponent();
         m_teamTurns = new List<ITurns>();
         m_teamTurns.Add(m_player);
-        //m_teamTurns.Add(new GameOpponent());
+        m_teamTurns.Add(m_gameOpponent);
 
         //TEMP: to start the turns. Should happen in a different way in future
         BeginTurnSequence();
@@ -27,6 +29,7 @@ public class GameController
     public void LateInit()
     {
         m_player.LateInit();
+        m_gameOpponent.LateInit();
     }
 
     public void BeginTurnSequence()
