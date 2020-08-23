@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameBuildingBase : GameElementBase, ITurns
+public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
 {
     protected WorldTile m_tile;
 
@@ -44,6 +44,10 @@ public abstract class GameBuildingBase : GameElementBase, ITurns
 
         UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_tile);
     }
+
+    //============================================================================================================//
+
+    public virtual void TakeTurn() { }
 
     //============================================================================================================//
 

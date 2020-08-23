@@ -9,7 +9,7 @@ public enum Team
     Enemy
 }
 
-public abstract class GameEntity : GameElementBase, ITurns
+public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 {
     //General data.  This should be set for every entity
     protected Team m_team;
@@ -253,6 +253,9 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
     }
 
+    //============================================================================================================//
+
+    public virtual void TakeTurn() { }
 
     //============================================================================================================//
 
