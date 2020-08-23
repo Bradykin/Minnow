@@ -129,11 +129,6 @@ public class GamePlayer : GameElementBase, ITurns
     public void AddEnergy(int toAdd)
     {
         m_curEnergy += toAdd;
-
-        if (m_curEnergy > m_maxEnergy)
-        {
-            m_curEnergy = m_maxEnergy;
-        }
     }
 
     public void AddControlledEntity(GameEntity toAdd)

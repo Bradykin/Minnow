@@ -13,4 +13,12 @@ public class GameRangeKeyword : GameKeywordBase
         m_name = "Ranged " + m_range;
         m_desc = "Can attack at range " + m_range + ".";
     }
+
+    public void IncreaseRange(int increase)
+    {
+        m_range += increase;
+
+        m_name = "Ranged " + m_range;
+        m_desc = "Can attack at range " + m_range + ".";
+    }
 }
