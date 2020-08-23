@@ -18,7 +18,7 @@ public class GameController
         m_player = new GamePlayer();
         m_teamTurns = new List<ITurns>();
         m_teamTurns.Add(m_player);
-        m_teamTurns.Add(new GameOpponent());
+        //m_teamTurns.Add(new GameOpponent());
 
         //TEMP: to start the turns. Should happen in a different way in future
         BeginTurnSequence();
