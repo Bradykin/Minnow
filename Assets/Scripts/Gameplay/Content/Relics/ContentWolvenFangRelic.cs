@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameWolvenFangRelic : GameRelic
+public class ContentWolvenFangRelic : GameRelic
 {
-    public GameWolvenFangRelic()
+    public ContentWolvenFangRelic()
     {
         m_name = "Wolven Fang";
         m_desc = "Increase power of all friendly entities by 1.";
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOrbOfEnergyRelic : GameRelic
+public class ContentOrbOfEnergyRelic : GameRelic
 {
-    public GameOrbOfEnergyRelic()
+    public ContentOrbOfEnergyRelic()
     {
         m_name = "Orb of Energy";
         m_desc = "Increase max energy by 1.";
+        m_rarity = GameRarity.Rare;
 
         LateInit();
     }

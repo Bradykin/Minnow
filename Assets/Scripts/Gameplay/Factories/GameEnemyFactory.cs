@@ -11,11 +11,11 @@ public class GameEnemyFactory
         switch (r)
         {
             case 0:
-                return new GameSlimeEnemy();
+                return new ContentSlimeEnemy();
             case 1:
-                return new GameSeigebreakerEntity();
+                return new ContentSeigebreakerEntity();
             case 2:
-                return new GameShadeEnemy();
+                return new ContentShadeEnemy();
             default:
                 return null;
         }

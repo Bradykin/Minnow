@@ -15,27 +15,27 @@ public class GameDeck
     {
         for (int i = 0; i < 5; i++)
         {
-            m_cards.Add(new GameGoblinCard());
+            m_cards.Add(new ContentGoblinCard());
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new GameInjuredTrollCard());
+            m_cards.Add(new ContentInjuredTrollCard());
         }
 
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new GameCureLightWoundsCard());
+            m_cards.Add(new ContentCureWoundsCard());
         }
 
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new GameMinorFireboltCard());
+            m_cards.Add(new ContentFireboltCard());
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new GameDrainCard());
+            m_cards.Add(new ContentDrainCard());
         }
     }
 

@@ -11,7 +11,7 @@ public static class GameEventFactory
         switch (r)
         {
             case 0:
-                return new GameDragonDenEvent(tile);
+                return new ContentDragonDenEvent(tile);
             default:
                 return null;
         }

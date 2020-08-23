@@ -46,7 +46,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         if (!m_setup)
         {
             SetupSquareGrid(parent);
-            GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].m_gameTile, new GameCastleBuilding());
+            GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].m_gameTile, new ContentCastleBuilding());
             m_setup = true;
         }
     }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOrbOfHealthRelic : GameRelic
+public class ContentOrbOfHealthRelic : GameRelic
 {
-    public GameOrbOfHealthRelic()
+    public ContentOrbOfHealthRelic()
     {
         m_name = "Orb of Health";
         m_desc = "Increase the max health of all entities you control by 3!";
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

@@ -12,7 +12,7 @@ public class GameTile
 
     public GameTile()
     {
-        m_terrain = new GameGrassTerrain();
+        m_terrain = new ContentGrassTerrain();
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEvent))
         {
@@ -26,7 +26,7 @@ public class GameTile
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
         {
-            GameHelper.MakePlayerBuilding(this, new GameTowerBuilding());
+            GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
         }
     }
 

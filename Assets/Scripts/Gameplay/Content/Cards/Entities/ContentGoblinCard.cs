@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGoblinCard : GameCardEntityBase
+public class ContentGoblinCard : GameCardEntityBase
 {
-    public GameGoblinCard()
+    public ContentGoblinCard()
     {
-        m_entity = new GameGoblinEntity();
+        m_entity = new ContentGoblinEntity();
 
         FillBasicData();
 

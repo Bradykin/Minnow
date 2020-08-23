@@ -10,7 +10,7 @@ public class GameCardSpellBase : GameCard
     {
         int toReturn = m_spellEffect;
 
-        toReturn += 5 * GameHelper.RelicCount<GameDominerickRefrainRelic>();
+        toReturn += 5 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
 
         return toReturn;
     }

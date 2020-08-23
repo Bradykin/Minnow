@@ -16,6 +16,7 @@ public class GameCardEntityBase : GameCard
         m_name = m_entity.m_name;
         m_desc = m_entity.GetDesc();
         m_icon = UIHelper.GetIconCard(m_name);
+        m_rarity = m_entity.m_rarity;
     }
 
     public override void PlayCard(GameTile targetTile)

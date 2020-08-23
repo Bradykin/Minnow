@@ -7,9 +7,9 @@ using UnityEngine;
 //Ignores units
 //Uses full AP to move towards nearest building
 //Once at building; stands still until it can attack, then attacks
-public class GameSeigebreakerEntity : GameEntity
+public class ContentSeigebreakerEntity : GameEntity
 {
-    public GameSeigebreakerEntity()
+    public ContentSeigebreakerEntity()
     {
         m_maxHealth = 30;
         m_maxAP = 6;
@@ -18,6 +18,7 @@ public class GameSeigebreakerEntity : GameEntity
         m_apToAttack = m_maxAP;
 
         m_team = Team.Enemy;
+        m_rarity = GameRarity.Rare;
 
         m_name = "Seigebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";

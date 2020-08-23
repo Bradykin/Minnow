@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInjuredTrollEntity : GameEntity
+public class ContentInjuredTrollEntity : GameEntity
 {
-    public GameInjuredTrollEntity()
+    public ContentInjuredTrollEntity()
     {
         m_maxHealth = 20;
         m_maxAP = 6;
@@ -13,6 +13,7 @@ public class GameInjuredTrollEntity : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(4));
 
         m_team = Team.Player;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Injured Troll";
         m_desc = "Starts at 1 health and 0 AP.";
