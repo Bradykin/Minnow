@@ -19,7 +19,6 @@ public enum Typeline
     Legend
 }
 
-public abstract class GameEntity : GameElementBase, ITurns
 public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 {
     //General data.  This should be set for every entity
