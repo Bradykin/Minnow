@@ -17,6 +17,7 @@ public class ContentInjuredTrollEntity : GameEntity
 
         m_name = "Injured Troll";
         m_desc = "Starts at 1 health and 0 AP.";
+        m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

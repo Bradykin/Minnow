@@ -18,6 +18,7 @@ public class ContentElvenRogue : GameEntity
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 1)));
 
         m_name = "Elven Rogue";
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

@@ -9,6 +9,16 @@ public enum Team
     Enemy
 }
 
+public enum Typeline
+{
+    None,
+    Humanoid,
+    Mystic,
+    Monster,
+    Artificial,
+    Legend
+}
+
 public abstract class GameEntity : GameElementBase, ITurns
 {
     //General data.  This should be set for every entity
@@ -19,6 +29,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     protected int m_apRegen;
     protected int m_maxAP;
     protected int m_power;
+    protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
@@ -264,6 +275,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
 
         return toReturn;
+    }
+
+    public Typeline GetTypeline()
+    {
+        return m_typeline;
     }
 
     public int GetCurHealth()

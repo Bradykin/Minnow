@@ -17,6 +17,7 @@ public class ContentGoblinEntity : GameEntity
         m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainEnergyAction(1)));
 
         m_name = "Goblin";
+        m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

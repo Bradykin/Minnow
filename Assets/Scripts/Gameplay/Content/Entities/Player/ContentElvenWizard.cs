@@ -18,6 +18,7 @@ public class ContentElvenWizard : GameEntity
         m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameGainAPAction(this, 2)));
 
         m_name = "Elven Wizard";
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
