@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class WorldGridManager : Singleton<WorldGridManager>
 {
-    private WorldTile[] m_gridArray;
+    public WorldTile[] m_gridArray { get; private set; }
 
     private bool m_setup;
 
@@ -20,29 +20,11 @@ public class WorldGridManager : Singleton<WorldGridManager>
     {
         if (!m_setup)
             return;
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SceneLoader.ActivateScene("AlexTestScene", SceneManager.GetActiveScene().name);
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SceneLoader.ActivateScene("NickTestScene", SceneManager.GetActiveScene().name);
-        }
-
-        /*if (Input.GetKeyDown(KeyCode.Y))
-        {
-            List<WorldGridTile> AStarPath = CalculateAStarPath(GetWorldGridTileAtPosition(1, 1), GetWorldGridTileAtPosition(3, 7));
-            foreach (var tile in AStarPath)
-            {
-                GameObject.Instantiate(m_testMovementObjectPrefab).transform.position = tile.transform.position;
-            }
-        }*/
     }
 
     public void Setup(Transform parent)
     {
+        Debug.Log("WorldGridManager Setup");
         if (!m_setup)
         {
             SetupSquareGrid(parent);
@@ -100,6 +82,30 @@ public class WorldGridManager : Singleton<WorldGridManager>
     public WorldTile GetWorldGridTileAtPosition(Vector2Int position)
     {
         return GetWorldGridTileAtPosition(position.x, position.y);
+    }
+
+    //============================================================================================================//
+
+    public void SetupEnemies(GameOpponent gameOpponent)
+    {
+        StartCoroutine(AddEnemiesToGrid(gameOpponent));
+    }    
+
+    private IEnumerator AddEnemiesToGrid(GameOpponent gameOpponent)
+    {
+        while (!WorldGridManager.Instance.m_setup)
+            yield return null;
+
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].m_gameTile;
+                gameTile.PlaceEntity(GameEnemyFactory.GetRandomEnemy());
+                print(gameOpponent.m_controlledEntities);
+                gameOpponent.m_controlledEntities.Add(gameTile.m_occupyingEntity);
+            }
+        }
     }
 
     //============================================================================================================//

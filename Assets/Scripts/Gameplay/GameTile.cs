@@ -19,11 +19,6 @@ public class GameTile
             m_event = GameEventFactory.GetRandomEvent(this);
         }
 
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
-        {
-            PlaceEntity(GameEnemyFactory.GetRandomEnemy());
-        }
-
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainBuilding))
         {
             GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
