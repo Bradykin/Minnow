@@ -121,14 +121,25 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         m_isDead = true;
     }
 
-    public virtual void Heal(int toHeal)
+    //Returns the amount actually healed
+    public virtual int Heal(int toHeal)
     {
+        int maxHealth = GetMaxHealth();
+
+        int realHealVal = toHeal;
+        if (m_curHealth + toHeal > maxHealth)
+        {
+            realHealVal = maxHealth - m_curHealth;
+        }
+
         m_curHealth += toHeal;
 
-        if (m_curHealth >= GetMaxHealth())
+        if (m_curHealth >= maxHealth)
         {
-            m_curHealth = GetMaxHealth();
+            m_curHealth = maxHealth;
         }
+
+        return realHealVal;
     }
 
     public virtual bool CanHitEntity(GameEntity other)
@@ -410,8 +421,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
         if (regenKeyword != null)
         {
-            Heal(regenKeyword.m_regenVal);
-            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenKeyword.m_regenVal, true, m_uiEntity);
+            int regenValue = Heal(regenKeyword.m_regenVal);
+            if (regenValue > 0)
+            {
+                UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenValue, true, m_uiEntity);
+            }
         }
     }
 }
