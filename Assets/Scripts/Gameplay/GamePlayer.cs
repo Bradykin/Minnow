@@ -28,11 +28,6 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(0, 3, 10);
-
-
-        m_relics.AddRelic(new ContentDominerickRefrainRelic());
-        m_relics.AddRelic(new ContentMorlemainsSkullRelic());
-        m_relics.AddRelic(new ContentSecretSoupRelic());
     }
 
     public void LateInit()

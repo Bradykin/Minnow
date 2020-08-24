@@ -38,6 +38,16 @@ public class GameDeck
             m_cards.Add(new ContentInjuredTrollCard());
         }
 
+        for (int i = 0; i < 1; i++)
+        {
+            m_cards.Add(new ContentNaturalScoutCard());
+        }
+
+        for (int i = 0; i < 1; i++)
+        {
+            m_cards.Add(new ContentGroundskeeperCard());
+        }
+
         for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new ContentCureWoundsCard());
