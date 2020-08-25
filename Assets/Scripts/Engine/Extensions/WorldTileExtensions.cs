@@ -15,8 +15,7 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.x += 0.5f;
-            screenPos.y -= 0.5f;
+            screenPos.y += 0.75f;
             screenPos.z = -1f;
 
             return screenPos;
@@ -26,7 +25,8 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.y += 0.5f;
+            screenPos.x += 0.6f;
+            screenPos.y -= 0.55f;
             screenPos.z = -1f;
 
             return screenPos;
@@ -36,8 +36,8 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.x -= 0.5f;
-            screenPos.y -= 0.5f;
+            screenPos.x -= 0.6f;
+            screenPos.y -= 0.55f;
             screenPos.z = -1f;
 
             return screenPos;
