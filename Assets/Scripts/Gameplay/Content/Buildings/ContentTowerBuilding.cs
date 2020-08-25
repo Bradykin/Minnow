@@ -21,26 +21,24 @@ public class ContentTowerBuilding : GameBuildingBase
     public override void EndTurn()
     {
         List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 4, innerRange: 2);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 3);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             GameEntity entity = surroundingTiles[i].m_gameTile.m_occupyingEntity;
 
-            UIHelper.CreateWorldElementNotification("Moo!", true, surroundingTiles[i]);
-
-            /*if (entity == null)
+            if (entity == null)
             {
-                return;
+                continue;
             }
 
             if (entity.GetTeam() == Team.Player)
             {
-                return;
+                continue;
             }
 
             UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, surroundingTiles[i]);
-            entity.Hit(m_power);*/
+            entity.Hit(m_power);
         }
     }
 }

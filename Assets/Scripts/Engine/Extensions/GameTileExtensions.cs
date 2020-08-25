@@ -6,40 +6,40 @@ namespace Game.Util
 {
     public static class GameTileExtensions
     {
-        public static List<Vector2Int> AdjacentTiles (this GameTile gameTile)
+        public static List<GameTile> AdjacentTiles (this GameTile gameTile)
         {
-            List<Vector2Int> adjacentTiles = new List<Vector2Int>();
+            List<GameTile> adjacentTiles = new List<GameTile>();
 
-            Vector2Int tileLeftCoordinates = gameTile.LeftCoordinate();
-            if (tileLeftCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileLeftCoordinates);
+            WorldTile worldTileLeft = gameTile.LeftWorldTile();
+            if (worldTileLeft != null)
+                adjacentTiles.Add(worldTileLeft.m_gameTile);
 
-            Vector2Int tileRightCoordinates = gameTile.RightCoordinate();
-            if (tileRightCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileRightCoordinates);
+            WorldTile worldTileRight = gameTile.RightWorldTile();
+            if (worldTileRight != null)
+                adjacentTiles.Add(worldTileRight.m_gameTile);
 
-            Vector2Int tileUpLeftCoordinates = gameTile.UpLeftCoordinate();
-            if (tileUpLeftCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileUpLeftCoordinates);
+            WorldTile worldTileUpLeft = gameTile.UpLeftWorldTile();
+            if (worldTileUpLeft != null)
+                adjacentTiles.Add(worldTileUpLeft.m_gameTile);
 
-            Vector2Int tileUpRightCoordinates = gameTile.UpRightCoordinate();
-            if (tileUpRightCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileUpRightCoordinates);
+            WorldTile worldTileUpRight = gameTile.UpRightWorldTile();
+            if (worldTileUpRight != null)
+                adjacentTiles.Add(worldTileUpRight.m_gameTile);
 
-            Vector2Int tileDownLeftCoordinates = gameTile.DownLeftCoordinate();
-            if (tileDownLeftCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileDownLeftCoordinates);
+            WorldTile worldTileDownLeft = gameTile.DownLeftWorldTile();
+            if (worldTileDownLeft != null)
+                adjacentTiles.Add(worldTileDownLeft.m_gameTile);
 
-            Vector2Int tileDownRightCoordinates = gameTile.DownRightCoordinate();
-            if (tileDownRightCoordinates != gameTile.m_gridPosition)
-                adjacentTiles.Add(tileDownRightCoordinates);
+            WorldTile worldTileDownRight = gameTile.DownRightWorldTile();
+            if (worldTileDownRight != null)
+                adjacentTiles.Add(worldTileDownRight.m_gameTile);
 
             return adjacentTiles;
         }
 
-        public static Vector2Int RandomAdjacentTile (this GameTile gameTile)
+        public static GameTile RandomAdjacentTile (this GameTile gameTile)
         {
-            List<Vector2Int> adjacentTiles = gameTile.AdjacentTiles();
+            List<GameTile> adjacentTiles = gameTile.AdjacentTiles();
             return adjacentTiles[Random.Range(0, adjacentTiles.Count)];
         }
 
@@ -47,14 +47,7 @@ namespace Game.Util
 
         public static Vector2Int LeftCoordinate(this GameTile gameTile)
         {
-            Vector2Int currentPosition = gameTile.m_gridPosition;
-
-            if (currentPosition.x > 0)
-            {
-                return currentPosition + Vector2Int.left;
-            }
-
-            return currentPosition;
+            return gameTile.m_gridPosition + Vector2Int.left;
         }
 
         public static WorldTile LeftWorldTile(this GameTile gameTile)
@@ -62,21 +55,9 @@ namespace Game.Util
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.LeftCoordinate());
         }
 
-        public static GameTile LeftGameTile(this GameTile gameTile)
-        {
-            return gameTile.LeftWorldTile().m_gameTile;
-        }
-
         public static Vector2Int RightCoordinate(this GameTile gameTile)
         {
-            Vector2Int currentPosition = gameTile.m_gridPosition;
-
-            if (currentPosition.x < Constants.GridSizeX - 1)
-            {
-                return currentPosition + Vector2Int.right;
-            }
-
-            return currentPosition;
+            return gameTile.m_gridPosition + Vector2Int.right;
         }
 
         public static WorldTile RightWorldTile(this GameTile gameTile)
@@ -84,23 +65,13 @@ namespace Game.Util
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.RightCoordinate());
         }
 
-        public static GameTile RightGameTile(this GameTile gameTile)
-        {
-            return gameTile.RightWorldTile().m_gameTile;
-        }
-
         public static Vector2Int UpLeftCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
-            if (!(currentPosition.y == Constants.GridSizeY - 1
-                || currentPosition.x == 0 && currentPosition.y % 2 == 0))
-            {
-                currentPosition += Vector2Int.up;
-                if (currentPosition.y % 2 == 1)
-                    currentPosition += Vector2Int.left;
-
-            }
+            currentPosition += Vector2Int.up;
+            if (currentPosition.y % 2 == 1)
+                currentPosition += Vector2Int.left;
 
             return currentPosition;
         }
@@ -110,22 +81,13 @@ namespace Game.Util
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.UpLeftCoordinate());
         }
 
-        public static GameTile UpLeftGameTile(this GameTile gameTile)
-        {
-            return gameTile.UpLeftWorldTile().m_gameTile;
-        }
-
         public static Vector2Int UpRightCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
-            if (!(currentPosition.y == Constants.GridSizeY - 1
-               || currentPosition.x == Constants.GridSizeX - 1 && currentPosition.y % 2 == 1))
-            {
-                currentPosition += Vector2Int.up;
-                if (currentPosition.y % 2 == 0)
-                    currentPosition += Vector2Int.right;
-            }
+            currentPosition += Vector2Int.up;
+            if (currentPosition.y % 2 == 0)
+                currentPosition += Vector2Int.right;
 
             return currentPosition;
         }
@@ -135,22 +97,13 @@ namespace Game.Util
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.UpRightCoordinate());
         }
 
-        public static GameTile UpRightGameTile(this GameTile gameTile)
-        {
-            return gameTile.UpRightWorldTile().m_gameTile;
-        }
-
         public static Vector2Int DownLeftCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
-            if (!(currentPosition.y == 0
-                || currentPosition.x == 0 && currentPosition.y % 2 == 0))
-            {
-                currentPosition += Vector2Int.down;
-                if (currentPosition.y % 2 == 1)
-                    currentPosition += Vector2Int.left;
-            }
+            currentPosition += Vector2Int.down;
+            if (currentPosition.y % 2 == 1)
+                currentPosition += Vector2Int.left;
 
             return currentPosition;
         }
@@ -160,22 +113,13 @@ namespace Game.Util
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.DownLeftCoordinate());
         }
 
-        public static GameTile DownLeftGameTile(this GameTile gameTile)
-        {
-            return gameTile.DownLeftWorldTile().m_gameTile;
-        }
-
         public static Vector2Int DownRightCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
-            if (!(currentPosition.y == 0
-               || currentPosition.x == Constants.GridSizeX - 1 && currentPosition.y % 2 == 1))
-            {
-                currentPosition += Vector2Int.down;
-                if (currentPosition.y % 2 == 0)
-                    currentPosition += Vector2Int.right;
-            }
+            currentPosition += Vector2Int.down;
+            if (currentPosition.y % 2 == 0)
+                currentPosition += Vector2Int.right;
 
             return currentPosition;
         }
@@ -183,11 +127,6 @@ namespace Game.Util
         public static WorldTile DownRightWorldTile(this GameTile gameTile)
         {
             return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.DownRightCoordinate());
-        }
-
-        public static GameTile DownRightGameTile(this GameTile gameTile)
-        {
-            return gameTile.DownRightWorldTile().m_gameTile;
         }
     }
 }

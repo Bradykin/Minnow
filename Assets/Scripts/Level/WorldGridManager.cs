@@ -91,40 +91,53 @@ public class WorldGridManager : Singleton<WorldGridManager>
             return returnList;
         }
 
-        WorldTile startingTile = centerPoint;
+        Vector2Int startingTileCoordinates = centerPoint.m_gameTile.m_gridPosition;
         for (int i = 0; i < range; i++)
-            startingTile = startingTile.m_gameTile.LeftWorldTile();
+            startingTileCoordinates = startingTileCoordinates.LeftCoordinate();
 
-        WorldTile currentTile = startingTile;
+        Vector2Int currentTileCoordinates = startingTileCoordinates;
+        WorldTile currentWorldTile;
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.UpRightWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.UpRightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.RightWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.RightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.DownRightWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.DownRightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.DownLeftWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.DownLeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.LeftWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.LeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
         for (int i = 0; i < range; i++)
         {
-            currentTile = startingTile.m_gameTile.UpLeftWorldTile();
-            returnList.Add(currentTile);
+            currentTileCoordinates = currentTileCoordinates.UpLeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
         }
 
         return returnList;
@@ -132,6 +145,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
+        if (x < 0 || y < 0 || x >= Constants.GridSizeX || y >= Constants.GridSizeY)
+            return null;
+        
         return m_gridArray[x + y * Constants.GridSizeX];
     }
 
@@ -209,31 +225,31 @@ public class WorldGridManager : Singleton<WorldGridManager>
                 List<GameTile> path = new List<GameTile>();
                 while (current != null)
                 {
-                    path.Add(current.GridTile);
+                    path.Add(current.GameTile);
                     current = current.Parent;
                 }
                 path.Reverse();
                 return path;
             }
 
-            var adjacentSquares = current.GridTile.AdjacentTiles();
-            g += current.GridTile.m_terrain.m_costToPass;
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+            g += current.GameTile.m_terrain.m_costToPass;
 
             foreach (var adjacentTile in adjacentSquares)
             {
                 // if this adjacent square is already in the closed list, ignore it
-                if (closedList.FirstOrDefault(l => l.X == adjacentTile.x
-                        && l.Y == adjacentTile.y) != null)
+                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                GameTile adjacentGridTile = GetWorldGridTileAtPosition(adjacentTile).m_gameTile;
+                GameTile adjacentGridTile = adjacentTile;
 
                 if (!adjacentGridTile.m_terrain.m_isPassable)
                     continue;
 
                 // if it's not in the open list...
-                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.x
-                        && l.Y == adjacentTile.y);
+                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
                 if (adjacent == null)
                 {
                     Location adjacentLocation = new Location(adjacentGridTile, targetGridTile, g, current);

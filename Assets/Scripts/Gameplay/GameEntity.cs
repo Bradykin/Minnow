@@ -372,12 +372,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual void TakeTurn() 
     {
-        GameTile randomAdjacentTile = WorldGridManager.Instance.GetWorldGridTileAtPosition(m_curTile.RandomAdjacentTile()).m_gameTile;
+        GameTile randomAdjacentTile = m_curTile.RandomAdjacentTile();
 
         while (CanMoveTo(randomAdjacentTile))
         {
             MoveTo(randomAdjacentTile);
-            randomAdjacentTile = WorldGridManager.Instance.GetWorldGridTileAtPosition(m_curTile.RandomAdjacentTile()).m_gameTile;
+            randomAdjacentTile = m_curTile.RandomAdjacentTile();
 
             break;
         }
