@@ -7,6 +7,7 @@ public class ContentGrassTerrain : GameTerrainBase
     public ContentGrassTerrain()
     {
         m_name = "Grasslands";
+        m_desc = "Simple, no changes.";
         m_icon = UIHelper.GetIconTerrain(m_name);
         m_color = Color.white;
 

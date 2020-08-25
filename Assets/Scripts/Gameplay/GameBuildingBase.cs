@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
 {
-    protected WorldTile m_tile;
+    public WorldTile m_curTile;
 
     public int m_curHealth;
     public int m_maxHealth;
@@ -14,7 +14,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
 
     public void SetWorldTile(WorldTile worldTile)
     {
-        m_tile = worldTile;
+        m_curTile = worldTile;
     }
 
     public void LateInit()
@@ -42,7 +42,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
     {
         m_isDestroyed = true;
 
-        UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_tile);
+        UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_curTile);
     }
 
     //============================================================================================================//

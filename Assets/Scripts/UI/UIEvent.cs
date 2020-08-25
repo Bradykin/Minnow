@@ -94,5 +94,6 @@ public class UIEvent : WorldElementBase
     {
         string descString = m_gameElement.m_desc + "\n Cost: " + GetEvent().m_APCost + "AP";
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, descString));
+        UIHelper.CreateTerrainTooltip(GetEvent().m_tile.m_terrain);
     }
 }

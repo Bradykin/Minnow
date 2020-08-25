@@ -21,7 +21,7 @@ public class ContentTowerBuilding : GameBuildingBase
     public override void EndTurn()
     {
         List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 1);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
