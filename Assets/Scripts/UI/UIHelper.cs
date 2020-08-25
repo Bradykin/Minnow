@@ -181,6 +181,11 @@ public static class UIHelper
 
     public static void CreateTerrainTooltip(GameTerrainBase terrain)
     {
+        if (terrain is ContentGrassTerrain)
+        {
+            return;
+        }
+
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
     }
 }
