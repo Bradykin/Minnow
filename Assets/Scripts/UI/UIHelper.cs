@@ -16,8 +16,8 @@ public static class UIHelper
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 
-    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
-    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 0.3f);
+    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
+    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
 
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
     {

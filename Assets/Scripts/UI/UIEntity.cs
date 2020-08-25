@@ -10,6 +10,7 @@ public class UIEntity : WorldElementBase
     public SpriteRenderer m_renderer;
     public UIAPContainer m_apContainer;
     public Text m_healthText;
+    public Text m_powerText;
 
     private bool m_isHovered;
 
@@ -54,6 +55,7 @@ public class UIEntity : WorldElementBase
 
         m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
         m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
+        m_powerText.text = "" + GetEntity().GetPower();
 
         if (GetEntity().m_isDead)
         {
