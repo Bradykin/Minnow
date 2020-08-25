@@ -15,7 +15,7 @@ public enum Typeline
     Humanoid,
     Mystic,
     Monster,
-    Artificial,
+    Construct,
     Legend
 }
 
