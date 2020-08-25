@@ -7,7 +7,7 @@ public class UIAPContainer : MonoBehaviour
 {
     public List<UIAPBubble> m_APBubbles;
 
-    public void Init(int curAP, int maxAP)
+    public void Init(int curAP, int maxAP, Team team)
     {
         if (m_APBubbles != null)
         {
@@ -22,12 +22,23 @@ public class UIAPContainer : MonoBehaviour
         for (int i = 0; i < maxAP; i++)
         {
             bool isActive = i < curAP;
-            FactoryManager.Instance.GetFactory<UIAPBubbleFactory>().CreateObject<UIAPBubble>(transform, isActive, i);
+            m_APBubbles.Add(FactoryManager.Instance.GetFactory<UIAPBubbleFactory>().CreateObject<UIAPBubble>(transform, isActive, team, i));
         }
+    }
 
-        for (int i = 0; i < curAP; i++)
+    public void DoUpdate(int curAP, int maxAP, Team team)
+    {
+        if (maxAP != m_APBubbles.Count)
         {
-
+            Init(curAP, maxAP, team);
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < m_APBubbles.Count; i++)
+            {
+                m_APBubbles[i].Init(i < curAP, team);
+            }
         }
     }
 }

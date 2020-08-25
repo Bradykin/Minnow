@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.UI;
 
 public class UIEntity : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
+    public UIAPContainer m_apContainer;
+    public Text m_healthText;
 
     private bool m_isHovered;
 
@@ -16,6 +19,8 @@ public class UIEntity : WorldElementBase
         entity.m_uiEntity = this;
 
         m_renderer.sprite = m_gameElement.m_icon;
+
+        m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
 
         UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
     }
@@ -46,6 +51,9 @@ public class UIEntity : WorldElementBase
         {
             Globals.m_selectedEntity = null;
         }
+
+        m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+        m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
 
         if (GetEntity().m_isDead)
         {

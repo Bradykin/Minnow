@@ -25,13 +25,13 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(Transform apContainer, bool isActive, int index)
+        public T CreateObject<T>(Transform apContainer, bool isActive, Team team, int index)
         {
             GameObject obj = CreateGameObject();
             obj.transform.parent = apContainer;
             obj.transform.localPosition = new Vector3(index * 0.2f, 0.0f, 0.0f);
 
-            obj.GetComponent<UIAPBubble>().Init(isActive);
+            obj.GetComponent<UIAPBubble>().Init(isActive, team);
 
             return obj.GetComponent<T>();
         }
