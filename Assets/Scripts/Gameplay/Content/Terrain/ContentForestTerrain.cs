@@ -9,7 +9,7 @@ public class ContentForestTerrain : GameTerrainBase
         m_damageReduction = 2;
 
         m_name = "Forest";
-        m_desc = "Entities on this tile take " + m_damageReduction + " less damage.";
+        m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_icon = UIHelper.GetIconTerrain(m_name);
         m_color = Color.green;
 

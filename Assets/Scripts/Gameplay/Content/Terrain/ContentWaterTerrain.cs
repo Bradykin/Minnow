@@ -7,6 +7,7 @@ public class ContentWaterTerrain : GameTerrainBase
     public ContentWaterTerrain()
     {
         m_name = "Water";
+        m_desc = "Impassable.";
         m_icon = UIHelper.GetIconTerrain(m_name);
         m_color = Color.blue;
 
