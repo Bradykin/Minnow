@@ -25,6 +25,11 @@ public class GameDeck
 
         for (int i = 0; i < 5; i++)
         {
+            m_cards.Add(new ContentFishOracleCard());
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
             m_cards.Add(new ContentElvenRogueCard());
         }
 
