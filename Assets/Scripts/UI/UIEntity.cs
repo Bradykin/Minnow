@@ -10,24 +10,28 @@ public class UIEntity : WorldElementBase
 
     private bool m_isHovered;
 
-    void Start()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-    }
-
     public void Init(GameEntity entity)
     {
         m_gameElement = entity;
         entity.m_uiEntity = this;
 
         m_renderer.sprite = m_gameElement.m_icon;
+
+        UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
     }
 
     void Update()
     {
         if (!m_isHovered)
         {
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+            if (this == Globals.m_selectedEntity)
+            {
+                UIHelper.SetSelectTintColor(m_tintRenderer, true);
+            }
+            else
+            {
+                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+            }
         }
 
         if (Globals.m_selectedEntity != null)
@@ -63,7 +67,7 @@ public class UIEntity : WorldElementBase
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
             }
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
@@ -132,7 +136,7 @@ public class UIEntity : WorldElementBase
         m_isHovered = false;
         if (Globals.m_selectedEntity != this)
         {
-            UIHelper.SetDefaultTintColor(m_tintRenderer);
+            UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
         }
     }
 

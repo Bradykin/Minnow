@@ -15,8 +15,8 @@ public static class UIHelper
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 
-    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
-    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
+    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
+    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 0.3f);
 
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
     {
@@ -69,6 +69,18 @@ public static class UIHelper
     public static void SetDefaultTintColor(SpriteRenderer renderer)
     {
         renderer.color = m_defaultTint;
+    }
+
+    public static void SetDefaultTintColorForTeam(SpriteRenderer renderer, Team team)
+    {
+        if (team == Team.Player)
+        {
+            renderer.color = m_playerColor;
+        }
+        else
+        {
+            renderer.color = m_enemyColor;
+        }
     }
 
     public static Sprite GetIconCard(string cardName)
