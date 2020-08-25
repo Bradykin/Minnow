@@ -16,8 +16,10 @@ public static class UIHelper
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 
-    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
-    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
+    public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
+    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
+    public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
+    public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
     {
@@ -83,11 +85,11 @@ public static class UIHelper
     {
         if (team == Team.Player)
         {
-            renderer.color = m_playerColor;
+            renderer.color = m_playerColorTint;
         }
         else
         {
-            renderer.color = m_enemyColor;
+            renderer.color = m_enemyColorTint;
         }
     }
 
@@ -183,6 +185,11 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc);
     }
 
+    public static UISimpleTooltip CreateSimpleTooltip(string name, string desc, Team team)
+    {
+        return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, team);
+    }
+
     public static void CreateEntityTooltip(GameEntity entity)
     {
         string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
@@ -190,12 +197,12 @@ public static class UIHelper
         string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
         string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString, entity.GetTeam()));
 
         List<GameKeywordBase> keyWords = entity.GetKeywordHolder().m_keywords;
         for (int i = 0; i < keyWords.Count; i++)
         {
-            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc));
+            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
         }
     }
 

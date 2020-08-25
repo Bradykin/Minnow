@@ -35,6 +35,16 @@ namespace Game.Util
             return obj.GetComponent<T>();
         }
 
+        public T CreateObject<T>(string title, string desc, Team team)
+        {
+            GameObject obj = CreateGameObject();
+            obj.transform.parent = UITooltipController.Instance.transform;
+
+            obj.GetComponent<UISimpleTooltip>().Init(title, desc, team);
+
+            return obj.GetComponent<T>();
+        }
+
         public override T CreateObject<T>()
         {
             if (Recycler.TryGrab(out T newObject))

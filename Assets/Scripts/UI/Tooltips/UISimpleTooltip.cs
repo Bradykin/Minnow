@@ -32,6 +32,20 @@ public class UISimpleTooltip : UITooltipBase
         }
     }
 
+    public void Init(string title, string desc, Team team)
+    {
+        Init(title, desc);
+
+        if (team == Team.Player)
+        {
+            m_titleBox.GetComponent<SpriteRenderer>().color = UIHelper.m_playerColor;
+        }
+        else
+        {
+            m_titleBox.GetComponent<SpriteRenderer>().color = UIHelper.m_enemyColor;
+        }
+    }
+
     void Update()
     {
         base.FrameUpdate();
