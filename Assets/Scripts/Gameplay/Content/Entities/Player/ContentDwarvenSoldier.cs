@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGoblinEntity : GameEntity
+public class ContentDwarvenSoldier : GameEntity
 {
-    public ContentGoblinEntity()
+    public ContentDwarvenSoldier()
     {
-        m_maxHealth = 8;
+        m_maxHealth = 15;
         m_maxAP = 4;
-        m_apRegen = 3;
-        m_power = 4;
+        m_apRegen = 2;
+        m_power = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        m_name = "Goblin";
-        m_typeline = Typeline.Monster;
+        m_name = "Dwarven Soldier";
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

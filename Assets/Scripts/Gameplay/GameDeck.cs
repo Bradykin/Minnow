@@ -20,10 +20,15 @@ public class GameDeck
 
         for (int i = 0; i < 5; i++)
         {
-            m_cards.Add(new ContentSabobotCard());
+            m_cards.Add(new ContentDwarvenSoldierCard());
         }
 
         for (int i = 0; i < 5; i++)
+        {
+            m_cards.Add(new ContentSabobotCard());
+        }
+
+        for (int i = 0; i < 3; i++)
         {
             m_cards.Add(new ContentFishOracleCard());
         }
