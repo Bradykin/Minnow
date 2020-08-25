@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrassTerrain : GameTerrainBase
+public class ContentWaterTerrain : GameTerrainBase
 {
-    public ContentGrassTerrain()
+    public ContentWaterTerrain()
     {
-        m_name = "Grasslands";
+        m_name = "Water";
         m_icon = UIHelper.GetIconTerrain(m_name);
-        m_color = Color.white;
+        m_color = Color.blue;
 
-        m_isPassable = true;
+        m_isPassable = false;
         m_costToPass = 1;
     }
 }
+

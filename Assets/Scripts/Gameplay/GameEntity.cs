@@ -59,9 +59,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual int Hit(int damage)
     {
-        if (damage <= 0)
+        damage -= m_curTile.m_terrain.m_damageReduction;
+
+        if (damage < 0)
         {
-            damage = 1; //Always deal at least 1 damage
+            damage = 0;
+            return damage;
         }
 
         m_curHealth -= damage;
@@ -164,7 +167,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        int distance = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile).Count;
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile);
+        
+        if (tiles == null)
+        {
+            return false;
+        }
+        
+        int distance = tiles.Count;
 
         if ((distance - 1) > GetRange())
         {
@@ -348,6 +358,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     public bool CanMoveTo(GameTile tile)
     {
         if (tile.IsOccupied())
+        {
+            return false;
+        }
+
+        if (!tile.m_terrain.m_isPassable)
         {
             return false;
         }

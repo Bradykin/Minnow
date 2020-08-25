@@ -12,9 +12,9 @@ public class GameTile
 
     public GameTile()
     {
-        m_terrain = new ContentGrassTerrain();
+        HandleTerrain();
 
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEvent))
+        if (m_terrain is ContentRuinsTerrain)
         {
             m_event = GameEventFactory.GetRandomEvent(this);
         }
@@ -69,5 +69,30 @@ public class GameTile
     public bool HasBuilding()
     {
         return m_building != null;
+    }
+
+    private void HandleTerrain()
+    {
+        int terrainVal = Random.Range(1, 101);
+        if (terrainVal <= Constants.PercentChanceForTerrainGrasslands)
+        {
+            m_terrain = new ContentGrassTerrain();
+        }
+        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest)
+        {
+            m_terrain = new ContentForestTerrain();
+        }
+        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain)
+        {
+            m_terrain = new ContentMountainTerrain();
+        }
+        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater)
+        {
+            m_terrain = new ContentWaterTerrain();
+        }
+        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater + Constants.PercentChanceForTerrainRuins)
+        {
+            m_terrain = new ContentRuinsTerrain();
+        }
     }
 }

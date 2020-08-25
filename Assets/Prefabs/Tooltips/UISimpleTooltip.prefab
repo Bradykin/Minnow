@@ -148,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_yVal: 0
   m_horizontalIndex: 0
+  m_titleBox: {fileID: 9079615658013762649}
+  m_descBox: {fileID: 9079615658682992430}
   m_titleText: {fileID: 9079615658139237712}
   m_descText: {fileID: 9079615658211887905}
 --- !u!1 &9079615658013762649

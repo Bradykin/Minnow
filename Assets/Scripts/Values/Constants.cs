@@ -16,6 +16,12 @@ public static class Constants
     public static int PercentChanceForTileToContainEnemy = 12;
     public static int PercentChanceForTileToContainBuilding = 1; //For testing
 
+    public static int PercentChanceForTerrainGrasslands = 64;
+    public static int PercentChanceForTerrainWater = 8;
+    public static int PercentChanceForTerrainForest = 15;
+    public static int PercentChanceForTerrainMountain = 8;
+    public static int PercentChanceForTerrainRuins = 5;
+
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
     public static int GridSizeY = 20;

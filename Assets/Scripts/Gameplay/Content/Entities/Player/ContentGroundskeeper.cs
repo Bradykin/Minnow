@@ -7,7 +7,7 @@ public class ContentGroundskeeper : GameEntity
     public ContentGroundskeeper()
     {
         m_maxHealth = 50;
-        m_maxAP = 1;
+        m_maxAP = 2;
         m_apRegen = 1;
         m_power = 1;
 
