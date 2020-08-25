@@ -178,4 +178,9 @@ public static class UIHelper
             UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc));
         }
     }
+
+    public static void CreateTerrainTooltip(GameTerrainBase terrain)
+    {
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
+    }
 }

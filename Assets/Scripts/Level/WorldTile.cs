@@ -103,6 +103,6 @@ public class WorldTile : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, m_gameElement.m_desc));
+        UIHelper.CreateTerrainTooltip(m_gameTile.m_terrain);
     }
 }

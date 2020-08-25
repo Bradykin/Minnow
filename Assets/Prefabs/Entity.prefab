@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -415700063
   m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0edbcbe79016458428490b2ec4e2547d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cad0a07c95f7ab548bbaaba58a67d06e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,8 +91,9 @@ GameObject:
   m_Component:
   - component: {fileID: 929266444150017572}
   - component: {fileID: 2167714852317903761}
-  - component: {fileID: 4135876347484072491}
   - component: {fileID: 3841106249623639083}
+  - component: {fileID: 1474671966}
+  - component: {fileID: 2325591734756181779}
   m_Layer: 10
   m_Name: Entity
   m_TagString: Untagged
@@ -109,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 929266444150017754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.68, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 3291344390129786417}
   - {fileID: 5932508924198874727}
@@ -130,22 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tintRenderer: {fileID: 28897412925903876}
   m_renderer: {fileID: 7836011148731078566}
---- !u!58 &4135876347484072491
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929266444150017754}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &3841106249623639083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +143,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &1474671966
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929266444150017754}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.008519173, y: 1.3237523}
+      - {x: -2.1949472, y: 0.053423017}
+      - {x: -2.1980267, y: -1.3287247}
+      - {x: 2.163948, y: -1.3031653}
+      - {x: 2.1353083, y: 0.061942995}
+--- !u!210 &2325591734756181779
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929266444150017754}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &5932508924198874720
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 1493129697
   m_SortingLayer: 9
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d8198b0f4b3ae4047b3753d8e5ac0fdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72d6d3c33135df94393bc54efd338413, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -342,7 +368,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4d543a3e5d65bc14c9e3df72520aa96d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cad0a07c95f7ab548bbaaba58a67d06e, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -377,8 +403,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7836011148731078489}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.427, z: 0}
+  m_LocalScale: {x: 0.9, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 5932508924198874727}
   m_RootOrder: 0

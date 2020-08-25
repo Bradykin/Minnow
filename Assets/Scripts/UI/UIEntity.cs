@@ -164,5 +164,6 @@ public class UIEntity : WorldElementBase
     public override void HandleTooltip()
     {
         UIHelper.CreateEntityTooltip(GetEntity());
+        UIHelper.CreateTerrainTooltip(GetEntity().m_curTile.m_terrain);
     }
 }
