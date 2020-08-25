@@ -65,11 +65,67 @@ public class WorldGridManager : Singleton<WorldGridManager>
     }
 
     //Range 1 = surrounding tiles (but not middle tiles)
-    public List<WorldTile> GetSurroundingTiles(WorldTile middle, int range)
+    public List<WorldTile> GetSurroundingTiles(WorldTile centerPoint, int outerRange, int innerRange = 1)
     {
         List<WorldTile> returnList = new List<WorldTile>();
 
-        //TODO: ashulman: Can you fill in this function?  It's so that things like towers can hit surrounding tiles
+        if (innerRange > outerRange)
+        {
+            Debug.LogError("Invalid input data to GetSurroundingTiles: innerRange > outerRange");
+            return returnList;
+        }
+
+        for (int i = innerRange; i <= outerRange; i++)
+            returnList.AddRange(GetTilesAtRange(centerPoint, i));
+
+        return returnList;
+    }
+
+    private List<WorldTile> GetTilesAtRange(WorldTile centerPoint, int range)
+    {
+        List<WorldTile> returnList = new List<WorldTile>();
+
+        if (range == 0)
+        {
+            returnList.Add(centerPoint);
+            return returnList;
+        }
+
+        WorldTile startingTile = centerPoint;
+        for (int i = 0; i < range; i++)
+            startingTile = startingTile.m_gameTile.LeftWorldTile();
+
+        WorldTile currentTile = startingTile;
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.UpRightWorldTile();
+            returnList.Add(currentTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.RightWorldTile();
+            returnList.Add(currentTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.DownRightWorldTile();
+            returnList.Add(currentTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.DownLeftWorldTile();
+            returnList.Add(currentTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.LeftWorldTile();
+            returnList.Add(currentTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTile = startingTile.m_gameTile.UpLeftWorldTile();
+            returnList.Add(currentTile);
+        }
 
         return returnList;
     }

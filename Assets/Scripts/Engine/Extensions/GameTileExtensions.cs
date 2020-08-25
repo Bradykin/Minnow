@@ -10,27 +10,27 @@ namespace Game.Util
         {
             List<Vector2Int> adjacentTiles = new List<Vector2Int>();
 
-            Vector2Int tileLeftCoordinates = gameTile.Left();
+            Vector2Int tileLeftCoordinates = gameTile.LeftCoordinate();
             if (tileLeftCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileLeftCoordinates);
 
-            Vector2Int tileRightCoordinates = gameTile.Right();
+            Vector2Int tileRightCoordinates = gameTile.RightCoordinate();
             if (tileRightCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileRightCoordinates);
 
-            Vector2Int tileUpLeftCoordinates = gameTile.UpLeft();
+            Vector2Int tileUpLeftCoordinates = gameTile.UpLeftCoordinate();
             if (tileUpLeftCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileUpLeftCoordinates);
 
-            Vector2Int tileUpRightCoordinates = gameTile.UpRight();
+            Vector2Int tileUpRightCoordinates = gameTile.UpRightCoordinate();
             if (tileUpRightCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileUpRightCoordinates);
 
-            Vector2Int tileDownLeftCoordinates = gameTile.DownLeft();
+            Vector2Int tileDownLeftCoordinates = gameTile.DownLeftCoordinate();
             if (tileDownLeftCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileDownLeftCoordinates);
 
-            Vector2Int tileDownRightCoordinates = gameTile.DownRight();
+            Vector2Int tileDownRightCoordinates = gameTile.DownRightCoordinate();
             if (tileDownRightCoordinates != gameTile.m_gridPosition)
                 adjacentTiles.Add(tileDownRightCoordinates);
 
@@ -42,8 +42,10 @@ namespace Game.Util
             List<Vector2Int> adjacentTiles = gameTile.AdjacentTiles();
             return adjacentTiles[Random.Range(0, adjacentTiles.Count)];
         }
-        
-        public static Vector2Int Left(this GameTile gameTile)
+
+        //============================================================================================================//
+
+        public static Vector2Int LeftCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -55,7 +57,17 @@ namespace Game.Util
             return currentPosition;
         }
 
-        public static Vector2Int Right(this GameTile gameTile)
+        public static WorldTile LeftWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.LeftCoordinate());
+        }
+
+        public static GameTile LeftGameTile(this GameTile gameTile)
+        {
+            return gameTile.LeftWorldTile().m_gameTile;
+        }
+
+        public static Vector2Int RightCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -67,7 +79,17 @@ namespace Game.Util
             return currentPosition;
         }
 
-        public static Vector2Int UpLeft(this GameTile gameTile)
+        public static WorldTile RightWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.RightCoordinate());
+        }
+
+        public static GameTile RightGameTile(this GameTile gameTile)
+        {
+            return gameTile.RightWorldTile().m_gameTile;
+        }
+
+        public static Vector2Int UpLeftCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -83,7 +105,17 @@ namespace Game.Util
             return currentPosition;
         }
 
-        public static Vector2Int UpRight(this GameTile gameTile)
+        public static WorldTile UpLeftWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.UpLeftCoordinate());
+        }
+
+        public static GameTile UpLeftGameTile(this GameTile gameTile)
+        {
+            return gameTile.UpLeftWorldTile().m_gameTile;
+        }
+
+        public static Vector2Int UpRightCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -98,7 +130,17 @@ namespace Game.Util
             return currentPosition;
         }
 
-        public static Vector2Int DownLeft(this GameTile gameTile)
+        public static WorldTile UpRightWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.UpRightCoordinate());
+        }
+
+        public static GameTile UpRightGameTile(this GameTile gameTile)
+        {
+            return gameTile.UpRightWorldTile().m_gameTile;
+        }
+
+        public static Vector2Int DownLeftCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -113,7 +155,17 @@ namespace Game.Util
             return currentPosition;
         }
 
-        public static Vector2Int DownRight(this GameTile gameTile)
+        public static WorldTile DownLeftWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.DownLeftCoordinate());
+        }
+
+        public static GameTile DownLeftGameTile(this GameTile gameTile)
+        {
+            return gameTile.DownLeftWorldTile().m_gameTile;
+        }
+
+        public static Vector2Int DownRightCoordinate(this GameTile gameTile)
         {
             Vector2Int currentPosition = gameTile.m_gridPosition;
 
@@ -126,6 +178,16 @@ namespace Game.Util
             }
 
             return currentPosition;
+        }
+
+        public static WorldTile DownRightWorldTile(this GameTile gameTile)
+        {
+            return WorldGridManager.Instance.GetWorldGridTileAtPosition(gameTile.DownRightCoordinate());
+        }
+
+        public static GameTile DownRightGameTile(this GameTile gameTile)
+        {
+            return gameTile.DownRightWorldTile().m_gameTile;
         }
     }
 }

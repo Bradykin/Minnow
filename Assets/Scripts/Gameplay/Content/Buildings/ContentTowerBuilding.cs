@@ -21,13 +21,15 @@ public class ContentTowerBuilding : GameBuildingBase
     public override void EndTurn()
     {
         List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 1);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 4, innerRange: 2);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             GameEntity entity = surroundingTiles[i].m_gameTile.m_occupyingEntity;
 
-            if (entity == null)
+            UIHelper.CreateWorldElementNotification("Moo!", true, surroundingTiles[i]);
+
+            /*if (entity == null)
             {
                 return;
             }
@@ -38,7 +40,7 @@ public class ContentTowerBuilding : GameBuildingBase
             }
 
             UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, surroundingTiles[i]);
-            entity.Hit(m_power);
+            entity.Hit(m_power);*/
         }
     }
 }
