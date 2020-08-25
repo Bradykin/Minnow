@@ -27,7 +27,6 @@ public class UIEvent : WorldElementBase
         m_gameElement = gameEvent;
 
         m_renderer.sprite = GetEvent().m_icon;
-        m_mask.sprite = GetEvent().m_icon;
     }
 
     void OnMouseDown()
