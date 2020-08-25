@@ -81,6 +81,10 @@ public class UIEntity : WorldElementBase
                     UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, Globals.m_selectedEntity);
                     UIHelper.CreateWorldElementNotification(GetEntity().m_name + " dies.", false, this);
                 }
+                else if (damageDealt == 0)
+                {
+                    UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
+                }
                 else
                 {
                     UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + ".", true, Globals.m_selectedEntity);

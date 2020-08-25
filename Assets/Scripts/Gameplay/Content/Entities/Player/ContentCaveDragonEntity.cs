@@ -18,6 +18,7 @@ public class ContentCaveDragonEntity : GameEntity
         m_rarity = GameRarity.Unique;
 
         m_name = "Cave Dragon";
+        m_typeline = Typeline.Legend;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

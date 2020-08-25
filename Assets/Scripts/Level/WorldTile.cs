@@ -5,20 +5,18 @@ using Game.Util;
 
 public class WorldTile : WorldElementBase
 {
+    public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
     public GameTile m_gameTile { get; private set; }
 
-    private SpriteRenderer m_renderer;
     private UIEntity m_occupyingEntityObj;
     private UIEvent m_occupyingEventObj;
     private UIBuilding m_occupyingBuildingObj;
 
     void Start()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
-
         m_gameElement = m_gameTile.m_terrain;
-        m_renderer.color = m_gameElement.GetColor();
+        m_renderer.sprite = m_gameElement.m_icon;
         UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 
@@ -105,6 +103,6 @@ public class WorldTile : WorldElementBase
 
     public override void HandleTooltip()
     {
-        //UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, m_gameElement.m_desc));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, m_gameElement.m_desc));
     }
 }

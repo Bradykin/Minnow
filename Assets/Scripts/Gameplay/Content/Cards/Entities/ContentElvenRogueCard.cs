@@ -11,7 +11,6 @@ public class ContentElvenRogueCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "A rogue only grows stronger with experience...";
-        m_typeline = "Summon - Elf";
         m_cost = 1;
     }
 }

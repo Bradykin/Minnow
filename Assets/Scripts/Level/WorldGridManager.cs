@@ -186,6 +186,11 @@ public class WorldGridManager : Singleton<WorldGridManager>
     {
         List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile);
 
+        if (path == null)
+        {
+            return 9999;
+        }
+
         int length = 0;
         for (int i = 1; i < path.Count; i++)
         {

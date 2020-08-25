@@ -17,6 +17,7 @@ public class GameCardEntityBase : GameCard
         m_desc = m_entity.GetDesc();
         m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = m_entity.m_rarity;
+        m_typeline = GetTypeline();
     }
 
     public override void PlayCard(GameTile targetTile)
@@ -40,11 +41,21 @@ public class GameCardEntityBase : GameCard
             return false;
         }
 
+        if (!targetTile.m_terrain.m_isPassable)
+        {
+            return false;
+        }
+
         if (targetTile.IsOccupied())
         {
             return false;
         }
 
         return true;
+    }
+
+    protected string GetTypeline()
+    {
+        return "Summon - " + m_entity.GetTypeline();
     }
 }

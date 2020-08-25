@@ -11,7 +11,6 @@ public class ContentElvenWizardCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "A mighty wizard joins your cause.";
-        m_typeline = "Summon - Elf";
         m_cost = 1;
     }
 }

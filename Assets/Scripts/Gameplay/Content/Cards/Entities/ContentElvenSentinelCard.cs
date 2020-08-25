@@ -11,7 +11,6 @@ public class ContentElvenSentinelCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "A young marksman.  With training, he could be fierce!";
-        m_typeline = "Summon - Elf";
         m_cost = 2;
     }
 }

@@ -11,7 +11,6 @@ public class ContentInjuredTrollCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "This troll may be injured for now, but it will soon be full strength and mighty!";
-        m_typeline = "Summon - Troll";
         m_cost = 2;
     }
 }

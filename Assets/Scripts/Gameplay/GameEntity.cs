@@ -9,6 +9,16 @@ public enum Team
     Enemy
 }
 
+public enum Typeline
+{
+    None,
+    Humanoid,
+    Mystic,
+    Monster,
+    Construct,
+    Legend
+}
+
 public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 {
     //General data.  This should be set for every entity
@@ -19,6 +29,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     protected int m_apRegen;
     protected int m_maxAP;
     protected int m_power;
+    protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
@@ -48,9 +59,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual int Hit(int damage)
     {
-        if (damage <= 0)
+        damage -= m_curTile.m_terrain.m_damageReduction;
+
+        if (damage < 0)
         {
-            damage = 1; //Always deal at least 1 damage
+            damage = 0;
+            return damage;
         }
 
         m_curHealth -= damage;
@@ -110,14 +124,25 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         m_isDead = true;
     }
 
-    public virtual void Heal(int toHeal)
+    //Returns the amount actually healed
+    public virtual int Heal(int toHeal)
     {
+        int maxHealth = GetMaxHealth();
+
+        int realHealVal = toHeal;
+        if (m_curHealth + toHeal > maxHealth)
+        {
+            realHealVal = maxHealth - m_curHealth;
+        }
+
         m_curHealth += toHeal;
 
-        if (m_curHealth >= GetMaxHealth())
+        if (m_curHealth >= maxHealth)
         {
-            m_curHealth = GetMaxHealth();
+            m_curHealth = maxHealth;
         }
+
+        return realHealVal;
     }
 
     public virtual bool CanHitEntity(GameEntity other)
@@ -142,7 +167,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        int distance = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile).Count;
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile);
+        
+        if (tiles == null)
+        {
+            return false;
+        }
+        
+        int distance = tiles.Count;
 
         if ((distance - 1) > GetRange())
         {
@@ -266,6 +298,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         return toReturn;
     }
 
+    public Typeline GetTypeline()
+    {
+        return m_typeline;
+    }
+
     public int GetCurHealth()
     {
         return m_curHealth;
@@ -321,6 +358,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     public bool CanMoveTo(GameTile tile)
     {
         if (tile.IsOccupied())
+        {
+            return false;
+        }
+
+        if (!tile.m_terrain.m_isPassable)
         {
             return false;
         }
@@ -394,8 +436,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
         GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
         if (regenKeyword != null)
         {
-            Heal(regenKeyword.m_regenVal);
-            UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenKeyword.m_regenVal, true, m_uiEntity);
+            int regenValue = Heal(regenKeyword.m_regenVal);
+            if (regenValue > 0)
+            {
+                UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenValue, true, m_uiEntity);
+            }
         }
     }
 }
