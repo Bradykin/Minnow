@@ -28,6 +28,11 @@ public class GameDeck
             m_cards.Add(new ContentFishOracleCard());
         }
 
+        for (int i = 0; i < 2; i++)
+        {
+            m_cards.Add(new ContentDevourerCard());
+        }
+
         for (int i = 0; i < 5; i++)
         {
             m_cards.Add(new ContentElvenRogueCard());
