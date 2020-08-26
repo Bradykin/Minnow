@@ -25,6 +25,16 @@ public class UIWallet : WorldElementBase
         m_brickText.text = "Bricks: " + playerWallet.m_bricks;
     }
 
+    void OnMouseOver()
+    {
+        Globals.m_canScroll = false;
+    }
+
+    void OnMouseExit()
+    {
+        Globals.m_canScroll = true;
+    }
+
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Resources", "These are your current resources; gain them in the rush stage and spend them in the intermission phase!"));

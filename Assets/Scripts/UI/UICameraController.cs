@@ -17,6 +17,12 @@ public class UICameraController : MonoBehaviour
 
     private void HandleMovement()
     {
+
+        if (!Globals.m_canScroll)
+        {
+            return;
+        }
+
         Vector3 movementVec = new Vector3();
 
         if (Input.mousePosition.x <= m_cameraBound && Input.mousePosition.x >= 0)

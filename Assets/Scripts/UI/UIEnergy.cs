@@ -19,6 +19,16 @@ public class UIEnergy : WorldElementBase
         m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
     }
 
+    void OnMouseOver()
+    {
+        Globals.m_canScroll = false;
+    }
+
+    void OnMouseExit()
+    {
+        Globals.m_canScroll = true;
+    }
+
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
