@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameEnemyFactory
 {
-    public static GameEntity GetRandomEnemy()
+    public static GameEnemyEntity GetRandomEnemy()
     {
         int r = Random.Range(0, 4);
 

@@ -173,9 +173,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].m_gameTile;
-                gameTile.PlaceEntity(GameEnemyFactory.GetRandomEnemy());
-                print(gameOpponent.m_controlledEntities);
-                gameOpponent.m_controlledEntities.Add(gameTile.m_occupyingEntity);
+                GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy();
+                gameTile.PlaceEntity(enemy);
+                gameOpponent.m_controlledEntities.Add(enemy);
             }
         }
     }

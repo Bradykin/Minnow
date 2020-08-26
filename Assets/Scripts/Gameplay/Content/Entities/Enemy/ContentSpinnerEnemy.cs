@@ -6,9 +6,9 @@ using UnityEngine;
 //For AI:
 //Charges at a spot
 //Attacks only once per turn, but hits all tiles around it
-public class ContentSpinnerEnemy : GameEntity
+public class ContentSpinnerEnemy : GameEnemyEntity
 {
-    public ContentSpinnerEnemy()
+    public ContentSpinnerEnemy() : base()
     {
         m_maxHealth = 7;
         m_maxAP = 4;

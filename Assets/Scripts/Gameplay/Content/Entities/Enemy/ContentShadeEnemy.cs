@@ -6,9 +6,9 @@ using UnityEngine;
 //For AI:
 //Goes for units exclusivly.  Doesn't target buildings.
 //Hit and run if possible.  Meant to be really annoying to pin down
-public class ContentShadeEnemy : GameEntity
+public class ContentShadeEnemy : GameEnemyEntity
 {
-    public ContentShadeEnemy()
+    public ContentShadeEnemy() : base()
     {
         m_maxHealth = 7;
         m_maxAP = 4;
