@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIScanTargetsStep : AIStep
+public class AIScanTargetsInRangeStep : AIStep
 {
     public override void TakeStep()
     {
