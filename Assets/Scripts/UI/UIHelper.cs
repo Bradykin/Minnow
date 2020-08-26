@@ -11,11 +11,14 @@ public static class UIHelper
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
-    public static Color m_validAlt = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
+    public static Color m_validAltPlayer = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
+    public static Color m_validAltEnemy = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 
+    public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
     public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
+    public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
@@ -54,11 +57,18 @@ public static class UIHelper
         }
     }
 
-    public static void SetValidColorAlt(SpriteRenderer renderer, bool isValid)
+    public static void SetValidColorAltByTeam(SpriteRenderer renderer, bool isValid, Team team)
     {
         if (isValid)
         {
-            renderer.color = m_validAlt;
+            if (team == Team.Player)
+            {
+                renderer.color = m_validAltPlayer;
+            }
+            else
+            {
+                renderer.color = m_validAltEnemy;
+            }
         }
         else
         {
@@ -69,6 +79,18 @@ public static class UIHelper
     public static void SetDefaultTintColor(SpriteRenderer renderer)
     {
         renderer.color = m_defaultTint;
+    }
+
+    public static void SetDefaultTintColorForTeam(SpriteRenderer renderer, Team team)
+    {
+        if (team == Team.Player)
+        {
+            renderer.color = m_playerColorTint;
+        }
+        else
+        {
+            renderer.color = m_enemyColorTint;
+        }
     }
 
     public static Sprite GetIconCard(string cardName)
@@ -163,6 +185,11 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc);
     }
 
+    public static UISimpleTooltip CreateSimpleTooltip(string name, string desc, Team team)
+    {
+        return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, team);
+    }
+
     public static void CreateEntityTooltip(GameEntity entity)
     {
         string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
@@ -170,17 +197,22 @@ public static class UIHelper
         string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
         string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString, entity.GetTeam()));
 
         List<GameKeywordBase> keyWords = entity.GetKeywordHolder().m_keywords;
         for (int i = 0; i < keyWords.Count; i++)
         {
-            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc));
+            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
         }
     }
 
     public static void CreateTerrainTooltip(GameTerrainBase terrain)
     {
+        if (terrain is ContentGrassTerrain)
+        {
+            return;
+        }
+
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
     }
 }

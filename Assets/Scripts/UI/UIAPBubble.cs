@@ -6,8 +6,8 @@ public class UIAPBubble : MonoBehaviour
 {
     public SpriteRenderer m_renderer;
 
-    public void Init(bool active)
+    public void Init(bool active, Team team)
     {
-        UIHelper.SetValidColorAlt(m_renderer, active);
+        UIHelper.SetValidColorAltByTeam(m_renderer, active, team);
     }
 }

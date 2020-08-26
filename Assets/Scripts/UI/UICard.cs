@@ -68,7 +68,7 @@ public class UICard : WorldElementBase
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
 
-            m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP());
+            m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
         }
     }
 

@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.UI;
 
 public class UIEntity : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
+    public UIAPContainer m_apContainer;
+    public Text m_healthText;
+    public Text m_powerText;
 
     private bool m_isHovered;
-
-    void Start()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-    }
 
     public void Init(GameEntity entity)
     {
@@ -21,13 +20,24 @@ public class UIEntity : WorldElementBase
         entity.m_uiEntity = this;
 
         m_renderer.sprite = m_gameElement.m_icon;
+
+        m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+
+        UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
     }
 
     void Update()
     {
         if (!m_isHovered)
         {
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+            if (this == Globals.m_selectedEntity)
+            {
+                UIHelper.SetSelectTintColor(m_tintRenderer, true);
+            }
+            else
+            {
+                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+            }
         }
 
         if (Globals.m_selectedEntity != null)
@@ -42,6 +52,10 @@ public class UIEntity : WorldElementBase
         {
             Globals.m_selectedEntity = null;
         }
+
+        m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+        m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
+        m_powerText.text = "" + GetEntity().GetPower();
 
         if (GetEntity().m_isDead)
         {
@@ -63,7 +77,7 @@ public class UIEntity : WorldElementBase
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
             }
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
@@ -132,7 +146,7 @@ public class UIEntity : WorldElementBase
         m_isHovered = false;
         if (Globals.m_selectedEntity != this)
         {
-            UIHelper.SetDefaultTintColor(m_tintRenderer);
+            UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
         }
     }
 
