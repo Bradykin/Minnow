@@ -116,7 +116,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
         if (path == null)
         {
-            return 9999;
+            return Constants.NoPathVal;
         }
 
         int length = 0;

@@ -11,6 +11,9 @@ public static class Constants
     //UI Data
     public static float TooltipWidth = 5.5f;
 
+    //Error Handling
+    public static int NoPathVal = 99999;
+
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
     public static int PercentChanceForTileToContainEnemy = 12;

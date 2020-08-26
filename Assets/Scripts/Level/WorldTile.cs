@@ -104,5 +104,9 @@ public class WorldTile : WorldElementBase
     public override void HandleTooltip()
     {
         UIHelper.CreateTerrainTooltip(m_gameTile.m_terrain);
+        if (!m_gameTile.IsOccupied() && Globals.m_selectedEntity != null)
+        {
+            UIHelper.CreateAPTooltip(m_gameTile);
+        }
     }
 }

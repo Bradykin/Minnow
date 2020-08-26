@@ -190,6 +190,11 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, team);
     }
 
+    public static UISimpleTooltip CreateSimpleTooltip(string name, string desc, bool isValid)
+    {
+        return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
+    }
+
     public static void CreateEntityTooltip(GameEntity entity)
     {
         string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
@@ -214,5 +219,39 @@ public static class UIHelper
         }
 
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
+    }
+
+    public static void CreateAPTooltip(GameTile tile)
+    {
+        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile);
+
+        int curAP = Globals.m_selectedEntity.GetEntity().GetCurAP();
+
+        string title;
+        string desc;
+        bool isValid;
+        if (distance == Constants.NoPathVal)
+        {
+            title = "No path";
+            desc = "";
+            isValid = false;
+        }
+        else
+        {
+            if (distance > curAP)
+            {
+                isValid = false;
+                desc = (distance - curAP) + " short.";
+            }
+            else
+            {
+                isValid = true;
+                desc = (curAP - distance) + " left.";
+            }
+
+            title = distance + " AP";
+        }
+
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, isValid));
     }
 }
