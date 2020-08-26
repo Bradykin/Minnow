@@ -29,12 +29,12 @@ public class ContentTowerBuilding : GameBuildingBase
 
             if (entity == null)
             {
-                return;
+                continue;
             }
 
             if (entity.GetTeam() == Team.Player)
             {
-                return;
+                continue;
             }
 
             UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, surroundingTiles[i]);

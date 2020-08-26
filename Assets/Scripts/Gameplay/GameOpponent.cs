@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class GameOpponent : ITurns
 {
-    public List<GameEntity> m_controlledEntities { get; private set; }
+    public List<GameEnemyEntity> m_controlledEntities { get; private set; }
 
     public GameOpponent()
     {
-        m_controlledEntities = new List<GameEntity>();
+        m_controlledEntities = new List<GameEnemyEntity>();
     }
 
     public void LateInit()

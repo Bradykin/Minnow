@@ -65,17 +65,89 @@ public class WorldGridManager : Singleton<WorldGridManager>
     }
 
     //Range 1 = surrounding tiles (but not middle tiles)
-    public List<WorldTile> GetSurroundingTiles(WorldTile middle, int range)
+    public List<WorldTile> GetSurroundingTiles(WorldTile centerPoint, int outerRange, int innerRange = 1)
     {
         List<WorldTile> returnList = new List<WorldTile>();
 
-        //TODO: ashulman: Can you fill in this function?  It's so that things like towers can hit surrounding tiles
+        if (innerRange > outerRange)
+        {
+            Debug.LogError("Invalid input data to GetSurroundingTiles: innerRange > outerRange");
+            return returnList;
+        }
+
+        for (int i = innerRange; i <= outerRange; i++)
+            returnList.AddRange(GetTilesAtRange(centerPoint, i));
+
+        return returnList;
+    }
+
+    private List<WorldTile> GetTilesAtRange(WorldTile centerPoint, int range)
+    {
+        List<WorldTile> returnList = new List<WorldTile>();
+
+        if (range == 0)
+        {
+            returnList.Add(centerPoint);
+            return returnList;
+        }
+
+        Vector2Int startingTileCoordinates = centerPoint.m_gameTile.m_gridPosition;
+        for (int i = 0; i < range; i++)
+            startingTileCoordinates = startingTileCoordinates.LeftCoordinate();
+
+        Vector2Int currentTileCoordinates = startingTileCoordinates;
+        WorldTile currentWorldTile;
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.UpRightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.RightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.DownRightCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.DownLeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.LeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
+        for (int i = 0; i < range; i++)
+        {
+            currentTileCoordinates = currentTileCoordinates.UpLeftCoordinate();
+            currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
+            if (currentWorldTile != null)
+                returnList.Add(currentWorldTile);
+        }
 
         return returnList;
     }
 
     public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
+        if (x < 0 || y < 0 || x >= Constants.GridSizeX || y >= Constants.GridSizeY)
+            return null;
+        
         return m_gridArray[x + y * Constants.GridSizeX];
     }
 
@@ -101,9 +173,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].m_gameTile;
-                gameTile.PlaceEntity(GameEnemyFactory.GetRandomEnemy());
-                print(gameOpponent.m_controlledEntities);
-                gameOpponent.m_controlledEntities.Add(gameTile.m_occupyingEntity);
+                GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy();
+                gameTile.PlaceEntity(enemy);
+                gameOpponent.m_controlledEntities.Add(enemy);
             }
         }
     }
@@ -158,31 +230,31 @@ public class WorldGridManager : Singleton<WorldGridManager>
                 List<GameTile> path = new List<GameTile>();
                 while (current != null)
                 {
-                    path.Add(current.GridTile);
+                    path.Add(current.GameTile);
                     current = current.Parent;
                 }
                 path.Reverse();
                 return path;
             }
 
-            var adjacentSquares = current.GridTile.AdjacentTiles();
-            g += current.GridTile.m_terrain.m_costToPass;
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+            g += current.GameTile.m_terrain.m_costToPass;
 
             foreach (var adjacentTile in adjacentSquares)
             {
                 // if this adjacent square is already in the closed list, ignore it
-                if (closedList.FirstOrDefault(l => l.X == adjacentTile.x
-                        && l.Y == adjacentTile.y) != null)
+                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                GameTile adjacentGridTile = GetWorldGridTileAtPosition(adjacentTile).m_gameTile;
+                GameTile adjacentGridTile = adjacentTile;
 
                 if (!adjacentGridTile.m_terrain.m_isPassable)
                     continue;
 
                 // if it's not in the open list...
-                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.x
-                        && l.Y == adjacentTile.y);
+                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
                 if (adjacent == null)
                 {
                     Location adjacentLocation = new Location(adjacentGridTile, targetGridTile, g, current);

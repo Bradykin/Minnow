@@ -7,9 +7,9 @@ using UnityEngine;
 //Ignores units
 //Uses full AP to move towards nearest building
 //Once at building; stands still until it can attack, then attacks
-public class ContentSeigebreakerEntity : GameEntity
+public class ContentSeigebreakerEntity : GameEnemyEntity
 {
-    public ContentSeigebreakerEntity()
+    public ContentSeigebreakerEntity() : base()
     {
         m_maxHealth = 30;
         m_maxAP = 6;

@@ -19,7 +19,7 @@ public enum Typeline
     Legend
 }
 
-public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
+public abstract class GameEntity : GameElementBase, ITurns
 {
     //General data.  This should be set for every entity
     protected Team m_team;
@@ -408,21 +408,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ITakeTurnAI
     public void AddPower(int m_toAdd)
     {
         m_power += m_toAdd;
-    }
-
-    //============================================================================================================//
-
-    public virtual void TakeTurn() 
-    {
-        GameTile randomAdjacentTile = WorldGridManager.Instance.GetWorldGridTileAtPosition(m_curTile.RandomAdjacentTile()).m_gameTile;
-
-        while (CanMoveTo(randomAdjacentTile))
-        {
-            MoveTo(randomAdjacentTile);
-            randomAdjacentTile = WorldGridManager.Instance.GetWorldGridTileAtPosition(m_curTile.RandomAdjacentTile()).m_gameTile;
-
-            break;
-        }
     }
 
     //============================================================================================================//
