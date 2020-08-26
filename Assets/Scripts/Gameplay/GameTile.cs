@@ -10,8 +10,19 @@ public class GameTile
     public GameEvent m_event { get; private set; }
     public GameBuildingBase m_building { get; private set; }
 
-    public GameTile()
+    public WorldTile m_curTile;
+    public bool m_isFog;
+    public bool m_canPlace;
+
+    public GameTile(WorldTile curTile)
     {
+        m_curTile = curTile;
+
+        if (Constants.FogOfWar)
+        {
+            m_isFog = true;
+        }
+
         HandleTerrain();
 
         if (m_terrain is ContentRuinsTerrain)
@@ -19,9 +30,13 @@ public class GameTile
             m_event = GameEventFactory.GetRandomEvent(this);
         }
 
+        //This is for testing.
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainBuilding))
         {
-            GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
+            if (!Constants.FogOfWar)
+            {
+                GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
+            }
         }
     }
 
@@ -34,6 +49,11 @@ public class GameTile
 
         m_occupyingEntity = newEntity;
         newEntity.m_curTile = this;
+
+        if (m_occupyingEntity.GetTeam() == Team.Player)
+        {
+            m_curTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
+        }
     }
 
     public void PlaceBuilding(GameBuildingBase newBuilding)
@@ -41,6 +61,13 @@ public class GameTile
         if (HasBuilding())
         {
             Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_building.m_name + ".");
+        }
+
+        m_curTile.ClearSurroundingFog(newBuilding.m_sightRange);
+
+        if (newBuilding.m_expandsPlaceRange)
+        {
+            m_curTile.ExpandPlaceRange(newBuilding.m_sightRange);
         }
 
         m_building = newBuilding;
@@ -94,5 +121,15 @@ public class GameTile
         {
             m_terrain = new ContentRuinsTerrain();
         }
+    }
+
+    public void ClearEvent()
+    {
+        m_event = null;
+    }
+
+    public void ClearBuilding()
+    {
+        m_building = null;
     }
 }

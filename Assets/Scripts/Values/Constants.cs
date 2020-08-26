@@ -17,7 +17,6 @@ public static class Constants
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
     public static int PercentChanceForTileToContainEnemy = 12;
-    public static int PercentChanceForTileToContainBuilding = 1; //For testing
 
     public static int PercentChanceForTerrainGrasslands = 64;
     public static int PercentChanceForTerrainWater = 8;
@@ -32,4 +31,9 @@ public static class Constants
     //Sizing of hexagons
     public static float HexagonInnerRadius = 1.338f;
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
+
+
+    //Testing Data
+    public static int PercentChanceForTileToContainBuilding = 1;
+    public static bool FogOfWar = true;
 }

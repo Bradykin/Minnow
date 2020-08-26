@@ -34,6 +34,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_apToAttack = 2;
+    protected int m_sightRange = 2;
 
     //Functionality
     public GameTile m_curTile;
@@ -210,6 +211,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
 
         return true;
+    }
+
+    public int GetSightRange()
+    {
+        return m_sightRange;
     }
 
     public virtual int HitEntity(GameEntity other)

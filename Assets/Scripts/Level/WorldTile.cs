@@ -7,6 +7,7 @@ public class WorldTile : WorldElementBase
 {
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
+    public GameObject m_fogOfWar;
     public GameTile m_gameTile { get; private set; }
 
     private UIEntity m_occupyingEntityObj;
@@ -17,11 +18,18 @@ public class WorldTile : WorldElementBase
     {
         m_gameElement = m_gameTile.m_terrain;
         m_renderer.sprite = m_gameElement.m_icon;
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, m_gameTile.m_canPlace);
+
+        if (!Constants.FogOfWar)
+        {
+            ClearFog();
+        }
     }
 
     void Update()
     {
+        HandleFogUpdate();
+
         if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
@@ -30,6 +38,7 @@ public class WorldTile : WorldElementBase
         {
             Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
+            m_gameTile.ClearEntity();
         }
 
         if (m_gameTile.HasAvailableEvent() && m_occupyingEventObj == null)
@@ -40,6 +49,13 @@ public class WorldTile : WorldElementBase
         {
             Recycler.Recycle<UIEvent>(m_occupyingEventObj);
             m_occupyingEventObj = null;
+            m_gameTile.ClearEvent();
+        }
+        else if (m_gameTile.HasAvailableEvent() && m_gameTile.m_event.m_isComplete)
+        {
+            Recycler.Recycle<UIEvent>(m_occupyingEventObj);
+            m_occupyingEventObj = null;
+            m_gameTile.ClearEvent();
         }
 
         if (m_gameTile.HasBuilding() && m_occupyingBuildingObj == null)
@@ -50,12 +66,13 @@ public class WorldTile : WorldElementBase
         {
             Recycler.Recycle<UIBuilding>(m_occupyingBuildingObj);
             m_occupyingBuildingObj = null;
+            m_gameTile.ClearBuilding();
         }
     }
 
     public void Init(int x, int y)
     {
-        m_gameTile = new GameTile();
+        m_gameTile = new GameTile(this);
         m_gameTile.m_gridPosition = new Vector2Int(x, y);
     }
 
@@ -98,7 +115,7 @@ public class WorldTile : WorldElementBase
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, m_gameTile.m_canPlace);
     }
 
     public override void HandleTooltip()
@@ -107,6 +124,87 @@ public class WorldTile : WorldElementBase
         if (!m_gameTile.IsOccupied() && Globals.m_selectedEntity != null)
         {
             UIHelper.CreateAPTooltip(m_gameTile);
+        }
+
+        if (Globals.m_selectedCard != null)
+        {
+            if (!Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile))
+            {
+                string titleText = "Can't Place";
+                if (!m_gameTile.m_canPlace && m_gameTile.m_terrain.m_isPassable)
+                {
+                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
+                }
+                else if (m_gameTile.m_canPlace && !m_gameTile.m_terrain.m_isPassable)
+                {
+                    UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Impassable terrain.", false));
+                }
+                else if (m_gameTile.IsOccupied())
+                {
+                    UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Tile already occupied.", false));
+                }
+            }
+        }
+    }
+
+    public void ClearFog()
+    {
+        m_gameTile.m_isFog = false;
+    }
+
+    public void ClearSurroundingFog(int distance)
+    {
+        List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+
+        for (int i = 0; i < toReveal.Count; i++)
+        {
+            toReveal[i].ClearFog();
+        }
+    }
+
+    public void ExpandPlaceRange(int distance)
+    {
+        List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+
+        for (int i = 0; i < toReveal.Count; i++)
+        {
+            toReveal[i].m_gameTile.m_canPlace = true;
+        }
+    }
+
+    public void HandleFogUpdate()
+    {
+        if (m_gameTile.m_isFog)
+        {
+            if (m_occupyingBuildingObj != null)
+            {
+                m_occupyingBuildingObj.gameObject.SetActive(false);
+            }
+            if (m_occupyingEntityObj != null)
+            {
+                m_occupyingEntityObj.gameObject.SetActive(false);
+            }
+            if (m_occupyingEventObj != null)
+            {
+                m_occupyingEventObj.gameObject.SetActive(false);
+            }
+            m_fogOfWar.SetActive(true);
+        }
+        else
+        {
+            if (m_occupyingBuildingObj != null)
+            {
+                m_occupyingBuildingObj.gameObject.SetActive(true);
+            }
+            if (m_occupyingEntityObj != null)
+            {
+                m_occupyingEntityObj.gameObject.SetActive(true);
+            }
+            if (m_occupyingEventObj != null)
+            {
+                m_occupyingEventObj.gameObject.SetActive(true);
+            }
+            m_fogOfWar.SetActive(false);
         }
     }
 }

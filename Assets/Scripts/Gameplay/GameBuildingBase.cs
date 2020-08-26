@@ -10,7 +10,10 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
     public int m_curHealth;
     public int m_maxHealth;
 
+    public int m_sightRange = 2;
+
     public bool m_isDestroyed;
+    public bool m_expandsPlaceRange = false;
 
     public void SetWorldTile(WorldTile worldTile)
     {

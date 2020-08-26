@@ -12,6 +12,8 @@ public class ContentCastleBuilding : GameBuildingBase
 
         m_maxHealth = 100;
 
+        m_expandsPlaceRange = true;
+
         LateInit();
     }
 

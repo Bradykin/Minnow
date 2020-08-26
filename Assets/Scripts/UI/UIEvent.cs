@@ -14,14 +14,6 @@ public class UIEvent : WorldElementBase
         UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 
-    void Update()
-    {
-        if (GetEvent().m_isComplete)
-        {
-            Recycler.Recycle<UIEvent>(this);
-        }
-    }
-
     public void Init(GameEvent gameEvent)
     {
         m_gameElement = gameEvent;
