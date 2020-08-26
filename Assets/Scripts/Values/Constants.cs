@@ -34,6 +34,5 @@ public static class Constants
 
 
     //Testing Data
-    public static int PercentChanceForTileToContainBuilding = 1;
     public static bool FogOfWar = true;
 }

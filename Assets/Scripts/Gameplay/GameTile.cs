@@ -29,15 +29,6 @@ public class GameTile
         {
             m_event = GameEventFactory.GetRandomEvent(this);
         }
-
-        //This is for testing.
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainBuilding))
-        {
-            if (!Constants.FogOfWar)
-            {
-                GameHelper.MakePlayerBuilding(this, new ContentTowerBuilding());
-            }
-        }
     }
 
     public void PlaceEntity(GameEntity newEntity)
