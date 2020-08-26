@@ -13,7 +13,7 @@ public class AIGameEnemyEntity
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
         m_gameEnemyEntity = gameEnemyEntity;
-        m_AISteps = new List<AIStep>()
+        m_AISteps = new List<AIStep>();
     }
 
     public void AddAIStep(AIStep AIStep)
