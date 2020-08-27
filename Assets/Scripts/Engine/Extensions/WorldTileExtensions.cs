@@ -25,7 +25,6 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.x -= 0.75f;
             screenPos.y -= 0.75f;
             screenPos.z = -1f;
 
@@ -36,7 +35,6 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.x += 0.75f;
             screenPos.y -= 0.75f;
             screenPos.z = -1f;
 
