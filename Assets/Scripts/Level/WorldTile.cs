@@ -7,6 +7,7 @@ public class WorldTile : WorldElementBase
 {
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
+    public SpriteRenderer m_frameRenderer;
     public GameObject m_fogOfWar;
     public GameTile m_gameTile { get; private set; }
 
@@ -67,6 +68,15 @@ public class WorldTile : WorldElementBase
             Recycler.Recycle<UIBuilding>(m_occupyingBuildingObj);
             m_occupyingBuildingObj = null;
             m_gameTile.ClearBuilding();
+        }
+
+        if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile)))
+        {
+            m_frameRenderer.color = Color.black;
+        }
+        else if (Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile))
+        {
+            UIHelper.SetValidColor(m_frameRenderer, m_gameTile.m_canPlace);
         }
     }
 

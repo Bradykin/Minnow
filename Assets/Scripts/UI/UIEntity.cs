@@ -8,6 +8,7 @@ public class UIEntity : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
+    public SpriteRenderer m_frameRenderer;
     public UIAPContainer m_apContainer;
     public Text m_healthText;
     public Text m_powerText;
@@ -23,7 +24,7 @@ public class UIEntity : WorldElementBase
 
         m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
 
-        UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+        UIHelper.SetDefaultColorForTeam(m_frameRenderer, GetEntity().GetTeam());
     }
 
     void Update()

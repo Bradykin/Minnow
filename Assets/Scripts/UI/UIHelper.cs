@@ -18,7 +18,7 @@ public static class UIHelper
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
     public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
-    public static Color m_playerColor = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
+    public static Color m_playerColor = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1f);
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
@@ -103,6 +103,18 @@ public static class UIHelper
         else
         {
             renderer.color = m_enemyColorTint;
+        }
+    }
+
+    public static void SetDefaultColorForTeam(SpriteRenderer renderer, Team team)
+    {
+        if (team == Team.Player)
+        {
+            renderer.color = m_playerColor;
+        }
+        else
+        {
+            renderer.color = m_enemyColor;
         }
     }
 
