@@ -18,7 +18,7 @@ public static class UIHelper
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
     public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
-    public static Color m_playerColor = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1f);
+    public static Color m_playerColor = new Color(Color.cyan.r, Color.blue.g, Color.blue.b, 1f);
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
@@ -220,19 +220,29 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
     }
 
-    public static void CreateEntityTooltip(GameEntity entity)
+    public static void CreateEntityTooltip(GameEntity entity, bool showEntity = true)
     {
         string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
         string powerString = "Power: " + entity.GetPower();
         string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
         string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString, entity.GetTeam()));
+        if (showEntity)
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString, entity.GetTeam()));
+        }
 
         List<GameKeywordBase> keyWords = entity.GetKeywordHolder().m_keywords;
         for (int i = 0; i < keyWords.Count; i++)
         {
-            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
+            if (showEntity)
+            {
+                UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
+            }
+            else
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
+            }
         }
     }
 

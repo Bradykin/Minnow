@@ -96,7 +96,7 @@ public class UICard : WorldElementBase
         {
             GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
 
-            UIHelper.CreateEntityTooltip(entity);
+            UIHelper.CreateEntityTooltip(entity, false);
         }
     }
 
