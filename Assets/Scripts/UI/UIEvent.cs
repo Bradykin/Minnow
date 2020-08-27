@@ -18,7 +18,7 @@ public class UIEvent : WorldElementBase
     {
         m_gameElement = gameEvent;
 
-        m_renderer.sprite = GetEvent().m_icon;
+        m_renderer.sprite = UIHelper.GetIconEvent("Event");
     }
 
     void OnMouseDown()
@@ -83,8 +83,8 @@ public class UIEvent : WorldElementBase
 
     public override void HandleTooltip()
     {
-        string descString = m_gameElement.m_desc + "\n Cost: " + GetEvent().m_APCost + "AP";
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_gameElement.m_name, descString));
+        string descString = "An event!  I wonder what happens here...\n Cost: " + GetEvent().m_APCost + "AP";
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
         UIHelper.CreateTerrainTooltip(GetEvent().m_tile.m_terrain);
     }
 }
