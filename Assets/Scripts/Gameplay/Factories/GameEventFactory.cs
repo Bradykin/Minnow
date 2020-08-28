@@ -6,7 +6,7 @@ public static class GameEventFactory
 {
     public static GameEvent GetRandomEvent(GameTile tile)
     {
-        int r = Random.Range(0, 2);
+        int r = Random.Range(0, 3);
 
         switch (r)
         {
@@ -14,6 +14,8 @@ public static class GameEventFactory
                 return new ContentDragonDenEvent(tile);
             case 1:
                 return new ContentWonderousGenieEvent(tile);
+            case 2:
+                return new ContentOverturnedCartEvent(tile);
             default:
                 return null;
         }

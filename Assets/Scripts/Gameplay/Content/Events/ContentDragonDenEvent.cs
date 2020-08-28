@@ -11,34 +11,11 @@ public class ContentDragonDenEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTakeDragonGoldOption();
+        m_optionOne = new GameEventTakeGoldOption(50);
         m_optionTwo = new GameEventTameDragonOption();
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
-    }
-}
-
-public class GameEventTakeDragonGoldOption : GameEventOption
-{
-    private int m_gold = 50;
-
-    public GameEventTakeDragonGoldOption()
-    {
-        m_message = "Take " + m_gold + " gold from the dragon!";
-    }
-
-    public override void AcceptOption()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.m_wallet.m_gold += m_gold;
-        EndEvent();
     }
 }
 
