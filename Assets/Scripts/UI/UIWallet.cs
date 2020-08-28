@@ -20,9 +20,9 @@ public class UIWallet : WorldElementBase
 
         GameWallet playerWallet = player.m_wallet;
 
-        m_goldText.text = "Gold: " + playerWallet.m_gold;
-        m_magicText.text = "Magic: " + playerWallet.m_magic;
-        m_brickText.text = "Bricks: " + playerWallet.m_bricks;
+        m_goldText.text = "" + playerWallet.m_gold;
+        m_magicText.text = "" + playerWallet.m_magic;
+        m_brickText.text = "" + playerWallet.m_bricks;
     }
 
     void OnMouseOver()

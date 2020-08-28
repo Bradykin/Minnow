@@ -31,7 +31,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override string GetMessage()
     {
-        GameCard toGainCard = new ContentDwarvenSoldierCard();
+        GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
 
         m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 5 " + toGainCard.m_name + " cards.";
 
@@ -59,6 +59,12 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override void BuildTooltip()
     {
-        UIHelper.CreateEntityTooltip(new ContentDwarvenSoldierCard().GetEntity());
+        GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
+
+        if (m_tile.m_occupyingEntity.m_name != toGainCard.GetEntity().m_name)
+        {
+            UIHelper.CreateEntityTooltip(m_tile.m_occupyingEntity);
+        }
+        UIHelper.CreateEntityTooltip(toGainCard.GetEntity());
     }
 }
