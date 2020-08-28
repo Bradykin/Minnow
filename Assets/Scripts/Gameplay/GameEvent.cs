@@ -18,4 +18,14 @@ public abstract class GameEvent : GameElementBase
     {
         m_APCost = 2;
     }
+
+    public virtual bool isValidToSpawn(GameTile tile)
+    {
+        if (tile.m_building != null)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

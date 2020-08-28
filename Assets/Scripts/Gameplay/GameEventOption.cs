@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class GameEventOption
 {
     public bool m_hasTooltip;
-    public string m_message { get; protected set; }
+    protected string m_message;
 
     public abstract void AcceptOption();
     public virtual bool IsOptionValid() { return true; }
@@ -13,6 +13,11 @@ public abstract class GameEventOption
     public virtual void EndEvent()
     {
         UIEventController.Instance.EndEvent();
+    }
+
+    public virtual string GetMessage()
+    {
+        return m_message;
     }
 
     public virtual void BuildTooltip() { }

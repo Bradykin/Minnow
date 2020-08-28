@@ -6,7 +6,10 @@ public static class GameEventFactory
 {
     public static GameEvent GetRandomEvent(GameTile tile)
     {
-        int r = Random.Range(0, 3);
+        return new ContentMillitiaEvent(tile);
+
+        /*
+        int r = Random.Range(0, 4);
 
         switch (r)
         {
@@ -16,8 +19,10 @@ public static class GameEventFactory
                 return new ContentWonderousGenieEvent(tile);
             case 2:
                 return new ContentOverturnedCartEvent(tile);
+            case 3:
+                return new ContentMillitiaEvent(tile);
             default:
                 return null;
-        }
+        }*/
     }
 }

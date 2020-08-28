@@ -13,7 +13,7 @@ public class UIEventButton : WorldElementBase
     {
         m_eventOption = gameEventOption;
 
-        m_descText.text = m_eventOption.m_message;
+        m_descText.text = m_eventOption.GetMessage();
     }
 
     void OnMouseDown()

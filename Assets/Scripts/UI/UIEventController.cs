@@ -33,9 +33,34 @@ public class UIEventController : Singleton<UIEventController>
         m_titleText.text = m_event.m_name;
         m_descText.text = m_event.m_eventDesc;
 
-        m_firstButton.Init(m_event.m_optionOne);
-        m_secondButton.Init(m_event.m_optionTwo);
-        m_thirdButton.Init(m_event.m_optionThree);
+        if (m_event.m_optionOne != null)
+        {
+            m_firstButton.gameObject.SetActive(true);
+            m_firstButton.Init(m_event.m_optionOne);
+        }
+        else
+        {
+            m_firstButton.gameObject.SetActive(false);
+        }
+
+        if (m_event.m_optionTwo != null)
+        {
+            m_secondButton.gameObject.SetActive(true);
+            m_secondButton.Init(m_event.m_optionTwo);
+        }
+        else
+        {
+            m_secondButton.gameObject.SetActive(false);
+        }
+
+        if (m_event.m_optionThree != null)
+        {
+            m_thirdButton.Init(m_event.m_optionThree);
+        }
+        else
+        {
+            m_thirdButton.gameObject.SetActive(false);
+        }
 
         m_holder.SetActive(true);
     }
