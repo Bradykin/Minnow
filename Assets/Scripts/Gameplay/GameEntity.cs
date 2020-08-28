@@ -396,7 +396,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public string GetDesc()
     {
-        string descString = m_desc + "\n";
+        string descString = m_desc + m_keywordHolder.GetDesc() + "\n";
 
         return descString;
     }

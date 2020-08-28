@@ -55,6 +55,7 @@ public class UIEventController : Singleton<UIEventController>
 
         if (m_event.m_optionThree != null)
         {
+            m_thirdButton.gameObject.SetActive(true);
             m_thirdButton.Init(m_event.m_optionThree);
         }
         else

@@ -274,5 +274,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Singletons
       objectReference: {fileID: 0}
+    - target: {fileID: 9096679186234791447, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.081638336
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096679186234791447, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 15.968739
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096679186234791447, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.18354034
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096679186234791447, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 20.271702
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
