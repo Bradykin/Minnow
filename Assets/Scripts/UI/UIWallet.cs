@@ -9,6 +9,8 @@ public class UIWallet : WorldElementBase
     public Text m_magicText;
     public Text m_brickText;
 
+    public SpriteRenderer m_tintRenderer;
+
     void Update()
     {
         GamePlayer player = GameHelper.GetPlayer();
@@ -27,11 +29,13 @@ public class UIWallet : WorldElementBase
 
     void OnMouseOver()
     {
+        UIHelper.SetValidTintColor(m_tintRenderer, true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
         Globals.m_canScroll = true;
     }
 

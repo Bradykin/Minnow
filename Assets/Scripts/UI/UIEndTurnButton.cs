@@ -8,6 +8,11 @@ public class UIEndTurnButton : WorldElementBase
 
     void OnMouseDown()
     {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
         Globals.m_selectedCard = null;
         Globals.m_selectedEntity = null;
 

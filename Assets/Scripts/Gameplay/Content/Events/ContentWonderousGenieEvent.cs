@@ -7,7 +7,7 @@ public class ContentWonderousGenieEvent : GameEvent
     public ContentWonderousGenieEvent(GameTile tile)
     {
         m_name = "Wonderous Genie";
-        m_eventDesc = "You approach the dragons den, and see a mound of gold!  You might be able to steal the gold and get out; or you tame the dragon, but lose the gold for some reason!";
+        m_eventDesc = "A strange genie offers you a choice of two ancient relics.  Choose carefully; you may come to regret not picking the other...";
         m_tile = tile;
         m_rarity = GameRarity.Common;
 

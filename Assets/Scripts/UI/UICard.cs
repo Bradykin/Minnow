@@ -81,7 +81,10 @@ public class UICard : WorldElementBase
         }
         else
         {
-            UIHelper.CreateWorldElementNotification("Not energy energy.", false, this);
+            if (Globals.m_canSelect)
+            {
+                UIHelper.CreateWorldElementNotification("Not enough energy.", false, this);
+            }
         }
     }
 

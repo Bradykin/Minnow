@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIEnergy : WorldElementBase
 {
     public Text m_countText;
+    public SpriteRenderer m_tintRenderer;
 
     void Update()
     {
@@ -21,13 +22,16 @@ public class UIEnergy : WorldElementBase
 
     void OnMouseOver()
     {
+        UIHelper.SetValidTintColor(m_tintRenderer, true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
         Globals.m_canScroll = true;
     }
+
 
     public override void HandleTooltip()
     {
