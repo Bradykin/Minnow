@@ -7,16 +7,15 @@ public class ContentDragonDenEvent : GameEvent
     public ContentDragonDenEvent(GameTile tile)
     {
         m_name = "Dragon's Den";
-        m_desc = "A strange den lies here... I wonder what could be inside?";
-        m_eventDesc = "You approach the dragons den, and see a mound of gold!  You might be able to steal the gold and get out; or you tame the dragon, but lose the gold for some reason!";
+        m_eventDesc = "You approach a strange den, and see a mound of gold!  You might be able to steal the gold and get out; or you could convinve the dragon sleeping on it to join you, but it'd probably want to keep it's gold.";
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
-
-        m_APCost = 2;
 
         m_optionOne = new GameEventTakeDragonGoldOption();
         m_optionTwo = new GameEventTameDragonOption();
         m_optionThree = new GameEventLeaveOption();
+
+        LateInit();
     }
 }
 

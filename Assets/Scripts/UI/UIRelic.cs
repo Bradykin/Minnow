@@ -18,6 +18,6 @@ public class UIRelic : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_relic.m_name, m_relic.m_desc));
+        UIHelper.CreateRelicTooltip(m_relic);
     }
 }

@@ -289,4 +289,9 @@ public static class UIHelper
 
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, isValid));
     }
+
+    public static void CreateRelicTooltip(GameRelic relic)
+    {
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.m_name, relic.m_desc));
+    }
 }
