@@ -34,6 +34,18 @@ public static class UIHelper
         }
     }
 
+    public static void SetSelectValidTintColor(SpriteRenderer renderer, bool isValid)
+    {
+        if (isValid)
+        {
+            renderer.color = m_selectedTint;
+        }
+        else
+        {
+            SetValidTintColor(renderer, false);
+        }
+    }
+
     public static void SetValidTintColor(SpriteRenderer renderer, bool isValid)
     {
         if (isValid)
@@ -178,6 +190,23 @@ public static class UIHelper
         }
     }
 
+    public static void ReselectEntity()
+    {
+        if (Globals.m_selectedEntity == null)
+        {
+            return;
+        }
+
+        WorldGridManager.Instance.ClearAllTilesMovementRange();
+
+        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+
+        for (int i = 0; i < tilesInRange.Count; i++)
+        {
+            tilesInRange[i].m_curTile.SetMoveable(true);
+        }
+    }
+
     public static void SelectCard(UICard card)
     {
         if (!Globals.m_canSelect)
@@ -203,12 +232,7 @@ public static class UIHelper
             return;
         }
 
-        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
-
-        for (int i = 0; i < tilesInRange.Count; i++)
-        {
-            tilesInRange[i].m_curTile.SetMoveable(false);
-        }
+        WorldGridManager.Instance.ClearAllTilesMovementRange();
 
         Globals.m_selectedEntity = null;
     }
@@ -273,14 +297,15 @@ public static class UIHelper
         }
     }
 
+    //This is a stub for now.  Can reactivate later if we want it
     public static void CreateTerrainTooltip(GameTerrainBase terrain)
     {
-        if (terrain is ContentGrassTerrain)
+        //if (terrain is ContentGrasslandsTerrain)
         {
-            return;
+            //return;
         }
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
+        //UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
     }
 
     public static void CreateEventTooltip(GameEvent gameEvent)
@@ -291,40 +316,6 @@ public static class UIHelper
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
         }
         UIHelper.CreateTerrainTooltip(gameEvent.m_tile.GetTerrain());
-    }
-
-    public static void CreateAPTooltip(GameTile tile)
-    {
-        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile, false);
-
-        int curAP = Globals.m_selectedEntity.GetEntity().GetCurAP();
-
-        string title;
-        string desc;
-        bool isValid;
-        if (distance == Constants.NoPathVal)
-        {
-            title = "No path";
-            desc = "";
-            isValid = false;
-        }
-        else
-        {
-            if (distance > curAP)
-            {
-                isValid = false;
-                desc = (distance - curAP) + " short.";
-            }
-            else
-            {
-                isValid = true;
-                desc = (curAP - distance) + " left.";
-            }
-
-            title = distance + " AP";
-        }
-
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, isValid));
     }
 
     public static void CreateBuildingTooltip(GameBuildingBase building)

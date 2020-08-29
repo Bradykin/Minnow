@@ -30,7 +30,6 @@ public class WorldTile : WorldElementBase
         HandleFogUpdate();
 
         m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
-
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
 
@@ -50,36 +49,47 @@ public class WorldTile : WorldElementBase
             GetGameTile().GetBuilding().SetWorldTile(this);
         }
 
-        if (Globals.m_selectedEntity != null)
+        //Handle Tint Color
+        if (m_isHovered)
         {
-            if (m_isMoveable)
+            if (Globals.m_selectedEntity != null)
             {
-                UIHelper.SetValidColor(m_frameRenderer, m_isMoveable);
-                if (!m_isHovered)
-                {
-                    UIHelper.SetSelectTintColor(m_tintRenderer, m_isMoveable);
-                }
+                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
+            }
+
+            if (Globals.m_selectedCard != null)
+            {
+                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
             }
         }
         else
         {
-            if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile())))
+            if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
-                m_frameRenderer.color = Color.black;
+                UIHelper.SetValidTintColor(m_tintRenderer, true);
             }
-            else if (Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+            else if (Globals.m_selectedEntity != null && m_isMoveable)
             {
-                UIHelper.SetValidColor(m_frameRenderer, GetGameTile().m_canPlace);
-                if (!m_isHovered)
-                {
-                    UIHelper.SetSelectTintColor(m_tintRenderer, GetGameTile().m_canPlace);
-                }
+                UIHelper.SetValidTintColor(m_tintRenderer, true);
+            }
+            else
+            {
+                UIHelper.SetDefaultTintColor(m_tintRenderer);
             }
         }
-
-        if (!m_isHovered && Globals.m_selectedCard == null && Globals.m_selectedEntity == null)
+        
+        //Handle Frame Color
+        if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
         {
-            UIHelper.SetSelectTintColor(m_tintRenderer, false);
+            UIHelper.SetValidColor(m_frameRenderer, true);
+        }
+        else if (Globals.m_selectedEntity != null && m_isMoveable)
+        {
+            UIHelper.SetValidColor(m_frameRenderer, true);
+        }
+        else
+        {
+            m_frameRenderer.color = Color.black;
         }
     }
 
@@ -116,23 +126,11 @@ public class WorldTile : WorldElementBase
     void OnMouseOver()
     {
         m_isHovered = true;
-
-        if (Globals.m_selectedEntity != null)
-        {
-           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
-        }
-
-        if (Globals.m_selectedCard != null)
-        {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
-        }
     }
 
     void OnMouseExit()
     {
         m_isHovered = false;
-
-        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, GetGameTile().m_canPlace);
     }
 
     public override void HandleTooltip()
@@ -148,11 +146,6 @@ public class WorldTile : WorldElementBase
         else
         {
             UIHelper.CreateTerrainTooltip(GetGameTile().GetTerrain());
-        }
-
-        if (!GetGameTile().IsOccupied() && Globals.m_selectedEntity != null)
-        {
-            UIHelper.CreateAPTooltip(GetGameTile());
         }
 
         if (Globals.m_selectedCard != null)

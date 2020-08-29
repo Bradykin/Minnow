@@ -222,7 +222,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int HitEntity(GameEntity other)
     {
-        m_curAP -= m_apToAttack;
+        SpendAP(m_apToAttack);
         int damageTaken = other.Hit(GetDamageToDealTo(other));
 
         GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
@@ -265,12 +265,12 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void FillAP()
     {
-        m_curAP = GetMaxAP();
+        GainAP(GetMaxAP());
     }
 
     public void EmptyAP()
     {
-        m_curAP = 0;
+        SpendAP(GetMaxAP());
     }
 
     public void GainAP(int toGain)
@@ -281,6 +281,8 @@ public abstract class GameEntity : GameElementBase, ITurns
         {
             m_curAP = m_maxAP;
         }
+
+        UIHelper.ReselectEntity();
     }
 
     public GameKeywordHolder GetKeywordHolder()
@@ -399,6 +401,8 @@ public abstract class GameEntity : GameElementBase, ITurns
     public void SpendAP(int toSpend)
     {
         m_curAP -= toSpend;
+
+        UIHelper.ReselectEntity();
     }
 
     public string GetDesc()
@@ -416,12 +420,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     private void RegenAP()
     {
-        m_curAP += GetAPRegen();
-
-        if (m_curAP > GetMaxAP())
-        {
-            m_curAP = GetMaxAP();
-        }
+        GainAP(GetAPRegen());
     }
 
     public void AddPower(int m_toAdd)
