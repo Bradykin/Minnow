@@ -11,14 +11,11 @@ public class WorldTile : WorldElementBase
     public GameObject m_fogOfWar;
 
     private UIEntity m_occupyingEntityObj;
-    private UIEvent m_occupyingEventObj;
 
     bool m_isHovered;
 
     void Start()
     {
-        m_renderer.sprite = GetGameTile().GetIcon();
-        m_tintRenderer.sprite = GetGameTile().GetIcon();
         UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, GetGameTile().m_canPlace);
 
         if (!Constants.FogOfWar)
@@ -33,6 +30,9 @@ public class WorldTile : WorldElementBase
 
         m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
 
+        m_renderer.sprite = GetGameTile().GetIcon();
+        m_tintRenderer.sprite = GetGameTile().GetIcon();
+
         if (GetGameTile().IsOccupied() && m_occupyingEntityObj == null)
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
@@ -42,23 +42,6 @@ public class WorldTile : WorldElementBase
             Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
             GetGameTile().ClearEntity();
-        }
-
-        if (GetGameTile().HasAvailableEvent() && m_occupyingEventObj == null)
-        {
-            m_occupyingEventObj = FactoryManager.Instance.GetFactory<UIEventFactory>().CreateObject<UIEvent>(this);
-        }
-        else if (!GetGameTile().HasAvailableEvent() && m_occupyingEventObj != null)
-        {
-            Recycler.Recycle<UIEvent>(m_occupyingEventObj);
-            m_occupyingEventObj = null;
-            GetGameTile().ClearEvent();
-        }
-        else if (GetGameTile().HasAvailableEvent() && GetGameTile().m_event.m_isComplete)
-        {
-            Recycler.Recycle<UIEvent>(m_occupyingEventObj);
-            m_occupyingEventObj = null;
-            GetGameTile().ClearEvent();
         }
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)
@@ -143,6 +126,10 @@ public class WorldTile : WorldElementBase
         {
             UIHelper.CreateBuildingTooltip(GetGameTile().GetBuilding());
         }
+        else if (GetGameTile().HasAvailableEvent())
+        {
+            UIHelper.CreateEventTooltip(GetGameTile().m_event);
+        }
         else
         {
             UIHelper.CreateTerrainTooltip(GetGameTile().GetTerrain());
@@ -207,10 +194,6 @@ public class WorldTile : WorldElementBase
             {
                 m_occupyingEntityObj.gameObject.SetActive(false);
             }
-            if (m_occupyingEventObj != null)
-            {
-                m_occupyingEventObj.gameObject.SetActive(false);
-            }
             m_fogOfWar.SetActive(true);
         }
         else
@@ -218,10 +201,6 @@ public class WorldTile : WorldElementBase
             if (m_occupyingEntityObj != null)
             {
                 m_occupyingEntityObj.gameObject.SetActive(true);
-            }
-            if (m_occupyingEventObj != null)
-            {
-                m_occupyingEventObj.gameObject.SetActive(true);
             }
             m_fogOfWar.SetActive(false);
         }

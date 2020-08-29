@@ -256,6 +256,16 @@ public static class UIHelper
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
     }
 
+    public static void CreateEventTooltip(GameEvent gameEvent)
+    {
+        if (!gameEvent.m_isComplete)
+        {
+            string descString = "An event!  I wonder what happens here...";
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
+        }
+        UIHelper.CreateTerrainTooltip(gameEvent.m_tile.GetTerrain());
+    }
+
     public static void CreateAPTooltip(GameTile tile)
     {
         int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile, false);

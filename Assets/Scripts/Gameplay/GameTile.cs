@@ -44,6 +44,11 @@ public class GameTile : GameElementBase
         if (m_occupyingEntity.GetTeam() == Team.Player)
         {
             m_curTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
+
+            if (m_event != null && !m_event.m_isComplete)
+            {
+                UIEventController.Instance.Init(m_event);
+            }
         }
     }
 
@@ -129,6 +134,17 @@ public class GameTile : GameElementBase
         if (HasBuilding())
         {
             return m_building.m_icon;
+        }
+        else if (HasAvailableEvent())
+        {
+            if (m_event.m_isComplete)
+            {
+                return m_event.m_iconComplete;
+            }
+            else
+            {
+                return m_event.m_icon;
+            }
         }
         else
         {

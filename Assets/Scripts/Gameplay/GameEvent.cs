@@ -7,6 +7,7 @@ public abstract class GameEvent : GameElementBase
     public GameTile m_tile;
     public int m_APCost;
     public string m_eventDesc;
+    public Sprite m_iconComplete;
 
     public bool m_isComplete;
 
@@ -17,6 +18,8 @@ public abstract class GameEvent : GameElementBase
     protected virtual void LateInit()
     {
         m_APCost = 2;
+        m_icon = UIHelper.GetIconEvent("Event");
+        m_iconComplete = UIHelper.GetIconEvent("EventComplete");
     }
 
     public virtual bool isValidToSpawn(GameTile tile)

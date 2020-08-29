@@ -25,8 +25,6 @@ public class UIEventController : Singleton<UIEventController>
     public void Init(GameEvent gameEvent)
     {
         Globals.m_canSelect = false;
-        Globals.m_selectedCard = null;
-        Globals.m_selectedEntity = null;
 
         m_event = gameEvent;
 
