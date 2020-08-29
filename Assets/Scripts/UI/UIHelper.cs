@@ -268,7 +268,7 @@ public static class UIHelper
 
     public static void CreateAPTooltip(GameTile tile)
     {
-        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile);
+        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile, false);
 
         int curAP = Globals.m_selectedEntity.GetEntity().GetCurAP();
 

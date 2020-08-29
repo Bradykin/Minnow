@@ -182,9 +182,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     //============================================================================================================//
 
-    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile)
+    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences)
     {
-        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile);
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences);
 
         if (path == null)
         {
@@ -194,13 +194,16 @@ public class WorldGridManager : Singleton<WorldGridManager>
         int length = 0;
         for (int i = 1; i < path.Count; i++)
         {
-            length += path[i].GetCostToPass();
+            if (ignoreTerrainDifferences)
+                length++;
+            else
+                length += path[i].GetCostToPass();
         }
 
         return length;
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences = false)
     {
         Location current = null;
         int g = 0;
@@ -238,7 +241,10 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
-            g += current.GameTile.GetCostToPass();
+            if (ignoreTerrainDifferences)
+                g++;
+            else
+                g += current.GameTile.GetCostToPass();
 
             foreach (var adjacentTile in adjacentSquares)
             {
@@ -249,7 +255,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
                 GameTile adjacentGridTile = adjacentTile;
 
-                if (!adjacentGridTile.IsPassable())
+                if (ignoreTerrainDifferences || !adjacentGridTile.IsPassable())
                     continue;
 
                 // if it's not in the open list...
@@ -271,5 +277,78 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
         Debug.Log("NO VIABLE PATH");
         return null;
+    }
+
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences = false)
+    {
+        Location current = null;
+        int g = 0;
+        var start = new Location(startingGridTile, g);
+        var openList = new List<Location>();
+        var closedList = new List<Location>();
+
+        // start by adding the original position to the open list
+        openList.Add(start);
+
+        while (openList.Count > 0)
+        {
+            // get the square with the lowest F score
+            var lowest = openList.Min(l => l.F);
+            current = openList.First(l => l.F == lowest);
+
+            // add the current square to the closed list
+            closedList.Add(current);
+
+            // remove it from the open list
+            openList.Remove(current);
+
+            // if we added the destination to the closed list, we've found a path
+            if (current.F >= currentAP)
+                continue;
+
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+            if (ignoreTerrainDifferences)
+                g++;
+            else
+                g += current.GameTile.GetCostToPass();
+
+            foreach (var adjacentTile in adjacentSquares)
+            {
+                // if this adjacent square is already in the closed list, ignore it
+                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
+                    continue;
+
+                GameTile adjacentGridTile = adjacentTile;
+
+                if (ignoreTerrainDifferences || !adjacentGridTile.IsPassable())
+                    continue;
+
+                // if it's not in the open list...
+                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
+                if (adjacent == null)
+                {
+                    Location adjacentLocation = new Location(adjacentGridTile, g);
+                    openList.Insert(0, adjacentLocation);
+                }
+                else if (g + adjacent.H < adjacent.F)
+                {
+                    adjacent.G = g;
+                    adjacent.F = adjacent.G + adjacent.H;
+                    adjacent.Parent = current;
+                }
+            }
+        }
+
+        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
+        List<GameTile> inRangeGameTiles = new List<GameTile>();
+
+        for (int i = 0; i < inRangeLocations.Count; i++)
+        {
+            inRangeGameTiles.Add(GetWorldGridTileAtPosition(inRangeLocations[i].X, inRangeLocations[i].Y).GetGameTile());
+        }
+
+        return inRangeGameTiles;
     }
 }

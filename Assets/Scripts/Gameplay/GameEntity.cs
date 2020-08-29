@@ -375,7 +375,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false) > m_curAP)
         {
             return false;
         }
@@ -385,7 +385,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void MoveTo(GameTile tile)
     {
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile));
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false));
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);

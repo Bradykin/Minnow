@@ -24,6 +24,17 @@ public class Location
         F = G + H;
     }
 
+    public Location(GameTile gameTile, int g)
+    {
+        X = gameTile.m_gridPosition.x;
+        Y = gameTile.m_gridPosition.y;
+        GameTile = gameTile;
+
+        G = g;
+        H = 0;
+        F = G + H;
+    }
+
     public Location(GameTile gameTile)
     {
         X = gameTile.m_gridPosition.x;
