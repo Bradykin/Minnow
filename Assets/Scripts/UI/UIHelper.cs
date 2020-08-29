@@ -145,7 +145,9 @@ public static class UIHelper
 
     public static Sprite GetIconTerrain(string terrainName)
     {
-        return Resources.Load<Sprite>("Terrain/" + terrainName) as Sprite;
+        int rand = Random.Range(1, 5);
+
+        return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
     }
 
     public static void SelectEntity(UIEntity entity)
