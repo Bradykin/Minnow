@@ -8,14 +8,14 @@ namespace Game.Util
     {
         public static Vector3 GetScreenPosition(this WorldTile worldTile)
         {
-            return new Vector3((worldTile.m_gameTile.m_gridPosition.x + worldTile.m_gameTile.m_gridPosition.y * 0.5f - worldTile.m_gameTile.m_gridPosition.y / 2) * Constants.HexagonInnerRadius * 2.0f, worldTile.m_gameTile.m_gridPosition.y * Constants.HexagonOuterRadius * 1.5f, 0.0f);
+            return new Vector3((worldTile.m_gameTile.m_gridPosition.x + worldTile.m_gameTile.m_gridPosition.y * 0.5f - worldTile.m_gameTile.m_gridPosition.y / 2) * Constants.HexagonInnerRadius * 2.0f, worldTile.m_gameTile.m_gridPosition.y * Constants.HexagonOuterRadius * 1.338f, 0.0f);
         }
 
         public static Vector3 GetScreenPositionForEntity(this WorldTile worldTile)
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.y += 0.75f;
+            screenPos.y += 0.71f;
             screenPos.z = -1f;
 
             return screenPos;
@@ -25,7 +25,7 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.y -= 0.75f;
+            screenPos.y -= 0.71f;
             screenPos.z = -1f;
 
             return screenPos;
@@ -35,7 +35,7 @@ namespace Game.Util
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 
-            screenPos.y -= 0.75f;
+            screenPos.y -= 0.71f;
             screenPos.z = -1f;
 
             return screenPos;

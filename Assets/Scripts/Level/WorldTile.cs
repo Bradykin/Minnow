@@ -19,6 +19,7 @@ public class WorldTile : WorldElementBase
     {
         m_gameElement = m_gameTile.m_terrain;
         m_renderer.sprite = m_gameElement.m_icon;
+        m_tintRenderer.sprite = m_gameElement.m_icon;
         UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, m_gameTile.m_canPlace);
 
         if (!Constants.FogOfWar)
@@ -30,6 +31,8 @@ public class WorldTile : WorldElementBase
     void Update()
     {
         HandleFogUpdate();
+
+        m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
 
         if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
         {

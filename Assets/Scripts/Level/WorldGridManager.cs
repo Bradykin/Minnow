@@ -51,7 +51,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
         m_gridArray = new WorldTile[numGridTiles];
 
-        for (int i = 0; i < numGridTiles; i++)
+        for (int i = numGridTiles-1; i >= 0; i--)
         {
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldTileFactory>().CreateObject<WorldTile>();
             m_gridArray[i].transform.parent = parent;
