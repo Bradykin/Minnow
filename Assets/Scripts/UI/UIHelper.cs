@@ -150,16 +150,19 @@ public static class UIHelper
 
     public static void SelectEntity(UIEntity entity)
     {
+        bool entityAlreadySelected = Globals.m_selectedEntity == entity;
+
+        if (Globals.m_selectedEntity != null)
+        {
+            UnselectEntity();
+        }
+
         if (!Globals.m_canSelect)
         {
             return;
         }
 
-        if (Globals.m_selectedEntity == entity)
-        {
-            UnselectEntity();
-        }
-        else
+        if (!entityAlreadySelected)
         {
             Globals.m_selectedEntity = entity;
             Globals.m_selectedCard = null;
