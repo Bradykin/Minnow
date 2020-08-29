@@ -32,7 +32,6 @@ public class UIEnergy : WorldElementBase
         Globals.m_canScroll = true;
     }
 
-
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
