@@ -157,12 +157,19 @@ public static class UIHelper
 
         if (Globals.m_selectedEntity == entity)
         {
-            Globals.m_selectedEntity = null;
+            UnselectEntity();
         }
         else
         {
             Globals.m_selectedEntity = entity;
             Globals.m_selectedCard = null;
+
+            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP(), false);
+
+            for (int i = 0; i < tilesInRange.Count; i++)
+            {
+                tilesInRange[i].m_curTile.SetMoveable(true);
+            }
         }
     }
 
@@ -179,9 +186,26 @@ public static class UIHelper
         }
         else
         {
-            Globals.m_selectedEntity = null;
+            UnselectEntity();
             Globals.m_selectedCard = card;
         }
+    }
+
+    public static void UnselectEntity()
+    {
+        if (Globals.m_selectedEntity == null)
+        {
+            return;
+        }
+
+        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP(), false);
+
+        for (int i = 0; i < tilesInRange.Count; i++)
+        {
+            tilesInRange[i].m_curTile.SetMoveable(false);
+        }
+
+        Globals.m_selectedEntity = null;
     }
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, WorldElementBase worldElement)
