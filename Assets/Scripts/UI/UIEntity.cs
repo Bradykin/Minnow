@@ -23,6 +23,11 @@ public class UIEntity : WorldElementBase
         m_tintRenderer.sprite = GetEntity().m_iconWhite;
 
         m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+
+        if (GetEntity().GetTeam() == Team.Player)
+        {
+            UIHelper.SelectEntity(this);
+        }
     }
 
     void Update()
@@ -36,14 +41,6 @@ public class UIEntity : WorldElementBase
             else
             {
                 UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
-            }
-        }
-
-        if (Globals.m_selectedEntity != null)
-        {
-            if (Globals.m_selectedEntity.GetEntity() == GetEntity())
-            {
-                Globals.m_selectedEntity = this;
             }
         }
 

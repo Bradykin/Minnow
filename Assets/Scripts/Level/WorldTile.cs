@@ -52,10 +52,13 @@ public class WorldTile : WorldElementBase
 
         if (Globals.m_selectedEntity != null)
         {
-            UIHelper.SetValidColor(m_frameRenderer, m_isMoveable);
-            if (!m_isHovered)
+            if (m_isMoveable)
             {
-                UIHelper.SetSelectTintColor(m_tintRenderer, m_isMoveable);
+                UIHelper.SetValidColor(m_frameRenderer, m_isMoveable);
+                if (!m_isHovered)
+                {
+                    UIHelper.SetSelectTintColor(m_tintRenderer, m_isMoveable);
+                }
             }
         }
         else
@@ -74,7 +77,7 @@ public class WorldTile : WorldElementBase
             }
         }
 
-        if (!m_isHovered && Globals.m_selectedCard == null)
+        if (!m_isHovered && Globals.m_selectedCard == null && Globals.m_selectedEntity == null)
         {
             UIHelper.SetSelectTintColor(m_tintRenderer, false);
         }
