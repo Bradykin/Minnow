@@ -19,8 +19,8 @@ public class UIEntity : WorldElementBase
         m_gameElement = entity;
         entity.m_uiEntity = this;
 
-        m_renderer.sprite = m_gameElement.m_icon;
-        m_tintRenderer.sprite = m_gameElement.m_icon;
+        m_renderer.sprite = GetEntity().m_icon;
+        m_tintRenderer.sprite = GetEntity().m_iconWhite;
 
         m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
     }

@@ -40,6 +40,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     public GameTile m_curTile;
     public bool m_isDead;
     public UIEntity m_uiEntity;
+    public Sprite m_iconWhite;
 
     protected virtual void LateInit()
     {
@@ -47,6 +48,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         m_curAP = GetMaxAP();
 
         m_icon = UIHelper.GetIconEntity(m_name);
+        m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
     }
 
     public virtual void OnSummon()
