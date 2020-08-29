@@ -429,7 +429,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
         }
 
-        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
+        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= movementAP);
         List<GameTile> inRangeGameTiles = new List<GameTile>();
 
         for (int i = 0; i < inRangeLocations.Count; i++)
