@@ -15,14 +15,14 @@ public class AIScanTargetsInRangeStep : AIStep
 
         foreach (var tile in tilesInRange)
         {
-            if (tile.m_gameTile.m_occupyingEntity != null && tile.m_gameTile.m_occupyingEntity.GetTeam() == Team.Enemy && m_AIGameEnemyEntity.m_gameEnemyEntity.CanHitEntity(tile.m_gameTile.m_occupyingEntity))
+            if (tile.GetGameTile().m_occupyingEntity != null && tile.GetGameTile().m_occupyingEntity.GetTeam() == Team.Enemy && m_AIGameEnemyEntity.m_gameEnemyEntity.CanHitEntity(tile.GetGameTile().m_occupyingEntity))
             {
-                possibleEntityTargets.Add(tile.m_gameTile.m_occupyingEntity);
+                possibleEntityTargets.Add(tile.GetGameTile().m_occupyingEntity);
             }
 
-            if (tile.m_gameTile.m_building != null)
+            if (tile.GetGameTile().HasBuilding())
             {
-                possibleBuildingTargets.Add(tile.m_gameTile.m_building);
+                possibleBuildingTargets.Add(tile.GetGameTile().GetBuilding());
             }
         }
 

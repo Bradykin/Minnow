@@ -62,7 +62,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int Hit(int damage)
     {
-        damage -= m_curTile.m_terrain.m_damageReduction;
+        damage -= m_curTile.GetDamageReduction();
 
         if (damage < 0)
         {
@@ -370,7 +370,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (!tile.m_terrain.m_isPassable)
+        if (!tile.IsPassable())
         {
             return false;
         }

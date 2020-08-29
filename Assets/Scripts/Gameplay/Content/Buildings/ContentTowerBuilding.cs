@@ -25,7 +25,7 @@ public class ContentTowerBuilding : GameBuildingBase
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_gameTile.m_occupyingEntity;
+            GameEntity entity = surroundingTiles[i].GetGameTile().m_occupyingEntity;
 
             if (entity == null)
             {

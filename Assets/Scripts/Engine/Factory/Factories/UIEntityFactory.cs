@@ -36,7 +36,7 @@ namespace Game.Util
                 obj.transform.parent = uiParent.transform;
             }
 
-            obj.GetComponent<UIEntity>().Init(tile.m_gameTile.m_occupyingEntity);
+            obj.GetComponent<UIEntity>().Init(tile.GetGameTile().m_occupyingEntity);
 
             return obj.GetComponent<T>();
         }

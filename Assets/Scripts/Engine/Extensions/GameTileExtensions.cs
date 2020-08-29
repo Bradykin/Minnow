@@ -12,27 +12,27 @@ namespace Game.Util
 
             WorldTile worldTileLeft = gameTile.LeftWorldTile();
             if (worldTileLeft != null)
-                adjacentTiles.Add(worldTileLeft.m_gameTile);
+                adjacentTiles.Add(worldTileLeft.GetGameTile());
 
             WorldTile worldTileRight = gameTile.RightWorldTile();
             if (worldTileRight != null)
-                adjacentTiles.Add(worldTileRight.m_gameTile);
+                adjacentTiles.Add(worldTileRight.GetGameTile());
 
             WorldTile worldTileUpLeft = gameTile.UpLeftWorldTile();
             if (worldTileUpLeft != null)
-                adjacentTiles.Add(worldTileUpLeft.m_gameTile);
+                adjacentTiles.Add(worldTileUpLeft.GetGameTile());
 
             WorldTile worldTileUpRight = gameTile.UpRightWorldTile();
             if (worldTileUpRight != null)
-                adjacentTiles.Add(worldTileUpRight.m_gameTile);
+                adjacentTiles.Add(worldTileUpRight.GetGameTile());
 
             WorldTile worldTileDownLeft = gameTile.DownLeftWorldTile();
             if (worldTileDownLeft != null)
-                adjacentTiles.Add(worldTileDownLeft.m_gameTile);
+                adjacentTiles.Add(worldTileDownLeft.GetGameTile());
 
             WorldTile worldTileDownRight = gameTile.DownRightWorldTile();
             if (worldTileDownRight != null)
-                adjacentTiles.Add(worldTileDownRight.m_gameTile);
+                adjacentTiles.Add(worldTileDownRight.GetGameTile());
 
             return adjacentTiles;
         }

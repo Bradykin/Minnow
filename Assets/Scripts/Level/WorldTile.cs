@@ -9,18 +9,17 @@ public class WorldTile : WorldElementBase
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_frameRenderer;
     public GameObject m_fogOfWar;
-    public GameTile m_gameTile { get; private set; }
 
     private UIEntity m_occupyingEntityObj;
     private UIEvent m_occupyingEventObj;
-    private UIBuilding m_occupyingBuildingObj;
+
+    bool m_isHovered;
 
     void Start()
     {
-        m_gameElement = m_gameTile.m_terrain;
-        m_renderer.sprite = m_gameElement.m_icon;
-        m_tintRenderer.sprite = m_gameElement.m_icon;
-        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, m_gameTile.m_canPlace);
+        m_renderer.sprite = GetGameTile().GetIcon();
+        m_tintRenderer.sprite = GetGameTile().GetIcon();
+        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, GetGameTile().m_canPlace);
 
         if (!Constants.FogOfWar)
         {
@@ -34,59 +33,62 @@ public class WorldTile : WorldElementBase
 
         m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
 
-        if (m_gameTile.IsOccupied() && m_occupyingEntityObj == null)
+        if (GetGameTile().IsOccupied() && m_occupyingEntityObj == null)
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
-        else if (!m_gameTile.IsOccupied() && m_occupyingEntityObj != null)
+        else if (!GetGameTile().IsOccupied() && m_occupyingEntityObj != null)
         {
             Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
-            m_gameTile.ClearEntity();
+            GetGameTile().ClearEntity();
         }
 
-        if (m_gameTile.HasAvailableEvent() && m_occupyingEventObj == null)
+        if (GetGameTile().HasAvailableEvent() && m_occupyingEventObj == null)
         {
             m_occupyingEventObj = FactoryManager.Instance.GetFactory<UIEventFactory>().CreateObject<UIEvent>(this);
         }
-        else if (!m_gameTile.HasAvailableEvent() && m_occupyingEventObj != null)
+        else if (!GetGameTile().HasAvailableEvent() && m_occupyingEventObj != null)
         {
             Recycler.Recycle<UIEvent>(m_occupyingEventObj);
             m_occupyingEventObj = null;
-            m_gameTile.ClearEvent();
+            GetGameTile().ClearEvent();
         }
-        else if (m_gameTile.HasAvailableEvent() && m_gameTile.m_event.m_isComplete)
+        else if (GetGameTile().HasAvailableEvent() && GetGameTile().m_event.m_isComplete)
         {
             Recycler.Recycle<UIEvent>(m_occupyingEventObj);
             m_occupyingEventObj = null;
-            m_gameTile.ClearEvent();
+            GetGameTile().ClearEvent();
         }
 
-        if (m_gameTile.HasBuilding() && m_occupyingBuildingObj == null)
+        if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)
         {
-            m_occupyingBuildingObj = FactoryManager.Instance.GetFactory<UIBuildingFactory>().CreateObject<UIBuilding>(m_gameTile.m_building, this);
-        }
-        else if (!m_gameTile.HasBuilding() && m_occupyingBuildingObj != null)
-        {
-            Recycler.Recycle<UIBuilding>(m_occupyingBuildingObj);
-            m_occupyingBuildingObj = null;
-            m_gameTile.ClearBuilding();
+            GetGameTile().GetBuilding().SetWorldTile(this);
         }
 
-        if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile)))
+        if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile())))
         {
             m_frameRenderer.color = Color.black;
         }
-        else if (Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile))
+        else if (Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
         {
-            UIHelper.SetValidColor(m_frameRenderer, m_gameTile.m_canPlace);
+            UIHelper.SetValidColor(m_frameRenderer, GetGameTile().m_canPlace);
+            if (!m_isHovered)
+            {
+                UIHelper.SetSelectTintColor(m_tintRenderer, GetGameTile().m_canPlace);
+            }
+        }
+
+        if (!m_isHovered && Globals.m_selectedCard == null)
+        {
+            UIHelper.SetSelectTintColor(m_tintRenderer, false);
         }
     }
 
     public void Init(int x, int y)
     {
-        m_gameTile = new GameTile(this);
-        m_gameTile.m_gridPosition = new Vector2Int(x, y);
+        m_gameElement = new GameTile(this);
+        GetGameTile().m_gridPosition = new Vector2Int(x, y);
     }
 
     void OnMouseDown()
@@ -94,9 +96,9 @@ public class WorldTile : WorldElementBase
         UICard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {
-            if (selectedCard.m_card.IsValidToPlay(m_gameTile))
+            if (selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
-                selectedCard.m_card.PlayCard(m_gameTile);
+                selectedCard.m_card.PlayCard(GetGameTile());
                 WorldController.Instance.PlayCard(selectedCard, this);
                 return;
             }
@@ -106,53 +108,65 @@ public class WorldTile : WorldElementBase
         if (selectedEntity != null)
         {
             GameEntity gameEntity = (GameEntity)(selectedEntity.GetElement());
-            if (gameEntity.CanMoveTo(m_gameTile))
+            if (gameEntity.CanMoveTo(GetGameTile()))
             {
-                gameEntity.MoveTo(m_gameTile);
+                gameEntity.MoveTo(GetGameTile());
             }
         }
     }
 
     void OnMouseOver()
     {
+        m_isHovered = true;
+
         if (Globals.m_selectedEntity != null)
         {
-           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(m_gameTile));
+           UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
         }
 
         if (Globals.m_selectedCard != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile));
+            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
         }
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, m_gameTile.m_canPlace);
+        m_isHovered = false;
+
+        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, GetGameTile().m_canPlace);
     }
 
     public override void HandleTooltip()
     {
-        UIHelper.CreateTerrainTooltip(m_gameTile.m_terrain);
-        if (!m_gameTile.IsOccupied() && Globals.m_selectedEntity != null)
+        if (GetGameTile().HasBuilding())
         {
-            UIHelper.CreateAPTooltip(m_gameTile);
+            UIHelper.CreateBuildingTooltip(GetGameTile().GetBuilding());
+        }
+        else
+        {
+            UIHelper.CreateTerrainTooltip(GetGameTile().GetTerrain());
+        }
+
+        if (!GetGameTile().IsOccupied() && Globals.m_selectedEntity != null)
+        {
+            UIHelper.CreateAPTooltip(GetGameTile());
         }
 
         if (Globals.m_selectedCard != null)
         {
-            if (!Globals.m_selectedCard.m_card.IsValidToPlay(m_gameTile))
+            if (!Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
                 string titleText = "Can't Place";
-                if (!m_gameTile.m_canPlace && m_gameTile.m_terrain.m_isPassable)
+                if (!GetGameTile().m_canPlace && GetGameTile().IsPassable())
                 {
                      UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
                 }
-                else if (m_gameTile.m_canPlace && !m_gameTile.m_terrain.m_isPassable)
+                else if (GetGameTile().m_canPlace && !GetGameTile().IsPassable())
                 {
                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Impassable terrain.", false));
                 }
-                else if (m_gameTile.IsOccupied())
+                else if (GetGameTile().IsOccupied())
                 {
                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Tile already occupied.", false));
                 }
@@ -162,7 +176,7 @@ public class WorldTile : WorldElementBase
 
     public void ClearFog()
     {
-        m_gameTile.m_isFog = false;
+        GetGameTile().m_isFog = false;
     }
 
     public void ClearSurroundingFog(int distance)
@@ -181,18 +195,14 @@ public class WorldTile : WorldElementBase
 
         for (int i = 0; i < toReveal.Count; i++)
         {
-            toReveal[i].m_gameTile.m_canPlace = true;
+            toReveal[i].GetGameTile().m_canPlace = true;
         }
     }
 
     public void HandleFogUpdate()
     {
-        if (m_gameTile.m_isFog)
+        if (GetGameTile().m_isFog)
         {
-            if (m_occupyingBuildingObj != null)
-            {
-                m_occupyingBuildingObj.gameObject.SetActive(false);
-            }
             if (m_occupyingEntityObj != null)
             {
                 m_occupyingEntityObj.gameObject.SetActive(false);
@@ -205,10 +215,6 @@ public class WorldTile : WorldElementBase
         }
         else
         {
-            if (m_occupyingBuildingObj != null)
-            {
-                m_occupyingBuildingObj.gameObject.SetActive(true);
-            }
             if (m_occupyingEntityObj != null)
             {
                 m_occupyingEntityObj.gameObject.SetActive(true);
@@ -219,5 +225,10 @@ public class WorldTile : WorldElementBase
             }
             m_fogOfWar.SetActive(false);
         }
+    }
+
+    public GameTile GetGameTile()
+    {
+        return (GameTile)m_gameElement;
     }
 }

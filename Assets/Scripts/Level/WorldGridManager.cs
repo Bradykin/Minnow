@@ -28,7 +28,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         if (!m_setup)
         {
             SetupSquareGrid(parent);
-            GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].m_gameTile, new ContentCastleBuilding());
+            GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].GetGameTile(), new ContentCastleBuilding());
             m_setup = true;
         }
     }
@@ -91,7 +91,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             return returnList;
         }
 
-        Vector2Int startingTileCoordinates = centerPoint.m_gameTile.m_gridPosition;
+        Vector2Int startingTileCoordinates = centerPoint.GetGameTile().m_gridPosition;
         for (int i = 0; i < range; i++)
             startingTileCoordinates = startingTileCoordinates.LeftCoordinate();
 
@@ -172,7 +172,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         {
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
-                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].m_gameTile;
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
                 GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy();
                 gameTile.PlaceEntity(enemy);
                 gameOpponent.m_controlledEntities.Add(enemy);
@@ -194,7 +194,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         int length = 0;
         for (int i = 1; i < path.Count; i++)
         {
-            length += path[i].m_terrain.m_costToPass;
+            length += path[i].GetCostToPass();
         }
 
         return length;
@@ -238,7 +238,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
-            g += current.GameTile.m_terrain.m_costToPass;
+            g += current.GameTile.GetCostToPass();
 
             foreach (var adjacentTile in adjacentSquares)
             {
@@ -249,7 +249,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
                 GameTile adjacentGridTile = adjacentTile;
 
-                if (!adjacentGridTile.m_terrain.m_isPassable)
+                if (!adjacentGridTile.IsPassable())
                     continue;
 
                 // if it's not in the open list...
