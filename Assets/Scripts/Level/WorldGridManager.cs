@@ -203,7 +203,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return length;
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences = false)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences)
     {
         Location current = null;
         int g = 0;
@@ -255,7 +255,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
                 GameTile adjacentGridTile = adjacentTile;
 
-                if (ignoreTerrainDifferences || !adjacentGridTile.IsPassable())
+                if (!ignoreTerrainDifferences && !adjacentGridTile.IsPassable())
                     continue;
 
                 // if it's not in the open list...
@@ -279,7 +279,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return null;
     }
 
-    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences = false)
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences)
     {
         Location current = null;
         int g = 0;
