@@ -279,8 +279,15 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return null;
     }
 
-    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences)
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
     {
+        if (startingGridTile.m_occupyingEntity == null)
+        {
+            Debug.Log("NO ENTITY ON TILE");
+            return null;
+        }
+        int currentAP = startingGridTile.m_occupyingEntity.GetCurAP();
+
         Location current = null;
         int g = 0;
         var start = new Location(startingGridTile, g);
@@ -304,6 +311,87 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
             // if we added the destination to the closed list, we've found a path
             if (current.F >= currentAP)
+                continue;
+
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+            if (ignoreTerrainDifferences)
+                g++;
+            else
+                g += current.GameTile.GetCostToPass();
+
+            foreach (var adjacentTile in adjacentSquares)
+            {
+                // if this adjacent square is already in the closed list, ignore it
+                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
+                    continue;
+
+                GameTile adjacentGridTile = adjacentTile;
+
+                if (ignoreTerrainDifferences || !adjacentGridTile.IsPassable())
+                    continue;
+
+                // if it's not in the open list...
+                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
+                if (adjacent == null)
+                {
+                    Location adjacentLocation = new Location(adjacentGridTile, g);
+                    openList.Insert(0, adjacentLocation);
+                }
+                else if (g + adjacent.H < adjacent.F)
+                {
+                    adjacent.G = g;
+                    adjacent.F = adjacent.G + adjacent.H;
+                    adjacent.Parent = current;
+                }
+            }
+        }
+
+        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
+        List<GameTile> inRangeGameTiles = new List<GameTile>();
+
+        for (int i = 0; i < inRangeLocations.Count; i++)
+        {
+            inRangeGameTiles.Add(GetWorldGridTileAtPosition(inRangeLocations[i].X, inRangeLocations[i].Y).GetGameTile());
+        }
+
+        return inRangeGameTiles;
+    }
+
+    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    {
+        if (startingGridTile.m_occupyingEntity == null)
+        {
+            Debug.Log("NO ENTITY ON TILE");
+            return null;
+        }
+        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
+        int range = startingGridTile.m_occupyingEntity.GetRange();
+
+        Location current = null;
+        int g = 0;
+        var start = new Location(startingGridTile, g);
+        var openList = new List<Location>();
+        var closedList = new List<Location>();
+
+        // start by adding the original position to the open list
+        openList.Add(start);
+
+        while (openList.Count > 0)
+        {
+            // get the square with the lowest F score
+            var lowest = openList.Min(l => l.F);
+            current = openList.First(l => l.F == lowest);
+
+            // add the current square to the closed list
+            closedList.Add(current);
+
+            // remove it from the open list
+            openList.Remove(current);
+
+            // if we added the destination to the closed list, we've found a path
+            if (current.F >= movementAP)
                 continue;
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();

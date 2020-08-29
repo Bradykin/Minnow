@@ -258,6 +258,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         return m_curAP;
     }
 
+    public virtual int GetAPToAttack()
+    {
+        return m_apToAttack;
+    }
+
     public void FillAP()
     {
         m_curAP = GetMaxAP();
