@@ -11,6 +11,9 @@ public class UIEntity : WorldElementBase
     public UIAPContainer m_apContainer;
     public Text m_healthText;
     public Text m_powerText;
+    public Text m_titleText;
+
+    public GameObject m_titleBlock;
 
     private bool m_isHovered;
 
@@ -40,8 +43,17 @@ public class UIEntity : WorldElementBase
             }
             else
             {
-                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+                UIHelper.SetDefaultTintColor(m_tintRenderer);
             }
+        }
+
+        if (m_isHovered || GetEntity().GetTeam() == Team.Player)
+        {
+            m_titleBlock.SetActive(true);
+        }
+        else
+        {
+            m_titleBlock.SetActive(false);
         }
 
         if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
@@ -50,6 +62,7 @@ public class UIEntity : WorldElementBase
         }
 
         m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+        m_titleText.text = GetEntity().m_name;
         m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
         m_powerText.text = "" + GetEntity().GetPower();
 

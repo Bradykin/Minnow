@@ -145,7 +145,9 @@ public static class UIHelper
 
     public static Sprite GetIconTerrain(string terrainName)
     {
-        return Resources.Load<Sprite>("Terrain/" + terrainName) as Sprite;
+        int rand = Random.Range(1, 5);
+
+        return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
     }
 
     public static void SelectEntity(UIEntity entity)
@@ -249,10 +251,8 @@ public static class UIHelper
 
     public static void CreateEntityTooltip(GameEntity entity, bool showEntity = true)
     {
-        string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
-        string powerString = "Power: " + entity.GetPower();
-        string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
-        string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
+        string apString = "+" + entity.GetAPRegen() + " AP/turn";
+        string descString = entity.GetDesc() + apString;
 
         if (showEntity)
         {
