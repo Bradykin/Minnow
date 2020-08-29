@@ -279,11 +279,11 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return null;
     }
 
-    /*public List<GameTile> GetTilesInRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences = false)
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences = false)
     {
         Location current = null;
         int g = 0;
-        var start = new Location(startingGridTile);
+        var start = new Location(startingGridTile, g);
         var openList = new List<Location>();
         var closedList = new List<Location>();
 
@@ -303,7 +303,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             openList.Remove(current);
 
             // if we added the destination to the closed list, we've found a path
-            if (current.G >= currentAP)
+            if (current.F >= currentAP)
                 continue;
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
@@ -329,7 +329,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
                         && l.Y == adjacentTile.m_gridPosition.y);
                 if (adjacent == null)
                 {
-                    Location adjacentLocation = new Location(adjacentGridTile, targetGridTile, g, current);
+                    Location adjacentLocation = new Location(adjacentGridTile, g);
                     openList.Insert(0, adjacentLocation);
                 }
                 else if (g + adjacent.H < adjacent.F)
@@ -341,7 +341,14 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
         }
 
-        Debug.Log("NO VIABLE PATH");
-        return null;
-    }*/
+        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
+        List<GameTile> inRangeGameTiles = new List<GameTile>();
+
+        for (int i = 0; i < inRangeLocations.Count; i++)
+        {
+            inRangeGameTiles.Add(GetWorldGridTileAtPosition(inRangeLocations[i].X, inRangeLocations[i].Y).GetGameTile());
+        }
+
+        return inRangeGameTiles;
+    }
 }
