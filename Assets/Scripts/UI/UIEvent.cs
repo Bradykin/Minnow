@@ -83,7 +83,7 @@ public class UIEvent : WorldElementBase
 
     public override void HandleTooltip()
     {
-        string descString = "An event!  I wonder what happens here...\n Cost: " + GetEvent().m_APCost + " AP";
+        string descString = "An event!  I wonder what happens here...";
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
         UIHelper.CreateTerrainTooltip(GetEvent().m_tile.m_terrain);
     }

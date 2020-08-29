@@ -100,4 +100,22 @@ public class WorldController : Singleton<WorldController>
             m_playerHand.RemoveAt(i);
         }
     }
+
+    public void StartIntermission()
+    {
+        UITooltipController.Instance.ClearTooltipStack();
+
+        GamePlayer player = m_gameController.m_player;
+
+        player.m_waveNum++;
+        player.m_currentWaveTurn = 0;
+        player.m_currentWaveEndTurn += Constants.WaveTurnIncrement;
+
+        Globals.m_inIntermission = true;
+
+        if (player.m_waveNum == Constants.FinalWaveNum)
+        {
+            Debug.Log("Player is victorious!");
+        }
+    }
 }

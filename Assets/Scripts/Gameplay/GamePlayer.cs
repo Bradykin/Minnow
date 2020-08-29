@@ -21,6 +21,10 @@ public class GamePlayer : GameElementBase, ITurns
 
     public GameRelicHolder m_relics;
 
+    public int m_waveNum;
+    public int m_currentWaveTurn;
+    public int m_currentWaveEndTurn;
+
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
@@ -28,6 +32,10 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(0, 3, 10);
+
+        m_waveNum = 1;
+        m_currentWaveTurn = 0;
+        m_currentWaveEndTurn = Constants.InitialWaveSize;
     }
 
     public void LateInit()
@@ -176,6 +184,13 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void StartTurn()
     {
+        m_currentWaveTurn++;
+
+        if (m_currentWaveTurn > m_currentWaveEndTurn)
+        {
+            WorldController.Instance.StartIntermission();
+        }
+
         Debug.Log("Start player turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {

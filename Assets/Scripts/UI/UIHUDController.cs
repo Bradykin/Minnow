@@ -2,10 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIHUDController : MonoBehaviour
+public class UIHudController : MonoBehaviour
 {
+    public GameObject m_waveHUD;
+    public GameObject m_intermissionHUD;
+
     void Update()
     {
-        //transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -2.0f);
+        if (Globals.m_inIntermission)
+        {
+            m_intermissionHUD.SetActive(true);
+            m_waveHUD.SetActive(false);
+        }
+        else
+        {
+            m_intermissionHUD.SetActive(false);
+            m_waveHUD.SetActive(true);
+        }
     }
 }

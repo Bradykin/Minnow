@@ -9,10 +9,8 @@ public class GameController
     public GamePlayer m_player;
     public GameOpponent m_gameOpponent;
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
-    
 
-    private int m_currentTurnIndex = 0;
-    
+    private int m_currentTurnIndex = 0;    
 
     public GameController()
     {

@@ -29,7 +29,7 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject();
 
-            GameObject hudParent = GameObject.Find("HUD");
+            GameObject hudParent = GameObject.Find("WaveHUD");
             if (hudParent != null)
             {
                 obj.transform.parent = hudParent.transform;
