@@ -251,10 +251,8 @@ public static class UIHelper
 
     public static void CreateEntityTooltip(GameEntity entity, bool showEntity = true)
     {
-        string healthString = "Health: " + entity.GetCurHealth() + "/" + entity.GetMaxHealth();
-        string powerString = "Power: " + entity.GetPower();
-        string apString = "AP: " + entity.GetCurAP() + "/" + entity.GetMaxAP() + "(+" + entity.GetAPRegen() + "/turn)";
-        string descString = entity.GetDesc() + "\n" + healthString + "\n" + powerString + "\n" + apString;
+        string apString = "+" + entity.GetAPRegen() + " AP/turn";
+        string descString = entity.GetDesc() + apString;
 
         if (showEntity)
         {
