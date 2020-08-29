@@ -23,46 +23,65 @@ public class UICameraController : MonoBehaviour
     private void HandleMovement()
     {
 
-        if (!Globals.m_canScroll)
-        {
-            return;
-        }
-
         Vector3 movementVec = new Vector3();
 
-        if (Input.mousePosition.x <= m_cameraBound && Input.mousePosition.x >= 0)
+        if (ScrollLeft())
         {
-            if (transform.position.x > m_cameraLimitLeft)
-            {
-                movementVec.x -= m_cameraSpeed * Time.deltaTime;
-            }
+            movementVec.x -= m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.x >= Screen.width - m_cameraBound && Input.mousePosition.x <= Screen.width)
+        if (ScrollRight())
         {
-            if (transform.position.x < m_cameraLimitRight)
-            {
-                movementVec.x += m_cameraSpeed * Time.deltaTime;
-            }
+            movementVec.x += m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.y <= m_cameraBound && Input.mousePosition.y >= 0)
+        if (ScrollDown())
         {
-            if (transform.position.y > m_cameraLimitDown)
-            {
-                movementVec.y -= m_cameraSpeed * Time.deltaTime;
-            }
+            movementVec.y -= m_cameraSpeed * Time.deltaTime;
         }
 
-        if (Input.mousePosition.y >= Screen.height - m_cameraBound && Input.mousePosition.y <= Screen.height)
+        if (ScrollUp())
         {
-            if (transform.position.y < m_cameraLimitUp)
-            {
-                movementVec.y += m_cameraSpeed * Time.deltaTime;
-            }
+            movementVec.y += m_cameraSpeed * Time.deltaTime;
         }
 
         transform.localPosition += movementVec;
+    }
+
+    private bool ScrollLeft()
+    {
+        bool mouseAtEdge = Input.mousePosition.x <= m_cameraBound && Input.mousePosition.x >= 0;
+        bool keyPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+        bool withinLimit = transform.position.x > m_cameraLimitLeft;
+
+        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+    }
+
+    private bool ScrollRight()
+    {
+        bool mouseAtEdge = Input.mousePosition.x >= Screen.width - m_cameraBound && Input.mousePosition.x <= Screen.width;
+        bool keyPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+        bool withinLimit = transform.position.x < m_cameraLimitRight;
+
+        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+    }
+
+    private bool ScrollDown()
+    {
+        bool mouseAtEdge = Input.mousePosition.y <= m_cameraBound && Input.mousePosition.y >= 0;
+        bool keyPressed = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+        bool withinLimit = transform.position.y > m_cameraLimitDown;
+
+        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+    }
+
+    private bool ScrollUp()
+    {
+        bool mouseAtEdge = Input.mousePosition.y >= Screen.height - m_cameraBound && Input.mousePosition.y <= Screen.height;
+        bool keyPressed = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        bool withinLimit = transform.position.y < m_cameraLimitUp;
+
+        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
     }
 
     private void HandleScrolling()

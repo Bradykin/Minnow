@@ -6,7 +6,20 @@ public class UIEndTurnButton : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
 
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            EndTurn();
+        }
+    }
+
     void OnMouseDown()
+    {
+        EndTurn();
+    }
+
+    private void EndTurn()
     {
         if (!Globals.m_canSelect)
         {
