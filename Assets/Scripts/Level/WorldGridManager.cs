@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -286,8 +287,33 @@ public class WorldGridManager : Singleton<WorldGridManager>
             Debug.Log("NO ENTITY ON TILE");
             return null;
         }
-        int currentAP = startingGridTile.m_occupyingEntity.GetCurAP();
+        return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences);
+    }
 
+    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    {
+        if (startingGridTile.m_occupyingEntity == null)
+        {
+            Debug.Log("NO ENTITY ON TILE");
+            return null;
+        }
+        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
+        int range = startingGridTile.m_occupyingEntity.GetRange();
+
+        List<GameTile> tilesInMovementRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences);
+
+        List<GameTile> tilesInAttackRange = new List<GameTile>();
+
+        for (int i = 0; i < tilesInMovementRange.Count; i++)
+        {
+            //List<GameTile>
+        }
+
+        return tilesInMovementRange;
+    }
+
+    private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences)
+    {
         Location current = null;
         var start = new Location(startingGridTile, 0);
         var openList = new List<Location>();
@@ -352,90 +378,6 @@ public class WorldGridManager : Singleton<WorldGridManager>
         }
 
         List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
-        List<GameTile> inRangeGameTiles = new List<GameTile>();
-
-        for (int i = 0; i < inRangeLocations.Count; i++)
-        {
-            inRangeGameTiles.Add(GetWorldGridTileAtPosition(inRangeLocations[i].X, inRangeLocations[i].Y).GetGameTile());
-        }
-
-        return inRangeGameTiles;
-    }
-
-    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
-    {
-        if (startingGridTile.m_occupyingEntity == null)
-        {
-            Debug.Log("NO ENTITY ON TILE");
-            return null;
-        }
-        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
-        int range = startingGridTile.m_occupyingEntity.GetRange();
-
-        Location current = null;
-        var start = new Location(startingGridTile, 0);
-        var openList = new List<Location>();
-        var closedList = new List<Location>();
-
-        // start by adding the original position to the open list
-        openList.Add(start);
-
-        while (openList.Count > 0)
-        {
-            // get the square with the lowest F score
-            var lowest = openList.Min(l => l.F);
-            current = openList.First(l => l.F == lowest);
-
-            // add the current square to the closed list
-            closedList.Add(current);
-
-            // remove it from the open list
-            openList.Remove(current);
-
-            // if we added the destination to the closed list, we've found a path
-            if (current.F >= movementAP)
-                continue;
-
-            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
-
-            foreach (var adjacentTile in adjacentSquares)
-            {
-                // if this adjacent square is already in the closed list, ignore it
-                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
-                        && l.Y == adjacentTile.m_gridPosition.y) != null)
-                    continue;
-
-                if (ignoreTerrainDifferences || !adjacentTile.IsPassable())
-                    continue;
-
-                // if it's not in the open list...
-                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
-                        && l.Y == adjacentTile.m_gridPosition.y);
-
-                int g;
-                if (ignoreTerrainDifferences)
-                    g = current.G + 1;
-                else
-                    g = current.G + adjacentTile.GetCostToPass();
-
-                if (g > movementAP)
-                    continue;
-
-                if (adjacent == null)
-                {
-                    Location adjacentLocation = new Location(adjacentTile, g);
-                    openList.Insert(0, adjacentLocation);
-                }
-                else if (g < adjacent.G)
-                {
-                    adjacent.G = g;
-                    adjacent.F = adjacent.G + adjacent.H;
-                    adjacent.Parent = current;
-                }
-            }
-        }
-
-        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= movementAP);
         List<GameTile> inRangeGameTiles = new List<GameTile>();
 
         for (int i = 0; i < inRangeLocations.Count; i++)
