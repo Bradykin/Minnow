@@ -200,7 +200,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return length;
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences = false)
     {
         Location current = null;
         int g = 0;
@@ -238,7 +238,10 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
-            g += current.GameTile.m_terrain.m_costToPass;
+            if (ignoreTerrainDifferences)
+                g++;
+            else
+                g += current.GameTile.m_terrain.m_costToPass;
 
             foreach (var adjacentTile in adjacentSquares)
             {
@@ -249,7 +252,83 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
                 GameTile adjacentGridTile = adjacentTile;
 
-                if (!adjacentGridTile.m_terrain.m_isPassable)
+                if (ignoreTerrainDifferences || !adjacentGridTile.m_terrain.m_isPassable)
+                    continue;
+
+                // if it's not in the open list...
+                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
+                if (adjacent == null)
+                {
+                    Location adjacentLocation = new Location(adjacentGridTile, targetGridTile, g, current);
+                    openList.Insert(0, adjacentLocation);
+                }
+                else if (g + adjacent.H < adjacent.F)
+                {
+                    adjacent.G = g;
+                    adjacent.F = adjacent.G + adjacent.H;
+                    adjacent.Parent = current;
+                }
+            }
+        }
+
+        Debug.Log("NO VIABLE PATH");
+        return null;
+    }
+
+    public List<GameTile> GetTilesInRange(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences = false)
+    {
+        Location current = null;
+        int g = 0;
+        var start = new Location(startingGridTile, targetGridTile, g, null);
+        var target = new Location(targetGridTile);
+        var openList = new List<Location>();
+        var closedList = new List<Location>();
+
+        // start by adding the original position to the open list
+        openList.Add(start);
+
+        while (openList.Count > 0)
+        {
+            // get the square with the lowest F score
+            var lowest = openList.Min(l => l.F);
+            current = openList.First(l => l.F == lowest);
+
+            // add the current square to the closed list
+            closedList.Add(current);
+
+            // remove it from the open list
+            openList.Remove(current);
+
+            // if we added the destination to the closed list, we've found a path
+            if (closedList.FirstOrDefault(l => l.X == target.X && l.Y == target.Y) != null)
+            {
+                List<GameTile> path = new List<GameTile>();
+                while (current != null)
+                {
+                    path.Add(current.GameTile);
+                    current = current.Parent;
+                }
+                path.Reverse();
+                return path;
+            }
+
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+            if (ignoreTerrainDifferences)
+                g++;
+            else
+                g += current.GameTile.m_terrain.m_costToPass;
+
+            foreach (var adjacentTile in adjacentSquares)
+            {
+                // if this adjacent square is already in the closed list, ignore it
+                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
+                    continue;
+
+                GameTile adjacentGridTile = adjacentTile;
+
+                if (ignoreTerrainDifferences || !adjacentGridTile.m_terrain.m_isPassable)
                     continue;
 
                 // if it's not in the open list...
