@@ -1,4 +1,5 @@
 ﻿
+using Game.Util;
 using System;
 using UnityEngine;
 
@@ -20,8 +21,36 @@ public class Location
         Parent = parent;
 
         G = g;
-        H = Math.Abs(targetGameTile.m_gridPosition.x - X) + Math.Abs(targetGameTile.m_gridPosition.y - Y);
+        H = CalculateHValue(targetGameTile);
         F = G + H;
+    }
+
+    public int CalculateHValue(GameTile targetGameTile)
+    {
+        Vector2Int currentPosition = new Vector2Int(X, Y);
+        Vector2Int targetPosition = targetGameTile.m_gridPosition;
+        int distance = 0;
+
+        while (currentPosition.y != targetPosition.y)
+        {
+            if (currentPosition.y > targetPosition.y)
+            {
+                if (currentPosition.x >= targetPosition.x)
+                    currentPosition = currentPosition.DownLeftCoordinate();
+                else
+                    currentPosition = currentPosition.DownRightCoordinate();
+            }
+            else
+            {
+                if (currentPosition.x >= targetPosition.x)
+                    currentPosition = currentPosition.UpLeftCoordinate();
+                else
+                    currentPosition = currentPosition.UpRightCoordinate();
+            }
+            distance++;
+        }
+
+        return distance + Math.Abs(currentPosition.x - targetPosition.y);
     }
 
     public Location(GameTile gameTile, int g)
