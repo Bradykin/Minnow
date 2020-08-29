@@ -111,11 +111,19 @@ public class WorldController : Singleton<WorldController>
         player.m_currentWaveTurn = 0;
         player.m_currentWaveEndTurn += Constants.WaveTurnIncrement;
 
+        Globals.m_canScroll = true;
         Globals.m_inIntermission = true;
 
         if (player.m_waveNum == Constants.FinalWaveNum)
         {
             Debug.Log("Player is victorious!");
         }
+    }
+
+    public void EndIntermission()
+    {
+        UITooltipController.Instance.ClearTooltipStack();
+
+        Globals.m_inIntermission = false;
     }
 }

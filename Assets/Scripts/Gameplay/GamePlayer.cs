@@ -189,6 +189,7 @@ public class GamePlayer : GameElementBase, ITurns
         if (m_currentWaveTurn > m_currentWaveEndTurn)
         {
             WorldController.Instance.StartIntermission();
+            return;
         }
 
         Debug.Log("Start player turn");
