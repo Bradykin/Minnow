@@ -49,7 +49,7 @@ public class UIEntity : WorldElementBase
 
         if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
         {
-            Globals.m_selectedEntity = null;
+            UIHelper.UnselectEntity();
         }
 
         m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());

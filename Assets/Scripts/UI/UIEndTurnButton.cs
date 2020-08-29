@@ -27,7 +27,7 @@ public class UIEndTurnButton : WorldElementBase
         }
 
         Globals.m_selectedCard = null;
-        Globals.m_selectedEntity = null;
+        UIHelper.UnselectEntity();
 
         WorldController.Instance.MoveToNextTurn();
 

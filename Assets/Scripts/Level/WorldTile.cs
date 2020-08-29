@@ -13,6 +13,7 @@ public class WorldTile : WorldElementBase
     private UIEntity m_occupyingEntityObj;
 
     bool m_isHovered;
+    bool m_isMoveable;
 
     void Start()
     {
@@ -49,16 +50,27 @@ public class WorldTile : WorldElementBase
             GetGameTile().GetBuilding().SetWorldTile(this);
         }
 
-        if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile())))
+        if (Globals.m_selectedEntity != null)
         {
-            m_frameRenderer.color = Color.black;
-        }
-        else if (Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
-        {
-            UIHelper.SetValidColor(m_frameRenderer, GetGameTile().m_canPlace);
+            UIHelper.SetValidColor(m_frameRenderer, m_isMoveable);
             if (!m_isHovered)
             {
-                UIHelper.SetSelectTintColor(m_tintRenderer, GetGameTile().m_canPlace);
+                UIHelper.SetSelectTintColor(m_tintRenderer, m_isMoveable);
+            }
+        }
+        else
+        {
+            if (Globals.m_selectedCard == null || (Globals.m_selectedCard != null && !Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile())))
+            {
+                m_frameRenderer.color = Color.black;
+            }
+            else if (Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+            {
+                UIHelper.SetValidColor(m_frameRenderer, GetGameTile().m_canPlace);
+                if (!m_isHovered)
+                {
+                    UIHelper.SetSelectTintColor(m_tintRenderer, GetGameTile().m_canPlace);
+                }
             }
         }
 
@@ -209,5 +221,10 @@ public class WorldTile : WorldElementBase
     public GameTile GetGameTile()
     {
         return (GameTile)m_gameElement;
+    }
+
+    public void SetMoveable(bool isMoveable)
+    {
+        m_isMoveable = isMoveable;
     }
 }
