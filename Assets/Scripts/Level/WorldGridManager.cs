@@ -255,7 +255,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
                 GameTile adjacentGridTile = adjacentTile;
 
-                if (ignoreTerrainDifferences || !adjacentGridTile.IsPassable())
+                if (!ignoreTerrainDifferences && !adjacentGridTile.IsPassable())
                     continue;
 
                 // if it's not in the open list...
