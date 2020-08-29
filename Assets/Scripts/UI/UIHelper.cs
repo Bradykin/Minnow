@@ -164,7 +164,7 @@ public static class UIHelper
             Globals.m_selectedEntity = entity;
             Globals.m_selectedCard = null;
 
-            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP());
+            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP(), false);
 
             for (int i = 0; i < tilesInRange.Count; i++)
             {
@@ -198,7 +198,7 @@ public static class UIHelper
             return;
         }
 
-        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP());
+        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, Globals.m_selectedEntity.GetEntity().GetCurAP(), false);
 
         for (int i = 0; i < tilesInRange.Count; i++)
         {
