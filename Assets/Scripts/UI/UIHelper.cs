@@ -258,7 +258,7 @@ public static class UIHelper
 
     public static void CreateAPTooltip(GameTile tile)
     {
-        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile);
+        int distance = WorldGridManager.Instance.GetPathLength(Globals.m_selectedEntity.GetEntity().m_curTile, tile, false);
 
         int curAP = Globals.m_selectedEntity.GetEntity().GetCurAP();
 
@@ -288,6 +288,12 @@ public static class UIHelper
         }
 
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, isValid));
+    }
+
+    public static void CreateBuildingTooltip(GameBuildingBase building)
+    {
+        string desc = building.m_desc + "\n" + "Health: " + building.m_curHealth + "/" + building.m_maxHealth;
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(building.m_name, desc, Team.Player));
     }
 
     public static void CreateRelicTooltip(GameRelic relic)

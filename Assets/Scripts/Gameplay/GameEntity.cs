@@ -62,7 +62,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int Hit(int damage)
     {
-        damage -= m_curTile.m_terrain.m_damageReduction;
+        damage -= m_curTile.GetDamageReduction();
 
         if (damage < 0)
         {
@@ -370,12 +370,12 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (!tile.m_terrain.m_isPassable)
+        if (!tile.IsPassable())
         {
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false) > m_curAP)
         {
             return false;
         }
@@ -385,7 +385,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void MoveTo(GameTile tile)
     {
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile));
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false));
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);

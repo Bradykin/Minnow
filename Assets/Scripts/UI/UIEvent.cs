@@ -85,6 +85,6 @@ public class UIEvent : WorldElementBase
     {
         string descString = "An event!  I wonder what happens here...";
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
-        UIHelper.CreateTerrainTooltip(GetEvent().m_tile.m_terrain);
+        UIHelper.CreateTerrainTooltip(GetEvent().m_tile.GetTerrain());
     }
 }

@@ -8,7 +8,7 @@ namespace Game.Util
     {
         public static Vector3 GetScreenPosition(this WorldTile worldTile)
         {
-            return new Vector3((worldTile.m_gameTile.m_gridPosition.x + worldTile.m_gameTile.m_gridPosition.y * 0.5f - worldTile.m_gameTile.m_gridPosition.y / 2) * Constants.HexagonInnerRadius * 2.0f, worldTile.m_gameTile.m_gridPosition.y * Constants.HexagonOuterRadius * 1.338f, 0.0f);
+            return new Vector3((worldTile.GetGameTile().m_gridPosition.x + worldTile.GetGameTile().m_gridPosition.y * 0.5f - worldTile.GetGameTile().m_gridPosition.y / 2) * Constants.HexagonInnerRadius * 2.0f, worldTile.GetGameTile().m_gridPosition.y * Constants.HexagonOuterRadius * 1.338f, 0.0f);
         }
 
         public static Vector3 GetScreenPositionForEntity(this WorldTile worldTile)

@@ -21,11 +21,6 @@ public abstract class GameEvent : GameElementBase
 
     public virtual bool isValidToSpawn(GameTile tile)
     {
-        if (tile.m_building != null)
-        {
-            return false;
-        }
-
-        return true;
+        return !tile.HasBuilding();
     }
 }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile
+public class GameTile : GameElementBase
 {
     public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
-    public GameTerrainBase m_terrain { get; private set; }
+    private GameTerrainBase m_terrain;
     public GameEvent m_event { get; private set; }
-    public GameBuildingBase m_building { get; private set; }
+    private GameBuildingBase m_building;
 
     public WorldTile m_curTile;
     public bool m_isFog;
@@ -122,5 +122,63 @@ public class GameTile
     public void ClearBuilding()
     {
         m_building = null;
+    }
+
+    public Sprite GetIcon()
+    {
+        if (HasBuilding())
+        {
+            return m_building.m_icon;
+        }
+        else
+        {
+            return m_terrain.m_icon;
+        }
+    }
+
+    public GameTerrainBase GetTerrain()
+    {
+        return m_terrain;
+    }
+
+    public GameBuildingBase GetBuilding()
+    {
+        return m_building;
+    }
+
+    public int GetCostToPass()
+    {
+        if (HasBuilding())
+        {
+            return 1;
+        }
+        else
+        {
+            return m_terrain.GetCostToPass();
+        }
+    }
+
+    public bool IsPassable()
+    {
+        if (HasBuilding())
+        {
+            return false;
+        }
+        else
+        {
+            return m_terrain.IsPassable();
+        }
+    }
+
+    public int GetDamageReduction()
+    {
+        if (HasBuilding())
+        {
+            return 4;
+        }
+        else
+        {
+            return m_terrain.m_damageReduction;
+        }
     }
 }
