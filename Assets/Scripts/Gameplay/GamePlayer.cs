@@ -25,6 +25,9 @@ public class GamePlayer : GameElementBase, ITurns
     public int m_currentWaveTurn;
     public int m_currentWaveEndTurn;
 
+    private int m_curActions;
+    private int m_maxActions;
+
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
@@ -36,6 +39,8 @@ public class GamePlayer : GameElementBase, ITurns
         m_waveNum = 1;
         m_currentWaveTurn = 0;
         m_currentWaveEndTurn = Constants.InitialWaveSize;
+
+        m_maxActions = 3;
     }
 
     public void LateInit()
@@ -178,6 +183,21 @@ public class GamePlayer : GameElementBase, ITurns
         toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
 
         return toReturn;
+    }
+
+    public int GetCurActions()
+    {
+        return m_curActions;
+    }
+
+    public int GetMaxActions()
+    {
+        return m_maxActions;
+    }
+
+    public void ResetActions()
+    {
+        m_curActions = GetMaxActions();
     }
 
     //============================================================================================================//

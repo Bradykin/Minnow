@@ -1,36 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIBeginWaveButton : WorldElementBase
+public class UIActions : WorldElementBase
 {
+    public Text m_countText;
     public SpriteRenderer m_tintRenderer;
-    public GameObject m_holder;
 
     void Update()
     {
         GamePlayer player = GameHelper.GetPlayer();
+
         if (player == null)
         {
             return;
         }
-    }
 
-    void OnMouseDown()
-    {
-        BeginWave();
-    }
-
-    private void BeginWave()
-    {
-        if (!Globals.m_canSelect)
-        {
-            return;
-        }
-
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-
-        WorldController.Instance.EndIntermission();
+        m_countText.text = player.GetCurActions() + "/" + player.GetMaxActions();
     }
 
     void OnMouseOver()
@@ -45,8 +32,9 @@ public class UIBeginWaveButton : WorldElementBase
         Globals.m_canScroll = true;
     }
 
+
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!"));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take actions, create buildings, or research technologies during the intermission phase!"));
     }
 }
