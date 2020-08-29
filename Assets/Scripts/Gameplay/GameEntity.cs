@@ -170,7 +170,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile);
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true);
         
         if (tiles == null)
         {
