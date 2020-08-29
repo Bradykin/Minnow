@@ -8,7 +8,6 @@ public class UIEntity : WorldElementBase
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
-    public SpriteRenderer m_frameRenderer;
     public UIAPContainer m_apContainer;
     public Text m_healthText;
     public Text m_powerText;
@@ -21,10 +20,9 @@ public class UIEntity : WorldElementBase
         entity.m_uiEntity = this;
 
         m_renderer.sprite = m_gameElement.m_icon;
+        m_tintRenderer.sprite = m_gameElement.m_icon;
 
         m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
-
-        UIHelper.SetDefaultColorForTeam(m_frameRenderer, GetEntity().GetTeam());
     }
 
     void Update()
