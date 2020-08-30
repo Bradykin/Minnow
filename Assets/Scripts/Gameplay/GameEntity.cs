@@ -60,7 +60,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
     }
 
-    public virtual int Hit(int damage)
+    public virtual int GetHit(int damage)
     {
         damage -= m_curTile.GetDamageReduction();
 
@@ -168,6 +168,18 @@ public abstract class GameEntity : GameElementBase, ITurns
         return true;
     }
 
+    public virtual bool IsInRangeOfGameElement(GameElementBase other)
+    {
+        switch(other)
+        {
+            case GameEntity gameEntity:
+                return IsInRangeOfEntity(gameEntity);
+            case GameBuildingBase gameBuildingBase:
+                return IsInRangeOfBuilding(gameBuildingBase);
+        }
+        return false;
+    }
+
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
         List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true);
@@ -177,6 +189,25 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
         
+        int distance = tiles.Count;
+
+        if ((distance - 1) > GetRange())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
+    {
+        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true);
+
+        if (tiles == null)
+        {
+            return false;
+        }
+
         int distance = tiles.Count;
 
         if ((distance - 1) > GetRange())
@@ -223,7 +254,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     public virtual int HitEntity(GameEntity other)
     {
         SpendAP(m_apToAttack);
-        int damageTaken = other.Hit(GetDamageToDealTo(other));
+        int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
         if (momentumKeyword != null)
@@ -243,7 +274,34 @@ public abstract class GameEntity : GameElementBase, ITurns
         return damageTaken;
     }
 
+    public virtual int HitBuilding(GameBuildingBase other)
+    {
+        SpendAP(m_apToAttack);
+        int damageTaken = other.GetHit(GetDamageToDealTo(other));
+
+        GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        if (momentumKeyword != null)
+        {
+            momentumKeyword.DoAction();
+        }
+
+        if (other.m_isDestroyed)
+        {
+            GameVictoriousKeyword victoriousKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+            if (victoriousKeyword != null)
+            {
+                victoriousKeyword.DoAction();
+            }
+        }
+
+        return 0;
+    }
+
     protected virtual int GetDamageToDealTo(GameEntity target)
+    {
+        return GetPower();
+    }
+    protected virtual int GetDamageToDealTo(GameBuildingBase target)
     {
         return GetPower();
     }
@@ -392,6 +450,9 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void MoveTo(GameTile tile)
     {
+        if (tile == m_curTile)
+            return;
+        
         SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false));
 
         m_curTile.ClearEntity();

@@ -31,7 +31,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
         return m_icon;
     }
 
-    public void Hit(int damage)
+    public virtual int GetHit(int damage)
     {
         m_curHealth -= damage;
 
@@ -39,6 +39,8 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
         {
             Die();
         }
+
+        return damage;
     }
 
     protected virtual void Die()

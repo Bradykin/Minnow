@@ -27,6 +27,6 @@ public class ContentFireboltCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.Hit(GetSpellValue());
+        targetEntity.GetHit(GetSpellValue());
     }
 }

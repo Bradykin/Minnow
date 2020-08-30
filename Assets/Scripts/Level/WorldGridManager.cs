@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,20 @@ public class WorldGridManager : Singleton<WorldGridManager>
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
         }
+    }
+
+    public List<GameTile> GetSurroundingTiles(GameTile centerPoint, int outerRange, int innerRange = 1)
+    {
+        List<WorldTile> worldTiles = GetSurroundingTiles(centerPoint.m_curTile, outerRange, innerRange);
+
+        List<GameTile> returnList = new List<GameTile>();
+        
+        for (int i = 0; i < worldTiles.Count; i++)
+        {
+            returnList.Add(worldTiles[i].GetGameTile());
+        }
+
+        return returnList;
     }
 
     //Range 1 = surrounding tiles (but not middle tiles)
@@ -204,6 +219,34 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return length;
     }
 
+    public int CalculateAbsoluteDistanceBetweenPositions(GameTile startingGameTile, GameTile targetGameTile)
+    {
+        Vector2Int currentPosition = startingGameTile.m_gridPosition;
+        Vector2Int targetPosition = targetGameTile.m_gridPosition;
+        int distance = 0;
+
+        while (currentPosition.y != targetPosition.y)
+        {
+            if (currentPosition.y > targetPosition.y)
+            {
+                if (currentPosition.x >= targetPosition.x)
+                    currentPosition = currentPosition.DownLeftCoordinate();
+                else
+                    currentPosition = currentPosition.DownRightCoordinate();
+            }
+            else
+            {
+                if (currentPosition.x >= targetPosition.x)
+                    currentPosition = currentPosition.UpLeftCoordinate();
+                else
+                    currentPosition = currentPosition.UpRightCoordinate();
+            }
+            distance++;
+        }
+
+        return distance + Math.Abs(currentPosition.x - targetPosition.y);
+    }
+
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences)
     {
         Location current = null;
@@ -282,7 +325,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
     {
-        if (startingGridTile.m_occupyingEntity == null)
+        if (!startingGridTile.IsOccupied())
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
@@ -290,9 +333,22 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences);
     }
 
+    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    {
+        if (!startingGridTile.IsOccupied())
+        {
+            Debug.Log("NO ENTITY ON TILE");
+            return null;
+        }
+        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
+
+        List<GameTile> tilesInMoveAttackRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences);
+        return tilesInMoveAttackRange;
+    }
+
     public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
     {
-        if (startingGridTile.m_occupyingEntity == null)
+        if (!startingGridTile.IsOccupied())
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;

@@ -8,8 +8,8 @@ using UnityEngine;
 //Attacks only once per turn, but hits all tiles around it
 public class ContentSpinnerEnemy : GameEnemyEntity
 {
-    private bool m_hasAttacked;
-
+    private bool m_hasAttackedThisTurn = false;
+    
     public ContentSpinnerEnemy() : base()
     {
         m_maxHealth = 7;
@@ -25,5 +25,28 @@ public class ContentSpinnerEnemy : GameEnemyEntity
         m_desc = "This guys spins and wins!  Hits all enemies around him";
 
         LateInit();
+    }
+
+    public override bool IsAIAbleToAttack()
+    {
+        return HasAPToAttack() && !m_hasAttackedThisTurn;
+    }
+
+    public override void TakeTurn()
+    {
+        m_AIGameEnemyEntity.TakeTurn();
+        m_hasAttackedThisTurn = false;
+    }
+
+    public override int HitEntity(GameEntity other)
+    {
+        m_hasAttackedThisTurn = true;
+        return base.HitEntity(other);
+    }
+
+    public override int HitBuilding(GameBuildingBase other)
+    {
+        m_hasAttackedThisTurn = true;
+        return base.HitBuilding(other);
     }
 }
