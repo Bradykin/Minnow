@@ -303,13 +303,21 @@ public class WorldGridManager : Singleton<WorldGridManager>
         List<GameTile> tilesInMovementRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences);
 
         List<GameTile> tilesInAttackRange = new List<GameTile>();
+        tilesInAttackRange.AddRange(tilesInMovementRange);
 
         for (int i = 0; i < tilesInMovementRange.Count; i++)
         {
-            //List<GameTile>
+            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRange[i].m_gridPosition), range);
+            for (int k = 0; k < tiles.Count; k++)
+            {
+                if (!tilesInAttackRange.Contains(tiles[k].GetGameTile()))
+                {
+                    tilesInAttackRange.Add(tiles[k].GetGameTile());
+                }
+            }
         }
 
-        return tilesInMovementRange;
+        return tilesInAttackRange;
     }
 
     private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences)
