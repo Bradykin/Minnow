@@ -133,7 +133,7 @@ public class GameTile : GameElementBase
     {
         if (HasBuilding())
         {
-            return m_building.m_icon;
+            return m_building.GetIcon();
         }
         else if (HasAvailableEvent())
         {

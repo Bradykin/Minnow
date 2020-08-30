@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 
-public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
+public class UIIntermissionController : Singleton<UIIntermissionController>
 {
     public enum SelectorType
     {
@@ -36,8 +36,7 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
         m_intermissionActions.Add(new ContentCardIntermissionAction());
 
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(100)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(5)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(0)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentInnBuilding(), new GameWallet(45)));
 
         UpdateActions();
     }

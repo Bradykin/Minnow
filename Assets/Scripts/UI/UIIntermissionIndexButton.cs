@@ -13,11 +13,11 @@ public class UIIntermissionIndexButton : MonoBehaviour
     {
         if (m_increase)
         {
-            m_holder.SetActive(UIOptionSelectorController.Instance.CanIndexIncrease());
+            m_holder.SetActive(UIIntermissionController.Instance.CanIndexIncrease());
         }
         else
         {
-            m_holder.SetActive(UIOptionSelectorController.Instance.GetIndex() > 0);
+            m_holder.SetActive(UIIntermissionController.Instance.GetIndex() > 0);
         }
     }
 
@@ -33,14 +33,14 @@ public class UIIntermissionIndexButton : MonoBehaviour
 
     private void AdjustIndex()
     {
-        int indexVal = UIOptionSelectorController.Instance.GetIndex();
+        int indexVal = UIIntermissionController.Instance.GetIndex();
         if (m_increase)
         {
-            UIOptionSelectorController.Instance.SetIndex(indexVal+1);
+            UIIntermissionController.Instance.SetIndex(indexVal+1);
         }
         else
         {
-            UIOptionSelectorController.Instance.SetIndex(indexVal-1);
+            UIIntermissionController.Instance.SetIndex(indexVal-1);
         }
     }
 

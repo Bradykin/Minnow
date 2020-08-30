@@ -7,11 +7,11 @@ public class UISelectorButton : WorldElementBase
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
 
-    public UIOptionSelectorController.SelectorType m_selectorType;
+    public UIIntermissionController.SelectorType m_selectorType;
 
     void Update()
     {
-        if (m_selectorType == UIOptionSelectorController.Instance.GetSelectorType())
+        if (m_selectorType == UIIntermissionController.Instance.GetSelectorType())
         {
             m_renderer.color = Color.yellow;
         }
@@ -23,7 +23,7 @@ public class UISelectorButton : WorldElementBase
 
     void OnMouseDown()
     {
-        UIOptionSelectorController.Instance.SetSelectorType(m_selectorType);
+        UIIntermissionController.Instance.SetSelectorType(m_selectorType);
     }
 
     void OnMouseOver()
@@ -40,15 +40,15 @@ public class UISelectorButton : WorldElementBase
 
     public override void HandleTooltip()
     {
-        if (m_selectorType == UIOptionSelectorController.SelectorType.Action)
+        if (m_selectorType == UIIntermissionController.SelectorType.Action)
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "These actions don't cost resources, but they do still take action points."));
         }
-        else if (m_selectorType == UIOptionSelectorController.SelectorType.Tech)
+        else if (m_selectorType == UIIntermissionController.SelectorType.Tech)
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Tech", "While expensive, these are upgrades that will persist the rest of the run."));
         }
-        else if (m_selectorType == UIOptionSelectorController.SelectorType.Building)
+        else if (m_selectorType == UIIntermissionController.SelectorType.Building)
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Buildings", "Place these in the world to either help with defense, or to help generate resources.  If one is destroyed in a wave, it will come back during the next intermission."));
         }

@@ -114,6 +114,8 @@ public class WorldController : Singleton<WorldController>
 
         GamePlayer player = m_gameController.m_player;
 
+        player.OnEndWave();
+
         player.m_waveNum++;
         player.m_currentWaveTurn = 0;
         player.m_currentWaveEndTurn += Constants.WaveTurnIncrement;
