@@ -48,6 +48,8 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
         UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_curTile);
     }
 
+    public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);
+
     //============================================================================================================//
 
     public virtual void TakeTurn() { }

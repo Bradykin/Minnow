@@ -54,7 +54,9 @@ public class UICameraController : MonoBehaviour
         bool keyPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
         bool withinLimit = transform.position.x > m_cameraLimitLeft;
 
-        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+        bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
+
+        return (edgeScrolling || keyPressed) && withinLimit;
     }
 
     private bool ScrollRight()
@@ -63,7 +65,9 @@ public class UICameraController : MonoBehaviour
         bool keyPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
         bool withinLimit = transform.position.x < m_cameraLimitRight;
 
-        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+        bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
+
+        return (edgeScrolling || keyPressed) && withinLimit;
     }
 
     private bool ScrollDown()
@@ -72,7 +76,9 @@ public class UICameraController : MonoBehaviour
         bool keyPressed = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         bool withinLimit = transform.position.y > m_cameraLimitDown;
 
-        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+        bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
+
+        return (edgeScrolling || keyPressed) && withinLimit;
     }
 
     private bool ScrollUp()
@@ -81,7 +87,9 @@ public class UICameraController : MonoBehaviour
         bool keyPressed = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
         bool withinLimit = transform.position.y < m_cameraLimitUp;
 
-        return ((mouseAtEdge && Globals.m_canScroll) || keyPressed) && withinLimit;
+        bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
+
+        return (edgeScrolling || keyPressed) && withinLimit;
     }
 
     private void HandleScrolling()

@@ -68,6 +68,7 @@ public class UIEntity : WorldElementBase
 
         if (GetEntity().m_isDead)
         {
+            WorldGridManager.Instance.ClearAllTilesMovementRange();
             GetEntity().m_curTile.ClearEntity();
         }
     }

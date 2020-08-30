@@ -6,15 +6,15 @@ using Object = UnityEngine.Object;
 
 namespace Game.Util
 {
-    public class UIEventFactory : FactoryBase
+    public class UIIntermissionActionFactory : FactoryBase
     {
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UIEventFactory(GameObject uiEventPrefab)
+        public UIIntermissionActionFactory(GameObject uiIntermissionActionPrefab)
         {
-            m_prefab = uiEventPrefab;
+            m_prefab = uiIntermissionActionPrefab;
         }
 
         //============================================================================================================//
@@ -25,18 +25,32 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(WorldTile tile)
+        public T CreateObject<T>(GameActionIntermission action, Transform parent)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = tile.GetScreenPositionForEvent();
+            obj.transform.parent = parent;
 
-            GameObject uiParent = GameObject.Find("UI");
-            if (uiParent != null)
-            {
-                obj.transform.parent = uiParent.transform;
-            }
+            obj.GetComponent<UIActionController>().Init(action);
 
-            obj.GetComponent<UIEvent>().Init(tile.GetGameTile().m_event);
+            return obj.GetComponent<T>();
+        }
+
+        public T CreateObject<T>(GameTechIntermission tech, Transform parent)
+        {
+            GameObject obj = CreateGameObject();
+            obj.transform.parent = parent;
+
+            obj.GetComponent<UIActionController>().Init(tech);
+
+            return obj.GetComponent<T>();
+        }
+
+        public T CreateObject<T>(GameBuildingIntermission building, Transform parent)
+        {
+            GameObject obj = CreateGameObject();
+            obj.transform.parent = parent;
+
+            obj.GetComponent<UIActionController>().Init(building);
 
             return obj.GetComponent<T>();
         }
@@ -56,4 +70,3 @@ namespace Game.Util
         //============================================================================================================//
     }
 }
-

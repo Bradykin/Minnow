@@ -101,9 +101,16 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
+
+    private void ClearAllEntities()
+    {
+        //TODO - Remove all entities from the map (ie. at the start of intermission phase)
+    }
+
     public void StartIntermission()
     {
         UITooltipController.Instance.ClearTooltipStack();
+        ClearAllEntities();
 
         GamePlayer player = m_gameController.m_player;
 
@@ -111,11 +118,22 @@ public class WorldController : Singleton<WorldController>
         player.m_currentWaveTurn = 0;
         player.m_currentWaveEndTurn += Constants.WaveTurnIncrement;
 
+        player.ResetActions();
+
+        Globals.m_canScroll = true;
         Globals.m_inIntermission = true;
 
         if (player.m_waveNum == Constants.FinalWaveNum)
         {
             Debug.Log("Player is victorious!");
         }
+    }
+
+    public void EndIntermission()
+    {
+        UITooltipController.Instance.ClearTooltipStack();
+        Globals.m_canScroll = true;
+
+        Globals.m_inIntermission = false;
     }
 }

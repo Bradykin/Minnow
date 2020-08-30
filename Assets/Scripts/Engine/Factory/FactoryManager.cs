@@ -16,8 +16,6 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_uiEntityPrefab = null;
         [SerializeField]
-        private GameObject m_uiEventPrefab = null;
-        [SerializeField]
         private GameObject m_uiCardPrefab = null;
         [SerializeField]
         private GameObject m_uiWorldElementNotificationPrefab = null;
@@ -25,6 +23,8 @@ namespace Game.Util
         private GameObject m_uiAPBubblePrefab = null;
         [SerializeField]
         private GameObject m_uiRelicPrefab = null;
+        [SerializeField]
+        private GameObject m_uiActionControllerPrefab = null;
 
         //Tooltips
         [SerializeField]
@@ -63,8 +63,6 @@ namespace Game.Util
                     return new WorldTileFactory(m_worldTilePrefab) as T;
                 case bool _ when type == typeof(UIEntityFactory):
                     return new UIEntityFactory(m_uiEntityPrefab) as T;
-                case bool _ when type == typeof(UIEventFactory):
-                    return new UIEventFactory(m_uiEventPrefab) as T;
                 case bool _ when type == typeof(UICardFactory):
                     return new UICardFactory(m_uiCardPrefab) as T;
                 case bool _ when type == typeof(UIWorldElementNotificationFactory):
@@ -75,6 +73,8 @@ namespace Game.Util
                     return new UIAPBubbleFactory(m_uiAPBubblePrefab) as T;
                 case bool _ when type == typeof(UIRelicFactory):
                     return new UIRelicFactory(m_uiRelicPrefab) as T;
+                case bool _ when type == typeof(UIIntermissionActionFactory):
+                    return new UIIntermissionActionFactory(m_uiActionControllerPrefab) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }

@@ -6,7 +6,7 @@ using UnityEngine;
 //For AI:
 //Ignores units
 //Uses full AP to move towards nearest building
-//Once at building; stands still until it can attack, then attacks
+//Once at building; stands still until it has full AP, then attacks with all of it
 public class ContentSeigebreakerEntity : GameEnemyEntity
 {
     public ContentSeigebreakerEntity() : base()
@@ -14,8 +14,8 @@ public class ContentSeigebreakerEntity : GameEnemyEntity
         m_maxHealth = 30;
         m_maxAP = 6;
         m_apRegen = 2;
-        m_power = 30;
-        m_apToAttack = m_maxAP;
+        m_power = 25;
+        m_apToAttack = 2;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;

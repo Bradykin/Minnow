@@ -395,4 +395,12 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
         return inRangeGameTiles;
     }
+
+    public void ClearAllTilesMovementRange()
+    {
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            m_gridArray[i].SetMoveable(false);
+        }
+    }
 }

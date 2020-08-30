@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIEnergy : WorldElementBase
+public class UIBeginWaveButton : WorldElementBase
 {
-    public Text m_countText;
     public SpriteRenderer m_tintRenderer;
+    public GameObject m_holder;
 
-    void Update()
+    void OnMouseDown()
     {
-        GamePlayer player = GameHelper.GetPlayer();
+        BeginWave();
+    }
 
-        if (player == null)
+    private void BeginWave()
+    {
+        if (!Globals.m_canSelect)
         {
             return;
         }
 
-        m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
+
+        WorldController.Instance.EndIntermission();
     }
 
     void OnMouseOver()
@@ -34,6 +38,6 @@ public class UIEnergy : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!"));
     }
 }
