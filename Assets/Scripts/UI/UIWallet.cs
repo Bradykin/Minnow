@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class UIWallet : WorldElementBase
 {
     public Text m_goldText;
-    public Text m_magicText;
-    public Text m_brickText;
 
     public SpriteRenderer m_tintRenderer;
 
@@ -23,8 +21,6 @@ public class UIWallet : WorldElementBase
         GameWallet playerWallet = player.m_wallet;
 
         m_goldText.text = "" + playerWallet.m_gold;
-        m_magicText.text = "" + playerWallet.m_magic;
-        m_brickText.text = "" + playerWallet.m_bricks;
     }
 
     void OnMouseOver()
