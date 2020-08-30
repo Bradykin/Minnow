@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AIScanTargetsInRangeStep : AIStep
 {
+    public AIScanTargetsInRangeStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    
     public override void TakeStep()
     {
         List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, false);

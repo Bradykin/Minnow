@@ -38,7 +38,7 @@ public class ContentTowerBuilding : GameBuildingBase
             }
 
             UIHelper.CreateWorldElementNotification("The " + m_name + " shoots the " + entity.m_name + " for " + m_power + " damage!", true, surroundingTiles[i]);
-            entity.Hit(m_power);
+            entity.GetHit(m_power);
         }
     }
 

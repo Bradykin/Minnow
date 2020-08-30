@@ -6,5 +6,10 @@ public abstract class AIStep
 {
     public AIGameEnemyEntity m_AIGameEnemyEntity;
 
+    public AIStep(AIGameEnemyEntity AIGameEnemyEntity)
+    {
+        m_AIGameEnemyEntity = AIGameEnemyEntity;
+    }
+
     public abstract void TakeStep();
 }
