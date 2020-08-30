@@ -13,8 +13,6 @@ public class UIActionController : MonoBehaviour
 
     public Text m_actionCostText;
     public Text m_goldCostText;
-    public Text m_magicCostText;
-    public Text m_brickCostText;
 
     public GameObject m_resourcesCostHolder;
 
@@ -90,8 +88,6 @@ public class UIActionController : MonoBehaviour
             m_resourcesCostHolder.SetActive(true);
 
             m_goldCostText.text = "" + costWallet.m_gold;
-            m_magicCostText.text = "" + costWallet.m_magic;
-            m_brickCostText.text = "" + costWallet.m_bricks;
         }
     }
 

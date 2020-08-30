@@ -34,7 +34,7 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
-        m_wallet = new GameWallet(0, 3, 10);
+        m_wallet = new GameWallet(100);
 
         m_waveNum = 1;
         m_currentWaveTurn = 0;
