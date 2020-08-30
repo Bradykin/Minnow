@@ -33,10 +33,7 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
         m_intermissionBuildings = new List<GameBuildingIntermission>();
 
         m_intermissionActions.Add(new ContentResourcesIntermissionAction());
-        m_intermissionActions.Add(new ContentResourcesIntermissionAction());
-        m_intermissionActions.Add(new ContentResourcesIntermissionAction());
-        m_intermissionActions.Add(new ContentResourcesIntermissionAction());
-        m_intermissionActions.Add(new ContentResourcesIntermissionAction());
+        m_intermissionActions.Add(new ContentCardIntermissionAction());
 
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(100, 12, 0)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(5, 0, 15)));

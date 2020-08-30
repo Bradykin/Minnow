@@ -122,6 +122,9 @@ public class WorldController : Singleton<WorldController>
 
         Globals.m_canScroll = true;
         Globals.m_inIntermission = true;
+        Globals.m_selectedCard = null;
+
+        Globals.m_selectedEntity = null;
 
         if (player.m_waveNum == Constants.FinalWaveNum)
         {
@@ -133,6 +136,7 @@ public class WorldController : Singleton<WorldController>
     {
         UITooltipController.Instance.ClearTooltipStack();
         Globals.m_canScroll = true;
+        Globals.m_selectedIntermissionBuilding = null;
 
         Globals.m_inIntermission = false;
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class UICardFrameController : MonoBehaviour
 {
     public UICard m_card;
+    public UICardSelectButton m_cardSelect;
 
     public Sprite m_spellCardFrame;
     public Sprite m_entityCardFrame;
@@ -19,7 +20,19 @@ public class UICardFrameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_card.m_card is GameCardEntityBase)
+        GameCard card = null;
+
+        if (m_card != null)
+        {
+            card = m_card.m_card;
+        }
+
+        if (m_cardSelect != null)
+        {
+            card = m_cardSelect.m_card;
+        }
+
+        if (card is GameCardEntityBase)
         {
             m_renderer.sprite = m_entityCardFrame;
         }
