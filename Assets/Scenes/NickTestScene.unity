@@ -214,26 +214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1402418144501314376, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -1.3208919
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402418144501314376, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.193387
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402418144501314376, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.46184635
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402418144501314376, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.6450214
-      objectReference: {fileID: 0}
     - target: {fileID: 7887937382358607673, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -293,26 +273,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Singletons
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920316388315582942, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -1.3208919
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920316388315582942, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.193387
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920316388315582942, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.45233655
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920316388315582942, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.664041
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
