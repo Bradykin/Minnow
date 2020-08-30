@@ -214,6 +214,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 662508453, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 141563519
+      objectReference: {fileID: 0}
+    - target: {fileID: 662508453, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_SortingLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 833241395, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_Name
+      value: Action
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017680307, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_Name
+      value: BuildingHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649723852, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_Name
+      value: ActionHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049922141, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_Name
+      value: TechHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137736336, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1902510847
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137736336, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+      propertyPath: m_SortingLayer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7887937382358607673, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_LocalPosition.x

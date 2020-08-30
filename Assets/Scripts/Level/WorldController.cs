@@ -101,9 +101,16 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
+
+    private void ClearAllEntities()
+    {
+        //TODO - Remove all entities from the map (ie. at the start of intermission phase)
+    }
+
     public void StartIntermission()
     {
         UITooltipController.Instance.ClearTooltipStack();
+        ClearAllEntities();
 
         GamePlayer player = m_gameController.m_player;
 
