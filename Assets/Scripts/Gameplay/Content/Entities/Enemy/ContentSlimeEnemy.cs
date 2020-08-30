@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSlimeEnemy : GameEnemyEntity
 {
-    public ContentSlimeEnemy() : base()
+    public ContentSlimeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 4;
         m_maxAP = 4;

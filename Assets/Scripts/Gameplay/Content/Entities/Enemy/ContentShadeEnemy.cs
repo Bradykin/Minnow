@@ -8,7 +8,7 @@ using UnityEngine;
 //Hit and run if possible.  Meant to be really annoying to pin down
 public class ContentShadeEnemy : GameEnemyEntity
 {
-    public ContentShadeEnemy() : base()
+    public ContentShadeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 7;
         m_maxAP = 4;

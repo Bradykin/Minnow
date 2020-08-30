@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class GameEnemyFactory
 {
-    public static GameEnemyEntity GetRandomEnemy()
+    public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent)
     {
         int r = Random.Range(0, 4);
 
         switch (r)
         {
             case 0:
-                return new ContentSlimeEnemy();
+                return new ContentSlimeEnemy(gameOpponent);
             case 1:
-                return new ContentSeigebreakerEntity();
+                return new ContentSeigebreakerEntity(gameOpponent);
             case 2:
-                return new ContentShadeEnemy();
+                return new ContentShadeEnemy(gameOpponent);
             case 3:
-                return new ContentSpinnerEnemy();
+                return new ContentSpinnerEnemy(gameOpponent);
             default:
                 return null;
         }

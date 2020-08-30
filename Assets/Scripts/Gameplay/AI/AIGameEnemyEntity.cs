@@ -34,5 +34,9 @@ public class AIGameEnemyEntity
         {
             m_AISteps[i].TakeStep();
         }
+
+        m_possibleEntityTargets.Clear();
+        m_possibleBuildingTargets.Clear();
+        m_targetToAttack = null;
     }
 }

@@ -116,6 +116,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             {
                 player.DrawCards(numRelics);
             }
+            WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
 
         GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();

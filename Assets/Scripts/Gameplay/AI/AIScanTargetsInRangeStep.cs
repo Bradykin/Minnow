@@ -10,6 +10,9 @@ public class AIScanTargetsInRangeStep : AIStep
     {
         List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, false);
 
+        if (tilesInAttackRange == null)
+            return;
+
         List<GameEntity> possibleEntityTargets = new List<GameEntity>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 

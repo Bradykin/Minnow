@@ -9,7 +9,7 @@ using UnityEngine;
 //Once at building; stands still until it has full AP, then attacks with all of it
 public class ContentSeigebreakerEntity : GameEnemyEntity
 {
-    public ContentSeigebreakerEntity() : base()
+    public ContentSeigebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 30;
         m_maxAP = 6;

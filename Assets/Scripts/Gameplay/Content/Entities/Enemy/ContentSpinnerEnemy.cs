@@ -10,7 +10,7 @@ public class ContentSpinnerEnemy : GameEnemyEntity
 {
     private bool m_hasAttackedThisTurn = false;
     
-    public ContentSpinnerEnemy() : base()
+    public ContentSpinnerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 7;
         m_maxAP = 4;
