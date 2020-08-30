@@ -8,6 +8,8 @@ using UnityEngine;
 //Attacks only once per turn, but hits all tiles around it
 public class ContentSpinnerEnemy : GameEnemyEntity
 {
+    private bool m_hasAttacked;
+
     public ContentSpinnerEnemy() : base()
     {
         m_maxHealth = 7;

@@ -210,6 +210,14 @@ public class GamePlayer : GameElementBase, ITurns
         m_curActions = GetMaxActions();
     }
 
+    public void OnEndWave()
+    {
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            m_controlledBuildings[i].TriggerEndOfWave();
+        }
+    }
+
     //============================================================================================================//
 
     public void StartTurn()

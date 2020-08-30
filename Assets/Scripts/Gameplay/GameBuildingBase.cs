@@ -50,6 +50,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);
 
+    public virtual void TriggerEndOfWave() 
+    {
+        m_isDestroyed = false;
+    }
+
     //============================================================================================================//
 
     public virtual void TakeTurn() { }
