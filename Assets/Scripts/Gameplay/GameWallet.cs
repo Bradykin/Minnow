@@ -27,7 +27,7 @@ public class GameWallet
         m_bricks += toAdd.m_bricks;
     }
 
-    public void SubtracatResources(GameWallet toAdd)
+    public void SubtractResources(GameWallet toAdd)
     {
         m_gold -= toAdd.m_gold;
         m_magic -= toAdd.m_magic;

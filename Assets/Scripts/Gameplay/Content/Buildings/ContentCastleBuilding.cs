@@ -23,4 +23,14 @@ public class ContentCastleBuilding : GameBuildingBase
 
         UIHelper.CreateWorldElementNotification("Your castle has been destroyed, you have lost!", false, m_curTile);
     }
+
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    {
+        if (terrain is ContentGrassTerrain)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

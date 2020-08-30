@@ -20,9 +20,33 @@ public class UIActionController : MonoBehaviour
 
     public GameIntermissionActionController m_actionController;
 
+    private bool m_hovered;
+
+    void Update()
+    {
+        if (m_actionController.HasBuilding() && Globals.m_selectedIntermissionBuilding == m_actionController.m_building)
+        {
+            UIHelper.SetSelectTintColor(m_tintRenderer, true);
+        }
+        else
+        { 
+            if (m_hovered)
+            {
+                UIHelper.SetValidTintColor(m_tintRenderer, m_actionController.CanAfford());
+            }
+            else
+            {
+                UIHelper.SetDefaultTintColor(m_tintRenderer);
+            }
+        }
+    }
+
     public void Init(GameActionIntermission action)
     {
         m_actionController = new GameIntermissionActionController(action);
+
+        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
+        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 
         InitImpl();
     }
@@ -31,12 +55,18 @@ public class UIActionController : MonoBehaviour
     {
         m_actionController = new GameIntermissionActionController(tech);
 
+        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
+        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
+
         InitImpl();
     }
 
     public void Init(GameBuildingIntermission building)
     {
         m_actionController = new GameIntermissionActionController(building);
+
+        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.68f, 0.0f);
+        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 1.0f);
 
         InitImpl();
     }
@@ -72,11 +102,11 @@ public class UIActionController : MonoBehaviour
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_hovered = true;
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_hovered = false;
     }
 }

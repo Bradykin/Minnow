@@ -41,4 +41,14 @@ public class ContentTowerBuilding : GameBuildingBase
             entity.Hit(m_power);
         }
     }
+
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    {
+        if (terrain is ContentGrassTerrain)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

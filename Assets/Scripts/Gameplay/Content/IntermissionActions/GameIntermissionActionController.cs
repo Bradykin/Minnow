@@ -61,29 +61,45 @@ public class GameIntermissionActionController
 
     public void Activate()
     {
+        if (!CanAfford())
+        {
+            return;
+        }
+
         if (HasBuilding())
         {
-            if (m_building.CanAfford())
-            {
-                Globals.m_selectedIntermissionBuilding = m_building;
-            }
+            Globals.m_selectedIntermissionBuilding = m_building;
         }
 
         if (HasTech())
         {
-            if (m_tech.CanAfford())
-            {
-                m_tech.Activate();
-            }
+            m_tech.Activate();
         }
 
         if (HasAction())
         {
-            if (m_action.CanAfford())
-            {
-                m_action.Activate();
-            }
+            m_action.Activate();
         }
+    }
+
+    public bool CanAfford()
+    {
+        if (HasBuilding())
+        {
+            return m_building.CanAfford();
+        }
+
+        if (HasTech())
+        {
+            return m_tech.CanAfford();
+        }
+
+        if (HasAction())
+        {
+            return m_action.CanAfford();
+        }
+
+        return false;
     }
 
     public Sprite GetIcon()
@@ -136,17 +152,17 @@ public class GameIntermissionActionController
         return null;
     }
 
-    private bool HasBuilding()
+    public bool HasBuilding()
     {
         return m_building != null;
     }
 
-    private bool HasTech()
+    public bool HasTech()
     {
         return m_tech != null;
     }
 
-    private bool HasAction()
+    public bool HasAction()
     {
         return m_action != null;
     }

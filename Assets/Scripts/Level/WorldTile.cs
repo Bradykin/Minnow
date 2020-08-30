@@ -61,6 +61,11 @@ public class WorldTile : WorldElementBase
             {
                 UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
             }
+
+            if (Globals.m_selectedIntermissionBuilding != null)
+            {
+                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+            }
         }
         else
         {
@@ -119,6 +124,16 @@ public class WorldTile : WorldElementBase
             if (gameEntity.CanMoveTo(GetGameTile()))
             {
                 gameEntity.MoveTo(GetGameTile());
+            }
+        }
+
+        GameBuildingIntermission selectedBuilding = Globals.m_selectedIntermissionBuilding;
+        if (selectedBuilding != null)
+        {
+            if (selectedBuilding.IsValidToPlay(GetGameTile()))
+            {
+                GameHelper.MakePlayerBuilding(GetGameTile(), selectedBuilding.m_building);
+                selectedBuilding.Place();
             }
         }
     }

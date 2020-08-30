@@ -9,11 +9,45 @@ public class GameBuildingIntermission
 
     public GameBuildingBase m_building;
 
-    public void Init(GameBuildingBase building)
+    public GameBuildingIntermission(GameBuildingBase building, GameWallet cost)
     {
         m_building = building;
 
-        m_cost = new GameWallet(10, 5, 15);
+        m_cost = cost;
+    }
+
+    public void Place()
+    {
+        Globals.m_selectedIntermissionBuilding = null;
+
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
+        player.m_wallet.SubtractResources(m_cost);
+        player.SpendActions(m_actionCost);
+    }
+
+    public bool IsValidToPlay(GameTile gameTile)
+    {
+        if (gameTile.HasBuilding())
+        {
+            return false;
+        }
+
+        if (gameTile.HasAvailableEvent())
+        {
+            return false;
+        }
+
+        if (!m_building.IsValidTerrainToPlace(gameTile.GetTerrain()))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public virtual bool CanAfford()

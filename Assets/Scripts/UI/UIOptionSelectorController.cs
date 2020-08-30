@@ -38,6 +38,10 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
         m_intermissionActions.Add(new ContentResourcesIntermissionAction());
         m_intermissionActions.Add(new ContentResourcesIntermissionAction());
 
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(100, 12, 0)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(5, 0, 15)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentCastleBuilding(), new GameWallet(0, 10, 0)));
+
         UpdateActions();
     }
 
@@ -169,7 +173,7 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
     {
         if (m_selectorType == SelectorType.Action)
         {
-            if (m_index * 3 < m_intermissionActions.Count)
+            if ((m_index + 1) * 3 < m_intermissionActions.Count)
             {
                 return true;
             }
@@ -180,7 +184,7 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
         }
         else if (m_selectorType == SelectorType.Tech)
         {
-            if (m_index * 3 < m_intermissionTech.Count)
+            if ((m_index + 1)* 3 < m_intermissionTech.Count)
             {
                 return true;
             }
@@ -191,7 +195,7 @@ public class UIOptionSelectorController : Singleton<UIOptionSelectorController>
         }
         else if (m_selectorType == SelectorType.Building)
         {
-            if (m_index * 3 < m_intermissionBuildings.Count)
+            if ((m_index + 1) * 3 < m_intermissionBuildings.Count)
             {
                 return true;
             }

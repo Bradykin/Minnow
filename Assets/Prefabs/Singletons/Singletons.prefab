@@ -9998,6 +9998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546905731}
     m_Modifications:
+    - target: {fileID: 1793480058, guid: 3bb15024b49a5d443bffff0cea86a648, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7731812401298987658, guid: 3bb15024b49a5d443bffff0cea86a648,
         type: 3}
       propertyPath: m_Name
@@ -10058,6 +10062,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7731812401813856360, guid: 3bb15024b49a5d443bffff0cea86a648,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f4f4c68bfbff435438e06ba6ffdf8f8c,
+        type: 3}
+    - target: {fileID: 7731812401813856363, guid: 3bb15024b49a5d443bffff0cea86a648,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731812401813856363, guid: 3bb15024b49a5d443bffff0cea86a648,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731812401813856363, guid: 3bb15024b49a5d443bffff0cea86a648,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb15024b49a5d443bffff0cea86a648, type: 3}
 --- !u!1 &5589406062149589702 stripped
@@ -10091,6 +10116,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546905731}
     m_Modifications:
+    - target: {fileID: 1793480058, guid: 3bb15024b49a5d443bffff0cea86a648, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7731812401298987658, guid: 3bb15024b49a5d443bffff0cea86a648,
         type: 3}
       propertyPath: m_Name
@@ -10184,6 +10213,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546905731}
     m_Modifications:
+    - target: {fileID: 1793480058, guid: 3bb15024b49a5d443bffff0cea86a648, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7731812401298987658, guid: 3bb15024b49a5d443bffff0cea86a648,
         type: 3}
       propertyPath: m_Name

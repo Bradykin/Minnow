@@ -164,7 +164,7 @@ public static class UIHelper
 
     public static Sprite GetIconIntermissionAction(string actionName)
     {
-        return Resources.Load<Sprite>("Intermission/Actions/" + actionName) as Sprite;
+        return Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
     }
 
     public static void SelectEntity(UIEntity entity)
