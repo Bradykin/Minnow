@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tintRenderer: {fileID: 7731812402511189102}
   m_iconRenderer: {fileID: 7731812401813856360}
-  m_titleText: {fileID: 7731812403075498675}
+  m_titleText: {fileID: 1793480058}
   m_descText: {fileID: 1319992950}
   m_actionCostText: {fileID: 7731812403024686630}
   m_goldCostText: {fileID: 7731812401796130074}
@@ -227,7 +227,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -1894352939
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -866,7 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7731812403075498674}
   - component: {fileID: 7731812403075498672}
-  - component: {fileID: 7731812403075498675}
+  - component: {fileID: 1793480058}
   m_Layer: 11
   m_Name: TitleText
   m_TagString: Untagged
@@ -890,8 +890,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -116.3, y: 53.3}
-  m_SizeDelta: {x: 872.9, y: 164.7}
+  m_AnchoredPosition: {x: -124.07, y: 54.06}
+  m_SizeDelta: {x: 799.44, y: 152.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7731812403075498672
 CanvasRenderer:
@@ -901,7 +901,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7731812403075498637}
   m_CullTransparentMesh: 0
---- !u!114 &7731812403075498675
+--- !u!114 &1793480058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -921,18 +921,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 72
+    m_FontSize: 100
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 24
-    m_MaxSize: 144
-    m_Alignment: 3
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Castle
+  m_Text: Title Here
 --- !u!1 &7731812403198057924
 GameObject:
   m_ObjectHideFlags: 0

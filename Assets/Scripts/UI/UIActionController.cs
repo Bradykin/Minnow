@@ -22,21 +22,21 @@ public class UIActionController : MonoBehaviour
 
     public void Init(GameActionIntermission action)
     {
-        m_actionController.Init(action);
+        m_actionController = new GameIntermissionActionController(action);
 
         InitImpl();
     }
 
     public void Init(GameTechIntermission tech)
     {
-        m_actionController.Init(tech);
+        m_actionController = new GameIntermissionActionController(tech);
 
         InitImpl();
     }
 
     public void Init(GameBuildingIntermission building)
     {
-        m_actionController.Init(building);
+        m_actionController = new GameIntermissionActionController(building);
 
         InitImpl();
     }
@@ -63,5 +63,20 @@ public class UIActionController : MonoBehaviour
             m_magicCostText.text = "" + costWallet.m_magic;
             m_brickCostText.text = "" + costWallet.m_bricks;
         }
+    }
+
+    void OnMouseDown()
+    {
+        m_actionController.Activate();
+    }
+
+    void OnMouseOver()
+    {
+        UIHelper.SetValidTintColor(m_tintRenderer, true);
+    }
+
+    void OnMouseExit()
+    {
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 }

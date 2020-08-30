@@ -7,15 +7,6 @@ public class UIBeginWaveButton : WorldElementBase
     public SpriteRenderer m_tintRenderer;
     public GameObject m_holder;
 
-    void Update()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-        if (player == null)
-        {
-            return;
-        }
-    }
-
     void OnMouseDown()
     {
         BeginWave();

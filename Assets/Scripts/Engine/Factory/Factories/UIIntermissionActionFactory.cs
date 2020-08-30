@@ -25,47 +25,32 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(GameActionIntermission action)
+        public T CreateObject<T>(GameActionIntermission action, Transform parent)
         {
             GameObject obj = CreateGameObject();
+            obj.transform.parent = parent;
 
-            GameObject uiParent = GameObject.Find("ActionHolder");
-            if (uiParent != null)
-            {
-                obj.transform.parent = uiParent.transform;
-            }
-
-            obj.GetComponent<GameIntermissionActionController>().Init(action);
+            obj.GetComponent<UIActionController>().Init(action);
 
             return obj.GetComponent<T>();
         }
 
-        public T CreateObject<T>(GameTechIntermission tech)
+        public T CreateObject<T>(GameTechIntermission tech, Transform parent)
         {
             GameObject obj = CreateGameObject();
+            obj.transform.parent = parent;
 
-            GameObject uiParent = GameObject.Find("TechHolder");
-            if (uiParent != null)
-            {
-                obj.transform.parent = uiParent.transform;
-            }
-
-            obj.GetComponent<GameIntermissionActionController>().Init(tech);
+            obj.GetComponent<UIActionController>().Init(tech);
 
             return obj.GetComponent<T>();
         }
 
-        public T CreateObject<T>(GameBuildingIntermission building)
+        public T CreateObject<T>(GameBuildingIntermission building, Transform parent)
         {
             GameObject obj = CreateGameObject();
+            obj.transform.parent = parent;
 
-            GameObject uiParent = GameObject.Find("BuildingHolder");
-            if (uiParent != null)
-            {
-                obj.transform.parent = uiParent.transform;
-            }
-
-            obj.GetComponent<GameIntermissionActionController>().Init(building);
+            obj.GetComponent<UIActionController>().Init(building);
 
             return obj.GetComponent<T>();
         }

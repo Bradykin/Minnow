@@ -162,6 +162,11 @@ public static class UIHelper
         return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
     }
 
+    public static Sprite GetIconIntermissionAction(string actionName)
+    {
+        return Resources.Load<Sprite>("Intermission/Actions/" + actionName) as Sprite;
+    }
+
     public static void SelectEntity(UIEntity entity)
     {
         bool entityAlreadySelected = Globals.m_selectedEntity == entity;

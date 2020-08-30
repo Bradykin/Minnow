@@ -8,17 +8,17 @@ public class GameIntermissionActionController
     public GameTechIntermission m_tech { get; protected set; }
     public GameActionIntermission m_action { get; protected set; }
 
-    public void Init(GameBuildingIntermission building)
+    public GameIntermissionActionController(GameBuildingIntermission building)
     {
         m_building = building;
     }
 
-    public void Init(GameTechIntermission tech)
+    public GameIntermissionActionController(GameTechIntermission tech)
     {
         m_tech = tech;
     }
 
-    public void Init(GameActionIntermission action)
+    public GameIntermissionActionController(GameActionIntermission action)
     {
         m_action = action;
     }

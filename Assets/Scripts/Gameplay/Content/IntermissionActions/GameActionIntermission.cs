@@ -7,6 +7,17 @@ public abstract class GameActionIntermission : GameElementBase
     public int m_actionCost = 1;
 
     public abstract void Activate();
+    
+    public virtual void SpendCost()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
+        player.SpendActions(m_actionCost);
+    }
 
     public virtual bool CanAfford()
     {

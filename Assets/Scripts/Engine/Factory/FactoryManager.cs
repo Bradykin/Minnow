@@ -74,7 +74,7 @@ namespace Game.Util
                 case bool _ when type == typeof(UIRelicFactory):
                     return new UIRelicFactory(m_uiRelicPrefab) as T;
                 case bool _ when type == typeof(UIIntermissionActionFactory):
-                    return new UIRelicFactory(m_uiActionControllerPrefab) as T;
+                    return new UIIntermissionActionFactory(m_uiActionControllerPrefab) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }

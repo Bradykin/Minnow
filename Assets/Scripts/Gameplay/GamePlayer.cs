@@ -126,6 +126,16 @@ public class GamePlayer : GameElementBase, ITurns
         }
     }
 
+    public void SpendActions(int toSpend)
+    {
+        m_curActions -= toSpend;
+        if (m_curActions < 0)
+        {
+            Debug.LogWarning("Somehow spent below 0 actions.");
+            m_curActions = 0;
+        }
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)

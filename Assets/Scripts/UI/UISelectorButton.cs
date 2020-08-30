@@ -11,7 +11,7 @@ public class UISelectorButton : WorldElementBase
 
     void Update()
     {
-        if (m_selectorType == UIOptionSelectorController.Instance.m_selectorType)
+        if (m_selectorType == UIOptionSelectorController.Instance.GetSelectorType())
         {
             m_renderer.color = Color.yellow;
         }
@@ -23,7 +23,7 @@ public class UISelectorButton : WorldElementBase
 
     void OnMouseDown()
     {
-        UIOptionSelectorController.Instance.m_selectorType = m_selectorType;
+        UIOptionSelectorController.Instance.SetSelectorType(m_selectorType);
     }
 
     void OnMouseOver()
