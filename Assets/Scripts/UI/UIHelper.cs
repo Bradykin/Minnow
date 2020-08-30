@@ -325,8 +325,13 @@ public static class UIHelper
 
     public static void CreateBuildingTooltip(GameBuildingBase building)
     {
+        string title = building.m_name;
+        if (building.m_isDestroyed)
+        {
+            title = "Destroyed " + building.m_name;
+        }
         string desc = building.m_desc + "\n" + "Health: " + building.m_curHealth + "/" + building.m_maxHealth;
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(building.m_name, desc, Team.Player));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, Team.Player));
     }
 
     public static void CreateRelicTooltip(GameRelic relic)
