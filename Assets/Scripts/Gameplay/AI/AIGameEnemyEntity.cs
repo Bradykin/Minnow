@@ -10,6 +10,8 @@ public class AIGameEnemyEntity
     public List<GameEntity> m_possibleEntityTargets = new List<GameEntity>();
     public List<GameBuildingBase> m_possibleBuildingTargets = new List<GameBuildingBase>();
 
+    public GameElementBase m_targetToAttack = null;
+
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
         m_gameEnemyEntity = gameEnemyEntity;

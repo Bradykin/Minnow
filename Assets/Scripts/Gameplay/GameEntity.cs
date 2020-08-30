@@ -392,6 +392,9 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public void MoveTo(GameTile tile)
     {
+        if (tile == m_curTile)
+            return;
+        
         SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false));
 
         m_curTile.ClearEntity();
