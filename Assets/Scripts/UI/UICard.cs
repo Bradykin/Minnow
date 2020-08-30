@@ -30,20 +30,7 @@ public class UICard : WorldElementBase
     {
         m_card = card;
 
-        m_imageRenderer.sprite = m_card.m_icon;
-
-        if (m_card is GameCardEntityBase)
-        {
-            m_gameElement = ((GameCardEntityBase)m_card).m_entity;
-        }
-        else
-        {
-            m_showTooltip = false;
-        }
-
         SetCardData();
-
-        m_card = card;
     }
 
     void Update() 
@@ -56,6 +43,7 @@ public class UICard : WorldElementBase
 
     private void SetCardData()
     {
+        m_imageRenderer.sprite = m_card.m_icon;
         m_nameText.text = m_card.m_name;
         m_costText.text = m_card.m_cost + "";
         m_typelineText.text = m_card.m_typeline;
@@ -63,12 +51,18 @@ public class UICard : WorldElementBase
 
         if (m_card is GameCardEntityBase)
         {
+            m_gameElement = ((GameCardEntityBase)m_card).m_entity;
+
             GameCardEntityBase entityCard = (GameCardEntityBase)m_card;
             m_keywordText.text = entityCard.m_entity.GetKeywordHolder().GetDesc();
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
 
             m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
+        }
+        else
+        {
+            m_showTooltip = false;
         }
     }
 
