@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,20 +7,25 @@ public class GameEnemyFactory
 {
     public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent)
     {
-        int r = Random.Range(0, 4);
+        int r = UnityEngine.Random.Range(0, 4);
 
         switch (r)
         {
             case 0:
-                return new ContentSlimeEnemy(gameOpponent);
+                return GetEnemyEntityInstance<ContentSlimeEnemy>(gameOpponent);
             case 1:
-                return new ContentSeigebreakerEntity(gameOpponent);
+                return GetEnemyEntityInstance<ContentSeigebreakerEntity>(gameOpponent);
             case 2:
-                return new ContentShadeEnemy(gameOpponent);
+                return GetEnemyEntityInstance<ContentShadeEnemy>(gameOpponent);
             case 3:
-                return new ContentSpinnerEnemy(gameOpponent);
+                return GetEnemyEntityInstance<ContentSpinnerEnemy>(gameOpponent);
             default:
                 return null;
         }
+    }
+
+    private static T GetEnemyEntityInstance<T>(GameOpponent gameOpponent) where T : GameEnemyEntity
+    {
+        return (T)Activator.CreateInstance(typeof(T), gameOpponent);
     }
 }
