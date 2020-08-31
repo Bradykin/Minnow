@@ -7,6 +7,8 @@ public class GameEnemyFactory
 {
     private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
     private static List<GameEnemyEntity> m_commonEnemies = new List<GameEnemyEntity>();
+
+    private static bool hasInit = false;
     
     public static void Init()
     {
@@ -14,11 +16,17 @@ public class GameEnemyFactory
         m_enemies.Add(new ContentSeigebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
         m_enemies.Add(new ContentSpinnerEnemy(null));
+        hasInit = true;
     }
     
     public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent)
     {
-        int r = UnityEngine.Random.Range(0, 4);
+        if (!hasInit)
+            Init();
+        
+        int r = UnityEngine.Random.Range(0, m_enemies.Count);
+
+        Debug.Log(m_enemies[r].GetType());
 
         return (GameEnemyEntity)Activator.CreateInstance(m_enemies[r].GetType(), gameOpponent);
     }
