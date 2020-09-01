@@ -45,7 +45,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     protected virtual void LateInit()
     {
         m_curHealth = GetMaxHealth();
-        m_curAP = GetMaxAP();
+        m_curAP = GetAPRegen();
 
         m_icon = UIHelper.GetIconEntity(m_name);
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");

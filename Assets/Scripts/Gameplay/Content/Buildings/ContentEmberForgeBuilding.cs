@@ -7,7 +7,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
     public ContentEmberForgeBuilding()
     {
         m_name = "Ember Forge";
-        m_desc = "A burning pit of fire; <b>permanently</b> lowers max energy by 1 when built, but instantly kills <b>any</b> random entity within range 2 every turn.";
+        m_desc = "A burning pit of fire; <b>permanently</b> lowers max energy by 1 when built, but instantly kills <b>any</b> random entity within range 3 every turn.";
         m_rarity = GameRarity.Rare;
 
         m_maxHealth = 150;
@@ -25,7 +25,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         }
 
         List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 2);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 3);
 
         List<GameEntity> entities = new List<GameEntity>();
         for (int i = 0; i < surroundingTiles.Count; i++)
