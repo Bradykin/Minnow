@@ -168,7 +168,7 @@ public class WorldTile : WorldElementBase
             if (!Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
                 string titleText = "Can't Place";
-                if (!GetGameTile().m_canPlace && GetGameTile().IsPassable())
+                if (!GetGameTile().m_canPlace && GetGameTile().IsPassable() && Globals.m_selectedCard.m_card is GameCardEntityBase)
                 {
                      UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
                 }

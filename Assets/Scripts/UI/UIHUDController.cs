@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIHudController : MonoBehaviour
+public class UIHUDController : MonoBehaviour
 {
     public GameObject m_waveHUD;
     public GameObject m_intermissionHUD;

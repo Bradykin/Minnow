@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 
-public class ContentTowerBuilding : GameBuildingBase
+public class ContentFortressBuilding : GameBuildingBase
 {
     public int m_power = 5;
 
-    public ContentTowerBuilding()
+    public ContentFortressBuilding()
     {
-        m_name = "Tower";
+        m_name = "Fortress";
         m_desc = "Shoots at enemies on all surrounding tiles (but not this tile) with " + m_power + " power at the start of your turn.";
 
         m_maxHealth = 40;
@@ -44,7 +44,7 @@ public class ContentTowerBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentGrassTerrain)
+        if (terrain is ContentMountainTerrain)
         {
             return true;
         }

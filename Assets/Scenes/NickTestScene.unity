@@ -214,6 +214,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7887937380994782501, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_intermissionHUD
+      value: 
+      objectReference: {fileID: 4491876175451929175}
     - target: {fileID: 7887937382358607673, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,3 +281,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+--- !u!1 &4491876175451929175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 16909495278504454, guid: 4208289fcc803664bbc3eb8af72294ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 4491876175451929174}
+  m_PrefabAsset: {fileID: 0}

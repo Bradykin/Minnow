@@ -157,6 +157,11 @@ public class GameTile : GameElementBase
         return m_terrain;
     }
 
+    public void SetTerrain(GameTerrainBase newTerrain)
+    {
+        m_terrain = newTerrain;
+    }
+
     public GameBuildingBase GetBuilding()
     {
         return m_building;
