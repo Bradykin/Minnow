@@ -38,13 +38,13 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
-        m_wallet = new GameWallet(10000);
+        m_wallet = new GameWallet(100);
 
         m_waveNum = 1;
         m_currentWaveTurn = 0;
         m_currentWaveEndTurn = Constants.InitialWaveSize;
 
-        m_maxActions = 30;
+        m_maxActions = 3;
     }
 
     public void LateInit()
