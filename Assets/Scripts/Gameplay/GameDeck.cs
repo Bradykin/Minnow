@@ -35,7 +35,7 @@ public class GameDeck
 
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new ContentClearcutCard());
+            m_cards.Add(new ContentFireboltCard());
         }
     }
 

@@ -116,12 +116,6 @@ public class WorldController : Singleton<WorldController>
 
         player.OnEndWave();
 
-        player.m_waveNum++;
-        player.m_currentWaveTurn = 0;
-        player.m_currentWaveEndTurn += Constants.WaveTurnIncrement;
-
-        player.ResetActions();
-
         Globals.m_canScroll = true;
         Globals.m_inIntermission = true;
         Globals.m_selectedCard = null;

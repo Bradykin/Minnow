@@ -88,11 +88,22 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
+        m_curHealth = 0;
+
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
         {
             Debug.LogError("Cannot kill entity as player doesn't exist.");
             return;
+        }
+
+        for (int i = 0; i < player.m_controlledBuildings.Count; i++)
+        {
+            if (player.m_controlledBuildings[i] is ContentGraveyardBuilding)
+            {
+                int goldToGain = ((ContentGraveyardBuilding)player.m_controlledBuildings[i]).m_goldToGain;
+                player.m_wallet.AddResources(new GameWallet(goldToGain));
+            }
         }
 
         if (GetTeam() == Team.Enemy)

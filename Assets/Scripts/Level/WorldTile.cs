@@ -201,11 +201,21 @@ public class WorldTile : WorldElementBase
 
     public void ExpandPlaceRange(int distance)
     {
-        List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+        List<WorldTile> toExpand = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
 
-        for (int i = 0; i < toReveal.Count; i++)
+        for (int i = 0; i < toExpand.Count; i++)
         {
-            toReveal[i].GetGameTile().m_canPlace = true;
+            toExpand[i].GetGameTile().m_canPlace = true;
+        }
+    }
+
+    public void ReducePlaceRange(int distance)
+    {
+        List<WorldTile> toReduce = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+
+        for (int i = 0; i < toReduce.Count; i++)
+        {
+            toReduce[i].GetGameTile().m_canPlace = false;
         }
     }
 

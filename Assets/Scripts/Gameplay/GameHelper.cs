@@ -33,10 +33,10 @@ public static class GameHelper
             return;
         }
 
-        //TODO - nmartino: Make a new instance of the building type here using the factory (or the buildings will be dupes)
+        GameBuildingBase toPlace = GameBuildingFactory.GetBuildingClone(building);
 
-        targetTile.PlaceBuilding(building);
-        player.AddControlledBuilding(building);
+        targetTile.PlaceBuilding(toPlace);
+        player.AddControlledBuilding(toPlace);
     }
 
     public static GamePlayer GetPlayer()

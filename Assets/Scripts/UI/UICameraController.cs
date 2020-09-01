@@ -12,7 +12,7 @@ public class UICameraController : MonoBehaviour
     private float m_cameraLimitDown = 2.0f;
     private float m_cameraLimitUp = 40.0f;
     private float m_cameraLimitLeft = 15.0f;
-    private float m_cameraLimitRight = 50.0f;
+    private float m_cameraLimitRight = 60.0f;
 
     void Update()
     {

@@ -19,6 +19,8 @@ public class GamePlayer : GameElementBase, ITurns
     public List<GameEntity> m_controlledEntities { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
+    private int m_spellPower = 0;
+
     public GameRelicHolder m_relics;
 
     public int m_waveNum;
@@ -34,13 +36,13 @@ public class GamePlayer : GameElementBase, ITurns
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
-        m_wallet = new GameWallet(100);
+        m_wallet = new GameWallet(10000);
 
         m_waveNum = 1;
         m_currentWaveTurn = 0;
         m_currentWaveEndTurn = Constants.InitialWaveSize;
 
-        m_maxActions = 3;
+        m_maxActions = 30;
     }
 
     public void LateInit()
@@ -136,6 +138,12 @@ public class GamePlayer : GameElementBase, ITurns
         }
     }
 
+    //Bonus actions can go above the max (from things like smithies)
+    public void AddBonusActions(int toAdd)
+    {
+        m_curActions += toAdd;
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)
@@ -147,6 +155,32 @@ public class GamePlayer : GameElementBase, ITurns
     public void AddEnergy(int toAdd)
     {
         m_curEnergy += toAdd;
+
+        if (m_curEnergy > m_maxEnergy)
+        {
+            m_curEnergy = m_maxEnergy;
+        }
+    }
+
+    //Bonus energy can go past the cap
+    public void AddBonusEnergy(int toAdd)
+    {
+        m_curEnergy += toAdd;
+    }
+
+    public int GetSpellPower()
+    {
+        int toReturn = m_spellPower;
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentMagicSchoolBuilding)
+            {
+                toReturn += ((ContentMagicSchoolBuilding)m_controlledBuildings[i]).m_magicIncrease;
+            }
+        }
+
+        return toReturn;
     }
 
     public void AddControlledEntity(GameEntity toAdd)
@@ -179,6 +213,14 @@ public class GamePlayer : GameElementBase, ITurns
     {
         int toReturn = m_maxEnergy;
 
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentEmberForgeBuilding)
+            {
+                toReturn -= 1;
+            }
+        }
+
         toReturn += 1 * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
 
         return toReturn;
@@ -191,6 +233,14 @@ public class GamePlayer : GameElementBase, ITurns
         toReturn += 1 * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
 
         toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentMineBuilding)
+            {
+                toReturn += 1;
+            }
+        }
 
         return toReturn;
     }
@@ -212,6 +262,12 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void OnEndWave()
     {
+        m_waveNum++;
+        m_currentWaveTurn = 0;
+        m_currentWaveEndTurn += Constants.WaveTurnIncrement;
+
+        ResetActions();
+
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].TriggerEndOfWave();
@@ -230,7 +286,8 @@ public class GamePlayer : GameElementBase, ITurns
             return;
         }
 
-        Debug.Log("Start player turn");
+        m_curEnergy = GetMaxEnergy();
+
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].StartTurn();
@@ -240,13 +297,12 @@ public class GamePlayer : GameElementBase, ITurns
         {
             m_controlledBuildings[i].StartTurn();
         }
-
-        m_curEnergy = GetMaxEnergy();
     }
 
     public void EndTurn()
     {
-        Debug.Log("End player turn");
+        DrawHand();
+
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();
@@ -256,7 +312,5 @@ public class GamePlayer : GameElementBase, ITurns
         {
             m_controlledBuildings[i].EndTurn();
         }
-
-        DrawHand();
     }
 }
