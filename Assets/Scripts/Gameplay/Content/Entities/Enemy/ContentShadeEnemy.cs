@@ -11,7 +11,7 @@ public class ContentShadeEnemy : GameEnemyEntity
     public ContentShadeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 7;
-        m_maxAP = 4;
+        m_maxAP = 6;
         m_apRegen = 4;
         m_power = 4;
 

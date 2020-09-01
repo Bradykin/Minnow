@@ -14,7 +14,7 @@ public class ContentSeigebreakerEntity : GameEnemyEntity
         m_maxHealth = 30;
         m_maxAP = 6;
         m_apRegen = 2;
-        m_power = 25;
+        m_power = 10;
         m_apToAttack = 2;
 
         m_team = Team.Enemy;
