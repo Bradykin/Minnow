@@ -26,8 +26,6 @@ public class GameEnemyFactory
         
         int r = UnityEngine.Random.Range(0, m_enemies.Count);
 
-        Debug.Log(m_enemies[r].GetType());
-
         return (GameEnemyEntity)Activator.CreateInstance(m_enemies[r].GetType(), gameOpponent);
     }
 }

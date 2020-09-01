@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GamePlayer : GameElementBase, ITurns
@@ -18,6 +19,8 @@ public class GamePlayer : GameElementBase, ITurns
 
     public List<GameEntity> m_controlledEntities { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
+
+    public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
     public GameRelicHolder m_relics;
 

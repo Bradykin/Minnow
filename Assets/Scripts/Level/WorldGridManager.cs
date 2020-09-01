@@ -198,9 +198,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     //============================================================================================================//
 
-    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences)
+    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile)
     {
-        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences);
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile);
 
         if (path == null)
         {
@@ -247,7 +247,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         return distance + Math.Abs(currentPosition.x - targetPosition.y);
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition)
     {
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
@@ -291,6 +291,12 @@ public class WorldGridManager : Singleton<WorldGridManager>
                 if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
+
+                if (getAdjacentPosition && adjacentTile.m_gridPosition.x == target.X && adjacentTile.m_gridPosition.y == target.Y)
+                {
+                    target = current;
+                    break;
+                }
 
                 if (!ignoreTerrainDifferences && !adjacentTile.IsPassable())
                     continue;

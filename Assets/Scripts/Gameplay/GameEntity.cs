@@ -183,7 +183,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true);
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true, false);
         
         if (tiles == null)
         {
@@ -202,7 +202,7 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
     {
-        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true);
+        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true, false);
 
         if (tiles == null)
         {
@@ -441,7 +441,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false) > m_curAP)
         {
             return false;
         }
@@ -454,10 +454,54 @@ public abstract class GameEntity : GameElementBase, ITurns
         if (tile == m_curTile)
             return;
         
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false));
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false));
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);
+    }
+
+    public void MoveTowards(GameTile tile, int apToUse)
+    {
+        if (tile == m_curTile)
+            return;
+
+        if (apToUse <= 0)
+            return;
+
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile, false, true);
+
+        if (pathToTile == null || pathToTile.Count == 0)
+            return;
+
+        int apSpent = 0;
+        GameTile destinationTile = m_curTile;
+        for (int i = 0; i < pathToTile.Count; i++)
+        {
+            if (pathToTile[i] == m_curTile)
+                continue;
+
+            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass();
+
+            if (projectedAPSpent > GetCurAP() || projectedAPSpent > apToUse)
+                break;
+
+            apSpent += pathToTile[i].GetCostToPass();
+            destinationTile = pathToTile[i];
+
+            if (apSpent < apToUse)
+                break;
+        }
+
+        if (destinationTile == m_curTile)
+            return;
+
+        if (destinationTile.m_occupyingEntity != null)
+            return;
+
+        SpendAP(apSpent);
+
+        m_curTile.ClearEntity();
+        destinationTile.PlaceEntity(this);
     }
 
     public void SpendAP(int toSpend)
