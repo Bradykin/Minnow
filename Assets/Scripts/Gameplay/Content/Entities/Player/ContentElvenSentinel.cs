@@ -29,7 +29,7 @@ public class ContentElvenSentinel : GameEntity
     {
         int toDeal = base.GetDamageToDealTo(other);
 
-        toDeal += WorldGridManager.Instance.GetPathLength(m_curTile, other.m_curTile, true);
+        toDeal += WorldGridManager.Instance.GetPathLength(m_curTile, other.m_curTile, true, false);
 
         return toDeal;
     }

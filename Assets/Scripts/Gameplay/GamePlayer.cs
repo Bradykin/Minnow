@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GamePlayer : GameElementBase, ITurns
@@ -20,6 +21,7 @@ public class GamePlayer : GameElementBase, ITurns
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
     private int m_spellPower = 0;
+    public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
     public GameRelicHolder m_relics;
 
