@@ -16,7 +16,6 @@ public class GameOpponent : ITurns
 
     public void LateInit()
     {
-        Debug.Log("GameOpponent LateInit");
         WorldGridManager.Instance.SetupEnemies(this);
     }
 
@@ -33,7 +32,6 @@ public class GameOpponent : ITurns
 
     public void StartTurn()
     {
-        Debug.Log("Start opponent turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].StartTurn();

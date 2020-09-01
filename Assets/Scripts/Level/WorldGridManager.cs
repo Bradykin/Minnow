@@ -26,7 +26,6 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     public void Setup(Transform parent)
     {
-        Debug.Log("WorldGridManager Setup");
         if (!m_setup)
         {
             SetupSquareGrid(parent);
@@ -325,7 +324,6 @@ public class WorldGridManager : Singleton<WorldGridManager>
             }
         }
 
-        Debug.Log("NO VIABLE PATH");
         return null;
     }
 

@@ -33,7 +33,13 @@ public class WorldTile : WorldElementBase
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
 
-        if (GetGameTile().IsOccupied() && m_occupyingEntityObj == null)
+        bool entityMovedIntoTile = false;
+        if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
+        {
+            entityMovedIntoTile = GetGameTile().m_occupyingEntity != m_occupyingEntityObj.GetEntity();
+        }
+
+        if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null) || entityMovedIntoTile)
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
@@ -41,7 +47,6 @@ public class WorldTile : WorldElementBase
         {
             Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
-            GetGameTile().ClearEntity();
         }
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)

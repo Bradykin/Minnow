@@ -6,7 +6,7 @@ public class ContentFireboltCard : GameCardSpellBase
 {
     public ContentFireboltCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 11;
 
         m_name = "Firebolt";
         m_desc = "Blast an enemy for " + GetSpellValue() + " damage.";
