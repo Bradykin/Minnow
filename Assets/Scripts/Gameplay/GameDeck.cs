@@ -45,6 +45,7 @@ public class GameDeck
             m_cards.Add(new ContentGrowTalonsCard());
             m_cards.Add(new ContentTrollFormCard());
             m_cards.Add(new ContentDemoncAspectCard());
+            m_cards.Add(new ContentBloodSacrificeCard());
         }
     }
 
