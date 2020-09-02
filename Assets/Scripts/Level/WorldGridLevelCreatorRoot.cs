@@ -15,6 +15,11 @@ public class WorldGridLevelCreatorRoot : MonoBehaviour
         {
             Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain(Globals.m_currentlyPaintingTerrain); 
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Globals.m_currentlyPaintingTerrain.GetNextSprite();
+        }
     }
 
     public void SpawnGrid()

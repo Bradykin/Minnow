@@ -10,7 +10,8 @@ public class ContentForestTerrain : GameTerrainBase
 
         m_name = "Forest";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
-        m_icon = UIHelper.GetIconTerrain(m_name);
+        m_terrainNumber = Random.Range(1, 5);
+        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainNumber);
         m_color = Color.green;
 
         m_isPassable = true;

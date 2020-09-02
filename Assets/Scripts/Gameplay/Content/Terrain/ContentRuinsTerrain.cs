@@ -10,7 +10,7 @@ public class ContentRuinsTerrain : GameTerrainBase
 
         m_name = "Ruins";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
-        m_icon = UIHelper.GetIconTerrain(m_name);
+        m_icon = UIHelper.GetRandomIconTerrain(m_name);
         m_color = Color.yellow;
 
         m_isPassable = true;

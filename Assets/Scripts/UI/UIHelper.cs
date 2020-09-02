@@ -155,11 +155,16 @@ public static class UIHelper
         return Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
     }
 
-    public static Sprite GetIconTerrain(string terrainName)
+    public static Sprite GetRandomIconTerrain(string terrainName)
     {
         int rand = Random.Range(1, 5);
 
         return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
+    }
+
+    public static Sprite GetIconTerrain(string terrainName, int index)
+    {
+        return Resources.Load<Sprite>("Terrain/" + terrainName + index) as Sprite;
     }
 
     public static Sprite GetIconIntermissionAction(string actionName)

@@ -36,7 +36,7 @@ public class GameTerrainFactory
         int r = m_terrain.FindIndex(t => t.GetType() == currentTerrain.GetType());
 
         if (r == m_terrain.Count - 1)
-            r = 0;
+            r = 1;
         else
             r++;
 

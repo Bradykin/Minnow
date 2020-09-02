@@ -10,7 +10,8 @@ public class ContentMountainTerrain : GameTerrainBase
 
         m_name = "Mountain";
         m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
-        m_icon = UIHelper.GetIconTerrain(m_name);
+        m_terrainNumber = Random.Range(1, 5);
+        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainNumber);
         m_color = Color.red;
 
         m_isPassable = false;
