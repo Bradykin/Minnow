@@ -467,7 +467,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (!tile.IsPassable())
+        if (!tile.IsPassable(this))
         {
             return false;
         }
@@ -511,12 +511,12 @@ public abstract class GameEntity : GameElementBase, ITurns
             if (pathToTile[i] == m_curTile)
                 continue;
 
-            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass();
+            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
 
             if (projectedAPSpent > GetCurAP() || projectedAPSpent > apToUse)
                 break;
 
-            apSpent += pathToTile[i].GetCostToPass();
+            apSpent += pathToTile[i].GetCostToPass(this);
             destinationTile = pathToTile[i];
 
             if (apSpent < apToUse)

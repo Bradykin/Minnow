@@ -16,7 +16,7 @@ public static class Constants
 
     //Map Gen Data
     public static int PercentChanceForTileToContainEvent = 5;
-    public static int PercentChanceForTileToContainEnemy = 12;
+    public static int PercentChanceForTileToContainEnemy = 14;
 
     public static int PercentChanceForTerrainGrasslands = 64;
     public static int PercentChanceForTerrainWater = 8;

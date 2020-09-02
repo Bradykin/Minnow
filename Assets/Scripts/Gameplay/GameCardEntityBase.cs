@@ -46,7 +46,7 @@ public class GameCardEntityBase : GameCard
             return false;
         }
 
-        if (!targetTile.IsPassable())
+        if (!targetTile.IsPassable(GetEntity()))
         {
             return false;
         }

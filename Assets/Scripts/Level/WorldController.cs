@@ -127,8 +127,11 @@ public class WorldController : Singleton<WorldController>
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
                 GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
-                gameTile.PlaceEntity(enemy);
-                m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
+                if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsPassable(enemy))
+                {
+                    gameTile.PlaceEntity(enemy);
+                    m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
+                }
             }
         }
     }
