@@ -29,6 +29,11 @@ public class WorldController : Singleton<WorldController>
         {
             SceneLoader.ActivateScene("AlexTestScene", "NickTestScene");
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ClearAllEntities();
+        }
     }
 
     public void PlayCard(UICard card, WorldElementBase worldElementTarget)
@@ -101,10 +106,31 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-
     private void ClearAllEntities()
     {
-        //TODO - Remove all entities from the map (ie. at the start of intermission phase)
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied())
+            {
+                WorldGridManager.Instance.m_gridArray[i].GetGameTile().ClearEntity();
+            }
+        }
+
+        m_gameController.m_gameOpponent.m_controlledEntities.Clear();
+    }
+
+    public void StartWaveEnemySpawn()
+    {
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
+                gameTile.PlaceEntity(enemy);
+                m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
+            }
+        }
     }
 
     public void StartIntermission()
@@ -135,5 +161,14 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedIntermissionBuilding = null;
 
         Globals.m_inIntermission = false;
+
+        StartWaveEnemySpawn();
+
+        GamePlayer player = m_gameController.m_player;
+
+        player.StartTurn();
+
+        ClearHand();
+        player.DrawHand();
     }
 }

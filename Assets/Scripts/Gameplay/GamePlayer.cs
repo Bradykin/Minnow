@@ -63,7 +63,7 @@ public class GamePlayer : GameElementBase, ITurns
         DrawHand();
     }
 
-    private void DrawHand()
+    public void DrawHand()
     {
         for (int i = 0; i < m_hand.Count; i++)
         {
@@ -315,14 +315,6 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void StartTurn()
     {
-        m_currentWaveTurn++;
-
-        if (m_currentWaveTurn > GetEndWaveTurn())
-        {
-            WorldController.Instance.StartIntermission();
-            return;
-        }
-
         m_curEnergy = GetMaxEnergy();
 
         if (m_currentWaveTurn == 0)
@@ -343,7 +335,13 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void EndTurn()
     {
-        DrawHand();
+        m_currentWaveTurn++;
+        bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn();
+        
+        if (!shouldStartIntermission)
+        {
+            DrawHand();
+        }
 
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
@@ -353,6 +351,11 @@ public class GamePlayer : GameElementBase, ITurns
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].EndTurn();
+        }
+
+        if (shouldStartIntermission)
+        {
+            WorldController.Instance.StartIntermission();
         }
     }
 }

@@ -39,7 +39,12 @@ public class WorldTile : WorldElementBase
             entityMovedIntoTile = GetGameTile().m_occupyingEntity != m_occupyingEntityObj.GetEntity();
         }
 
-        if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null) || entityMovedIntoTile)
+        if (entityMovedIntoTile)
+        {
+            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
+            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
+        }
+        else if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null))
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
