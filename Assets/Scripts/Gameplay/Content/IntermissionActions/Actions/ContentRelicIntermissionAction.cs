@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentResourcesIntermissionAction : GameActionIntermission
+public class ContentRelicIntermissionAction : GameActionIntermission
 {
-    private GameWallet m_wallet = new GameWallet(25);
-
-    public ContentResourcesIntermissionAction()
+    public ContentRelicIntermissionAction()
     {
-        m_actionCost = 1;
-        m_name = "Gather Resources";
-        m_desc = "Gain " + m_wallet.m_gold + " gold.";
+        m_actionCost = 3;
+        m_name = "Find Relic";
+        m_desc = "Gain a random relic!";
 
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
@@ -24,7 +22,7 @@ public class ContentResourcesIntermissionAction : GameActionIntermission
             return;
         }
 
-        player.m_wallet.AddResources(m_wallet);
+        player.AddRelic(GameRelicFactory.GetRandomRelic());
 
         SpendCost();
     }
