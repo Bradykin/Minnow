@@ -28,6 +28,8 @@ public class GameController
     {
         m_player.LateInit();
         m_gameOpponent.LateInit();
+
+        //WorldGridManager.Instance.SetupEnemies(m_gameOpponent);
     }
 
     public void BeginTurnSequence()

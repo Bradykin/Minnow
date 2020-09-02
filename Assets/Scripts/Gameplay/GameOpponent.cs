@@ -17,7 +17,6 @@ public class GameOpponent : ITurns
     public void LateInit()
     {
         Debug.Log("GameOpponent LateInit");
-        WorldGridManager.Instance.SetupEnemies(this);
     }
 
     //============================================================================================================//

@@ -498,10 +498,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         if (destinationTile.m_occupyingEntity != null)
             return;
 
-        SpendAP(apSpent);
-
-        m_curTile.ClearEntity();
-        destinationTile.PlaceEntity(this);
+        MoveTo(destinationTile);
     }
 
     public void SpendAP(int toSpend)

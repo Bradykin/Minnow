@@ -29,8 +29,18 @@ public class WorldGridManager : Singleton<WorldGridManager>
         Debug.Log("WorldGridManager Setup");
         if (!m_setup)
         {
-            SetupSquareGrid(parent);
+            SetupSquareGrid(parent, true);
             GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].GetGameTile(), new ContentCastleBuilding());
+            m_setup = true;
+        }
+    }
+
+    public void SetupEmptyGrid(Transform parent)
+    {
+        Debug.Log("WorldGridManager Empty Grid Setup");
+        if (!m_setup)
+        {
+            SetupSquareGrid(parent, false);
             m_setup = true;
         }
     }
@@ -48,7 +58,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
         }
     }
 
-    private void SetupSquareGrid(Transform parent)
+    private void SetupSquareGrid(Transform parent, bool setRandomTerrain)
     {
         int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
         m_gridArray = new WorldTile[numGridTiles];
@@ -63,6 +73,9 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
+
+            if (setRandomTerrain)
+                m_gridArray[i].GetGameTile().ChooseRandomTerrain();
         }
     }
 

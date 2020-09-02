@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class WorldGridRoot : MonoBehaviour, IReset
 {
-    public void Activate()
+    public virtual void Activate()
     {
         WorldGridManager.Instance.Setup(transform);
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         WorldGridManager.Instance.RecycleGrid();        
     }

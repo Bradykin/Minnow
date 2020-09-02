@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.SceneManagement;
 
 public class WorldTile : WorldElementBase
 {
@@ -30,8 +31,12 @@ public class WorldTile : WorldElementBase
         HandleFogUpdate();
 
         m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
-        m_renderer.sprite = GetGameTile().GetIcon();
-        m_tintRenderer.sprite = GetGameTile().GetIcon();
+
+        if (GetGameTile().GetIcon() != null)
+        {
+            m_renderer.sprite = GetGameTile().GetIcon();
+            m_tintRenderer.sprite = GetGameTile().GetIcon();
+        }
 
         if (GetGameTile().IsOccupied() && m_occupyingEntityObj == null)
         {
@@ -106,6 +111,14 @@ public class WorldTile : WorldElementBase
 
     void OnMouseDown()
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
+        {
+            if (Globals.m_currentlyPaintingTerrain != null)
+            {
+                GetGameTile().SetTerrain(Globals.m_currentlyPaintingTerrain);
+            }
+        }
+        
         UICard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {
@@ -141,11 +154,13 @@ public class WorldTile : WorldElementBase
     void OnMouseOver()
     {
         m_isHovered = true;
+        print("mouseOver");
     }
 
     void OnMouseExit()
     {
         m_isHovered = false;
+        print("removeMouse");
     }
 
     public override void HandleTooltip()

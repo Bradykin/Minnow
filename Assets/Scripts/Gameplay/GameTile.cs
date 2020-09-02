@@ -23,8 +23,6 @@ public class GameTile : GameElementBase
             m_isFog = true;
         }
 
-        HandleTerrain();
-
         if (m_terrain is ContentRuinsTerrain)
         {
             m_event = GameEventFactory.GetRandomEvent(this);
@@ -94,7 +92,7 @@ public class GameTile : GameElementBase
         return m_building != null;
     }
 
-    private void HandleTerrain()
+    public void ChooseRandomTerrain()
     {
         int terrainVal = Random.Range(1, 101);
         if (terrainVal <= Constants.PercentChanceForTerrainGrasslands)
@@ -131,6 +129,9 @@ public class GameTile : GameElementBase
 
     public Sprite GetIcon()
     {
+        if (m_terrain == null)
+            return null;
+        
         if (HasBuilding())
         {
             return m_building.GetIcon();
