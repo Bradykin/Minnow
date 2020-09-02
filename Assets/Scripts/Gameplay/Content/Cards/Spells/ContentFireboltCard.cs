@@ -15,7 +15,7 @@ public class ContentFireboltCard : GameCardSpellBase
         m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
         m_icon = UIHelper.GetIconCard(m_name);
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
     }
 
     public override void PlayCard(GameEntity targetEntity)

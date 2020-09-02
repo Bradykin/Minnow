@@ -37,6 +37,6 @@ public class UIWallet : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Resources", "These are your current resources; gain them in the rush stage and spend them in the intermission phase!"));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Resources", "These are your current resources; gain them in the wave stage and spend them in the intermission phase!"));
     }
 }

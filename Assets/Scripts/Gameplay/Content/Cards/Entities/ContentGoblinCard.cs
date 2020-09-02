@@ -12,5 +12,7 @@ public class ContentGoblinCard : GameCardEntityBase
 
         m_playDesc = "A dubious goblin joins the fray on your side!  Yay...";
         m_cost = 1;
+
+        m_rarity = GameRarity.Starter;
     }
 }

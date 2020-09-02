@@ -45,7 +45,7 @@ public class UICard : WorldElementBase
     {
         m_imageRenderer.sprite = m_card.m_icon;
         m_nameText.text = m_card.m_name;
-        m_costText.text = m_card.m_cost + "";
+        m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
         m_descText.text = m_card.m_desc;
 
@@ -70,8 +70,16 @@ public class UICard : WorldElementBase
     {
         if (m_card.IsValidToPlay())
         {
-            UIHelper.SelectCard(this);
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
+            if (m_card.m_targetType == GameCard.Target.None)
+            {
+                m_card.PlayCard();
+                WorldController.Instance.PlayCard(this, this);
+            }
+            else
+            {
+                UIHelper.SelectCard(this);
+                UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
+            }
         }
         else
         {
@@ -84,7 +92,10 @@ public class UICard : WorldElementBase
 
     public void CardPlayed(WorldElementBase target)
     {
-        UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
+        if (target != null)
+        {
+            UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
+        }
     }
 
     public override void HandleTooltip()

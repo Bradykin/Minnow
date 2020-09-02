@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ContentMagicSchoolBuilding : GameBuildingBase
+{
+    public int m_magicIncrease;
+
+    public ContentMagicSchoolBuilding()
+    {
+        m_magicIncrease = 5;
+
+        m_name = "Magic School";
+        m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + " for each magic school.";
+        m_rarity = GameRarity.Uncommon;
+
+        m_maxHealth = 12;
+
+        m_expandsPlaceRange = false;
+
+        LateInit();
+    }
+
+    protected override void Die()
+    {
+        m_isDestroyed = true;
+    }
+
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    {
+        if (terrain is ContentForestTerrain)
+        {
+            return true;
+        }
+
+        return false;
+    }
+}

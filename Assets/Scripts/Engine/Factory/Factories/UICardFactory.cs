@@ -8,6 +8,8 @@ namespace Game.Util
 {
     public class UICardFactory : FactoryBase
     {
+
+        private readonly Transform m_waveHUD;
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
@@ -15,6 +17,7 @@ namespace Game.Util
         public UICardFactory(GameObject uiCardPrefab)
         {
             m_prefab = uiCardPrefab;
+            m_waveHUD = GameObject.Find("WaveHUD").transform;
         }
 
         //============================================================================================================//
@@ -29,11 +32,7 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject();
 
-            GameObject hudParent = GameObject.Find("WaveHUD");
-            if (hudParent != null)
-            {
-                obj.transform.parent = hudParent.transform;
-            }
+            obj.transform.parent = m_waveHUD;
 
             obj.GetComponent<UICard>().Init(card);
 

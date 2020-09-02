@@ -10,7 +10,7 @@ public class ContentFortressBuilding : GameBuildingBase
     public ContentFortressBuilding()
     {
         m_name = "Fortress";
-        m_desc = "Shoots at enemies on all surrounding tiles (but not this tile) with " + m_power + " power at the start of your turn.";
+        m_desc = "Shoots at enemies on tiles in a range of 2 with " + m_power + " power at the start of your turn.";
 
         m_maxHealth = 40;
         m_rarity = GameRarity.Common;
@@ -20,8 +20,13 @@ public class ContentFortressBuilding : GameBuildingBase
 
     public override void EndTurn()
     {
+        if (m_isDestroyed)
+        {
+            return;
+        }
+
         List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 1);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 2);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

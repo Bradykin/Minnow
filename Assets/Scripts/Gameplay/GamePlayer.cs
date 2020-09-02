@@ -20,13 +20,14 @@ public class GamePlayer : GameElementBase, ITurns
     public List<GameEntity> m_controlledEntities { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
+    private int m_spellPower = 0;
     public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
-    public GameRelicHolder m_relics;
+    private GameRelicHolder m_relics;
 
     public int m_waveNum;
     public int m_currentWaveTurn;
-    public int m_currentWaveEndTurn;
+    private int m_currentWaveEndTurn;
 
     private int m_curActions;
     private int m_maxActions;
@@ -62,7 +63,7 @@ public class GamePlayer : GameElementBase, ITurns
         DrawHand();
     }
 
-    private void DrawHand()
+    public void DrawHand()
     {
         for (int i = 0; i < m_hand.Count; i++)
         {
@@ -139,6 +140,21 @@ public class GamePlayer : GameElementBase, ITurns
         }
     }
 
+    //Bonus actions can go above the max (from things like smithies)
+    public void AddBonusActions(int toAdd)
+    {
+        m_curActions += toAdd;
+    }
+
+    public int GetEndWaveTurn()
+    {
+        int toReturn = m_currentWaveEndTurn;
+
+        toReturn -= 3 * GameHelper.RelicCount<ContentEmblemOfTianaRelic>();
+
+        return toReturn;
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)
@@ -150,6 +166,32 @@ public class GamePlayer : GameElementBase, ITurns
     public void AddEnergy(int toAdd)
     {
         m_curEnergy += toAdd;
+
+        if (m_curEnergy > m_maxEnergy)
+        {
+            m_curEnergy = m_maxEnergy;
+        }
+    }
+
+    //Bonus energy can go past the cap
+    public void AddBonusEnergy(int toAdd)
+    {
+        m_curEnergy += toAdd;
+    }
+
+    public int GetSpellPower()
+    {
+        int toReturn = m_spellPower;
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentMagicSchoolBuilding)
+            {
+                toReturn += ((ContentMagicSchoolBuilding)m_controlledBuildings[i]).m_magicIncrease;
+            }
+        }
+
+        return toReturn;
     }
 
     public void AddControlledEntity(GameEntity toAdd)
@@ -178,9 +220,32 @@ public class GamePlayer : GameElementBase, ITurns
         m_deckBase.AddCard(card);
     }
 
+    public GameRelicHolder GetRelics()
+    {
+        return m_relics;
+    }
+
+    public void AddRelic(GameRelic toAdd)
+    {
+        if (toAdd is ContentLoadedChestRelic)
+        {
+            m_wallet.AddResources(new GameWallet(200));
+        }
+
+        m_relics.AddRelic(toAdd);
+    }
+
     public int GetMaxEnergy()
     {
         int toReturn = m_maxEnergy;
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentEmberForgeBuilding)
+            {
+                toReturn -= 1;
+            }
+        }
 
         toReturn += 1 * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
 
@@ -191,9 +256,24 @@ public class GamePlayer : GameElementBase, ITurns
     {
         int toReturn = Constants.InitialHandSize;
 
+        if (m_currentWaveTurn == GetEndWaveTurn())
+        {
+            toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
+        }
+
         toReturn += 1 * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
 
         toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
+
+        toReturn -= 1 * GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i] is ContentMineBuilding)
+            {
+                toReturn += 1;
+            }
+        }
 
         return toReturn;
     }
@@ -205,7 +285,11 @@ public class GamePlayer : GameElementBase, ITurns
 
     public int GetMaxActions()
     {
-        return m_maxActions;
+        int toReturn = m_maxActions;
+
+        toReturn += 2 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
+
+        return toReturn;
     }
 
     public void ResetActions()
@@ -215,6 +299,12 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void OnEndWave()
     {
+        m_waveNum++;
+        m_currentWaveTurn = 0;
+        m_currentWaveEndTurn += Constants.WaveTurnIncrement;
+
+        ResetActions();
+
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].TriggerEndOfWave();
@@ -225,15 +315,13 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void StartTurn()
     {
-        m_currentWaveTurn++;
+        m_curEnergy = GetMaxEnergy();
 
-        if (m_currentWaveTurn > m_currentWaveEndTurn)
+        if (m_currentWaveTurn == 0)
         {
-            WorldController.Instance.StartIntermission();
-            return;
+            AddBonusEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
-        Debug.Log("Start player turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].StartTurn();
@@ -243,13 +331,18 @@ public class GamePlayer : GameElementBase, ITurns
         {
             m_controlledBuildings[i].StartTurn();
         }
-
-        m_curEnergy = GetMaxEnergy();
     }
 
     public void EndTurn()
     {
-        Debug.Log("End player turn");
+        m_currentWaveTurn++;
+        bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn();
+        
+        if (!shouldStartIntermission)
+        {
+            DrawHand();
+        }
+
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();
@@ -260,6 +353,9 @@ public class GamePlayer : GameElementBase, ITurns
             m_controlledBuildings[i].EndTurn();
         }
 
-        DrawHand();
+        if (shouldStartIntermission)
+        {
+            WorldController.Instance.StartIntermission();
+        }
     }
 }

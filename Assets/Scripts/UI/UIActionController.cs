@@ -93,6 +93,11 @@ public class UIActionController : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
         m_actionController.Activate();
     }
 

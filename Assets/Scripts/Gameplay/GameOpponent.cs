@@ -32,7 +32,6 @@ public class GameOpponent : ITurns
 
     public void StartTurn()
     {
-        Debug.Log("Start opponent turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].StartTurn();
@@ -42,7 +41,6 @@ public class GameOpponent : ITurns
 
     public void EndTurn()
     {
-        Debug.Log("End opponent turn");
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();

@@ -12,5 +12,6 @@ public class ContentInjuredTrollCard : GameCardEntityBase
 
         m_playDesc = "This troll may be injured for now, but it will soon be full strength and mighty!";
         m_cost = 2;
+        m_rarity = GameRarity.Starter;
     }
 }

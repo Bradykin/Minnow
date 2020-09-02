@@ -45,7 +45,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     protected virtual void LateInit()
     {
         m_curHealth = GetMaxHealth();
-        m_curAP = GetMaxAP();
+        m_curAP = GetAPRegen();
 
         m_icon = UIHelper.GetIconEntity(m_name);
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
@@ -62,7 +62,12 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int GetHit(int damage)
     {
-        damage -= m_curTile.GetDamageReduction();
+        bool ignoreTileDamageReduction = GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0;
+
+        if (!ignoreTileDamageReduction)
+        {
+            damage -= m_curTile.GetDamageReduction();
+        }
 
         if (damage < 0)
         {
@@ -88,11 +93,34 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
+        for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
+        {
+            bool shouldRevive = GameHelper.PercentChanceRoll(25);
+
+            if (shouldRevive)
+            {
+                m_curHealth = 1;
+                UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
+                return;
+            }
+        }
+
+        m_curHealth = 0;
+
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
         {
             Debug.LogError("Cannot kill entity as player doesn't exist.");
             return;
+        }
+
+        for (int i = 0; i < player.m_controlledBuildings.Count; i++)
+        {
+            if (player.m_controlledBuildings[i] is ContentGraveyardBuilding)
+            {
+                int goldToGain = ((ContentGraveyardBuilding)player.m_controlledBuildings[i]).m_goldToGain;
+                player.m_wallet.AddResources(new GameWallet(goldToGain));
+            }
         }
 
         if (GetTeam() == Team.Enemy)
@@ -302,6 +330,7 @@ public abstract class GameEntity : GameElementBase, ITurns
     {
         return GetPower();
     }
+
     protected virtual int GetDamageToDealTo(GameBuildingBase target)
     {
         return GetPower();
@@ -367,6 +396,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         if (GetTeam() == Team.Player)
         {
             toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
+            toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
         }
 
         return toReturn;
@@ -411,6 +441,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         int toReturn = m_apRegen;
 
         toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
+        toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
         return toReturn;
     }

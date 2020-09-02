@@ -10,9 +10,9 @@ public class ContentCardSelectionEvent : GameEvent
         m_eventDesc = "Select one of the following cards.";
         m_rarity = GameRarity.Common;
 
-        m_optionOne = new GameEventCardSelectOption(GameCardFactory.GetRandomNonEventCard());
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomNonEventCard());
-        m_optionThree = new GameEventCardSelectOption(GameCardFactory.GetRandomNonEventCard());
+        m_optionOne = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardEntityCard());
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
+        m_optionThree = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardCard());
 
         LateInit();
     }
