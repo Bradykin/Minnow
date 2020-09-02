@@ -544,10 +544,8 @@ public abstract class GameEntity : GameElementBase, ITurns
         string descString = "";
         if (m_desc != null && m_desc != "")
         {
-            descString += m_desc + "\n\n";
+            descString += m_desc;
         }
-
-        descString += m_keywordHolder.GetDesc() + "\n\n";
 
         return descString;
     }
