@@ -15,7 +15,7 @@ public class ContentCardIntermissionAction : GameActionIntermission
 
     public override void Activate()
     {
-        UICardSelectController.Instance.Init(GameCardFactory.GetRandomNonEventCard(), GameCardFactory.GetRandomNonEventCard(), GameCardFactory.GetRandomNonEventCard());
+        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardCard());
 
         SpendCost();
     }

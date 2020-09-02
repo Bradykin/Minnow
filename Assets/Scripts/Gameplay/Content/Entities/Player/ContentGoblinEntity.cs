@@ -12,7 +12,7 @@ public class ContentGoblinEntity : GameEntity
         m_power = 4;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
 
         m_name = "Goblin";
         m_typeline = Typeline.Monster;

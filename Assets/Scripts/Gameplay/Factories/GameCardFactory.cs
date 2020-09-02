@@ -1,48 +1,94 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameCardFactory
 {
-    public static GameCard GetRandomNonEventCard()
-    {
-        int r = Random.Range(0, 15);
+    private static List<GameCard> m_cards = new List<GameCard>();
+    private static List<GameCard> m_standardCards = new List<GameCard>();
+    private static List<GameCard> m_standardSpellCards = new List<GameCard>();
+    private static List<GameCard> m_standardEntityCards = new List<GameCard>();
 
-        switch (r)
+    private static bool m_hasInit = false;
+
+    public static void Init()
+    {
+        m_cards.Add(new ContentCureWoundsCard());
+        m_cards.Add(new ContentDevourerCard());
+        m_cards.Add(new ContentDrainCard());
+        m_cards.Add(new ContentDwarvenSoldierCard());
+        m_cards.Add(new ContentElvenRogueCard());
+        m_cards.Add(new ContentElvenSentinelCard());
+        m_cards.Add(new ContentElvenWizardCard());
+        m_cards.Add(new ContentEnergizeCard());
+        m_cards.Add(new ContentFireboltCard());
+        m_cards.Add(new ContentFishOracleCard());
+        m_cards.Add(new ContentGoblinCard());
+        m_cards.Add(new ContentGroundskeeperCard());
+        m_cards.Add(new ContentInjuredTrollCard());
+        m_cards.Add(new ContentNaturalScoutCard());
+        m_cards.Add(new ContentSabobotCard());
+        m_cards.Add(new ContentCaveDragonCard());
+        m_cards.Add(new ContentGrowthCard());
+        m_cards.Add(new ContentClearcutCard());
+
+        for (int i = 0; i < m_cards.Count; i++)
         {
-            case 0:
-                return new ContentCureWoundsCard();
-            case 1:
-                return new ContentDevourerCard();
-            case 2:
-                return new ContentDrainCard();
-            case 3:
-                return new ContentDwarvenSoldierCard();
-            case 4:
-                return new ContentElvenRogueCard();
-            case 5:
-                return new ContentElvenSentinelCard();
-            case 6:
-                return new ContentElvenWizardCard();
-            case 7:
-                return new ContentEnergizeCard();
-            case 8:
-                return new ContentFireboltCard();
-            case 9:
-                return new ContentFishOracleCard();
-            case 10:
-                return new ContentGoblinCard();
-            case 11:
-                return new ContentGroundskeeperCard();
-            case 12:
-                return new ContentInjuredTrollCard();
-            case 13:
-                return new ContentNaturalScoutCard();
-            case 14:
-                return new ContentSabobotCard();
-            default:
-                return null;
+            if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common 
+                || m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon 
+                || m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
+            {
+                m_standardCards.Add(m_cards[i]);
+
+                if (m_cards[i] is GameCardEntityBase)
+                {
+                    m_standardEntityCards.Add(m_cards[i]);
+                }
+                else
+                {
+                    m_standardSpellCards.Add(m_cards[i]);
+                }
+            }
         }
+
+        m_hasInit = true;
+    }
+
+    public static GameCard GetRandomStandardCard()
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int r = UnityEngine.Random.Range(0, m_standardCards.Count);
+
+        return (GameCard)Activator.CreateInstance(m_standardCards[r].GetType());
+    }
+
+    public static GameCard GetRandomStandardEntityCard()
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int r = UnityEngine.Random.Range(0, m_standardEntityCards.Count);
+
+        return (GameCard)Activator.CreateInstance(m_standardEntityCards[r].GetType());
+    }
+
+    public static GameCard GetRandomStandardSpellCard()
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int r = UnityEngine.Random.Range(0, m_standardSpellCards.Count);
+
+        return (GameCard)Activator.CreateInstance(m_standardSpellCards[r].GetType());
     }
 }
 

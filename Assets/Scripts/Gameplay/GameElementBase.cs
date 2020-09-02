@@ -9,8 +9,8 @@ public class GameElementBase
         Common,
         Uncommon,
         Rare,
-        Legend,
-        Unique
+        Starter,
+        Event
     }
 
     public string m_name { get; protected set; }

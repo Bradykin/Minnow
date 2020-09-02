@@ -13,7 +13,7 @@ public class ContentInjuredTrollEntity : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(4));
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Starter;
 
         m_name = "Injured Troll";
         m_desc = "Starts at 1 health and 0 AP.";

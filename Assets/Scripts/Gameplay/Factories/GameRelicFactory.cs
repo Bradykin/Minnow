@@ -1,40 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameRelicFactory
 {
+    private static List<GameRelic> m_relics = new List<GameRelic>();
+
+    private static bool m_hasInit = false;
+
+    public static void Init()
+    {
+        m_relics.Add(new ContentDominerickRefrainRelic());
+        m_relics.Add(new ContentHourglassOfSpeedRelic());
+        m_relics.Add(new ContentMaskOfAgesRelic());
+        m_relics.Add(new ContentMorlemainsSkullRelic());
+        m_relics.Add(new ContentMysticRuneRelic());
+        m_relics.Add(new ContentOrbOfEnergyRelic());
+        m_relics.Add(new ContentOrbOfHealthRelic());
+        m_relics.Add(new ContentSecretSoupRelic());
+        m_relics.Add(new ContentSoulTrapRelic());
+        m_relics.Add(new ContentSpiritCatcherRelic());
+        m_relics.Add(new ContentWolvenFangRelic());
+
+        m_hasInit = true;
+    }
+
     public static GameRelic GetRandomRelic()
     {
-        int r = Random.Range(0, 11);
-
-        switch (r)
+        if (!m_hasInit)
         {
-            case 0:
-                return new ContentDominerickRefrainRelic();
-            case 1:
-                return new ContentHourglassOfSpeedRelic();
-            case 2:
-                return new ContentMaskOfAgesRelic();
-            case 3:
-                return new ContentMorlemainsSkullRelic();
-            case 4:
-                return new ContentMysticRuneRelic();
-            case 5:
-                return new ContentOrbOfEnergyRelic();
-            case 6:
-                return new ContentOrbOfHealthRelic();
-            case 7:
-                return new ContentSecretSoupRelic();
-            case 8:
-                return new ContentSoulTrapRelic();
-            case 9:
-                return new ContentSpiritCatcherRelic();
-            case 10:
-                return new ContentWolvenFangRelic();
-            default:
-                return null;
+            Init();
         }
+
+        int r = UnityEngine.Random.Range(0, m_relics.Count);
+
+        return (GameRelic)Activator.CreateInstance(m_relics[r].GetType());
     }
 }
 

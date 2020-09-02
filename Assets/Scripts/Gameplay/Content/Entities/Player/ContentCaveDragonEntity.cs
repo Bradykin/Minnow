@@ -15,7 +15,7 @@ public class ContentCaveDragonEntity : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(3));
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Unique;
+        m_rarity = GameRarity.Event;
 
         m_name = "Cave Dragon";
         m_typeline = Typeline.Legend;
