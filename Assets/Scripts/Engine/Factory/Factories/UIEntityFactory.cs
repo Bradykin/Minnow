@@ -36,6 +36,11 @@ namespace Game.Util
                 obj.transform.parent = uiParent.transform;
             }
 
+            if (tile.GetGameTile().m_isFog)
+            {
+                obj.SetActive(false);
+            }
+
             obj.GetComponent<UIEntity>().Init(tile.GetGameTile().m_occupyingEntity);
 
             return obj.GetComponent<T>();

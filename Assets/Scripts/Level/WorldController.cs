@@ -148,6 +148,8 @@ public class WorldController : Singleton<WorldController>
 
         Globals.m_selectedEntity = null;
 
+        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardCard());
+
         if (player.m_waveNum == Constants.FinalWaveNum)
         {
             Debug.Log("Player is victorious!");
