@@ -44,7 +44,7 @@ public class GameCardSpellBase : GameCard
         TriggerSpellcraft();
     }
 
-    private void TriggerSpellcraft()
+    protected void TriggerSpellcraft()
     {
         GamePlayer player = GameHelper.GetPlayer();
 

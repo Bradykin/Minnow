@@ -33,7 +33,7 @@ public class WorldController : Singleton<WorldController>
 
     public void PlayCard(UICard card, WorldElementBase worldElementTarget)
     {
-        Globals.m_selectedCard.CardPlayed(worldElementTarget);
+        card.CardPlayed(worldElementTarget);
         Recycler.Recycle<UICard>(card);
         Globals.m_selectedCard = null;
 

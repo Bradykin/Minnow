@@ -10,7 +10,8 @@ public abstract class GameCard : GameElementBase
         Ally,
         Enemy,
         Entity,
-        Building
+        Building,
+        None //This is used for spells like 'Draw 3'
     }
 
     protected int m_cost { set; private get; }

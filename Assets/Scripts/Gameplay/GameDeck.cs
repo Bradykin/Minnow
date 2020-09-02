@@ -37,6 +37,15 @@ public class GameDeck
         {
             m_cards.Add(new ContentFireboltCard());
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            m_cards.Add(new ContentInsightCard());
+            m_cards.Add(new ContentDreamCard());
+            m_cards.Add(new ContentGrowTalonsCard());
+            m_cards.Add(new ContentTrollFormCard());
+            m_cards.Add(new ContentDemoncAspectCard());
+        }
     }
 
     public int Count()

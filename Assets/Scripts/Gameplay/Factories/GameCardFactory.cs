@@ -32,6 +32,11 @@ public static class GameCardFactory
         m_cards.Add(new ContentCaveDragonCard());
         m_cards.Add(new ContentGrowthCard());
         m_cards.Add(new ContentClearcutCard());
+        m_cards.Add(new ContentInsightCard());
+        m_cards.Add(new ContentDreamCard());
+        m_cards.Add(new ContentGrowTalonsCard());
+        m_cards.Add(new ContentTrollFormCard());
+        m_cards.Add(new ContentDemoncAspectCard());
 
         for (int i = 0; i < m_cards.Count; i++)
         {
