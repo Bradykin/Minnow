@@ -44,8 +44,6 @@ public class GamePlayer : GameElementBase, ITurns
         m_currentWaveTurn = 0;
         m_currentWaveEndTurn = Constants.InitialWaveSize;
 
-        m_relics.AddRelic(new ContentDominerickRefrainRelic());
-
         m_maxActions = 3;
     }
 
