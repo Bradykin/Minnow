@@ -22,6 +22,15 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSoulTrapRelic());
         m_relics.Add(new ContentSpiritCatcherRelic());
         m_relics.Add(new ContentWolvenFangRelic());
+        m_relics.Add(new ContentSackOfManyShapesRelic());
+        m_relics.Add(new ContentHoovesOfProductionRelic());
+        m_relics.Add(new ContentEmblemOfTianaRelic());
+        m_relics.Add(new ContentDestinyRelic());
+        m_relics.Add(new ContentPinnacleOfFearRelic());
+        m_relics.Add(new ContentNaturalDaggerRelic());
+        m_relics.Add(new ContentLoadedChestRelic());
+        m_relics.Add(new ContentLegendaryFragmentRelic());
+        m_relics.Add(new ContentTomeOfDuluhainRelic());
 
         m_hasInit = true;
     }

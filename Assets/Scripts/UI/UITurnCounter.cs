@@ -20,7 +20,7 @@ public class UITurnCounter : WorldElementBase
         }
 
         m_titleText.text = "Wave " + player.m_waveNum;
-        m_countText.text = player.m_currentWaveTurn + "/" + player.m_currentWaveEndTurn;
+        m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
     }
 
     void OnMouseOver()

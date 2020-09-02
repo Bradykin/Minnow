@@ -41,7 +41,7 @@ public class GameEventTakeRelicOption : GameEventOption
             return;
         }
 
-        player.m_relics.AddRelic(m_relic);
+        player.AddRelic(m_relic);
 
         EndEvent();
     }

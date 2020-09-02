@@ -13,10 +13,31 @@ public abstract class GameCard : GameElementBase
         Building
     }
 
-    public int m_cost;
+    protected int m_cost { set; private get; }
     public string m_typeline;
     public string m_playDesc;
     public Target m_targetType;
+
+    public int GetCost()
+    {
+        int toReturn = m_cost;
+
+        if (this is GameCardSpellBase)
+        {
+            toReturn -= GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        }
+        else if (this is GameCardEntityBase)
+        {
+            toReturn -= GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
+        }
+
+        if (toReturn < 0)
+        {
+            toReturn = 0;
+        }
+
+        return toReturn;
+    }
 
     public virtual void PlayCard() 
     {
@@ -54,7 +75,7 @@ public abstract class GameCard : GameElementBase
             return;
         }
 
-        player.SpendEnergy(m_cost);
+        player.SpendEnergy(GetCost());
     }
 
     public virtual bool IsValidToPlay() 
@@ -66,7 +87,7 @@ public abstract class GameCard : GameElementBase
             return false;
         }
 
-        if (player.m_curEnergy >= m_cost)
+        if (player.m_curEnergy >= GetCost())
         {
             return true;
         }

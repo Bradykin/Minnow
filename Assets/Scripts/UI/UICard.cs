@@ -45,7 +45,7 @@ public class UICard : WorldElementBase
     {
         m_imageRenderer.sprite = m_card.m_icon;
         m_nameText.text = m_card.m_name;
-        m_costText.text = m_card.m_cost + "";
+        m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
         m_descText.text = m_card.m_desc;
 

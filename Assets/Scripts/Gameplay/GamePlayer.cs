@@ -23,11 +23,11 @@ public class GamePlayer : GameElementBase, ITurns
     private int m_spellPower = 0;
     public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
-    public GameRelicHolder m_relics;
+    private GameRelicHolder m_relics;
 
     public int m_waveNum;
     public int m_currentWaveTurn;
-    public int m_currentWaveEndTurn;
+    private int m_currentWaveEndTurn;
 
     private int m_curActions;
     private int m_maxActions;
@@ -146,6 +146,15 @@ public class GamePlayer : GameElementBase, ITurns
         m_curActions += toAdd;
     }
 
+    public int GetEndWaveTurn()
+    {
+        int toReturn = m_currentWaveEndTurn;
+
+        toReturn -= 3 * GameHelper.RelicCount<ContentEmblemOfTianaRelic>();
+
+        return toReturn;
+    }
+
     private void ResetCurDeck()
     {
         for (int i = 0; i < m_deckBase.Count(); i++)
@@ -211,6 +220,21 @@ public class GamePlayer : GameElementBase, ITurns
         m_deckBase.AddCard(card);
     }
 
+    public GameRelicHolder GetRelics()
+    {
+        return m_relics;
+    }
+
+    public void AddRelic(GameRelic toAdd)
+    {
+        if (toAdd is ContentLoadedChestRelic)
+        {
+            m_wallet.AddResources(new GameWallet(200));
+        }
+
+        m_relics.AddRelic(toAdd);
+    }
+
     public int GetMaxEnergy()
     {
         int toReturn = m_maxEnergy;
@@ -232,9 +256,16 @@ public class GamePlayer : GameElementBase, ITurns
     {
         int toReturn = Constants.InitialHandSize;
 
+        if (m_currentWaveTurn == GetEndWaveTurn())
+        {
+            toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
+        }
+
         toReturn += 1 * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
 
         toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
+
+        toReturn -= 1 * GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
@@ -254,7 +285,11 @@ public class GamePlayer : GameElementBase, ITurns
 
     public int GetMaxActions()
     {
-        return m_maxActions;
+        int toReturn = m_maxActions;
+
+        toReturn += 2 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
+
+        return toReturn;
     }
 
     public void ResetActions()
@@ -282,13 +317,18 @@ public class GamePlayer : GameElementBase, ITurns
     {
         m_currentWaveTurn++;
 
-        if (m_currentWaveTurn > m_currentWaveEndTurn)
+        if (m_currentWaveTurn > GetEndWaveTurn())
         {
             WorldController.Instance.StartIntermission();
             return;
         }
 
         m_curEnergy = GetMaxEnergy();
+
+        if (m_currentWaveTurn == 0)
+        {
+            AddBonusEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
+        }
 
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {

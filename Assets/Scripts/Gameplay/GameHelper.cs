@@ -63,6 +63,6 @@ public static class GameHelper
             return 0;
         }
 
-        return player.m_relics.GetNumRelics<T>();
+        return player.GetRelics().GetNumRelics<T>();
     }
 }
