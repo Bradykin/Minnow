@@ -93,15 +93,18 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
-        for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
+        if (GetTeam() == Team.Player)
         {
-            bool shouldRevive = GameHelper.PercentChanceRoll(25);
-
-            if (shouldRevive)
+            for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
             {
-                m_curHealth = 1;
-                UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
-                return;
+                bool shouldRevive = GameHelper.PercentChanceRoll(25);
+
+                if (shouldRevive)
+                {
+                    m_curHealth = 1;
+                    UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
+                    return;
+                }
             }
         }
 
