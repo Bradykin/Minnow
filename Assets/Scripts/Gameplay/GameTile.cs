@@ -169,6 +169,13 @@ public class GameTile : GameElementBase
 
     public int GetCostToPass(GameEntity checkerEntity)
     {
+        bool canFly = checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null;
+
+        if (canFly)
+        {
+            return 1;
+        }
+
         if (HasBuilding())
         {
             return 2;
@@ -181,6 +188,13 @@ public class GameTile : GameElementBase
 
     public bool IsPassable(GameEntity checkerEntity)
     {
+        bool canFly = checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null;
+
+        if (canFly)
+        {
+            return true;
+        }
+
         bool isOccupiedOpposingTeam = IsOccupied();
         if (isOccupiedOpposingTeam)
         {
@@ -195,7 +209,6 @@ public class GameTile : GameElementBase
 
         bool terrainImpassable = !m_terrain.IsPassable();
 
-        
         if (isOccupiedOpposingTeam)
         {
             return false;

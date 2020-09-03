@@ -155,12 +155,23 @@ public class GamePlayer : GameElementBase, ITurns
         return toReturn;
     }
 
-    private void ResetCurDeck()
+    public void ResetCurDeck()
     {
+        for (int i = 0; i < m_hand.Count; i++)
+        {
+            m_curDeck.AddToDiscard(m_hand[i]);
+        }
+
+        m_hand = new List<GameCard>();
+
+        m_curDeck = new GameDeck();
+
         for (int i = 0; i < m_deckBase.Count(); i++)
         {
             m_curDeck.AddCard(m_deckBase.GetCardByIndex(i));
         }
+
+        m_curDeck.Shuffle();
     }
 
     public void AddEnergy(int toAdd)

@@ -13,6 +13,7 @@ public class ContentCaveDragonEntity : GameEntity
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(3));
+        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
         m_team = Team.Player;
         m_rarity = GameRarity.Event;

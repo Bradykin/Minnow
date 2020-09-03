@@ -121,6 +121,9 @@ public class WorldController : Singleton<WorldController>
 
     public void StartWaveEnemySpawn()
     {
+        WorldTile castleTile = WorldGridManager.Instance.m_gridArray[Constants.GridSizeX * 3 + 5];
+        List<GameTile> surroundingCastleTiles = WorldGridManager.Instance.GetSurroundingTiles(castleTile.GetGameTile(), 3, 0);
+
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
@@ -129,6 +132,10 @@ public class WorldController : Singleton<WorldController>
                 GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
                 if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsPassable(enemy))
                 {
+                    if (surroundingCastleTiles.Contains(WorldGridManager.Instance.m_gridArray[i].GetGameTile()))
+                    {
+                        continue;
+                    }
                     gameTile.PlaceEntity(enemy);
                     m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
                 }
@@ -170,6 +177,7 @@ public class WorldController : Singleton<WorldController>
         StartWaveEnemySpawn();
 
         GamePlayer player = m_gameController.m_player;
+        player.ResetCurDeck();
 
         player.StartTurn();
 
