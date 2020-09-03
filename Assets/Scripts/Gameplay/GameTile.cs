@@ -188,6 +188,11 @@ public class GameTile : GameElementBase
 
     public bool IsPassable(GameEntity checkerEntity)
     {
+        if (checkerEntity == null)
+        {
+            return false;
+        }
+
         bool canFly = checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null;
 
         if (canFly)
