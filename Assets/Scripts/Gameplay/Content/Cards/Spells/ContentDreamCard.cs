@@ -12,10 +12,10 @@ public class ContentDreamCard : GameCardSpellBase
         m_desc = "Draw " + m_toDraw + " cards.";
         m_playDesc = "You draw some cards!";
         m_targetType = Target.None;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Uncommon;
+
+        SetupBasicData();
     }
 
     public override void PlayCard()

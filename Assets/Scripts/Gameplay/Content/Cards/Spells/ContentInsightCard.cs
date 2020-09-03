@@ -15,10 +15,10 @@ public class ContentInsightCard : GameCardSpellBase
             m_playDesc += "Spellcraft. ";
         }
         m_targetType = Target.None;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Rare;
+
+        SetupBasicData();
     }
 
     public override void PlayCard()

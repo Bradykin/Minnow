@@ -108,13 +108,13 @@ public class GamePlayer : GameElementBase, ITurns
 
     public void PlayCard(GameCard card)
     {
-        if (card is GameCardSpellBase)
+        if (card.m_shouldExile)
         {
-            m_curDeck.AddToDiscard(card);
+            m_curDeck.RemoveCard(card);
         }
         else
         {
-            m_curDeck.RemoveCard(card);
+            m_curDeck.AddToDiscard(card);
         }
 
         m_hand.Remove(card);

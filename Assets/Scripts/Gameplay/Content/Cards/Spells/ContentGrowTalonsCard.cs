@@ -12,10 +12,11 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         m_desc = "Grant an ally +" + m_powerIncrease + " power.";
         m_playDesc = "The target grows talons.";
         m_targetType = Target.Ally;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Common;
+        m_shouldExile = true;
+
+        SetupBasicData();
     }
 
     public override void PlayCard(GameEntity targetEntity)

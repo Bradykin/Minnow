@@ -18,6 +18,7 @@ public abstract class GameCard : GameElementBase
     public string m_typeline;
     public string m_playDesc;
     public Target m_targetType;
+    public bool m_shouldExile;
 
     public int GetCost()
     {

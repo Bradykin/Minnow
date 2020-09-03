@@ -12,10 +12,11 @@ public class ContentTrollFormCard : GameCardSpellBase
         m_desc = "Give an entity regenrate " + m_regenNum + ".";
         m_playDesc = "The target begins to regenerate!";
         m_targetType = Target.Ally;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 1;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Uncommon;
+        m_shouldExile = true;
+
+        SetupBasicData();
     }
 
     public override void PlayCard(GameEntity targetEntity)
