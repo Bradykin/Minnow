@@ -44,15 +44,15 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     protected virtual void LateInit()
     {
-        m_curHealth = GetMaxHealth();
-        m_curAP = GetAPRegen();
-
         m_icon = UIHelper.GetIconEntity(m_name);
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
     }
 
     public virtual void OnSummon()
     {
+        m_curHealth = GetMaxHealth();
+        m_curAP = GetAPRegen();
+
         GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
         if (summonKeyword != null)
         {

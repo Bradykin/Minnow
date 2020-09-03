@@ -117,6 +117,7 @@ public class WorldController : Singleton<WorldController>
         }
 
         m_gameController.m_gameOpponent.m_controlledEntities.Clear();
+        m_gameController.m_player.m_controlledEntities.Clear();
     }
 
     public void StartWaveEnemySpawn()
