@@ -33,7 +33,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
     {
         GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
 
-        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 5 " + toGainCard.m_name + " cards.";
+        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 2 " + toGainCard.m_name + " cards.";
 
         return base.GetMessage();
     }
@@ -49,7 +49,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
         m_tile.m_occupyingEntity.Die();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 2; i++)
         {
             player.AddCardToDeck(new ContentDwarvenSoldierCard());
         }

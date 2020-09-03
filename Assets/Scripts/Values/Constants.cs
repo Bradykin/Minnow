@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Constants
 {
     //Game Data
-    public static int InitialHandSize = 5;
+    public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
 
     //UI Data
@@ -33,8 +33,8 @@ public static class Constants
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 
     //Wave Data
-    public static int InitialWaveSize = 10;
-    public static int WaveTurnIncrement = 5;
+    public static int InitialWaveSize = 5;
+    public static int WaveTurnIncrement = 2;
     public static int FinalWaveNum = 8;
 
     //Testing Data

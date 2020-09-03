@@ -13,7 +13,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         m_playDesc = "The target grows talons.";
         m_targetType = Target.Ally;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 
         SetupBasicData();
