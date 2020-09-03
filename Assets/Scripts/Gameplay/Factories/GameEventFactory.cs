@@ -15,6 +15,7 @@ public static class GameEventFactory
         m_events.Add(new ContentWonderousGenieEvent(tile));
         m_events.Add(new ContentOverturnedCartEvent(tile));
         m_events.Add(new ContentMillitiaEvent(tile));
+        m_events.Add(new ContentAngelicGiftEvent(tile));
 
         m_hasInit = true;
     }

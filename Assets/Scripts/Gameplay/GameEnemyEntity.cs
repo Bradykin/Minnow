@@ -14,6 +14,14 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
         m_gameOpponentController = gameOpponent;
     }
 
+    protected override void LateInit()
+    {
+        base.LateInit();
+
+        m_curHealth = GetMaxHealth();
+        m_curAP = GetAPRegen();
+    }
+
     //============================================================================================================//
 
     public virtual bool IsAIAbleToAttack()
