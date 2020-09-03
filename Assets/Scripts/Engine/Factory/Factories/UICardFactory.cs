@@ -17,7 +17,9 @@ namespace Game.Util
         public UICardFactory(GameObject uiCardPrefab)
         {
             m_prefab = uiCardPrefab;
-            m_waveHUD = GameObject.Find("WaveHUD").transform;
+            GameObject waveHUD = GameObject.Find("WaveHUD");
+            if (waveHUD != null)
+                m_waveHUD = waveHUD.transform;
         }
 
         //============================================================================================================//

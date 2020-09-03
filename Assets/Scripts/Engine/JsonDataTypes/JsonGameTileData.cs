@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldGridLevelCreatorRoot : MonoBehaviour
+public class JsonGameTileData
 {
-
+    public Vector2Int m_gridPosition;
 }

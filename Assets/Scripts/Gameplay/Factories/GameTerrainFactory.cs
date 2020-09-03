@@ -28,6 +28,11 @@ public class GameTerrainFactory
         return (GameTerrainBase)Activator.CreateInstance(m_terrain[r].GetType());
     }
 
+    public static GameTerrainBase GetTerrainClone(GameTerrainBase currentTerrain)
+    {
+        return (GameTerrainBase)Activator.CreateInstance(currentTerrain.GetType());
+    }
+
     public static GameTerrainBase GetNextTerrain(GameTerrainBase currentTerrain)
     {
         if (!hasInit)

@@ -36,12 +36,13 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     public void SetupEmptyGrid(Transform parent)
     {
-        Debug.Log("WorldGridManager Empty Grid Setup");
-        if (!m_setup)
+        if (m_setup)
         {
-            SetupSquareGrid(parent, false);
-            m_setup = true;
+            RecycleGrid();
         }
+
+        SetupSquareGrid(parent, false);
+        m_setup = true;
     }
 
     public void RecycleGrid()

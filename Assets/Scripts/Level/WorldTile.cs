@@ -125,7 +125,7 @@ public class WorldTile : WorldElementBase
         {
             if (Globals.m_currentlyPaintingTerrain != null)
             {
-                GetGameTile().SetTerrain(GameTerrainFactory.GetTerrain(Globals.m_currentlyPaintingTerrain));
+                GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
             }
         }
         
