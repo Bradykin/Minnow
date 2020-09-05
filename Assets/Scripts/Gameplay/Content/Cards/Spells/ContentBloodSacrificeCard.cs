@@ -12,10 +12,10 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_desc = "Sacrifice a friendly entity to draw 1 card and gain 1 energy (modified by spell power).";
         m_playDesc = "The sacrifice was for greater power...";
         m_targetType = Target.Ally;
-        m_typeline = "Spell - " + m_targetType.ToString();
         m_cost = 0;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Rare;
+
+        SetupBasicData();
     }
 
     public override void PlayCard(GameEntity targetEntity)

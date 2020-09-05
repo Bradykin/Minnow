@@ -6,6 +6,16 @@ public class GameCardSpellBase : GameCard
 {
     protected int m_spellEffect;
 
+    protected void SetupBasicData()
+    {
+        if (m_shouldExile)
+        {
+            m_typeline += "Exile ";
+        }
+        m_typeline += "Spell - " + m_targetType.ToString();
+        m_icon = UIHelper.GetIconCard(m_name);
+    }
+
     protected virtual int GetSpellValue()
     {
         int toReturn = m_spellEffect;

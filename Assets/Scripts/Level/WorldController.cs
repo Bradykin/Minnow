@@ -117,18 +117,29 @@ public class WorldController : Singleton<WorldController>
         }
 
         m_gameController.m_gameOpponent.m_controlledEntities.Clear();
+        m_gameController.m_player.m_controlledEntities.Clear();
     }
 
     public void StartWaveEnemySpawn()
     {
+        WorldTile castleTile = WorldGridManager.Instance.m_gridArray[Constants.GridSizeX * 3 + 5];
+        List<GameTile> surroundingCastleTiles = WorldGridManager.Instance.GetSurroundingTiles(castleTile.GetGameTile(), 3, 0);
+
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
                 GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
-                gameTile.PlaceEntity(enemy);
-                m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
+                if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsPassable(enemy))
+                {
+                    if (surroundingCastleTiles.Contains(WorldGridManager.Instance.m_gridArray[i].GetGameTile()))
+                    {
+                        continue;
+                    }
+                    gameTile.PlaceEntity(enemy);
+                    m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
+                }
             }
         }
     }
@@ -167,6 +178,7 @@ public class WorldController : Singleton<WorldController>
         StartWaveEnemySpawn();
 
         GamePlayer player = m_gameController.m_player;
+        player.ResetCurDeck();
 
         player.StartTurn();
 

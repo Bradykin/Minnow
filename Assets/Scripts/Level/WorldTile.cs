@@ -193,11 +193,17 @@ public class WorldTile : WorldElementBase
             if (!Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
                 string titleText = "Can't Place";
-                if (!GetGameTile().m_canPlace && GetGameTile().IsPassable() && Globals.m_selectedCard.m_card is GameCardEntityBase)
+                GameCardEntityBase entityCard = null;
+                if (Globals.m_selectedCard.m_card is GameCardEntityBase)
+                {
+                    entityCard = (GameCardEntityBase)Globals.m_selectedCard.m_card;
+                }
+
+                if (Globals.m_selectedCard.m_card is GameCardEntityBase && !GetGameTile().m_canPlace && GetGameTile().IsPassable(entityCard.GetEntity()))
                 {
                      UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
                 }
-                else if (GetGameTile().m_canPlace && !GetGameTile().IsPassable())
+                else if (GetGameTile().m_canPlace && entityCard != null && !GetGameTile().IsPassable(entityCard.GetEntity()))
                 {
                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Impassable terrain.", false));
                 }

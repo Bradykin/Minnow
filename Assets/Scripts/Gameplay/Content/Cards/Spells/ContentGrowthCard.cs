@@ -10,10 +10,10 @@ public class ContentGrowthCard : GameCardSpellBase
         m_desc = "Permanently grow grasslands into a forest!";
         m_playDesc = "Growth transforms the land into a forest";
         m_targetType = Target.Tile;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 2;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Uncommon;
+
+        SetupBasicData();
     }
 
     public override bool IsValidToPlay(GameTile targetTile)

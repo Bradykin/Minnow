@@ -809,7 +809,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 503742501
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f5b0e37175e55ad4aaae471d03342906, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -890,7 +890,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957420123
-  m_SortingLayer: 13
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 943b73bf612e9664ba0aa8a0a23e4b27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -972,7 +972,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -338322785
-  m_SortingLayer: 14
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -998,6 +998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_card: {fileID: 757981490098818965}
+  m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
   m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
 --- !u!1 &757981491177153831
@@ -1034,8 +1035,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.14, y: -52.54}
-  m_SizeDelta: {x: 448.92, y: 87.7}
+  m_AnchoredPosition: {x: 0.14, y: -54.03}
+  m_SizeDelta: {x: 448.92, y: 99.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &757981491177153828
 CanvasRenderer:
@@ -1065,18 +1066,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 72
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 72
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a really long desc!
+  m_Text: This is a really long desc! Two lines long!
 --- !u!1 &757981491269902606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1146,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -955077513
-  m_SortingLayer: 16
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a8bdc1063eff374781d3943db7f938b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}

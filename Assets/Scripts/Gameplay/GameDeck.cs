@@ -13,7 +13,7 @@ public class GameDeck
 
     public void FillStartingDeck()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             m_cards.Add(new ContentGoblinCard());
         }
@@ -28,14 +28,19 @@ public class GameDeck
             m_cards.Add(new ContentGroundskeeperCard());
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             m_cards.Add(new ContentCureWoundsCard());
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             m_cards.Add(new ContentFireboltCard());
+        }
+
+        for (int i = 0; i < 1; i++)
+        {
+            m_cards.Add(new ContentGrowTalonsCard());
         }
     }
 

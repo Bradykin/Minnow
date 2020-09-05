@@ -44,15 +44,15 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     protected virtual void LateInit()
     {
-        m_curHealth = GetMaxHealth();
-        m_curAP = GetAPRegen();
-
         m_icon = UIHelper.GetIconEntity(m_name);
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
     }
 
     public virtual void OnSummon()
     {
+        m_curHealth = GetMaxHealth();
+        m_curAP = GetAPRegen();
+
         GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
         if (summonKeyword != null)
         {
@@ -93,15 +93,18 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
-        for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
+        if (GetTeam() == Team.Player)
         {
-            bool shouldRevive = GameHelper.PercentChanceRoll(25);
-
-            if (shouldRevive)
+            for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
             {
-                m_curHealth = 1;
-                UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
-                return;
+                bool shouldRevive = GameHelper.PercentChanceRoll(25);
+
+                if (shouldRevive)
+                {
+                    m_curHealth = 1;
+                    UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
+                    return;
+                }
             }
         }
 
@@ -467,7 +470,7 @@ public abstract class GameEntity : GameElementBase, ITurns
             return false;
         }
 
-        if (!tile.IsPassable())
+        if (!tile.IsPassable(this))
         {
             return false;
         }
@@ -511,12 +514,12 @@ public abstract class GameEntity : GameElementBase, ITurns
             if (pathToTile[i] == m_curTile)
                 continue;
 
-            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass();
+            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
 
             if (projectedAPSpent > GetCurAP() || projectedAPSpent > apToUse)
                 break;
 
-            apSpent += pathToTile[i].GetCostToPass();
+            apSpent += pathToTile[i].GetCostToPass(this);
             destinationTile = pathToTile[i];
 
             if (apSpent < apToUse)
@@ -544,10 +547,8 @@ public abstract class GameEntity : GameElementBase, ITurns
         string descString = "";
         if (m_desc != null && m_desc != "")
         {
-            descString += m_desc + "\n\n";
+            descString += m_desc;
         }
-
-        descString += m_keywordHolder.GetDesc() + "\n\n";
 
         return descString;
     }

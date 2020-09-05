@@ -10,10 +10,10 @@ public class ContentClearcutCard : GameCardSpellBase
         m_desc = "Permanently turn forests back into grasslands!";
         m_playDesc = "You clearcut the forest down, leaving no trace behind.";
         m_targetType = Target.Tile;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 2;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Uncommon;
+
+        SetupBasicData();
     }
 
     public override bool IsValidToPlay(GameTile targetTile)

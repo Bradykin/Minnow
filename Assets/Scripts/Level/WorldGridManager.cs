@@ -217,7 +217,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             if (ignoreTerrainDifferences)
                 length++;
             else
-                length += path[i].GetCostToPass();
+                length += path[i].GetCostToPass(startingGridTile.m_occupyingEntity);
         }
 
         return length;
@@ -302,7 +302,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
                     break;
                 }
 
-                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable())
+                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity))
                     continue;
 
                 // if it's not in the open list...
@@ -313,7 +313,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
                 if (ignoreTerrainDifferences)
                     g = current.G + 1;
                 else
-                    g = current.G + adjacentTile.GetCostToPass();
+                    g = current.G + adjacentTile.GetCostToPass(startingGridTile.m_occupyingEntity);
 
                 if (adjacent == null)
                 {
@@ -420,7 +420,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (ignoreTerrainDifferences || !adjacentTile.IsPassable())
+                if (ignoreTerrainDifferences || !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity))
                     continue;
 
                 // if it's not in the open list...
@@ -431,7 +431,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
                 if (ignoreTerrainDifferences)
                     g = current.G + 1;
                 else
-                    g = current.G + adjacentTile.GetCostToPass();
+                    g = current.G + adjacentTile.GetCostToPass(startingGridTile.m_occupyingEntity);
 
                 if (g > currentAP)
                     continue;

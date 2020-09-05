@@ -13,7 +13,7 @@ public class ContentGroundskeeper : GameEntity
 
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
 
         m_name = "Groundskeeper";
         m_typeline = Typeline.Mystic;

@@ -10,6 +10,7 @@ public class ContentInjuredTrollEntity : GameEntity
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 4;
+
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(4));
 
         m_team = Team.Player;
@@ -21,6 +22,11 @@ public class ContentInjuredTrollEntity : GameEntity
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
+    }
+
+    public override void OnSummon()
+    {
+        base.OnSummon();
 
         m_curHealth = 1;
         m_curAP = 0;

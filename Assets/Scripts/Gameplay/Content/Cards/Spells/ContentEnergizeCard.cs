@@ -10,10 +10,10 @@ public class ContentEnergizeCard : GameCardSpellBase
         m_desc = "Maximize an entities AP.";
         m_playDesc = "The target gets energized!";
         m_targetType = Target.Entity;
-        m_typeline = "Spell - " + m_targetType;
         m_cost = 2;
-        m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = GameRarity.Uncommon;
+
+        SetupBasicData();
     }
 
     public override void PlayCard(GameEntity targetEntity)
