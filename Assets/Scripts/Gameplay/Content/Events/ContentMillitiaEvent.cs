@@ -59,6 +59,11 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override void BuildTooltip()
     {
+        if (m_tile.m_occupyingEntity == null)
+        {
+            return;
+        }
+
         GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
 
         if (m_tile.m_occupyingEntity.m_name != toGainCard.GetEntity().m_name)

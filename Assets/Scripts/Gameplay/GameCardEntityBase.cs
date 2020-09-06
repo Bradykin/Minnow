@@ -65,4 +65,11 @@ public class GameCardEntityBase : GameCard
     {
         return "Summon - " + m_entity.GetTypeline();
     }
+
+    public override void ResetCard()
+    {
+        base.ResetCard();
+
+        m_entity.Reset();
+    }
 }

@@ -171,6 +171,11 @@ public class GamePlayer : GameElementBase, ITurns
             m_curDeck.AddCard(m_deckBase.GetCardByIndex(i));
         }
 
+        for (int i = 0; i < m_curDeck.Count(); i++)
+        {
+            m_curDeck.GetCardByIndex(i).ResetCard();
+        }
+
         m_curDeck.Shuffle();
     }
 

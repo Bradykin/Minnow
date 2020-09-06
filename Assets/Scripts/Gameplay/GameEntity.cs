@@ -376,6 +376,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         UIHelper.ReselectEntity();
     }
 
+    public void Reset()
+    {
+        m_isDead = false;
+    }
+
     public GameKeywordHolder GetKeywordHolder()
     {
         return m_keywordHolder;

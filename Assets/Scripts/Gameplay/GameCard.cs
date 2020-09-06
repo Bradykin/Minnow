@@ -80,6 +80,11 @@ public abstract class GameCard : GameElementBase
         player.SpendEnergy(GetCost());
     }
 
+    public virtual void ResetCard()
+    {
+
+    }
+
     public virtual bool IsValidToPlay() 
     {
         GamePlayer player = GameHelper.GetPlayer();
