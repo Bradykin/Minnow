@@ -7,7 +7,7 @@ public class GameTerrainFactory
 {
     private static List<GameTerrainBase> m_terrain = new List<GameTerrainBase>();
 
-    private static bool hasInit = false;
+    private static bool m_hasInit = false;
     
     public static void Init()
     {
@@ -15,12 +15,12 @@ public class GameTerrainFactory
         m_terrain.Add(new ContentGrassTerrain());
         m_terrain.Add(new ContentMountainTerrain());
         m_terrain.Add(new ContentWaterTerrain());
-        hasInit = true;
+        m_hasInit = true;
     }
     
     public static GameTerrainBase GetRandomTerrain()
     {
-        if (!hasInit)
+        if (!m_hasInit)
             Init();
         
         int r = UnityEngine.Random.Range(0, m_terrain.Count);
@@ -35,7 +35,7 @@ public class GameTerrainFactory
 
     public static GameTerrainBase GetNextTerrain(GameTerrainBase currentTerrain)
     {
-        if (!hasInit)
+        if (!m_hasInit)
             Init();
 
         int r = m_terrain.FindIndex(t => t.GetType() == currentTerrain.GetType());
@@ -50,14 +50,13 @@ public class GameTerrainFactory
 
     public static GameTerrainBase GetTerrainFromJson(JsonGameTerrainData jsonData)
     {
-        if (!hasInit)
+        if (!m_hasInit)
             Init();
 
         int i = m_terrain.FindIndex(t => t.m_name == jsonData.name);
 
         GameTerrainBase newTerrain = (GameTerrainBase)Activator.CreateInstance(m_terrain[i].GetType());
-
-        newTerrain.SetSprite(jsonData.terrainImageNumber);
+        newTerrain.LoadFromJson(jsonData);
 
         return newTerrain;
     }

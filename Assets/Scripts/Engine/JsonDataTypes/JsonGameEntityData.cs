@@ -5,22 +5,18 @@ using UnityEngine;
 public struct JsonGameEntityData
 {
     //GameElementBase values
-    public string m_name;
-    public string m_desc;
-    public Sprite m_icon;
-    public int m_rarity;
-    public Color m_color;
+    public string name;
 
     //GameEntity data
-    public int m_team;
-    public int m_curHealth;
-    public int m_maxHealth;
-    public int m_curAP;
-    public int m_apRegen;
-    public int m_maxAP;
-    public int m_power;
-    public int m_typeline;
-    public GameKeywordHolder m_keywordHolder;
-    public int m_apToAttack;
-    public int m_sightRange;
+    public int team;
+    public int curHealth;
+    public int curAP;
+    public int maxHealth;
+    public int apRegen;
+    public int maxAP;
+    public int power;
+    public int typeline;
+    public GameKeywordHolder keywordHolder; // NOT IN JSON YET
+    public int apToAttack;
+    public int sightRange;
 }

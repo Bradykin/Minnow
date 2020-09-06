@@ -1,7 +1,7 @@
 ﻿namespace Game.Util
 {
-    public interface ILoad
+    public interface ILoad<T>
     {
-        void LoadFromJson();
+        void LoadFromJson(T jsonData);
     }
 }

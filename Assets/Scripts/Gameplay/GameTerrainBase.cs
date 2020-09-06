@@ -1,7 +1,7 @@
 ﻿using Game.Util;
 using UnityEngine;
 
-public abstract class GameTerrainBase : GameElementBase, ISave
+public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTerrainData>
 {
     public int m_damageReduction { get; protected set; }
 
@@ -45,18 +45,18 @@ public abstract class GameTerrainBase : GameElementBase, ISave
         JsonGameTerrainData jsonData = new JsonGameTerrainData
         {
             name = m_name,
-            //desc = m_desc,
-            //rarity = (int)m_rarity,
-            //color = m_color,
-
-            //damageReduction = m_damageReduction,
-            //isPassable = m_isPassable,
-            //costToPass = m_costToPass,
             terrainImageNumber = m_terrainImageNumber
         };
         
         var export = JsonUtility.ToJson(jsonData);
 
         return export;
+    }
+
+    public void LoadFromJson(JsonGameTerrainData jsonData)
+    {
+        m_terrainImageNumber = jsonData.terrainImageNumber;
+        
+        SetSprite(m_terrainImageNumber);
     }
 }
