@@ -47,4 +47,18 @@ public class GameTerrainFactory
 
         return (GameTerrainBase)Activator.CreateInstance(m_terrain[r].GetType());
     }
+
+    public static GameTerrainBase GetTerrainFromJson(JsonGameTerrainData jsonData)
+    {
+        if (!hasInit)
+            Init();
+
+        int i = m_terrain.FindIndex(t => t.m_name == jsonData.name);
+
+        GameTerrainBase newTerrain = (GameTerrainBase)Activator.CreateInstance(m_terrain[i].GetType());
+
+        newTerrain.SetSprite(jsonData.terrainImageNumber);
+
+        return newTerrain;
+    }
 }

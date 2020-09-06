@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Game.Util;
 using UnityEngine;
 
-public abstract class GameTerrainBase : GameElementBase
+public abstract class GameTerrainBase : GameElementBase, ISave
 {
     public int m_damageReduction { get; protected set; }
 
     protected bool m_isPassable = true;
     protected int m_costToPass;
-    protected int m_terrainNumber;
+    protected int m_terrainImageNumber;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable()
@@ -21,13 +20,43 @@ public abstract class GameTerrainBase : GameElementBase
         return m_costToPass;
     }
 
-    public void GetNextSprite()
+    public void SetSprite(int x)
     {
-        if (m_terrainNumber == 4)
-            m_terrainNumber = 1;
-        else
-            m_terrainNumber++;
+        if (x >= 0 && x <= 4)
+            m_terrainImageNumber = x;
 
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainNumber);
+        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+    }
+
+    public void SetNextSprite()
+    {
+        if (m_terrainImageNumber == 4)
+            m_terrainImageNumber = 1;
+        else
+            m_terrainImageNumber++;
+
+        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+    }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        JsonGameTerrainData jsonData = new JsonGameTerrainData
+        {
+            name = m_name,
+            //desc = m_desc,
+            //rarity = (int)m_rarity,
+            //color = m_color,
+
+            //damageReduction = m_damageReduction,
+            //isPassable = m_isPassable,
+            //costToPass = m_costToPass,
+            terrainImageNumber = m_terrainImageNumber
+        };
+        
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
     }
 }

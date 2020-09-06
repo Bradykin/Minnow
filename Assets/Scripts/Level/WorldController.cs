@@ -130,7 +130,7 @@ public class WorldController : Singleton<WorldController>
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-                GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
+                GameEnemyEntity enemy = GameEntityFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
                 if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsPassable(enemy))
                 {
                     if (surroundingCastleTiles.Contains(WorldGridManager.Instance.m_gridArray[i].GetGameTile()))

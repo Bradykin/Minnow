@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameElementBase
 {
-    public enum GameRarity
+    public enum GameRarity : int
     {
         Common,
         Uncommon,

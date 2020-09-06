@@ -8,8 +8,8 @@ public class ContentWaterTerrain : GameTerrainBase
     {
         m_name = "Water";
         m_desc = "Impassable.";
-        m_terrainNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainNumber);
+        m_terrainImageNumber = Random.Range(1, 5);
+        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.blue;
 
         m_isPassable = false;

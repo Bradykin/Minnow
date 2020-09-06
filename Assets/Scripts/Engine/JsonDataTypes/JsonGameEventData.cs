@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JsonGameEventData : MonoBehaviour
+public struct JsonGameEventData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //GameElementBase values
+    public string m_name;
+    public string m_desc;
+    public Sprite m_icon;
+    public int m_rarity;
+    public Color m_color;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //GameEvent values
+    public int m_APCost;
+    public string m_eventDesc;
+    public bool m_isComplete;
 }

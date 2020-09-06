@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Team
+public enum Team : int
 {
     Player,
     Enemy
 }
 
-public enum Typeline
+public enum Typeline : int
 {
     None,
     Humanoid,

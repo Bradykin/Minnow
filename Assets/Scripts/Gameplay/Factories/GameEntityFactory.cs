@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEnemyFactory
+public class GameEntityFactory
 {
+    private static List<GameEntity> m_playerEntities = new List<GameEntity>();
+
+
     private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
     private static List<GameEnemyEntity> m_commonEnemies = new List<GameEnemyEntity>();
 
@@ -12,6 +15,8 @@ public class GameEnemyFactory
     
     public static void Init()
     {
+        
+        
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSeigebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
