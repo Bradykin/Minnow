@@ -44,6 +44,16 @@ public class GameDeck
         }
     }
 
+    public List<GameCard> GetDeck()
+    {
+        return m_cards;
+    }
+
+    public List<GameCard> GetDiscard()
+    {
+        return m_discard;
+    }
+
     public int Count()
     {
         return m_cards.Count;

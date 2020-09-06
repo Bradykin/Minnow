@@ -33,6 +33,18 @@ public class UIDeck : WorldElementBase
         Globals.m_canScroll = true;
     }
 
+    void OnMouseDown()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck());
+    }
+
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Deck", "This is your deck!  When you run out of cards here, your discard will shuffle back in."));
