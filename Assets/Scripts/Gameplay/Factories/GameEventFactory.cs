@@ -21,6 +21,7 @@ public static class GameEventFactory
         m_events.Add(new ContentRogueEvent(tile));
         m_events.Add(new ContentMysteryWanderer(tile));
         m_events.Add(new ContentStablesEvent(tile));
+        m_events.Add(new ContentZombieOutbreakEvent(tile));
 
         m_hasInit = true;
     }

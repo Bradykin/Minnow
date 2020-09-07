@@ -31,6 +31,13 @@ public class GameTile : GameElementBase
         }
     }
 
+    public void SwapEntity(GameEntity newEntity)
+    {
+        m_occupyingEntity = newEntity;
+        newEntity.m_curTile = this;
+        newEntity.OnSummon();
+    }
+
     public void PlaceEntity(GameEntity newEntity)
     {
         if (IsOccupied())

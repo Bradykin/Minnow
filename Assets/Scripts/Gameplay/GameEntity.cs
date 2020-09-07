@@ -354,6 +354,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         return m_team;
     }
 
+    public void SetTeam(Team newTeam)
+    {
+        m_team = newTeam;
+    }
+
     public int GetCurAP()
     {
         return m_curAP;
