@@ -10,7 +10,7 @@ public class ContentHeroCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
-        m_cost = 1;
+        m_playDesc = "Fear not, a hero has arrived.";
+        m_cost = 4;
     }
 }
