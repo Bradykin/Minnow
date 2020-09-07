@@ -16,6 +16,7 @@ public class ContentCyclops : GameEntity
         m_rarity = GameRarity.Rare;
 
         m_name = "Cyclops";
+        m_desc = "Has a sight range of 1";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 

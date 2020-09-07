@@ -10,7 +10,7 @@ public class ContentShadowWarlockCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
-        m_cost = 1;
+        m_playDesc = "Dark powers form a figure out of the shadows!";
+        m_cost = 2;
     }
 }
