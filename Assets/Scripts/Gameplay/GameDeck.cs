@@ -45,7 +45,8 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentArcaneBoltCard());
+            m_cards.Add(new ContentEntangleSpell());
+            m_cards.Add(new ContentCaveDragonCard());
         }
     }
 
