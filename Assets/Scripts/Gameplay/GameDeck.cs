@@ -45,8 +45,7 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentZombieCard());
-            m_cards.Add(new ContentDemonSoldierCard());
+            m_cards.Add(new ContentDwarfArchitectCard());
         }
     }
 

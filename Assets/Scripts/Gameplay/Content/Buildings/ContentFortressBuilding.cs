@@ -25,8 +25,7 @@ public class ContentFortressBuilding : GameBuildingBase
             return;
         }
 
-        List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 2);
+        List<WorldTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 2);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

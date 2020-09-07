@@ -40,6 +40,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentBloodSacrificeCard());
         m_cards.Add(new ContentJoltCard());
         m_cards.Add(new ContentDemonSoldierCard());
+        m_cards.Add(new ContentDwarfArchitectCard());
 
         for (int i = 0; i < m_cards.Count; i++)
         {
