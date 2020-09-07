@@ -42,11 +42,6 @@ public class GameDeck
         {
             m_cards.Add(new ContentGrowTalonsCard());
         }
-
-        for (int i = 0; i < 1; i++)
-        {
-            m_cards.Add(new ContentWildfolkCard());
-        }
     }
 
     public List<GameCard> GetDeck()
