@@ -45,7 +45,7 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentSkeletonCard());
+            m_cards.Add(new ContentWandererCard());
         }
     }
 

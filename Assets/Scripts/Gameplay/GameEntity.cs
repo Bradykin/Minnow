@@ -52,6 +52,10 @@ public abstract class GameEntity : GameElementBase, ITurns
     {
         m_curHealth = GetMaxHealth();
         m_curAP = GetAPRegen();
+        if (m_curAP > m_maxAP)
+        {
+            m_curAP = m_maxAP;
+        }
 
         GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
         if (summonKeyword != null)
