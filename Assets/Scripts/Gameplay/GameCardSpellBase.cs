@@ -18,7 +18,7 @@ public class GameCardSpellBase : GameCard
 
     protected virtual int GetSpellValue()
     {
-        int toReturn = m_spellEffect;
+        int toReturn = m_spellEffect + GameHelper.GetPlayer().GetSpellPower();
 
         toReturn += 5 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
         toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
