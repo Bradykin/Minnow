@@ -13,7 +13,7 @@ public class ContentDreamCard : GameCardSpellBase
         m_playDesc = "You draw some cards!";
         m_targetType = Target.None;
         m_cost = 1;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         SetupBasicData();
     }

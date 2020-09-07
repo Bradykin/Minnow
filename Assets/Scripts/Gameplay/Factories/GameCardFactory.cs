@@ -10,6 +10,18 @@ public static class GameCardFactory
     private static List<GameCard> m_standardSpellCards = new List<GameCard>();
     private static List<GameCard> m_standardEntityCards = new List<GameCard>();
 
+    private static List<GameCard> m_rareCards = new List<GameCard>();
+    private static List<GameCard> m_uncommonCards = new List<GameCard>();
+    private static List<GameCard> m_commonCards = new List<GameCard>();
+
+    private static List<GameCard> m_rareEntityCards = new List<GameCard>();
+    private static List<GameCard> m_uncommonEntityCards = new List<GameCard>();
+    private static List<GameCard> m_commonEntityCards = new List<GameCard>();
+
+    private static List<GameCard> m_rareSpellCards = new List<GameCard>();
+    private static List<GameCard> m_uncommonSpellCards = new List<GameCard>();
+    private static List<GameCard> m_commonSpellCards = new List<GameCard>();
+
     private static bool m_hasInit = false;
 
     public static void Init()
@@ -70,13 +82,55 @@ public static class GameCardFactory
                 if (m_cards[i] is GameCardEntityBase)
                 {
                     m_standardEntityCards.Add(m_cards[i]);
+                    if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common)
+                    {
+                        m_commonEntityCards.Add(m_cards[i]);
+                    }
+                    else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+                    {
+                        m_uncommonEntityCards.Add(m_cards[i]);
+                    }
+                    else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
+                    {
+                        m_rareEntityCards.Add(m_cards[i]);
+                    }
                 }
                 else
                 {
                     m_standardSpellCards.Add(m_cards[i]);
+
+                    if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common)
+                    {
+                        m_commonSpellCards.Add(m_cards[i]);
+                    }
+                    else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+                    {
+                        m_uncommonSpellCards.Add(m_cards[i]);
+                    }
+                    else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
+                    {
+                        m_rareSpellCards.Add(m_cards[i]);
+                    }
                 }
             }
+
+            if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common)
+            {
+                m_commonCards.Add(m_cards[i]);
+            }
+            else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+            {
+                m_uncommonCards.Add(m_cards[i]);
+            }
+            else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
+            {
+                m_rareCards.Add(m_cards[i]);
+            }
         }
+
+        //Debug.Log("Common Cards: " + m_commonCards.Count);
+        //Debug.Log("Uncommon Cards: " + m_uncommonCards.Count);
+        //Debug.Log("Rare Cards: " + m_rareCards.Count);
 
         m_hasInit = true;
     }
@@ -88,9 +142,22 @@ public static class GameCardFactory
             Init();
         }
 
-        int r = UnityEngine.Random.Range(0, m_standardCards.Count);
+        List<GameCard> checkList;
 
-        return GetCardClone(m_standardCards[r]);
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
+        {
+            checkList = m_uncommonCards;
+        }
+        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
+        {
+            checkList = m_rareCards;
+        }
+        else
+        {
+            checkList = m_commonCards;
+        }
+
+        return GetCardFromList(checkList);
     }
 
     public static GameCard GetRandomStandardEntityCard()
@@ -100,9 +167,22 @@ public static class GameCardFactory
             Init();
         }
 
-        int r = UnityEngine.Random.Range(0, m_standardEntityCards.Count);
+        List<GameCard> checkList;
 
-        return GetCardClone(m_standardEntityCards[r]);
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
+        {
+            checkList = m_uncommonEntityCards;
+        }
+        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
+        {
+            checkList = m_rareEntityCards;
+        }
+        else
+        {
+            checkList = m_commonEntityCards;
+        }
+
+        return GetCardFromList(checkList);
     }
 
     public static GameCard GetRandomStandardSpellCard()
@@ -112,14 +192,33 @@ public static class GameCardFactory
             Init();
         }
 
-        int r = UnityEngine.Random.Range(0, m_standardSpellCards.Count);
+        List<GameCard> checkList;
 
-        return GetCardClone(m_standardSpellCards[r]);
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
+        {
+            checkList = m_uncommonSpellCards;
+        }
+        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
+        {
+            checkList = m_rareSpellCards;
+        }
+        else
+        {
+            checkList = m_commonSpellCards;
+        }
+        return GetCardFromList(checkList);
     }
 
     public static GameCard GetCardClone(GameCard toClone)
     {
         return (GameCard)Activator.CreateInstance(toClone.GetType());
+    }
+
+    private static GameCard GetCardFromList(List<GameCard> list)
+    {
+        int r = UnityEngine.Random.Range(0, list.Count);
+
+        return GetCardClone(list[r]);
     }
 }
 
