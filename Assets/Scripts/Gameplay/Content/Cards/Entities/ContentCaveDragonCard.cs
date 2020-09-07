@@ -12,7 +12,5 @@ public class ContentCaveDragonCard : GameCardEntityBase
 
         m_playDesc = "While stunted by growing in a cave; this dragon is still feirce!";
         m_cost = 6;
-
-        m_rarity = GameRarity.Event;
     }
 }

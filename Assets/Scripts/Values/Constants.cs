@@ -8,6 +8,9 @@ public static class Constants
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
 
+    public static int PercentChanceForUncommonCard = 25;
+    public static int PercentChanceForRareCard = 12;
+
     //UI Data
     public static float TooltipWidth = 5.5f;
 
@@ -34,7 +37,7 @@ public static class Constants
 
     //Wave Data
     public static int InitialWaveSize = 5;
-    public static int WaveTurnIncrement = 2;
+    public static int WaveTurnIncrement = 1;
     public static int FinalWaveNum = 8;
 
     //Testing Data

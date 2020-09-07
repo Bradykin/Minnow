@@ -52,6 +52,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         m_curHealth = GetMaxHealth();
         m_curAP = GetAPRegen();
+        if (m_curAP > m_maxAP)
+        {
+            m_curAP = m_maxAP;
+        }
 
         GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
         if (summonKeyword != null)
@@ -62,6 +66,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual int GetHit(int damage)
     {
+        if (m_isDead)
+        {
+            return 0;
+        }
+
         bool ignoreTileDamageReduction = false;
 
         if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
@@ -96,21 +105,35 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return damage;
     }
 
-    public virtual void Die()
+    protected virtual bool ShouldRevive()
     {
+        bool shouldRevive = false;
+
         if (GetTeam() == Team.Player)
         {
             for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
             {
-                bool shouldRevive = GameHelper.PercentChanceRoll(25);
-
-                if (shouldRevive)
-                {
-                    m_curHealth = 1;
-                    UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
-                    return;
-                }
+                shouldRevive = GameHelper.PercentChanceRoll(25);
             }
+        }
+
+        return shouldRevive;
+    }
+
+    public virtual void Die()
+    {
+        if (m_isDead)
+        {
+            return;
+        }
+
+        bool shouldRevive = ShouldRevive();
+
+        if (shouldRevive)
+        {
+            m_curHealth = 1;
+            UIHelper.CreateWorldElementNotification(m_name + " stands back up from a mortal wound.", true, m_curTile.m_curTile);
+            return;
         }
 
         m_curHealth = 0;
@@ -120,6 +143,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             Debug.LogError("Cannot kill entity as player doesn't exist.");
             return;
+        }
+
+        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
+        if (deathKeyword != null)
+        {
+            deathKeyword.DoAction();
         }
 
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
@@ -153,12 +182,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 player.DrawCards(numRelics);
             }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
-        }
-
-        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
-        if (deathKeyword != null)
-        {
-            deathKeyword.DoAction();
         }
 
         m_isDead = true;
@@ -406,7 +429,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_keywordHolder;
     }
 
-    public int GetRange()
+    public virtual int GetRange()
     {
         GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (rangeKeyword != null)
@@ -417,7 +440,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return 1;
     }
 
-    public int GetPower()
+    public virtual int GetPower()
     {
         int toReturn = m_power;
 
@@ -452,6 +475,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return toReturn;
     }
 
+    public void AddMaxHealth(int toAdd)
+    {
+        m_maxHealth += toAdd;
+    }
+
     public int GetMaxAP()
     {
         int toReturn = m_maxAP;
@@ -464,7 +492,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return toReturn;
     }
 
-    public int GetAPRegen()
+    public virtual int GetAPRegen()
     {
         int toReturn = m_apRegen;
 
