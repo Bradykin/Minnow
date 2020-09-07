@@ -31,8 +31,6 @@ public class GameEventCardSelectOption : GameEventOption
 
     public override string GetMessage()
     {
-        GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
-
         m_message = "Gain " + m_card.m_name + ".";
 
         return base.GetMessage();
@@ -47,7 +45,7 @@ public class GameEventCardSelectOption : GameEventOption
             return;
         }
 
-        player.AddCardToDeck(new ContentDwarvenSoldierCard());
+        player.AddCardToDeck(GameCardFactory.GetCardClone(m_card));
 
         EndEvent();
     }

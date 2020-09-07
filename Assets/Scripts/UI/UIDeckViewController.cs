@@ -5,21 +5,32 @@ using Game.Util;
 
 public class UIDeckViewController : Singleton<UIDeckViewController>
 {
+    public enum DeckViewType
+    {
+        View,
+        Remove,
+        Transform,
+        Duplicate
+    }
+
+
     public UICardDeckView[] m_cards;
 
     public GameObject m_holder;
     public int m_index;
 
     private List<GameCard> m_deck;
+    private DeckViewType m_viewType;
 
     void Update()
     {
         m_holder.SetActive(Globals.m_inDeckView);
     }
 
-    public void Init(List<GameCard> deck)
+    public void Init(List<GameCard> deck, DeckViewType viewType)
     {
         m_deck = deck;
+        m_viewType = viewType;
 
         SetIndex(0);
     }
@@ -40,11 +51,12 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     {
         m_index = index;
 
-        UpdateDeck();
+        UpdateDeck(m_viewType);
     }
 
-    private void UpdateDeck()
+    public void UpdateDeck(DeckViewType newViewType)
     {
+        m_viewType = newViewType;
         UITooltipController.Instance.ClearTooltipStack();
         Globals.m_canScroll = false;
 
@@ -57,7 +69,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         {
             if (m_deck.Count > i + indexMod)
             {
-                m_cards[i].Init(m_deck[i + indexMod]);
+                m_cards[i].Init(m_deck[i + indexMod], m_viewType);
                 m_cards[i].gameObject.SetActive(true);
             }
             else

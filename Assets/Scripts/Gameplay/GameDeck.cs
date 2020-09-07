@@ -77,6 +77,7 @@ public class GameDeck
     public void RemoveCard(GameCard toRemove)
     {
         m_cards.Remove(toRemove);
+        m_discard.Remove(toRemove);
     }
 
     public void AddCard(GameCard card)

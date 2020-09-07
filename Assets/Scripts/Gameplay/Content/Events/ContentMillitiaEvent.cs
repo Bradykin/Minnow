@@ -21,19 +21,19 @@ public class ContentMillitiaEvent : GameEvent
 public class GameEventHelpMillitiaOption : GameEventOption
 {
     private GameTile m_tile;
+    private GameCard m_card;
 
     public GameEventHelpMillitiaOption(GameTile tile)
     {
         m_tile = tile;
+        m_card = new ContentDwarvenSoldierCard();
 
         m_hasTooltip = true;
     }
 
     public override string GetMessage()
     {
-        GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
-
-        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 2 " + toGainCard.m_name + " cards.";
+        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 2 " + m_card.m_name + " cards.";
 
         return base.GetMessage();
     }
@@ -51,7 +51,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
         for (int i = 0; i < 2; i++)
         {
-            player.AddCardToDeck(new ContentDwarvenSoldierCard());
+            player.AddCardToDeck(GameCardFactory.GetCardClone(m_card));
         }
 
         EndEvent();
@@ -64,7 +64,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
             return;
         }
 
-        GameCardEntityBase toGainCard = new ContentDwarvenSoldierCard();
+        GameCardEntityBase toGainCard = (GameCardEntityBase)m_card;
 
         if (m_tile.m_occupyingEntity.m_name != toGainCard.GetEntity().m_name)
         {

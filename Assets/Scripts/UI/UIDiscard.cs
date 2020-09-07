@@ -42,7 +42,7 @@ public class UIDiscard : WorldElementBase
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_curDeck.GetDiscard());
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View);
     }
 
     public override void HandleTooltip()

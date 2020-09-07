@@ -42,7 +42,7 @@ public class UIDeck : WorldElementBase
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck());
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.Transform);
     }
 
     public override void HandleTooltip()

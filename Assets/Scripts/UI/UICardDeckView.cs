@@ -19,24 +19,58 @@ public class UICardDeckView : WorldElementBase
 
     public GameCard m_card { get; private set; }
 
-    public void Init(GameCard card)
+    private UIDeckViewController.DeckViewType m_viewType;
+
+    public void Init(GameCard card, UIDeckViewController.DeckViewType viewType)
     {
         m_card = card;
+        m_viewType = viewType;
 
         SetCardData();
     }
 
     void OnMouseDown()
     {
-        /*if (m_card == null)
+        if (m_card == null)
         {
             return;
         }
 
-        UICardSelectController.Instance.AcceptCard(m_card);
+        if (m_viewType == UIDeckViewController.DeckViewType.View)
+        {
+            return;
+        }
+
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
+        if (m_viewType == UIDeckViewController.DeckViewType.Remove)
+        {
+            player.m_deckBase.RemoveCard(m_card);
+            player.m_curDeck.RemoveCard(m_card);
+        }
+        else if (m_viewType == UIDeckViewController.DeckViewType.Duplicate)
+        {
+            GameCard dupCard = GameCardFactory.GetCardClone(m_card);
+            player.m_deckBase.AddCard(dupCard);
+            player.m_curDeck.AddCard(dupCard);
+        }
+        else if (m_viewType == UIDeckViewController.DeckViewType.Transform)
+        {
+            GameCard newCard = GameCardFactory.GetRandomStandardCard();
+            player.m_deckBase.RemoveCard(m_card);
+            player.m_curDeck.RemoveCard(m_card);
+            player.m_deckBase.AddCard(newCard);
+            player.m_curDeck.AddToDiscard(newCard);
+        }
+
+        UIDeckViewController.Instance.UpdateDeck(UIDeckViewController.DeckViewType.View);
 
         UIHelper.SetDefaultTintColor(m_tintRenderer);
-        GetComponent<UITooltipGenerator>().ClearTooltip();*/
+        GetComponent<UITooltipGenerator>().ClearTooltip();
     }
 
     void OnMouseOver()
