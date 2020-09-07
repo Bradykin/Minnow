@@ -10,7 +10,7 @@ public class ContentSkeletonCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "It rises from the grave again and again...";
         m_cost = 1;
     }
 }

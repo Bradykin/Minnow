@@ -101,6 +101,21 @@ public abstract class GameEntity : GameElementBase, ITurns
         return damage;
     }
 
+    protected virtual bool ShouldRevive()
+    {
+        bool shouldRevive = false;
+
+        if (GetTeam() == Team.Player)
+        {
+            for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
+            {
+                shouldRevive = GameHelper.PercentChanceRoll(25);
+            }
+        }
+
+        return shouldRevive;
+    }
+
     public virtual void Die()
     {
         if (m_isDead)
@@ -108,19 +123,13 @@ public abstract class GameEntity : GameElementBase, ITurns
             return;
         }
 
-        if (GetTeam() == Team.Player)
-        {
-            for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
-            {
-                bool shouldRevive = GameHelper.PercentChanceRoll(25);
+        bool shouldRevive = ShouldRevive();
 
-                if (shouldRevive)
-                {
-                    m_curHealth = 1;
-                    UIHelper.CreateWorldElementNotification("Destiny smiles upon " + m_name + ".", true, m_curTile.m_curTile);
-                    return;
-                }
-            }
+        if (shouldRevive)
+        {
+            m_curHealth = 1;
+            UIHelper.CreateWorldElementNotification(m_name + " stands back up from a mortal wound.", true, m_curTile.m_curTile);
+            return;
         }
 
         m_curHealth = 0;
@@ -460,6 +469,11 @@ public abstract class GameEntity : GameElementBase, ITurns
         }
 
         return toReturn;
+    }
+
+    public void AddMaxHealth(int toAdd)
+    {
+        m_maxHealth += toAdd;
     }
 
     public int GetMaxAP()
