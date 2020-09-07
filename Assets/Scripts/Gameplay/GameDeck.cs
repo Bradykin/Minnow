@@ -45,10 +45,7 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentHomonculusCard());
-            m_cards.Add(new ContentDwarfArchitectCard());
-            m_cards.Add(new ContentDwarfHealerCard());
-            m_cards.Add(new ContentGuardCaptainCard());
+            m_cards.Add(new ContentMageCard());
         }
     }
 

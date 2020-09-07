@@ -10,7 +10,7 @@ public class ContentMageCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "Still learning, but soon a force to be reckoned with!";
         m_cost = 1;
     }
 }
