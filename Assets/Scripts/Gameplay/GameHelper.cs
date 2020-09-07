@@ -54,6 +54,21 @@ public static class GameHelper
         return WorldController.Instance.m_gameController.m_player;
     }
 
+    public static GameOpponent GetOpponent()
+    {
+        if (WorldController.Instance == null)
+        {
+            return null;
+        }
+
+        if (WorldController.Instance.m_gameController == null)
+        {
+            return null;
+        }
+
+        return WorldController.Instance.m_gameController.m_gameOpponent;
+    }
+
     public static int RelicCount<T>()
     {
         GamePlayer player = GameHelper.GetPlayer();

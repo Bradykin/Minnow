@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentZombie : GameEntity
+public class ContentZombieEnemy : GameEnemyEntity
 {
-    public ContentZombie()
+    public ContentZombieEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 8;
-        m_maxAP = 3;
-        m_apRegen = 2;
-        m_power = 2;
+        ContentZombie zombieOrigin = new ContentZombie();
+        zombieOrigin.SetTeam(Team.Enemy);
 
-        m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_maxHealth = zombieOrigin.GetMaxHealth();
+        m_maxAP = zombieOrigin.GetMaxAP();
+        m_apRegen = zombieOrigin.GetAPRegen();
+        m_power = zombieOrigin.GetPower();
+
+        m_team = Team.Enemy;
+        m_rarity = GameRarity.Rare;
 
         m_name = "Zombie";
         m_desc = "When this entity hits another entity, turn it into a zombie.";

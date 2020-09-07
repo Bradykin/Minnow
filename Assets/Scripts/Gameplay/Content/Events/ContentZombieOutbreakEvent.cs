@@ -20,12 +20,11 @@ public class ContentZombieOutbreakEvent : GameEvent
 public class GameEventZombieOutbreakOption : GameEventOption
 {
     private GameTile m_tile;
-    private GameEntity m_zombieEntity;
+    private GameEnemyEntity m_zombieEntity;
 
     public GameEventZombieOutbreakOption(GameTile tile)
     {
-        m_zombieEntity = new ContentZombie();
-        m_zombieEntity.SetTeam(Team.Enemy);
+        m_zombieEntity = new ContentZombieEnemy(GameHelper.GetOpponent());
 
         m_tile = tile;
     }
@@ -47,8 +46,7 @@ public class GameEventZombieOutbreakOption : GameEventOption
         }
 
         m_tile.SwapEntity(m_zombieEntity);
-        //TODO: ashulman.  How can we do this?  Do we need a different enemy for zombies?
-        //WorldController.Instance.m_gameController.m_gameOpponent.m_controlledEntities.Add((GameEnemyEntity)m_zombieEntity);
+        WorldController.Instance.m_gameController.m_gameOpponent.m_controlledEntities.Add(m_zombieEntity);
 
         EndEvent();
     }
