@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public struct JsonGameEntityData
+﻿public struct JsonGameEntityData
 {
     //GameElementBase values
     public string name;
@@ -16,7 +12,7 @@ public struct JsonGameEntityData
     public int maxAP;
     public int power;
     public int typeline;
-    public GameKeywordHolder keywordHolder; // NOT IN JSON YET
+    public JsonKeywordHolderData keywordHolder; // NOT IN JSON YET
     public int apToAttack;
     public int sightRange;
 }
