@@ -76,6 +76,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentNightWingsCard());
         m_cards.Add(new ContentSkypierceCard());
         m_cards.Add(new ContentPurpleBeamCard());
+        m_cards.Add(new ContentEnergizingPurpleBeamCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
