@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentNecromanticTouchSpell : GameCardSpellBase
+public class ContentNecromanticTouchCard : GameCardSpellBase
 {
     private int m_range;
 
-    public ContentNecromanticTouchSpell()
+    public ContentNecromanticTouchCard()
     {
         m_range = 2;
 

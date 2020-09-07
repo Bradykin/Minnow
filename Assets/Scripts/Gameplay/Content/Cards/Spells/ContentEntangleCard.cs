@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentEntangleSpell : GameCardSpellBase
+public class ContentEntangleCard : GameCardSpellBase
 {
-    public ContentEntangleSpell()
+    public ContentEntangleCard()
     {
         m_name = "Entangle";
         m_desc = "<b>All</b> entities on forests lose all AP.";
