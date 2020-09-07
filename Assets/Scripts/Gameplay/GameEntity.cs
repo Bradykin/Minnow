@@ -62,7 +62,12 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int GetHit(int damage)
     {
-        bool ignoreTileDamageReduction = GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0;
+        bool ignoreTileDamageReduction = false;
+
+        if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
+        {
+            ignoreTileDamageReduction = true;
+        }
 
         if (!ignoreTileDamageReduction)
         {
