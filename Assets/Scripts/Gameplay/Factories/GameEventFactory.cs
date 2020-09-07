@@ -20,6 +20,7 @@ public static class GameEventFactory
         m_events.Add(new ContentClericEvent(tile));
         m_events.Add(new ContentRogueEvent(tile));
         m_events.Add(new ContentMysteryWanderer(tile));
+        m_events.Add(new ContentStablesEvent(tile));
 
         m_hasInit = true;
     }

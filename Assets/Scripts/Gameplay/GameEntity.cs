@@ -278,6 +278,16 @@ public abstract class GameEntity : GameElementBase, ITurns
         return true;
     }
 
+    public void AddAPRegen(int toAdd)
+    {
+        m_apRegen += toAdd;
+    }
+
+    public void AddMaxAP(int toAdd)
+    {
+        m_maxAP += toAdd;
+    }
+
     public int GetSightRange()
     {
         return m_sightRange;
