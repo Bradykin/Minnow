@@ -13,6 +13,8 @@ public class GameActionFactory
     {
         m_actions.Add(new GameDrawCardAction(0));
         m_actions.Add(new GameDeathAction(null));
+        m_actions.Add(new GameExplodeAction(null, 0, 0));
+        m_actions.Add(new GameHealAction(null, 0));
         m_actions.Add(new GameGainAPAction(null, 0));
         m_actions.Add(new GameGainEnergyAction(0));
         m_actions.Add(new GameFullHealAction(null));
@@ -23,10 +25,12 @@ public class GameActionFactory
         m_hasInit = true;
     }
 
-    public static GameAction GetActionWithName(string actionName)
+    public static GameAction GetActionWithName(JsonKeywordData jsonData)
     {
         if (!m_hasInit)
             Init();
+
+        string actionName = jsonData.actionName;
 
         int i = m_actions.FindIndex(t => t.m_name == actionName);
 
