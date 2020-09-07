@@ -10,7 +10,7 @@ public class ContentGrasperCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "Sluuuurp!";
         m_cost = 1;
     }
 }

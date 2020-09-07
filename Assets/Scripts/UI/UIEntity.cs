@@ -75,13 +75,7 @@ public class UIEntity : WorldElementBase
 
     void OnMouseDown()
     {
-        if (CanSelect())
-        {
-            UIHelper.SelectEntity(this);
-
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
-        }
-        else if (Globals.m_selectedCard != null)
+        if (Globals.m_selectedCard != null)
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
@@ -90,42 +84,34 @@ public class UIEntity : WorldElementBase
                 UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
             }
         }
-        else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
+        else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().m_name + " can't move any more this turn.", false, this);
-        }
-        else if (Globals.m_selectedEntity != null)
-        {
-            if (Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
-            {
-                int damageDealt = Globals.m_selectedEntity.GetEntity().HitEntity(GetEntity());
+            int damageDealt = Globals.m_selectedEntity.GetEntity().HitEntity(GetEntity());
 
-                if (GetEntity().m_isDead)
-                {
-                    UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, Globals.m_selectedEntity);
-                    UIHelper.CreateWorldElementNotification(GetEntity().m_name + " dies.", false, this);
-                }
-                else if (damageDealt == 0)
-                {
-                    UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
-                }
-                else
-                {
-                    UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
-                    UIHelper.CreateWorldElementNotification(GetEntity().m_name + " takes " + damageDealt + " damage.", false, this);
-                }
+            if (GetEntity().m_isDead)
+            {
+                UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, Globals.m_selectedEntity);
+                UIHelper.CreateWorldElementNotification(GetEntity().m_name + " dies.", false, this);
+            }
+            else if (damageDealt == 0)
+            {
+                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
             }
             else
             {
-                if (!Globals.m_selectedEntity.GetEntity().IsInRangeOfEntity(GetEntity()))
-                {
-                    UIHelper.CreateWorldElementNotification("Out of range", false, this);
-                }
-                else if (!Globals.m_selectedEntity.GetEntity().HasAPToAttack())
-                {
-                    UIHelper.CreateWorldElementNotification("No AP to attack", false, this);
-                }
+                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
+                UIHelper.CreateWorldElementNotification(GetEntity().m_name + " takes " + damageDealt + " damage.", false, this);
             }
+        }
+        else if (CanSelect())
+        {
+            UIHelper.SelectEntity(this);
+
+            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+        }
+        else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
+        {
+            UIHelper.CreateWorldElementNotification(GetEntity().m_name + " can't move any more this turn.", false, this);
         }
     }
 
@@ -137,9 +123,21 @@ public class UIEntity : WorldElementBase
     void OnMouseOver()
     {
         m_isHovered = true;
-        if (GetEntity().GetTeam() == Team.Enemy && Globals.m_selectedEntity != null)
+        if (Globals.m_selectedEntity != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()));
+            bool canHit = Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity());
+            if (GetEntity().GetTeam() == Team.Player && canHit)
+            {
+                UIHelper.SetValidTintColor(m_tintRenderer, true);
+            }
+            else if (GetEntity().GetTeam() == Team.Enemy)
+            {
+                UIHelper.SetValidTintColor(m_tintRenderer, canHit);
+            }
+            else if (GetEntity().GetTeam() == Team.Player && !canHit)
+            {
+                UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+            }
         }
         else if (Globals.m_selectedCard != null)
         {
