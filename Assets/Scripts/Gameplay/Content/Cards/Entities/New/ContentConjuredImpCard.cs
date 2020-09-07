@@ -10,9 +10,7 @@ public class ContentConjuredImpCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
-        m_cost = 1;
-
-        m_rarity = GameRarity.Common;
+        m_playDesc = "With a poof and a giggle, a small imp appears.";
+        m_cost = 0;
     }
 }

@@ -12,7 +12,5 @@ public class ContentSkeletonCard : GameCardEntityBase
 
         m_playDesc = "DESC!";
         m_cost = 1;
-
-        m_rarity = GameRarity.Common;
     }
 }
