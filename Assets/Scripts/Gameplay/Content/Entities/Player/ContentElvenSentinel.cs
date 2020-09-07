@@ -8,7 +8,7 @@ public class ContentElvenSentinel : GameEntity
     {
         m_maxHealth = 2;
         m_maxAP = 6;
-        m_apRegen = 3;
+        m_apRegen = 1;
         m_power = 1;
 
         m_team = Team.Player;

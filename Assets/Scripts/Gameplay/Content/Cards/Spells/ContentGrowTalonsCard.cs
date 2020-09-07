@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGrowTalonsCard : GameCardSpellBase
 {
-    int m_powerIncrease = 3;
+    int m_powerIncrease = 1;
 
     public ContentGrowTalonsCard()
     {
