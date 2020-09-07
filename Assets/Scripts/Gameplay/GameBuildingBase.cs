@@ -66,6 +66,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
     public virtual void TriggerEndOfWave()
     {
         m_isDestroyed = false;
+        m_curHealth = m_maxHealth;
     }
 
     //============================================================================================================//
