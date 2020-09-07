@@ -10,7 +10,7 @@ public class ContentHomonculusCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "Are we sure this is a good idea?";
         m_cost = 1;
     }
 }

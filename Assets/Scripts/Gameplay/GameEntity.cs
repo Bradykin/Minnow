@@ -62,6 +62,11 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual int GetHit(int damage)
     {
+        if (m_isDead)
+        {
+            return 0;
+        }
+
         bool ignoreTileDamageReduction = false;
 
         if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
@@ -98,6 +103,11 @@ public abstract class GameEntity : GameElementBase, ITurns
 
     public virtual void Die()
     {
+        if (m_isDead)
+        {
+            return;
+        }
+
         if (GetTeam() == Team.Player)
         {
             for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
@@ -120,6 +130,12 @@ public abstract class GameEntity : GameElementBase, ITurns
         {
             Debug.LogError("Cannot kill entity as player doesn't exist.");
             return;
+        }
+
+        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
+        if (deathKeyword != null)
+        {
+            deathKeyword.DoAction();
         }
 
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
@@ -153,12 +169,6 @@ public abstract class GameEntity : GameElementBase, ITurns
                 player.DrawCards(numRelics);
             }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
-        }
-
-        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
-        if (deathKeyword != null)
-        {
-            deathKeyword.DoAction();
         }
 
         m_isDead = true;
