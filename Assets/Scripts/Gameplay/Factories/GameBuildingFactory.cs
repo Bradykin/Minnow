@@ -7,7 +7,7 @@ public static class GameBuildingFactory
 {
     private static List<GameBuildingBase> m_buildings = new List<GameBuildingBase>();
 
-    private static bool hasInit = false;
+    private static bool m_hasInit = false;
 
     public static void Init()
     {
@@ -22,7 +22,22 @@ public static class GameBuildingFactory
         m_buildings.Add(new ContentMineBuilding());
         m_buildings.Add(new ContentSmithyBuilding());
         m_buildings.Add(new ContentTempleBuilding());
-        hasInit = true;
+        m_hasInit = true;
+    }
+
+    public static GameBuildingBase GetNextBuilding(GameBuildingBase currentBuilding)
+    {
+        if (!m_hasInit)
+            Init();
+
+        int r = m_buildings.FindIndex(t => t.GetType() == currentBuilding.GetType());
+
+        if (r == m_buildings.Count - 1)
+            r = 1;
+        else
+            r++;
+
+        return (GameBuildingBase)Activator.CreateInstance(m_buildings[r].GetType());
     }
 
     public static GameBuildingBase GetBuildingClone(GameBuildingBase building)

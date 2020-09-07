@@ -4,7 +4,7 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.SceneManagement;
 
-public class WorldTile : WorldElementBase
+public class WorldTile : WorldElementBase, ICustomRecycle
 {
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
@@ -123,9 +123,17 @@ public class WorldTile : WorldElementBase
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
         {
-            if (Globals.m_currentlyPaintingTerrain != null)
+            if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
             {
                 GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
+            {
+                GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameEvent))
+            {
+                GetGameTile().SetEvent();
             }
         }
         
@@ -164,13 +172,11 @@ public class WorldTile : WorldElementBase
     void OnMouseOver()
     {
         m_isHovered = true;
-        print("mouseOver");
     }
 
     void OnMouseExit()
     {
         m_isHovered = false;
-        print("removeMouse");
     }
 
     public override void HandleTooltip()
@@ -278,5 +284,21 @@ public class WorldTile : WorldElementBase
     public void SetMoveable(bool isMoveable)
     {
         m_isMoveable = isMoveable;
+    }
+
+    public void CustomRecycle(params object[] args)
+    {
+        m_gameElement = null;
+        m_renderer.sprite = null;
+        m_tintRenderer.sprite = null;
+        m_fogRenderer.sprite = null;
+
+        m_fogOfWar.SetActive(true);
+
+        m_occupyingEntityObj = null;
+
+        m_isHovered = false;
+        m_isMoveable = false;
+        print("worldtile recycle");
     }
 }

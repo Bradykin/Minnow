@@ -18,6 +18,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     private bool m_setup;
 
+    private Transform m_gridRoot;
+
     void Start()
     {
         
@@ -39,25 +41,25 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         if (m_jsonGridData.HasValue)
         {
             JsonGridData jsonGridData = m_jsonGridData.Value;
-            SetupSquareGrid(parent, jsonGridData.gridSizeX, jsonGridData.gridSizeY, true);
+            SetupEmptyGrid(parent, jsonGridData.gridSizeX, jsonGridData.gridSizeY);
             LoadJsonGrid(jsonGridData);
         }
         else
         {
-            SetupSquareGrid(parent, Constants.GridSizeX, Constants.GridSizeY, true);
+            SetupEmptyGrid(parent, Constants.GridSizeX, Constants.GridSizeY);
         }
 
         m_setup = true;
     }
 
-    public void SetupEmptyGrid(Transform parent)
+    public void SetupEmptyGrid(Transform parent, int gridSizeX, int gridSizeY)
     {
         if (m_setup)
         {
             RecycleGrid();
         }
 
-        SetupSquareGrid(parent, Constants.GridSizeX, Constants.GridSizeY, false);
+        SetupSquareGrid(parent, gridSizeX, gridSizeY, false);
         m_setup = true;
     }
 
@@ -76,6 +78,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     private void SetupSquareGrid(Transform parent, int gridSizeX, int gridSizeY, bool setRandomTerrain)
     {
+        m_gridRoot = parent;
         m_gridSizeX = gridSizeX;
         m_gridSizeY = gridSizeY;
         int numGridTiles = m_gridSizeX * m_gridSizeY;
@@ -84,7 +87,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         for (int i = numGridTiles-1; i >= 0; i--)
         {
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldTileFactory>().CreateObject<WorldTile>();
-            m_gridArray[i].transform.parent = parent;
+            m_gridArray[i].transform.parent = m_gridRoot;
 
             int x = i % Constants.GridSizeX;
             int y = i / Constants.GridSizeX;
@@ -523,7 +526,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         if (m_setup)
         {
             RecycleGrid();
-            LoadJsonGrid(m_jsonGridData.Value);
+            SetupEmptyGrid(m_gridRoot, jsonData.gridSizeX, jsonData.gridSizeY);
+            LoadJsonGrid(m_jsonGridData.Value); 
         }
     }
 }
