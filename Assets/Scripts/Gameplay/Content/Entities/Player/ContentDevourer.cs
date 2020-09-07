@@ -13,7 +13,7 @@ public class ContentDevourer : GameEntity
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 2)));
+        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 2)));
         m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
 
         m_name = "Devourer";
