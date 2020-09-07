@@ -11,6 +11,6 @@ public class ContentOverlordCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "DESC!";
-        m_cost = 1;
+        m_cost = 2;
     }
 }

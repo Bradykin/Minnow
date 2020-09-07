@@ -10,7 +10,7 @@ public class ContentMinerCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "Hi ho, hi ho!  It's off to...";
         m_cost = 1;
     }
 }
