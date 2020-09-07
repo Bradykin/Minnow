@@ -8,6 +8,7 @@ public class WorldTile : WorldElementBase
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_frameRenderer;
+    public SpriteRenderer m_fogRenderer;
     public GameObject m_fogOfWar;
 
     private UIEntity m_occupyingEntityObj;
@@ -29,9 +30,9 @@ public class WorldTile : WorldElementBase
     {
         HandleFogUpdate();
 
-        m_renderer.gameObject.SetActive(!m_fogOfWar.activeSelf);
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
+        m_fogRenderer.sprite = GetGameTile().GetIcon();
 
         bool entityMovedIntoTile = false;
         if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
