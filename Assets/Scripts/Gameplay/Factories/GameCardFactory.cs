@@ -44,6 +44,25 @@ public static class GameCardFactory
         m_cards.Add(new ContentDwarfHealerCard());
         m_cards.Add(new ContentGladiatorCard());
 
+        if (false)
+        {
+            m_cards.Add(new ContentMageCard());
+            m_cards.Add(new ContentShadowWarlockCard());
+            m_cards.Add(new ContentMinerCard());
+            m_cards.Add(new ContentRangerCard());
+            m_cards.Add(new ContentWandererCard());
+            m_cards.Add(new ContentHeroCard());
+            m_cards.Add(new ContentGuardCaptainCard());
+            m_cards.Add(new ContentWildfolkCard());
+            m_cards.Add(new ContentConjuredImpCard());
+            m_cards.Add(new ContentMetalGolemCard());
+            m_cards.Add(new ContentHomonculusCard());
+            m_cards.Add(new ContentOverlordCard());
+            m_cards.Add(new ContentRaptorCard());
+            m_cards.Add(new ContentSkeletonCard());
+            m_cards.Add(new ContentGrasperCard());
+        }
+
         for (int i = 0; i < m_cards.Count; i++)
         {
             if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common 
