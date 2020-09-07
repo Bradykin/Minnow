@@ -12,4 +12,6 @@ public static class Globals
     public static bool m_inIntermission = false;
 
     public static bool m_inDeckView = false;
+
+    public static int m_purpleBeamCount = 0;
 }

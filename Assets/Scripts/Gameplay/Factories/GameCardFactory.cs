@@ -75,6 +75,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
         m_cards.Add(new ContentSkypierceCard());
+        m_cards.Add(new ContentPurpleBeamCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
