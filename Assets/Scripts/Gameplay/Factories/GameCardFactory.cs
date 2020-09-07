@@ -72,6 +72,8 @@ public static class GameCardFactory
         m_cards.Add(new ContentGrasperCard());
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentEntangleSpell());
+        m_cards.Add(new ContentNecromanticTouchSpell());
+
 
         for (int i = 0; i < m_cards.Count; i++)
         {
