@@ -42,6 +42,21 @@ public class GameDeck
         {
             m_cards.Add(new ContentGrowTalonsCard());
         }
+
+        for (int i = 0; i < 1; i++)
+        {
+            m_cards.Add(new ContentGladiatorCard());
+        }
+    }
+
+    public List<GameCard> GetDeck()
+    {
+        return m_cards;
+    }
+
+    public List<GameCard> GetDiscard()
+    {
+        return m_discard;
     }
 
     public int Count()
@@ -67,6 +82,7 @@ public class GameDeck
     public void RemoveCard(GameCard toRemove)
     {
         m_cards.Remove(toRemove);
+        m_discard.Remove(toRemove);
     }
 
     public void AddCard(GameCard card)

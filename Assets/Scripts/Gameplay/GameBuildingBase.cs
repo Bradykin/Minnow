@@ -54,6 +54,24 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
         return damage;
     }
 
+    public virtual int GetHealed(int healing)
+    {
+        m_curHealth += healing;
+        if (m_curHealth > m_maxHealth)
+        {
+            m_curHealth = m_maxHealth;
+        }
+
+        UIHelper.CreateWorldElementNotification(m_name + " was healed for " + healing + "!", false, m_curTile);
+
+        if (m_curHealth > 0)
+        {
+            m_isDestroyed = false;
+        }
+
+        return healing;
+    }
+
     protected virtual void Die()
     {
         m_isDestroyed = true;
@@ -66,6 +84,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     public virtual void TriggerEndOfWave()
     {
         m_isDestroyed = false;
+        m_curHealth = m_maxHealth;
     }
 
     //============================================================================================================//

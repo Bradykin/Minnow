@@ -62,7 +62,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual int GetHit(int damage)
     {
-        bool ignoreTileDamageReduction = GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0;
+        bool ignoreTileDamageReduction = false;
+
+        if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
+        {
+            ignoreTileDamageReduction = true;
+        }
 
         if (!ignoreTileDamageReduction)
         {
@@ -278,6 +283,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return true;
     }
 
+    public void AddAPRegen(int toAdd)
+    {
+        m_apRegen += toAdd;
+    }
+
+    public void AddMaxAP(int toAdd)
+    {
+        m_maxAP += toAdd;
+    }
+
     public int GetSightRange()
     {
         return m_sightRange;
@@ -342,6 +357,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public Team GetTeam()
     {
         return m_team;
+    }
+
+    public void SetTeam(Team newTeam)
+    {
+        m_team = newTeam;
     }
 
     public int GetCurAP()

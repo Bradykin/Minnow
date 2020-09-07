@@ -38,6 +38,11 @@ public static class GameCardFactory
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentBloodSacrificeCard());
+        m_cards.Add(new ContentJoltCard());
+        m_cards.Add(new ContentDemonSoldierCard());
+        m_cards.Add(new ContentDwarfArchitectCard());
+        m_cards.Add(new ContentDwarfHealerCard());
+        m_cards.Add(new ContentGladiatorCard());
 
         for (int i = 0; i < m_cards.Count; i++)
         {
@@ -70,7 +75,7 @@ public static class GameCardFactory
 
         int r = UnityEngine.Random.Range(0, m_standardCards.Count);
 
-        return (GameCard)Activator.CreateInstance(m_standardCards[r].GetType());
+        return GetCardClone(m_standardCards[r]);
     }
 
     public static GameCard GetRandomStandardEntityCard()
@@ -82,7 +87,7 @@ public static class GameCardFactory
 
         int r = UnityEngine.Random.Range(0, m_standardEntityCards.Count);
 
-        return (GameCard)Activator.CreateInstance(m_standardEntityCards[r].GetType());
+        return GetCardClone(m_standardEntityCards[r]);
     }
 
     public static GameCard GetRandomStandardSpellCard()
@@ -94,7 +99,12 @@ public static class GameCardFactory
 
         int r = UnityEngine.Random.Range(0, m_standardSpellCards.Count);
 
-        return (GameCard)Activator.CreateInstance(m_standardSpellCards[r].GetType());
+        return GetCardClone(m_standardSpellCards[r]);
+    }
+
+    public static GameCard GetCardClone(GameCard toClone)
+    {
+        return (GameCard)Activator.CreateInstance(toClone.GetType());
     }
 }
 

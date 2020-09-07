@@ -11,6 +11,6 @@ public class ContentFishOracleCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "Reading the bones tells either truths or lies...";
-        m_cost = 2;
+        m_cost = 1;
     }
 }

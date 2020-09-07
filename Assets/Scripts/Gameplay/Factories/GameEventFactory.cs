@@ -16,6 +16,12 @@ public static class GameEventFactory
         m_events.Add(new ContentOverturnedCartEvent(tile));
         m_events.Add(new ContentMillitiaEvent(tile));
         m_events.Add(new ContentAngelicGiftEvent(tile));
+        m_events.Add(new ContentMagicianEvent(tile));
+        m_events.Add(new ContentClericEvent(tile));
+        m_events.Add(new ContentRogueEvent(tile));
+        m_events.Add(new ContentMysteryWanderer(tile));
+        m_events.Add(new ContentStablesEvent(tile));
+        m_events.Add(new ContentZombieOutbreakEvent(tile));
 
         m_hasInit = true;
     }

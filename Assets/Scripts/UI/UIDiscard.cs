@@ -33,6 +33,18 @@ public class UIDiscard : WorldElementBase
         Globals.m_canScroll = true;
     }
 
+    void OnMouseDown()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View);
+    }
+
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Discard", "After you play cards, they will go here!  When you run out of cards in your deck, your discard will shuffle back in."));

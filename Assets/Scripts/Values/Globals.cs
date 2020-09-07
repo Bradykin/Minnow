@@ -12,4 +12,5 @@ public static class Globals
     public static bool m_inIntermission = false;
 
     public static GameTerrainBase m_currentlyPaintingTerrain = new ContentForestTerrain();
+    public static bool m_inDeckView = false;
 }

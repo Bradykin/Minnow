@@ -6,18 +6,36 @@ public class UIHUDController : MonoBehaviour
 {
     public GameObject m_waveHUD;
     public GameObject m_intermissionHUD;
+    public GameObject m_cardSelectHUD;
+    public GameObject m_walletHUD;
+    public GameObject m_relicsHUD;
 
     void Update()
     {
-        if (Globals.m_inIntermission)
+        if (Globals.m_inDeckView)
         {
-            m_intermissionHUD.SetActive(true);
+            m_intermissionHUD.SetActive(false);
             m_waveHUD.SetActive(false);
+            m_cardSelectHUD.SetActive(false);
+            m_walletHUD.SetActive(false);
+            m_relicsHUD.SetActive(false);
         }
         else
         {
-            m_intermissionHUD.SetActive(false);
-            m_waveHUD.SetActive(true);
+            m_walletHUD.SetActive(true);
+            m_cardSelectHUD.SetActive(true);
+            m_relicsHUD.SetActive(true);
+
+            if (Globals.m_inIntermission)
+            {
+                m_intermissionHUD.SetActive(true);
+                m_waveHUD.SetActive(false);
+            }
+            else
+            {
+                m_intermissionHUD.SetActive(false);
+                m_waveHUD.SetActive(true);
+            }
         }
     }
 }
