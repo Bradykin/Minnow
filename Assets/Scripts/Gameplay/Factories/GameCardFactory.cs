@@ -38,6 +38,8 @@ public static class GameCardFactory
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentBloodSacrificeCard());
+        m_cards.Add(new ContentJoltCard());
+        m_cards.Add(new ContentDemonSoldierCard());
 
         for (int i = 0; i < m_cards.Count; i++)
         {

@@ -40,18 +40,10 @@ public class ContentZombie : GameEntity
 
     public override int HitEntity(GameEntity other)
     {
-        GameEntity newZombie;
+        GameEnemyEntity newZombie = new ContentZombieEnemy(GameHelper.GetOpponent());
 
-        if (other.GetTeam() == Team.Enemy)
-        {
-            newZombie = new ContentZombieEnemy(GameHelper.GetOpponent());
-            WorldController.Instance.m_gameController.m_gameOpponent.m_controlledEntities.Add((GameEnemyEntity)newZombie);
-        }
-        else
-        {
-            newZombie = new ContentZombie();
-            GameHelper.GetPlayer().AddControlledEntity(newZombie);
-        }
+        GameHelper.GetOpponent().m_controlledEntities.Remove((GameEnemyEntity)other);
+        GameHelper.GetOpponent().m_controlledEntities.Add((GameEnemyEntity)newZombie);
 
         int damageTaken = base.HitEntity(other);
 
