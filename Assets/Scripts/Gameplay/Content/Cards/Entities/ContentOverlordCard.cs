@@ -10,7 +10,7 @@ public class ContentOverlordCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "So many eyeballs...";
         m_cost = 2;
     }
 }

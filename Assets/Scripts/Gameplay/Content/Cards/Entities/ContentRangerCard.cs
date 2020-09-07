@@ -10,7 +10,7 @@ public class ContentRangerCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "He defends the forests.";
         m_cost = 1;
     }
 }

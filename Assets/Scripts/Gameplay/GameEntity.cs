@@ -416,7 +416,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         return m_keywordHolder;
     }
 
-    public int GetRange()
+    public virtual int GetRange()
     {
         GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (rangeKeyword != null)
@@ -427,7 +427,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         return 1;
     }
 
-    public int GetPower()
+    public virtual int GetPower()
     {
         int toReturn = m_power;
 
@@ -474,7 +474,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         return toReturn;
     }
 
-    public int GetAPRegen()
+    public virtual int GetAPRegen()
     {
         int toReturn = m_apRegen;
 
