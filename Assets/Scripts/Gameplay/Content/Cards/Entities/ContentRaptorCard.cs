@@ -10,7 +10,7 @@ public class ContentRaptorCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
+        m_playDesc = "Rawk.  Rawwwwk!";
         m_cost = 1;
     }
 }
