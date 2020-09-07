@@ -10,7 +10,7 @@ public class ContentMetalGolemCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
-        m_cost = 1;
+        m_playDesc = "Does it look hungry to anyone else?";
+        m_cost = 3;
     }
 }
