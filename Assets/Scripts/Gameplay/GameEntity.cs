@@ -611,6 +611,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public string SaveToJson()
     {
+        string keywordHolderJson = m_keywordHolder.SaveToJson();
+        
         JsonGameEntityData jsonData = new JsonGameEntityData
         {
             name = m_name,
@@ -622,7 +624,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             maxAP = m_maxAP,
             power = m_power,
             typeline = (int)m_typeline,
-            keywordHolder = null,
+            keywordHolderJson = keywordHolderJson,
             apToAttack = m_apToAttack,
             sightRange = m_sightRange
         };
@@ -642,8 +644,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_maxAP = jsonData.maxAP;
         m_power = jsonData.power;
         m_typeline = (Typeline)jsonData.typeline;
-        //Do something for keywordHolder
         m_apToAttack = jsonData.apToAttack;
         m_sightRange = jsonData.sightRange;
+
+        JsonKeywordHolderData jsonKeywordHolderData = JsonUtility.FromJson<JsonKeywordHolderData>(jsonData.keywordHolderJson);
+        m_keywordHolder.LoadFromJson(jsonKeywordHolderData);
     }
 }

@@ -12,6 +12,7 @@ public class GameEnrageKeyword : GameKeywordBase
 
         m_name = "Enrage";
         m_desc = "When this entity gets hit: " + action.m_desc;
+        m_keywordParamType = KeywordParamType.ActionParam;
     }
 
     public void DoAction()
@@ -34,6 +35,6 @@ public class GameEnrageKeyword : GameKeywordBase
 
     public override void LoadFromJson(JsonKeywordData jsonData)
     {
-        m_action = GameActionFactory.GetActionWithName(jsonData.actionName);
+        //Currently nothing needs to be done here
     }
 }

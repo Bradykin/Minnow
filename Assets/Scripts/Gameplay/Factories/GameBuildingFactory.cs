@@ -30,7 +30,7 @@ public static class GameBuildingFactory
         return (GameBuildingBase)Activator.CreateInstance(building.GetType());
     }
 
-    public static GameBuildingBase GetTerrainFromJson(JsonGameBuildingData jsonData)
+    public static GameBuildingBase GetBuildingFromJson(JsonGameBuildingData jsonData)
     {
         int i = m_buildings.FindIndex(t => t.m_name == jsonData.name);
 

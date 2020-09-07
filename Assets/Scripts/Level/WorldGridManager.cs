@@ -7,9 +7,14 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WorldGridManager : Singleton<WorldGridManager>
+public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGridData>
 {
     public WorldTile[] m_gridArray { get; private set; }
+
+    private JsonGridData? m_jsonGridData = null;
+
+    private int m_gridSizeX;
+    private int m_gridSizeY;
 
     private bool m_setup;
 
@@ -26,12 +31,23 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
     public void Setup(Transform parent)
     {
-        if (!m_setup)
+        if (m_setup)
         {
-            SetupSquareGrid(parent, true);
-            GameHelper.MakePlayerBuilding(m_gridArray[Constants.GridSizeX * 3 + 5].GetGameTile(), new ContentCastleBuilding());
-            m_setup = true;
+            RecycleGrid();
         }
+
+        if (m_jsonGridData.HasValue)
+        {
+            JsonGridData jsonGridData = m_jsonGridData.Value;
+            SetupSquareGrid(parent, jsonGridData.gridSizeX, jsonGridData.gridSizeY, true);
+            LoadJsonGrid(jsonGridData);
+        }
+        else
+        {
+            SetupSquareGrid(parent, Constants.GridSizeX, Constants.GridSizeY, true);
+        }
+
+        m_setup = true;
     }
 
     public void SetupEmptyGrid(Transform parent)
@@ -41,7 +57,7 @@ public class WorldGridManager : Singleton<WorldGridManager>
             RecycleGrid();
         }
 
-        SetupSquareGrid(parent, false);
+        SetupSquareGrid(parent, Constants.GridSizeX, Constants.GridSizeY, false);
         m_setup = true;
     }
 
@@ -58,9 +74,11 @@ public class WorldGridManager : Singleton<WorldGridManager>
         }
     }
 
-    private void SetupSquareGrid(Transform parent, bool setRandomTerrain)
+    private void SetupSquareGrid(Transform parent, int gridSizeX, int gridSizeY, bool setRandomTerrain)
     {
-        int numGridTiles = Constants.GridSizeX * Constants.GridSizeY;
+        m_gridSizeX = gridSizeX;
+        m_gridSizeY = gridSizeY;
+        int numGridTiles = m_gridSizeX * m_gridSizeY;
         m_gridArray = new WorldTile[numGridTiles];
 
         for (int i = numGridTiles-1; i >= 0; i--)
@@ -76,6 +94,15 @@ public class WorldGridManager : Singleton<WorldGridManager>
 
             if (setRandomTerrain)
                 m_gridArray[i].GetGameTile().ChooseRandomTerrain();
+        }
+    }
+
+    private void LoadJsonGrid(JsonGridData jsonGridData)
+    {
+        for (int i = 0; i < jsonGridData.jsonTileData.Count; i++)
+        {
+            JsonGameTileData jsonGameTileData = JsonUtility.FromJson<JsonGameTileData>(jsonGridData.jsonTileData[i]);
+            GetWorldGridTileAtPosition(jsonGameTileData.gridPosition).GetGameTile().LoadFromJson(jsonGameTileData);
         }
     }
 
@@ -466,6 +493,37 @@ public class WorldGridManager : Singleton<WorldGridManager>
         for (int i = 0; i < m_gridArray.Length; i++)
         {
             m_gridArray[i].SetMoveable(false);
+        }
+    }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        JsonGridData jsonData = new JsonGridData
+        {
+            gridSizeX = m_gridSizeX,
+            gridSizeY = m_gridSizeY,
+            jsonTileData = new List<string>()
+        };
+
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            jsonData.jsonTileData.Add(m_gridArray[i].GetGameTile().SaveToJson());
+        }
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonGridData jsonData)
+    {
+        m_jsonGridData = jsonData;
+        if (m_setup)
+        {
+            RecycleGrid();
+            LoadJsonGrid(m_jsonGridData.Value);
         }
     }
 }

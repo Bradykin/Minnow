@@ -12,7 +12,7 @@
     public int maxAP;
     public int power;
     public int typeline;
-    public JsonKeywordHolderData keywordHolder; // NOT IN JSON YET
+    public string keywordHolderJson;
     public int apToAttack;
     public int sightRange;
 }

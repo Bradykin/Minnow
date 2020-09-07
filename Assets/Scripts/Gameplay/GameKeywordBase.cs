@@ -5,6 +5,15 @@ using UnityEngine;
 
 public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywordData>
 {
+    public enum KeywordParamType : int
+    {
+        NoParams,
+        IntParam,
+        ActionParam
+    }
+
+    public KeywordParamType m_keywordParamType;
+
     public abstract string SaveToJson();
 
     public abstract void LoadFromJson(JsonKeywordData jsonData);

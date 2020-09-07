@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameKeywordFactory
@@ -32,7 +34,21 @@ public class GameKeywordFactory
 
         int i = m_keywords.FindIndex(t => t.m_name == jsonData.name);
 
-        GameKeywordBase newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType());
+        GameKeywordBase newKeyword;
+        switch (m_keywords[i].m_keywordParamType)
+        {
+            case GameKeywordBase.KeywordParamType.NoParams:
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType());
+                break;
+            case GameKeywordBase.KeywordParamType.IntParam:
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue);
+                break;
+            case GameKeywordBase.KeywordParamType.ActionParam:
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonData.actionName));
+                break;
+            default:
+                return null;
+        }
         newKeyword.LoadFromJson(jsonData);
 
         return newKeyword;

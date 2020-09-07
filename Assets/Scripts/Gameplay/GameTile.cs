@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : GameElementBase
+public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
 {
     public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
@@ -250,5 +251,43 @@ public class GameTile : GameElementBase
         {
             return m_terrain.m_damageReduction;
         }
+    }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        JsonGameTileData jsonData = new JsonGameTileData
+        {
+            gridPosition = m_gridPosition,
+            gameEntityData = m_occupyingEntity.SaveToJson(),
+            gameBuildingData = m_building.SaveToJson(),
+            gameTerrainData = m_terrain.SaveToJson(),
+            gameEventData = m_event.SaveToJson()
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonGameTileData jsonData)
+    {
+        m_gridPosition = jsonData.gridPosition;
+
+        JsonGameEntityData jsonGameEntityData = JsonUtility.FromJson<JsonGameEntityData>(jsonData.gameEntityData);
+        if (jsonGameEntityData.team == (int)Team.Player)
+            PlaceEntity(GameEntityFactory.GetEntityFromJson(jsonGameEntityData));
+        else
+            PlaceEntity(GameEntityFactory.GetEnemyFromJson(jsonGameEntityData, WorldController.Instance.m_gameController.m_gameOpponent));
+
+        JsonGameBuildingData jsonGameBuildingData = JsonUtility.FromJson<JsonGameBuildingData>(jsonData.gameBuildingData);
+        PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
+
+        JsonGameTerrainData jsonGameTerrainData = JsonUtility.FromJson<JsonGameTerrainData>(jsonData.gameTerrainData);
+        SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
+
+        JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
+        m_event = GameEventFactory.GetEventFromJson(jsonGameEventData);
     }
 }

@@ -60,7 +60,7 @@ public class GameEntityFactory
         return newPlayerEntity;
     }
 
-    public static GameEnemyEntity GetEnemyFromJson(JsonGameEntityData jsonData)
+    public static GameEnemyEntity GetEnemyFromJson(JsonGameEntityData jsonData, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();

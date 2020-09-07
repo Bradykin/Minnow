@@ -37,4 +37,14 @@ public static class GameEventFactory
 
         return (GameEvent)Activator.CreateInstance(m_events[r].GetType(), tile);
     }
+
+    public static GameEvent GetEventFromJson(JsonGameEventData jsonData)
+    {
+        int i = m_events.FindIndex(t => t.m_name == jsonData.name);
+
+        GameEvent newBuilding = (GameEvent)Activator.CreateInstance(m_events[i].GetType());
+        newBuilding.LoadFromJson(jsonData);
+
+        return newBuilding;
+    }
 }

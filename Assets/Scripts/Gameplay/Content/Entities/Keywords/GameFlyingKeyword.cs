@@ -8,6 +8,7 @@ public class GameFlyingKeyword : GameKeywordBase
     {
         m_name = "Flying";
         m_desc = "All terrain only takes 1 AP to move over; can fly over impassable terrain.";
+        m_keywordParamType = KeywordParamType.NoParams;
     }
 
     public override string SaveToJson()

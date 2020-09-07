@@ -10,6 +10,8 @@ public class LevelCreator : MonoBehaviour
     [SerializeField]
     private Image m_selectedImage;
 
+    private string dataPath = 
+
     private void Start()
     {
         Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetTerrainClone(new ContentForestTerrain());
@@ -42,7 +44,7 @@ public class LevelCreator : MonoBehaviour
 
     public void SaveGrid()
     {
-        
+        string jsonGridData = WorldGridManager.Instance.SaveToJson();
         
         WorldGridManager.Instance.RecycleGrid();
     }

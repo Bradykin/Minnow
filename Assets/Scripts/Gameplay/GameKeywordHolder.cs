@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameKeywordHolder
+public class GameKeywordHolder : ISave, ILoad<JsonKeywordHolderData>
 {
     public List<GameKeywordBase> m_keywords;
 
@@ -34,5 +35,31 @@ public class GameKeywordHolder
         }
 
         return descString;
+    }
+
+    public string SaveToJson()
+    {
+        JsonKeywordHolderData jsonData = new JsonKeywordHolderData
+        {
+            keywordJson = new List<string>()
+        };
+
+        foreach (GameKeywordBase keyword in m_keywords)
+        {
+            jsonData.keywordJson.Add(keyword.SaveToJson());
+        }
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonKeywordHolderData jsonData)
+    {
+        foreach (string keywordJson in jsonData.keywordJson)
+        {
+            JsonKeywordData keywordData = JsonUtility.FromJson<JsonKeywordData>(keywordJson);
+            m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordData));
+        }
     }
 }

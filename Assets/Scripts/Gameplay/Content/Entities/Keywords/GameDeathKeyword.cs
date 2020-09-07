@@ -12,10 +12,29 @@ public class GameDeathKeyword : GameKeywordBase
 
         m_name = "Death";
         m_desc = "When this entity dies: " + action.m_desc;
+        m_keywordParamType = KeywordParamType.ActionParam;
     }
 
     public void DoAction()
     {
         m_action.DoAction();
+    }
+
+    public override string SaveToJson()
+    {
+        JsonKeywordData jsonData = new JsonKeywordData
+        {
+            name = m_name,
+            actionName = m_action.m_name
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonKeywordData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }
