@@ -32,7 +32,7 @@ public class ContentDwarfArchitect : GameEntity
     {
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, m_healingRange);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, m_healingRange, 0);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

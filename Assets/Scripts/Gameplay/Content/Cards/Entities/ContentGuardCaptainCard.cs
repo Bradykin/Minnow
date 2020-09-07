@@ -10,7 +10,7 @@ public class ContentGuardCaptainCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "DESC!";
-        m_cost = 1;
+        m_playDesc = "With a single shout, the troops respond with renewed vigor!";
+        m_cost = 2;
     }
 }
