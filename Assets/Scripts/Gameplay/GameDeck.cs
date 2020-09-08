@@ -43,9 +43,9 @@ public class GameDeck
             m_cards.Add(new ContentGrowTalonsCard());
         }
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new ContentFortifyingPurpleBeamCard());
+            m_cards.Add(new ContentPurePurpleBeamCard());
         }
     }
 
