@@ -42,12 +42,6 @@ public class GameDeck
         {
             m_cards.Add(new ContentGrowTalonsCard());
         }
-
-        for (int i = 0; i < 3; i++)
-        {
-            m_cards.Add(new ContentBlastingPurpleBeamCard());
-            m_cards.Add(new ContentPurpleBeamSwordCard());
-        }
     }
 
     public List<GameCard> GetDeck()
