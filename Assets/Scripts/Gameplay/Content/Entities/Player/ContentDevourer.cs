@@ -34,10 +34,28 @@ public class GameFullHealAction : GameAction
 
         m_name = "Full Heal";
         m_desc = "Fully heal.";
+        m_actionParamType = ActionParamType.EntityParam;
     }
 
     public override void DoAction()
     {
         m_entity.Heal(m_entity.GetMaxHealth());
+    }
+
+    public override string SaveToJson()
+    {
+        JsonActionData jsonData = new JsonActionData
+        {
+            name = m_name
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonActionData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

@@ -9,6 +9,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     {
         NoParams,
         IntParam,
+        TwoIntParam,
         ActionParam
     }
 

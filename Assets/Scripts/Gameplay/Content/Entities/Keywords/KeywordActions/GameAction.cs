@@ -8,12 +8,18 @@ public abstract class GameAction : GameElementBase
     {
         NoParams,
         IntParam,
+        TwoIntParam,
         EntityParam,
         EntityIntParam,
-        EntityTwoIntParam
+        EntityTwoIntParam,
+        GameWalletParam
     }
 
-    public ActionParamType m_keywordParamType;
+    public ActionParamType m_actionParamType;
 
     public abstract void DoAction();
+
+    public abstract string SaveToJson();
+
+    public abstract void LoadFromJson(JsonActionData jsonData);
 }

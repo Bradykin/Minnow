@@ -48,6 +48,7 @@ public class GameExplodeAction : GameAction
 
         m_name = "Explode";
         m_desc = "Explode for " + m_explodePower + " damage to all entities and buildings in range " + m_explodeRange;
+        m_actionParamType = ActionParamType.EntityTwoIntParam;
     }
 
     public override void DoAction()
@@ -71,5 +72,24 @@ public class GameExplodeAction : GameAction
                 UIHelper.CreateWorldElementNotification(entity.m_name + " gets hit for " + m_explodePower + " by the " + m_name + "'s explosion.", entity.GetTeam() == Team.Enemy, entity.m_curTile.m_curTile);
             }
         }
+    }
+
+    public override string SaveToJson()
+    {
+        JsonActionData jsonData = new JsonActionData
+        {
+            name = m_name,
+            intValue1 = m_explodePower,
+            intValue2 = m_explodeRange
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonActionData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

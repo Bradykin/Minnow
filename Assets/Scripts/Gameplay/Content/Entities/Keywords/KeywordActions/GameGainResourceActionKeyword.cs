@@ -12,6 +12,7 @@ public class GameGainResourceAction : GameAction
 
         m_name = "Gain Resources";
         m_desc = "Gain - " + m_toGain.ToString();
+        m_actionParamType = ActionParamType.GameWalletParam;
     }
 
     public override void DoAction()
@@ -23,5 +24,23 @@ public class GameGainResourceAction : GameAction
         }
 
         player.m_wallet.AddResources(m_toGain);
+    }
+
+    public override string SaveToJson()
+    {
+        JsonActionData jsonData = new JsonActionData
+        {
+            name = m_name,
+            gameWalletJsonValue = JsonUtility.ToJson(m_toGain)
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonActionData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

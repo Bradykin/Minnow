@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameKeywordHolder : ISave, ILoad<JsonKeywordHolderData>
+public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity)>
 {
     public List<GameKeywordBase> m_keywords;
 
@@ -54,12 +54,12 @@ public class GameKeywordHolder : ISave, ILoad<JsonKeywordHolderData>
         return export;
     }
 
-    public void LoadFromJson(JsonKeywordHolderData jsonData)
+    public void LoadFromJson((JsonKeywordHolderData, GameEntity) tuple)
     {
-        foreach (string keywordJson in jsonData.keywordJson)
+        foreach (string keywordJson in tuple.Item1.keywordJson)
         {
             JsonKeywordData keywordData = JsonUtility.FromJson<JsonKeywordData>(keywordJson);
-            m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordData));
+            m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordData, tuple.Item2));
         }
     }
 }

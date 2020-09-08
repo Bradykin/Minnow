@@ -676,6 +676,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_sightRange = jsonData.sightRange;
 
         JsonKeywordHolderData jsonKeywordHolderData = JsonUtility.FromJson<JsonKeywordHolderData>(jsonData.keywordHolderJson);
-        m_keywordHolder.LoadFromJson(jsonKeywordHolderData);
+        m_keywordHolder.LoadFromJson((jsonKeywordHolderData, this));
     }
 }

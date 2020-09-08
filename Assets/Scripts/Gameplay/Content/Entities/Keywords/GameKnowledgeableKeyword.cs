@@ -25,7 +25,7 @@ public class GameKnowledgeableKeyword : GameKeywordBase
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            actionName = m_action.m_name
+            actionJson = m_action.SaveToJson()
         };
 
         var export = JsonUtility.ToJson(jsonData);

@@ -27,7 +27,7 @@ public class GameKeywordFactory
         m_hasInit = true;
     }
 
-    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData)
+    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameEntity gameEntity)
     {
         if (!m_hasInit)
             Init();
@@ -44,7 +44,8 @@ public class GameKeywordFactory
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue);
                 break;
             case GameKeywordBase.KeywordParamType.ActionParam:
-                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonData));
+                JsonActionData jsonActionData = JsonUtility.FromJson<JsonActionData>(jsonData.actionJson);
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonActionData, gameEntity));
                 break;
             default:
                 return null;

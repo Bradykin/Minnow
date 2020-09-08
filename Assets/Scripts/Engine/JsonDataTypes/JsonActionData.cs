@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct JsonKeywordData
+public struct JsonActionData
 {
     //GameElementBase values
     public string name;
 
     //Json Keyword parsing data
-    public int intValue;
-    public string actionJson;
+    public int intValue1;
+    public int intValue2;
+    public string gameWalletJsonValue;
 }
