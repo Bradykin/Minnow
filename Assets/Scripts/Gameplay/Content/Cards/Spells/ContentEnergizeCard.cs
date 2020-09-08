@@ -10,8 +10,8 @@ public class ContentEnergizeCard : GameCardSpellBase
         m_desc = "Maximize an entities AP.";
         m_playDesc = "The target gets energized!";
         m_targetType = Target.Entity;
-        m_cost = 2;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 3;
+        m_rarity = GameRarity.Rare;
 
         SetupBasicData();
     }

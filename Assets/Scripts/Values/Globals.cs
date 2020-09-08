@@ -17,4 +17,6 @@ public static class Globals
     public static GameTerrainBase m_currentlyPaintingTerrain = new ContentForestTerrain();
     public static ContentAngelicGiftEvent m_currentlyPaintingEvent = new ContentAngelicGiftEvent(null);
     public static bool m_inDeckView = false;
+
+    public static int m_purpleBeamCount = 5;
 }

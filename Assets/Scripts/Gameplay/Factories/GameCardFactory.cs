@@ -70,6 +70,18 @@ public static class GameCardFactory
         m_cards.Add(new ContentRaptorCard());
         m_cards.Add(new ContentSkeletonCard());
         m_cards.Add(new ContentGrasperCard());
+        m_cards.Add(new ContentArcaneBoltCard());
+        m_cards.Add(new ContentEntangleCard());
+        m_cards.Add(new ContentNecromanticTouchCard());
+        m_cards.Add(new ContentNightWingsCard());
+        m_cards.Add(new ContentSkypierceCard());
+        m_cards.Add(new ContentBlastingPurpleBeamCard());
+        m_cards.Add(new ContentEnergizingPurpleBeamCard());
+        m_cards.Add(new ContentReplenishingPurpleBeamCard());
+        m_cards.Add(new ContentFortifyingPurpleBeamCard());
+        m_cards.Add(new ContentPurePurpleBeamCard());
+        m_cards.Add(new ContentPurpleBeamSwordCard());
+
 
         for (int i = 0; i < m_cards.Count; i++)
         {
