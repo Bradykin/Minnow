@@ -9,6 +9,10 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected int m_costToPass;
     protected int m_terrainImageNumber;
 
+    protected bool m_isForest;
+    protected bool m_isMountain;
+    protected bool m_isWater;
+
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable()
     {
@@ -18,6 +22,21 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public int GetCostToPass()
     {
         return m_costToPass;
+    }
+
+    public bool IsForest()
+    {
+        return m_isForest;
+    }
+
+    public bool IsMountain()
+    {
+        return m_isMountain;
+    }
+
+    public bool IsWater()
+    {
+        return m_isWater;
     }
 
     public void SetSprite(int x)

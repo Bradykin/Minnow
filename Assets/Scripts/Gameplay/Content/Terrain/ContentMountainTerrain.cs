@@ -16,5 +16,7 @@ public class ContentMountainTerrain : GameTerrainBase
 
         m_isPassable = false;
         m_costToPass = 2;
+
+        m_isMountain = true;
     }
 }

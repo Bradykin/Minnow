@@ -18,7 +18,7 @@ public class ContentClearcutCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameTile targetTile)
     {
-        if (!(targetTile.GetTerrain() is ContentForestTerrain))
+        if (!targetTile.GetTerrain().IsForest())
         {
             return false;
         }

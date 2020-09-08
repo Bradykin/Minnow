@@ -39,7 +39,7 @@ public class ContentMetalGolem : GameEntity
         {
             GameTerrainBase terrain = surroundingTiles[i].GetTerrain();
 
-            if (terrain is ContentMountainTerrain)
+            if (terrain.IsMountain())
             {
                 numMountains++;
             }

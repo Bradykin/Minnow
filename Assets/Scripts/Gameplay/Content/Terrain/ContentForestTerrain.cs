@@ -16,5 +16,7 @@ public class ContentForestTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_costToPass = 2;
+
+        m_isForest = true;
     }
 }

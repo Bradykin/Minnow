@@ -24,7 +24,7 @@ public class ContentMineBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentMountainTerrain)
+        if (terrain.IsMountain())
         {
             return true;
         }

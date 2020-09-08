@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +11,7 @@ public class LevelCreator : MonoBehaviour
     [SerializeField]
     private Image m_selectedImage;
     [SerializeField]
-    private TMP_Text m_saveFileNotifier;
+    private Text m_saveFileNotifier;
 
     private string dataPath;
 
