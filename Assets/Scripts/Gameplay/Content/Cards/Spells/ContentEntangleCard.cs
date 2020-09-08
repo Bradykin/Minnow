@@ -30,7 +30,7 @@ public class ContentEntangleCard : GameCardSpellBase
         for (int i = 0; i < grid.Length; i++)
         {
             GameTile gameTile = grid[i].GetGameTile();
-            if (gameTile.GetTerrain() is ContentForestTerrain)
+            if (gameTile.GetTerrain().IsForest())
             {
                 if (gameTile.IsOccupied() && !gameTile.m_isFog)
                 {

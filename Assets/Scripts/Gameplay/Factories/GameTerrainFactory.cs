@@ -15,6 +15,8 @@ public class GameTerrainFactory
         m_terrain.Add(new ContentGrassTerrain());
         m_terrain.Add(new ContentMountainTerrain());
         m_terrain.Add(new ContentWaterTerrain());
+        m_terrain.Add(new ContentTundraForestTerrain());
+        m_terrain.Add(new ContentSnowForestTerrain());
         m_hasInit = true;
     }
     
