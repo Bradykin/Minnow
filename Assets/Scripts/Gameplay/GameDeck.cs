@@ -45,7 +45,8 @@ public class GameDeck
 
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new ContentPurePurpleBeamCard());
+            m_cards.Add(new ContentBlastingPurpleBeamCard());
+            m_cards.Add(new ContentPurpleBeamSwordCard());
         }
     }
 

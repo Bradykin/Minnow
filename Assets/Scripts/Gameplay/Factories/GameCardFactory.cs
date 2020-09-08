@@ -80,6 +80,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentReplenishingPurpleBeamCard());
         m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentPurePurpleBeamCard());
+        m_cards.Add(new ContentPurpleBeamSwordCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
