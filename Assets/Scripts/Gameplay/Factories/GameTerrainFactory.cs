@@ -12,7 +12,7 @@ public class GameTerrainFactory
     public static void Init()
     {
         m_terrain.Add(new ContentForestTerrain());
-        m_terrain.Add(new ContentGrassTerrain());
+        m_terrain.Add(new ContentGrassPlainsTerrain());
         m_terrain.Add(new ContentMountainTerrain());
         m_terrain.Add(new ContentWaterTerrain());
         m_terrain.Add(new ContentTundraForestTerrain());
@@ -20,6 +20,7 @@ public class GameTerrainFactory
         m_terrain.Add(new ContentJungleForestTerrain());
         m_terrain.Add(new ContentSwampForestTerrain());
         m_terrain.Add(new ContentDesertRedForestTerrain());
+        m_terrain.Add(new ContentRuinsTerrain());
         m_hasInit = true;
     }
     

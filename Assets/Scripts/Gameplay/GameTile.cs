@@ -100,7 +100,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
         int terrainVal = Random.Range(1, 101);
         if (terrainVal <= Constants.PercentChanceForTerrainGrasslands)
         {
-            m_terrain = new ContentGrassTerrain();
+            m_terrain = new ContentGrassPlainsTerrain();
         }
         else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest)
         {
