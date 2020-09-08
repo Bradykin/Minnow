@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentPurpleBeamCard : GameCardSpellBase
+public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 {
-    public ContentPurpleBeamCard()
+    public ContentBlastingPurpleBeamCard()
     {
         m_spellEffect = 1;
 
-        m_name = "Purple Beam";
+        m_name = "Blasting Purple Beam";
         m_desc = "Blast an enemy for " + GetSpellValue() + " damage + the purple beam count.  If it kills the entity, increase the purple beam count by 1.";
         m_playDesc = "Very purple.  Much beam.";
         m_targetType = Target.Entity;
