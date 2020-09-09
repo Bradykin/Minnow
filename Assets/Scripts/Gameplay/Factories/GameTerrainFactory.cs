@@ -27,11 +27,12 @@ public class GameTerrainFactory
     {
         //Basic Terrain
         m_basicTerrain.Add(new ContentScrublandPlainsTerrain());
+        m_basicTerrain.Add(new ContentDirtPlainsTerrain());
         m_basicTerrain.Add(new ContentForestTerrain());
         m_basicTerrain.Add(new ContentHillsTerrain());
         m_basicTerrain.Add(new ContentMountainTerrain());
         m_basicTerrain.Add(new ContentWaterTerrain());
-        m_basicTerrain.Add(new ContentPlainsRuinsTerrain());
+        m_basicTerrain.Add(new ContentGrassPlainsRuinsTerrain());
         m_basicTerrain.Add(new ContentForestRuinsTerrain());
 
         //Plains Terrain
@@ -104,7 +105,36 @@ public class GameTerrainFactory
         m_mountainTerrain.Add(new ContentVolcanoActiveTerrain());
         m_mountainTerrain.Add(new ContentVolcanoInactiveTerrain());
 
+        //Snow Terrain
+        m_snowTerrain.Add(new ContentSnowPlainsTerrain());
+        m_snowTerrain.Add(new ContentSnowForestTerrain());
+        m_snowTerrain.Add(new ContentSnowHillsTerrain());
+        m_snowTerrain.Add(new ContentSnowMountainTerrain());
+        m_snowTerrain.Add(new ContentSnowBankTerrain());
+        m_snowTerrain.Add(new ContentSnowHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowMountainCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowPlainsPondTerrain());
+        m_snowTerrain.Add(new ContentSnowForestRuinsTerrain());
+        m_snowTerrain.Add(new ContentTundraPlainsTerrain());
+        m_snowTerrain.Add(new ContentTundraForestTerrain());
+        m_snowTerrain.Add(new ContentTundraHillsTerrain());
+        m_snowTerrain.Add(new ContentTundraHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentTundraPlainsPondTerrain());
+        m_snowTerrain.Add(new ContentColdPlainsTerrain());
+        m_snowTerrain.Add(new ContentColdDirtPlainsTerrain());
+        m_snowTerrain.Add(new ContentColdHillsTerrain());
+        m_snowTerrain.Add(new ContentColdHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentColdPlainsPondTerrain());
+
         //Ruins Terrain
+        m_ruinsTerrain.Add(new ContentGrassPlainsRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentDirtPlainsRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentForestRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentPineForestRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentSnowForestRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentSwampForestRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentDesertRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentMarshRuinsTerrain());
 
         m_hasInit = true;
     }
