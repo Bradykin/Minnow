@@ -434,7 +434,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (rangeKeyword != null)
         {
-            return rangeKeyword.m_range;
+            return rangeKeyword.m_range + m_curTile.GetTerrain().m_rangeModifier;
         }
 
         return 1;

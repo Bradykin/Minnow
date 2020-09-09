@@ -59,7 +59,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             RecycleGrid();
         }
 
-        SetupSquareGrid(parent, gridSizeX, gridSizeY, false);
+        SetupSquareGrid(parent, gridSizeX, gridSizeY);
         m_setup = true;
     }
 
@@ -76,7 +76,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
     }
 
-    private void SetupSquareGrid(Transform parent, int gridSizeX, int gridSizeY, bool setRandomTerrain)
+    private void SetupSquareGrid(Transform parent, int gridSizeX, int gridSizeY)
     {
         m_gridRoot = parent;
         m_gridSizeX = gridSizeX;
@@ -94,9 +94,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
-
-            if (setRandomTerrain)
-                m_gridArray[i].GetGameTile().ChooseRandomTerrain();
         }
     }
 

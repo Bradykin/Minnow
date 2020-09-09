@@ -35,6 +35,6 @@ public class ContentClearcutCard : GameCardSpellBase
 
         base.PlayCard(targetTile);
 
-        targetTile.SetTerrain(new ContentGrassPlainsTerrain());
+        targetTile.SetTerrain(new ContentScrublandPlainsTerrain());
     }
 }

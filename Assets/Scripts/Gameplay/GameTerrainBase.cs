@@ -4,14 +4,23 @@ using UnityEngine;
 public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTerrainData>
 {
     public int m_damageReduction { get; protected set; }
+    public int m_rangeModifier { get; protected set; }
 
     protected bool m_isPassable = true;
     protected int m_costToPass;
     protected int m_terrainImageNumber;
 
     protected bool m_isForest;
+    protected bool m_isHill;
     protected bool m_isMountain;
     protected bool m_isWater;
+
+    protected bool m_isHot;
+    protected bool m_isCold;
+
+    protected bool m_isEventTerrain;
+    protected bool m_isCave;
+    protected bool m_isVolcano;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable()

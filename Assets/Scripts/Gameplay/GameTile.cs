@@ -95,34 +95,9 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
         return m_building != null;
     }
 
-    public void ChooseRandomTerrain()
-    {
-        int terrainVal = Random.Range(1, 101);
-        if (terrainVal <= Constants.PercentChanceForTerrainGrasslands)
-        {
-            m_terrain = new ContentGrassPlainsTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest)
-        {
-            m_terrain = new ContentForestTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain)
-        {
-            m_terrain = new ContentMountainTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater)
-        {
-            m_terrain = new ContentWaterTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater + Constants.PercentChanceForTerrainRuins)
-        {
-            m_terrain = new ContentRuinsTerrain();
-        }
-    }
-
     public void SetEvent()
     {
-        m_terrain = GameTerrainFactory.GetTerrainClone(new ContentRuinsTerrain());
+        m_terrain = GameTerrainFactory.GetTerrainClone(new ContentDirtPlainsRuinsTerrain());
         m_event = GameEventFactory.GetRandomEvent(this);
     }
 

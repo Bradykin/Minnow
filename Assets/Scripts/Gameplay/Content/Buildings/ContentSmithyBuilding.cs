@@ -43,7 +43,7 @@ public class ContentSmithyBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentGrassPlainsTerrain)
+        if (terrain is ContentScrublandPlainsTerrain)
         {
             return true;
         }

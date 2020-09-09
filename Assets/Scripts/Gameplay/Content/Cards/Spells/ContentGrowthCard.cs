@@ -18,7 +18,7 @@ public class ContentGrowthCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameTile targetTile)
     {
-        if (!(targetTile.GetTerrain() is ContentGrassPlainsTerrain))
+        if (!(targetTile.GetTerrain() is ContentScrublandPlainsTerrain))
         {
             return false;
         }

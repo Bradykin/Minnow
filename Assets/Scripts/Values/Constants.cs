@@ -17,16 +17,6 @@ public static class Constants
     //Error Handling
     public static int NoPathVal = 99999;
 
-    //Map Gen Data
-    public static int PercentChanceForTileToContainEvent = 5;
-    public static int PercentChanceForTileToContainEnemy = 14;
-
-    public static int PercentChanceForTerrainGrasslands = 64;
-    public static int PercentChanceForTerrainWater = 8;
-    public static int PercentChanceForTerrainForest = 15;
-    public static int PercentChanceForTerrainMountain = 8;
-    public static int PercentChanceForTerrainRuins = 5;
-
     //Sizing for a "square" hexagon grid
     public static int GridSizeX = 20;
     public static int GridSizeY = 20;

@@ -125,7 +125,7 @@ public class WorldController : Singleton<WorldController>
         WorldTile castleTile = WorldGridManager.Instance.m_gridArray[Constants.GridSizeX * 3 + 5];
         List<GameTile> surroundingCastleTiles = WorldGridManager.Instance.GetSurroundingTiles(castleTile.GetGameTile(), 3, 0);
 
-        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        /*for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
             {
@@ -141,7 +141,7 @@ public class WorldController : Singleton<WorldController>
                     m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
                 }
             }
-        }
+        }*/
     }
 
     public void StartIntermission()
