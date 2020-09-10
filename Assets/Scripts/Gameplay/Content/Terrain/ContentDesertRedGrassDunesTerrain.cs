@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrassSandTropicalPlainsTerrain : GameTerrainBase
+public class ContentDesertRedGrassDunesTerrain : GameTerrainBase
 {
-    public ContentGrassSandTropicalPlainsTerrain()
+    public ContentDesertRedGrassDunesTerrain()
     {
-        m_name = "GrassSandTropicalPlains";
+        m_name = "DesertRedGrassDunes";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = Random.Range(1, 5);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
@@ -14,5 +14,7 @@ public class ContentGrassSandTropicalPlainsTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_costToPass = 1;
+
+        m_isHot = true;
     }
 }

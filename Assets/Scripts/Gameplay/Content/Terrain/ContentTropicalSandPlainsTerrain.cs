@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWaterTerrain : GameTerrainBase
+public class ContentTropicalSandPlainsTerrain : GameTerrainBase
 {
-    public ContentWaterTerrain()
+    public ContentTropicalSandPlainsTerrain()
     {
-        m_name = "Water";
-        m_desc = "Impassable.";
+        m_name = "TropicalSandPlains";
+        m_desc = "Simple, no changes.";
         m_terrainImageNumber = Random.Range(1, 5);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
-        m_color = Color.blue;
+        m_color = Color.white;
 
-        m_isPassable = false;
+        m_isPassable = true;
         m_costToPass = 1;
     }
 }
-

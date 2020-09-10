@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSandTropicalPlainsTerrain : GameTerrainBase
+public class ContentLavaFieldActiveTerrain : GameTerrainBase
 {
-    public ContentSandTropicalPlainsTerrain()
+    public ContentLavaFieldActiveTerrain()
     {
-        m_name = "SandTropicalPlains";
+        m_name = "LavaFieldActive";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = Random.Range(1, 5);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
@@ -14,5 +14,7 @@ public class ContentSandTropicalPlainsTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_costToPass = 1;
+
+        m_isHot = true;
     }
 }

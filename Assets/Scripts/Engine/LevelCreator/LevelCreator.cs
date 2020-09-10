@@ -25,7 +25,7 @@ public class LevelCreator : MonoBehaviour
         {
             dataPaths.Add(dataPath + i + ".txt");
         }
-        Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetTerrainClone(new ContentForestTerrain());
+        Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
         m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
     }
 
@@ -35,10 +35,11 @@ public class LevelCreator : MonoBehaviour
         {
             if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))
             {
-                Globals.m_currentlyPaintingType = typeof(GameBuildingBase);
-                m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
+                Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrainList();
+                m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
             }
-            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
+
+            /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingType = typeof(GameEvent);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingEvent.m_icon;
@@ -47,21 +48,22 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-            }
+            }*/
         }
         
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))
             {
-                Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain(Globals.m_currentlyPaintingTerrain);
+                Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
             }
-            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
+
+            /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetNextBuilding(Globals.m_currentlyPaintingBuilding);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-            }
+            }*/
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))

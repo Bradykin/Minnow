@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSwampForestRuinsTerrain : GameTerrainBase
+public class ContentDesertYellowSaltFlatsTerrain : GameTerrainBase
 {
-    public ContentSwampForestRuinsTerrain()
+    public ContentDesertYellowSaltFlatsTerrain()
     {
-        m_damageReduction = 2;
-
-        m_name = "SwampForestRuins";
-        m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_name = "DesertYellowSaltFlats";
+        m_desc = "2 AP movement.";
         m_terrainImageNumber = 1;
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
@@ -18,6 +16,6 @@ public class ContentSwampForestRuinsTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_isForest = true;
-        m_isEventTerrain = true;
+        m_isHot = true;
     }
 }
