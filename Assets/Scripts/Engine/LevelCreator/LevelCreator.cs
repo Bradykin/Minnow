@@ -67,12 +67,23 @@ public class LevelCreator : MonoBehaviour
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
                 m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
-
-            /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
+            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetNextBuilding(Globals.m_currentlyPaintingBuilding);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-            }*/
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))
+            {
+                Globals.m_currentlyPaintingType = typeof(GameBuildingBase);
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
+            {
+                Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
