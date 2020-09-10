@@ -12,6 +12,10 @@ public class LevelCreator : MonoBehaviour
     private Image m_selectedImage;
     [SerializeField]
     private Text m_saveFileNotifier;
+    [SerializeField]
+    private Text m_selectedListNotifier;
+    [SerializeField]
+    private Text m_selectedTileNotifier;
 
     private string dataPath;
 
@@ -27,6 +31,8 @@ public class LevelCreator : MonoBehaviour
         }
         Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
         m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+        m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
+        m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
     }
 
     public void Update()
@@ -37,6 +43,8 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrainList();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+                m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
+                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
 
             /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
@@ -57,6 +65,7 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
 
             /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))

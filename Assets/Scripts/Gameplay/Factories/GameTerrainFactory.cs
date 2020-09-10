@@ -133,7 +133,6 @@ public class GameTerrainFactory
         m_snowTerrain.Add(new ContentSnowHillsCaveTerrain());
         m_snowTerrain.Add(new ContentSnowMountainCaveTerrain());
         m_snowTerrain.Add(new ContentSnowPlainsPondTerrain());
-        m_snowTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_snowTerrain.Add(new ContentTundraPlainsTerrain());
         m_snowTerrain.Add(new ContentTundraForestTerrain());
         m_snowTerrain.Add(new ContentTundraHillsTerrain());
@@ -145,6 +144,7 @@ public class GameTerrainFactory
         m_snowTerrain.Add(new ContentColdHillsCaveTerrain());
         m_snowTerrain.Add(new ContentColdPlainsPondTerrain());
         m_snowTerrain.Add(new ContentSnowRuinsTerrain());
+        m_snowTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_snowTerrain.Add(new ContentIceWaterTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Snow Terrain", m_snowTerrain));
 
@@ -217,12 +217,28 @@ public class GameTerrainFactory
         return GetTerrainClone(m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex]);
     }
 
+    public static string GetCurrentTerrainName()
+    {
+        if (!m_hasInit)
+            Init();
+
+        return m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex].m_name;
+    }
+
     public static List<GameTerrainBase> GetCurrentTerrainList()
     {
         if (!m_hasInit)
             Init();
 
         return m_terrain[m_currentTerrainListIndex].Value;
+    }
+
+    public static string GetCurrentTerrainListName()
+    {
+        if (!m_hasInit)
+            Init();
+
+        return m_terrain[m_currentTerrainListIndex].Key;
     }
 
     public static GameTerrainBase GetRandomTerrain()
