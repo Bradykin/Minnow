@@ -154,20 +154,7 @@ public static class GameCardFactory
             Init();
         }
 
-        List<GameCard> checkList;
-
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
-        {
-            checkList = m_uncommonCards;
-        }
-        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
-        {
-            checkList = m_rareCards;
-        }
-        else
-        {
-            checkList = m_commonCards;
-        }
+        List<GameCard> checkList = GetCheckList(m_commonCards, m_uncommonCards, m_rareCards);
 
         return GetCardFromList(checkList);
     }
@@ -179,20 +166,7 @@ public static class GameCardFactory
             Init();
         }
 
-        List<GameCard> checkList;
-
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
-        {
-            checkList = m_uncommonEntityCards;
-        }
-        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
-        {
-            checkList = m_rareEntityCards;
-        }
-        else
-        {
-            checkList = m_commonEntityCards;
-        }
+        List<GameCard> checkList = GetCheckList(m_commonEntityCards, m_uncommonEntityCards, m_rareEntityCards);
 
         return GetCardFromList(checkList);
     }
@@ -204,22 +178,39 @@ public static class GameCardFactory
             Init();
         }
 
-        List<GameCard> checkList;
+        List<GameCard> checkList = GetCheckList(m_commonSpellCards, m_uncommonSpellCards, m_rareSpellCards);
 
-        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForUncommonCard))
+        return GetCardFromList(checkList);
+    }
+
+    private static List<GameCard> GetCheckList(List<GameCard> commonCards, List<GameCard> uncommonCards, List<GameCard> rareCards)
+    {
+        int chanceForUncommon = Constants.PercentChanceForUncommonCard;
+        int chanceForRare = Constants.PercentChanceForRareCard;
+
+        if (GameHelper.IsValidChaosLevel(3))
         {
-            checkList = m_uncommonSpellCards;
+            chanceForUncommon = chanceForUncommon / 2;
         }
-        else if (GameHelper.PercentChanceRoll(Constants.PercentChanceForRareCard))
+        if (GameHelper.IsValidChaosLevel(4))
         {
-            checkList = m_rareSpellCards;
+            chanceForRare = chanceForRare / 2;
+        }
+
+        if (GameHelper.PercentChanceRoll(chanceForUncommon))
+        {
+            return uncommonCards;
+        }
+        else if (GameHelper.PercentChanceRoll(chanceForRare))
+        {
+            return rareCards;
         }
         else
         {
-            checkList = m_commonSpellCards;
+            return commonCards;
         }
-        return GetCardFromList(checkList);
     }
+
 
     public static GameCard GetCardClone(GameCard toClone)
     {

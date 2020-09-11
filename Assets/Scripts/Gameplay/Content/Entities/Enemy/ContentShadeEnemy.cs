@@ -20,8 +20,9 @@ public class ContentShadeEnemy : GameEnemyEntity
 
         m_name = "Shade";
         m_desc = "Hit and run, with some irritating healing.  Try focusing it with magic!";
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(m_maxHealth));
 
         LateInit();
+
+        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(m_maxHealth));
     }
 }

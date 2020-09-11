@@ -496,8 +496,19 @@ public abstract class GameEntity : GameElementBase, ITurns
     {
         int toReturn = m_apRegen;
 
+        if (GetTeam() == Team.Player)
+        {
+            toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+        }
+        
+        if (GetTeam() == Team.Enemy)
+        {
+            if (GameHelper.IsValidChaosLevel(2))
+            {
+                toReturn += 1;
+            }
+        }
         toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
-        toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
         return toReturn;
     }

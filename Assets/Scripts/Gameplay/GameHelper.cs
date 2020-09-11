@@ -80,4 +80,14 @@ public static class GameHelper
 
         return player.GetRelics().GetNumRelics<T>();
     }
+
+    public static bool IsValidChaosLevel(int toCheck)
+    {
+        if (Globals.m_curChaos >= toCheck)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

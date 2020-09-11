@@ -18,6 +18,16 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
     {
         base.LateInit();
 
+        if (GameHelper.IsValidChaosLevel(7))
+        {
+            m_maxHealth = m_maxHealth * 2;
+        }
+
+        if (GameHelper.IsValidChaosLevel(8))
+        {
+            m_power = m_power * 2;
+        }
+
         m_curHealth = GetMaxHealth();
         m_curAP = GetAPRegen();
     }

@@ -42,6 +42,19 @@ public class GameDeck
         {
             m_cards.Add(new ContentGrowTalonsCard());
         }
+
+        if (GameHelper.IsValidChaosLevel(1))
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                m_cards.Add(new ContentCureWoundsCard());
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                m_cards.Add(new ContentFireboltCard());
+            }
+        }
     }
 
     public List<GameCard> GetDeck()
