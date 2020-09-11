@@ -7,8 +7,9 @@ public static class Constants
     //Game Data
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
+    public static int StartingActions = 3;
 
-    public static int PercentChanceForUncommonCard = 25;
+    public static int PercentChanceForUncommonCard = 24;
     public static int PercentChanceForRareCard = 12;
 
     //UI Data

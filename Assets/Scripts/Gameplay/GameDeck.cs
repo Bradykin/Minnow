@@ -42,6 +42,18 @@ public class GameDeck
         {
             m_cards.Add(new ContentGrowTalonsCard());
         }
+
+        if (GameHelper.IsValidChaosLevel(1))
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard());
+            }
+            for (int i = 0; i < 1; i++)
+            {
+                m_cards.Add(GameCardFactory.GetRandomStandardEntityCard());
+            }
+        }
     }
 
     public List<GameCard> GetDeck()

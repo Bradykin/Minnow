@@ -44,7 +44,11 @@ public class GamePlayer : GameElementBase, ITurns
         m_currentWaveTurn = 0;
         m_currentWaveEndTurn = Constants.InitialWaveSize;
 
-        m_maxActions = 3;
+        m_maxActions = Constants.StartingActions;
+        if (GameHelper.IsValidChaosLevel(9))
+        {
+            m_maxActions -= 1;
+        }
     }
 
     public void LateInit()
@@ -54,6 +58,11 @@ public class GamePlayer : GameElementBase, ITurns
         m_curDeck = new GameDeck();
 
         m_maxEnergy = Constants.StartingEnergy;
+        if (GameHelper.IsValidChaosLevel(10))
+        {
+            m_maxEnergy -= 1;
+        }
+
         m_curEnergy = GetMaxEnergy();
 
         ResetCurDeck();
@@ -271,6 +280,11 @@ public class GamePlayer : GameElementBase, ITurns
     private int GetDrawHandSize()
     {
         int toReturn = Constants.InitialHandSize;
+
+        if (GameHelper.IsValidChaosLevel(5))
+        {
+            toReturn -= 1;
+        }
 
         if (m_currentWaveTurn == GetEndWaveTurn())
         {
