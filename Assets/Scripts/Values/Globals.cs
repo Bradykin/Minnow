@@ -15,5 +15,5 @@ public static class Globals
 
     public static int m_purpleBeamCount = 0;
 
-    public static int m_curChaos = 0;
+    public static int m_curChaos = 1;
 }
