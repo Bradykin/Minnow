@@ -35,7 +35,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     {
         if (m_setup)
         {
-            RecycleGrid();
+            return;
         }
 
         if (m_jsonGridData.HasValue)

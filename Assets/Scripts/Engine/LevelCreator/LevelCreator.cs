@@ -65,12 +65,13 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.m_name;
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetNextBuilding(Globals.m_currentlyPaintingBuilding);
-                m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+                m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
             }
         }
 
@@ -79,10 +80,23 @@ public class LevelCreator : MonoBehaviour
             if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))
             {
                 Globals.m_currentlyPaintingType = typeof(GameBuildingBase);
+                m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
+                m_selectedListNotifier.text = "Buildings";
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
+                Globals.m_currentlyPaintingType = typeof(GameSpawnPoint);
+                m_selectedListNotifier.text = "Spawn point";
+                m_selectedTileNotifier.text = "Random spawn point";
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+            {
                 Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
+                Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
+                m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
+                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
         }
 

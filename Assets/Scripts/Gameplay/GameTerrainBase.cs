@@ -48,6 +48,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_isWater;
     }
 
+    public bool IsEventTerrain()
+    {
+        return m_isEventTerrain;
+    }
+
     public void SetSprite(int x)
     {
         if (x >= 0 && x <= 4)

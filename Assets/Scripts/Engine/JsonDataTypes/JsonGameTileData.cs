@@ -9,4 +9,5 @@ public struct JsonGameTileData
     public string gameBuildingData;
     public string gameTerrainData;
     public string gameEventData;
+    public string gameSpawnPointData;
 }

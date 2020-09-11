@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.SceneManagement;
 
 public class WorldController : Singleton<WorldController>
 {
@@ -20,19 +21,12 @@ public class WorldController : Singleton<WorldController>
     {
         HandlePlayerHand();
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (SceneManager.GetActiveScene().name == "LevelScene")
         {
-            SceneLoader.ActivateScene("NickTestScene", "AlexTestScene");
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            SceneLoader.ActivateScene("AlexTestScene", "NickTestScene");
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ClearAllEntities();
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                ClearAllEntities();
+            }
         }
     }
 

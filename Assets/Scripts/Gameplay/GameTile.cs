@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
+public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustomRecycle
 {
     public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
     private GameTerrainBase m_terrain;
     public GameEvent m_event { get; private set; }
+    public GameSpawnPoint m_spawnPoint { get; private set; }
     private GameBuildingBase m_building;
 
     public WorldTile m_curTile;
@@ -97,7 +98,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
 
     public void SetEvent()
     {
-        m_terrain = GameTerrainFactory.GetTerrainClone(new ContentDirtPlainsRuinsTerrain());
+        //m_terrain = GameTerrainFactory.GetTerrainClone(new ContentDirtPlainsRuinsTerrain());
         m_event = GameEventFactory.GetRandomEvent(this);
     }
 
@@ -145,6 +146,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
     public void SetTerrain(GameTerrainBase newTerrain)
     {
         m_terrain = newTerrain;
+    }
+
+    public void SetSpawnPoint(GameSpawnPoint newSpawnPoint)
+    {
+        m_spawnPoint = newSpawnPoint;
     }
 
     public GameBuildingBase GetBuilding()
@@ -254,6 +260,10 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
         {
             jsonData.gameEventData = m_event.SaveToJson();
         }
+        if (m_spawnPoint != null)
+        {
+            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJson();
+        }
 
         var export = JsonUtility.ToJson(jsonData);
 
@@ -290,7 +300,23 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>
             JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
             m_event = GameEventFactory.GetEventFromJson(jsonGameEventData);
         }
+
+        if (jsonData.gameSpawnPointData != string.Empty)
+        {
+            GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+            gameSpawnPoint.LoadFromJson(JsonUtility.FromJson<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
+            SetSpawnPoint(gameSpawnPoint);
+        }
     }
 
-
+    public void CustomRecycle(params object[] args)
+    {
+        m_occupyingEntity = null;
+        m_gridPosition = Vector2Int.zero;
+        m_terrain = null;
+        m_event = null;
+        m_spawnPoint = null;
+        m_building = null;
+        m_curTile = null;
+    }
 }
