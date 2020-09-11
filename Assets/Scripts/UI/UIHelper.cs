@@ -303,6 +303,53 @@ public static class UIHelper
         }
     }
 
+    public static void CreateChaosTooltip()
+    {
+        string descText = "";
+        if (GameHelper.IsValidChaosLevel(1))
+        {
+            descText += "1 - Start with an extra 3 random spell cards and an extra 1 random entity card\n";
+        }
+        if (GameHelper.IsValidChaosLevel(2))
+        {
+            descText += "2 - Enemies have +1 AP regen\n";
+        }
+        if (GameHelper.IsValidChaosLevel(3))
+        {
+            descText += "3 - Half chance for uncommmon cards\n";
+        }
+        if (GameHelper.IsValidChaosLevel(4))
+        {
+            descText += "4 - Half chance for rare cards\n";
+        }
+        if (GameHelper.IsValidChaosLevel(5))
+        {
+            descText += "5 - Draw 1 less each turn\n";
+        }
+        if (GameHelper.IsValidChaosLevel(6))
+        {
+            descText += "6 - Double cost buildings\n";
+        }
+        if (GameHelper.IsValidChaosLevel(7))
+        {
+            descText += "7 - Double health enemies\n";
+        }
+        if (GameHelper.IsValidChaosLevel(8))
+        {
+            descText += "8 - Double power enemies\n";
+        }
+        if (GameHelper.IsValidChaosLevel(9))
+        {
+            descText += "9 - 1 less action each intermission phase\n";
+        }
+        if (GameHelper.IsValidChaosLevel(10))
+        {
+            descText += "10 - 1 less energy\n";
+        }
+
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Chaos Level", descText));
+    }
+
     //This is a stub for now.  Can reactivate later if we want it
     public static void CreateTerrainTooltip(GameTerrainBase terrain)
     {

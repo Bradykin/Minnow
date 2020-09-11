@@ -7,6 +7,7 @@ public class UITurnCounter : WorldElementBase
 {
     public Text m_titleText;
     public Text m_countText;
+    public Text m_chaosText;
 
     public SpriteRenderer m_tintRenderer;
 
@@ -21,6 +22,14 @@ public class UITurnCounter : WorldElementBase
 
         m_titleText.text = "Wave " + player.m_waveNum;
         m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+        if (Globals.m_curChaos == 0)
+        {
+            m_chaosText.text = "";
+        }
+        else
+        {
+            m_chaosText.text = "Chaos: " + Globals.m_curChaos;
+        }
     }
 
     void OnMouseOver()
@@ -38,5 +47,6 @@ public class UITurnCounter : WorldElementBase
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Wave Counter", "After this many turns, go to the intermission phase before the next wave!"));
+        UIHelper.CreateChaosTooltip();
     }
 }
