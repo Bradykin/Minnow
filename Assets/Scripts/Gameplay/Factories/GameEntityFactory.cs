@@ -15,6 +15,7 @@ public class GameEntityFactory
     
     public static void Init()
     {
+        //Player Entities
         m_playerEntities.Add(new ContentCaveDragonEntity());
         m_playerEntities.Add(new ContentConjuredImp());
         m_playerEntities.Add(new ContentCyclops());
@@ -49,11 +50,25 @@ public class GameEntityFactory
         m_playerEntities.Add(new ContentWanderer());
         m_playerEntities.Add(new ContentWildfolk());
 
-        m_enemies.Add(new ContentSlimeEnemy(null));
+        //Enemy Entities
+        m_enemies.Add(new ContentAngryBirdEnemy(null));
+        m_enemies.Add(new ContentDarkWarriorEnemy(null));
+        m_enemies.Add(new ContentLichEnemy(null));
+        m_enemies.Add(new ContentLizardmanEnemy(null));
+        m_enemies.Add(new ContentMobolaEnemy(null));
+        m_enemies.Add(new ContentOrcEnemy(null));
+        m_enemies.Add(new ContentOrcShamanEnemy(null));
         m_enemies.Add(new ContentSeigebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
+        m_enemies.Add(new ContentSlimeEnemy(null));
+        m_enemies.Add(new ContentSnakeEnemy(null));
         m_enemies.Add(new ContentSpinnerEnemy(null));
+        m_enemies.Add(new ContentSwarmSoldierEnemy(null));
+        m_enemies.Add(new ContentToadEnemy(null));
+        m_enemies.Add(new ContentWerewolfEnemy(null));
+        m_enemies.Add(new ContentYetiEnemy(null));
         m_enemies.Add(new ContentZombieEnemy(null));
+
         m_hasInit = true;
     }
     
