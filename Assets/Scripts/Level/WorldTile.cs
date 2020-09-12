@@ -11,6 +11,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public SpriteRenderer m_frameRenderer;
     public SpriteRenderer m_fogRenderer;
     public GameObject m_fogOfWar;
+    public GameObject m_spawnIndicator;
 
     private UIEntity m_occupyingEntityObj;
 
@@ -34,6 +35,8 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
         m_fogRenderer.sprite = GetGameTile().GetIcon();
+
+        m_spawnIndicator.SetActive(GetGameTile().m_spawnPoint != null);
 
         bool entityMovedIntoTile = false;
         if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
