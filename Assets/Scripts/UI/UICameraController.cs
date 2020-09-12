@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICameraController : MonoBehaviour
+public class UICameraController : Singleton<UICameraController>, IReset
 {
     private float m_cameraSpeed = 12.0f;
     private float m_cameraBound = 40f;
@@ -13,6 +14,13 @@ public class UICameraController : MonoBehaviour
     private float m_cameraLimitUp = 2.0f * Globals.GridSizeY;
     private float m_cameraLimitLeft = 15.0f;
     private float m_cameraLimitRight = 3.0f * Globals.GridSizeX;
+
+    private Vector3 m_startingTransform;
+
+    void Start()
+    {
+        m_startingTransform = transform.position;
+    }
 
     void Update()
     {
@@ -119,5 +127,15 @@ public class UICameraController : MonoBehaviour
         }
 
         GetComponent<Camera>().orthographicSize = size;
+    }
+
+    public  void Activate()
+    {
+
+    }
+
+    public void Reset()
+    {
+        transform.position = m_startingTransform;
     }
 }

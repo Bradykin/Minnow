@@ -50,6 +50,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             if (m_event != null && !m_event.m_isComplete)
             {
                 UIEventController.Instance.Init(m_event);
+                SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
             }
         }
     }
