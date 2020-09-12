@@ -137,6 +137,8 @@ public class WorldController : Singleton<WorldController>
 
     public void EndIntermission()
     {
+        WorldGridManager.Instance.EndIntermissionFogUpdate();
+
         UITooltipController.Instance.ClearTooltipStack();
         Globals.m_canScroll = true;
         Globals.m_selectedIntermissionBuilding = null;
