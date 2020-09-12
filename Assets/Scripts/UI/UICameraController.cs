@@ -25,6 +25,13 @@ public class UICameraController : MonoBehaviour
         //HandleScrolling();
     }
 
+    public void SnapToWorldElement(WorldElementBase worldElement)
+    {
+        Vector3 worldElementPos = worldElement.gameObject.transform.position;
+
+        transform.position = new Vector3(worldElementPos.x, worldElementPos.y, transform.position.z);
+    }
+
     private void HandleMovement()
     {
 

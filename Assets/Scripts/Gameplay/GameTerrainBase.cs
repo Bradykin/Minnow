@@ -48,6 +48,31 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_isWater;
     }
 
+    public bool IsFlatTerrain()
+    {
+        if (m_isForest)
+        {
+            return false;
+        }
+
+        if (m_isWater)
+        {
+            return false;
+        }
+
+        if (m_isMountain)
+        {
+            return false;
+        }
+
+        if (m_isHill)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public bool IsEventTerrain()
     {
         return m_isEventTerrain;

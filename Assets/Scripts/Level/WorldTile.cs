@@ -36,7 +36,14 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_tintRenderer.sprite = GetGameTile().GetIcon();
         m_fogRenderer.sprite = GetGameTile().GetIcon();
 
-        m_spawnIndicator.SetActive(GetGameTile().m_spawnPoint != null);
+        if (GameHelper.IsInLevelBuilder())
+        {
+            m_spawnIndicator.SetActive(GetGameTile().m_spawnPoint != null);
+        }
+        else
+        {
+            m_spawnIndicator.SetActive(false);
+        }
 
         bool entityMovedIntoTile = false;
         if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
@@ -280,7 +287,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public void HandleFogUpdate()
     {
-        if (GetGameTile().m_isFog)
+        if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {
             if (m_occupyingEntityObj != null)
             {

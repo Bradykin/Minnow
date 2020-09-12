@@ -83,6 +83,12 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
     public virtual void TriggerEndOfWave()
     {
+        //The castle doesn't heal or come back at the end of the round
+        if (this is ContentCastleBuilding)
+        {
+            return;
+        }
+
         m_isDestroyed = false;
         m_curHealth = m_maxHealth;
     }

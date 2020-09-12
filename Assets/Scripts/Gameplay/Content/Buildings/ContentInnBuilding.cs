@@ -47,7 +47,7 @@ public class ContentInnBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentScrublandPlainsTerrain)
+        if (terrain.IsFlatTerrain())
         {
             return true;
         }
