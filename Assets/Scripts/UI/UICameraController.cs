@@ -35,6 +35,11 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
     public void SnapToWorldElement(WorldElementBase worldElement)
     {
+        if (worldElement == null)
+        {
+            return;
+        }
+
         Vector3 worldElementPos = worldElement.gameObject.transform.position;
 
         transform.position = new Vector3(worldElementPos.x, worldElementPos.y, transform.position.z);
