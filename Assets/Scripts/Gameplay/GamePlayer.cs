@@ -345,6 +345,10 @@ public class GamePlayer : ITurns
 
     public void StartTurn()
     {
+        if (Castle != null)
+        {
+            UICameraController.Instance.SnapToWorldElement(Castle.m_curTile);
+        }
         m_curEnergy = GetMaxEnergy();
 
         if (m_currentWaveTurn == 0)
