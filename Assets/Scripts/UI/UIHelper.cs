@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using System.IO;
 
 public static class UIHelper
 {
@@ -160,11 +161,17 @@ public static class UIHelper
         return Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
     }
 
-    public static Sprite GetIconTerrain(string terrainName)
+    //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
+    /*public static Sprite GetRandomIconTerrain(string terrainName)
     {
         int rand = Random.Range(1, 5);
 
         return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
+    }*/
+
+    public static Sprite GetIconTerrain(string terrainName, int index)
+    {
+        return Resources.Load<Sprite>("Terrain/" + terrainName + index) as Sprite;
     }
 
     public static Sprite GetIconIntermissionAction(string actionName)

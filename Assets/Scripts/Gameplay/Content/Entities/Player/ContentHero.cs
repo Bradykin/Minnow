@@ -38,10 +38,29 @@ public class GameHealAction : GameAction
 
         m_name = "Heal";
         m_desc = "Heal for " + healVal + ".";
+        m_actionParamType = ActionParamType.EntityIntParam;
     }
 
     public override void DoAction()
     {
         m_entity.Heal(m_healVal);
+    }
+
+    public override string SaveToJson()
+    {
+        JsonActionData jsonData = new JsonActionData
+        {
+            name = m_name,
+            intValue1 = m_healVal
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonActionData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.SceneManagement;
 
-public class WorldTile : WorldElementBase
+public class WorldTile : WorldElementBase, ICustomRecycle
 {
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
@@ -117,6 +118,44 @@ public class WorldTile : WorldElementBase
 
     void OnMouseDown()
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
+        {
+            if (Globals.m_levelCreatorEraserMode)
+            {
+                GameTile gameTile = GetGameTile();
+                if (gameTile.GetTerrain() != null)
+                    gameTile.ClearTerrain();
+                if (gameTile.GetBuilding() != null)
+                    gameTile.ClearBuilding();
+                if (gameTile.m_event != null)
+                    gameTile.ClearEvent();
+                if (gameTile.m_spawnPoint != null)
+                    gameTile.ClearSpawnPoint();
+            }
+            else
+            {
+                if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
+                {
+                    GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
+                    print(GetGameTile().GetTerrain().m_name);
+                    if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
+                    {
+                        GetGameTile().SetEvent();
+                    }
+                }
+                else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
+                {
+                    GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
+                }
+                else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+                {
+                    GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+                    gameSpawnPoint.SetSpawnPointRandom();
+                    GetGameTile().SetSpawnPoint(gameSpawnPoint);
+                }
+            }
+        }
+
         UICard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {
@@ -264,5 +303,20 @@ public class WorldTile : WorldElementBase
     public void SetMoveable(bool isMoveable)
     {
         m_isMoveable = isMoveable;
+    }
+
+    public void CustomRecycle(params object[] args)
+    {
+        m_gameElement = null;
+        m_renderer.sprite = null;
+        m_tintRenderer.sprite = null;
+        m_fogRenderer.sprite = null;
+
+        m_fogOfWar.SetActive(true);
+
+        m_occupyingEntityObj = null;
+
+        m_isHovered = false;
+        m_isMoveable = false;
     }
 }

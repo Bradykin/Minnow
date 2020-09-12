@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Team
+public enum Team : int
 {
     Player,
     Enemy
 }
 
-public enum Typeline
+public enum Typeline : int
 {
     None,
     Humanoid,
@@ -19,7 +19,7 @@ public enum Typeline
     Legend
 }
 
-public abstract class GameEntity : GameElementBase, ITurns
+public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGameEntityData>
 {
     //General data.  This should be set for every entity
     protected Team m_team;
@@ -434,7 +434,7 @@ public abstract class GameEntity : GameElementBase, ITurns
         GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (rangeKeyword != null)
         {
-            return rangeKeyword.m_range;
+            return rangeKeyword.m_range + m_curTile.GetTerrain().m_rangeModifier;
         }
 
         return 1;
@@ -644,5 +644,49 @@ public abstract class GameEntity : GameElementBase, ITurns
                 UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenValue, true, m_uiEntity);
             }
         }
+    }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        string keywordHolderJson = m_keywordHolder.SaveToJson();
+        
+        JsonGameEntityData jsonData = new JsonGameEntityData
+        {
+            name = m_name,
+            team = (int)m_team,
+            curHealth = m_curHealth,
+            curAP = m_curAP,
+            maxHealth = m_maxHealth,
+            apRegen = m_apRegen,
+            maxAP = m_maxAP,
+            power = m_power,
+            typeline = (int)m_typeline,
+            keywordHolderJson = keywordHolderJson,
+            apToAttack = m_apToAttack,
+            sightRange = m_sightRange
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonGameEntityData jsonData)
+    {
+        m_curHealth = jsonData.curHealth;
+        m_team = (Team)jsonData.team;
+        m_curAP = jsonData.curAP;
+        m_maxHealth = jsonData.maxHealth;
+        m_apRegen = jsonData.apRegen;
+        m_maxAP = jsonData.maxAP;
+        m_power = jsonData.power;
+        m_typeline = (Typeline)jsonData.typeline;
+        m_apToAttack = jsonData.apToAttack;
+        m_sightRange = jsonData.sightRange;
+
+        JsonKeywordHolderData jsonKeywordHolderData = JsonUtility.FromJson<JsonKeywordHolderData>(jsonData.keywordHolderJson);
+        m_keywordHolder.LoadFromJson((jsonKeywordHolderData, this));
     }
 }

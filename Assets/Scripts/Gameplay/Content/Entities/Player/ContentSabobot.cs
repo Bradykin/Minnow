@@ -41,10 +41,28 @@ public class GameDeathAction : GameAction
 
         m_name = "Die";
         m_desc = "Die.";
+        m_actionParamType = ActionParamType.EntityParam;
     }
 
     public override void DoAction()
     {
         m_entity.Die();
+    }
+
+    public override string SaveToJson()
+    {
+        JsonActionData jsonData = new JsonActionData
+        {
+            name = m_name
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonActionData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

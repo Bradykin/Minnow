@@ -12,10 +12,29 @@ public class GameKnowledgeableKeyword : GameKeywordBase
 
         m_name = "Knowledgable";
         m_desc = "When a card is drawn aside from the starting hand each turn: " + action.m_desc;
+        m_keywordParamType = KeywordParamType.ActionParam;
     }
 
     public void DoAction()
     {
         m_action.DoAction();
+    }
+
+    public override string SaveToJson()
+    {
+        JsonKeywordData jsonData = new JsonKeywordData
+        {
+            name = m_name,
+            actionJson = m_action.SaveToJson()
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonKeywordData jsonData)
+    {
+        //Currently nothing needs to be done here
     }
 }

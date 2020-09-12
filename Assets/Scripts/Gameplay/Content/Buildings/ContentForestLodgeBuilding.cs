@@ -52,7 +52,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentForestTerrain)
+        if (terrain.IsForest())
         {
             return true;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.SceneManagement;
 
 public class WorldController : Singleton<WorldController>
 {
@@ -20,19 +21,12 @@ public class WorldController : Singleton<WorldController>
     {
         HandlePlayerHand();
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (SceneManager.GetActiveScene().name == "LevelScene")
         {
-            SceneLoader.ActivateScene("NickTestScene", "AlexTestScene");
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            SceneLoader.ActivateScene("AlexTestScene", "NickTestScene");
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ClearAllEntities();
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                ClearAllEntities();
+            }
         }
     }
 
@@ -120,30 +114,6 @@ public class WorldController : Singleton<WorldController>
         m_gameController.m_player.m_controlledEntities.Clear();
     }
 
-    public void StartWaveEnemySpawn()
-    {
-        WorldTile castleTile = WorldGridManager.Instance.m_gridArray[Constants.GridSizeX * 3 + 5];
-        List<GameTile> surroundingCastleTiles = WorldGridManager.Instance.GetSurroundingTiles(castleTile.GetGameTile(), 3, 0);
-
-        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
-        {
-            if (GameHelper.PercentChanceRoll(Constants.PercentChanceForTileToContainEnemy))
-            {
-                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-                GameEnemyEntity enemy = GameEnemyFactory.GetRandomEnemy(m_gameController.m_gameOpponent);
-                if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsPassable(enemy))
-                {
-                    if (surroundingCastleTiles.Contains(WorldGridManager.Instance.m_gridArray[i].GetGameTile()))
-                    {
-                        continue;
-                    }
-                    gameTile.PlaceEntity(enemy);
-                    m_gameController.m_gameOpponent.m_controlledEntities.Add(enemy);
-                }
-            }
-        }
-    }
-
     public void StartIntermission()
     {
         UITooltipController.Instance.ClearTooltipStack();
@@ -174,8 +144,6 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedIntermissionBuilding = null;
 
         Globals.m_inIntermission = false;
-
-        StartWaveEnemySpawn();
 
         GamePlayer player = m_gameController.m_player;
         player.ResetCurDeck();

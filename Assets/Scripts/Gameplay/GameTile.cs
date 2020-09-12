@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : GameElementBase
+public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustomRecycle
 {
     public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
     private GameTerrainBase m_terrain;
     public GameEvent m_event { get; private set; }
+    public GameSpawnPoint m_spawnPoint { get; private set; }
     private GameBuildingBase m_building;
 
     public WorldTile m_curTile;
@@ -21,13 +23,6 @@ public class GameTile : GameElementBase
         if (Constants.FogOfWar)
         {
             m_isFog = true;
-        }
-
-        HandleTerrain();
-
-        if (m_terrain is ContentRuinsTerrain)
-        {
-            m_event = GameEventFactory.GetRandomEvent(this);
         }
     }
 
@@ -86,6 +81,26 @@ public class GameTile : GameElementBase
         m_occupyingEntity = null;
     }
 
+    public void ClearBuilding()
+    {
+        if (!HasBuilding())
+        {
+            Debug.LogWarning("Clearing building on a tile, but no building currently exists on this tile.");
+        }
+
+        m_building = null;
+    }
+
+    public void ClearTerrain()
+    {
+        m_terrain = null;
+    }
+
+    public void ClearSpawnPoint()
+    {
+        m_spawnPoint = null;
+    }
+
     public bool IsOccupied()
     {
         return m_occupyingEntity != null;
@@ -101,29 +116,9 @@ public class GameTile : GameElementBase
         return m_building != null;
     }
 
-    private void HandleTerrain()
+    public void SetEvent()
     {
-        int terrainVal = Random.Range(1, 101);
-        if (terrainVal <= Constants.PercentChanceForTerrainGrasslands)
-        {
-            m_terrain = new ContentGrassTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest)
-        {
-            m_terrain = new ContentForestTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain)
-        {
-            m_terrain = new ContentMountainTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater)
-        {
-            m_terrain = new ContentWaterTerrain();
-        }
-        else if (terrainVal <= Constants.PercentChanceForTerrainGrasslands + Constants.PercentChanceForTerrainForest + Constants.PercentChanceForTerrainMountain + Constants.PercentChanceForTerrainWater + Constants.PercentChanceForTerrainRuins)
-        {
-            m_terrain = new ContentRuinsTerrain();
-        }
+        m_event = GameEventFactory.GetRandomEvent(this);
     }
 
     public void ClearEvent()
@@ -131,18 +126,17 @@ public class GameTile : GameElementBase
         m_event = null;
     }
 
-    public void ClearBuilding()
-    {
-        m_building = null;
-    }
-
     public Sprite GetIcon()
     {
+        if (m_terrain == null)
+            return null;
+        
         if (HasBuilding())
         {
             return m_building.GetIcon();
         }
-        else if (HasAvailableEvent())
+
+        /*else if (HasAvailableEvent())
         {
             if (m_event.m_isComplete)
             {
@@ -152,7 +146,8 @@ public class GameTile : GameElementBase
             {
                 return m_event.m_icon;
             }
-        }
+        }*/
+
         else
         {
             return m_terrain.m_icon;
@@ -167,6 +162,12 @@ public class GameTile : GameElementBase
     public void SetTerrain(GameTerrainBase newTerrain)
     {
         m_terrain = newTerrain;
+    }
+
+    public void SetSpawnPoint(GameSpawnPoint newSpawnPoint)
+    {
+        m_spawnPoint = newSpawnPoint;
+        m_spawnPoint.m_tile = this;
     }
 
     public GameBuildingBase GetBuilding()
@@ -249,5 +250,90 @@ public class GameTile : GameElementBase
         {
             return m_terrain.m_damageReduction;
         }
+    }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        JsonGameTileData jsonData = new JsonGameTileData
+        {
+            gridPosition = m_gridPosition,
+        };
+
+        if (m_occupyingEntity != null)
+        {
+            jsonData.gameEntityData = m_occupyingEntity.SaveToJson();
+        }
+        if (m_building != null)
+        {
+            jsonData.gameBuildingData = m_building.SaveToJson();
+        }
+        if (m_terrain != null)
+        {
+            jsonData.gameTerrainData = m_terrain.SaveToJson();
+        }
+        if (m_event != null)
+        {
+            jsonData.gameEventData = m_event.SaveToJson();
+        }
+        if (m_spawnPoint != null)
+        {
+            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJson();
+        }
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonGameTileData jsonData)
+    {
+        m_gridPosition = jsonData.gridPosition;
+
+        if (jsonData.gameEntityData != string.Empty)
+        {
+            JsonGameEntityData jsonGameEntityData = JsonUtility.FromJson<JsonGameEntityData>(jsonData.gameEntityData);
+            if (jsonGameEntityData.team == (int)Team.Player)
+                PlaceEntity(GameEntityFactory.GetEntityFromJson(jsonGameEntityData));
+            else
+                PlaceEntity(GameEntityFactory.GetEnemyFromJson(jsonGameEntityData, WorldController.Instance.m_gameController.m_gameOpponent));
+        }
+
+        if (jsonData.gameBuildingData != string.Empty)
+        {
+            JsonGameBuildingData jsonGameBuildingData = JsonUtility.FromJson<JsonGameBuildingData>(jsonData.gameBuildingData);
+            PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
+        }
+
+        if (jsonData.gameTerrainData != string.Empty)
+        {
+            JsonGameTerrainData jsonGameTerrainData = JsonUtility.FromJson<JsonGameTerrainData>(jsonData.gameTerrainData);
+            SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
+        }
+
+        if (jsonData.gameEventData != string.Empty)
+        {
+            JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
+            m_event = GameEventFactory.GetEventFromJson(jsonGameEventData, this);
+        }
+
+        if (jsonData.gameSpawnPointData != string.Empty)
+        {
+            GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+            gameSpawnPoint.LoadFromJson(JsonUtility.FromJson<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
+            SetSpawnPoint(gameSpawnPoint);
+        }
+    }
+
+    public void CustomRecycle(params object[] args)
+    {
+        m_occupyingEntity = null;
+        m_gridPosition = Vector2Int.zero;
+        m_terrain = null;
+        m_event = null;
+        m_spawnPoint = null;
+        m_building = null;
+        m_curTile = null;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
+public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, ISave, ILoad<JsonGameBuildingData>
 {
     public WorldTile m_curTile;
 
@@ -96,4 +96,26 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI
     public virtual void StartTurn() { }
 
     public virtual void EndTurn() { }
+
+    //============================================================================================================//
+
+    public string SaveToJson()
+    {
+        JsonGameBuildingData jsonData = new JsonGameBuildingData
+        {
+            name = m_name,
+            curHealth = m_curHealth,
+            isDestroyed = m_isDestroyed,
+        };
+
+        var export = JsonUtility.ToJson(jsonData);
+
+        return export;
+    }
+
+    public void LoadFromJson(JsonGameBuildingData jsonData)
+    {
+        m_curHealth = jsonData.curHealth;
+        m_isDestroyed = jsonData.isDestroyed;
+    }
 }

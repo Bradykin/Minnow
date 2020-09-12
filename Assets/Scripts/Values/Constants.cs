@@ -20,20 +20,6 @@ public static class Constants
     //Error Handling
     public static int NoPathVal = 99999;
 
-    //Map Gen Data
-    public static int PercentChanceForTileToContainEvent = 5;
-    public static int PercentChanceForTileToContainEnemy = 14;
-
-    public static int PercentChanceForTerrainGrasslands = 64;
-    public static int PercentChanceForTerrainWater = 8;
-    public static int PercentChanceForTerrainForest = 15;
-    public static int PercentChanceForTerrainMountain = 8;
-    public static int PercentChanceForTerrainRuins = 5;
-
-    //Sizing for a "square" hexagon grid
-    public static int GridSizeX = 20;
-    public static int GridSizeY = 20;
-
     //Sizing of hexagons
     public static float HexagonInnerRadius = 1.5022f;
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
@@ -44,5 +30,5 @@ public static class Constants
     public static int FinalWaveNum = 8;
 
     //Testing Data
-    public static bool FogOfWar = true;
+    public static bool FogOfWar = false;
 }

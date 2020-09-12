@@ -10,9 +10,9 @@ public class UICameraController : MonoBehaviour
     private float m_zoomSpeed = 20.0f;
 
     private float m_cameraLimitDown = 2.0f;
-    private float m_cameraLimitUp = 40.0f;
+    private float m_cameraLimitUp = 2.0f * Globals.GridSizeY;
     private float m_cameraLimitLeft = 15.0f;
-    private float m_cameraLimitRight = 60.0f;
+    private float m_cameraLimitRight = 3.0f * Globals.GridSizeX;
 
     void Update()
     {

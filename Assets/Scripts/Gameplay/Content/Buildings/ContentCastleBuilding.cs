@@ -26,7 +26,7 @@ public class ContentCastleBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain is ContentGrassTerrain)
+        if (terrain is ContentScrublandPlainsTerrain)
         {
             return true;
         }
