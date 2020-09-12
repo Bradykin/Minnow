@@ -101,7 +101,7 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-                m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
+                m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
                 m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
         }
@@ -161,7 +161,7 @@ public class LevelCreator : MonoBehaviour
 
     public void LoadGrid(int pathIndex)
     {
-        m_saveFileNotifier.text = "Save File: " + pathIndex;
+        m_saveFileNotifier.text = "Save File: " + (pathIndex + 1);
         if (!File.Exists(dataPaths[pathIndex]))
         {
             SpawnGrid();
