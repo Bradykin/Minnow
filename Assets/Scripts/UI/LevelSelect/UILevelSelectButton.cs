@@ -9,11 +9,19 @@ public class UILevelSelectButton : WorldElementBase
     public SpriteRenderer m_tintRenderer;
     public Text m_titleText;
 
-    //private Level level;
+    private JsonMapMetaData m_level;
 
     void Start()
     {
-        
+        List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
+        for (int i = 0; i < mapList.Count; i++)
+        {
+            if (mapList[i].mapID == m_id)
+            {
+                m_level = mapList[i];
+                break;
+            }
+        }
     }
 
     void Update()
@@ -28,7 +36,16 @@ public class UILevelSelectButton : WorldElementBase
 
     private void SelectLevel()
     {
-        UILevelSelectController.Instance.SetSelectedLevel();
+        if (m_id == -1)
+        {
+            UILevelSelectController.Instance.m_levelBuilderSelected = true;
+            return;
+        }
+        else
+        {
+            UILevelSelectController.Instance.m_levelBuilderSelected = false;
+            UILevelSelectController.Instance.SetSelectedLevel(m_level);
+        }
     }
 
     void OnMouseOver()
@@ -43,6 +60,6 @@ public class UILevelSelectButton : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Level Name", "Level difficulty."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_level.mapName, UIHelper.GetDifficultyText(((MapDifficulty)m_level.mapDifficulty))));
     }
 }

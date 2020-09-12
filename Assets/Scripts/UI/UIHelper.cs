@@ -418,13 +418,39 @@ public static class UIHelper
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.m_name, relic.m_desc));
     }
 
-    public static string GetDifficultyText()
+    public static string GetDifficultyText(MapDifficulty difficulty)
     {
-        return "Difficulty: NONE";
+        if (difficulty == MapDifficulty.Easy)
+        {
+            return "Difficulty: Normal";
+        }
+        else if (difficulty == MapDifficulty.Medium)
+        {
+            return "Difficulty: Hard";
+        }
+        else if (difficulty == MapDifficulty.Hard)
+        {
+            return "Difficulty: Very Hard";
+        }
+
+        return "";
     }
 
-    public static Color GetDifficultyTextColor()
+    public static Color GetDifficultyTextColor(MapDifficulty difficulty)
     {
-        return m_difficultyVeryHard;
+        if (difficulty == MapDifficulty.Easy)
+        {
+            return m_difficultyNormal;
+        }
+        else if (difficulty == MapDifficulty.Medium)
+        {
+            return m_difficultyHard;
+        }
+        else if (difficulty == MapDifficulty.Hard)
+        {
+            return m_difficultyVeryHard;
+        }
+
+        return Color.white;
     }
 }

@@ -13,7 +13,16 @@ public class UILevelSelectStartButton : MonoBehaviour
 
     private void StartGame()
     {
-        //Start the game here
+        if (UILevelSelectController.Instance.m_levelBuilderSelected)
+        {
+            //Start the level builder;
+        }
+        else
+        {
+            JsonMapMetaData m_curLevel = UILevelSelectController.Instance.m_curLevel;
+            //Load the above level
+        }
+
     }
 
     void OnMouseOver()

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class UILevelSelectController : Singleton<UILevelSelectController>
 {
-    //Store the level here
+    public JsonMapMetaData m_curLevel;
+    public bool m_levelBuilderSelected;
 
     public Text m_nameText;
     public Text m_difficultyText;
@@ -15,9 +16,9 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
 
     void Update()
     {
-        m_nameText.text = "Level name";
-        m_difficultyText.text = UIHelper.GetDifficultyText();
-        m_difficultyText.color = UIHelper.GetDifficultyTextColor();
+        m_nameText.text = m_curLevel.mapName;
+        m_difficultyText.text = UIHelper.GetDifficultyText((MapDifficulty)(m_curLevel.mapDifficulty));
+        m_difficultyText.color = UIHelper.GetDifficultyTextColor((MapDifficulty)(m_curLevel.mapDifficulty));
 
         m_chaosVal.text = "" + Globals.m_curChaos;
         m_chaosText.text = ""; //Reset the text
@@ -32,8 +33,8 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
         return true;
     }
 
-    public void SetSelectedLevel()
+    public void SetSelectedLevel(JsonMapMetaData newLevel)
     {
-
+        m_curLevel = newLevel;
     }
 }
