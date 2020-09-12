@@ -129,11 +129,6 @@ public class UICameraController : Singleton<UICameraController>, IReset
         GetComponent<Camera>().orthographicSize = size;
     }
 
-    public void SmartCameraToPosition(Vector2 position)
-    {
-        UICameraController.Instance.transform.position = new Vector3(position.x, position.y, -10);
-    }
-
     public  void Activate()
     {
 

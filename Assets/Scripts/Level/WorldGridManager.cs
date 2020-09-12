@@ -251,6 +251,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 gameOpponent.m_spawnPoints.Add(curTile.m_spawnPoint);
             }
         }
+
+        UICameraController.Instance.SnapToWorldElement(WorldController.Instance.m_gameController.m_player.Castle.m_curTile);
     }
 
     /*public void SetupEnemies(GameOpponent gameOpponent)

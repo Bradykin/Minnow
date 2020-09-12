@@ -580,13 +580,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
             int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
 
-            if (projectedAPSpent > GetCurAP() || projectedAPSpent > apToUse)
+            if (projectedAPSpent > GetCurAP())
                 break;
 
             apSpent += pathToTile[i].GetCostToPass(this);
             destinationTile = pathToTile[i];
 
-            if (apSpent < apToUse)
+            if (apSpent >= apToUse)
                 break;
         }
 

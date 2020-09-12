@@ -51,7 +51,7 @@ public class AIMoveToAttackStep : AIStep
     {
         if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().Castle != null)
         {
-            m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTowards(GameHelper.GetPlayer().Castle.m_curTile.GetGameTile(), m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP());
+            m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTowards(GameHelper.GetPlayer().Castle.m_curTile.GetGameTile(), m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
         }
     }
 }

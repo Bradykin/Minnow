@@ -44,10 +44,17 @@ public class GameOpponent : ITurns
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
-            UICameraController.Instance.SmartCameraToPosition(m_controlledEntities[i].m_curTile.m_curTile.transform.position);
-            yield return new WaitForSeconds(0.25f);
-            m_controlledEntities[i].TakeTurn();
-            yield return new WaitForSeconds(0.5f);
+            if (Constants.UseSmartCameraEnemyTurns)
+            {
+                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].m_curTile.m_curTile);
+                yield return new WaitForSeconds(0.25f);
+                m_controlledEntities[i].TakeTurn();
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                m_controlledEntities[i].TakeTurn();
+            }
         }
         WorldController.Instance.m_gameController.MoveToNextTurn();
     }
