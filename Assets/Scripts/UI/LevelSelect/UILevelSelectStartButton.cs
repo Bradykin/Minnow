@@ -23,7 +23,7 @@ public class UILevelSelectStartButton : MonoBehaviour
         else
         {
             JsonMapMetaData m_curLevel = UILevelSelectController.Instance.m_curLevel;
-            Globals.mapToLoad = m_curLevel.dataPath;
+            Globals.mapToLoad = Application.dataPath + m_curLevel.dataPath;
             SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
             //Load the above level
         }

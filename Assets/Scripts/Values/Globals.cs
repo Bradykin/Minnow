@@ -7,8 +7,9 @@ using UnityEngine;
 public static class Globals
 {
     //TODO: THis is temp. This datapath should be gotten from the menu before loading the level
-    private static string mapMetaDataPath;
-    private static string defaultGridDataPath;
+    private static string applicationDataPath;
+    private static string mapMetaDataPath = "/RemoteData/SaveMetaData.txt";
+    private static string defaultGridDataPath = "/RemoteData/JsonGridData0.txt";
     public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
@@ -37,8 +38,7 @@ public static class Globals
 
     public static void Init()
     {
-        mapMetaDataPath = Application.dataPath + "/RemoteData/SaveMetaData.txt";
-        defaultGridDataPath = Application.dataPath + "/RemoteData/JsonGridData0.txt";
+        applicationDataPath = Application.dataPath;
 
         m_hasInit = true;
     }
@@ -48,7 +48,7 @@ public static class Globals
         if (!m_hasInit)
             Init();
 
-        return mapMetaDataPath;
+        return applicationDataPath + mapMetaDataPath;
     }
 
     public static string GetDefaultGridDataPath()
@@ -56,7 +56,7 @@ public static class Globals
         if (!m_hasInit)
             Init();
 
-        return defaultGridDataPath;
+        return applicationDataPath + defaultGridDataPath;
     }
 
     public static List<JsonMapMetaData> LoadMapMetaData()
@@ -64,11 +64,11 @@ public static class Globals
         if (!m_hasInit)
             Init();
         
-        if (!File.Exists(mapMetaDataPath))
+        if (!File.Exists(applicationDataPath + mapMetaDataPath))
         {
             return new List<JsonMapMetaData>();
         }
-        JsonMapFilesMetaData jsonMapFilesMetaData = JsonUtility.FromJson<JsonMapFilesMetaData>(File.ReadAllText(mapMetaDataPath));
+        JsonMapFilesMetaData jsonMapFilesMetaData = JsonUtility.FromJson<JsonMapFilesMetaData>(File.ReadAllText(applicationDataPath + mapMetaDataPath));
 
         List<JsonMapMetaData> jsonMapMetaDatas = new List<JsonMapMetaData>();
         for (int i = 0; i < jsonMapFilesMetaData.mapFiles.Count; i++)
@@ -95,6 +95,6 @@ public static class Globals
         }
 
         string jsonData = JsonUtility.ToJson(jsonMapFilesMetaData);
-        File.WriteAllText(mapMetaDataPath, jsonData);
+        File.WriteAllText(applicationDataPath + mapMetaDataPath, jsonData);
     }
 }
