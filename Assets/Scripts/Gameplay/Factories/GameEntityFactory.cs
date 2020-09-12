@@ -68,7 +68,7 @@ public class GameEntityFactory
         m_enemies.Add(new ContentMobolaEnemy(null));
         m_enemies.Add(new ContentOrcEnemy(null));
         m_enemies.Add(new ContentOrcShamanEnemy(null));
-        m_enemies.Add(new ContentSeigebreakerEntity(null));
+        m_enemies.Add(new ContentSiegebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSnakeEnemy(null));

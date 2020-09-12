@@ -19,8 +19,13 @@ public class ContentShadeEnemy : GameEnemyEntity
 
         m_minWave = 5;
 
-        LateInit();
-
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
+        LateInit();
     }
 }

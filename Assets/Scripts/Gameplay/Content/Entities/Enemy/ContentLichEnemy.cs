@@ -25,6 +25,11 @@ public class ContentLichEnemy : GameEnemyEntity
         m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameHealAction(this, Mathf.FloorToInt((float)m_maxHealth / 2f))));
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
         LateInit();
     }
 
