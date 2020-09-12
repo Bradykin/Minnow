@@ -18,14 +18,12 @@ public class UILevelSelectStartButton : MonoBehaviour
         if (UILevelSelectController.Instance.m_levelBuilderSelected)
         {
             SceneLoader.ActivateScene("LevelCreatorScene", "LevelSelectScene");
-            //Start the level builder;
         }
         else
         {
             JsonMapMetaData m_curLevel = UILevelSelectController.Instance.m_curLevel;
             Globals.mapToLoad = Application.dataPath + m_curLevel.dataPath;
             SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
-            //Load the above level
         }
 
     }

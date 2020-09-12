@@ -6,7 +6,7 @@ public class ContentRelicIntermissionAction : GameActionIntermission
 {
     public ContentRelicIntermissionAction()
     {
-        m_actionCost = 3;
+        m_actionCost = 2;
         m_name = "Find Relic";
         m_desc = "Gain a random relic!";
 

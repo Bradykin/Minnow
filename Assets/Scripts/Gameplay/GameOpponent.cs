@@ -19,7 +19,7 @@ public class GameOpponent : ITurns
 
     public void LateInit()
     {
-        Debug.Log("GameOpponent LateInit");
+        //Debug.Log("GameOpponent LateInit");
     }
 
     public void AddControlledEntity(GameEnemyEntity toAdd)

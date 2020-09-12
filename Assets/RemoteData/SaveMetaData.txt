@@ -1,5 +1,1 @@
-{
-	"mapFiles": [
-		"{\"mapName\":\"/RemoteData/JsonGridData0.txt\",\"mapID\":0,\"gridSize\":{\"x\":30,\"y\":30},\"mapDifficulty\":0,\"dataPath\":\"/RemoteData/JsonGridData0.txt\"}"
-	]
-}
+{"mapFiles":["{\"mapName\":\"/RemoteData/JsonGridData0.txt\",\"mapID\":0,\"gridSize\":{\"x\":30,\"y\":30},\"mapDifficulty\":0,\"dataPath\":\"/RemoteData/JsonGridData0.txt\"}","{\"mapName\":\"C:/Users/NickM/Desktop/PersonalProjects/Minnow/Assets/RemoteData/JsonGridData0.txt\",\"mapID\":0,\"gridSize\":{\"x\":30,\"y\":30},\"mapDifficulty\":0,\"dataPath\":\"C:/Users/NickM/Desktop/PersonalProjects/Minnow/Assets/RemoteData/JsonGridData0.txt\"}"]}
