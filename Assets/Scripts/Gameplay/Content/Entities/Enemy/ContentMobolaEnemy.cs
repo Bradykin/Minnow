@@ -6,16 +6,18 @@ public class ContentMobolaEnemy : GameEnemyEntity
 {
     public ContentMobolaEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 4;
-        m_maxAP = 4;
+        m_maxHealth = 40;
+        m_maxAP = 8;
         m_apRegen = 2;
-        m_power = 1;
+        m_power = 2;
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Mobola";
-        m_desc = "MOBOLA DESC";
+        m_desc = "It only grows in power as it fights.";
+
+        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 3)));
 
         LateInit();
     }

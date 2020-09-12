@@ -20,8 +20,17 @@ public class UITurnCounter : WorldElementBase
             return;
         }
 
-        m_titleText.text = "Wave " + player.m_waveNum;
-        m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+        if (player.m_waveNum == Constants.FinalWaveNum)
+        {
+            m_titleText.text = "Final Wave";
+            m_countText.text = "Beat the boss";
+        }
+        else
+        {
+            m_titleText.text = "Wave " + player.m_waveNum;
+            m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+        }
+
         if (Globals.m_curChaos == 0)
         {
             m_chaosText.text = "";

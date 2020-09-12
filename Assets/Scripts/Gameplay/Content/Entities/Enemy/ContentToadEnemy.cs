@@ -6,17 +6,26 @@ public class ContentToadEnemy : GameEnemyEntity
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 4;
-        m_maxAP = 4;
+        m_maxHealth = 6;
+        m_maxAP = 6;
         m_apRegen = 2;
-        m_power = 1;
+        m_power = 2;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Toad";
-        m_desc = "TOAD DESC";
+        m_desc = "Don't let this thing hit you; it'll drain your AP!";
 
         LateInit();
+    }
+
+    public override int HitEntity(GameEntity other)
+    {
+        int damageTaken = base.HitEntity(other);
+
+        other.EmptyAP();
+
+        return damageTaken;
     }
 }

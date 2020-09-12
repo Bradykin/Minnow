@@ -27,7 +27,7 @@ public static class Constants
     //Wave Data
     public static int InitialWaveSize = 6;
     public static int WaveTurnIncrement = 2;
-    public static int FinalWaveNum = 8;
+    public static int FinalWaveNum = 7;
 
     //Testing Data
     public static bool FogOfWar = false;

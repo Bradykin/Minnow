@@ -8,6 +8,9 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
     public AIGameEnemyEntity m_AIGameEnemyEntity;
     public GameOpponent m_gameOpponentController;
 
+    public bool m_isElite;
+    public bool m_isBoss;
+
     public GameEnemyEntity(GameOpponent gameOpponent)
     {
         m_AIGameEnemyEntity = new AIGameEnemyEntity(this);
@@ -29,7 +32,7 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
         }
 
         m_curHealth = GetMaxHealth();
-        m_curAP = GetAPRegen();
+        m_curAP = GetMaxAP(); //Enemy entities start at max AP.  This helps them get to the player base faster.
     }
 
     //============================================================================================================//

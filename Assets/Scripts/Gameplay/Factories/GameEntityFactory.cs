@@ -9,7 +9,9 @@ public class GameEntityFactory
 
 
     private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_commonEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_eliteEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_bossEnemies = new List<GameEnemyEntity>();
 
     private static bool m_hasInit = false;
     
@@ -63,25 +65,64 @@ public class GameEntityFactory
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSnakeEnemy(null));
         m_enemies.Add(new ContentSpinnerEnemy(null));
-        m_enemies.Add(new ContentSwarmSoldierEnemy(null));
         m_enemies.Add(new ContentToadEnemy(null));
         m_enemies.Add(new ContentWerewolfEnemy(null));
         m_enemies.Add(new ContentYetiEnemy(null));
         m_enemies.Add(new ContentZombieEnemy(null));
 
+        for (int i = 0; i < m_enemies.Count; i++)
+        {
+            if (m_enemies[i].m_isBoss)
+            {
+                m_bossEnemies.Add(m_enemies[i]);
+            }
+            else if (m_enemies[i].m_isElite)
+            {
+                m_eliteEnemies.Add(m_enemies[i]);
+            }
+            else
+            {
+                m_standardEnemies.Add(m_enemies[i]);
+            }
+        }
+
         m_hasInit = true;
     }
-    
+
     public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
         {
             Init();
         }
-        
-        int r = UnityEngine.Random.Range(0, m_enemies.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_enemies[r].GetType(), gameOpponent);
+        int r = UnityEngine.Random.Range(0, m_standardEnemies.Count);
+
+        return (GameEnemyEntity)Activator.CreateInstance(m_standardEnemies[r].GetType(), gameOpponent);
+    }
+
+    public static GameEnemyEntity GetRandomEliteEnemy(GameOpponent gameOpponent)
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int r = UnityEngine.Random.Range(0, m_eliteEnemies.Count);
+
+        return (GameEnemyEntity)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
+    }
+
+    public static GameEnemyEntity GetRandomBossEnemy(GameOpponent gameOpponent)
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int r = UnityEngine.Random.Range(0, m_bossEnemies.Count);
+
+        return (GameEnemyEntity)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
     }
 
     public static GameEntity GetEntityFromJson(JsonGameEntityData jsonData)
@@ -104,7 +145,7 @@ public class GameEntityFactory
 
         int i = m_enemies.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_playerEntities[i].GetType());
+        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_enemies[i].GetType());
         newEnemy.LoadFromJson(jsonData);
 
         return newEnemy;
