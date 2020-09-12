@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Game.Util;
 
 public class LevelCreator : MonoBehaviour
 {
@@ -133,6 +134,11 @@ public class LevelCreator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             ProcessSaveFileKey(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneLoader.ActivateScene("LevelSelectScene", "LevelCreatorScene");
         }
     }
 

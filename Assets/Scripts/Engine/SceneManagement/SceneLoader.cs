@@ -14,7 +14,8 @@ namespace Game.Util
             { "LevelScene", null },
             { "AlexTestScene", null },
             { "NickTestScene", null },
-            { "LevelSelectScene", null }
+            { "LevelSelectScene", null },
+            { "LevelCreatorScene", null }
         };
 
         private static MonoBehaviour _coroutineRunner;
