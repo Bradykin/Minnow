@@ -302,6 +302,15 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 m_occupyingEntityObj.gameObject.SetActive(false);
             }
             m_fogOfWar.SetActive(true);
+
+            if (GetGameTile().m_isSoftFog)
+            {
+                m_fogRenderer.color = new Color(m_fogRenderer.color.r, m_fogRenderer.color.g, m_fogRenderer.color.b, 0.35f);
+            }
+            else
+            {
+                m_fogRenderer.color = new Color(m_fogRenderer.color.r, m_fogRenderer.color.g, m_fogRenderer.color.b, 1f);
+            }
         }
         else
         {

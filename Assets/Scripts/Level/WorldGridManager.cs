@@ -537,6 +537,25 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
     }
 
+    public void EndIntermissionFogUpdate()
+    {
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            if (!m_gridArray[i].GetGameTile().m_isFog)
+            {
+                m_gridArray[i].GetGameTile().m_isSoftFog = true;
+                m_gridArray[i].GetGameTile().m_isFog = true;
+            }
+        }
+
+        GamePlayer player = GameHelper.GetPlayer();
+
+        for (int i = 0; i < player.m_controlledBuildings.Count; i++)
+        {
+            player.m_controlledBuildings[i].m_curTile.ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
+        }
+    }
+
     //============================================================================================================//
 
     public string SaveToJson()
