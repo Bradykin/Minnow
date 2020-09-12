@@ -15,7 +15,7 @@ public class ContentSlimeEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Slime";
-        m_desc = "What a basic slime.  LOL!";
+        m_desc = "The basic slime.  A classic.";
 
         LateInit();
     }

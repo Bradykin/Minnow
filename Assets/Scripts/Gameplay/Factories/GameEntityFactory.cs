@@ -63,7 +63,6 @@ public class GameEntityFactory
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSnakeEnemy(null));
         m_enemies.Add(new ContentSpinnerEnemy(null));
-        m_enemies.Add(new ContentSwarmSoldierEnemy(null));
         m_enemies.Add(new ContentToadEnemy(null));
         m_enemies.Add(new ContentWerewolfEnemy(null));
         m_enemies.Add(new ContentYetiEnemy(null));

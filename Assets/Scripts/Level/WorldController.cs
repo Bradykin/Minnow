@@ -133,7 +133,7 @@ public class WorldController : Singleton<WorldController>
 
         if (player.m_waveNum == Constants.FinalWaveNum)
         {
-            Debug.Log("Player is victorious!");
+            WinGame();
         }
     }
 
@@ -152,5 +152,10 @@ public class WorldController : Singleton<WorldController>
 
         ClearHand();
         player.DrawHand();
+    }
+
+    public void WinGame()
+    {
+        Debug.Log("The player has won!");
     }
 }

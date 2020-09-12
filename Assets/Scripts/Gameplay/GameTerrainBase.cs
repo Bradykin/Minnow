@@ -23,13 +23,23 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isVolcano;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
-    public bool IsPassable()
+    public bool IsPassable(GameEntity checkerEntity)
     {
+        if (IsWater() && checkerEntity.GetKeywordHolder().GetKeyword<GameWaterwalkKeyword>() != null)
+        {
+            return true;
+        }
+
         return m_isPassable;
     }
 
-    public int GetCostToPass()
+    public int GetCostToPass(GameEntity checkerEntity)
     {
+        if (IsWater() && checkerEntity.GetKeywordHolder().GetKeyword<GameWaterwalkKeyword>() != null)
+        {
+            return 0;
+        }
+
         return m_costToPass;
     }
 

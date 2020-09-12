@@ -190,7 +190,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
         else
         {
-            return m_terrain.GetCostToPass();
+            return m_terrain.GetCostToPass(checkerEntity);
         }
     }
 
@@ -220,7 +220,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             hasNotDestroyedBuilding = m_building.m_isDestroyed;
         }
 
-        bool terrainImpassable = !m_terrain.IsPassable();
+        bool terrainImpassable = !m_terrain.IsPassable(checkerEntity);
 
         if (isOccupiedOpposingTeam)
         {
