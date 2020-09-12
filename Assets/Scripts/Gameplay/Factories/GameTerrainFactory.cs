@@ -256,6 +256,32 @@ public class GameTerrainFactory
         return (GameTerrainBase)Activator.CreateInstance(currentTerrain.GetType());
     }
 
+    public static GameTerrainBase GetCompletedEventTerrainClone(GameTerrainBase currentTerrain)
+    {
+        string terrainName = currentTerrain.m_name;
+        terrainName = terrainName.Remove(terrainName.IndexOf("Ruins"), 5);
+
+        for (int i = 0; i < m_terrain.Count; i++)
+        {
+            List<GameTerrainBase> currentTerrainList = m_terrain[i].Value;
+
+            int r = currentTerrainList.FindIndex(t => t.m_name == terrainName);
+
+            if (r == -1)
+            {
+                continue;
+            }
+
+            GameTerrainBase newTerrain = (GameTerrainBase)Activator.CreateInstance(currentTerrainList[r].GetType());
+
+            return newTerrain;
+        }
+
+        Debug.LogError("Missing terrain class for " + terrainName + " in GameTerrainFactory");
+        return null;
+    }
+
+
     public static GameTerrainBase GetNextTerrainList()
     {
         if (!m_hasInit)
