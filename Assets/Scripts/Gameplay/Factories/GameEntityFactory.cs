@@ -16,22 +16,44 @@ public class GameEntityFactory
     public static void Init()
     {
         m_playerEntities.Add(new ContentCaveDragonEntity());
+        m_playerEntities.Add(new ContentConjuredImp());
+        m_playerEntities.Add(new ContentCyclops());
+        m_playerEntities.Add(new ContentDemonSoldier());
         m_playerEntities.Add(new ContentDevourer());
+        m_playerEntities.Add(new ContentDwarfArchitect());
+        m_playerEntities.Add(new ContentDwarfHealer());
         m_playerEntities.Add(new ContentDwarvenSoldier());
         m_playerEntities.Add(new ContentElvenRogue());
         m_playerEntities.Add(new ContentElvenSentinel());
         m_playerEntities.Add(new ContentElvenWizard());
         m_playerEntities.Add(new ContentFishOracle());
+        m_playerEntities.Add(new ContentGladiator());
         m_playerEntities.Add(new ContentGoblinEntity());
+        m_playerEntities.Add(new ContentGrasper());
         m_playerEntities.Add(new ContentGroundskeeper());
+        m_playerEntities.Add(new ContentGuardCaptain());
+        m_playerEntities.Add(new ContentHero());
+        m_playerEntities.Add(new ContentHomonculus());
         m_playerEntities.Add(new ContentInjuredTrollEntity());
+        m_playerEntities.Add(new ContentMage());
+        m_playerEntities.Add(new ContentMetalGolem());
+        m_playerEntities.Add(new ContentMiner());
         m_playerEntities.Add(new ContentNaturalScout());
+        m_playerEntities.Add(new ContentOverlord());
+        m_playerEntities.Add(new ContentRanger());
+        m_playerEntities.Add(new ContentRaptor());
         m_playerEntities.Add(new ContentSabobot());
-        
+        m_playerEntities.Add(new ContentShadowWarlock());
+        m_playerEntities.Add(new ContentSkeleton());
+        m_playerEntities.Add(new ContentStoneGolem());
+        m_playerEntities.Add(new ContentWanderer());
+        m_playerEntities.Add(new ContentWildfolk());
+
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSeigebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
         m_enemies.Add(new ContentSpinnerEnemy(null));
+        m_enemies.Add(new ContentZombieEnemy(null));
         m_hasInit = true;
     }
     

@@ -12,7 +12,7 @@ public class ContentDwarvenSoldier : GameEntity
         m_power = 5;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Event;
 
         m_name = "Dwarven Soldier";
         m_typeline = Typeline.Humanoid;
