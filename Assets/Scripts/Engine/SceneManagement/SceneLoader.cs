@@ -13,7 +13,8 @@ namespace Game.Util
             { "MainMenuScene", null },
             { "LevelScene", null },
             { "AlexTestScene", null },
-            { "NickTestScene", null }
+            { "NickTestScene", null },
+            { "LevelSelectScene", null }
         };
 
         private static MonoBehaviour _coroutineRunner;
@@ -112,15 +113,7 @@ namespace Game.Util
                 yield return _coroutineRunner.StartCoroutine(LoadSceneAsync(entry));
             }
 
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarSalvagerMainScene"))
-            {
-                ActivateScene("MainMenuScene");
-                SetActiveScene("MainMenuScene");
-            }
-            else
-            {
-                ActivateScene(SceneManager.GetActiveScene().name);
-            }
+            ActivateScene(SceneManager.GetActiveScene().name);
         }
 
         private static IEnumerator LoadSceneAsync(string sceneName)

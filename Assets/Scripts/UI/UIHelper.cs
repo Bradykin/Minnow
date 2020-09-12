@@ -23,6 +23,10 @@ public static class UIHelper
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
+    public static Color m_difficultyNormal = new Color(Color.green.r, Color.green.g, Color.green.b, 1f);
+    public static Color m_difficultyHard = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
+    public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
+
     public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
     {
         if (isSelected)
@@ -303,51 +307,71 @@ public static class UIHelper
         }
     }
 
-    public static void CreateChaosTooltip()
+    public static void CreateChaosTooltipStack()
     {
-        string descText = "";
-        if (GameHelper.IsValidChaosLevel(1))
+        for (int i = 1; i < Globals.m_curChaos; i++)
         {
-            descText += "1 - Start with an extra 3 random spell cards and an extra 1 random entity card\n";
+            CreateChaosTooltip(i);
         }
-        if (GameHelper.IsValidChaosLevel(2))
+    }
+
+    public static void CreateChaosTooltip(int chaosVal)
+    {
+        if (chaosVal == 0)
         {
-            descText += "2 - Enemies have +1 AP regen\n";
-        }
-        if (GameHelper.IsValidChaosLevel(3))
-        {
-            descText += "3 - Half chance for uncommmon cards\n";
-        }
-        if (GameHelper.IsValidChaosLevel(4))
-        {
-            descText += "4 - Half chance for rare cards\n";
-        }
-        if (GameHelper.IsValidChaosLevel(5))
-        {
-            descText += "5 - Draw 1 less each turn\n";
-        }
-        if (GameHelper.IsValidChaosLevel(6))
-        {
-            descText += "6 - Double cost buildings\n";
-        }
-        if (GameHelper.IsValidChaosLevel(7))
-        {
-            descText += "7 - Double health enemies\n";
-        }
-        if (GameHelper.IsValidChaosLevel(8))
-        {
-            descText += "8 - Double power enemies\n";
-        }
-        if (GameHelper.IsValidChaosLevel(9))
-        {
-            descText += "9 - 1 less action each intermission phase\n";
-        }
-        if (GameHelper.IsValidChaosLevel(10))
-        {
-            descText += "10 - 1 less energy\n";
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("No Chaos", "No adjustments to gameplay."));
+            return;
         }
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Chaos Level", descText));
+        string descText = GetChaosDesc(chaosVal);
+
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Chaos Level " + chaosVal, descText));
+    }
+
+    public static string GetChaosDesc(int chaosVal)
+    {
+        if (chaosVal == 1)
+        {
+            return "Start with an extra 3 random spell cards and an extra 1 random entity card";
+        }
+        if (chaosVal == 2)
+        {
+            return "Enemies have +1 AP regen";
+        }
+        if (chaosVal == 3)
+        {
+            return "Half chance for uncommmon cards";
+        }
+        if (chaosVal == 4)
+        {
+            return "Half chance for rare cards";
+        }
+        if (chaosVal == 5)
+        {
+            return "Draw 1 less each turn";
+        }
+        if (chaosVal == 6)
+        {
+            return "Double cost buildings";
+        }
+        if (chaosVal == 7)
+        {
+            return "Double health enemies";
+        }
+        if (chaosVal == 8)
+        {
+            return "Double power enemies";
+        }
+        if (chaosVal == 9)
+        {
+            return "1 less action each intermission phase";
+        }
+        if (chaosVal == 10)
+        {
+            return "1 less energy";
+        }
+
+        return "";
     }
 
     //This is a stub for now.  Can reactivate later if we want it
@@ -385,5 +409,15 @@ public static class UIHelper
     public static void CreateRelicTooltip(GameRelic relic)
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.m_name, relic.m_desc));
+    }
+
+    public static string GetDifficultyText()
+    {
+        return "Difficulty: NONE";
+    }
+
+    public static Color GetDifficultyTextColor()
+    {
+        return m_difficultyVeryHard;
     }
 }

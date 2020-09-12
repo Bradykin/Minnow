@@ -16,6 +16,11 @@ public class UICameraController : MonoBehaviour
 
     void Update()
     {
+        if (GameHelper.IsInLevelSelect())
+        {
+            return;
+        }
+
         HandleMovement();
         //HandleScrolling();
     }

@@ -12,6 +12,16 @@ public class UIHUDController : MonoBehaviour
 
     void Update()
     {
+        if (GameHelper.IsInLevelSelect() || GameHelper.IsInLevelBuilder())
+        {
+            m_intermissionHUD.SetActive(false);
+            m_waveHUD.SetActive(false);
+            m_cardSelectHUD.SetActive(false);
+            m_walletHUD.SetActive(false);
+            m_relicsHUD.SetActive(false);
+            return;
+        }
+
         if (Globals.m_inDeckView)
         {
             m_intermissionHUD.SetActive(false);

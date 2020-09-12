@@ -12,6 +12,8 @@ public static class Constants
     public static int PercentChanceForUncommonCard = 24;
     public static int PercentChanceForRareCard = 12;
 
+    public static int MaxChaos = 10;
+
     //UI Data
     public static float TooltipWidth = 5.5f;
 

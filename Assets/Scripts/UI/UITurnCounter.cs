@@ -47,6 +47,6 @@ public class UITurnCounter : WorldElementBase
     public override void HandleTooltip()
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Wave Counter", "After this many turns, go to the intermission phase before the next wave!"));
-        UIHelper.CreateChaosTooltip();
+        UIHelper.CreateChaosTooltipStack();
     }
 }
