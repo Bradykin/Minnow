@@ -93,6 +93,7 @@ public class LevelCreator : MonoBehaviour
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingType = typeof(GameSpawnPoint);
+                m_selectedImage.sprite = null;
                 m_selectedListNotifier.text = "Spawn point";
                 m_selectedTileNotifier.text = "Random spawn point";
             }
