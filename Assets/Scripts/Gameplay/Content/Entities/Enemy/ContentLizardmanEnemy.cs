@@ -17,6 +17,8 @@ public class ContentLizardmanEnemy : GameEnemyEntity
         m_name = "Lizardman";
         m_desc = "It walks on land, it swims in water.  Is there anything it can't do?";
 
+        m_minWave = 5;
+
         m_keywordHolder.m_keywords.Add(new GameWaterwalkKeyword());
 
         LateInit();

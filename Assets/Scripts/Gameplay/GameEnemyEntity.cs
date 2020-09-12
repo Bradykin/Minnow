@@ -11,6 +11,8 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
     public bool m_isElite;
     public bool m_isBoss;
 
+    public int m_minWave;
+
     public GameEnemyEntity(GameOpponent gameOpponent)
     {
         m_AIGameEnemyEntity = new AIGameEnemyEntity(this);

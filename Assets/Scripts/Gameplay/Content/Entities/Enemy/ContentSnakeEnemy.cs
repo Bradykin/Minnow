@@ -16,6 +16,7 @@ public class ContentSnakeEnemy : GameEnemyEntity
 
         m_name = "Snake";
         m_desc = "It's venom permanently drains 2 power.";
+        m_minWave = 4;
 
         LateInit();
     }

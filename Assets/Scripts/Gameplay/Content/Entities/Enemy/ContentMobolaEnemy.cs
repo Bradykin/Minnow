@@ -17,6 +17,8 @@ public class ContentMobolaEnemy : GameEnemyEntity
         m_name = "Mobola";
         m_desc = "It only grows in power as it fights.";
 
+        m_minWave = 6;
+
         m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 3)));
 
         LateInit();

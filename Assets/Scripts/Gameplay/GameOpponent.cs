@@ -80,26 +80,27 @@ public class GameOpponent : ITurns
             if (m_spawnPoints[i].m_tile.m_occupyingEntity != null)
                 continue;
 
-            int randomCheck = Random.Range(0, 5); //This makes it a 20% chance that a boss or elite will spawn at any particular spawner
+            if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
+            {
+                GameEnemyEntity newEnemyEntity;
+                if (GameHelper.GetPlayer().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+                {
+                    newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);
+                    WorldController.Instance.SetHasSpawnedBoss(true);
+                }
+                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
+                {
+                    newEnemyEntity = GameEntityFactory.GetRandomEliteEnemy(this);
+                    WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+                }
+                else
+                {
+                    newEnemyEntity = GameEntityFactory.GetRandomEnemy(this, GameHelper.GetPlayer().m_waveNum);
+                }
 
-            GameEnemyEntity newEnemyEntity;
-            if (GameHelper.GetPlayer().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss() && randomCheck == 0)
-            {
-                newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);
-                WorldController.Instance.SetHasSpawnedBoss(true);
+                m_spawnPoints[i].m_tile.PlaceEntity(newEnemyEntity);
+                m_controlledEntities.Add(newEnemyEntity);
             }
-            else if (!WorldController.Instance.HasSpawnedEliteThisWave() && randomCheck == 0)
-            {
-                newEnemyEntity = GameEntityFactory.GetRandomEliteEnemy(this);
-                WorldController.Instance.SetHasSpawnedEliteThisWave(true);
-            }
-            else
-            {
-                newEnemyEntity = GameEntityFactory.GetRandomEnemy(this);
-            }
-
-            m_spawnPoints[i].m_tile.PlaceEntity(newEnemyEntity);
-            m_controlledEntities.Add(newEnemyEntity);
         }
     }
 }

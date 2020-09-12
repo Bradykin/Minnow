@@ -6,7 +6,7 @@ public class ContentWerewolfEnemy : GameEnemyEntity
 {
     public ContentWerewolfEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 12;
+        m_maxHealth = 18;
         m_maxAP = 4;
         m_apRegen = 2;
         m_power = 5;
@@ -16,6 +16,8 @@ public class ContentWerewolfEnemy : GameEnemyEntity
 
         m_name = "Werewolf";
         m_desc = "This thing never stops healing!";
+
+        m_minWave = 6;
 
         LateInit();
 

@@ -14,6 +14,8 @@ public class ContentOrcShamanEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
+        m_minWave = 4;
+
         m_name = "Orc Shaman";
         m_desc = "Magical blasts away...";
 

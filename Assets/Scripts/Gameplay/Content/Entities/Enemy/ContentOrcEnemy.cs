@@ -14,6 +14,8 @@ public class ContentOrcEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
+        m_minWave = 3; 
+
         m_name = "Orc";
         m_desc = "Feirce and strong, the backbone of any good army.";
 
