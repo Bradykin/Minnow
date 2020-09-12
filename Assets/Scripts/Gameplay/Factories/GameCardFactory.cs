@@ -26,61 +26,66 @@ public static class GameCardFactory
 
     public static void Init()
     {
-        m_cards.Add(new ContentCureWoundsCard());
+        //Entity Cards
+        m_cards.Add(new ContentCaveDragonCard());
+        m_cards.Add(new ContentConjuredImpCard());
+        m_cards.Add(new ContentCyclopsCard());
+        m_cards.Add(new ContentDemonSoldierCard());
         m_cards.Add(new ContentDevourerCard());
-        m_cards.Add(new ContentDrainCard());
+        m_cards.Add(new ContentDwarfArchitectCard());
+        m_cards.Add(new ContentDwarfHealerCard());
         m_cards.Add(new ContentDwarvenSoldierCard());
         m_cards.Add(new ContentElvenRogueCard());
         m_cards.Add(new ContentElvenSentinelCard());
         m_cards.Add(new ContentElvenWizardCard());
-        m_cards.Add(new ContentEnergizeCard());
-        m_cards.Add(new ContentFireboltCard());
         m_cards.Add(new ContentFishOracleCard());
-        m_cards.Add(new ContentGoblinCard());
-        m_cards.Add(new ContentGroundskeeperCard());
-        m_cards.Add(new ContentInjuredTrollCard());
-        m_cards.Add(new ContentNaturalScoutCard());
-        m_cards.Add(new ContentSabobotCard());
-        m_cards.Add(new ContentCaveDragonCard());
-        m_cards.Add(new ContentGrowthCard());
-        m_cards.Add(new ContentClearcutCard());
-        m_cards.Add(new ContentInsightCard());
-        m_cards.Add(new ContentDreamCard());
-        m_cards.Add(new ContentGrowTalonsCard());
-        m_cards.Add(new ContentTrollFormCard());
-        m_cards.Add(new ContentDemoncAspectCard());
-        m_cards.Add(new ContentBloodSacrificeCard());
-        m_cards.Add(new ContentJoltCard());
-        m_cards.Add(new ContentDemonSoldierCard());
-        m_cards.Add(new ContentDwarfArchitectCard());
-        m_cards.Add(new ContentDwarfHealerCard());
         m_cards.Add(new ContentGladiatorCard());
-        m_cards.Add(new ContentMageCard());
-        m_cards.Add(new ContentShadowWarlockCard());
-        m_cards.Add(new ContentMinerCard());
-        m_cards.Add(new ContentRangerCard());
-        m_cards.Add(new ContentWandererCard());
-        m_cards.Add(new ContentHeroCard());
-        m_cards.Add(new ContentGuardCaptainCard());
-        m_cards.Add(new ContentWildfolkCard());
-        m_cards.Add(new ContentConjuredImpCard());
-        m_cards.Add(new ContentMetalGolemCard());
-        m_cards.Add(new ContentHomonculusCard());
-        m_cards.Add(new ContentOverlordCard());
-        m_cards.Add(new ContentRaptorCard());
-        m_cards.Add(new ContentSkeletonCard());
+        m_cards.Add(new ContentGoblinCard());
         m_cards.Add(new ContentGrasperCard());
+        m_cards.Add(new ContentGroundskeeperCard());
+        m_cards.Add(new ContentGuardCaptainCard());
+        m_cards.Add(new ContentHeroCard());
+        m_cards.Add(new ContentHomonculusCard());
+        m_cards.Add(new ContentInjuredTrollCard());
+        m_cards.Add(new ContentMageCard());
+        m_cards.Add(new ContentMetalGolemCard());
+        m_cards.Add(new ContentMinerCard());
+        m_cards.Add(new ContentNaturalScoutCard());
+        m_cards.Add(new ContentOverlordCard());
+        m_cards.Add(new ContentRangerCard());
+        m_cards.Add(new ContentRaptorCard());
+        m_cards.Add(new ContentSabobotCard());
+        m_cards.Add(new ContentShadowWarlockCard());
+        m_cards.Add(new ContentSkeletonCard());
+        m_cards.Add(new ContentStoneGolemCard());
+        m_cards.Add(new ContentWandererCard());
+        m_cards.Add(new ContentWildfolkCard());
+
+        //Spell Cards
         m_cards.Add(new ContentArcaneBoltCard());
+        m_cards.Add(new ContentBlastingPurpleBeamCard());
+        m_cards.Add(new ContentBloodSacrificeCard());
+        m_cards.Add(new ContentClearcutCard());
+        m_cards.Add(new ContentCureWoundsCard());
+        m_cards.Add(new ContentDemoncAspectCard());
+        m_cards.Add(new ContentDrainCard());
+        m_cards.Add(new ContentDreamCard());
+        m_cards.Add(new ContentEnergizeCard());
+        m_cards.Add(new ContentEnergizingPurpleBeamCard());
         m_cards.Add(new ContentEntangleCard());
+        m_cards.Add(new ContentFireboltCard());
+        m_cards.Add(new ContentFortifyingPurpleBeamCard());
+        m_cards.Add(new ContentGrowTalonsCard());
+        m_cards.Add(new ContentGrowthCard());
+        m_cards.Add(new ContentInsightCard());
+        m_cards.Add(new ContentJoltCard());
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
-        m_cards.Add(new ContentSkypierceCard());
-        m_cards.Add(new ContentBlastingPurpleBeamCard());
-        m_cards.Add(new ContentEnergizingPurpleBeamCard());
-        m_cards.Add(new ContentReplenishingPurpleBeamCard());
-        m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentPurePurpleBeamCard());
         m_cards.Add(new ContentPurpleBeamSwordCard());
+        m_cards.Add(new ContentReplenishingPurpleBeamCard());
+        m_cards.Add(new ContentSkypierceCard());
+        m_cards.Add(new ContentTrollFormCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
