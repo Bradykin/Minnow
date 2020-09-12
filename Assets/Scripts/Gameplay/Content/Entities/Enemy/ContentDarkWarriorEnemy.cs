@@ -15,6 +15,8 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         m_rarity = GameRarity.Event;
         m_isElite = true;
 
+        m_minWave = 2;
+
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
 

@@ -17,6 +17,8 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_name = "Yeti";
         m_desc = "Is it... is it throwing snowballs?";
 
+        m_minWave = 5;
+
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
 
         LateInit();

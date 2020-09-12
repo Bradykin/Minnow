@@ -22,6 +22,8 @@ public class ContentZombieEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
+        m_minWave = 6;
+
         m_name = "Zombie";
         m_desc = "When this entity hits another entity, turn it into a zombie.";
         m_typeline = Typeline.Construct;

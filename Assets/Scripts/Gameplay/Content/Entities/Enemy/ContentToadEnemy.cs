@@ -17,6 +17,8 @@ public class ContentToadEnemy : GameEnemyEntity
         m_name = "Toad";
         m_desc = "Don't let this thing hit you; it'll drain your AP!";
 
+        m_minWave = 5;
+
         LateInit();
     }
 

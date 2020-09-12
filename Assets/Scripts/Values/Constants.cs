@@ -12,6 +12,9 @@ public static class Constants
     public static int PercentChanceForUncommonCard = 24;
     public static int PercentChanceForRareCard = 12;
 
+    public static int PercentChanceForEliteToSpawn = 20;
+    public static int PercentChanceForMobToSpawn = 33;
+
     public static int MaxChaos = 10;
 
     //UI Data
@@ -30,5 +33,5 @@ public static class Constants
     public static int FinalWaveNum = 7;
 
     //Testing Data
-    public static bool FogOfWar = true;
+    public static bool FogOfWar = false;
 }

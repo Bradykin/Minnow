@@ -17,6 +17,8 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
         m_name = "Angry Bird";
         m_desc = "Bawkk!";
 
+        m_minWave = 3;
+
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
         LateInit();

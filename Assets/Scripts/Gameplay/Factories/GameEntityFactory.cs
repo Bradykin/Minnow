@@ -13,6 +13,14 @@ public class GameEntityFactory
     private static List<GameEnemyEntity> m_eliteEnemies = new List<GameEnemyEntity>();
     private static List<GameEnemyEntity> m_bossEnemies = new List<GameEnemyEntity>();
 
+    private static List<GameEnemyEntity> m_standardWaveOneEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveTwoEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveThreeEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveFourEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveFiveEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveSixEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyEntity> m_standardWaveSevenEnemies = new List<GameEnemyEntity>();
+
     private static bool m_hasInit = false;
     
     public static void Init()
@@ -83,22 +91,85 @@ public class GameEntityFactory
             else
             {
                 m_standardEnemies.Add(m_enemies[i]);
+
+                if (m_enemies[i].m_minWave <= 1)
+                {
+                    m_standardWaveOneEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 2)
+                {
+                    m_standardWaveTwoEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 3)
+                {
+                    m_standardWaveThreeEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 4)
+                {
+                    m_standardWaveFourEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 5)
+                {
+                    m_standardWaveFiveEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 6)
+                {
+                    m_standardWaveSixEnemies.Add(m_enemies[i]);
+                }
+                if (m_enemies[i].m_minWave <= 7)
+                {
+                    m_standardWaveSevenEnemies.Add(m_enemies[i]);
+                }
             }
         }
 
         m_hasInit = true;
     }
 
-    public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent)
+    public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent, int curWave)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        int r = UnityEngine.Random.Range(0, m_standardEnemies.Count);
+        List<GameEnemyEntity> list = m_standardEnemies;
+        if (curWave == 1)
+        {
+            list = m_standardWaveOneEnemies;
+        }
+        else if (curWave == 2)
+        {
+            list = m_standardWaveTwoEnemies;
+        }
+        else if (curWave == 3)
+        {
+            list = m_standardWaveThreeEnemies;
+        }
+        else if (curWave == 4)
+        {
+            list = m_standardWaveFourEnemies;
+        }
+        else if (curWave == 5)
+        {
+            list = m_standardWaveFiveEnemies;
+        }
+        else if (curWave == 6)
+        {
+            list = m_standardWaveSixEnemies;
+        }
+        else if (curWave == 7)
+        {
+            list = m_standardWaveSevenEnemies;
+        }
+        else
+        {
+            Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
+        }
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_standardEnemies[r].GetType(), gameOpponent);
+        int r = UnityEngine.Random.Range(0, list.Count);
+
+        return (GameEnemyEntity)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
     public static GameEnemyEntity GetRandomEliteEnemy(GameOpponent gameOpponent)

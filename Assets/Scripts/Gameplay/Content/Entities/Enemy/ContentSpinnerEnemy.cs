@@ -21,6 +21,8 @@ public class ContentSpinnerEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
+        m_minWave = 2;
+
         m_name = "Spinner";
         m_desc = "This guys spins and wins!  Hits all enemies around him";
 

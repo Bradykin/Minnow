@@ -20,6 +20,8 @@ public class ContentSeigebreakerEntity : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
+        m_minWave = 4;
+
         m_name = "Seigebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";
 

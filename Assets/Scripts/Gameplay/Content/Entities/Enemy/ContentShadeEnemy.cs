@@ -17,6 +17,8 @@ public class ContentShadeEnemy : GameEnemyEntity
         m_name = "Shade";
         m_desc = "Yep, it flies.";
 
+        m_minWave = 5;
+
         LateInit();
 
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
