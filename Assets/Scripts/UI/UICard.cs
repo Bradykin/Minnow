@@ -19,6 +19,8 @@ public class UICard : WorldElementBase
 
     public GameCard m_card { get; private set; }
 
+    public bool m_isBig;
+
     private bool m_isHovered;
 
     void Start()
@@ -35,6 +37,15 @@ public class UICard : WorldElementBase
 
     void Update() 
     {
+        if ((m_isHovered && Globals.m_selectedCard == null) || Globals.m_selectedCard == this)
+        {
+            m_isBig = true;
+        }
+        else
+        {
+            m_isBig = false;
+        }
+        
         if (!m_isHovered)
         {
             UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
@@ -72,8 +83,8 @@ public class UICard : WorldElementBase
         {
             if (m_card.m_targetType == GameCard.Target.None)
             {
-                m_card.PlayCard();
                 WorldController.Instance.PlayCard(this, this);
+                m_card.PlayCard();
             }
             else
             {

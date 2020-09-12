@@ -94,7 +94,7 @@ public class GamePlayer : ITurns
 
         if (card != null) //This can be null if the deck and discard are both empty
         {
-            m_hand.Add(card);
+
             card.OnDraw();
 
             if (triggerKnowledgeable)
@@ -103,6 +103,16 @@ public class GamePlayer : ITurns
                 {
                     m_controlledEntities[i].DrawCard();
                 }
+            }
+
+            if (m_hand.Count >= Constants.MaxHandSize)
+            {
+                Debug.Log("Discarding a card for being past max hand size");
+                m_curDeck.AddToDiscard(card);
+            }
+            else
+            {
+                m_hand.Add(card);
             }
         }
     }

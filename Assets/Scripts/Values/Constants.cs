@@ -8,6 +8,7 @@ public static class Constants
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
     public static int StartingActions = 3;
+    public static int MaxHandSize = 7;
 
     public static int PercentChanceForUncommonCard = 24;
     public static int PercentChanceForRareCard = 12;
