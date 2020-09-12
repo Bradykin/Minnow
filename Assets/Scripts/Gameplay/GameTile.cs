@@ -195,7 +195,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
     }
 
-    public bool IsPassable(GameEntity checkerEntity)
+    public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)
     {
         if (checkerEntity == null)
         {
@@ -223,7 +223,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         bool terrainImpassable = !m_terrain.IsPassable(checkerEntity);
 
-        if (isOccupiedOpposingTeam)
+        if (!letPassEnemies && isOccupiedOpposingTeam)
         {
             return false;
         }

@@ -31,6 +31,8 @@ public static class Globals
     public static ContentAngelicGiftEvent m_currentlyPaintingEvent;
     public static bool m_inDeckView = false;
 
+    public static GameEnemyEntity m_testSpawnEnemyEntity = null;
+
     public static int m_purpleBeamCount = 0;
 
     public static int m_curChaos = 0;

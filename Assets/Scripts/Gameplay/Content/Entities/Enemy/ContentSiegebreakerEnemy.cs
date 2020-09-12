@@ -28,7 +28,7 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();
 

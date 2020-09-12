@@ -270,9 +270,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     //============================================================================================================//
 
-    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile)
+    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile, bool letPassEnemies)
     {
-        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile);
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile, letPassEnemies);
 
         if (path == null)
         {
@@ -319,7 +319,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return distance + Math.Abs(currentPosition.x - targetPosition.y);
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies)
     {
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
@@ -370,7 +370,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                     break;
                 }
 
-                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity))
+                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, letPassEnemies))
                     continue;
 
                 // if it's not in the open list...
@@ -488,7 +488,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (ignoreTerrainDifferences || !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity))
+                if (ignoreTerrainDifferences || !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, false))
                     continue;
 
                 // if it's not in the open list...
