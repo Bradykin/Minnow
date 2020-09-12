@@ -9,6 +9,7 @@ public static class Globals
     //TODO: THis is temp. This datapath should be gotten from the menu before loading the level
     private static string mapMetaDataPath;
     private static string defaultGridDataPath;
+    public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
     public static UIEntity m_selectedEntity;

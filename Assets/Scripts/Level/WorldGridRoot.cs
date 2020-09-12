@@ -8,7 +8,16 @@ public class WorldGridRoot : MonoBehaviour, IReset
 {
     public virtual void Activate()
     {
-        JsonGridData jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(Globals.GetDefaultGridDataPath()));
+        JsonGridData jsonData;
+        if (Globals.mapToLoad == string.Empty)
+        {
+            jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(Globals.GetDefaultGridDataPath()));
+        }
+        else
+        {
+            jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(Globals.mapToLoad));
+            Globals.mapToLoad = string.Empty;
+        }
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(transform);
     }
