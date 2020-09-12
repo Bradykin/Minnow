@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 0
+  m_id: 1
   m_tintRenderer: {fileID: 488713968}
   m_titleText: {fileID: 1638939093}
 --- !u!114 &1631954723
@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 0
+  m_id: -1
   m_tintRenderer: {fileID: 62393853}
   m_titleText: {fileID: 1544883150}
 --- !u!58 &1815815831
