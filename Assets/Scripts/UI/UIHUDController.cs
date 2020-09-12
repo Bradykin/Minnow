@@ -44,7 +44,15 @@ public class UIHUDController : MonoBehaviour
             else
             {
                 m_intermissionHUD.SetActive(false);
-                m_waveHUD.SetActive(true);
+
+                if (WorldController.Instance.m_gameController.m_currentTurn == WorldController.Instance.m_gameController.m_player)
+                {
+                    m_waveHUD.SetActive(true);
+                }
+                else
+                {
+                    m_waveHUD.SetActive(false);
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class GameOpponent : ITurns
@@ -36,9 +37,17 @@ public class GameOpponent : ITurns
 
     private void TakeEntityTurns()
     {
+        FactoryManager.Instance.StartCoroutine(TakeEntityTurnsCoroutine());
+    }
+
+    private IEnumerator TakeEntityTurnsCoroutine()
+    {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
+            UICameraController.Instance.SmartCameraToPosition(m_controlledEntities[i].m_curTile.m_curTile.transform.position);
+            yield return new WaitForSeconds(0.25f);
             m_controlledEntities[i].TakeTurn();
+            yield return new WaitForSeconds(0.5f);
         }
         WorldController.Instance.m_gameController.MoveToNextTurn();
     }
