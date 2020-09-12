@@ -39,6 +39,7 @@ public class UILevelSelectButton : WorldElementBase
         if (m_id == -1)
         {
             UILevelSelectController.Instance.m_levelBuilderSelected = true;
+            UILevelSelectController.Instance.SetSelectedLevel(null);
             return;
         }
         else
@@ -60,6 +61,16 @@ public class UILevelSelectButton : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_level.mapName, UIHelper.GetDifficultyText(((MapDifficulty)m_level.mapDifficulty))));
+        if (m_id == -1)
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Level Builder", "Construct a level"));
+        }
+        else
+        {
+            if (m_level != null)
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_level.mapName, UIHelper.GetDifficultyText(((MapDifficulty)m_level.mapDifficulty))));
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ public enum MapDifficulty : int
     Hard
 }
 
-public struct JsonMapMetaData
+public class JsonMapMetaData
 {
     public string mapName;
     public int mapID;

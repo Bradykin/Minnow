@@ -631,10 +631,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b653ef25910150498bf0aa4fcd710d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_levelBuilderSelected: 0
   m_nameText: {fileID: 1353617851}
   m_difficultyText: {fileID: 1322846648}
   m_chaosVal: {fileID: 869876248}
   m_chaosText: {fileID: 132991264}
+  m_chaosTitleText: {fileID: 220580582}
+  m_startGameButton: {fileID: 649650759}
 --- !u!1 &220580580
 GameObject:
   m_ObjectHideFlags: 0
