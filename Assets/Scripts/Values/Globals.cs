@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public static class Globals
@@ -83,6 +84,8 @@ public static class Globals
     {
         if (!m_hasInit)
             Init();
+
+        jsonMapMetaData = jsonMapMetaData.OrderBy(j => j.mapID).ToList();
 
         JsonMapFilesMetaData jsonMapFilesMetaData = new JsonMapFilesMetaData
         {

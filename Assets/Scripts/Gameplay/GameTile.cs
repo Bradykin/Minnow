@@ -315,7 +315,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         if (jsonData.gameEventData != string.Empty)
         {
             JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
-            m_event = GameEventFactory.GetEventFromJson(jsonGameEventData, this);
+            m_event = GameEventFactory.GetRandomEvent(this);
         }
 
         if (jsonData.gameSpawnPointData != string.Empty)
