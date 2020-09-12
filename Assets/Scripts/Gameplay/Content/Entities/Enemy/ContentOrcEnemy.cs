@@ -19,6 +19,11 @@ public class ContentOrcEnemy : GameEnemyEntity
         m_name = "Orc";
         m_desc = "Feirce and strong, the backbone of any good army.";
 
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
         LateInit();
     }
 }

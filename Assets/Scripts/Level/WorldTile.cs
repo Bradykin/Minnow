@@ -74,6 +74,14 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         //Handle Tint Color
         if (m_isHovered)
         {
+            if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingEntity == null)
+            {
+                GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
+                GetGameTile().PlaceEntity(newEnemyEntity);
+                WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
+                Globals.m_testSpawnEnemyEntity = null;
+            }
+            
             if (Globals.m_selectedEntity != null)
             {
                 UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
@@ -234,11 +242,11 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                     entityCard = (GameCardEntityBase)Globals.m_selectedCard.m_card;
                 }
 
-                if (Globals.m_selectedCard.m_card is GameCardEntityBase && !GetGameTile().m_canPlace && GetGameTile().IsPassable(entityCard.GetEntity()))
+                if (Globals.m_selectedCard.m_card is GameCardEntityBase && !GetGameTile().m_canPlace && GetGameTile().IsPassable(entityCard.GetEntity(), false))
                 {
                      UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
                 }
-                else if (GetGameTile().m_canPlace && entityCard != null && !GetGameTile().IsPassable(entityCard.GetEntity()))
+                else if (GetGameTile().m_canPlace && entityCard != null && !GetGameTile().IsPassable(entityCard.GetEntity(), false))
                 {
                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Impassable terrain.", false));
                 }

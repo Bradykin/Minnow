@@ -68,7 +68,7 @@ public class GameEntityFactory
         m_enemies.Add(new ContentMobolaEnemy(null));
         m_enemies.Add(new ContentOrcEnemy(null));
         m_enemies.Add(new ContentOrcShamanEnemy(null));
-        m_enemies.Add(new ContentSeigebreakerEntity(null));
+        m_enemies.Add(new ContentSiegebreakerEntity(null));
         m_enemies.Add(new ContentShadeEnemy(null));
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSnakeEnemy(null));
@@ -172,6 +172,14 @@ public class GameEntityFactory
         return (GameEnemyEntity)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
+    public static GameEnemyEntity GetEnemyEntityClone(GameEnemyEntity enemyEntity, GameOpponent gameOpponent)
+    {
+        if (!m_hasInit)
+            Init();
+
+        return (GameEnemyEntity)Activator.CreateInstance(enemyEntity.GetType(), gameOpponent);
+    }
+
     public static GameEnemyEntity GetRandomEliteEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
@@ -216,7 +224,7 @@ public class GameEntityFactory
 
         int i = m_enemies.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_enemies[i].GetType());
+        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
         newEnemy.LoadFromJson(jsonData);
 
         return newEnemy;

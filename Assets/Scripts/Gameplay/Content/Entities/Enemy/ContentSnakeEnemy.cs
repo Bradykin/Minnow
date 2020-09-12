@@ -18,6 +18,11 @@ public class ContentSnakeEnemy : GameEnemyEntity
         m_desc = "It's venom permanently drains 2 power.";
         m_minWave = 4;
 
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
         LateInit();
     }
 

@@ -16,10 +16,6 @@ public class AIGameEnemyEntity
     {
         m_gameEnemyEntity = gameEnemyEntity;
         m_AISteps = new List<AIStep>();
-        m_AISteps.Add(new AIScanTargetsInRangeStep(this));
-        m_AISteps.Add(new AIChooseTargetToAttackStep(this));
-        m_AISteps.Add(new AIMoveToAttackStep(this));
-        m_AISteps.Add(new AIAttackUntilOutOfAPStep(this));
     }
 
     public void AddAIStep(AIStep AIStep)

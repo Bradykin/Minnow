@@ -26,6 +26,11 @@ public class ContentSpinnerEnemy : GameEnemyEntity
         m_name = "Spinner";
         m_desc = "This guys spins and wins!  Hits all enemies around him";
 
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
         LateInit();
     }
 

@@ -7,9 +7,9 @@ using UnityEngine;
 //Ignores units
 //Uses full AP to move towards nearest building
 //Once at building; stands still until it has full AP, then attacks with all of it
-public class ContentSeigebreakerEntity : GameEnemyEntity
+public class ContentSiegebreakerEntity : GameEnemyEntity
 {
-    public ContentSeigebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentSiegebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 25;
         m_maxAP = 6;
@@ -22,8 +22,13 @@ public class ContentSeigebreakerEntity : GameEnemyEntity
 
         m_minWave = 4;
 
-        m_name = "Seigebreaker";
+        m_name = "Siegebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";
+
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();
 

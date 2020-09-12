@@ -22,6 +22,11 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
 
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 10)));
 
+        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
+
         LateInit();
     }
 

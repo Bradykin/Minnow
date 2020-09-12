@@ -242,7 +242,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true, false);
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true, false, false);
         
         if (tiles == null)
         {
@@ -261,7 +261,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
     {
-        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true, false);
+        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true, false, false);
 
         if (tiles == null)
         {
@@ -534,12 +534,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (!tile.IsPassable(this))
+        if (!tile.IsPassable(this, false))
         {
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false, false) > m_curAP)
         {
             return false;
         }
@@ -552,7 +552,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (tile == m_curTile)
             return;
         
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false));
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false, false));
 
         m_curTile.ClearEntity();
         tile.PlaceEntity(this);
@@ -566,7 +566,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (apToUse <= 0)
             return;
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile, false, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile, false, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
             return;
