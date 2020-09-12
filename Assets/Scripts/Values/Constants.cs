@@ -34,5 +34,5 @@ public static class Constants
 
     //Testing Data
     public static bool FogOfWar = false;
-    public static bool UseSmartCameraEnemyTurns = false;
+    public static bool UseSmartCameraEnemyTurns = true;
 }
