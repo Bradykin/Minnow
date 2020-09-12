@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: ashulman
+//For AI:
+//Can't attack other zombies, but can move through them regardless of team.
+//Highly prefers units to buildings.
+//Doesn't go for the castle, goes towards nearest player non-zombie unit instead (no matter sight)
 public class ContentZombieEnemy : GameEnemyEntity
 {
     public ContentZombieEnemy(GameOpponent gameOpponent) : base(gameOpponent)
