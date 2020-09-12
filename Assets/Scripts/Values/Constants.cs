@@ -18,10 +18,6 @@ public static class Constants
     //Error Handling
     public static int NoPathVal = 99999;
 
-    //Sizing for a "square" hexagon grid
-    public static int GridSizeX = 20;
-    public static int GridSizeY = 20;
-
     //Sizing of hexagons
     public static float HexagonInnerRadius = 1.5022f;
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;

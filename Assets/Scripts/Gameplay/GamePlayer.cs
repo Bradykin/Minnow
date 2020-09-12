@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GamePlayer : GameElementBase, ITurns
+public class GamePlayer : ITurns
 {
     public int m_curEnergy;
     private int m_maxEnergy;
@@ -366,8 +366,8 @@ public class GamePlayer : GameElementBase, ITurns
     public void EndTurn()
     {
         m_currentWaveTurn++;
+
         bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn();
-        
         if (!shouldStartIntermission)
         {
             DrawHand();
@@ -381,11 +381,6 @@ public class GamePlayer : GameElementBase, ITurns
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].EndTurn();
-        }
-
-        if (shouldStartIntermission)
-        {
-            WorldController.Instance.StartIntermission();
         }
     }
 }

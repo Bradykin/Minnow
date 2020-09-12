@@ -46,7 +46,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
         else
         {
-            SetupEmptyGrid(parent, Constants.GridSizeX, Constants.GridSizeY);
+            SetupEmptyGrid(parent, Globals.GridSizeX, Globals.GridSizeY);
         }
 
         m_setup = true;
@@ -89,8 +89,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldTileFactory>().CreateObject<WorldTile>();
             m_gridArray[i].transform.parent = m_gridRoot;
 
-            int x = i % Constants.GridSizeX;
-            int y = i / Constants.GridSizeX;
+            int x = i % Globals.GridSizeX;
+            int y = i / Globals.GridSizeX;
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
@@ -201,10 +201,10 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= Constants.GridSizeX || y >= Constants.GridSizeY)
+        if (x < 0 || y < 0 || x >= Globals.GridSizeX || y >= Globals.GridSizeY)
             return null;
         
-        return m_gridArray[x + y * Constants.GridSizeX];
+        return m_gridArray[x + y * Globals.GridSizeX];
     }
 
     public WorldTile GetWorldGridTileAtPosition(Vector2Int position)
@@ -214,7 +214,46 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     //============================================================================================================//
 
-    public void SetupEnemies(GameOpponent gameOpponent)
+    public void SetupWorldGridTeams(GamePlayer gamePlayer, GameOpponent gameOpponent)
+    {
+        StartCoroutine(SetupWorldGridTeamsIEnumerator(gamePlayer, gameOpponent));
+    }
+
+    private IEnumerator SetupWorldGridTeamsIEnumerator(GamePlayer gamePlayer, GameOpponent gameOpponent)
+    {
+        while (!WorldGridManager.Instance.m_setup)
+            yield return null;
+
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            GameTile curTile = m_gridArray[i].GetGameTile();
+            if (curTile.m_occupyingEntity != null)
+            {
+                if (curTile.m_occupyingEntity.GetTeam() == Team.Player)
+                {
+                    gamePlayer.AddControlledEntity(curTile.m_occupyingEntity);
+                }
+                else if (curTile.m_occupyingEntity.GetTeam() == Team.Enemy && curTile.m_occupyingEntity is GameEnemyEntity gameEnemyEntity)
+                {
+                    gameOpponent.AddControlledEntity(gameEnemyEntity);
+                }
+                else
+                {
+                    Debug.LogError("Problem loading entities from world grid - did not match previous criteria");
+                }
+            }
+            if (curTile.GetBuilding() != null)
+            {
+                gamePlayer.AddControlledBuilding(curTile.GetBuilding());
+            }
+            if (curTile.m_spawnPoint != null)
+            {
+                gameOpponent.m_spawnPoints.Add(curTile.m_spawnPoint);
+            }
+        }
+    }
+
+    /*public void SetupEnemies(GameOpponent gameOpponent)
     {
         StartCoroutine(AddEnemiesToGrid(gameOpponent));
     }    
@@ -225,7 +264,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             yield return null;
 
         WorldController.Instance.StartWaveEnemySpawn();
-    }
+    }*/
 
     //============================================================================================================//
 

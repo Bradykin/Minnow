@@ -11,8 +11,6 @@ public enum SpawnPointType : int
 
 public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointData>
 {
-    
-    
     public GameTile m_tile;
     public SpawnPointType m_gameSpawnPointType;
     public string m_gameSpawnEntityName;

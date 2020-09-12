@@ -42,11 +42,17 @@ public static class GameBuildingFactory
 
     public static GameBuildingBase GetBuildingClone(GameBuildingBase building)
     {
+        if (!m_hasInit)
+            Init();
+
         return (GameBuildingBase)Activator.CreateInstance(building.GetType());
     }
 
     public static GameBuildingBase GetBuildingFromJson(JsonGameBuildingData jsonData)
     {
+        if (!m_hasInit)
+            Init();
+
         int i = m_buildings.FindIndex(t => t.m_name == jsonData.name);
 
         GameBuildingBase newBuilding = (GameBuildingBase)Activator.CreateInstance(m_buildings[i].GetType());

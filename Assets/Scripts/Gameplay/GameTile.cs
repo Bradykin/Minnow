@@ -81,6 +81,26 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         m_occupyingEntity = null;
     }
 
+    public void ClearBuilding()
+    {
+        if (!HasBuilding())
+        {
+            Debug.LogWarning("Clearing building on a tile, but no building currently exists on this tile.");
+        }
+
+        m_building = null;
+    }
+
+    public void ClearTerrain()
+    {
+        m_terrain = null;
+    }
+
+    public void ClearSpawnPoint()
+    {
+        m_spawnPoint = null;
+    }
+
     public bool IsOccupied()
     {
         return m_occupyingEntity != null;
@@ -98,18 +118,12 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public void SetEvent()
     {
-        //m_terrain = GameTerrainFactory.GetTerrainClone(new ContentDirtPlainsRuinsTerrain());
         m_event = GameEventFactory.GetRandomEvent(this);
     }
 
     public void ClearEvent()
     {
         m_event = null;
-    }
-
-    public void ClearBuilding()
-    {
-        m_building = null;
     }
 
     public Sprite GetIcon()
@@ -121,7 +135,8 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             return m_building.GetIcon();
         }
-        else if (HasAvailableEvent())
+
+        /*else if (HasAvailableEvent())
         {
             if (m_event.m_isComplete)
             {
@@ -131,7 +146,8 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             {
                 return m_event.m_icon;
             }
-        }
+        }*/
+
         else
         {
             return m_terrain.m_icon;
@@ -151,6 +167,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public void SetSpawnPoint(GameSpawnPoint newSpawnPoint)
     {
         m_spawnPoint = newSpawnPoint;
+        m_spawnPoint.m_tile = this;
     }
 
     public GameBuildingBase GetBuilding()
@@ -298,7 +315,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         if (jsonData.gameEventData != string.Empty)
         {
             JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
-            m_event = GameEventFactory.GetEventFromJson(jsonGameEventData);
+            m_event = GameEventFactory.GetEventFromJson(jsonGameEventData, this);
         }
 
         if (jsonData.gameSpawnPointData != string.Empty)

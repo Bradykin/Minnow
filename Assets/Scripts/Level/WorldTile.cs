@@ -31,12 +31,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     {
         HandleFogUpdate();
 
-        if (GetGameTile().GetIcon() != null)
-        {
-            m_renderer.sprite = GetGameTile().GetIcon();
-            m_tintRenderer.sprite = GetGameTile().GetIcon();
-            m_fogRenderer.sprite = GetGameTile().GetIcon();
-        }
+        m_renderer.sprite = GetGameTile().GetIcon();
+        m_tintRenderer.sprite = GetGameTile().GetIcon();
+        m_fogRenderer.sprite = GetGameTile().GetIcon();
 
         bool entityMovedIntoTile = false;
         if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
@@ -123,26 +120,42 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
         {
-            if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
+            if (Globals.m_levelCreatorEraserMode)
             {
-                GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
-                if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
+                GameTile gameTile = GetGameTile();
+                if (gameTile.GetTerrain() != null)
+                    gameTile.ClearTerrain();
+                if (gameTile.GetBuilding() != null)
+                    gameTile.ClearBuilding();
+                if (gameTile.m_event != null)
+                    gameTile.ClearEvent();
+                if (gameTile.m_spawnPoint != null)
+                    gameTile.ClearSpawnPoint();
+            }
+            else
+            {
+                if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
                 {
-                    GetGameTile().SetEvent();
+                    GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
+                    print(GetGameTile().GetTerrain().m_name);
+                    if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
+                    {
+                        GetGameTile().SetEvent();
+                    }
+                }
+                else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
+                {
+                    GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
+                }
+                else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+                {
+                    GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+                    gameSpawnPoint.SetSpawnPointRandom();
+                    GetGameTile().SetSpawnPoint(gameSpawnPoint);
                 }
             }
-            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
-            {
-                GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
-            }
-            else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
-            {
-                GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-                gameSpawnPoint.SetSpawnPointRandom();
-                GetGameTile().SetSpawnPoint(gameSpawnPoint);
-            }
         }
-        
+
         UICard selectedCard = Globals.m_selectedCard;
         if (selectedCard != null)
         {

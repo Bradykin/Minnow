@@ -1,21 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelCreator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_worldGridLevelCreatorRoot;
+    private GameObject m_worldGridLevelCreatorRoot = null;
     [SerializeField]
-    private Image m_selectedImage;
+    private Image m_selectedImage = null;
     [SerializeField]
-    private Text m_saveFileNotifier;
+    private Text m_saveFileNotifier = null;
     [SerializeField]
-    private Text m_selectedListNotifier;
+    private Text m_selectedListNotifier = null;
     [SerializeField]
-    private Text m_selectedTileNotifier;
+    private Text m_selectedTileNotifier = null;
 
     private string dataPath;
 
@@ -29,7 +30,11 @@ public class LevelCreator : MonoBehaviour
         {
             dataPaths.Add(dataPath + i + ".txt");
         }
+        Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
+        Globals.m_currentlyPaintingBuilding = new ContentCastleBuilding();
         Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
+        Globals.m_currentlyPaintingEvent = new ContentAngelicGiftEvent(null);
+
         m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
         m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
         m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
@@ -100,6 +105,11 @@ public class LevelCreator : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Globals.m_levelCreatorEraserMode = !Globals.m_levelCreatorEraserMode;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ProcessSaveFileKey(0);
@@ -140,7 +150,7 @@ public class LevelCreator : MonoBehaviour
 
     public void SpawnGrid()
     {
-        WorldGridManager.Instance.SetupEmptyGrid(transform, Constants.GridSizeX, Constants.GridSizeY);
+        WorldGridManager.Instance.SetupEmptyGrid(transform, Globals.GridSizeX, Globals.GridSizeY);
     }
 
     public void LoadGrid(int pathIndex)
@@ -154,13 +164,37 @@ public class LevelCreator : MonoBehaviour
 
         JsonGridData jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(dataPaths[pathIndex]));
         WorldGridManager.Instance.LoadFromJson(jsonData);
-        WorldGridManager.Instance.Setup(transform);
+        WorldGridManager.Instance.Setup(m_worldGridLevelCreatorRoot.transform);
     }
 
     public void SaveGrid(int pathIndex)
     {
         string jsonGridData = WorldGridManager.Instance.SaveToJson();
         File.WriteAllText(dataPaths[pathIndex], jsonGridData);
+
+        List<JsonMapMetaData> jsonMapMetaData = Globals.LoadMapMetaData();
+        bool containsMapData = jsonMapMetaData.Any(m => m.dataPath == dataPaths[pathIndex]);
+
+        JsonMapMetaData newJsonData = new JsonMapMetaData
+        {
+            mapName = dataPaths[pathIndex],
+            mapID = pathIndex,
+            gridSize = new Vector2Int(Globals.GridSizeX, Globals.GridSizeY),
+            mapDifficulty = (int)MapDifficulty.Easy,
+            dataPath = dataPaths[pathIndex]
+        };
+
+        if (containsMapData)
+        {
+            int indexOf = jsonMapMetaData.IndexOf(jsonMapMetaData.First(m => m.dataPath == dataPaths[pathIndex]));
+
+            jsonMapMetaData[indexOf] = newJsonData;
+        }
+        else
+        {
+            jsonMapMetaData.Add(newJsonData);
+        }
+        Globals.SaveMapMetaData(jsonMapMetaData);
 
         WorldGridManager.Instance.RecycleGrid();
     }

@@ -14,5 +14,7 @@ public class ContentGrassPlainsRuinsTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_costToPass = 2;
+
+        m_isEventTerrain = true;
     }
 }
