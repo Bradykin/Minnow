@@ -10,7 +10,7 @@ public class GameController
     public GameOpponent m_gameOpponent;
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
 
-    private bool ShouldStartIntermission => m_player.m_currentWaveTurn > m_player.GetEndWaveTurn();
+    private bool ShouldStartIntermission => m_player.m_currentWaveTurn > m_player.GetEndWaveTurn() && m_player.m_waveNum != Constants.FinalWaveNum;
 
     private int m_currentTurnIndex = 0;
 

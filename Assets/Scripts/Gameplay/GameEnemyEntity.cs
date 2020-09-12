@@ -8,6 +8,9 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
     public AIGameEnemyEntity m_AIGameEnemyEntity;
     public GameOpponent m_gameOpponentController;
 
+    public bool m_isElite;
+    public bool m_isBoss;
+
     public GameEnemyEntity(GameOpponent gameOpponent)
     {
         m_AIGameEnemyEntity = new AIGameEnemyEntity(this);

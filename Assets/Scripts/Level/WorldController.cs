@@ -10,6 +10,9 @@ public class WorldController : Singleton<WorldController>
 
     public List<UICard> m_playerHand { get; private set; }
 
+    private bool m_hasSpawnedEliteThisWave;
+    private bool m_hasSpawnedBoss;
+
     void Start()
     {
         m_gameController = new GameController();
@@ -130,11 +133,6 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedEntity = null;
 
         UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardEntityCard());
-
-        if (player.m_waveNum == Constants.FinalWaveNum)
-        {
-            WinGame();
-        }
     }
 
     public void EndIntermission()
@@ -144,6 +142,7 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedIntermissionBuilding = null;
 
         Globals.m_inIntermission = false;
+        m_hasSpawnedEliteThisWave = false;
 
         GamePlayer player = m_gameController.m_player;
         player.ResetCurDeck();
@@ -157,5 +156,25 @@ public class WorldController : Singleton<WorldController>
     public void WinGame()
     {
         Debug.Log("The player has won!");
+    }
+
+    public bool HasSpawnedEliteThisWave()
+    {
+        return m_hasSpawnedEliteThisWave;
+    }
+
+    public void SetHasSpawnedEliteThisWave(bool newVal)
+    {
+        m_hasSpawnedEliteThisWave = newVal;
+    }
+
+    public bool HasSpawnedBoss()
+    {
+        return m_hasSpawnedBoss;
+    }
+
+    public void SetHasSpawnedBoss(bool newVal)
+    {
+        m_hasSpawnedBoss = newVal;
     }
 }

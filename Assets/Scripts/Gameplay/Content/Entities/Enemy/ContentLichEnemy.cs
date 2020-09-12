@@ -13,6 +13,7 @@ public class ContentLichEnemy : GameEnemyEntity
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;
+        m_isBoss = true;
 
         m_name = "Lich";
         m_desc = "The final boss.  Kill it, and win. (Not yet implemented)";

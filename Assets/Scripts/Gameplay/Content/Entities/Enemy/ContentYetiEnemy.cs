@@ -14,7 +14,7 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Yei";
+        m_name = "Yeti";
         m_desc = "Is it... is it throwing snowballs?";
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
