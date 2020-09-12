@@ -8,14 +8,14 @@ public class ContentCardIntermissionAction : GameActionIntermission
     {
         m_actionCost = 1;
         m_name = "Gain a card";
-        m_desc = "Gain a card from a random set of 3.";
+        m_desc = "Gain a spell card from a random set of 3.";
 
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
     public override void Activate()
     {
-        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardCard());
+        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardSpellCard());
 
         SpendCost();
     }
