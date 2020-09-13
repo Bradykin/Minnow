@@ -8,15 +8,15 @@ public class AIAttackUntilOutOfAPStep : AIStep
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_targetToAttack == null || !m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfGameElement(m_AIGameEnemyEntity.m_targetToAttack))
+        if (m_AIGameEnemyEntity.m_targetGameElement == null || !m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfGameElement(m_AIGameEnemyEntity.m_targetGameElement))
         {
             return;
         }
 
-        while(m_AIGameEnemyEntity.m_gameEnemyEntity.IsAIAbleToAttack())
+        while(m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
         {
             bool didAttack = false;
-            switch (m_AIGameEnemyEntity.m_targetToAttack)
+            switch (m_AIGameEnemyEntity.m_targetGameElement)
             {
                 case GameEntity gameEntity:
                     didAttack = true;

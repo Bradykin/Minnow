@@ -42,9 +42,9 @@ public class ContentGrasper : GameEntity
         return true;
     }
 
-    public override int HitEntity(GameEntity other)
+    public override int HitEntity(GameEntity other, bool spendAP = true)
     {
-        int damageTaken = base.HitEntity(other);
+        int damageTaken = base.HitEntity(other, spendAP);
 
         this.GainAP(other.GetCurAP());
         other.EmptyAP();

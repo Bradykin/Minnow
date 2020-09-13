@@ -71,6 +71,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
+        UIHelper.CreateWorldElementNotification(m_name + " was hit for " + damage + " damage!", false, m_curTile.m_curTile);
+
         bool ignoreTileDamageReduction = false;
 
         if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
@@ -321,9 +323,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_sightRange;
     }
 
-    public virtual int HitEntity(GameEntity other)
+    public virtual int HitEntity(GameEntity other, bool spendAP = true)
     {
-        SpendAP(m_apToAttack);
+        if (spendAP)
+        {
+            SpendAP(m_apToAttack);
+        }
+
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
@@ -344,9 +350,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return damageTaken;
     }
 
-    public virtual int HitBuilding(GameBuildingBase other)
+    public virtual int HitBuilding(GameBuildingBase other, bool spendAP = true)
     {
-        SpendAP(m_apToAttack);
+        if (spendAP)
+        {
+            SpendAP(m_apToAttack);
+        }
+
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();

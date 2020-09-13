@@ -10,7 +10,8 @@ public class AIGameEnemyEntity
     public List<GameEntity> m_possibleEntityTargets = new List<GameEntity>();
     public List<GameBuildingBase> m_possibleBuildingTargets = new List<GameBuildingBase>();
 
-    public GameElementBase m_targetToAttack = null;
+    public GameElementBase m_targetGameElement = null;
+    public GameTile m_targetGameTile = null;
 
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
@@ -33,6 +34,6 @@ public class AIGameEnemyEntity
 
         m_possibleEntityTargets.Clear();
         m_possibleBuildingTargets.Clear();
-        m_targetToAttack = null;
+        m_targetGameElement = null;
     }
 }

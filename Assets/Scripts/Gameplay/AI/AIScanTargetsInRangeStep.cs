@@ -23,7 +23,7 @@ public class AIScanTargetsInRangeStep : AIStep
                 possibleEntityTargets.Add(tile.m_occupyingEntity);
             }
 
-            if (tile.HasBuilding())
+            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed)
             {
                 possibleBuildingTargets.Add(tile.GetBuilding());
             }

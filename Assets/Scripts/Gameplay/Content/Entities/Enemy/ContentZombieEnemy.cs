@@ -31,7 +31,7 @@ public class ContentZombieEnemy : GameEnemyEntity
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();
@@ -52,13 +52,13 @@ public class ContentZombieEnemy : GameEnemyEntity
         return base.CanHitEntity(other);
     }
 
-    public override int HitEntity(GameEntity other)
+    public override int HitEntity(GameEntity other, bool spendAP = true)
     {
         GameEntity newZombie = new ContentZombie();
         GameHelper.GetPlayer().RemoveControlledEntity(other);
         GameHelper.GetPlayer().AddControlledEntity(newZombie);
 
-        int damageTaken = base.HitEntity(other);
+        int damageTaken = base.HitEntity(other, spendAP);
 
         other.m_curTile.SwapEntity(newZombie);
 

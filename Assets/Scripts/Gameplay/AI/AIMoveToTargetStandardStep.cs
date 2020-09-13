@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIMoveToAttackStep : AIStep
+public class AIMoveToTargetStandardStep : AIMoveStep
 {
-    public AIMoveToAttackStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIMoveToTargetStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_targetToAttack == null)
+        if (m_AIGameEnemyEntity.m_targetGameElement == null)
         {
             MoveTowardsCastle();
             return;
         }
 
         GameTile targetTile = null;
-        switch(m_AIGameEnemyEntity.m_targetToAttack)
+        switch(m_AIGameEnemyEntity.m_targetGameElement)
         {
             case GameEntity gameEntity:
                 targetTile = gameEntity.m_curTile;
@@ -45,13 +45,5 @@ public class AIMoveToAttackStep : AIStep
         GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, t) == closestTile);
 
         m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTo(moveDestination);
-    }
-
-    private void MoveTowardsCastle()
-    {
-        if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().Castle != null)
-        {
-            m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTowards(GameHelper.GetPlayer().Castle.m_curTile.GetGameTile(), m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
-        }
     }
 }

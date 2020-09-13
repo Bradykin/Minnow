@@ -12,17 +12,17 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStep
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetToAttack = castleInRange;
+            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
             return;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetToAttack = closestBuildingInRange;
+            m_AIGameEnemyEntity.m_targetGameElement = closestBuildingInRange;
             return;
         }
 
-        m_AIGameEnemyEntity.m_targetToAttack = null;
+        m_AIGameEnemyEntity.m_targetGameElement = null;
     }
 }

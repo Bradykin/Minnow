@@ -39,11 +39,6 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
 
     //============================================================================================================//
 
-    public virtual bool IsAIAbleToAttack()
-    {
-        return HasAPToAttack();
-    }
-
     public virtual void TakeTurn()
     {
         m_AIGameEnemyEntity.TakeTurn();

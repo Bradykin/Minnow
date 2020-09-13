@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: ashulman
 //For AI:
 //Ignores units
 //Uses full AP to move towards nearest building
@@ -27,7 +26,7 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();

@@ -21,15 +21,15 @@ public class ContentToadEnemy : GameEnemyEntity
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToAttackStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other)
+    public override int HitEntity(GameEntity other, bool spendAP = true)
     {
-        int damageTaken = base.HitEntity(other);
+        int damageTaken = base.HitEntity(other, spendAP);
 
         other.EmptyAP();
 
