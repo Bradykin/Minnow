@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIChooseTargetToAttackStep : AIStep
+public class AIChooseTargetToAttackStandardStep : AIStep
 {
-    public AIChooseTargetToAttackStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIChooseTargetToAttackStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStep
+public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
     public AISiegebreakerChooseTargetToAttackStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 

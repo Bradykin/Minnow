@@ -204,7 +204,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         //ashulman TODO: Keep an eye on this line. This was previously happening in the UI update loop class. 
         m_curTile.ClearEntity();
-        m_curTile = null;
 
         m_isDead = true;
     }
