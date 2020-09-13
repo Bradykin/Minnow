@@ -20,8 +20,8 @@ public class GameCardSpellBase : GameCard
     {
         int toReturn = m_spellEffect + GameHelper.GetPlayer().GetSpellPower();
 
-        toReturn += 5 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
-        toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
+        toReturn -= 2 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
 
         return toReturn;
     }

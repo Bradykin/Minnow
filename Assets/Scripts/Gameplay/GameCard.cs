@@ -20,6 +20,11 @@ public abstract class GameCard : GameElementBase
     public Target m_targetType;
     public bool m_shouldExile;
 
+    public virtual string GetName()
+    {
+        return m_name;
+    }
+
     public int GetCost()
     {
         int toReturn = m_cost;

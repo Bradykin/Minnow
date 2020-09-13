@@ -25,7 +25,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
     {
-        if (IsWater() && checkerEntity.GetKeywordHolder().GetKeyword<GameWaterwalkKeyword>() != null)
+        if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
         {
             return true;
         }
@@ -35,7 +35,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
     public int GetCostToPass(GameEntity checkerEntity)
     {
-        if (IsWater() && checkerEntity.GetKeywordHolder().GetKeyword<GameWaterwalkKeyword>() != null)
+        if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
         {
             return 0;
         }

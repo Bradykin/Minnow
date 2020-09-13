@@ -27,6 +27,6 @@ public class ContentDemoncAspectCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetKeywordHolder().m_keywords.Add(new GameVictoriousKeyword(new GameGainAPAction(targetEntity, targetEntity.GetMaxAP())));
+        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainAPAction(targetEntity, targetEntity.GetMaxAP())));
     }
 }

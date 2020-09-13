@@ -62,7 +62,7 @@ public class UIEntity : WorldElementBase
         }
 
         m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
-        m_titleText.text = GetEntity().m_name;
+        m_titleText.text = GetEntity().GetName();
         m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
         m_powerText.text = "" + GetEntity().GetPower();
 
@@ -90,17 +90,17 @@ public class UIEntity : WorldElementBase
 
             if (GetEntity().m_isDead)
             {
-                UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().m_name + " slays the " + GetEntity().m_name + "!", true, Globals.m_selectedEntity);
-                UIHelper.CreateWorldElementNotification(GetEntity().m_name + " dies.", false, this);
+                UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().GetName() + " slays the " + GetEntity().GetName() + "!", true, Globals.m_selectedEntity);
+                UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " dies.", false, this);
             }
             else if (damageDealt == 0)
             {
-                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
+                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().GetName() + " hits " + GetEntity().GetName() + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
             }
             else
             {
-                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().m_name + " hits " + GetEntity().m_name + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
-                UIHelper.CreateWorldElementNotification(GetEntity().m_name + " takes " + damageDealt + " damage.", false, this);
+                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().GetName() + " hits " + GetEntity().GetName() + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
+                UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " takes " + damageDealt + " damage.", false, this);
             }
         }
         else if (CanSelect())
@@ -111,7 +111,7 @@ public class UIEntity : WorldElementBase
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().m_name + " can't move any more this turn.", false, this);
+            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " can't move any more this turn.", false, this);
         }
     }
 

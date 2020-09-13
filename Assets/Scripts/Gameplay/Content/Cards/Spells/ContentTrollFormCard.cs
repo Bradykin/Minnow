@@ -28,6 +28,6 @@ public class ContentTrollFormCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetKeywordHolder().m_keywords.Add(new GameRegenerateKeyword(m_regenNum));
+        targetEntity.AddKeyword(new GameRegenerateKeyword(m_regenNum));
     }
 }

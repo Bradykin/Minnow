@@ -54,7 +54,7 @@ public class UICard : WorldElementBase
     private void SetCardData()
     {
         m_imageRenderer.sprite = m_card.m_icon;
-        m_nameText.text = m_card.m_name;
+        m_nameText.text = m_card.GetName();
         m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
         m_descText.text = m_card.GetDesc();

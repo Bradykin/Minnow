@@ -6,6 +6,11 @@ public class GameCardEntityBase : GameCard
 {
     public GameEntity m_entity { get; protected set; }
 
+    public override string GetName()
+    {
+        return m_entity.GetName();
+    }
+
     public GameEntity GetEntity()
     {
         return m_entity;
@@ -13,7 +18,7 @@ public class GameCardEntityBase : GameCard
 
     public void FillBasicData()
     {
-        m_name = m_entity.m_name;
+        m_name = m_entity.GetName();
         m_desc = m_entity.GetDesc();
         m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = m_entity.m_rarity;
@@ -77,12 +82,12 @@ public class GameCardEntityBase : GameCard
     {
         string desc = base.GetDesc();
 
-        if (GetEntity().GetKeywordHolder().m_keywords.Count > 0)
+        if (GetEntity().GetKeywordHolderForRead().m_keywords.Count > 0)
         {
             desc += "\n";
         }
 
-        desc += GetEntity().GetKeywordHolder().GetDesc();
+        desc += GetEntity().GetKeywordHolderForRead().GetDesc();
 
         return desc;
     }

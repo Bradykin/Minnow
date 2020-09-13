@@ -25,7 +25,7 @@ public class ContentPurpleBeamSwordCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetKeywordHolder().m_keywords.Add(new GameVictoriousKeyword(new GainPurpleBeamAction(1)));
+        targetEntity.AddKeyword(new GameVictoriousKeyword(new GainPurpleBeamAction(1)));
     }
 }
 
