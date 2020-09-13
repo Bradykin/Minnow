@@ -327,23 +327,29 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         var openList = new List<Location>();
         var closedList = new List<Location>();
 
+        var adjacentTiles = new List<GameTile>();
+        if (getAdjacentPosition)
+        {
+            adjacentTiles = targetGridTile.AdjacentTiles();
+        }
+
         // start by adding the original position to the open list
         openList.Add(start);
 
         while (openList.Count > 0)
         {
-            // get the square with the lowest F score
-            var lowest = openList.Min(l => l.F);
-            current = openList.First(l => l.F == lowest);
+            // get the tile with the lowest F score
+            current = GetNextTileFromOpenList(openList);
 
-            // add the current square to the closed list
+            // add the current tile to the closed list
             closedList.Add(current);
 
             // remove it from the open list
             openList.Remove(current);
 
-            // if we added the destination to the closed list, we've found a path
-            if (closedList.FirstOrDefault(l => l.X == target.X && l.Y == target.Y) != null)
+            // if the current position is the target position, we have a path
+            if (current.X == target.X && current.Y == target.Y
+                || (getAdjacentPosition && adjacentTiles.Find(t => t.m_gridPosition.x == current.X && t.m_gridPosition.y == current.Y) != null))
             {
                 List<GameTile> path = new List<GameTile>();
                 while (current != null)
@@ -360,21 +366,21 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             foreach (var adjacentTile in adjacentSquares)
             {
                 // if this adjacent square is already in the closed list, ignore it
-                if (closedList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                if (closedList.Find(l => l.X == adjacentTile.m_gridPosition.x
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (getAdjacentPosition && adjacentTile.m_gridPosition.x == target.X && adjacentTile.m_gridPosition.y == target.Y)
+                /*if (getAdjacentPosition && adjacentTile.m_gridPosition.x == target.X && adjacentTile.m_gridPosition.y == target.Y)
                 {
                     target = current;
                     break;
-                }
+                }*/
 
                 if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, letPassEnemies))
                     continue;
 
                 // if it's not in the open list...
-                var adjacent = openList.FirstOrDefault(l => l.X == adjacentTile.m_gridPosition.x
+                var adjacent = openList.Find(l => l.X == adjacentTile.m_gridPosition.x
                         && l.Y == adjacentTile.m_gridPosition.y);
 
                 int g;
@@ -397,7 +403,32 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
+        print("NO VALID PATHS");
+
         return null;
+    }
+
+    private Location GetNextTileFromOpenList(List<Location> openList)
+    {
+        if (openList.Count == 0)
+        {
+            return null;
+        }
+
+        int indexToReturn = 0;
+        int curF = openList[indexToReturn].F;
+        int curH = openList[indexToReturn].H;
+        for (int i = 1; i < openList.Count; i++)
+        {
+            if (openList[i].F < curF || (openList[i].F == curF && openList[i].H < curH))
+            {
+                indexToReturn = i;
+                curF = openList[indexToReturn].F;
+                curH = openList[indexToReturn].H;
+            }
+        }
+
+        return openList[indexToReturn];
     }
 
     public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences)

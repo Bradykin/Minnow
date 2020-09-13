@@ -13,12 +13,15 @@ public class Location
     public Location Parent;
     public GameTile GameTile;
 
+    public bool inClosedList;
+
     public Location(GameTile gameTile, GameTile targetGameTile, int g, Location parent)
     {
         X = gameTile.m_gridPosition.x;
         Y = gameTile.m_gridPosition.y;
         GameTile = gameTile;
         Parent = parent;
+        inClosedList = false;
 
         G = g;
         H = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(gameTile, targetGameTile);
@@ -30,6 +33,7 @@ public class Location
         X = gameTile.m_gridPosition.x;
         Y = gameTile.m_gridPosition.y;
         GameTile = gameTile;
+        inClosedList = false;
 
         G = g;
         H = 0;
@@ -41,5 +45,6 @@ public class Location
         X = gameTile.m_gridPosition.x;
         Y = gameTile.m_gridPosition.y;
         GameTile = gameTile;
+        inClosedList = false;
     }
 }

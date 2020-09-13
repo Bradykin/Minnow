@@ -215,13 +215,8 @@ public class WorldController : Singleton<WorldController>
         Globals.m_inIntermission = false;
         m_hasSpawnedEliteThisWave = false;
 
-        GamePlayer player = m_gameController.m_player;
-        player.ResetCurDeck();
-
-        player.StartTurn();
-
-        ClearHand();
-        player.DrawHand();
+        m_gameController.m_player.ResetCurDeck();
+        m_gameController.BeginTurnSequence();
     }
 
     public void WinGame()

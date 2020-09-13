@@ -34,6 +34,6 @@ public static class Constants
     public static int FinalWaveNum = 6;
 
     //Testing Data
-    public static bool FogOfWar = true;
+    public static bool FogOfWar = false;
     public static bool UseSmartCameraEnemyTurns = true;
 }
