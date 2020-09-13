@@ -103,18 +103,6 @@ public static class UIHelper
         renderer.color = m_defaultTint;
     }
 
-    public static void SetDefaultTintColorCanPlace(SpriteRenderer renderer, bool canPlace)
-    {
-        if (!canPlace)
-        {
-            SetDefaultTintColor(renderer);
-        }
-        else
-        {
-            SetDefaultTintColor(renderer); //nmartino - Come back to this once I have a solid plan for displaying placeable spaces
-        }
-    }
-
     public static void SetDefaultTintColorForTeam(SpriteRenderer renderer, Team team)
     {
         if (team == Team.Player)
