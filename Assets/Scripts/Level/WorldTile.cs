@@ -20,8 +20,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     void Start()
     {
-        UIHelper.SetDefaultTintColorCanPlace(m_tintRenderer, GetGameTile().m_canPlace);
-
         if (!Constants.FogOfWar)
         {
             ClearFog();
@@ -112,19 +110,26 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 UIHelper.SetDefaultTintColor(m_tintRenderer);
             }
         }
-        
+
         //Handle Frame Color
-        if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+        if (GetGameTile().m_isFog)
         {
-            UIHelper.SetValidColor(m_frameRenderer, true);
-        }
-        else if (Globals.m_selectedEntity != null && m_isMoveable)
-        {
-            UIHelper.SetValidColor(m_frameRenderer, true);
+            m_frameRenderer.color = Color.black;
         }
         else
         {
-            m_frameRenderer.color = Color.black;
+            if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+            {
+                UIHelper.SetValidColor(m_frameRenderer, true);
+            }
+            else if (Globals.m_selectedEntity != null && m_isMoveable)
+            {
+                UIHelper.SetValidColor(m_frameRenderer, true);
+            }
+            else
+            {
+                m_frameRenderer.color = Color.black;
+            }
         }
     }
 

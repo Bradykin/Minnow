@@ -222,6 +222,21 @@ public static class GameCardFactory
         return (GameCard)Activator.CreateInstance(toClone.GetType());
     }
 
+    public static GameCard GetCardDup(GameCard toClone)
+    {
+        GameCard clone = (GameCard)Activator.CreateInstance(toClone.GetType());
+
+        if (toClone is GameCardEntityBase && clone is GameCardEntityBase)
+        {
+            GameEntity toCloneEntity = ((GameCardEntityBase)toClone).GetEntity();
+            GameEntity cloneEntity = ((GameCardEntityBase)clone).GetEntity();
+
+            cloneEntity.CopyOff(toCloneEntity);
+        }
+
+        return clone;
+    }
+
     private static GameCard GetCardFromList(List<GameCard> list)
     {
         int r = UnityEngine.Random.Range(0, list.Count);
