@@ -19,7 +19,7 @@ public class AISpinnerAttackStep : AIStep
 
         for (int i = 0; i < adjacentTiles.Count; i++)
         {
-            if (adjacentTiles[i].m_occupyingEntity != null)
+            if (adjacentTiles[i].m_occupyingEntity != null && adjacentTiles[i].m_occupyingEntity.GetTeam() != Team.Enemy)
             {
                 m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(adjacentTiles[i].m_occupyingEntity, !hasSpentAP);
                 hasSpentAP = true;
