@@ -220,7 +220,7 @@ public class GamePlayer : ITurns
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
-            if (m_controlledBuildings[i] is ContentMagicSchoolBuilding)
+            if (m_controlledBuildings[i] is ContentMagicSchoolBuilding && !m_controlledBuildings[i].m_isDestroyed)
             {
                 toReturn += ((ContentMagicSchoolBuilding)m_controlledBuildings[i]).m_magicIncrease;
             }
@@ -312,7 +312,7 @@ public class GamePlayer : ITurns
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
-            if (m_controlledBuildings[i] is ContentMineBuilding)
+            if (m_controlledBuildings[i] is ContentMineBuilding && !m_controlledBuildings[i].m_isDestroyed)
             {
                 toReturn += 1;
             }
