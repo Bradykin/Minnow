@@ -55,4 +55,9 @@ public class GameKeywordFactory
 
         return newKeyword;
     }
+
+    public static GameKeywordBase GetKeywordClone(GameKeywordBase other)
+    {
+        return (GameKeywordBase)Activator.CreateInstance(other.GetType());
+    }
 }

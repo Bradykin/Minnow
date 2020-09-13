@@ -61,7 +61,7 @@ public class UICardDeckView : WorldElementBase
         }
         else if (m_viewType == UIDeckViewController.DeckViewType.Duplicate)
         {
-            GameCard dupCard = GameCardFactory.GetCardClone(m_card);
+            GameCard dupCard = GameCardFactory.GetCardDup(m_card);
             player.m_deckBase.AddCard(dupCard);
             player.m_curDeck.AddToDiscard(dupCard);
         }

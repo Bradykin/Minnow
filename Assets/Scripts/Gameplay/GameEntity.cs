@@ -41,6 +41,22 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public Sprite m_iconWhite;
     protected string m_customName;
 
+    public void CopyOff(GameEntity other)
+    {
+        m_maxHealth = other.m_maxHealth;
+        m_apRegen = other.m_apRegen;
+        m_maxAP = other.m_maxAP;
+        m_power = other.m_power;
+        m_typeline = other.m_typeline;
+
+        m_keywordHolder = other.m_keywordHolder.Clone();
+
+        if (other.HasCustomName())
+        {
+            SetCustomName();
+        }
+    }
+
     protected virtual void LateInit()
     {
         m_icon = UIHelper.GetIconEntity(m_name);
