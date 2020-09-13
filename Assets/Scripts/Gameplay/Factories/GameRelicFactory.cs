@@ -74,6 +74,12 @@ public static class GameRelicFactory
             }
         }
 
+        //If there are no relics left that the player doesn't have, then just allow any relic as a dup
+        if (newList.Count == 0)
+        {
+            return m_relics;
+        }
+
         return newList;
     }
 }
