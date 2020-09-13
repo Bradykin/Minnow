@@ -179,7 +179,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public int GetCostToPass(GameEntity checkerEntity)
     {
-        bool canFly = checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null;
+        bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
 
         if (canFly)
         {
@@ -203,7 +203,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             return false;
         }
 
-        bool canFly = checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null;
+        bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
 
         if (canFly)
         {
@@ -244,7 +244,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public int GetDamageReduction(GameEntity checkerEntity)
     {
-        if (checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null)
+        if (checkerEntity.GetKeyword<GameFlyingKeyword>() != null)
         {
             return 0;
         }

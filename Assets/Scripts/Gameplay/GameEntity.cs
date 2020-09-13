@@ -11,12 +11,10 @@ public enum Team : int
 
 public enum Typeline : int
 {
-    None,
     Humanoid,
     Mystic,
     Monster,
-    Construct,
-    Legend
+    Construct
 }
 
 public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGameEntityData>
@@ -41,6 +39,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public bool m_isDead;
     public UIEntity m_uiEntity;
     public Sprite m_iconWhite;
+    protected string m_customName;
 
     protected virtual void LateInit()
     {
@@ -71,7 +70,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
-        UIHelper.CreateWorldElementNotification(m_name + " was hit for " + damage + " damage!", false, m_curTile.m_curTile);
+        UIHelper.CreateWorldElementNotification(GetName() + " was hit for " + damage + " damage!", false, m_curTile.m_curTile);
 
         bool ignoreTileDamageReduction = false;
 
@@ -134,7 +133,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (shouldRevive)
         {
             m_curHealth = 1;
-            UIHelper.CreateWorldElementNotification(m_name + " stands back up from a mortal wound.", true, m_curTile.m_curTile);
+            UIHelper.CreateWorldElementNotification(GetName() + " stands back up from a mortal wound.", true, m_curTile.m_curTile);
             return;
         }
 
@@ -311,11 +310,21 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public void AddAPRegen(int toAdd)
     {
         m_apRegen += toAdd;
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
     }
 
     public void AddMaxAP(int toAdd)
     {
         m_maxAP += toAdd;
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
     }
 
     public int GetSightRange()
@@ -434,7 +443,22 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_isDead = false;
     }
 
-    public GameKeywordHolder GetKeywordHolder()
+    public void AddKeyword(GameKeywordBase newKeyword)
+    {
+        m_keywordHolder.m_keywords.Add(newKeyword);
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
+    }
+
+    public T GetKeyword<T>()
+    {
+        return m_keywordHolder.GetKeyword<T>();
+    }
+
+    public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;
     }
@@ -493,6 +517,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public void AddMaxHealth(int toAdd)
     {
         m_maxHealth += toAdd;
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
     }
 
     public int GetMaxAP()
@@ -640,6 +669,38 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public void AddPower(int m_toAdd)
     {
         m_power += m_toAdd;
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
+    }
+
+    protected bool HasCustomName()
+    {
+        if (m_customName == null || m_customName == "")
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected void SetCustomName()
+    {
+        m_customName = GameNamesFactory.GetCustomEntityName(m_typeline);
+    }
+
+    public string GetName()
+    {
+        if (HasCustomName())
+        {
+            return m_customName + ", the " + m_name;
+        }
+        else
+        {
+            return m_name;
+        }
     }
 
     //============================================================================================================//
@@ -656,7 +717,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             int regenValue = Heal(regenKeyword.m_regenVal);
             if (regenValue > 0)
             {
-                UIHelper.CreateWorldElementNotification(m_name + " regenerates " + regenValue, true, m_uiEntity);
+                UIHelper.CreateWorldElementNotification(GetName() + " regenerates " + regenValue, true, m_uiEntity);
             }
         }
     }

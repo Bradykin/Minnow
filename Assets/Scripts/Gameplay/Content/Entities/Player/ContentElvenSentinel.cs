@@ -52,7 +52,7 @@ public class GameGainRangeAction : GameAction
 
     public override void DoAction()
     {
-        GameRangeKeyword rangeKeyword = m_entity.GetKeywordHolder().GetKeyword<GameRangeKeyword>();
+        GameRangeKeyword rangeKeyword = m_entity.GetKeyword<GameRangeKeyword>();
 
         if (rangeKeyword != null)
         {

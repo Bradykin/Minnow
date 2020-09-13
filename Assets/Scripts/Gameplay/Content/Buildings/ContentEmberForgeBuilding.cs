@@ -32,7 +32,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         {
             GameEntity entity = surroundingTiles[i].GetGameTile().m_occupyingEntity;
 
-            if (entity != null)
+            if (entity != null && !GameHelper.IsBossOrElite(entity))
             {
                 entities.Add(entity);
             }

@@ -26,7 +26,7 @@ public class ContentNightWingsCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetKeywordHolder().m_keywords.Add(new GameFlyingKeyword());
+        targetEntity.AddKeyword(new GameFlyingKeyword());
         targetEntity.AddAPRegen(-1);
     }
 }

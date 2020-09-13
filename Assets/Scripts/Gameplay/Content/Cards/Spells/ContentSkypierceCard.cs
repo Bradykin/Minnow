@@ -9,7 +9,7 @@ public class ContentSkypierceCard : GameCardSpellBase
         m_spellEffect = 5;
 
         m_name = "Skypierce";
-        m_desc = "Deal " + GetSpellValue() + " damage to a target.  Instantly kill if it has flying.";
+        m_desc = "Deal " + GetSpellValue() + " damage to a target.  Instantly kill if it has flying (and is not an elite or boss).";
         m_playDesc = "BOOM!";
         m_targetType = Target.Enemy;
         m_cost = 1;
@@ -27,7 +27,7 @@ public class ContentSkypierceCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        if (targetEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null)
+        if (targetEntity.GetKeyword<GameFlyingKeyword>() != null && !GameHelper.IsBossOrElite(targetEntity))
         {
             targetEntity.Die();
         }

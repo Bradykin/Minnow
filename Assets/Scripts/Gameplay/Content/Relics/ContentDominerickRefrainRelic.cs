@@ -7,7 +7,7 @@ public class ContentDominerickRefrainRelic : GameRelic
     public ContentDominerickRefrainRelic()
     {
         m_name = "Dominerick Refrain";
-        m_desc = "Increase spell power by 5";
+        m_desc = "Increase spell power by 2";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

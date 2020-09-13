@@ -101,4 +101,17 @@ public static class GameHelper
     {
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene");
     }
+
+    public static bool IsBossOrElite(GameEntity toCheck)
+    {
+        if (toCheck is GameEnemyEntity)
+        {
+            if (((GameEnemyEntity)toCheck).m_isElite || ((GameEnemyEntity)toCheck).m_isBoss)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

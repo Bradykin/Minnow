@@ -49,21 +49,39 @@ public class UICardDeckView : WorldElementBase
         if (m_viewType == UIDeckViewController.DeckViewType.Remove)
         {
             player.m_deckBase.RemoveCard(m_card);
-            player.m_curDeck.RemoveCard(m_card);
+
+            if (player.m_hand.Contains(m_card))
+            {
+                player.m_hand.Remove(m_card);
+            }
+            else
+            {
+                player.m_curDeck.RemoveCard(m_card);
+            }
         }
         else if (m_viewType == UIDeckViewController.DeckViewType.Duplicate)
         {
             GameCard dupCard = GameCardFactory.GetCardClone(m_card);
             player.m_deckBase.AddCard(dupCard);
-            player.m_curDeck.AddCard(dupCard);
+            player.m_curDeck.AddToDiscard(dupCard);
         }
         else if (m_viewType == UIDeckViewController.DeckViewType.Transform)
         {
             GameCard newCard = GameCardFactory.GetRandomStandardCard();
+
+            if (player.m_hand.Contains(m_card))
+            {
+                player.m_hand.Remove(m_card);
+                player.m_hand.Add(newCard);
+            }
+            else
+            {
+                player.m_curDeck.AddToDiscard(newCard);
+                player.m_curDeck.RemoveCard(m_card);
+            }
+
             player.m_deckBase.RemoveCard(m_card);
-            player.m_curDeck.RemoveCard(m_card);
             player.m_deckBase.AddCard(newCard);
-            player.m_curDeck.AddToDiscard(newCard);
         }
 
         UIDeckViewController.Instance.UpdateDeck(UIDeckViewController.DeckViewType.View);
@@ -100,7 +118,7 @@ public class UICardDeckView : WorldElementBase
     private void SetCardData()
     {
         m_imageRenderer.sprite = m_card.m_icon;
-        m_nameText.text = m_card.m_name;
+        m_nameText.text = m_card.GetName();
         m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
         m_descText.text = m_card.GetDesc();

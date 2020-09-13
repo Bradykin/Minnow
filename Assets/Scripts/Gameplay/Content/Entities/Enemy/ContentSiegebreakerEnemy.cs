@@ -30,7 +30,5 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();
-
-        m_curAP = 0;
     }
 }

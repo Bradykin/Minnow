@@ -18,7 +18,7 @@ public class ContentCaveDragonEntity : GameEntity
         m_rarity = GameRarity.Event;
 
         m_name = "Cave Dragon";
-        m_typeline = Typeline.Legend;
+        m_typeline = Typeline.Monster;
 
         LateInit();
     }

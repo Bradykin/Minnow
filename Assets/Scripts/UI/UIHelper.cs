@@ -302,10 +302,10 @@ public static class UIHelper
 
         if (showEntity)
         {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.m_name, descString, entity.GetTeam()));
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.GetName(), descString, entity.GetTeam()));
         }
 
-        List<GameKeywordBase> keyWords = entity.GetKeywordHolder().m_keywords;
+        List<GameKeywordBase> keyWords = entity.GetKeywordHolderForRead().m_keywords;
         for (int i = 0; i < keyWords.Count; i++)
         {
             if (showEntity)
