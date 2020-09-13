@@ -16,7 +16,7 @@ public class AISpinnerChooseTileToMoveStep : AIStep
         int maxAdjacent = 0;
         for (int i = 0; i < tilesInMoveAttackRange.Count; i++)
         {
-            if (tilesInMoveAttackRange[i].IsOccupied() && !tilesInMoveAttackRange[i].m_occupyingEntity.m_isDead && tilesInMoveAttackRange[i] != m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile)
+            if (tilesInMoveAttackRange[i].IsOccupied() && tilesInMoveAttackRange[i] != m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile)
             {
                 continue;
             }
@@ -25,7 +25,7 @@ public class AISpinnerChooseTileToMoveStep : AIStep
             int numAdjacent = 0;
             for (int k = 0; k < adjacentTiles.Count; k++)
             {
-                if (adjacentTiles[k].IsOccupied() && !tilesInMoveAttackRange[i].m_occupyingEntity.m_isDead && adjacentTiles[k].m_occupyingEntity.GetTeam() == Team.Player)
+                if (adjacentTiles[k].IsOccupied() && adjacentTiles[k].m_occupyingEntity.GetTeam() == Team.Player)
                 {
                     numAdjacent++;
                 }

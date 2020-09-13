@@ -205,7 +205,7 @@ public static class UIHelper
 
             for (int i = 0; i < tilesInRange.Count; i++)
             {
-                tilesInRange[i].m_curTile.SetMoveable(true);
+                tilesInRange[i].GetWorldTile().SetMoveable(true);
             }
         }
     }
@@ -228,7 +228,7 @@ public static class UIHelper
 
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            tilesInRange[i].m_curTile.SetMoveable(true);
+            tilesInRange[i].GetWorldTile().SetMoveable(true);
         }
     }
 

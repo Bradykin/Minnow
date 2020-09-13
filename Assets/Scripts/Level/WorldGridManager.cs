@@ -108,7 +108,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public List<GameTile> GetSurroundingTiles(GameTile centerPoint, int outerRange, int innerRange = 1)
     {
-        List<WorldTile> worldTiles = GetSurroundingTiles(centerPoint.m_curTile, outerRange, innerRange);
+        List<WorldTile> worldTiles = GetSurroundingTiles(centerPoint.GetWorldTile(), outerRange, innerRange);
 
         List<GameTile> returnList = new List<GameTile>();
         

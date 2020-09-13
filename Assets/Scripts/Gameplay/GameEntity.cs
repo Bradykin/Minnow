@@ -70,7 +70,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
-        UIHelper.CreateWorldElementNotification(GetName() + " was hit for " + damage + " damage!", false, m_curTile.m_curTile);
+        UIHelper.CreateWorldElementNotification(GetName() + " was hit for " + damage + " damage!", false, m_curTile.GetWorldTile());
 
         bool ignoreTileDamageReduction = false;
 
@@ -133,7 +133,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (shouldRevive)
         {
             m_curHealth = 1;
-            UIHelper.CreateWorldElementNotification(GetName() + " stands back up from a mortal wound.", true, m_curTile.m_curTile);
+            UIHelper.CreateWorldElementNotification(GetName() + " stands back up from a mortal wound.", true, m_curTile.GetWorldTile());
             return;
         }
 
@@ -184,6 +184,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
+
+
+        //ashulman TODO: Keep an eye on this line. This was previously happening in the UI update loop class. 
+        m_curTile.ClearEntity();
+        m_curTile = null;
 
         m_isDead = true;
     }
@@ -637,7 +642,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (destinationTile == m_curTile)
             return;
 
-        if (destinationTile.IsOccupied() && !destinationTile.m_occupyingEntity.m_isDead)
+        if (destinationTile.IsOccupied())
             return;
 
         MoveTo(destinationTile);

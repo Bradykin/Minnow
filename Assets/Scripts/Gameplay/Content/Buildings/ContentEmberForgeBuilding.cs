@@ -45,7 +45,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
 
         GameEntity targetEntity = entities[Random.Range(0, entities.Count)];
 
-        UIHelper.CreateWorldElementNotification("The " + m_name + " blasts the " + targetEntity.m_name + ", instantly killing it!", true, targetEntity.m_curTile.m_curTile);
+        UIHelper.CreateWorldElementNotification("The " + m_name + " blasts the " + targetEntity.m_name + ", instantly killing it!", true, targetEntity.m_curTile.GetWorldTile());
         targetEntity.Die();
     }
 

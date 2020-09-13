@@ -5,21 +5,22 @@ using UnityEngine;
 
 public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustomRecycle
 {
-    public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     public Vector2Int m_gridPosition;
+
+    public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
+    private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
     public GameEvent m_event { get; private set; }
     public GameSpawnPoint m_spawnPoint { get; private set; }
-    private GameBuildingBase m_building;
+    private WorldTile m_worldTile;
 
-    public WorldTile m_curTile;
     public bool m_isFog;
     public bool m_isSoftFog;
     public bool m_canPlace;
 
-    public GameTile(WorldTile curTile)
+    public GameTile(WorldTile worldTile)
     {
-        m_curTile = curTile;
+        m_worldTile = worldTile;
 
         if (Constants.FogOfWar)
         {
@@ -46,7 +47,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (m_occupyingEntity.GetTeam() == Team.Player)
         {
-            m_curTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
+            m_worldTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
 
             if (m_event != null && !m_event.m_isComplete)
             {
@@ -64,11 +65,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_building.m_name + ".");
         }
 
-        m_curTile.ClearSurroundingFog(newBuilding.m_sightRange);
+        m_worldTile.ClearSurroundingFog(newBuilding.m_sightRange);
 
         if (newBuilding.m_expandsPlaceRange)
         {
-            m_curTile.ExpandPlaceRange(newBuilding.m_sightRange);
+            m_worldTile.ExpandPlaceRange(newBuilding.m_sightRange);
         }
 
         m_building = newBuilding;
@@ -102,6 +103,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public void ClearSpawnPoint()
     {
         m_spawnPoint = null;
+    }
+
+    public WorldTile GetWorldTile()
+    {
+        return m_worldTile;
     }
 
     public bool IsOccupied()
@@ -211,7 +217,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             return true;
         }
 
-        bool isOccupiedOpposingTeam = IsOccupied() && !m_occupyingEntity.m_isDead;
+        bool isOccupiedOpposingTeam = IsOccupied();
         if (isOccupiedOpposingTeam)
         {
             isOccupiedOpposingTeam = checkerEntity.GetTeam() != m_occupyingEntity.GetTeam();
@@ -342,6 +348,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         m_event = null;
         m_spawnPoint = null;
         m_building = null;
-        m_curTile = null;
+        m_worldTile = null;
     }
 }

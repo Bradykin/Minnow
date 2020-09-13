@@ -69,7 +69,7 @@ public class GameExplodeAction : GameAction
             if (entity != null)
             {
                 entity.GetHit(m_explodePower);
-                UIHelper.CreateWorldElementNotification(entity.m_name + " gets hit for " + m_explodePower + " by the " + m_name + "'s explosion.", entity.GetTeam() == Team.Enemy, entity.m_curTile.m_curTile);
+                UIHelper.CreateWorldElementNotification(entity.m_name + " gets hit for " + m_explodePower + " by the " + m_name + "'s explosion.", entity.GetTeam() == Team.Enemy, entity.m_curTile.GetWorldTile());
             }
         }
     }
