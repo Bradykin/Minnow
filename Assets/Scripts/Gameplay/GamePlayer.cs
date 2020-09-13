@@ -321,6 +321,32 @@ public class GamePlayer : ITurns
         return toReturn;
     }
 
+    public bool HasEntitiesThatWillOvercapAP()
+    {
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            if (m_controlledEntities[i].GetCurAP() + m_controlledEntities[i].GetAPRegen() > m_controlledEntities[i].GetMaxAP())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool CanPlayAnythingInHand()
+    {
+        for (int i = 0; i < m_hand.Count; i++)
+        {
+            if (m_hand[i].GetCost() <= m_curEnergy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public int GetCurActions()
     {
         return m_curActions;

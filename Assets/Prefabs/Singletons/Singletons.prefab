@@ -43635,6 +43635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c3cb046098d494983f2d101ca114cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_renderer: {fileID: 2383513020799781496}
+  m_endTurnText: {fileID: 7887937381936633907}
   m_tintRenderer: {fileID: 2383513021610367520}
 --- !u!114 &7887937381353111600
 MonoBehaviour:
