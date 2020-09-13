@@ -20,7 +20,6 @@ public class ContentOrcShamanEnemy : GameEnemyEntity
         m_desc = "Magical blasts away...";
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameGainPowerAction(this, 2)));
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStep(m_AIGameEnemyEntity));
