@@ -10,8 +10,8 @@ public class GameRegenerateKeyword : GameKeywordBase
     {
         m_regenVal = regenVal;
 
-        m_name = "Regen " + m_regenVal;
-        m_desc = "Restores " + m_regenVal + " health at the start of each turn.";
+        m_name = "Regen";
+        m_desc = "" + m_regenVal;
         m_keywordParamType = KeywordParamType.IntParam;
     }
 

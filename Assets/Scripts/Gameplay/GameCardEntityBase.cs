@@ -72,4 +72,18 @@ public class GameCardEntityBase : GameCard
 
         m_entity.Reset();
     }
+
+    public override string GetDesc()
+    {
+        string desc = base.GetDesc();
+
+        if (GetEntity().GetKeywordHolder().m_keywords.Count > 0)
+        {
+            desc += "\n";
+        }
+
+        desc += GetEntity().GetKeywordHolder().GetDesc();
+
+        return desc;
+    }
 }

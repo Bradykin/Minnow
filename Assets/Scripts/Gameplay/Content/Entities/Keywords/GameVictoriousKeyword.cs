@@ -11,7 +11,7 @@ public class GameVictoriousKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Victorious";
-        m_desc = "When this entity kills another entity: " + action.m_desc;
+        m_desc = action.m_desc;
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

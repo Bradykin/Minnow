@@ -11,7 +11,7 @@ public class GameDeathKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Death";
-        m_desc = "When this entity dies: " + action.m_desc;
+        m_desc = action.m_desc;
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

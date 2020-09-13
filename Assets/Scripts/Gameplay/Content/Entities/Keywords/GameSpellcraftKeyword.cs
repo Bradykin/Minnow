@@ -11,7 +11,7 @@ public class GameSpellcraftKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Spellcraft";
-        m_desc = "When a spell is cast: " + action.m_desc;
+        m_desc = action.m_desc;
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

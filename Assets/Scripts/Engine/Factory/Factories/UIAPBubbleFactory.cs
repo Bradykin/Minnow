@@ -29,7 +29,14 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject();
             obj.transform.parent = apContainer;
-            obj.transform.localPosition = new Vector3(index * 0.2f, 0.0f, 0.0f);
+            if (index < 6)
+            {
+                obj.transform.localPosition = new Vector3(index * 0.2f, 0.0f, 0.0f);
+            }
+            else
+            {
+                obj.transform.localPosition = new Vector3((index-6f) * 0.2f, 0.3f, 0.0f);
+            }
 
             obj.GetComponent<UIAPBubble>().Init(isActive, team);
 

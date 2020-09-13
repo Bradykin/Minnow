@@ -11,7 +11,7 @@ public class GameGainResourceAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Resources";
-        m_desc = "Gain - " + m_toGain.ToString();
+        m_desc = "Gain " + m_toGain.ToString();
         m_actionParamType = ActionParamType.GameWalletParam;
     }
 

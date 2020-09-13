@@ -11,7 +11,7 @@ public class GameMomentumKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Momentum";
-        m_desc = "When this entity hits an entity: " + action.m_desc;
+        m_desc = action.m_desc;
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 
