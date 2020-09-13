@@ -24,6 +24,8 @@ public class UIEventController : Singleton<UIEventController>
 
     public void Init(GameEvent gameEvent)
     {
+        gameEvent.Init();
+
         Globals.m_canSelect = false;
 
         m_event = gameEvent;

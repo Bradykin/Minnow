@@ -170,8 +170,6 @@ public class GameNamesFactory
     {
         string toReturn = toGetFrom[Random.Range(0, toGetFrom.Count)];
 
-        toGetFrom.Remove(toReturn);
-
         return toReturn;
     }
 }

@@ -30,4 +30,9 @@ public class GameRelicHolder
 
         return count;
     }
+
+    public List<GameRelic> GetRelicListForRead()
+    {
+        return m_relics;
+    }
 }

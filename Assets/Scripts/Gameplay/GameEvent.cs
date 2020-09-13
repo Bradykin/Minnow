@@ -15,6 +15,13 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
     public GameEventOption m_optionTwo;
     public GameEventOption m_optionThree;
 
+    public void Init()
+    {
+        m_optionOne.Init();
+        m_optionTwo.Init();
+        m_optionThree.Init();
+    }
+
     protected virtual void LateInit()
     {
         m_APCost = 2;
