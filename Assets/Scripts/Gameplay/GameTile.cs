@@ -52,6 +52,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             {
                 UIEventController.Instance.Init(m_event);
                 SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
+                m_event = null;
             }
         }
     }
@@ -210,7 +211,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             return true;
         }
 
-        bool isOccupiedOpposingTeam = IsOccupied();
+        bool isOccupiedOpposingTeam = IsOccupied() && !m_occupyingEntity.m_isDead;
         if (isOccupiedOpposingTeam)
         {
             isOccupiedOpposingTeam = checkerEntity.GetTeam() != m_occupyingEntity.GetTeam();

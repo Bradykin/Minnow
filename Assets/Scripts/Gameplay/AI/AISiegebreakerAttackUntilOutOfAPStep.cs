@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AISiegebreakerAttackUntilOutOfAPStep : AIAttackUntilOutOfAPStep
+public class AISiegebreakerAttackUntilOutOfAPStep : AIAttackUntilOutOfAPStandardStep
 {
     public AISiegebreakerAttackUntilOutOfAPStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIAttackUntilOutOfAPStep : AIStep
+public class AIAttackUntilOutOfAPStandardStep : AIStep
 {
-    public AIAttackUntilOutOfAPStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIAttackUntilOutOfAPStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
@@ -21,10 +21,26 @@ public class AIAttackUntilOutOfAPStep : AIStep
                 case GameEntity gameEntity:
                     didAttack = true;
                     m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(gameEntity);
+                    if (gameEntity.m_isDead)
+                    {
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        {
+                            m_AIGameEnemyEntity.m_doSteps = true;
+                        }
+                        return;
+                    }
                     break;
                 case GameBuildingBase gameBuildingBase:
                     didAttack = true;
                     m_AIGameEnemyEntity.m_gameEnemyEntity.HitBuilding(gameBuildingBase);
+                    if (gameBuildingBase.m_isDestroyed)
+                    {
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        {
+                            m_AIGameEnemyEntity.m_doSteps = true;
+                        }
+                        return;
+                    }
                     break;
             }
 

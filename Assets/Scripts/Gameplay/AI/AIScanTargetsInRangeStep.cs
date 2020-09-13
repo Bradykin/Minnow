@@ -18,7 +18,7 @@ public class AIScanTargetsInRangeStep : AIStep
 
         foreach (var tile in tilesInAttackRange)
         {
-            if (tile.m_occupyingEntity != null && tile.m_occupyingEntity.GetTeam() == Team.Player)
+            if (tile.m_occupyingEntity != null && tile.m_occupyingEntity.GetTeam() == Team.Player && !tile.m_occupyingEntity.m_isDead)
             {
                 possibleEntityTargets.Add(tile.m_occupyingEntity);
             }
