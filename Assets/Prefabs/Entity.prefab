@@ -165,10 +165,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 72
+    m_FontSize: 48
     m_FontStyle: 1
-    m_BestFit: 1
-    m_MinSize: 24
+    m_BestFit: 0
+    m_MinSize: 3
     m_MaxSize: 72
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -360,7 +360,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.949078, y: 4.4861555}
+  m_Size: {x: 3, y: 4.3}
   m_EdgeRadius: 0
 --- !u!1 &976151315011736090
 GameObject:
@@ -547,11 +547,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 72
+    m_FontSize: 48
     m_FontStyle: 1
     m_BestFit: 1
-    m_MinSize: 24
-    m_MaxSize: 72
+    m_MinSize: 4
+    m_MaxSize: 48
     m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -625,8 +625,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.3040314, y: 0.044380188}
-  m_SizeDelta: {x: 321.39, y: 78.71}
+  m_AnchoredPosition: {x: -2.288, y: 0.029}
+  m_SizeDelta: {x: 335.513, y: 79.796}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4942688219189091081
 CanvasRenderer:
@@ -656,18 +656,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 72
+    m_FontSize: 48
     m_FontStyle: 1
     m_BestFit: 1
-    m_MinSize: 24
-    m_MaxSize: 72
+    m_MinSize: 32
+    m_MaxSize: 48
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title Text
+  m_Text: Title Text Two lines long
 --- !u!1 &7836011148731078489
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,3 +793,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_APBubbles: []
+  m_inWorld: 1

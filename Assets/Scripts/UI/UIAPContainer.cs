@@ -6,6 +6,7 @@ using Game.Util;
 public class UIAPContainer : MonoBehaviour
 {
     public List<UIAPBubble> m_APBubbles;
+    public bool m_inWorld;
 
     public void Init(int curAP, int maxAP, Team team)
     {
@@ -22,7 +23,7 @@ public class UIAPContainer : MonoBehaviour
         for (int i = 0; i < maxAP; i++)
         {
             bool isActive = i < curAP;
-            m_APBubbles.Add(FactoryManager.Instance.GetFactory<UIAPBubbleFactory>().CreateObject<UIAPBubble>(transform, isActive, team, i));
+            m_APBubbles.Add(FactoryManager.Instance.GetFactory<UIAPBubbleFactory>().CreateObject<UIAPBubble>(transform, isActive, team, i, m_inWorld));
         }
     }
 
