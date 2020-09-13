@@ -20,10 +20,49 @@ public class GameCardSpellBase : GameCard
     {
         int toReturn = m_spellEffect + GameHelper.GetPlayer().GetSpellPower();
 
-        toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
-        toReturn -= 2 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        if (toReturn < 0)
+        {
+            toReturn = 0;
+        }
 
         return toReturn;
+    }
+
+    protected string GetDamageDescString()
+    {
+        string spString = "";
+        if (HasSpellPower())
+        {
+            spString = GetSpellPowerString();
+        }
+
+        return "Deal " + m_spellEffect + spString + " damage.\n";
+    }
+
+    protected string GetHealDescString()
+    {
+        string spString = "";
+        if (HasSpellPower())
+        {
+            spString = GetSpellPowerString();
+        }
+
+        return "Heal for " + m_spellEffect + spString + ".\n";
+    }
+
+    protected string GetSpellPowerString()
+    {
+        return " (" + GetSpellValue() + ")";
+    }
+
+    protected string GetModifiedBySpellPowerString()
+    {
+        return "(This is modified by spell power)";
+    }
+
+    protected bool HasSpellPower()
+    {
+        return GetSpellValue() != m_spellEffect;
     }
 
     public override void PlayCard()

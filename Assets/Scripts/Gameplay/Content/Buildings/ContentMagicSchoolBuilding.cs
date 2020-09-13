@@ -8,7 +8,7 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
 
     public ContentMagicSchoolBuilding()
     {
-        m_magicIncrease = 2;
+        m_magicIncrease = 1;
 
         m_name = "Magic School";
         m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + " for each magic school.";

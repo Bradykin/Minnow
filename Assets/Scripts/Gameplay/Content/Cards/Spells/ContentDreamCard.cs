@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class ContentDreamCard : GameCardSpellBase
 {
-    private int m_toDraw = 3;
-
     public ContentDreamCard()
     {
+        m_spellEffect = 2;
+
         m_name = "Dream";
-        m_desc = "Draw " + m_toDraw + " cards.";
         m_playDesc = "You draw some cards!";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+    }
+
+    public override string GetDesc()
+    {
+        string spString = "";
+        if (HasSpellPower())
+        {
+            spString = GetSpellPowerString();
+        }
+
+        return "Draw " + m_spellEffect + spString + " cards.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard()
@@ -33,6 +43,6 @@ public class ContentDreamCard : GameCardSpellBase
             return;
         }
 
-        player.DrawCards(m_toDraw);
+        player.DrawCards(GetSpellValue());
     }
 }

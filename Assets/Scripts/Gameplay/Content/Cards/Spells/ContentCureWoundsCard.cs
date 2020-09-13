@@ -9,13 +9,17 @@ public class ContentCureWoundsCard : GameCardSpellBase
         m_spellEffect = 5;
 
         m_name = "Cure Wounds";
-        m_desc = "Heal a freindly entity for " + GetSpellValue() + " health.";
-        m_playDesc = "A stream of healing heals for " + GetSpellValue();
+        m_playDesc = "A stream of healing restores the troops!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Starter;
 
         SetupBasicData();
+    }
+
+    public override string GetDesc()
+    {
+        return GetHealDescString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

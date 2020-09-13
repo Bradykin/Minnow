@@ -6,14 +6,26 @@ public class ContentReplenishingPurpleBeamCard : GameCardSpellBase
 {
     public ContentReplenishingPurpleBeamCard()
     {
+        m_spellEffect = 2;
+
         m_name = "Replenishing Purple Beam";
-        m_desc = "Add 3 to the purple beam count.";
         m_playDesc = "Very purple.  There's so, so much purple beam.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+    }
+
+    public override string GetDesc()
+    {
+        string spString = "";
+        if (HasSpellPower())
+        {
+            spString = GetSpellPowerString();
+        }
+
+        return "Add " + m_spellEffect + spString + " to the purple beam count.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard()
@@ -25,6 +37,6 @@ public class ContentReplenishingPurpleBeamCard : GameCardSpellBase
 
         base.PlayCard();
 
-        Globals.m_purpleBeamCount += 3;
+        Globals.m_purpleBeamCount += GetSpellValue();
     }
 }
