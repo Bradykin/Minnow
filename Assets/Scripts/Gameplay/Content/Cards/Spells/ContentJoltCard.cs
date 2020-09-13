@@ -6,6 +6,8 @@ public class ContentJoltCard : GameCardSpellBase
 {
     public ContentJoltCard()
     {
+        m_spellEffect = 1;
+
         m_name = "Jolt";
         m_desc = "Restore 1 AP.\nDraw a card.";
         m_playDesc = "The target gets a jolt of energy!";
@@ -14,6 +16,17 @@ public class ContentJoltCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+    }
+
+    public override string GetDesc()
+    {
+        string spString = "";
+        if (HasSpellPower())
+        {
+            spString = GetSpellPowerString();
+        }
+
+        return "Restore " + m_spellEffect + spString + " AP." + GetModifiedBySpellPowerString() + "\nDraw a card.";
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -25,7 +38,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GainAP(1);
+        targetEntity.GainAP(GetSpellValue());
 
         GameHelper.GetPlayer().DrawCard();
     }

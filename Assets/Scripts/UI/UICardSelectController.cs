@@ -71,4 +71,9 @@ public class UICardSelectController : Singleton<UICardSelectController>
 
         EndSelection();
     }
+
+    public void SkipSelection()
+    {
+        EndSelection();
+    }
 }

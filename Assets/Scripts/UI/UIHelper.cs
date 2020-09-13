@@ -7,6 +7,9 @@ using System.IO;
 
 public static class UIHelper
 {
+    public static Color m_defaultColor = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
+    public static Color m_fadedColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
+
     public static Color m_defaultTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0f);
     public static Color m_selectedTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.3f);
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);

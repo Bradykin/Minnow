@@ -9,13 +9,17 @@ public class ContentArcaneBoltCard : GameCardSpellBase
         m_spellEffect = 3;
 
         m_name = "Arcane Bolt";
-        m_desc = "Deal " + GetSpellValue() + " damage to a target.  Double benefits from spell power.";
         m_playDesc = "BOOM!";
         m_targetType = Target.Enemy;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+    }
+
+    public override string GetDesc()
+    {
+        return GetDamageDescString() + "Double benefits from spell power.";
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -32,6 +36,6 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     protected override int GetSpellValue()
     {
-        return 2 * base.GetSpellValue();
+        return 2 * (base.GetSpellValue() - m_spellEffect) + m_spellEffect;
     }
 }

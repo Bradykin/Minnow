@@ -12,12 +12,15 @@ public class WorldController : Singleton<WorldController>
 
     private bool m_hasSpawnedEliteThisWave;
     private bool m_hasSpawnedBoss;
+    private int m_playerEntityFocusIndex;
 
     void Start()
     {
         m_gameController = new GameController();
         m_gameController.LateInit();
         m_playerHand = new List<UICard>();
+
+        m_playerEntityFocusIndex = 0;
     }
 
     void Update()
@@ -30,6 +33,16 @@ public class WorldController : Singleton<WorldController>
             {
                 ClearAllEntities();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            FocusPrevPlayerEntity();
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            FocusNextPlayerEntity();
         }
     }
 
@@ -222,6 +235,88 @@ public class WorldController : Singleton<WorldController>
     public void WinGame()
     {
         Debug.Log("The player has won!");
+    }
+
+    public void FocusNextPlayerEntity()
+    {
+        List<GameEntity> validEntities = GetValidFocusEntities();
+        if (validEntities.Count == 0)
+        {
+            return;
+        }
+
+        m_playerEntityFocusIndex++;
+
+        if (m_playerEntityFocusIndex >= validEntities.Count)
+        {
+            m_playerEntityFocusIndex = 0;
+        }
+
+        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+
+        if (Globals.m_selectedEntity != thisEntity)
+        {
+            UIHelper.SelectEntity(thisEntity);
+        }
+
+        UICameraController.Instance.SnapToWorldElement(thisEntity);
+    }
+
+    public void FocusPrevPlayerEntity()
+    {
+        List<GameEntity> validEntities = GetValidFocusEntities();
+        if (validEntities.Count == 0)
+        {
+            return;
+        }
+
+        m_playerEntityFocusIndex--;
+
+        if (m_playerEntityFocusIndex < 0)
+        {
+            m_playerEntityFocusIndex = validEntities.Count-1;
+        }
+
+        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+
+        if (Globals.m_selectedEntity != thisEntity)
+        {
+            UIHelper.SelectEntity(thisEntity);
+        }
+
+        UICameraController.Instance.SnapToWorldElement(thisEntity);
+    }
+
+    private List<GameEntity> GetValidFocusEntities()
+    {
+        List<GameEntity> validFocusEntities = new List<GameEntity>();
+
+        GamePlayer player = GameHelper.GetPlayer();
+
+        //Early exit, empty list
+        if (player == null)
+        {
+            return validFocusEntities;
+        }
+
+        List<GameEntity> playerEntities = player.m_controlledEntities;
+
+        //Early exit, empty list
+        if (playerEntities.Count == 0)
+        {
+            return validFocusEntities;
+        }
+
+        //Determine which entities in the player list are valid
+        for (int i = 0; i < playerEntities.Count; i++)
+        {
+            if (playerEntities[i].GetCurAP() > 0)
+            {
+                validFocusEntities.Add(playerEntities[i]);
+            }
+        }
+
+        return validFocusEntities;
     }
 
     public bool HasSpawnedEliteThisWave()

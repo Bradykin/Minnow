@@ -12,6 +12,7 @@ public class UIEntity : WorldElementBase
     public Text m_healthText;
     public Text m_powerText;
     public Text m_titleText;
+    private BoxCollider2D m_collider;
 
     public GameObject m_titleBlock;
 
@@ -31,10 +32,23 @@ public class UIEntity : WorldElementBase
         {
             UIHelper.SelectEntity(this);
         }
+
+        m_collider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
+        if (this == Globals.m_selectedEntity || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            m_collider.size = new Vector2(2f, 2.9f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            m_collider.size = new Vector2(3f, 4.3f);
+        }
+
         if (!m_isHovered)
         {
             if (this == Globals.m_selectedEntity)
@@ -47,13 +61,13 @@ public class UIEntity : WorldElementBase
             }
         }
 
-        if (m_isHovered || GetEntity().GetTeam() == Team.Player)
+        //if (m_isHovered || GetEntity().GetTeam() == Team.Player)
         {
             m_titleBlock.SetActive(true);
         }
-        else
+        //else
         {
-            m_titleBlock.SetActive(false);
+            //m_titleBlock.SetActive(false);
         }
 
         if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
@@ -136,7 +150,14 @@ public class UIEntity : WorldElementBase
             }
             else if (GetEntity().GetTeam() == Team.Player && !canHit)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+                if (Globals.m_selectedEntity == this)
+                {
+                    UIHelper.SetSelectTintColor(m_tintRenderer, CanSelect());
+                }
+                else
+                {
+                    UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+                }
             }
         }
         else if (Globals.m_selectedCard != null)

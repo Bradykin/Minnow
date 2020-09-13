@@ -21,4 +21,5 @@ public abstract class GameEventOption
     }
 
     public virtual void BuildTooltip() { }
+    public virtual void Init() { }
 }

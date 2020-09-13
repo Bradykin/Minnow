@@ -1,13 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIEndTurnButton : WorldElementBase
 {
+    public SpriteRenderer m_renderer;
+    public Text m_endTurnText;
     public SpriteRenderer m_tintRenderer;
 
     void Update()
     {
+        if (PlayerHasActions())
+        {
+            m_renderer.color = UIHelper.m_fadedColor;
+            m_endTurnText.color = UIHelper.m_fadedColor;
+        }
+        else
+        {
+            m_renderer.color = UIHelper.m_defaultColor;
+            m_endTurnText.color = UIHelper.m_defaultColor;
+        }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             EndTurn();
@@ -46,8 +60,19 @@ public class UIEndTurnButton : WorldElementBase
         Globals.m_canScroll = true;
     }
 
+    private bool PlayerHasActions()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+        if (player == null)
+        {
+            return false;
+        }
+
+        return player.HasEntitiesThatWillOvercapAP() || player.CanPlayAnythingInHand();
+    }
+
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn", "This will refresh your energy and regen some AP for your units.  You will also discard your hand a draw a new one.  Your enemies will all take their turns."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn", "This will refresh your energy and regen some AP for your units.  You will also discard your hand a draw a new one.  Your enemies will all take their turns.", !PlayerHasActions()));
     }
 }

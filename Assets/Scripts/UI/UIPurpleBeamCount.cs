@@ -44,6 +44,11 @@ public class UIPurpleBeamCount : WorldElementBase
 
     public override void HandleTooltip()
     {
+        if (!m_holder.activeSelf)
+        {
+            return;
+        }
+
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Purple Beam Count", "This is your purple beam count.  Some cards add to it, some cards spend it."));
     }
 }

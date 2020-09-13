@@ -25,11 +25,14 @@ public class GameEventTakeRelicOption : GameEventOption
 
     public GameEventTakeRelicOption()
     {
-        m_relic = GameRelicFactory.GetRandomRelic(); //nmartino - Allow exclude of the other option
+        m_hasTooltip = true;
+    }
+
+    public override void Init()
+    {
+        m_relic = GameRelicFactory.GetRandomRelic();
 
         m_message = "Take " + m_relic.m_name;
-
-        m_hasTooltip = true;
     }
 
     public override void AcceptOption()
