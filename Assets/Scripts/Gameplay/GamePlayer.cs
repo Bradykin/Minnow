@@ -384,11 +384,11 @@ public class GamePlayer : ITurns
     {
         m_currentWaveTurn++;
 
-        bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn() && m_waveNum != Constants.FinalWaveNum;
+        /*bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn() && m_waveNum != Constants.FinalWaveNum;
         if (!shouldStartIntermission)
-        {
+        {*/
             DrawHand();
-        }
+        //}
 
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
