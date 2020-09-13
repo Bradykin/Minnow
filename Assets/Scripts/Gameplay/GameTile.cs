@@ -242,8 +242,13 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return true;
     }
 
-    public int GetDamageReduction()
+    public int GetDamageReduction(GameEntity checkerEntity)
     {
+        if (checkerEntity.GetKeywordHolder().GetKeyword<GameFlyingKeyword>() != null)
+        {
+            return 0;
+        }
+
         if (HasBuilding())
         {
             return 4;

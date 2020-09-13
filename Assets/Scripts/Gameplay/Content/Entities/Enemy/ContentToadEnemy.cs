@@ -6,9 +6,9 @@ public class ContentToadEnemy : GameEnemyEntity
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 6;
+        m_maxHealth = 9;
         m_maxAP = 6;
-        m_apRegen = 2;
+        m_apRegen = 3;
         m_power = 2;
 
         m_team = Team.Enemy;

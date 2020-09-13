@@ -6,10 +6,10 @@ public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 {
     public ContentBlastingPurpleBeamCard()
     {
-        m_spellEffect = 1;
+        m_spellEffect = 4;
 
         m_name = "Blasting Purple Beam";
-        m_desc = "Blast an enemy for " + GetSpellValue() + " damage + the purple beam count.  If it kills the entity, increase the purple beam count by 1.";
+        m_desc = "Blast an enemy for " + GetSpellValue() + " damage.  If it kills the entity, increase the purple beam count by 1.";
         m_playDesc = "Very purple.  Much beam.";
         m_targetType = Target.Entity;
         m_cost = 1;
@@ -27,7 +27,7 @@ public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetHit(GetSpellValue() + Globals.m_purpleBeamCount);
+        targetEntity.GetHit(GetSpellValue());
 
         if (targetEntity.m_isDead)
         {
