@@ -39,7 +39,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public bool m_isDead;
     public UIEntity m_uiEntity;
     public Sprite m_iconWhite;
-    private string m_customName;
+    protected string m_customName;
 
     protected virtual void LateInit()
     {
