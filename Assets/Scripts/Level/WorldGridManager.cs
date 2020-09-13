@@ -405,7 +405,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         if (!startingGridTile.IsOccupied())
         {
             Debug.Log("NO ENTITY ON TILE");
-            return null;
+            return new List<GameTile>();
         }
         return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences);
     }

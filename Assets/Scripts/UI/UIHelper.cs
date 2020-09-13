@@ -218,6 +218,11 @@ public static class UIHelper
 
         List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
 
+        if (tilesInRange == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < tilesInRange.Count; i++)
         {
             tilesInRange[i].m_curTile.SetMoveable(true);
