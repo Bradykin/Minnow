@@ -637,7 +637,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (destinationTile == m_curTile)
             return;
 
-        if (destinationTile.m_occupyingEntity != null)
+        if (destinationTile.IsOccupied() && !destinationTile.m_occupyingEntity.m_isDead)
             return;
 
         MoveTo(destinationTile);

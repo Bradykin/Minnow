@@ -13,6 +13,8 @@ public class AIGameEnemyEntity
     public GameElementBase m_targetGameElement = null;
     public GameTile m_targetGameTile = null;
 
+    public bool m_doSteps = true;
+
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
         m_gameEnemyEntity = gameEnemyEntity;
@@ -27,13 +29,18 @@ public class AIGameEnemyEntity
 
     public void TakeTurn()
     {
-        for(int i = 0; i < m_AISteps.Count; i++)
+        while (m_doSteps)
         {
-            m_AISteps[i].TakeStep();
+            m_doSteps = false;
+            for (int i = 0; i < m_AISteps.Count; i++)
+            {
+                m_AISteps[i].TakeStep();
+            }
         }
 
         m_possibleEntityTargets.Clear();
         m_possibleBuildingTargets.Clear();
         m_targetGameElement = null;
+        m_doSteps = true;
     }
 }
