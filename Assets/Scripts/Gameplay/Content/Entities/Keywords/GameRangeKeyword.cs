@@ -10,8 +10,8 @@ public class GameRangeKeyword : GameKeywordBase
     {
         m_range = range;
 
-        m_name = "Ranged " + m_range;
-        m_desc = "Can attack at range " + m_range + ".";
+        m_name = "Ranged";
+        m_desc = "" + m_range;
         m_keywordParamType = KeywordParamType.IntParam;
     }
 

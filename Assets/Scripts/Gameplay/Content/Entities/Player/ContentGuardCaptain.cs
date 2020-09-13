@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGuardCaptain : GameEntity
 {
-    private int m_rallyRange = 1;
+    private int m_rallyRange = 2;
     private int m_rallyValue = 3;
 
     public ContentGuardCaptain()

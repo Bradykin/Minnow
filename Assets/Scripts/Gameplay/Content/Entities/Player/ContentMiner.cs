@@ -22,7 +22,7 @@ public class ContentMiner : GameEntity
 
         m_name = "Miner";
         m_desc = "At the end of each turn, gain " + m_miningVal + " gold for each mountain in range " + m_miningRange + ".";
-        m_typeline = Typeline.Monster;
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

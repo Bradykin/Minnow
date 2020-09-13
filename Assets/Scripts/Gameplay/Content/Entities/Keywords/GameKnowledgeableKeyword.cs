@@ -11,7 +11,7 @@ public class GameKnowledgeableKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Knowledgable";
-        m_desc = "When a card is drawn aside from the starting hand each turn: " + action.m_desc;
+        m_desc = action.m_desc;
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

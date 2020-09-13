@@ -41,6 +41,11 @@ public abstract class GameCard : GameElementBase
         return toReturn;
     }
 
+    public virtual string GetDesc()
+    {
+        return m_desc;
+    }
+
     public virtual void PlayCard() 
     {
         PayCost();

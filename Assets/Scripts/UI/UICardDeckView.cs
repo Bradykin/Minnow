@@ -12,7 +12,6 @@ public class UICardDeckView : WorldElementBase
     public SpriteRenderer m_imageRenderer;
     public Text m_typelineText;
     public Text m_descText;
-    public Text m_keywordText;
     public Text m_powerText;
     public Text m_healthText;
     public UIAPContainer m_apContainer;
@@ -94,7 +93,7 @@ public class UICardDeckView : WorldElementBase
         {
             GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
 
-            UIHelper.CreateEntityTooltip(entity, false);
+            //UIHelper.CreateEntityTooltip(entity, false);
         }
     }
 
@@ -104,14 +103,13 @@ public class UICardDeckView : WorldElementBase
         m_nameText.text = m_card.m_name;
         m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
-        m_descText.text = m_card.m_desc;
+        m_descText.text = m_card.GetDesc();
 
         if (m_card is GameCardEntityBase)
         {
             m_gameElement = ((GameCardEntityBase)m_card).m_entity;
 
             GameCardEntityBase entityCard = (GameCardEntityBase)m_card;
-            m_keywordText.text = entityCard.m_entity.GetKeywordHolder().GetDesc();
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
 
@@ -120,7 +118,6 @@ public class UICardDeckView : WorldElementBase
         }
         else
         {
-            m_keywordText.text = "";
             m_powerText.text = "";
             m_healthText.text = "";
 

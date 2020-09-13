@@ -82,7 +82,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (!ignoreTileDamageReduction)
         {
-            damage -= m_curTile.GetDamageReduction();
+            damage -= m_curTile.GetDamageReduction(this);
         }
 
         if (damage < 0)
@@ -458,6 +458,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
             toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+        }
+
+        if (toReturn < 0)
+        {
+            toReturn = 0;
         }
 
         return toReturn;
