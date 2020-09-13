@@ -12,6 +12,7 @@ public static class UIHelper
 
     public static Color m_defaultTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0f);
     public static Color m_selectedTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.3f);
+    public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
 
@@ -36,6 +37,18 @@ public static class UIHelper
         if (isSelected)
         {
             renderer.color = m_selectedTint;
+        }
+        else
+        {
+            SetDefaultTintColor(renderer);
+        }
+    }
+
+    public static void SetSelectHarshTintColor(SpriteRenderer renderer, bool isSelected)
+    {
+        if (isSelected)
+        {
+            renderer.color = m_selectedHarshTint;
         }
         else
         {
@@ -186,8 +199,8 @@ public static class UIHelper
 
         if (!entityAlreadySelected)
         {
+            UnselectAll();
             Globals.m_selectedEntity = entity;
-            Globals.m_selectedCard = null;
 
             List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
 
@@ -196,6 +209,46 @@ public static class UIHelper
                 tilesInRange[i].GetWorldTile().SetMoveable(true);
             }
         }
+    }
+
+    public static void SelectEnemy(UIEntity entity)
+    {
+        bool enemyAlreadySelected = Globals.m_selectedEnemy == entity;
+
+        if (Globals.m_selectedEnemy != null)
+        {
+            UnselectEnemy();
+        }
+
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
+        if (!enemyAlreadySelected)
+        {
+            UnselectAll();
+            Globals.m_selectedEnemy = entity;
+
+            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEnemy.GetEntity().m_curTile, false);
+
+            for (int i = 0; i < tilesInRange.Count; i++)
+            {
+                tilesInRange[i].GetWorldTile().SetMoveable(true);
+            }
+        }
+    }
+
+    public static void SelectTile(WorldTile tile)
+    {
+        if (Globals.m_selectedTile == tile)
+        {
+            Globals.m_selectedTile = null;
+            return;
+        }
+
+        UnselectAll();
+        Globals.m_selectedTile = tile;
     }
 
     public static void ReselectEntity()
@@ -248,6 +301,26 @@ public static class UIHelper
         WorldGridManager.Instance.ClearAllTilesMovementRange();
 
         Globals.m_selectedEntity = null;
+    }
+
+    public static void UnselectEnemy()
+    {
+        if (Globals.m_selectedEnemy == null)
+        {
+            return;
+        }
+
+        WorldGridManager.Instance.ClearAllTilesMovementRange();
+
+        Globals.m_selectedEnemy = null;
+    }
+
+    private static void UnselectAll()
+    {
+        UnselectEnemy();
+        Globals.m_selectedTile = null;
+        Globals.m_selectedCard = null;
+        UnselectEntity();
     }
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, WorldElementBase worldElement)

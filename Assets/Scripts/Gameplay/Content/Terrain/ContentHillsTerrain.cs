@@ -10,6 +10,7 @@ public class ContentHillsTerrain : GameTerrainBase
 
         m_name = "Hills";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
+        m_focusPanelText = "Ranged entities on this tile get +" + m_rangeModifier + " increased range.";
         m_terrainImageNumber = Random.Range(1, 5);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.grey;

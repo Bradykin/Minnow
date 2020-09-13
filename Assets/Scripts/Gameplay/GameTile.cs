@@ -135,6 +135,30 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         m_event = null;
     }
 
+    public string GetName()
+    {
+        if (HasBuilding())
+        {
+            return m_building.m_name;
+        }
+        else
+        {
+            return GetTerrain().m_name;
+        }
+    }
+
+    public string GetFocusPanelText()
+    {
+        if (HasBuilding())
+        {
+            return m_building.m_desc;
+        }
+        else
+        {
+            return GetTerrain().GetFocusPanelText();
+        }
+    }
+
     public Sprite GetIcon()
     {
         if (m_terrain == null)
@@ -186,11 +210,14 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public int GetCostToPass(GameEntity checkerEntity)
     {
-        bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
-
-        if (canFly)
+        if (checkerEntity != null)
         {
-            return 1;
+            bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
+
+            if (canFly)
+            {
+                return 1;
+            }
         }
 
         if (HasBuilding())
@@ -205,40 +232,40 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)
     {
-        if (checkerEntity == null)
-        {
-            return false;
-        }
-
-        bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
-
-        if (canFly)
-        {
-            return true;
-        }
-
-        bool isOccupiedOpposingTeam = IsOccupied();
-        if (isOccupiedOpposingTeam)
-        {
-            isOccupiedOpposingTeam = checkerEntity.GetTeam() != m_occupyingEntity.GetTeam();
-        }
-
-        bool hasNotDestroyedBuilding = HasBuilding();
-        if (hasNotDestroyedBuilding)
-        {
-            hasNotDestroyedBuilding = m_building.m_isDestroyed;
-        }
-
         bool terrainImpassable = !m_terrain.IsPassable(checkerEntity);
 
-        if (!letPassEnemies && isOccupiedOpposingTeam)
+        if (checkerEntity != null)
         {
-            return false;
-        }
+            bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
 
-        if (hasNotDestroyedBuilding)
-        {
-            return false;
+            if (canFly)
+            {
+                return true;
+            }
+
+            bool isOccupiedOpposingTeam = IsOccupied();
+            if (isOccupiedOpposingTeam)
+            {
+                isOccupiedOpposingTeam = checkerEntity.GetTeam() != m_occupyingEntity.GetTeam();
+            }
+
+            bool hasNotDestroyedBuilding = HasBuilding();
+            if (hasNotDestroyedBuilding)
+            {
+                hasNotDestroyedBuilding = m_building.m_isDestroyed;
+            }
+
+
+            if (!letPassEnemies && isOccupiedOpposingTeam)
+            {
+                return false;
+            }
+
+
+            if (hasNotDestroyedBuilding)
+            {
+                return false;
+            }
         }
 
         if (terrainImpassable)
@@ -251,9 +278,12 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public int GetDamageReduction(GameEntity checkerEntity)
     {
-        if (checkerEntity.GetKeyword<GameFlyingKeyword>() != null)
+        if (checkerEntity != null)
         {
-            return 0;
+            if (checkerEntity.GetKeyword<GameFlyingKeyword>() != null)
+            {
+                return 0;
+            }
         }
 
         if (HasBuilding())

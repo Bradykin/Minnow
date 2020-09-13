@@ -9,6 +9,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isPassable = true;
     protected int m_costToPass;
     protected int m_terrainImageNumber;
+    protected string m_focusPanelText;
 
     protected bool m_isForest;
     protected bool m_isHill;
@@ -25,9 +26,12 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
     {
-        if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
+        if (checkerEntity != null)
         {
-            return true;
+            if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
+            {
+                return true;
+            }
         }
 
         return m_isPassable;
@@ -86,6 +90,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public bool IsEventTerrain()
     {
         return m_isEventTerrain;
+    }
+
+    public string GetFocusPanelText()
+    {
+        return m_focusPanelText;
     }
 
     public void SetSprite(int x)

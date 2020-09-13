@@ -70,44 +70,51 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         }
 
         //Handle Tint Color
-        if (m_isHovered)
+        if (Globals.m_selectedTile == this)
         {
-            if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingEntity == null)
-            {
-                GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
-                GetGameTile().PlaceEntity(newEnemyEntity);
-                WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
-                Globals.m_testSpawnEnemyEntity = null;
-            }
-            
-            if (Globals.m_selectedEntity != null)
-            {
-                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
-            }
-
-            if (Globals.m_selectedCard != null)
-            {
-                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
-            }
-
-            if (Globals.m_selectedIntermissionBuilding != null)
-            {
-                UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
-            }
+            UIHelper.SetSelectTintColor(m_tintRenderer, true);
         }
         else
         {
-            if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+            if (m_isHovered)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, true);
-            }
-            else if (Globals.m_selectedEntity != null && m_isMoveable)
-            {
-                UIHelper.SetValidTintColor(m_tintRenderer, true);
+                if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingEntity == null)
+                {
+                    GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
+                    GetGameTile().PlaceEntity(newEnemyEntity);
+                    WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
+                    Globals.m_testSpawnEnemyEntity = null;
+                }
+
+                if (Globals.m_selectedEntity != null)
+                {
+                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
+                }
+
+                if (Globals.m_selectedCard != null)
+                {
+                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
+                }
+
+                if (Globals.m_selectedIntermissionBuilding != null)
+                {
+                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+                }
             }
             else
             {
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+                {
+                    UIHelper.SetValidTintColor(m_tintRenderer, true);
+                }
+                else if (Globals.m_selectedEntity != null && m_isMoveable)
+                {
+                    UIHelper.SetValidTintColor(m_tintRenderer, true);
+                }
+                else
+                {
+                    UIHelper.SetDefaultTintColor(m_tintRenderer);
+                }
             }
         }
 
@@ -177,6 +184,8 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                     GetGameTile().SetSpawnPoint(gameSpawnPoint);
                 }
             }
+
+            return;
         }
 
         UICard selectedCard = Globals.m_selectedCard;
@@ -208,6 +217,11 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 GameHelper.MakePlayerBuilding(GetGameTile(), selectedBuilding.m_building);
                 selectedBuilding.Place();
             }
+        }
+
+        if (selectedEntity == null && selectedBuilding == null && selectedCard == null)
+        {
+            UIHelper.SelectTile(this);
         }
     }
 
