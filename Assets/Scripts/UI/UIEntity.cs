@@ -38,7 +38,7 @@ public class UIEntity : WorldElementBase
 
     void Update()
     {
-        if (this == Globals.m_selectedEntity || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
+        if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
             m_collider.size = new Vector2(2f, 2.9f);
@@ -51,7 +51,7 @@ public class UIEntity : WorldElementBase
 
         if (!m_isHovered)
         {
-            if (this == Globals.m_selectedEntity)
+            if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy)
             {
                 UIHelper.SetSelectTintColor(m_tintRenderer, true);
             }
@@ -61,14 +61,7 @@ public class UIEntity : WorldElementBase
             }
         }
 
-        //if (m_isHovered || GetEntity().GetTeam() == Team.Player)
-        {
-            m_titleBlock.SetActive(true);
-        }
-        //else
-        {
-            //m_titleBlock.SetActive(false);
-        }
+        m_titleBlock.SetActive(true);
 
         if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
         {
@@ -126,6 +119,10 @@ public class UIEntity : WorldElementBase
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
             UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " can't move any more this turn.", false, this);
+        }
+        else if (GetEntity().GetTeam() == Team.Enemy)
+        {
+            UIHelper.SelectEnemy(this);
         }
     }
 
