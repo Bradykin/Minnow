@@ -38,7 +38,7 @@ public class UIEntity : WorldElementBase
 
     void Update()
     {
-        if (this == Globals.m_selectedEntity || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null))
+        if (this == Globals.m_selectedEntity || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
             m_collider.size = new Vector2(2f, 2.9f);
