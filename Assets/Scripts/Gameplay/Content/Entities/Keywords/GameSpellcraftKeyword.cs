@@ -12,6 +12,7 @@ public class GameSpellcraftKeyword : GameKeywordBase
 
         m_name = "Spellcraft";
         m_desc = action.m_desc;
+        m_focusInfoText = "Triggers when the player casts a spell card.";
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

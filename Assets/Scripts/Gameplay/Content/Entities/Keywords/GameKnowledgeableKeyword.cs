@@ -12,6 +12,7 @@ public class GameKnowledgeableKeyword : GameKeywordBase
 
         m_name = "Knowledgable";
         m_desc = action.m_desc;
+        m_focusInfoText = "Triggers when the player draws a card.";
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

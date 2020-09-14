@@ -12,6 +12,7 @@ public class GameSummonKeyword : GameKeywordBase
 
         m_name = "Summon";
         m_desc = action.m_desc;
+        m_focusInfoText = "Triggers when this entity is summoned.";
         m_keywordParamType = KeywordParamType.ActionParam;
     }
 

@@ -12,6 +12,7 @@ public class GameRangeKeyword : GameKeywordBase
 
         m_name = "Ranged";
         m_desc = "" + m_range;
+        m_focusInfoText = "Can attack at range.";
         m_keywordParamType = KeywordParamType.IntParam;
     }
 

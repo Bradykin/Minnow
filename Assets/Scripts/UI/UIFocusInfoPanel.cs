@@ -47,20 +47,28 @@ public class UIFocusInfoPanel : WorldElementBase
         if (cardData.m_card is GameCardEntityBase)
         {
             m_shouldShow = true;
-        }
-        else
-        {
-            m_shouldShow = false;
-            return;
-        }
 
-        GameCardEntityBase entityCard = (GameCardEntityBase)(cardData.m_card);
+            GameCardEntityBase entityCard = (GameCardEntityBase)(cardData.m_card);
 
-        m_titleText.text = entityCard.GetName();
-        List<GameKeywordBase> keywords = entityCard.GetEntity().GetKeywordHolderForRead().m_keywords;
-        for (int i = 0; i < keywords.Count; i++)
+            m_titleText.text = entityCard.GetName();
+            List<GameKeywordBase> keywords = entityCard.GetEntity().GetKeywordHolderForRead().m_keywords;
+            for (int i = 0; i < keywords.Count; i++)
+            {
+                m_descText.text += keywords[i].GetFocusInfoText();
+            }
+        }
+        else if (cardData.m_card is GameCardSpellBase)
         {
-            m_descText.text += keywords[i].GetFocusInfoText();
+            GameCardSpellBase spellCard = (GameCardSpellBase)(cardData.m_card);
+
+            m_titleText.text = spellCard.GetName();
+
+            if (spellCard.m_shouldExile)
+            {
+                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.";
+            }
+
+            m_shouldShow = true;
         }
     }
 
@@ -72,7 +80,7 @@ public class UIFocusInfoPanel : WorldElementBase
         List<GameKeywordBase> keywords = entityData.GetEntity().GetKeywordHolderForRead().m_keywords;
         for (int i = 0; i < keywords.Count; i++)
         {
-            m_descText.text += keywords[i].GetFocusInfoText();
+            m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n";
         }
     }
 

@@ -286,7 +286,7 @@ public static class UIHelper
         }
         else
         {
-            UnselectEntity();
+            UnselectAll();
             Globals.m_selectedCard = card;
         }
     }

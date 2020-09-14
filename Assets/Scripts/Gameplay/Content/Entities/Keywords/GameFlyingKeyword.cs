@@ -8,6 +8,7 @@ public class GameFlyingKeyword : GameKeywordBase
     {
         m_name = "Flying";
         m_desc = "All terrain only takes 1 AP to move over; can fly over impassable terrain.  Don't benefit from terrain protection.";
+        m_focusInfoText = m_desc;
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

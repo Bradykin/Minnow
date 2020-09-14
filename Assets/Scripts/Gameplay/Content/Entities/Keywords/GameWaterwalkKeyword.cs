@@ -8,6 +8,7 @@ public class GameWaterwalkKeyword : GameKeywordBase
     {
         m_name = "Waterwalk";
         m_desc = "Can move on water tiles, and moving on water tiles costs 0 ap.";
+        m_focusInfoText = m_desc;
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
