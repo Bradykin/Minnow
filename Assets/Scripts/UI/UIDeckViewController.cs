@@ -13,8 +13,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         Duplicate
     }
 
-
-    public UICardDeckView[] m_cards;
+    public UICard[] m_cards;
 
     public GameObject m_holder;
     public int m_index;
@@ -69,7 +68,8 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         {
             if (m_deck.Count > i + indexMod)
             {
-                m_cards[i].Init(m_deck[i + indexMod], m_viewType);
+                m_cards[i].Init(m_deck[i + indexMod], UICard.CardDisplayType.Deck);
+                m_cards[i].InitCardDeck(m_viewType);
                 m_cards[i].gameObject.SetActive(true);
             }
             else

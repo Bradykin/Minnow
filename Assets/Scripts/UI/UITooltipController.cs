@@ -37,8 +37,6 @@ public class UITooltipController : Singleton<UITooltipController>
             m_flipStackVertical = false;
         }
 
-
-
         //Update the stack to position vertically
         float curY = 0.0f;
         for (int i = 0; i < m_tooltipStack.Count; i++)

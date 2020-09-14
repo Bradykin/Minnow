@@ -417,28 +417,19 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
     }
 
-    public static void CreateEntityTooltip(GameEntity entity, bool showEntity = true)
+    public static void CreateEntityTooltip(GameEntity entity)
     {
-        string apString = "+" + entity.GetAPRegen() + " AP/turn";
-        string descString = entity.GetDesc() + apString;
+        GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entity);
+        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromEntity, UICard.CardDisplayType.Tooltip);
 
-        if (showEntity)
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(entity.GetName(), descString, entity.GetTeam()));
-        }
+        UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
+    }
 
-        List<GameKeywordBase> keyWords = entity.GetKeywordHolderForRead().m_keywords;
-        for (int i = 0; i < keyWords.Count; i++)
-        {
-            if (showEntity)
-            {
-                UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
-            }
-            else
-            {
-                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyWords[i].m_name, keyWords[i].m_desc, entity.GetTeam()));
-            }
-        }
+    public static void CreateSpellTooltip(GameCard card)
+    {
+        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(card, UICard.CardDisplayType.Tooltip);
+
+        UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
     }
 
     public static void CreateChaosTooltipStack()
@@ -506,15 +497,6 @@ public static class UIHelper
         }
 
         return "";
-    }
-
-    public static void CreateEventTooltip(GameEvent gameEvent)
-    {
-        if (!gameEvent.m_isComplete)
-        {
-            string descString = "An event!  I wonder what happens here...";
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
-        }
     }
 
     public static void CreateRelicTooltip(GameRelic relic)

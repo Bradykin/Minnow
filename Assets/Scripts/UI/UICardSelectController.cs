@@ -7,9 +7,9 @@ public class UICardSelectController : Singleton<UICardSelectController>
 {
     public GameObject m_holder;
 
-    public UICardSelectButton m_firstButton;
-    public UICardSelectButton m_secondButton;
-    public UICardSelectButton m_thirdButton;
+    public UICard m_firstButton;
+    public UICard m_secondButton;
+    public UICard m_thirdButton;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
         if (cardOne != null)
         {
             m_firstButton.gameObject.SetActive(true);
-            m_firstButton.Init(cardOne);
+            m_firstButton.Init(cardOne, UICard.CardDisplayType.Select);
         }
         else
         {
@@ -33,7 +33,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
         if (cardTwo != null)
         {
             m_secondButton.gameObject.SetActive(true);
-            m_secondButton.Init(cardTwo);
+            m_secondButton.Init(cardTwo, UICard.CardDisplayType.Select);
         }
         else
         {
@@ -43,7 +43,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
         if (cardThree != null)
         {
             m_thirdButton.gameObject.SetActive(true);
-            m_thirdButton.Init(cardThree);
+            m_thirdButton.Init(cardThree, UICard.CardDisplayType.Select);
         }
         else
         {

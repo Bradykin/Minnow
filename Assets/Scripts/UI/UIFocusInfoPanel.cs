@@ -99,7 +99,12 @@ public class UIFocusInfoPanel : WorldElementBase
             m_descText.text += "\n\nAP Cost: " + worldTile.GetGameTile().GetCostToPass(null) + "\n\n";
         }
 
-        m_descText.text += worldTile.GetGameTile().GetFocusPanelText();
+        m_descText.text += worldTile.GetGameTile().GetFocusPanelText() + "\n";
+
+        if (worldTile.GetGameTile().HasAvailableEvent())
+        {
+            m_descText.text += "An unknown event! Moving some troops here will trigger it...\n";
+        }
     }
 
     void OnMouseOver()

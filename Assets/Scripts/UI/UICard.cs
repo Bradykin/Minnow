@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class UICard : WorldElementBase
 {
+    public enum CardDisplayType
+    {
+        Hand,
+        Deck,
+        Select,
+        Tooltip
+    }
+
     public SpriteRenderer m_tintRenderer;
 
     public Text m_nameText;
@@ -16,37 +24,59 @@ public class UICard : WorldElementBase
     public Text m_healthText;
     public UIAPContainer m_apContainer;
 
+    public CardDisplayType m_displayType;
+
     public GameCard m_card { get; private set; }
 
-    public bool m_isBig;
+    public bool m_isHovered;
 
-    private bool m_isHovered;
+    private UICardHand m_handCard;
+    private UICardSelectButton m_cardSelect;
+    private UICardDeckView m_cardDeck;
+    private UITooltipCard m_cardTooltip;
+
+    private bool m_hasSetDisplayType;
 
     void Start()
     {
         UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 
-    public void Init(GameCard card)
+    public void Init(GameCard card, CardDisplayType displayType)
     {
         m_card = card;
+        m_displayType = displayType;
 
         SetCardData();
+
+        if (!m_hasSetDisplayType)
+        {
+            if (m_displayType == CardDisplayType.Hand)
+            {
+                m_handCard = gameObject.AddComponent<UICardHand>();
+            }
+            else if (m_displayType == CardDisplayType.Select)
+            {
+                m_cardSelect = gameObject.AddComponent<UICardSelectButton>();
+            }
+            else if (m_displayType == CardDisplayType.Deck)
+            {
+                m_cardDeck = gameObject.AddComponent<UICardDeckView>();
+            }
+            else if (m_displayType == CardDisplayType.Tooltip)
+            {
+                m_cardTooltip = gameObject.AddComponent<UITooltipCard>();
+            }
+
+            m_hasSetDisplayType = true;
+        }
     }
 
     void Update() 
     {
-        if ((m_isHovered && Globals.m_selectedCard == null) || Globals.m_selectedCard == this)
-        {
-            m_isBig = true;
-        }
-        else
-        {
-            m_isBig = false;
-        }
-        
         if (!m_isHovered)
         {
+            bool isSelected = Globals.m_selectedCard == this;
             UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
         }
     }
@@ -61,41 +91,11 @@ public class UICard : WorldElementBase
 
         if (m_card is GameCardEntityBase)
         {
-            m_gameElement = ((GameCardEntityBase)m_card).m_entity;
-
             GameCardEntityBase entityCard = (GameCardEntityBase)m_card;
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
 
             m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
-        }
-        else
-        {
-            m_showTooltip = false;
-        }
-    }
-
-    void OnMouseDown()
-    {
-        if (m_card.IsValidToPlay())
-        {
-            if (m_card.m_targetType == GameCard.Target.None)
-            {
-                WorldController.Instance.PlayCard(this, this);
-                m_card.PlayCard();
-            }
-            else
-            {
-                UIHelper.SelectCard(this);
-                UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
-            }
-        }
-        else
-        {
-            if (Globals.m_canSelect)
-            {
-                UIHelper.CreateWorldElementNotification("Not enough energy.", false, this);
-            }
         }
     }
 
@@ -104,16 +104,6 @@ public class UICard : WorldElementBase
         if (target != null)
         {
             UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
-        }
-    }
-
-    public override void HandleTooltip()
-    {
-        if (m_card is GameCardEntityBase)
-        {
-            GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
-
-            //UIHelper.CreateEntityTooltip(entity, false);
         }
     }
 
@@ -135,5 +125,30 @@ public class UICard : WorldElementBase
         {
             UIHelper.SetDefaultTintColor(m_tintRenderer);
         }
+    }
+
+    public bool GetIsBig()
+    {
+        if (m_handCard == null)
+        {
+            return false;
+        }
+
+        return m_handCard.m_isBig;
+    }
+
+    public override void HandleTooltip()
+    {
+        //Stub.  No tooltip on cards for now.
+    }
+
+    public void InitCardDeck(UIDeckViewController.DeckViewType viewType)
+    {
+        m_cardDeck.Init(viewType);
+    }
+
+    public UITooltipCard GetCardTooltip()
+    {
+        return m_cardTooltip;
     }
 }

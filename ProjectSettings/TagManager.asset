@@ -104,6 +104,12 @@ TagManager:
   - name: TooltipForground
     uniqueID: 2758884607
     locked: 0
+  - name: TooltipOverlay
+    uniqueID: 663989427
+    locked: 0
+  - name: TooltipTint
+    uniqueID: 1732987549
+    locked: 0
   - name: TooltipText
     uniqueID: 627343547
     locked: 0

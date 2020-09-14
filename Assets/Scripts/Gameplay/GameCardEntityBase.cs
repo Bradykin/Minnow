@@ -27,6 +27,14 @@ public class GameCardEntityBase : GameCard
         m_shouldExile = true;
     }
 
+    public void InitEnemyCard()
+    {
+        FillBasicData();
+
+        m_playDesc = "Error: ENEMY ENTITY PLAYED?";
+        m_cost = -1;
+    }
+
     public override void PlayCard(GameTile targetTile)
     {
         if (!IsValidToPlay(targetTile))

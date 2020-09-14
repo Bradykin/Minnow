@@ -56,11 +56,11 @@ public class GameEventCardSelectOption : GameEventOption
         {
             GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
 
-            UIHelper.CreateEntityTooltip(entity, false);
+            UIHelper.CreateEntityTooltip(entity);
         }
         else
         {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_card.m_name, m_card.m_desc));
+            UIHelper.CreateSpellTooltip(m_card);
         }
     }
 }

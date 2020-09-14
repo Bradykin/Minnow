@@ -6,7 +6,7 @@ public class ContentOrcEnemy : GameEnemyEntity
 {
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 10;
+        m_maxHealth = 14;
         m_maxAP = 8;
         m_apRegen = 4;
         m_power = 6;

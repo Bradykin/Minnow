@@ -264,11 +264,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public override void HandleTooltip()
     {
-        if (GetGameTile().HasAvailableEvent())
-        {
-            UIHelper.CreateEventTooltip(GetGameTile().m_event);
-        }
-
         if (Globals.m_selectedCard != null)
         {
             if (!Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))

@@ -31,6 +31,8 @@ public class GameEventTakeHorsesOption : GameEventOption
         m_maxAP = 1;
 
         m_tile = tile;
+
+        m_hasTooltip = true;
     }
 
     public override string GetMessage()
@@ -53,5 +55,10 @@ public class GameEventTakeHorsesOption : GameEventOption
         m_tile.m_occupyingEntity.AddMaxAP(m_maxAP);
 
         EndEvent();
+    }
+
+    public override void BuildTooltip()
+    {
+         UIHelper.CreateEntityTooltip(m_tile.m_occupyingEntity);
     }
 }

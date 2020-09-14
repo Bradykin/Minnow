@@ -27,11 +27,6 @@ public class UICardFrameController : MonoBehaviour
             card = m_card.m_card;
         }
 
-        if (m_cardSelect != null)
-        {
-            card = m_cardSelect.m_card;
-        }
-
         if (card is GameCardEntityBase)
         {
             m_renderer.sprite = m_entityCardFrame;

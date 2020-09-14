@@ -18,6 +18,8 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_uiCardPrefab = null;
         [SerializeField]
+        private GameObject m_uiCardTooltipPrefab = null;
+        [SerializeField]
         private GameObject m_uiWorldElementNotificationPrefab = null;
         [SerializeField]
         private GameObject m_uiAPBubblePrefab = null;
@@ -63,6 +65,8 @@ namespace Game.Util
                     return new UIEntityFactory(m_uiEntityPrefab) as T;
                 case bool _ when type == typeof(UICardFactory):
                     return new UICardFactory(m_uiCardPrefab) as T;
+                case bool _ when type == typeof(UICardTooltipFactory):
+                    return new UICardTooltipFactory(m_uiCardTooltipPrefab) as T;
                 case bool _ when type == typeof(UIWorldElementNotificationFactory):
                     return new UIWorldElementNotificationFactory(m_uiWorldElementNotificationPrefab) as T;
                 case bool _ when type == typeof(UISimpleTooltipFactory):

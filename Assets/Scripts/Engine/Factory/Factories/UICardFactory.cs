@@ -30,13 +30,20 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(GameCard card)
+        public T CreateObject<T>(GameCard card, UICard.CardDisplayType displayType)
         {
             GameObject obj = CreateGameObject();
 
-            obj.transform.parent = m_waveHUD;
+            if (displayType == UICard.CardDisplayType.Hand)
+            {
+                obj.transform.parent = m_waveHUD;
+            }
+            else if (displayType == UICard.CardDisplayType.Tooltip)
+            {
+                obj.transform.parent = UITooltipController.Instance.transform;
+            }
 
-            obj.GetComponent<UICard>().Init(card);
+            obj.GetComponent<UICard>().Init(card, displayType);
 
             return obj.GetComponent<T>();
         }

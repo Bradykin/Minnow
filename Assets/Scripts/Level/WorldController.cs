@@ -97,7 +97,7 @@ public class WorldController : Singleton<WorldController>
         {
             if (!HasUICardForGameCard(playerHand[i]))
             {
-                UICard obj = FactoryManager.Instance.GetFactory<UICardFactory>().CreateObject<UICard>(playerHand[i]);
+                UICard obj = FactoryManager.Instance.GetFactory<UICardFactory>().CreateObject<UICard>(playerHand[i], UICard.CardDisplayType.Hand);
 
                 m_playerHand.Insert(i, obj);
             }
@@ -114,7 +114,7 @@ public class WorldController : Singleton<WorldController>
         int bigCardIndex = -1;
         for (int i = 0; i < m_playerHand.Count; i++)
         {
-            if (m_playerHand[i].m_isBig)
+            if (m_playerHand[i].GetIsBig())
             {
                 bigCardIndex = i;
             }

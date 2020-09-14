@@ -6,6 +6,7 @@ using UnityEngine;
 public static class GameCardFactory
 {
     private static List<GameCard> m_cards = new List<GameCard>();
+    private static List<GameCard> m_entityCards = new List<GameCard>();
     private static List<GameCard> m_standardCards = new List<GameCard>();
     private static List<GameCard> m_standardSpellCards = new List<GameCard>();
     private static List<GameCard> m_standardEntityCards = new List<GameCard>();
@@ -61,6 +62,24 @@ public static class GameCardFactory
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
 
+        //Enemy Cards
+        m_cards.Add(new ContentAngryBirdEnemyCard());
+        m_cards.Add(new ContentDarkWarriorEnemyCard());
+        m_cards.Add(new ContentLichEnemyCard());
+        m_cards.Add(new ContentLizardmanEnemyCard());
+        m_cards.Add(new ContentMobolaEnemyCard());
+        m_cards.Add(new ContentOrcEnemyCard());
+        m_cards.Add(new ContentOrcShamanEnemyCard());
+        m_cards.Add(new ContentSiegebreakerEntityCard());
+        m_cards.Add(new ContentShadeEnemyCard());
+        m_cards.Add(new ContentSlimeEnemyCard());
+        m_cards.Add(new ContentSnakeEnemyCard());
+        m_cards.Add(new ContentSpinnerEnemyCard());
+        m_cards.Add(new ContentToadEnemyCard());
+        m_cards.Add(new ContentWerewolfEnemyCard());
+        m_cards.Add(new ContentYetiEnemyCard());
+        m_cards.Add(new ContentZombieEnemyCard());
+
         //Spell Cards
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentBlastingPurpleBeamCard());
@@ -90,13 +109,19 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
+            bool isEntity = m_cards[i] is GameCardEntityBase;
+            if (isEntity)
+            {
+                m_entityCards.Add(m_cards[i]);
+            }
+
             if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common 
                 || m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon 
                 || m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
             {
                 m_standardCards.Add(m_cards[i]);
 
-                if (m_cards[i] is GameCardEntityBase)
+                if (isEntity)
                 {
                     m_standardEntityCards.Add(m_cards[i]);
                     if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common)
@@ -242,6 +267,21 @@ public static class GameCardFactory
         int r = UnityEngine.Random.Range(0, list.Count);
 
         return GetCardClone(list[r]);
+    }
+
+    public static GameCard GetCardFromEntity(GameEntity entity)
+    {
+        for (int i = 0; i < m_entityCards.Count; i++)
+        {
+            GameCardEntityBase entityCard = (GameCardEntityBase)m_entityCards[i];
+
+            if (entityCard.GetEntity().m_name == entity.m_name)
+            {
+                return GetCardClone(m_entityCards[i]);
+            }
+        }
+
+        return null;
     }
 }
 

@@ -16,6 +16,6 @@ public abstract class UITooltipBase : MonoBehaviour
             multiplier = -1.0f * multiplier;
         }
 
-        gameObject.transform.localPosition = new Vector3(m_horizontalIndex * Constants.TooltipWidth * multiplier, m_yVal, 0);
+        gameObject.transform.localPosition = new Vector3(m_horizontalIndex * Constants.TooltipWidth * multiplier, m_yVal, -4f);
     }
 }
