@@ -22,7 +22,7 @@ public static class UIHelper
     public static Color m_validAltEnemy = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
-    public static Color m_attackColor = new Color(Color.green.r, Color.green.g, Color.green.g, 1.0f);
+    public static Color m_attackColor = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
     public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
@@ -226,7 +226,7 @@ public static class UIHelper
                 tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
             }
 
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
 
             if (tilesInAttackRange == null)
             {
@@ -271,7 +271,7 @@ public static class UIHelper
                 tilesInRange[i].GetWorldTile().SetMoveable(true);
             }
 
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(Globals.m_selectedEnemy.GetEntity().m_curTile, false);
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEnemy.GetEntity().m_curTile, false);
 
             if (tilesInAttackRange == null)
             {
@@ -318,7 +318,7 @@ public static class UIHelper
             tilesInRange[i].GetWorldTile().SetMoveable(true);
         }
 
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
 
         if (tilesInAttackRange == null)
         {
