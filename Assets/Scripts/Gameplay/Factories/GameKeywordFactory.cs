@@ -17,6 +17,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameEnrageKeyword(null));
         m_keywords.Add(new GameFlyingKeyword());
         m_keywords.Add(new GameWaterwalkKeyword());
+        m_keywords.Add(new GameMountainwalkKeyword());
         m_keywords.Add(new GameKnowledgeableKeyword(null));
         m_keywords.Add(new GameMomentumKeyword(null));
         m_keywords.Add(new GameRangeKeyword(0));
