@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICardSelectSkipButton : MonoBehaviour
+public class UICardSelectAcceptButton : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
+    public GameObject m_holder;
+
+    void Update()
+    {
+        m_holder.SetActive(Globals.m_selectedCard != null);
+    }
 
     void OnMouseDown()
     {
-        UICardSelectController.Instance.SkipSelection();
+        if (!m_holder.activeSelf)
+        {
+            return;
+        }
+
+        UICardSelectController.Instance.AcceptCard(Globals.m_selectedCard.m_card);
         UIHelper.SetDefaultTintColor(m_tintRenderer);
         Globals.m_selectedCard = null;
     }

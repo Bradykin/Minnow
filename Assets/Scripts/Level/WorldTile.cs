@@ -142,7 +142,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         }
 
         //Handle Frame Color
-        if (GetGameTile().m_isFog)
+        if (GetGameTile().m_isFog || Globals.m_inIntermission)
         {
             m_frameRenderer.color = Color.black;
         }
@@ -216,7 +216,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         }
 
         UICard selectedCard = Globals.m_selectedCard;
-        if (selectedCard != null)
+        if (selectedCard != null && !Globals.m_inIntermission)
         {
             if (selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
@@ -227,7 +227,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         }
 
         UIEntity selectedEntity = Globals.m_selectedEntity;
-        if (selectedEntity != null)
+        if (selectedEntity != null && !Globals.m_inIntermission)
         {
             GameEntity gameEntity = (GameEntity)(selectedEntity.GetElement());
             if (gameEntity.CanMoveTo(GetGameTile()))
@@ -246,7 +246,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             }
         }
 
-        if (selectedEntity == null && selectedBuilding == null && selectedCard == null)
+        if ((selectedEntity == null && selectedBuilding == null && selectedCard == null) || Globals.m_inIntermission)
         {
             UIHelper.SelectTile(this);
         }

@@ -97,6 +97,11 @@ public class UICard : WorldElementBase
 
             m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
         }
+        else
+        {
+            m_powerText.text = "";
+            m_healthText.text = "";
+        }
     }
 
     public void CardPlayed(WorldElementBase target)

@@ -14,6 +14,13 @@ public class UICardSelectButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        UICardSelectController.Instance.AcceptCard(m_uiCard.m_card);
+        if (Globals.m_selectedCard == m_uiCard)
+        {
+            Globals.m_selectedCard = null;
+        }
+        else
+        {
+            Globals.m_selectedCard = m_uiCard;
+        }
     }
 }

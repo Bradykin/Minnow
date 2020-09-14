@@ -7,6 +7,7 @@ public static class GameCardFactory
 {
     private static List<GameCard> m_cards = new List<GameCard>();
     private static List<GameCard> m_entityCards = new List<GameCard>();
+    private static List<GameCard> m_enemyCards = new List<GameCard>();
     private static List<GameCard> m_standardCards = new List<GameCard>();
     private static List<GameCard> m_standardSpellCards = new List<GameCard>();
     private static List<GameCard> m_standardEntityCards = new List<GameCard>();
@@ -63,22 +64,22 @@ public static class GameCardFactory
         m_cards.Add(new ContentWildfolkCard());
 
         //Enemy Cards
-        m_cards.Add(new ContentAngryBirdEnemyCard());
-        m_cards.Add(new ContentDarkWarriorEnemyCard());
-        m_cards.Add(new ContentLichEnemyCard());
-        m_cards.Add(new ContentLizardmanEnemyCard());
-        m_cards.Add(new ContentMobolaEnemyCard());
-        m_cards.Add(new ContentOrcEnemyCard());
-        m_cards.Add(new ContentOrcShamanEnemyCard());
-        m_cards.Add(new ContentSiegebreakerEntityCard());
-        m_cards.Add(new ContentShadeEnemyCard());
-        m_cards.Add(new ContentSlimeEnemyCard());
-        m_cards.Add(new ContentSnakeEnemyCard());
-        m_cards.Add(new ContentSpinnerEnemyCard());
-        m_cards.Add(new ContentToadEnemyCard());
-        m_cards.Add(new ContentWerewolfEnemyCard());
-        m_cards.Add(new ContentYetiEnemyCard());
-        m_cards.Add(new ContentZombieEnemyCard());
+        m_enemyCards.Add(new ContentAngryBirdEnemyCard());
+        m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
+        m_enemyCards.Add(new ContentLichEnemyCard());
+        m_enemyCards.Add(new ContentLizardmanEnemyCard());
+        m_enemyCards.Add(new ContentMobolaEnemyCard());
+        m_enemyCards.Add(new ContentOrcEnemyCard());
+        m_enemyCards.Add(new ContentOrcShamanEnemyCard());
+        m_enemyCards.Add(new ContentSiegebreakerEntityCard());
+        m_enemyCards.Add(new ContentShadeEnemyCard());
+        m_enemyCards.Add(new ContentSlimeEnemyCard());
+        m_enemyCards.Add(new ContentSnakeEnemyCard());
+        m_enemyCards.Add(new ContentSpinnerEnemyCard());
+        m_enemyCards.Add(new ContentToadEnemyCard());
+        m_enemyCards.Add(new ContentWerewolfEnemyCard());
+        m_enemyCards.Add(new ContentYetiEnemyCard());
+        m_enemyCards.Add(new ContentZombieEnemyCard());
 
         //Spell Cards
         m_cards.Add(new ContentArcaneBoltCard());
@@ -271,13 +272,28 @@ public static class GameCardFactory
 
     public static GameCard GetCardFromEntity(GameEntity entity)
     {
-        for (int i = 0; i < m_entityCards.Count; i++)
+        if (entity.GetTeam() == Team.Player)
         {
-            GameCardEntityBase entityCard = (GameCardEntityBase)m_entityCards[i];
-
-            if (entityCard.GetEntity().m_name == entity.m_name)
+            for (int i = 0; i < m_entityCards.Count; i++)
             {
-                return GetCardClone(m_entityCards[i]);
+                GameCardEntityBase entityCard = (GameCardEntityBase)m_entityCards[i];
+
+                if (entityCard.GetEntity().m_name == entity.m_name)
+                {
+                    return GetCardClone(m_entityCards[i]);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < m_enemyCards.Count; i++)
+            {
+                GameCardEntityBase entityCard = (GameCardEntityBase)m_enemyCards[i];
+
+                if (entityCard.GetEntity().m_name == entity.m_name)
+                {
+                    return GetCardClone(m_enemyCards[i]);
+                }
             }
         }
 
