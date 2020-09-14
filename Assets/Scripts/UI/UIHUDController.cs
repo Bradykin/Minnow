@@ -6,9 +6,7 @@ public class UIHUDController : MonoBehaviour
 {
     public GameObject m_waveHUD;
     public GameObject m_intermissionHUD;
-    public GameObject m_cardSelectHUD;
-    public GameObject m_walletHUD;
-    public GameObject m_relicsHUD;
+    public GameObject m_globalHUD;
 
     void Update()
     {
@@ -16,9 +14,7 @@ public class UIHUDController : MonoBehaviour
         {
             m_intermissionHUD.SetActive(false);
             m_waveHUD.SetActive(false);
-            m_cardSelectHUD.SetActive(false);
-            m_walletHUD.SetActive(false);
-            m_relicsHUD.SetActive(false);
+            m_globalHUD.SetActive(false);
             return;
         }
 
@@ -26,15 +22,11 @@ public class UIHUDController : MonoBehaviour
         {
             m_intermissionHUD.SetActive(false);
             m_waveHUD.SetActive(false);
-            m_cardSelectHUD.SetActive(false);
-            m_walletHUD.SetActive(false);
-            m_relicsHUD.SetActive(false);
+            m_globalHUD.SetActive(false);
         }
         else
         {
-            m_walletHUD.SetActive(true);
-            m_cardSelectHUD.SetActive(true);
-            m_relicsHUD.SetActive(true);
+            m_globalHUD.SetActive(true);
 
             if (Globals.m_inIntermission)
             {

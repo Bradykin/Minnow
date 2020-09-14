@@ -20,8 +20,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public Text m_nameText;
     public Text m_healthText;
 
-    bool m_isHovered;
-    bool m_isMoveable;
+    private bool m_isHovered;
+    private bool m_isMoveable;
+    private bool m_isAttackable;
 
     void Start()
     {
@@ -129,6 +130,10 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 {
                     UIHelper.SetValidTintColor(m_tintRenderer, true);
                 }
+                else if (Globals.m_selectedEntity != null && m_isAttackable)
+                {
+                    UIHelper.SetAttackTintColor(m_tintRenderer);
+                }
                 else
                 {
                     UIHelper.SetDefaultTintColor(m_tintRenderer);
@@ -150,6 +155,10 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             else if (Globals.m_selectedEntity != null && m_isMoveable)
             {
                 UIHelper.SetValidColor(m_frameRenderer, true);
+            }
+            else if (Globals.m_selectedEntity != null && m_isAttackable)
+            {
+                UIHelper.SetAttackColor(m_frameRenderer);
             }
             else
             {
@@ -361,6 +370,11 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_isMoveable = isMoveable;
     }
 
+    public void SetAttackable(bool isAttackable)
+    {
+        m_isAttackable = isAttackable;
+    }
+
     public void CustomRecycle(params object[] args)
     {
         m_gameElement = null;
@@ -374,5 +388,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
         m_isHovered = false;
         m_isMoveable = false;
+        m_isAttackable = false;
     }
 }
