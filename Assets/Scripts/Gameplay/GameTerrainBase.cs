@@ -32,6 +32,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
             {
                 return true;
             }
+
+            if (IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            {
+                return true;
+            }
         }
 
         return m_isPassable;
@@ -42,6 +47,16 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
         {
             return 0;
+        }
+
+        if (IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+        {
+            return 2;
+        }
+
+        if (IsHill() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+        {
+            return 1;
         }
 
         return m_costToPass;
@@ -55,6 +70,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public bool IsMountain()
     {
         return m_isMountain;
+    }
+
+    public bool IsHill()
+    {
+        return m_isHill;
     }
 
     public bool IsWater()

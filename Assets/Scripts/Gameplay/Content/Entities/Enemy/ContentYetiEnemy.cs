@@ -21,7 +21,8 @@ public class ContentYetiEnemy : GameEnemyEntity
 
         m_minWave = 5;
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
+        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(5));
+        m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

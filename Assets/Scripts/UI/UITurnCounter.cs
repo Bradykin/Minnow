@@ -20,15 +20,30 @@ public class UITurnCounter : WorldElementBase
             return;
         }
 
-        if (player.m_waveNum == Constants.FinalWaveNum)
+        if (Globals.m_inIntermission)
         {
-            m_titleText.text = "Final Wave";
-            m_countText.text = "Beat the boss";
+            m_titleText.text = "Intermission";
+            m_countText.text = "Next wave: " + player.m_waveNum;
         }
         else
         {
-            m_titleText.text = "Wave " + player.m_waveNum;
-            m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+            if (player.m_waveNum == Constants.FinalWaveNum)
+            {
+                m_titleText.text = "Final Wave";
+                m_countText.text = "Beat the boss";
+            }
+            else
+            {
+                m_titleText.text = "Wave " + player.m_waveNum;
+                if (player.m_currentWaveTurn < player.GetEndWaveTurn())
+                {
+                    m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+                }
+                else
+                {
+                    m_countText.text = "Final turn";
+                }
+            }
         }
 
         if (Globals.m_curChaos == 0)
@@ -53,9 +68,21 @@ public class UITurnCounter : WorldElementBase
         Globals.m_canScroll = true;
     }
 
+    void OnMouseDown()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View);
+    }
+
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Wave Counter", "After this many turns, go to the intermission phase before the next wave!"));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Wave Counter", "After this many turns, go to the intermission phase before the next wave!\n\nClick to see your full deck."));
         UIHelper.CreateChaosTooltipStack();
     }
 }

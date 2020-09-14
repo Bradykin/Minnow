@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WorldTile : WorldElementBase, ICustomRecycle
 {
@@ -15,8 +16,13 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     private UIEntity m_occupyingEntityObj;
 
-    bool m_isHovered;
-    bool m_isMoveable;
+    public GameObject m_titleHolder;
+    public Text m_nameText;
+    public Text m_healthText;
+
+    private bool m_isHovered;
+    private bool m_isMoveable;
+    private bool m_isAttackable;
 
     void Start()
     {
@@ -29,6 +35,19 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     void Update()
     {
         HandleFogUpdate();
+
+        if (GetGameTile().HasBuilding())
+        {
+            GameBuildingBase building = GetGameTile().GetBuilding();
+
+            m_titleHolder.SetActive(true);
+            m_nameText.text = building.m_name;
+            m_healthText.text = building.m_curHealth + "/" + building.m_maxHealth;
+        }
+        else
+        {
+            m_titleHolder.SetActive(false);
+        }
 
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
@@ -111,6 +130,10 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 {
                     UIHelper.SetValidTintColor(m_tintRenderer, true);
                 }
+                else if (Globals.m_selectedEntity != null && m_isAttackable)
+                {
+                    UIHelper.SetAttackTintColor(m_tintRenderer);
+                }
                 else
                 {
                     UIHelper.SetDefaultTintColor(m_tintRenderer);
@@ -132,6 +155,10 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             else if (Globals.m_selectedEntity != null && m_isMoveable)
             {
                 UIHelper.SetValidColor(m_frameRenderer, true);
+            }
+            else if (Globals.m_selectedEntity != null && m_isAttackable)
+            {
+                UIHelper.SetAttackColor(m_frameRenderer);
             }
             else
             {
@@ -237,17 +264,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public override void HandleTooltip()
     {
-        if (GetGameTile().HasBuilding())
-        {
-            UIHelper.CreateBuildingTooltip(GetGameTile().GetBuilding());
-        }
-        else if (GetGameTile().HasAvailableEvent())
+        if (GetGameTile().HasAvailableEvent())
         {
             UIHelper.CreateEventTooltip(GetGameTile().m_event);
-        }
-        else
-        {
-            UIHelper.CreateTerrainTooltip(GetGameTile().GetTerrain());
         }
 
         if (Globals.m_selectedCard != null)
@@ -351,6 +370,11 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_isMoveable = isMoveable;
     }
 
+    public void SetAttackable(bool isAttackable)
+    {
+        m_isAttackable = isAttackable;
+    }
+
     public void CustomRecycle(params object[] args)
     {
         m_gameElement = null;
@@ -364,5 +388,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
         m_isHovered = false;
         m_isMoveable = false;
+        m_isAttackable = false;
     }
 }

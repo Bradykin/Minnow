@@ -565,6 +565,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         for (int i = 0; i < m_gridArray.Length; i++)
         {
             m_gridArray[i].SetMoveable(false);
+            m_gridArray[i].SetAttackable(false);
         }
     }
 

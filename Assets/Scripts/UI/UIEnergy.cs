@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIEnergy : WorldElementBase
 {
+    public Text m_titleText;
     public Text m_countText;
     public SpriteRenderer m_tintRenderer;
 
@@ -17,7 +18,16 @@ public class UIEnergy : WorldElementBase
             return;
         }
 
-        m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
+        if (Globals.m_inIntermission)
+        {
+            m_titleText.text = "Actions";
+            m_countText.text = player.GetCurActions() + "/" + player.GetMaxActions();
+        }
+        else
+        {
+            m_titleText.text = "Energy";
+            m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
+        }
     }
 
     void OnMouseOver()
@@ -34,6 +44,13 @@ public class UIEnergy : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
+        if (Globals.m_inIntermission)
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take actions, create buildings, or research technologies during the intermission phase!"));
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
+        }
     }
 }

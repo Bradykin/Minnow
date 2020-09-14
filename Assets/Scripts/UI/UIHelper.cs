@@ -15,12 +15,14 @@ public static class UIHelper
     public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+    public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.g, 0.3f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_validAltPlayer = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_validAltEnemy = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
+    public static Color m_attackColor = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
     public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
@@ -80,6 +82,11 @@ public static class UIHelper
         }
     }
 
+    public static void SetAttackTintColor(SpriteRenderer renderer)
+    {
+        renderer.color = m_attackTint;
+    }
+
     public static void SetValidColor(SpriteRenderer renderer, bool isValid)
     {
         if (isValid)
@@ -109,6 +116,11 @@ public static class UIHelper
         {
             renderer.color = m_invalidAlt;
         }
+    }
+
+    public static void SetAttackColor(SpriteRenderer renderer)
+    {
+        renderer.color = m_attackColor;
     }
 
     public static void SetDefaultTintColor(SpriteRenderer renderer)
@@ -202,11 +214,28 @@ public static class UIHelper
             UnselectAll();
             Globals.m_selectedEntity = entity;
 
-            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+            List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
 
-            for (int i = 0; i < tilesInRange.Count; i++)
+            if (tilesInMovementRange == null)
             {
-                tilesInRange[i].GetWorldTile().SetMoveable(true);
+                return;
+            }
+
+            for (int i = 0; i < tilesInMovementRange.Count; i++)
+            {
+                tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
+            }
+
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+
+            if (tilesInAttackRange == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < tilesInAttackRange.Count; i++)
+            {
+                tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
             }
         }
     }
@@ -232,9 +261,26 @@ public static class UIHelper
 
             List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEnemy.GetEntity().m_curTile, false);
 
+            if (tilesInRange == null)
+            {
+                return;
+            }
+
             for (int i = 0; i < tilesInRange.Count; i++)
             {
                 tilesInRange[i].GetWorldTile().SetMoveable(true);
+            }
+
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEnemy.GetEntity().m_curTile, false);
+
+            if (tilesInAttackRange == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < tilesInAttackRange.Count; i++)
+            {
+                tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
             }
         }
     }
@@ -270,6 +316,18 @@ public static class UIHelper
         for (int i = 0; i < tilesInRange.Count; i++)
         {
             tilesInRange[i].GetWorldTile().SetMoveable(true);
+        }
+
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().m_curTile, false);
+
+        if (tilesInAttackRange == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < tilesInAttackRange.Count; i++)
+        {
+            tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
         }
     }
 
@@ -450,17 +508,6 @@ public static class UIHelper
         return "";
     }
 
-    //This is a stub for now.  Can reactivate later if we want it
-    public static void CreateTerrainTooltip(GameTerrainBase terrain)
-    {
-        //if (terrain is ContentGrasslandsTerrain)
-        {
-            //return;
-        }
-
-        //UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
-    }
-
     public static void CreateEventTooltip(GameEvent gameEvent)
     {
         if (!gameEvent.m_isComplete)
@@ -468,18 +515,6 @@ public static class UIHelper
             string descString = "An event!  I wonder what happens here...";
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
         }
-        UIHelper.CreateTerrainTooltip(gameEvent.m_tile.GetTerrain());
-    }
-
-    public static void CreateBuildingTooltip(GameBuildingBase building)
-    {
-        string title = building.m_name;
-        if (building.m_isDestroyed)
-        {
-            title = "Destroyed " + building.m_name;
-        }
-        string desc = building.m_desc + "\n" + "Health: " + building.m_curHealth + "/" + building.m_maxHealth;
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, Team.Player));
     }
 
     public static void CreateRelicTooltip(GameRelic relic)
