@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WorldTile : WorldElementBase, ICustomRecycle
 {
@@ -14,6 +15,10 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public GameObject m_spawnIndicator;
 
     private UIEntity m_occupyingEntityObj;
+
+    public GameObject m_titleHolder;
+    public Text m_nameText;
+    public Text m_healthText;
 
     bool m_isHovered;
     bool m_isMoveable;
@@ -29,6 +34,19 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     void Update()
     {
         HandleFogUpdate();
+
+        if (GetGameTile().HasBuilding())
+        {
+            GameBuildingBase building = GetGameTile().GetBuilding();
+
+            m_titleHolder.SetActive(true);
+            m_nameText.text = building.m_name;
+            m_healthText.text = building.m_curHealth + "/" + building.m_maxHealth;
+        }
+        else
+        {
+            m_titleHolder.SetActive(false);
+        }
 
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
@@ -237,17 +255,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public override void HandleTooltip()
     {
-        if (GetGameTile().HasBuilding())
-        {
-            UIHelper.CreateBuildingTooltip(GetGameTile().GetBuilding());
-        }
-        else if (GetGameTile().HasAvailableEvent())
+        if (GetGameTile().HasAvailableEvent())
         {
             UIHelper.CreateEventTooltip(GetGameTile().m_event);
-        }
-        else
-        {
-            UIHelper.CreateTerrainTooltip(GetGameTile().GetTerrain());
         }
 
         if (Globals.m_selectedCard != null)

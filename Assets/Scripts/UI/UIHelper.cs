@@ -450,17 +450,6 @@ public static class UIHelper
         return "";
     }
 
-    //This is a stub for now.  Can reactivate later if we want it
-    public static void CreateTerrainTooltip(GameTerrainBase terrain)
-    {
-        //if (terrain is ContentGrasslandsTerrain)
-        {
-            //return;
-        }
-
-        //UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(terrain.m_name, terrain.m_desc));
-    }
-
     public static void CreateEventTooltip(GameEvent gameEvent)
     {
         if (!gameEvent.m_isComplete)
@@ -468,18 +457,6 @@ public static class UIHelper
             string descString = "An event!  I wonder what happens here...";
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Event", descString));
         }
-        UIHelper.CreateTerrainTooltip(gameEvent.m_tile.GetTerrain());
-    }
-
-    public static void CreateBuildingTooltip(GameBuildingBase building)
-    {
-        string title = building.m_name;
-        if (building.m_isDestroyed)
-        {
-            title = "Destroyed " + building.m_name;
-        }
-        string desc = building.m_desc + "\n" + "Health: " + building.m_curHealth + "/" + building.m_maxHealth;
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(title, desc, Team.Player));
     }
 
     public static void CreateRelicTooltip(GameRelic relic)
