@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Prioritize units over buildings
+//Priotize targets with AP to drain
 public class ContentToadEnemy : GameEnemyEntity
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)

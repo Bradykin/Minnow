@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Priority order: adjacent units, castle, buildings, other units
 public class ContentMobolaEnemy : GameEnemyEntity
 {
     public ContentMobolaEnemy(GameOpponent gameOpponent) : base(gameOpponent)

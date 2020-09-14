@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Refuse to stay out of fog of war????
+//If no fog of war near player targets that are closish to them, head to the mountains?
 public class ContentYetiEnemy : GameEnemyEntity
 {
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)

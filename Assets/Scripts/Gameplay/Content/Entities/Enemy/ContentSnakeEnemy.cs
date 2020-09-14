@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Prioritize units over buildings
+//Deprioritze targets with attack <= 0
+//Prioritize with high ap regen per attack cost
 public class ContentSnakeEnemy : GameEnemyEntity
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)

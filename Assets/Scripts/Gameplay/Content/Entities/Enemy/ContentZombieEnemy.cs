@@ -19,7 +19,7 @@ public class ContentZombieEnemy : GameEnemyEntity
         m_apRegen = zombieOrigin.GetAPRegen();
         m_power = zombieOrigin.GetPower();
 
-        m_team = Team.Enemy;
+        m_team = Team.Enemy;    
         m_rarity = GameRarity.Rare;
 
         m_minWave = 6;
