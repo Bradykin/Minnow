@@ -9,17 +9,17 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 
     public override void TakeStep()
     {
-        GameBuildingBase castleInRange = FindCastleInRange();
-        if (castleInRange != null)
-        {
-            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
-            return;
-        }
-
         GameEntity closestEntityInRange = FindClosestEntityInRange();
         if (closestEntityInRange != null)
         {
             m_AIGameEnemyEntity.m_targetGameElement = closestEntityInRange;
+            return;
+        }
+
+        GameBuildingBase castleInRange = FindCastleInRange();
+        if (castleInRange != null)
+        {
+            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
             return;
         }
 

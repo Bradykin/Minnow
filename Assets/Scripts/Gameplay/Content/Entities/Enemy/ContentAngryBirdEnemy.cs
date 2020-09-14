@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Target buildings over units
 public class ContentAngryBirdEnemy : GameEnemyEntity
 {
     public ContentAngryBirdEnemy(GameOpponent gameOpponent) : base(gameOpponent)
