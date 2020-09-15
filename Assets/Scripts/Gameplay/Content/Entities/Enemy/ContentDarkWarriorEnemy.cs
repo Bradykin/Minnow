@@ -6,7 +6,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
 {
     public ContentDarkWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = -20 + GetHealthModByWave();
+        m_maxHealth = 30 + GetHealthModByWave();
         m_maxAP = 10;
         m_apRegen = 4 + GetAPRegenModByWave();
         m_power = 4 + GetPowerModByWave();
