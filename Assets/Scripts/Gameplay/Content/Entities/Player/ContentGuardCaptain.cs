@@ -18,7 +18,7 @@ public class ContentGuardCaptain : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Guard Captain";
-        m_desc = "When summoned, gives all friendly entites within " + m_rallyRange + " range " + m_rallyValue + " current AP";
+        m_desc = "When summoned, gives all friendly humanoids within " + m_rallyRange + " range " + m_rallyValue + " current AP";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -41,6 +41,11 @@ public class ContentGuardCaptain : GameEntity
             }
 
             if (entity.GetTeam() != Team.Player)
+            {
+                continue;
+            }
+
+            if (entity.GetTypeline() != Typeline.Humanoid)
             {
                 continue;
             }

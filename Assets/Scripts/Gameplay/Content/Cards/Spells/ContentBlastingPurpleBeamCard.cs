@@ -6,7 +6,7 @@ public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 {
     public ContentBlastingPurpleBeamCard()
     {
-        m_spellEffect = 4;
+        m_spellEffect = 6;
 
         m_name = "Blasting Purple Beam";
         m_playDesc = "Very purple.  Much beam.";
