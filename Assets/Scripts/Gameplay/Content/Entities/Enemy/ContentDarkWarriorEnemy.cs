@@ -6,16 +6,16 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
 {
     public ContentDarkWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 60;
-        m_maxAP = 9;
-        m_apRegen = 5;
-        m_power = 9;
+        m_maxHealth = 30 + GetHealthModByWave();
+        m_maxAP = 10;
+        m_apRegen = 4 + GetAPRegenModByWave();
+        m_power = 4 + GetPowerModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;
         m_isElite = true;
 
-        m_minWave = 2;
+        m_minWave = 1;
 
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
@@ -37,5 +37,26 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         player.AddRelic(GameRelicFactory.GetRandomRelic());
 
         base.Die();
+    }
+
+    private int GetHealthModByWave()
+    {
+        int waveNum = GameHelper.GetPlayer().m_waveNum;
+
+        return waveNum * 25;
+    }
+
+    private int GetAPRegenModByWave()
+    {
+        int waveNum = GameHelper.GetPlayer().m_waveNum;
+
+        return Mathf.FloorToInt((float)waveNum * 0.5f);
+    }
+
+    private int GetPowerModByWave()
+    {
+        int waveNum = GameHelper.GetPlayer().m_waveNum;
+
+        return waveNum * 2;
     }
 }
