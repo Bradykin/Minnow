@@ -40,8 +40,8 @@ public class UIEntity : WorldElementBase
     {
         if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
         {
-            transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-            m_collider.size = new Vector2(2f, 2.9f);
+            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            m_collider.size = new Vector2(2.5f, 3.5f);
         }
         else
         {
