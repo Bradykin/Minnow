@@ -6,7 +6,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
 {
     public ContentDarkWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 30 + GetHealthModByWave();
+        m_maxHealth = 10 + GetHealthModByWave();
         m_maxAP = 10;
         m_apRegen = 4 + GetAPRegenModByWave();
         m_power = 4 + GetPowerModByWave();
@@ -20,7 +20,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
 
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 10)));
+        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 5)));
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
@@ -43,7 +43,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         int waveNum = GameHelper.GetPlayer().m_waveNum;
 
-        return waveNum * 25;
+        return waveNum * 20;
     }
 
     private int GetAPRegenModByWave()

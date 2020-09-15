@@ -54,6 +54,6 @@ public class GameEventAngelicWings : GameEventOption
     public override void BuildTooltip()
     {
         GameFlyingKeyword keyword = new GameFlyingKeyword();
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.m_name, keyword.m_desc, m_tile.m_occupyingEntity.GetTeam()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.m_name, keyword.m_focusInfoText, m_tile.m_occupyingEntity.GetTeam()));
     }
 }

@@ -14,7 +14,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     }
 
     public KeywordParamType m_keywordParamType;
-    protected string m_focusInfoText = "Focus Info Text";
+    public string m_focusInfoText = "Focus Info Text";
 
     public abstract string SaveToJson();
 

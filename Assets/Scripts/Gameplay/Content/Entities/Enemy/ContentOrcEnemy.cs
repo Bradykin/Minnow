@@ -7,8 +7,8 @@ public class ContentOrcEnemy : GameEnemyEntity
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 14;
-        m_maxAP = 8;
-        m_apRegen = 4;
+        m_maxAP = 6;
+        m_apRegen = 3;
         m_power = 6;
 
         m_team = Team.Enemy;
