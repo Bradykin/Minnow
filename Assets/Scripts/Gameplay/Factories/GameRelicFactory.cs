@@ -26,6 +26,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentHoovesOfProductionRelic());
         m_relics.Add(new ContentEmblemOfTianaRelic());
         m_relics.Add(new ContentDestinyRelic());
+        m_relics.Add(new ContentUrbanTacticsRelic());
         m_relics.Add(new ContentPinnacleOfFearRelic());
         m_relics.Add(new ContentNaturalDaggerRelic());
         m_relics.Add(new ContentLoadedChestRelic());

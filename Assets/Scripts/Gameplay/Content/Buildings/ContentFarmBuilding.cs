@@ -26,6 +26,8 @@ public class ContentFarmBuilding : GameBuildingBase
             return;
         }
 
+        base.EndTurn();
+
         List<WorldTile> surroundingTiles;
         surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 1);
 

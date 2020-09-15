@@ -198,6 +198,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             {
                 player.DrawCards(numRelics);
             }
+
+            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0)
+            {
+
+            }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
 
@@ -320,7 +325,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool HasAPToAttack()
     {
-        if (m_curAP < m_apToAttack)
+        if (m_curAP < GetAPToAttack())
         {
             return false;
         }
@@ -357,7 +362,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         if (spendAP)
         {
-            SpendAP(m_apToAttack);
+            SpendAP(GetAPToAttack());
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -375,6 +380,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             {
                 victoriousKeyword.DoAction();
             }
+
+            if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentCurseOfExhaustionRelic>() > 0)
+            {
+                SpendAP(GetCurAP());
+            }
         }
 
         return damageTaken;
@@ -384,7 +394,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         if (spendAP)
         {
-            SpendAP(m_apToAttack);
+            SpendAP(GetAPToAttack());
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -434,7 +444,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual int GetAPToAttack()
     {
-        return m_apToAttack;
+        int apToAttack = m_apToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+
+        return Mathf.Max(1, apToAttack);
     }
 
     public void FillAP()
@@ -740,6 +752,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             {
                 UIHelper.CreateWorldElementNotification(GetName() + " regenerates " + regenValue, true, m_uiEntity);
             }
+        }
+
+        int ruggedAdventurersCount = GameHelper.RelicCount<ContentRuggedAdventurersRelic>();
+        if (ruggedAdventurersCount > 0 && GetTeam() == Team.Player)
+        {
+            int healAmount = m_curTile.GetTerrain().GetCostToPass(this) * ruggedAdventurersCount;
+            Heal(healAmount);
+            UIHelper.CreateWorldElementNotification(GetName() + " regenerates " + healAmount, true, m_uiEntity);
         }
     }
 

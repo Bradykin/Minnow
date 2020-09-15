@@ -44,25 +44,32 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
     public int GetCostToPass(GameEntity checkerEntity)
     {
+        int additiveValue = 0;
+        
         if (checkerEntity != null)
         {
+            if (checkerEntity.GetTeam() == Team.Player)
+            {
+                additiveValue = GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+            }
+
             if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
             {
-                return 0;
+                return 0 + additiveValue;
             }
 
             if (IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
             {
-                return 2;
+                return 2 + additiveValue;
             }
 
             if (IsHill() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
             {
-                return 1;
+                return 1 + additiveValue;
             }
         }
 
-        return m_costToPass;
+        return m_costToPass + additiveValue;
     }
 
     public bool IsForest()
