@@ -44,7 +44,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_curHealth -= damage;
 
-        UIHelper.CreateWorldElementNotification(m_name + " was hit for " + damage + " damage!", false, m_curTile);
+        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_curTile);
 
         if (m_curHealth <= 0)
         {
@@ -56,13 +56,22 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
     public virtual int GetHealed(int healing)
     {
+        int realHealVal = healing;
+        if (m_curHealth + healing > m_maxHealth)
+        {
+            realHealVal = m_maxHealth - m_curHealth;
+        }
+
         m_curHealth += healing;
         if (m_curHealth > m_maxHealth)
         {
             m_curHealth = m_maxHealth;
         }
 
-        UIHelper.CreateWorldElementNotification(m_name + " was healed for " + healing + "!", false, m_curTile);
+        if (realHealVal > 0)
+        {
+            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_curTile);
+        }
 
         if (m_curHealth > 0)
         {
@@ -76,7 +85,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_isDestroyed = true;
 
-        UIHelper.CreateWorldElementNotification(m_name + " has been destroyed by the battle!", false, m_curTile);
+        UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_curTile);
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);

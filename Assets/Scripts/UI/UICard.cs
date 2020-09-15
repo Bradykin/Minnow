@@ -108,7 +108,7 @@ public class UICard : WorldElementBase
     {
         if (target != null)
         {
-            UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target);
+            //UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target); nmartino - reassess how important this is (need shorter play descs)
         }
     }
 

@@ -45,7 +45,6 @@ public class ContentFarmBuilding : GameBuildingBase
                 continue;
             }
 
-            UIHelper.CreateWorldElementNotification("The " + m_name + " heals the " + entity.m_name + " for " + m_healingNum + " health!", true, surroundingTiles[i]);
             entity.Heal(m_healingNum);
         }
     }

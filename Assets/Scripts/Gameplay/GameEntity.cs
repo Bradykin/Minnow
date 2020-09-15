@@ -95,8 +95,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
-        UIHelper.CreateWorldElementNotification(GetName() + " was hit for " + damage + " damage!", false, m_curTile.GetWorldTile());
-
         bool ignoreTileDamageReduction = false;
 
         if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
@@ -126,6 +124,15 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (m_curHealth <= 0)
         {
             Die();
+        }
+
+        if (m_isDead)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_curTile.GetWorldTile());
+        }
+        else
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_curTile.GetWorldTile());
         }
 
         return damage;
@@ -158,7 +165,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (shouldRevive)
         {
             m_curHealth = 1;
-            UIHelper.CreateWorldElementNotification(GetName() + " stands back up from a mortal wound.", true, m_curTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_curTile.GetWorldTile());
             return;
         }
 
@@ -240,6 +247,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (m_curHealth >= maxHealth)
         {
             m_curHealth = maxHealth;
+        }
+
+        if (realHealVal > 0)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_uiEntity);
         }
 
         return realHealVal;
@@ -782,18 +794,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (regenKeyword != null)
         {
             int regenValue = Heal(regenKeyword.m_regenVal);
-            if (regenValue > 0)
-            {
-                UIHelper.CreateWorldElementNotification(GetName() + " regenerates " + regenValue, true, m_uiEntity);
-            }
         }
 
-        int ruggedAdventurersCount = GameHelper.RelicCount<ContentMedKitRelic>();
-        if (ruggedAdventurersCount > 0 && GetTeam() == Team.Player)
+        if (GetTypeline() == Typeline.Humanoid)
         {
-            int healAmount = m_curTile.GetTerrain().GetCostToPass(this) * ruggedAdventurersCount;
-            Heal(healAmount);
-            UIHelper.CreateWorldElementNotification(GetName() + " regenerates " + healAmount, true, m_uiEntity);
+            int medkitCount = GameHelper.RelicCount<ContentMedKitRelic>();
+            if (medkitCount > 0 && GetTeam() == Team.Player)
+            {
+                int healAmount = m_curTile.GetTerrain().GetCostToPass(this) * medkitCount;
+                Heal(healAmount);
+            }
         }
     }
 

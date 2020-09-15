@@ -93,22 +93,7 @@ public class UIEntity : WorldElementBase
         }
         else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
         {
-            int damageDealt = Globals.m_selectedEntity.GetEntity().HitEntity(GetEntity());
-
-            if (GetEntity().m_isDead)
-            {
-                UIHelper.CreateWorldElementNotification("With a mighty blow, " + Globals.m_selectedEntity.GetEntity().GetName() + " slays the " + GetEntity().GetName() + "!", true, Globals.m_selectedEntity);
-                UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " dies.", false, this);
-            }
-            else if (damageDealt == 0)
-            {
-                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().GetName() + " hits " + GetEntity().GetName() + " but it glances right off, dealing " + damageDealt + " damage.", true, Globals.m_selectedEntity);
-            }
-            else
-            {
-                UIHelper.CreateWorldElementNotification(Globals.m_selectedEntity.GetEntity().GetName() + " hits " + GetEntity().GetName() + " for " + damageDealt + ".", true, Globals.m_selectedEntity);
-                UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " takes " + damageDealt + " damage.", false, this);
-            }
+            Globals.m_selectedEntity.GetEntity().HitEntity(GetEntity());
         }
         else if (CanSelect())
         {
@@ -118,7 +103,7 @@ public class UIEntity : WorldElementBase
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " can't move any more this turn.", false, this);
+            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, this);
         }
         else if (GetEntity().GetTeam() == Team.Enemy)
         {
