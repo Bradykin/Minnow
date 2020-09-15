@@ -32,6 +32,13 @@ public static class GameRelicFactory
         m_relics.Add(new ContentLoadedChestRelic());
         m_relics.Add(new ContentLegendaryFragmentRelic());
         m_relics.Add(new ContentTomeOfDuluhainRelic());
+        m_relics.Add(new ContentLivingStoneRelic());
+        m_relics.Add(new ContentCurseOfExhaustionRelic());
+        m_relics.Add(new ContentDesignSchematicsRelic());
+        m_relics.Add(new ContentRuggedAdventurersRelic());
+        m_relics.Add(new ContentMysticForesightRelic());
+        m_relics.Add(new ContentTideOfMonstersRelic());
+        m_relics.Add(new ContentAllianceOfTheTribesRelic());
 
         m_hasInit = true;
     }

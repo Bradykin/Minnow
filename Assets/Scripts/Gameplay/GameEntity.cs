@@ -77,6 +77,15 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             summonKeyword.DoAction();
         }
+
+        if (GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
+        {
+            int numTideOfMonsters = GameHelper.RelicCount<ContentTideOfMonstersRelic>();
+            if (numTideOfMonsters > 0)
+            {
+                AddPower(numTideOfMonsters);
+            }
+        }
     }
 
     public virtual int GetHit(int damage)
@@ -199,9 +208,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 player.DrawCards(numRelics);
             }
 
-            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0)
+            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Construct)
             {
-
+                GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(this);
+                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromEntity);
             }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
@@ -576,6 +586,30 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (GetTeam() == Team.Player)
         {
             toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+
+            int numAllianceOfTheTribes = GameHelper.RelicCount<ContentAllianceOfTheTribesRelic>();
+            if (numAllianceOfTheTribes > 0)
+            {
+                Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
+                List<GameEntity> gameEntities = GameHelper.GetPlayer().m_controlledEntities;
+                for (int i = 0; i < gameEntities.Count; i++)
+                {
+                    int typelineInt = (int)gameEntities[i].GetTypeline();
+                    if (!numCreatureTypes.ContainsKey(typelineInt))
+                    {
+                        numCreatureTypes.Add(typelineInt, 1);
+                    }
+                    else
+                    {
+                        numCreatureTypes[typelineInt]++;
+                    }
+                }
+
+                if (numCreatureTypes.ContainsKey(0) && numCreatureTypes.ContainsKey(1) && numCreatureTypes.ContainsKey(2) && numCreatureTypes.ContainsKey(3))
+                {
+                    toReturn += 2 * numAllianceOfTheTribes;
+                }
+            }
         }
         
         if (GetTeam() == Team.Enemy)
