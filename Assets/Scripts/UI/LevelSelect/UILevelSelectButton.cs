@@ -26,7 +26,12 @@ public class UILevelSelectButton : WorldElementBase
 
     void Update()
     {
-        m_titleText.text = "Level Title";
+        if (m_level == null)
+        {
+            return;
+        }
+
+        m_titleText.text = m_level.mapName;
     }
 
     void OnMouseDown()
