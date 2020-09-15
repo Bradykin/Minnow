@@ -214,7 +214,14 @@ public class WorldController : Singleton<WorldController>
 
         Globals.m_selectedEntity = null;
 
-        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardEntityCard(), GameCardFactory.GetRandomStandardEntityCard());
+        List<GameCard> exclusionCards = new List<GameCard>();
+        GameCard cardOne = GameCardFactory.GetRandomStandardEntityCard();
+        exclusionCards.Add(cardOne);
+        GameCard cardTwo = GameCardFactory.GetRandomStandardEntityCard(exclusionCards);
+        exclusionCards.Add(cardTwo);
+        GameCard cardThree = GameCardFactory.GetRandomStandardEntityCard(exclusionCards);
+
+        UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
     }
 
     public void EndIntermission()

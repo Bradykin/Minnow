@@ -15,7 +15,14 @@ public class ContentCardIntermissionAction : GameActionIntermission
 
     public override void Activate()
     {
-        UICardSelectController.Instance.Init(GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardSpellCard(), GameCardFactory.GetRandomStandardSpellCard());
+        List<GameCard> exclusionCards = new List<GameCard>();
+        GameCard cardOne = GameCardFactory.GetRandomStandardSpellCard();
+        exclusionCards.Add(cardOne);
+        GameCard cardTwo = GameCardFactory.GetRandomStandardSpellCard(exclusionCards);
+        exclusionCards.Add(cardTwo);
+        GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(exclusionCards);
+
+        UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
 
         SpendCost();
     }

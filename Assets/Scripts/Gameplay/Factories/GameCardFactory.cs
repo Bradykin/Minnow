@@ -178,7 +178,7 @@ public static class GameCardFactory
         m_hasInit = true;
     }
 
-    public static GameCard GetRandomStandardCard()
+    public static GameCard GetRandomStandardCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
         {
@@ -187,10 +187,10 @@ public static class GameCardFactory
 
         List<GameCard> checkList = GetCheckList(m_commonCards, m_uncommonCards, m_rareCards);
 
-        return GetCardFromList(checkList);
+        return GetCardFromList(checkList, exclusionList);
     }
 
-    public static GameCard GetRandomStandardEntityCard()
+    public static GameCard GetRandomStandardEntityCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
         {
@@ -199,10 +199,10 @@ public static class GameCardFactory
 
         List<GameCard> checkList = GetCheckList(m_commonEntityCards, m_uncommonEntityCards, m_rareEntityCards);
 
-        return GetCardFromList(checkList);
+        return GetCardFromList(checkList, exclusionList);
     }
 
-    public static GameCard GetRandomStandardSpellCard()
+    public static GameCard GetRandomStandardSpellCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
         {
@@ -211,7 +211,7 @@ public static class GameCardFactory
 
         List<GameCard> checkList = GetCheckList(m_commonSpellCards, m_uncommonSpellCards, m_rareSpellCards);
 
-        return GetCardFromList(checkList);
+        return GetCardFromList(checkList, exclusionList);
     }
 
     private static List<GameCard> GetCheckList(List<GameCard> commonCards, List<GameCard> uncommonCards, List<GameCard> rareCards)
@@ -263,11 +263,36 @@ public static class GameCardFactory
         return clone;
     }
 
-    private static GameCard GetCardFromList(List<GameCard> list)
+    private static GameCard GetCardFromList(List<GameCard> list, List<GameCard> exclusionList)
     {
-        int r = UnityEngine.Random.Range(0, list.Count);
+        List<GameCard> finalList = new List<GameCard>();
+        if (exclusionList == null)
+        {
+            finalList = list;
+        }
+        else
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                bool hasInExclusion = false;
+                for (int c = 0; c < exclusionList.Count; c++)
+                {
+                    if (exclusionList[c].m_name == list[i].m_name)
+                    {
+                        hasInExclusion = true;
+                    }
+                }
 
-        return GetCardClone(list[r]);
+                if (!hasInExclusion)
+                {
+                    finalList.Add(list[i]);
+                }
+            }
+        }
+
+        int r = UnityEngine.Random.Range(0, finalList.Count);
+
+        return GetCardClone(finalList[r]);
     }
 
     public static GameCard GetCardFromEntity(GameEntity entity)

@@ -137,4 +137,9 @@ public class GameDeck
 
         Shuffle();
     }
+
+    public List<GameCard> GetCardsForRead()
+    {
+        return m_cards;
+    }
 }

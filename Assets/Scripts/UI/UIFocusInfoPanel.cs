@@ -54,7 +54,7 @@ public class UIFocusInfoPanel : WorldElementBase
             List<GameKeywordBase> keywords = entityCard.GetEntity().GetKeywordHolderForRead().m_keywords;
             for (int i = 0; i < keywords.Count; i++)
             {
-                m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n";
+                m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n\n";
             }
         }
         else if (cardData.m_card is GameCardSpellBase)
@@ -80,7 +80,7 @@ public class UIFocusInfoPanel : WorldElementBase
         List<GameKeywordBase> keywords = entityData.GetEntity().GetKeywordHolderForRead().m_keywords;
         for (int i = 0; i < keywords.Count; i++)
         {
-            m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n";
+            m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n\n";
         }
     }
 
