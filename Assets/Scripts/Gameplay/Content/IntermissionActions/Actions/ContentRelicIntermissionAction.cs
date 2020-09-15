@@ -22,7 +22,7 @@ public class ContentRelicIntermissionAction : GameActionIntermission
             return;
         }
 
-        player.AddRelic(GameRelicFactory.GetRandomRelic());
+        UIRelicSelectController.Instance.Init(GameRelicFactory.GetRandomRelic(), GameRelicFactory.GetRandomRelic());
 
         SpendCost();
     }

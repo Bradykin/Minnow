@@ -103,7 +103,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
     public virtual void EndTurn()
     {
-        GetHealed(GameHelper.RelicCount<ContentLivingStoneRelic>());
+        int livingStoneCount = GameHelper.RelicCount<ContentLivingStoneRelic>();
+        if (livingStoneCount > 0)
+        {
+            GetHealed(livingStoneCount);
+        }
     }
 
     //============================================================================================================//

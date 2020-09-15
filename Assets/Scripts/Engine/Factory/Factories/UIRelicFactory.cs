@@ -31,7 +31,7 @@ namespace Game.Util
 
             obj.transform.parent = parent;
 
-            obj.GetComponent<UIRelic>().Init(relic);
+            obj.GetComponent<UIRelic>().Init(relic, UIRelic.RelicSelectionType.View);
 
             return obj.GetComponent<T>();
         }
