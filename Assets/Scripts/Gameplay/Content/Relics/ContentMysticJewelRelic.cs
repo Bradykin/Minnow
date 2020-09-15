@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMysticForesightRelic : GameRelic
+public class ContentMysticJewelRelic : GameRelic
 {
-    public ContentMysticForesightRelic()
+    public ContentMysticJewelRelic()
     {
-        m_name = "Mystic Foresight";
+        m_name = "Mystic Jewel";
         m_desc = "On the last two turns of a wave, gain additional energy and draw additional cards equal to the number of mystics in play.";
         m_rarity = GameRarity.Rare;
 

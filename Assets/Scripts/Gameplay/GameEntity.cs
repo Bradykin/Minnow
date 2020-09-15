@@ -80,7 +80,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
         {
-            int numTideOfMonsters = GameHelper.RelicCount<ContentTideOfMonstersRelic>();
+            int numTideOfMonsters = GameHelper.RelicCount<ContentLegacayOfMonstersRelic>();
             if (numTideOfMonsters > 0)
             {
                 AddPower(numTideOfMonsters);
@@ -391,7 +391,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 victoriousKeyword.DoAction();
             }
 
-            if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentCurseOfExhaustionRelic>() > 0)
+            if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentCursedAmuletRelic>() > 0)
             {
                 SpendAP(GetCurAP());
             }
@@ -587,7 +587,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
-            int numAllianceOfTheTribes = GameHelper.RelicCount<ContentAllianceOfTheTribesRelic>();
+            int numAllianceOfTheTribes = GameHelper.RelicCount<ContentGrandPactRelic>();
             if (numAllianceOfTheTribes > 0)
             {
                 Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
@@ -788,7 +788,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             }
         }
 
-        int ruggedAdventurersCount = GameHelper.RelicCount<ContentRuggedAdventurersRelic>();
+        int ruggedAdventurersCount = GameHelper.RelicCount<ContentMedKitRelic>();
         if (ruggedAdventurersCount > 0 && GetTeam() == Team.Player)
         {
             int healAmount = m_curTile.GetTerrain().GetCostToPass(this) * ruggedAdventurersCount;

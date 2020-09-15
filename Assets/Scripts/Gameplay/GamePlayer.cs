@@ -395,7 +395,7 @@ public class GamePlayer : ITurns
             AddBonusEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
-        int numMysticForesight = GameHelper.RelicCount<ContentMysticForesightRelic>();
+        int numMysticForesight = GameHelper.RelicCount<ContentMysticJewelRelic>();
         if (numMysticForesight > 0 && m_currentWaveTurn + 2 > GetEndWaveTurn())
         {
             int numMystics = 0;
