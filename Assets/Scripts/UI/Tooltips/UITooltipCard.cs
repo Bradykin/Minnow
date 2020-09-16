@@ -6,7 +6,7 @@ public class UITooltipCard : UITooltipBase
 {
     void Start()
     {
-        m_height = 3.0f;
+        m_height = 5f;
     }
 
     void Update()

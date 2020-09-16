@@ -220,6 +220,9 @@ public class UIEntity : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UIHelper.CreateEntityTooltip(GetEntity());
+        if (Globals.m_canSelect)
+        {
+            UIHelper.CreateEntityTooltip(GetEntity());
+        }
     }
 }
