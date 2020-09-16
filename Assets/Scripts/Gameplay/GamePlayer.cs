@@ -201,17 +201,6 @@ public class GamePlayer : ITurns
     public void AddEnergy(int toAdd)
     {
         m_curEnergy += toAdd;
-
-        if (m_curEnergy > m_maxEnergy)
-        {
-            m_curEnergy = m_maxEnergy;
-        }
-    }
-
-    //Bonus energy can go past the cap
-    public void AddBonusEnergy(int toAdd)
-    {
-        m_curEnergy += toAdd;
     }
 
     public int GetSpellPower()
@@ -356,7 +345,7 @@ public class GamePlayer : ITurns
     {
         int toReturn = m_maxActions;
 
-        toReturn += 2 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
+        toReturn += 1 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
 
         return toReturn;
     }
@@ -395,7 +384,7 @@ public class GamePlayer : ITurns
 
         if (m_currentWaveTurn == 0)
         {
-            AddBonusEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
+            AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
         int numMysticForesight = GameHelper.RelicCount<ContentMysticJewelRelic>();
@@ -412,7 +401,7 @@ public class GamePlayer : ITurns
 
             if (numMystics > 0)
             {
-                AddBonusEnergy(numMysticForesight * numMystics);
+                AddEnergy(numMysticForesight * numMystics);
                 DrawCards(numMysticForesight * numMystics);
             }
         }

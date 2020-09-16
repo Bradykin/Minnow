@@ -11,7 +11,7 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_magicIncrease = 1;
 
         m_name = "Magic School";
-        m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + " for each magic school.";
+        m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + ".";
         m_rarity = GameRarity.Uncommon;
 
         m_maxHealth = 12;

@@ -13,6 +13,8 @@ public class ContentPurpleBeamSwordCard : GameCardSpellBase
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;
 
+        m_shouldExile = true;
+
         SetupBasicData();
     }
 

@@ -33,7 +33,7 @@ public class ContentTempleBuilding : GameBuildingBase
             return;
         }
 
-        player.AddBonusEnergy(1);
+        player.AddEnergy(1);
     }
 
     protected override void Die()

@@ -7,10 +7,10 @@ public class ContentDemoncAspectCard : GameCardSpellBase
     public ContentDemoncAspectCard()
     {
         m_name = "Demonic Aspect";
-        m_desc = "Give an entity Victorious: Fill AP.";
+        m_desc = "Give an entity Victorious: Gain 2 AP.";
         m_playDesc = "The target gains a demonic visage!";
         m_targetType = Target.Ally;
-        m_cost = 4;
+        m_cost = 2;
         m_shouldExile = true;
 
         m_rarity = GameRarity.Rare;
@@ -27,6 +27,6 @@ public class ContentDemoncAspectCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainAPAction(targetEntity, targetEntity.GetMaxAP())));
+        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainAPAction(targetEntity, 2)));
     }
 }

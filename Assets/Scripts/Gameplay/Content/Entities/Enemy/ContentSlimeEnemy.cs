@@ -9,7 +9,7 @@ public class ContentSlimeEnemy : GameEnemyEntity
         m_maxHealth = 4;
         m_maxAP = 4;
         m_apRegen = 2;
-        m_power = 1;
+        m_power = 2;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

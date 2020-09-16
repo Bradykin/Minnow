@@ -750,7 +750,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    protected bool HasCustomName()
+    public bool HasCustomName()
     {
         if (m_customName == null || m_customName == "")
         {
@@ -758,6 +758,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
 
         return true;
+    }
+
+    public string GetCustomName()
+    {
+        return m_customName;
     }
 
     protected void SetCustomName()

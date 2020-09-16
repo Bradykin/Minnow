@@ -79,7 +79,14 @@ public class UIEntity : WorldElementBase
         }
 
         m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
-        m_titleText.text = GetEntity().GetName();
+        if (GetEntity().HasCustomName())
+        {
+            m_titleText.text = GetEntity().GetCustomName();
+        }
+        else
+        {
+            m_titleText.text = GetEntity().GetName();
+        }
         m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
         m_powerText.text = "" + GetEntity().GetPower();
     }

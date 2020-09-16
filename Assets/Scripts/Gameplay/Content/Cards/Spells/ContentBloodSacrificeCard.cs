@@ -40,7 +40,7 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         targetEntity.Die();
 
         GamePlayer player = GameHelper.GetPlayer();
-        player.AddBonusEnergy(GetSpellValue());
+        player.AddEnergy(GetSpellValue());
         player.DrawCards(GetSpellValue());
     }
 }
