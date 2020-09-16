@@ -34,10 +34,16 @@ public class UITurnCounter : WorldElementBase
             }
             else
             {
-                m_titleText.text = "Wave " + player.m_waveNum;
-                if (player.m_currentWaveTurn < player.GetEndWaveTurn())
+                int turnNum = player.m_currentWaveTurn;
+                if (WorldController.Instance.m_gameController.m_currentTurn == GameHelper.GetOpponent())
                 {
-                    m_countText.text = player.m_currentWaveTurn + "/" + player.GetEndWaveTurn();
+                    turnNum--;
+                }
+
+                m_titleText.text = "Wave " + player.m_waveNum;
+                if (player.m_currentWaveTurn <= player.GetEndWaveTurn())
+                {
+                    m_countText.text = turnNum + "/" + player.GetEndWaveTurn();
                 }
                 else
                 {

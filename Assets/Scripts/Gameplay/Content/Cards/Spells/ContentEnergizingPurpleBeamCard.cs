@@ -27,7 +27,7 @@ public class ContentEnergizingPurpleBeamCard : GameCardSpellBase
 
         base.PlayCard();
 
-        GameHelper.GetPlayer().AddBonusEnergy(Globals.m_purpleBeamCount);
+        GameHelper.GetPlayer().AddEnergy(Globals.m_purpleBeamCount);
 
         Globals.m_purpleBeamCount--;
     }
