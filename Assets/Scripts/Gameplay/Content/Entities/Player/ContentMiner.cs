@@ -32,7 +32,7 @@ public class ContentMiner : GameEntity
     {
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, m_miningRange, 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_miningRange, 0);
 
         int numMountains = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)

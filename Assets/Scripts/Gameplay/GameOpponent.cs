@@ -43,12 +43,12 @@ public class GameOpponent : ITurns
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
-            if (Constants.UseSmartCameraEnemyTurns && !m_controlledEntities[i].m_curTile.m_isFog)
+            if (Constants.UseSmartCameraEnemyTurns && !m_controlledEntities[i].GetGameTile().m_isFog)
             {
-                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].m_curTile.GetWorldTile());
+                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.25f);
                 m_controlledEntities[i].TakeTurn();
-                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].m_curTile.GetWorldTile());
+                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.5f);
             }
             else

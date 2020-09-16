@@ -14,7 +14,7 @@ public class AISpinnerAttackStep : AIStep
             return;
         }
 
-        List<GameTile> adjacentTiles = m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile.AdjacentTiles();
+        List<GameTile> adjacentTiles = m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile().AdjacentTiles();
         bool hasSpentAP = false;
 
         for (int i = 0; i < adjacentTiles.Count; i++)

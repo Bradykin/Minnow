@@ -35,7 +35,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     protected int m_sightRange = 2;
 
     //Functionality
-    public GameTile m_curTile;
+    protected GameTile m_gameTile;
     public bool m_isDead;
     public UIEntity m_uiEntity;
     public Sprite m_iconWhite;
@@ -88,6 +88,26 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
+    public GameTile GetGameTile()
+    {
+        return m_gameTile;
+    }
+
+    public WorldTile GetWorldTile()
+    {
+        return m_gameTile.GetWorldTile();
+    }
+
+    public void SetGameTile(GameTile gameTile)
+    {
+        m_gameTile = gameTile;
+    }
+
+    public void SetWorldTile(WorldTile worldTile)
+    {
+        m_gameTile = worldTile.GetGameTile();
+    }
+
     public virtual int GetHit(int damage)
     {
         if (m_isDead)
@@ -104,7 +124,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (!ignoreTileDamageReduction)
         {
-            damage -= m_curTile.GetDamageReduction(this);
+            damage -= m_gameTile.GetDamageReduction(this);
         }
 
         if (damage < 0)
@@ -127,7 +147,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
         else
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_curTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile());
         }
 
         return damage;
@@ -160,7 +180,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (shouldRevive)
         {
             m_curHealth = 1;
-            UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_curTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_gameTile.GetWorldTile());
             return;
         }
 
@@ -218,10 +238,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
 
-        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_curTile.GetWorldTile());
+        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile());
 
         WorldGridManager.Instance.ClearAllTilesMovementRange();
-        m_curTile.GetWorldTile().RecycleEntity();
+        m_gameTile.GetWorldTile().RecycleEntity();
 
         m_isDead = true;
     }
@@ -254,7 +274,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool CanHitEntity(GameEntity other)
     {
-        if (!IsInRangeOfEntity(other))
+        if (GetTeam() == other.GetTeam()) //Can't attack your own team
         {
             return false;
         }
@@ -264,7 +284,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (GetTeam() == other.GetTeam()) //Can't attack your own team
+        if (!IsInRangeOfEntity(other))
         {
             return false;
         }
@@ -286,7 +306,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool IsInRangeOfEntity(GameEntity other)
     {
-        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile, true, false, false);
+        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
         
         if (tiles == null)
         {
@@ -305,7 +325,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
     {
-        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_curTile, other.m_curTile.GetGameTile(), true, false, false);
+        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.GetGameTile(), true, false, false);
 
         if (tiles == null)
         {
@@ -518,7 +538,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (rangeKeyword != null)
         {
-            return rangeKeyword.m_range + m_curTile.GetTerrain().m_rangeModifier;
+            return rangeKeyword.m_range + m_gameTile.GetTerrain().m_rangeModifier;
         }
 
         return 1;
@@ -657,7 +677,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false, false) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false) > m_curAP)
         {
             return false;
         }
@@ -667,33 +687,33 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public void MoveTo(GameTile tile)
     {
-        if (tile == m_curTile)
+        if (tile == m_gameTile)
             return;
         
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_curTile, tile, false, false, false));
+        SpendAP(WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false));
 
-        m_curTile.ClearEntity();
+        m_gameTile.ClearEntity();
         tile.PlaceEntity(this);
     }
 
     public void MoveTowards(GameTile tile, int apToUse)
     {
-        if (tile == m_curTile)
+        if (tile == m_gameTile)
             return;
 
         if (apToUse <= 0)
             return;
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_curTile, tile, false, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
             return;
 
         int apSpent = 0;
-        GameTile destinationTile = m_curTile;
+        GameTile destinationTile = m_gameTile;
         for (int i = 0; i < pathToTile.Count; i++)
         {
-            if (pathToTile[i] == m_curTile)
+            if (pathToTile[i] == m_gameTile)
                 continue;
 
             int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
@@ -708,7 +728,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 break;
         }
 
-        if (destinationTile == m_curTile)
+        if (destinationTile == m_gameTile)
             return;
 
         if (destinationTile.IsOccupied())
@@ -806,7 +826,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             int medkitCount = GameHelper.RelicCount<ContentMedKitRelic>();
             if (medkitCount > 0 && GetTeam() == Team.Player)
             {
-                int healAmount = m_curTile.GetTerrain().GetCostToPass(this) * medkitCount;
+                int healAmount = m_gameTile.GetTerrain().GetCostToPass(this) * medkitCount;
                 Heal(healAmount);
             }
         }

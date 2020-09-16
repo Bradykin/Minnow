@@ -67,9 +67,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
 
-        if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)
+        if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
         {
-            GetGameTile().GetBuilding().SetWorldTile(this);
+            GetGameTile().GetBuilding().SetGameTile(this.GetGameTile());
         }
 
         //Handle Tint Color
@@ -178,7 +178,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
                 {
                     GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
-                    print(GetGameTile().GetTerrain().m_name);
                     if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
                     {
                         GetGameTile().SetEvent();

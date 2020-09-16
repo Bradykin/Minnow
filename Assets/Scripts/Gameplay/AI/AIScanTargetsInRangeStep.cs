@@ -8,7 +8,7 @@ public class AIScanTargetsInRangeStep : AIStep
     
     public override void TakeStep()
     {
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false);
 
         if (tilesInAttackRange == null)
             return;

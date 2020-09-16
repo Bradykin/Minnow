@@ -26,13 +26,13 @@ public class ContentEmberForgeBuilding : GameBuildingBase
 
         base.EndTurn();
 
-        List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 3);
+        List<GameTile> surroundingTiles;
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 3);
 
         List<GameEntity> entities = new List<GameEntity>();
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].GetGameTile().m_occupyingEntity;
+            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
 
             if (entity != null && !GameHelper.IsBossOrElite(entity))
             {

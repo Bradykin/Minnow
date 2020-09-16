@@ -9,17 +9,15 @@ namespace Game.Util
     public class UICardFactory : FactoryBase
     {
 
-        private readonly Transform m_waveHUD;
+        private Transform m_waveHUD;
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UICardFactory(GameObject uiCardPrefab)
+        public UICardFactory(GameObject uiCardPrefab, GameObject waveHUD)
         {
             m_prefab = uiCardPrefab;
-            GameObject waveHUD = GameObject.Find("WaveHUD");
-            if (waveHUD != null)
-                m_waveHUD = waveHUD.transform;
+            m_waveHUD = waveHUD.transform;
         }
 
         //============================================================================================================//

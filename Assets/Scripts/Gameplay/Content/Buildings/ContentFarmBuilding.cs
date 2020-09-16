@@ -28,12 +28,12 @@ public class ContentFarmBuilding : GameBuildingBase
 
         base.EndTurn();
 
-        List<WorldTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 1);
+        List<GameTile> surroundingTiles;
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].GetGameTile().m_occupyingEntity;
+            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
 
             if (entity == null)
             {

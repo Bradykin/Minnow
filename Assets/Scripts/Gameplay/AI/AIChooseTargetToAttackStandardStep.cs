@@ -48,8 +48,8 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         }
         else if (m_AIGameEnemyEntity.m_possibleEntityTargets.Count > 1)
         {
-            int closestEnemyEntity = m_AIGameEnemyEntity.m_possibleEntityTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, e.m_curTile));
-            return m_AIGameEnemyEntity.m_possibleEntityTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, e.m_curTile) == closestEnemyEntity);
+            int closestEnemyEntity = m_AIGameEnemyEntity.m_possibleEntityTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()));
+            return m_AIGameEnemyEntity.m_possibleEntityTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()) == closestEnemyEntity);
         }
         else
         {
@@ -65,8 +65,8 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         }
         else if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count > 1)
         {
-            int closestEnemyBuilding = m_AIGameEnemyEntity.m_possibleBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, b.m_curTile.GetGameTile()));
-            return m_AIGameEnemyEntity.m_possibleBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, b.m_curTile.GetGameTile()) == closestEnemyBuilding);
+            int closestEnemyBuilding = m_AIGameEnemyEntity.m_possibleBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()));
+            return m_AIGameEnemyEntity.m_possibleBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
         }
         else
         {

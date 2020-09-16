@@ -29,7 +29,7 @@ public class ContentGuardCaptain : GameEntity
     {
         base.OnSummon();
         
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, m_rallyRange, 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_rallyRange, 0);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

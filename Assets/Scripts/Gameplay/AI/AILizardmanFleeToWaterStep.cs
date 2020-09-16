@@ -9,12 +9,12 @@ public class AILizardmanFleeToWaterStep : AIStep
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile.GetTerrain().IsWater())
+        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile().GetTerrain().IsWater())
         {
             return;
         }
 
-        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, 1, 1);
+        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), 1, 1);
         for (int i = 0; i < tilesAtDistance.Count; i++)
         {
             if (tilesAtDistance[i].GetTerrain().IsWater())

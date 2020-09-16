@@ -252,7 +252,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        UICameraController.Instance.SnapToWorldElement(WorldController.Instance.m_gameController.m_player.Castle.m_curTile);
+        UICameraController.Instance.SnapToWorldElement(WorldController.Instance.m_gameController.m_player.Castle.GetWorldTile());
     }
 
     /*public void SetupEnemies(GameOpponent gameOpponent)
@@ -584,7 +584,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
         {
-            player.m_controlledBuildings[i].m_curTile.ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
+            player.m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
         }
     }
 
