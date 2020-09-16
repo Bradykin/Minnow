@@ -11,6 +11,7 @@ public static class UIHelper
     public static Color m_fadedColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
 
     public static Color m_defaultTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0f);
+    public static Color m_defaultFaded = new Color(Color.white.r, Color.white.g, Color.white.b, 0.4f);
     public static Color m_selectedTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.3f);
     public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
@@ -384,6 +385,19 @@ public static class UIHelper
     private static void CreateWorldElementNotificationImpl(string message, Color color, WorldElementBase worldElement)
     {
         FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, worldElement);
+    }
+
+    public static void CreateWalletWorldElementNotification(int goldToAdd)
+    {
+        GameObject walletObj = GameObject.Find("Wallet");
+
+        if (walletObj == null)
+        {
+            return;
+        }
+
+        UIWallet uiWallet = walletObj.GetComponent<UIWallet>();
+        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, uiWallet);
     }
 
     public static void CreateWorldElementNotification(string message, bool isPositive, WorldElementBase worldElement)

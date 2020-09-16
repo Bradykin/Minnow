@@ -14,6 +14,7 @@ public class UIEntity : WorldElementBase
     public Text m_titleText;
     private BoxCollider2D m_collider;
 
+    public GameObject m_holder;
     public GameObject m_titleBlock;
 
     private bool m_isHovered;
@@ -130,13 +131,16 @@ public class UIEntity : WorldElementBase
 
     public void MoveTo(GameTile targetTile)
     {
-        //Actually move the UIEntity
-
         GetEntity().m_curTile.GetWorldTile().ClearEntity();
         targetTile.GetWorldTile().PlaceEntity(this);
         GetEntity().MoveTo(targetTile);
 
         m_moveTarget = new Vector3(targetTile.GetWorldTile().gameObject.transform.position.x, targetTile.GetWorldTile().gameObject.transform.position.y, gameObject.transform.position.z);
+    }
+
+    public void SetVisible(bool isVisible)
+    {
+        m_holder.SetActive(isVisible);
     }
 
     void OnMouseOver()

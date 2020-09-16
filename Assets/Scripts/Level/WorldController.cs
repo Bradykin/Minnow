@@ -209,6 +209,9 @@ public class WorldController : Singleton<WorldController>
 
         GamePlayer player = m_gameController.m_player;
 
+        GameWallet intermissionWallet = new GameWallet(50);
+        player.m_wallet.AddResources(intermissionWallet);
+
         player.OnEndWave();
 
         Globals.m_canScroll = true;

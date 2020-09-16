@@ -95,12 +95,14 @@ public class UICard : WorldElementBase
             m_powerText.text = entityCard.m_entity.GetPower() + " ";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
 
+            m_apContainer.gameObject.SetActive(true);
             m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
         }
         else
         {
             m_powerText.text = "";
             m_healthText.text = "";
+            m_apContainer.gameObject.SetActive(false);
         }
     }
 

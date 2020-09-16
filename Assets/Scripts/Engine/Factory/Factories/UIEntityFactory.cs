@@ -38,7 +38,7 @@ namespace Game.Util
 
             if (tile.GetGameTile().m_isFog)
             {
-                obj.SetActive(false);
+                obj.GetComponent<UIEntity>().SetVisible(false);
             }
 
             obj.GetComponent<UIEntity>().Init(tile.GetGameTile().m_occupyingEntity);

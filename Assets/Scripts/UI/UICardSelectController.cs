@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.UI;
 
 public class UICardSelectController : Singleton<UICardSelectController>
 {
@@ -11,6 +12,10 @@ public class UICardSelectController : Singleton<UICardSelectController>
     public UICard m_secondButton;
     public UICard m_thirdButton;
 
+    public Text m_skipText;
+
+    private GameWallet m_skipWallet;
+
     void Start()
     {
         m_holder.SetActive(false);
@@ -19,6 +24,8 @@ public class UICardSelectController : Singleton<UICardSelectController>
     public void Init(GameCard cardOne, GameCard cardTwo, GameCard cardThree)
     {
         Globals.m_canSelect = false;
+
+        m_skipWallet = new GameWallet(10);
 
         if (cardOne != null)
         {
@@ -50,6 +57,8 @@ public class UICardSelectController : Singleton<UICardSelectController>
             m_thirdButton.gameObject.SetActive(false);
         }
 
+        m_skipText.text = "Skip: +" + m_skipWallet.m_gold + " gold.";
+
         m_holder.SetActive(true);
     }
 
@@ -74,6 +83,8 @@ public class UICardSelectController : Singleton<UICardSelectController>
 
     public void SkipSelection()
     {
+        GameHelper.GetPlayer().m_wallet.AddResources(m_skipWallet);
+
         EndSelection();
     }
 }

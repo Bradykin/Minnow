@@ -1238,6 +1238,7 @@ GameObject:
   - component: {fileID: 1869705291}
   - component: {fileID: 1869705292}
   - component: {fileID: 1869705293}
+  - component: {fileID: 4719721662931797736}
   m_Layer: 0
   m_Name: AcceptButton
   m_TagString: Untagged
@@ -1299,7 +1300,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tintRenderer: {fileID: 8200897370528013764}
-  m_holder: {fileID: 8200897371038842007}
+  m_backgroundRenderer: {fileID: 8200897370580634508}
+  m_acceptText: {fileID: 922627603}
+--- !u!114 &4719721662931797736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869705290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2046485030
 GameObject:
   m_ObjectHideFlags: 0
@@ -5415,6 +5429,7 @@ GameObject:
   - component: {fileID: 1478559362314817914}
   - component: {fileID: 1478559362314817916}
   - component: {fileID: 1478559362314817915}
+  - component: {fileID: 437176779}
   m_Layer: 0
   m_Name: SkipButton
   m_TagString: Untagged
@@ -5452,6 +5467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tintRenderer: {fileID: 1002457445307378146}
+  m_backgroundRenderer: {fileID: 1002457444645837197}
+  m_skipText: {fileID: 1478559363472495979}
 --- !u!61 &1478559362314817915
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5478,6 +5495,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44573897, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &437176779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478559362314817913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1478559363472495977
 GameObject:
   m_ObjectHideFlags: 0
@@ -7700,6 +7729,7 @@ MonoBehaviour:
   m_firstButton: {fileID: 8121710974134479675}
   m_secondButton: {fileID: 8121710973596757193}
   m_thirdButton: {fileID: 8121710975066135065}
+  m_skipText: {fileID: 1478559363472495979}
 --- !u!1 &4566237934981453110
 GameObject:
   m_ObjectHideFlags: 0
@@ -35998,12 +36028,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1fa454c167b2d9479c6baa4a37e2b31, type: 3}
---- !u!4 &4945534850563241003 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 422705487106061356, guid: f1fa454c167b2d9479c6baa4a37e2b31,
-    type: 3}
-  m_PrefabInstance: {fileID: 4719721663836602375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1915734232139969279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6623070994232799992, guid: f1fa454c167b2d9479c6baa4a37e2b31,
@@ -36016,6 +36040,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb2ad740c088041b2ccd2b68cf6ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4945534850563241003 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 422705487106061356, guid: f1fa454c167b2d9479c6baa4a37e2b31,
+    type: 3}
+  m_PrefabInstance: {fileID: 4719721663836602375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4719721664288509048
 PrefabInstance:
   m_ObjectHideFlags: 0
