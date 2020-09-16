@@ -22,11 +22,27 @@ public class UIRelic : WorldElementBase
         m_selectionType = selectionType;
 
         m_renderer.sprite = m_relic.m_icon;
+        m_tintRenderer.sprite = m_relic.m_icon;
     }
 
     public override void HandleTooltip()
     {
-        UIHelper.CreateRelicTooltip(m_relic);
+        if (m_selectionType == RelicSelectionType.View)
+        {
+            UIHelper.CreateRelicTooltip(m_relic);
+        }
+    }
+
+    void OnMouseOver()
+    {
+        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        Globals.m_canScroll = false;
+    }
+
+    void OnMouseExit()
+    {
+        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        Globals.m_canScroll = true;
     }
 
     void OnMouseDown()
