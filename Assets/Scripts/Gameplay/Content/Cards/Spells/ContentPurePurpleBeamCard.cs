@@ -34,7 +34,7 @@ public class ContentPurePurpleBeamCard : GameCardSpellBase
         else
         {
             Globals.m_purpleBeamCount += targetEntity.GetCurAP();
-            targetEntity.SpendAP(targetEntity.GetMaxAP());
+            targetEntity.SpendAP(targetEntity.GetCurAP());
         }
     }
 }

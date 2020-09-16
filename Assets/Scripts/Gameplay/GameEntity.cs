@@ -721,6 +721,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         m_curAP -= toSpend;
 
+        if (m_curAP < 0)
+        {
+            m_curAP = 0;
+        }
+
         UIHelper.ReselectEntity();
     }
 
