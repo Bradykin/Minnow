@@ -14,7 +14,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public GameObject m_fogOfWar;
     public GameObject m_spawnIndicator;
 
-    public UIEntity m_occupyingEntityObj;
+    private UIEntity m_occupyingEntityObj;
 
     public GameObject m_titleHolder;
     public Text m_nameText;
@@ -315,7 +315,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         {
             if (m_occupyingEntityObj != null)
             {
-                m_occupyingEntityObj.gameObject.SetActive(false);
+                m_occupyingEntityObj.SetVisible(false);
             }
             m_fogOfWar.SetActive(true);
 
@@ -332,7 +332,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         {
             if (m_occupyingEntityObj != null)
             {
-                m_occupyingEntityObj.gameObject.SetActive(true);
+                m_occupyingEntityObj.SetVisible(true);
             }
             m_fogOfWar.SetActive(false);
         }

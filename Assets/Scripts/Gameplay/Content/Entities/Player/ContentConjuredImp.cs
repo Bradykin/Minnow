@@ -6,7 +6,7 @@ public class ContentConjuredImp : GameEntity
 {
     public ContentConjuredImp()
     {
-        m_maxHealth = 3;
+        m_maxHealth = 15;
         m_maxAP = 4;
         m_apRegen = 2;
         m_power = 5;

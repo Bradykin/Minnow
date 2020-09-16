@@ -5,7 +5,7 @@ using Game.Util;
 
 public class ContentFortressBuilding : GameBuildingBase
 {
-    public int m_power = 5;
+    public int m_power = 6;
 
     public ContentFortressBuilding()
     {
@@ -18,7 +18,7 @@ public class ContentFortressBuilding : GameBuildingBase
         LateInit();
     }
 
-    public override void EndTurn()
+    public override void StartTurn()
     {
         if (m_isDestroyed)
         {

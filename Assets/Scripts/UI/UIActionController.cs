@@ -75,7 +75,14 @@ public class UIActionController : MonoBehaviour
 
         m_titleText.text = m_actionController.GetName();
         m_descText.text = m_actionController.GetDesc();
-        m_actionCostText.text = "Actions: " + m_actionController.GetActionCost();
+        if (m_actionController.HasAction())
+        {
+            m_actionCostText.text = "Actions: " + m_actionController.GetActionCost();
+        }
+        else if (m_actionController.HasBuilding())
+        {
+            m_actionCostText.text = "Max Health: " + m_actionController.m_building.m_building.m_maxHealth;
+        }
 
         GameWallet costWallet = m_actionController.GetWallet();
 

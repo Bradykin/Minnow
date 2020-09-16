@@ -19,10 +19,10 @@ public class ContentWildfolk : GameEntity
         m_keywords.Add(new GameSpellcraftKeyword(new GameGainAPAction(this, 1)));
         m_keywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
 
-        m_maxHealth = 5;
+        m_maxHealth = 10;
         m_maxAP = 5;
         m_apRegen = 2;
-        m_power = 2;
+        m_power = 4;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;

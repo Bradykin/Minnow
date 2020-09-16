@@ -11,6 +11,6 @@ public class ContentWildfolkCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "Poof!  Wiz!  Zabang!";
-        m_cost = 3;
+        m_cost = 2;
     }
 }
