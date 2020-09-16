@@ -19,7 +19,7 @@ public class AILizardmanFleeToWaterStep : AIStep
         {
             if (tilesAtDistance[i].GetTerrain().IsWater())
             {
-                m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTo(tilesAtDistance[i]);
+                m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(tilesAtDistance[i]);
             }
         }
     }

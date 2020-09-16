@@ -44,6 +44,6 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         int closestTile = tilesToMoveTo.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, t));
         GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, t) == closestTile);
 
-        m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTo(moveDestination);
+        m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(moveDestination);
     }
 }

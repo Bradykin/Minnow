@@ -191,7 +191,7 @@ public class WorldController : Singleton<WorldController>
         {
             if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied())
             {
-                WorldGridManager.Instance.m_gridArray[i].GetGameTile().ClearEntity();
+                WorldGridManager.Instance.m_gridArray[i].RecycleEntity();
             }
         }
 
@@ -226,7 +226,10 @@ public class WorldController : Singleton<WorldController>
 
     public void EndIntermission()
     {
-        WorldGridManager.Instance.EndIntermissionFogUpdate();
+        if (Constants.FogOfWar)
+        {
+            WorldGridManager.Instance.EndIntermissionFogUpdate();
+        }
 
         UITooltipController.Instance.ClearTooltipStack();
         Globals.m_canScroll = true;

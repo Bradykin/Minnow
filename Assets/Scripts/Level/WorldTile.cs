@@ -14,7 +14,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public GameObject m_fogOfWar;
     public GameObject m_spawnIndicator;
 
-    private UIEntity m_occupyingEntityObj;
+    public UIEntity m_occupyingEntityObj;
 
     public GameObject m_titleHolder;
     public Text m_nameText;
@@ -62,25 +62,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             m_spawnIndicator.SetActive(false);
         }
 
-        bool entityMovedIntoTile = false;
-        if (m_occupyingEntityObj != null && GetGameTile().IsOccupied())
-        {
-            entityMovedIntoTile = GetGameTile().m_occupyingEntity != m_occupyingEntityObj.GetEntity();
-        }
-
-        if (entityMovedIntoTile)
-        {
-            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
-            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
-        }
-        else if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null))
+        if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null))
         {
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
-        }
-        else if (!GetGameTile().IsOccupied() && m_occupyingEntityObj != null)
-        {
-            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
-            m_occupyingEntityObj = null;
         }
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)
@@ -229,10 +213,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         UIEntity selectedEntity = Globals.m_selectedEntity;
         if (selectedEntity != null && !Globals.m_inIntermission)
         {
-            GameEntity gameEntity = (GameEntity)(selectedEntity.GetElement());
-            if (gameEntity.CanMoveTo(GetGameTile()))
+            if (selectedEntity.GetEntity().CanMoveTo(GetGameTile()))
             {
-                gameEntity.MoveTo(GetGameTile());
+                selectedEntity.MoveTo(GetGameTile());
             }
         }
 
@@ -353,6 +336,26 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             }
             m_fogOfWar.SetActive(false);
         }
+    }
+
+    public void ClearEntity()
+    {
+        m_occupyingEntityObj = null;
+    }
+
+    public void RecycleEntity()
+    {
+        if (m_occupyingEntityObj != null)
+        {
+            GetGameTile().ClearEntity();
+            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
+            m_occupyingEntityObj = null;
+        }
+    }
+
+    public void PlaceEntity(UIEntity newEntity)
+    {
+        m_occupyingEntityObj = newEntity;
     }
 
     public GameTile GetGameTile()

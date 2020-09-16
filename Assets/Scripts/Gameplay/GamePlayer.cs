@@ -384,7 +384,7 @@ public class GamePlayer : ITurns
 
     public void StartTurn()
     {
-        if (Castle != null)
+        if (Castle != null && Constants.SnapToCastleAtStart)
         {
             UICameraController.Instance.SnapToWorldElement(Castle.m_curTile);
         }

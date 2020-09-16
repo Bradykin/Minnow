@@ -17,6 +17,6 @@ public class AIMoveToTileStandardStep : AIMoveStep
             return;
         }
 
-        m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTo(targetTile);
+        m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(targetTile);
     }
 }

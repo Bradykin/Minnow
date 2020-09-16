@@ -18,8 +18,13 @@ public class UIEntity : WorldElementBase
 
     private bool m_isHovered;
 
+    private Vector3 m_moveTarget = new Vector3();
+    private float m_movementSpeed = 0.5f;
+
     public void Init(GameEntity entity)
     {
+        m_moveTarget = gameObject.transform.position;
+
         m_gameElement = entity;
         entity.m_uiEntity = this;
 
@@ -38,6 +43,11 @@ public class UIEntity : WorldElementBase
 
     void Update()
     {
+        if (m_moveTarget != gameObject.transform.position)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed);
+        }
+
         if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
@@ -72,12 +82,6 @@ public class UIEntity : WorldElementBase
         m_titleText.text = GetEntity().GetName();
         m_healthText.text = GetEntity().GetCurHealth() + "/" + GetEntity().GetMaxHealth();
         m_powerText.text = "" + GetEntity().GetPower();
-
-        if (GetEntity().m_isDead)
-        {
-            WorldGridManager.Instance.ClearAllTilesMovementRange();
-            GetEntity().m_curTile.ClearEntity();
-        }
     }
 
     void OnMouseDown()
@@ -94,6 +98,7 @@ public class UIEntity : WorldElementBase
         else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
         {
             Globals.m_selectedEntity.GetEntity().HitEntity(GetEntity());
+            Globals.m_selectedEntity.PlayHitAnim();
         }
         else if (CanSelect())
         {
@@ -114,6 +119,17 @@ public class UIEntity : WorldElementBase
     public bool CanMoveToWorldTileFromCurPosition(GameTile toMoveTo)
     {
         return GetEntity().CanMoveTo(toMoveTo);
+    }
+
+    public void MoveTo(GameTile targetTile)
+    {
+        //Actually move the UIEntity
+
+        GetEntity().m_curTile.GetWorldTile().ClearEntity();
+        targetTile.GetWorldTile().PlaceEntity(this);
+        GetEntity().MoveTo(targetTile);
+
+        m_moveTarget = new Vector3(targetTile.GetWorldTile().gameObject.transform.position.x, targetTile.GetWorldTile().gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
     void OnMouseOver()
@@ -164,6 +180,11 @@ public class UIEntity : WorldElementBase
     public GameEntity GetEntity()
     {
         return (GameEntity)m_gameElement;
+    }
+
+    public void PlayHitAnim()
+    {
+        //nmartino - Implement this
     }
 
     private bool CanSelect()

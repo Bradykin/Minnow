@@ -75,6 +75,11 @@ public class GameOpponent : ITurns
             m_controlledEntities[i].EndTurn();
         }
 
+        if (GameHelper.GetPlayer().m_currentWaveTurn >= GameHelper.GetPlayer().GetEndWaveTurn())
+        {
+            return;
+        }
+
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
             if (m_spawnPoints[i].m_tile.m_occupyingEntity != null)

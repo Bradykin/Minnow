@@ -219,9 +219,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_curTile.GetWorldTile());
-        //ashulman TODO: Keep an eye on this line. This was previously happening in the UI update loop class. 
-        m_curTile.ClearEntity();
-        //m_curTile = null;
+
+        WorldGridManager.Instance.ClearAllTilesMovementRange();
+        m_curTile.GetWorldTile().RecycleEntity();
 
         m_isDead = true;
     }
@@ -714,7 +714,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (destinationTile.IsOccupied())
             return;
 
-        MoveTo(destinationTile);
+        m_uiEntity.MoveTo(destinationTile);
     }
 
     public void SpendAP(int toSpend)
