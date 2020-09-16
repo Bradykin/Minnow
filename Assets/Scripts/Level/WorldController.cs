@@ -170,13 +170,16 @@ public class WorldController : Singleton<WorldController>
 
     public void MoveToNextTurn()
     {
-        ClearHand();
-
         m_gameController.MoveToNextTurn();
     }
 
-    private void ClearHand()
+    public void ClearHand()
     {
+        if (m_playerHand == null)
+        {
+            return;
+        }
+        
         for (int i = m_playerHand.Count - 1; i >= 0; i--)
         {
             Recycler.Recycle<UICard>(m_playerHand[i]);

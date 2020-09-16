@@ -21,9 +21,6 @@ public class GameController
         m_teamTurns = new List<ITurns>();
         m_teamTurns.Add(m_player);
         m_teamTurns.Add(m_gameOpponent);
-
-        //TEMP: to start the turns. Should happen in a different way in future
-        BeginTurnSequence();
     }
 
     public void LateInit()
@@ -32,6 +29,9 @@ public class GameController
         m_player.LateInit();
         m_gameOpponent.LateInit();
         //WorldGridManager.Instance.SetupEnemies(m_gameOpponent);
+
+        //TEMP: to start the turns. Should happen in a different way in future
+        BeginTurnSequence();
     }
 
     public void BeginTurnSequence()

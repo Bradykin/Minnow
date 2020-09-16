@@ -57,8 +57,8 @@ public class GameKeywordFactory
         return newKeyword;
     }
 
-    public static GameKeywordBase GetKeywordClone(GameKeywordBase other)
+    public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameEntity gameEntity)
     {
-        return (GameKeywordBase)Activator.CreateInstance(other.GetType());
+        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJson()), gameEntity);
     }
 }

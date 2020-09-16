@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AISpinnerChooseTileToMoveStep : AIStep
+public class AISpinnerChooseTileToMoveStep : AIMoveStep
 {
     public AISpinnerChooseTileToMoveStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
@@ -20,7 +20,7 @@ public class AISpinnerChooseTileToMoveStep : AIStep
             {
                 continue;
             }
-            
+
             List<GameTile> adjacentTiles = tilesInMoveAttackRange[i].AdjacentTiles();
             int numAdjacent = 0;
             for (int k = 0; k < adjacentTiles.Count; k++)
@@ -35,21 +35,25 @@ public class AISpinnerChooseTileToMoveStep : AIStep
                 }
             }
 
-            if (numAdjacent == maxAdjacent)
+            if (numAdjacent > 0)
             {
-                tilesWithMaxAdjacent.Add(tilesInMoveAttackRange[i]);
-            }
-            else if (numAdjacent > maxAdjacent)
-            {
-                tilesWithMaxAdjacent.Clear();
-                tilesWithMaxAdjacent.Add(tilesInMoveAttackRange[i]);
-                maxAdjacent = numAdjacent;
+                if (numAdjacent == maxAdjacent)
+                {
+                    tilesWithMaxAdjacent.Add(tilesInMoveAttackRange[i]);
+                }
+                else if (numAdjacent > maxAdjacent)
+                {
+                    tilesWithMaxAdjacent.Clear();
+                    tilesWithMaxAdjacent.Add(tilesInMoveAttackRange[i]);
+                    maxAdjacent = numAdjacent;
+                }
             }
         }
 
         if (tilesWithMaxAdjacent.Count == 0)
         {
             m_AIGameEnemyEntity.m_targetGameTile = null;
+            MoveTowardsCastle();
         }
         else if (tilesWithMaxAdjacent.Count == 1)
         {

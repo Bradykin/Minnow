@@ -69,7 +69,7 @@ public class GamePlayer : ITurns
 
         m_curDeck.Shuffle();
 
-        DrawHand();
+        //DrawHand();
     }
 
     public void DrawHand()
@@ -384,6 +384,9 @@ public class GamePlayer : ITurns
 
     public void StartTurn()
     {
+        WorldController.Instance.ClearHand();
+        DrawHand();
+
         if (Castle != null && Constants.SnapToCastleAtStart)
         {
             UICameraController.Instance.SnapToWorldElement(Castle.m_curTile);
@@ -428,12 +431,6 @@ public class GamePlayer : ITurns
     public void EndTurn()
     {
         m_currentWaveTurn++;
-
-        /*bool shouldStartIntermission = m_currentWaveTurn > GetEndWaveTurn() && m_waveNum != Constants.FinalWaveNum;
-        if (!shouldStartIntermission)
-        {*/
-            DrawHand();
-        //}
 
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
