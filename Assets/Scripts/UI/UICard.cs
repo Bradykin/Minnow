@@ -120,7 +120,8 @@ public class UICard : WorldElementBase
 
         if (Globals.m_selectedCard != this)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, m_card.IsValidToPlay());
+            bool isValid = m_card.IsValidToPlay() || m_cardSelect != null;
+            UIHelper.SetValidTintColor(m_tintRenderer, isValid);
         }
     }
 

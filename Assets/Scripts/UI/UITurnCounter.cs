@@ -41,7 +41,7 @@ public class UITurnCounter : WorldElementBase
                 }
 
                 m_titleText.text = "Wave " + player.m_waveNum;
-                if (player.m_currentWaveTurn <= player.GetEndWaveTurn())
+                if (turnNum < player.GetEndWaveTurn())
                 {
                     m_countText.text = turnNum + "/" + player.GetEndWaveTurn();
                 }

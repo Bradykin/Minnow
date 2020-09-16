@@ -21,6 +21,7 @@ public class UICardSelectButton : MonoBehaviour
         else
         {
             Globals.m_selectedCard = m_uiCard;
+            UIHelper.SetSelectTintColor(m_uiCard.m_tintRenderer, Globals.m_selectedCard == m_uiCard);
         }
     }
 }
