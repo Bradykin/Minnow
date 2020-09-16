@@ -14,10 +14,10 @@ public class ContentRanger : GameEntity
         m_rangeBoost = 1;
         m_apRegenBoost = 1;
 
-        m_maxHealth = 4;
+        m_maxHealth = 8;
         m_maxAP = 5;
         m_apRegen = 2;
-        m_power = 3;
+        m_power = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
@@ -26,8 +26,6 @@ public class ContentRanger : GameEntity
         m_desc = "When in a forest, gains: " + m_powerBoost + " power, " + m_rangeBoost + " range, " + m_apRegenBoost + " ap regen.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
-
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
 
         LateInit();
     }
