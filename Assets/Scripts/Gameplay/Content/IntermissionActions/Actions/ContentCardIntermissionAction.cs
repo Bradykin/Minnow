@@ -6,7 +6,7 @@ public class ContentCardIntermissionAction : GameActionIntermission
 {
     public ContentCardIntermissionAction()
     {
-        m_actionCost = 1;
+        m_actionCost = 2;
         m_name = "Gain a card";
         m_desc = "Gain a spell card from a random set of 3.";
 

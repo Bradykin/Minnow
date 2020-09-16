@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameBuildingIntermission
 {
-    public int m_actionCost = 1;
+    public int m_actionCost = 0;
     public GameWallet m_cost { get; protected set; }
 
     public GameBuildingBase m_building;

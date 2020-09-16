@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentResourcesIntermissionAction : GameActionIntermission
 {
-    private GameWallet m_wallet = new GameWallet(25);
+    private GameWallet m_wallet = new GameWallet(35);
 
     public ContentResourcesIntermissionAction()
     {
