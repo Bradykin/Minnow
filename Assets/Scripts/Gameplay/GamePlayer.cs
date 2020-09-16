@@ -345,7 +345,7 @@ public class GamePlayer : ITurns
     {
         int toReturn = m_maxActions;
 
-        toReturn += 2 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
+        toReturn += 1 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
 
         return toReturn;
     }

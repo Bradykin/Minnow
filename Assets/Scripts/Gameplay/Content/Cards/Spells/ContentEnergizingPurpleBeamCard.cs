@@ -13,7 +13,7 @@ public class ContentEnergizingPurpleBeamCard : GameCardSpellBase
         m_playDesc = "Very purple.  So much beam.";
         m_targetType = Target.None;
         m_cost = 0;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         SetupBasicData();
     }

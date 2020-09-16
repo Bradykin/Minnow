@@ -12,7 +12,7 @@ public class ContentReplenishingPurpleBeamCard : GameCardSpellBase
         m_playDesc = "Very purple.  There's so, so much purple beam.";
         m_targetType = Target.None;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
     }

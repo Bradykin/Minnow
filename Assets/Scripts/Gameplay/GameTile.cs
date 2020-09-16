@@ -288,7 +288,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (HasBuilding())
         {
-            return 4;
+            return 0;
         }
         else
         {
