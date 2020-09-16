@@ -178,7 +178,6 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
                 {
                     GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
-                    print(GetGameTile().GetTerrain().m_name);
                     if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
                     {
                         GetGameTile().SetEvent();

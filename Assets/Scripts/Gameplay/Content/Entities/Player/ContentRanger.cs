@@ -27,6 +27,8 @@ public class ContentRanger : GameEntity
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
+        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+
         LateInit();
     }
 

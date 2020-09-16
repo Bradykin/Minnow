@@ -274,7 +274,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual bool CanHitEntity(GameEntity other)
     {
-        if (!IsInRangeOfEntity(other))
+        if (GetTeam() == other.GetTeam()) //Can't attack your own team
         {
             return false;
         }
@@ -284,7 +284,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (GetTeam() == other.GetTeam()) //Can't attack your own team
+        if (!IsInRangeOfEntity(other))
         {
             return false;
         }

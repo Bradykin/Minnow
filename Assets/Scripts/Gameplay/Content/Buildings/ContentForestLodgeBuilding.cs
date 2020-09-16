@@ -17,25 +17,6 @@ public class ContentForestLodgeBuilding : GameBuildingBase
         LateInit();
     }
 
-    public override void StartTurn()
-    {
-        if (m_isDestroyed)
-        {
-            return;
-        }
-
-        base.StartTurn();
-
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.DrawCard();
-    }
-
     public override void TriggerEndOfWave()
     {
         base.TriggerEndOfWave();
