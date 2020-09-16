@@ -305,7 +305,10 @@ public static class GameCardFactory
 
                 if (entityCard.GetEntity().m_name == entity.m_name)
                 {
-                    return GetCardClone(m_entityCards[i]);
+                    GameCardEntityBase cardClone = (GameCardEntityBase)GetCardClone(m_entityCards[i]);
+                    cardClone.SetEntity(entity);
+
+                    return cardClone;
                 }
             }
         }
@@ -317,7 +320,10 @@ public static class GameCardFactory
 
                 if (entityCard.GetEntity().m_name == entity.m_name)
                 {
-                    return GetCardClone(m_enemyCards[i]);
+                    GameCardEntityBase cardClone = (GameCardEntityBase)GetCardClone(m_enemyCards[i]);
+                    cardClone.SetEntity(entity);
+
+                    return cardClone;
                 }
             }
         }

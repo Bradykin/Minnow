@@ -125,11 +125,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             Die();
         }
-
-        if (m_isDead)
-        {
-            UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_curTile.GetWorldTile());
-        }
         else
         {
             UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_curTile.GetWorldTile());
@@ -223,7 +218,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
 
-
+        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_curTile.GetWorldTile());
         //ashulman TODO: Keep an eye on this line. This was previously happening in the UI update loop class. 
         m_curTile.ClearEntity();
         //m_curTile = null;

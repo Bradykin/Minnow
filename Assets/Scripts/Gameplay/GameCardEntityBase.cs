@@ -16,6 +16,11 @@ public class GameCardEntityBase : GameCard
         return m_entity;
     }
 
+    public void SetEntity(GameEntity newEntity)
+    {
+        m_entity = newEntity;
+    }
+
     public void FillBasicData()
     {
         m_name = m_entity.GetName();

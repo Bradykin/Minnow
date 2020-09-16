@@ -34,6 +34,7 @@ public class UIRelic : WorldElementBase
         if (m_selectionType == RelicSelectionType.Select)
         {
             UIRelicSelectController.Instance.AcceptRelic(m_relic);
+            UITooltipController.Instance.ClearTooltipStack();
         }
     }
 }

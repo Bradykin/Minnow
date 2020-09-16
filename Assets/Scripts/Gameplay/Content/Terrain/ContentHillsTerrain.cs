@@ -7,6 +7,7 @@ public class ContentHillsTerrain : GameTerrainBase
     public ContentHillsTerrain()
     {
         m_rangeModifier = 1;
+        m_damageReduction = 2;
 
         m_name = "Hills";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";

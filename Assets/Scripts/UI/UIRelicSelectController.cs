@@ -14,6 +14,10 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
     public Text m_firstRelicText;
     public Text m_secondRelicText;
 
+    public Text m_skipText;
+
+    private GameWallet m_skipWallet;
+
     void Start()
     {
         m_holder.SetActive(false);
@@ -21,6 +25,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
 
     public void Init(GameRelic relicOne, GameRelic relicTwo)
     {
+        m_skipWallet = new GameWallet(25);
+
         Globals.m_canSelect = false;
 
         m_firstButton.gameObject.SetActive(true);
@@ -30,6 +36,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
         m_secondButton.gameObject.SetActive(true);
         m_secondButton.Init(relicTwo, UIRelic.RelicSelectionType.Select);
         m_secondRelicText.text = relicTwo.m_name;
+
+        m_skipText.text = "Skip: +" + m_skipWallet.m_gold + " gold.";
 
         m_holder.SetActive(true);
     }
@@ -55,6 +63,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
 
     public void SkipSelection()
     {
+        GameHelper.GetPlayer().m_wallet.AddResources(m_skipWallet);
+
         EndSelection();
     }
 }

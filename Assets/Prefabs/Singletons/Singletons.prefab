@@ -11025,6 +11025,7 @@ MonoBehaviour:
   m_secondButton: {fileID: 1915734232139969279}
   m_firstRelicText: {fileID: 774113158}
   m_secondRelicText: {fileID: 1389133539}
+  m_skipText: {fileID: 4719721663552412343}
 --- !u!1 &4719721663985730946
 GameObject:
   m_ObjectHideFlags: 0

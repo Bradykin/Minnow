@@ -10,7 +10,7 @@ public class ContentDemoncAspectCard : GameCardSpellBase
         m_desc = "Give an entity Victorious: Fill AP.";
         m_playDesc = "The target gains a demonic visage!";
         m_targetType = Target.Ally;
-        m_cost = 3;
+        m_cost = 4;
         m_shouldExile = true;
 
         m_rarity = GameRarity.Rare;
