@@ -60,7 +60,7 @@ public class ContentZombieEnemy : GameEnemyEntity
 
         int damageTaken = base.HitEntity(other, spendAP);
 
-        other.m_curTile.SwapEntity(newZombie);
+        other.GetGameTile().SwapEntity(newZombie);
 
         return damageTaken;
     }

@@ -31,7 +31,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public void SwapEntity(GameEntity newEntity)
     {
         m_occupyingEntity = newEntity;
-        newEntity.m_curTile = this;
+        newEntity.SetGameTile(this);
         newEntity.OnSummon();
     }
 
@@ -43,7 +43,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
 
         m_occupyingEntity = newEntity;
-        newEntity.m_curTile = this;
+        newEntity.SetGameTile(this);
 
         if (m_occupyingEntity.GetTeam() == Team.Player)
         {
@@ -73,6 +73,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
 
         m_building = newBuilding;
+        newBuilding.SetGameTile(this)   ;
     }
 
     public void ClearEntity()

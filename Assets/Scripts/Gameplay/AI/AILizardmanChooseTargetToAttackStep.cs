@@ -41,21 +41,21 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         }
         else if (m_AIGameEnemyEntity.m_possibleEntityTargets.Count > 1)
         {
-            int minDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleEntityTargets[0].m_curTile);
-            int minTravelCost = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleEntityTargets[0].m_curTile);
+            int minDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleEntityTargets[0].GetGameTile());
+            int minTravelCost = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleEntityTargets[0].GetGameTile());
             int indexMinDistance = 0;
             for (int i = 1; i < m_AIGameEnemyEntity.m_possibleEntityTargets.Count; i++)
             {
-                int currentDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleEntityTargets[i].m_curTile);
+                int currentDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleEntityTargets[i].GetGameTile());
                 if (currentDistanceToWater < minDistanceToWater)
                 {
                     minDistanceToWater = currentDistanceToWater;
-                    minTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleEntityTargets[i].m_curTile, false, true, false);
+                    minTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleEntityTargets[i].GetGameTile(), false, true, false);
                     indexMinDistance = i;
                 }
                 else if (currentDistanceToWater == minDistanceToWater)
                 {
-                    int currentTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleEntityTargets[i].m_curTile, false, true, false);
+                    int currentTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleEntityTargets[i].GetGameTile(), false, true, false);
                     if (currentTravelCost < minTravelCost)
                     {
                         minTravelCost = currentTravelCost;
@@ -80,21 +80,21 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         }
         else if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count > 1)
         {
-            int minDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleBuildingTargets[0].m_curTile.GetGameTile());
-            int minTravelCost = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleBuildingTargets[0].m_curTile.GetGameTile());
+            int minDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleBuildingTargets[0].GetGameTile());
+            int minTravelCost = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleBuildingTargets[0].GetGameTile());
             int indexMinDistance = 0;
             for (int i = 1; i < m_AIGameEnemyEntity.m_possibleBuildingTargets.Count; i++)
             {
-                int currentDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleBuildingTargets[i].m_curTile.GetGameTile());
+                int currentDistanceToWater = DistanceToWaterOnPath(m_AIGameEnemyEntity.m_possibleBuildingTargets[i].GetGameTile());
                 if (currentDistanceToWater < minDistanceToWater)
                 {
                     minDistanceToWater = currentDistanceToWater;
-                    minTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleBuildingTargets[i].m_curTile.GetGameTile(), false, true, false);
+                    minTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleBuildingTargets[i].GetGameTile(), false, true, false);
                     indexMinDistance = i;
                 }
                 else if (currentDistanceToWater == minDistanceToWater)
                 {
-                    int currentTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, m_AIGameEnemyEntity.m_possibleBuildingTargets[i].m_curTile.GetGameTile(), false, true, false);
+                    int currentTravelCost = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_AIGameEnemyEntity.m_possibleBuildingTargets[i].GetGameTile(), false, true, false);
                     if (currentTravelCost < minTravelCost)
                     {
                         minTravelCost = currentTravelCost;
@@ -114,7 +114,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
     //Trying two different approaches - first one being the distance on the path, second one being distance in general to a body of water
     protected int DistanceToWaterOnPath(GameTile gameTile)
     {
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, gameTile, false, true, false);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), gameTile, false, true, false);
 
         int distance = 0;
         for (int i = pathToTile.Count - 1; i >= 0; i--)

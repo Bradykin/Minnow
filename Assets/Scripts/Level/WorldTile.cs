@@ -67,9 +67,9 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
         }
 
-        if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().m_curTile != this)
+        if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
         {
-            GetGameTile().GetBuilding().SetWorldTile(this);
+            GetGameTile().GetBuilding().SetGameTile(this.GetGameTile());
         }
 
         //Handle Tint Color

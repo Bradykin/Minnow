@@ -53,7 +53,7 @@ public class GameExplodeAction : GameAction
 
     public override void DoAction()
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_explodingEntity.m_curTile, m_explodeRange, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_explodingEntity.GetGameTile(), m_explodeRange, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

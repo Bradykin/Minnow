@@ -27,11 +27,11 @@ public class ContentFortressBuilding : GameBuildingBase
 
         base.EndTurn();
 
-        List<WorldTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_curTile, 2);
+        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 2);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].GetGameTile().m_occupyingEntity;
+            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
 
             if (entity == null)
             {

@@ -37,7 +37,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
         targetEntity.GetHit(GetSpellValue());
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(targetEntity.m_curTile, m_range, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(targetEntity.GetGameTile(), m_range, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

@@ -20,6 +20,8 @@ public class WorldGridRoot : MonoBehaviour, IReset
         }
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(transform);
+
+        WorldController.Instance.m_gameController.LateInit();
     }
 
     public virtual void Reset()

@@ -19,10 +19,10 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         switch(m_AIGameEnemyEntity.m_targetGameElement)
         {
             case GameEntity gameEntity:
-                targetTile = gameEntity.m_curTile;
+                targetTile = gameEntity.GetGameTile();
                 break;
             case GameBuildingBase gameBuildingBase:
-                targetTile = gameBuildingBase.m_curTile.GetGameTile();
+                targetTile = gameBuildingBase.GetGameTile();
                 break;
         }
         if (targetTile == null)
@@ -31,18 +31,18 @@ public class AIMoveToTargetStandardStep : AIMoveStep
             return;
         }
 
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, false);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingTiles(targetTile, m_AIGameEnemyEntity.m_gameEnemyEntity.GetRange());
 
-        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile || !t.IsOccupied()) && tilesInRangeToAttack.Contains(t)).ToList();
+        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile() || !t.IsOccupied()) && tilesInRangeToAttack.Contains(t)).ToList();
 
-        if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile))
+        if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile()))
         {
             return;
         }
 
-        int closestTile = tilesToMoveTo.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, t));
-        GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.m_curTile, t) == closestTile);
+        int closestTile = tilesToMoveTo.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), t));
+        GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), t) == closestTile);
 
         m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(moveDestination);
     }

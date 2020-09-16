@@ -34685,6 +34685,7 @@ MonoBehaviour:
     type: 3}
   m_uiSimpleTooltipPrefab: {fileID: 9079615657806812307, guid: be135c587f2994147b3fb954b8068cba,
     type: 3}
+  m_uiHUDController: {fileID: 7887937380994782501}
 --- !u!1 &8121710973596757195
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            WorldController.Instance.m_gameController.m_player.AddRelic(new ContentLegacayOfMonstersRelic());
+            WorldController.Instance.m_gameController.m_player.AddRelic(new ContentSackOfManyShapesRelic());
         }
     }
 }

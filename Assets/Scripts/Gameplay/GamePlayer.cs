@@ -49,13 +49,14 @@ public class GamePlayer : ITurns
         {
             m_maxActions -= 1;
         }
+
+        m_deckBase = new GameDeck();
+        m_curDeck = new GameDeck();
     }
 
     public void LateInit()
     {
-        m_deckBase = new GameDeck();
         m_deckBase.FillStartingDeck();
-        m_curDeck = new GameDeck();
 
         m_maxEnergy = Constants.StartingEnergy;
         if (GameHelper.IsValidChaosLevel(10))
@@ -288,7 +289,7 @@ public class GamePlayer : ITurns
             toReturn -= 1;
         }
 
-        if (m_currentWaveTurn == GetEndWaveTurn())
+        if (m_currentWaveTurn == 0)
         {
             toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
         }
@@ -376,9 +377,9 @@ public class GamePlayer : ITurns
         WorldController.Instance.ClearHand();
         DrawHand();
 
-        if (Castle != null && Constants.SnapToCastleAtStart)
+        if (Castle != null && (Constants.SnapToCastleAtStart || m_currentWaveTurn == 0))
         {
-            UICameraController.Instance.SnapToWorldElement(Castle.m_curTile);
+            UICameraController.Instance.SnapToWorldElement(Castle.GetWorldTile());
         }
         m_curEnergy = GetMaxEnergy();
 

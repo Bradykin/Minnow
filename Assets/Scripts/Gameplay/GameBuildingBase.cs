@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, ISave, ILoad<JsonGameBuildingData>
 {
-    public WorldTile m_curTile;
+    protected GameTile m_gameTile;
 
     public Sprite m_destroyedIcon;
     public int m_curHealth;
@@ -16,16 +16,31 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     public bool m_isDestroyed;
     public bool m_expandsPlaceRange = false;
 
-    public void SetWorldTile(WorldTile worldTile)
-    {
-        m_curTile = worldTile;
-    }
-
     public void LateInit()
     {
         m_icon = UIHelper.GetIconBuilding(m_name);
         m_destroyedIcon = UIHelper.GetIconBuilding(m_name + "D");
         m_curHealth = m_maxHealth;
+    }
+
+    public GameTile GetGameTile()
+    {
+        return m_gameTile;
+    }
+
+    public WorldTile GetWorldTile()
+    {
+        return m_gameTile.GetWorldTile();
+    }
+
+    public void SetGameTile(GameTile gameTile)
+    {
+        m_gameTile = gameTile;
+    }
+
+    public void SetWorldTile(WorldTile worldTile)
+    {
+        m_gameTile = worldTile.GetGameTile();
     }
 
     public virtual Sprite GetIcon()
@@ -44,7 +59,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_curHealth -= damage;
 
-        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_curTile);
+        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile());
 
         if (m_curHealth <= 0)
         {
@@ -70,7 +85,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_curTile);
+            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_gameTile.GetWorldTile());
         }
 
         if (m_curHealth > 0)
@@ -85,7 +100,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_isDestroyed = true;
 
-        UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_curTile);
+        UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile());
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);

@@ -34,12 +34,12 @@ public class ContentRanger : GameEntity
     {
         int returnPower = base.GetPower();
 
-        if (m_curTile == null)
+        if (m_gameTile == null)
         {
             return returnPower;
         }
 
-        if (m_curTile.GetTerrain().IsForest())
+        if (m_gameTile.GetTerrain().IsForest())
         {
             returnPower += m_powerBoost;
         }
@@ -51,12 +51,12 @@ public class ContentRanger : GameEntity
     {
         int returnAPRegen = base.GetAPRegen();
 
-        if (m_curTile == null)
+        if (m_gameTile == null)
         {
             return returnAPRegen;
         }
 
-        if (m_curTile.GetTerrain().IsForest())
+        if (m_gameTile.GetTerrain().IsForest())
         {
             returnAPRegen += m_apRegenBoost;
         }
@@ -68,12 +68,12 @@ public class ContentRanger : GameEntity
     {
         int returnRange = base.GetRange();
 
-        if (m_curTile == null)
+        if (m_gameTile == null)
         {
             return returnRange;
         }
 
-        if (m_curTile.GetTerrain().IsForest())
+        if (m_gameTile.GetTerrain().IsForest())
         {
             returnRange += m_rangeBoost;
         }

@@ -132,7 +132,7 @@ public class UIEntity : WorldElementBase
     {
         //Actually move the UIEntity
 
-        GetEntity().m_curTile.GetWorldTile().ClearEntity();
+        GetEntity().GetWorldTile().ClearEntity();
         targetTile.GetWorldTile().PlaceEntity(this);
         GetEntity().MoveTo(targetTile);
 
