@@ -263,6 +263,8 @@ public class GamePlayer : ITurns
         }
 
         m_relics.AddRelic(toAdd);
+
+        WorldController.Instance.UpdateHand();
     }
 
     public int GetMaxEnergy()

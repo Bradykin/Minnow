@@ -81,7 +81,7 @@ public class UICard : WorldElementBase
         }
     }
 
-    private void SetCardData()
+    public void SetCardData()
     {
         if (m_card == null)
         {

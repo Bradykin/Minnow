@@ -26,14 +26,6 @@ public class WorldController : Singleton<WorldController>
     {
         HandlePlayerHand();
 
-        if (SceneManager.GetActiveScene().name == "LevelScene")
-        {
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                ClearAllEntities();
-            }
-        }
-
         if (Input.GetKeyUp(KeyCode.Q))
         {
             FocusPrevPlayerEntity();
@@ -74,6 +66,14 @@ public class WorldController : Singleton<WorldController>
 
             m_playerHand[i].gameObject.transform.localPosition = pos;
             m_playerHand[i].gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
+        }
+    }
+
+    public void UpdateHand()
+    {
+        for (int i = 0; i < m_playerHand.Count; i++)
+        {
+            m_playerHand[i].SetCardData();
         }
     }
 
