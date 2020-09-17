@@ -13,7 +13,6 @@ public static class GameBuildingFactory
     {
         m_buildings.Add(new ContentCastleBuilding());
         m_buildings.Add(new ContentEmberForgeBuilding());
-        m_buildings.Add(new ContentFarmBuilding());
         m_buildings.Add(new ContentForestLodgeBuilding());
         m_buildings.Add(new ContentFortressBuilding());
         m_buildings.Add(new ContentGraveyardBuilding());

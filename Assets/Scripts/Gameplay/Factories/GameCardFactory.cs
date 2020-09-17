@@ -29,7 +29,6 @@ public static class GameCardFactory
     public static void Init()
     {
         //Entity Cards
-        m_cards.Add(new ContentCaveDragonCard());
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
         m_cards.Add(new ContentDemonSoldierCard());
