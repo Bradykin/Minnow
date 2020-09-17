@@ -34,7 +34,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentDemonSoldierCard());
         m_cards.Add(new ContentDevourerCard());
         m_cards.Add(new ContentDwarfArchitectCard());
-        m_cards.Add(new ContentDwarfHealerCard());
+        m_cards.Add(new ContentDwarfShivcasterCard());
         m_cards.Add(new ContentDwarvenSoldierCard());
         m_cards.Add(new ContentElvenRogueCard());
         m_cards.Add(new ContentElvenSentinelCard());

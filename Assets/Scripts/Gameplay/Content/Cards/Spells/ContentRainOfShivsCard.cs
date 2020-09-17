@@ -28,7 +28,7 @@ public class ContentRainOfShivsCard : GameCardSpellBase
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < 3; i++)
         {
-            player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), true);
+            player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
         }
     }
 }

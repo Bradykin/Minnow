@@ -55,6 +55,11 @@ public class GameCardSpellBase : GameCard
         return " (" + GetSpellValue() + ")";
     }
 
+    protected virtual bool CanTriggerSpellPower()
+    {
+        return true;
+    }
+
     protected string GetModifiedBySpellPowerString()
     {
         return "(This is modified by spell power)";
@@ -83,8 +88,11 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetEntity);
 
-        TriggerSpellcraft();
         Globals.m_spellsPlayedThisTurn++;
+        if (CanTriggerSpellPower())
+        {
+            TriggerSpellcraft();
+        }
     }
 
     public override void PlayCard(GameTile targetTile)

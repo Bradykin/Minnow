@@ -31,7 +31,7 @@ public class GameEntityFactory
         m_playerEntities.Add(new ContentDemonSoldier());
         m_playerEntities.Add(new ContentDevourer());
         m_playerEntities.Add(new ContentDwarfArchitect());
-        m_playerEntities.Add(new ContentDwarfHealer());
+        m_playerEntities.Add(new ContentDwarfShivcaster());
         m_playerEntities.Add(new ContentDwarvenSoldier());
         m_playerEntities.Add(new ContentElvenRogue());
         m_playerEntities.Add(new ContentElvenSentinel());

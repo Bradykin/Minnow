@@ -28,4 +28,17 @@ public class ContentShivCard : GameCardSpellBase
 
         targetEntity.GetHit(3);
     }
+
+    protected override bool CanTriggerSpellPower()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+        for (int i = 0; i < player.m_controlledEntities.Count; i++)
+        {
+            if (player.m_controlledEntities[i] is ContentDwarfShivcaster)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

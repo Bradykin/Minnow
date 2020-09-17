@@ -4,32 +4,28 @@ using UnityEngine;
 
 public class ContentWanderer : GameEntity
 {
-    private int m_goldGain;
-
     public ContentWanderer()
     {
-        m_goldGain = 25;
-        
-        m_maxHealth = 4;
-        m_maxAP = 4;
-        m_apRegen = 4;
-        m_power = 3;
+        m_maxHealth = 10;
+        m_maxAP = 5;
+        m_apRegen = 3;
+        m_power = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
         m_name = "Wanderer";
-        m_desc = "When summoned, gain " + m_goldGain + " gold.";
+        m_desc = "At beginning of each turn, add a shiv to your hand.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
     }
 
-    public override void OnSummon()
+    public override void StartTurn()
     {
-        base.OnSummon();
+        base.StartTurn();
 
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(m_goldGain));
+        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
     }
 }

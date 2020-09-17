@@ -10,7 +10,7 @@ public class ContentWandererCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_playDesc = "He wanders in from a nearby land.";
-        m_cost = 1;
+        m_playDesc = "He wanders in from a nearby land. With many shivs.";
+        m_cost = 2;
     }
 }

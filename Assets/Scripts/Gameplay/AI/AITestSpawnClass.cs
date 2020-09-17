@@ -18,7 +18,12 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentRainOfShivsCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDwarfShivcasterCard()), true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), true);
         }
     }
 }
