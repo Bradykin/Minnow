@@ -77,18 +77,23 @@ public class GamePlayer : ITurns
 
     public void DrawHand()
     {
-        for (int i = 0; i < m_hand.Count; i++)
-        {
-            m_curDeck.AddToDiscard(m_hand[i]);
-        }
-
-        m_hand = new List<GameCard>();
+        DiscardHand();
 
         int handSize = GetDrawHandSize();
         for (int i = 0; i < handSize; i++)
         {
             DrawCard(false);
         }
+    }
+
+    public void DiscardHand()
+    {
+        WorldController.Instance.ClearHand();
+        for (int i = 0; i < m_hand.Count; i++)
+        {
+            m_curDeck.AddToDiscard(m_hand[i]);
+        }
+        m_hand = new List<GameCard>();
     }
 
     public void DrawCard(bool triggerKnowledgeable = true)
@@ -412,7 +417,6 @@ public class GamePlayer : ITurns
 
     public void StartTurn()
     {
-        WorldController.Instance.ClearHand();
         DrawHand();
 
         if (Castle != null && (Constants.SnapToCastleAtStart || m_currentWaveTurn == 0))
@@ -485,5 +489,6 @@ public class GamePlayer : ITurns
         Globals.m_spellsPlayedPreviousTurn = Globals.m_spellsPlayedThisTurn;
         Globals.m_spellsPlayedThisTurn = 0;
         Globals.m_fletchingCount = 0;
+        Globals.m_goldPerShivKill = 0;
     }
 }
