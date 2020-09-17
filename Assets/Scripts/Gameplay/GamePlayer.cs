@@ -431,5 +431,8 @@ public class GamePlayer : ITurns
         {
             m_controlledBuildings[i].EndTurn();
         }
+
+        Globals.m_spellsPlayedPreviousTurn = Globals.m_spellsPlayedThisTurn;
+        Globals.m_spellsPlayedThisTurn = 0;
     }
 }

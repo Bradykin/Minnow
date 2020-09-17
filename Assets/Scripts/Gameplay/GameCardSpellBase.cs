@@ -84,6 +84,7 @@ public class GameCardSpellBase : GameCard
         base.PlayCard(targetEntity);
 
         TriggerSpellcraft();
+        Globals.m_spellsPlayedThisTurn++;
     }
 
     public override void PlayCard(GameTile targetTile)

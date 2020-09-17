@@ -93,6 +93,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentEnergizeCard());
         m_cards.Add(new ContentEnergizingPurpleBeamCard());
         m_cards.Add(new ContentEntangleCard());
+        m_cards.Add(new ContentExpendingPurpleBeamCard());
         m_cards.Add(new ContentFireboltCard());
         m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentGrowTalonsCard());
@@ -105,6 +106,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentPurpleBeamSwordCard());
         m_cards.Add(new ContentReplenishingPurpleBeamCard());
         m_cards.Add(new ContentSkypierceCard());
+        m_cards.Add(new ContentWisdomOfThePastCard());
+        m_cards.Add(new ContentTonicOfFortitudeCard());
+        m_cards.Add(new ContentTonicOfStrengthCard());
         m_cards.Add(new ContentTrollFormCard());
 
 

@@ -35,11 +35,13 @@ public static class Globals
 
     public static GameEnemyEntity m_testSpawnEnemyEntity = null;
 
-    public static int m_purpleBeamCount = 0;
-
-    public static int m_curChaos = 0;
-
     private static bool m_hasInit;
+
+    //Values that will be moved into player save data
+    public static int m_purpleBeamCount = 0;
+    public static int m_spellsPlayedPreviousTurn = 0;
+    public static int m_spellsPlayedThisTurn = 0;
+    public static int m_curChaos = 0;
 
     public static void Init()
     {
