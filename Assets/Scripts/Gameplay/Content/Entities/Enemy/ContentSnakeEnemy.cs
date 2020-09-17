@@ -9,7 +9,7 @@ public class ContentSnakeEnemy : GameEnemyEntity
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 3;
+        m_maxHealth = 2;
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 2;
@@ -23,7 +23,7 @@ public class ContentSnakeEnemy : GameEnemyEntity
         m_minWave = 4;
         m_maxWave = 5;
 
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(3));
+        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

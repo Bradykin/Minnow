@@ -26,7 +26,7 @@ public class ContentJoltCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Restore " + m_spellEffect + spString + " AP." + GetModifiedBySpellPowerString() + "\nDraw a card.";
+        return "Restore " + m_spellEffect + spString + " AP.\nDraw a card.";
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -38,7 +38,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GainAP(GetSpellValue());
+        targetEntity.GainAP(m_spellEffect);
 
         GameHelper.GetPlayer().DrawCard();
     }

@@ -47,7 +47,13 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         int waveNum = GameHelper.GetPlayer().m_waveNum;
 
-        return waveNum * waveNum * 20;
+        int scalingValue = waveNum;
+        if (waveNum >= 3)
+        {
+            scalingValue += (waveNum - 2);
+        }
+
+        return scalingValue * 20;
     }
 
     private int GetAPRegenModByWave()

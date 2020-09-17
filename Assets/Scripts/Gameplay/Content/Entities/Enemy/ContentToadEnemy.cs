@@ -22,7 +22,7 @@ public class ContentToadEnemy : GameEnemyEntity
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
 
         m_minWave = 2;
-        m_maxWave = 3;
+        m_maxWave = 2;
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

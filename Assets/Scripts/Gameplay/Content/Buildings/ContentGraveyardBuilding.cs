@@ -8,7 +8,7 @@ public class ContentGraveyardBuilding : GameBuildingBase
 
     public ContentGraveyardBuilding()
     {
-        m_goldToGain = 5;
+        m_goldToGain = 3;
 
         m_name = "Graveyard";
         m_desc = "Certainty is always great in business.  Gain " + m_goldToGain + " gold whenever an entity dies.";
