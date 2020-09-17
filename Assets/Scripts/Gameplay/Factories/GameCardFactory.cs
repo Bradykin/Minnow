@@ -98,6 +98,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentGrowTalonsCard());
         m_cards.Add(new ContentInsightCard());
         m_cards.Add(new ContentJoltCard());
+        m_cards.Add(new ContentLegionOfBladesCard());
         m_cards.Add(new ContentLootingsCard());
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());

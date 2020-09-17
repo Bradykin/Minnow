@@ -43,6 +43,7 @@ public static class Globals
     public static int m_spellsPlayedThisTurn = 0;
     public static int m_fletchingCount = 0;
     public static int m_totemOfTheWolfTurn = -1;
+    public static int m_goldPerShivKill = 0;
     public static int m_curChaos = 0;
 
     public static void Init()

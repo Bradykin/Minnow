@@ -15,7 +15,7 @@ public class ContentShivCard : GameCardSpellBase
         m_playDesc = "The target is shivved!";
         m_targetType = Target.Entity;
         m_cost = 0;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Event;
         m_shouldExile = true;
 
         SetupBasicData();
@@ -40,6 +40,10 @@ public class ContentShivCard : GameCardSpellBase
             targetEntity.SpendAP(apDrain);
         }
         targetEntity.GetHit(damage);
+        if (targetEntity.m_isDead)
+        {
+            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(Globals.m_goldPerShivKill));
+        }
     }
 
     protected override bool CanTriggerSpellPower()
