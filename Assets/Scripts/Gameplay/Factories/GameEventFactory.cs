@@ -11,7 +11,6 @@ public static class GameEventFactory
 
     public static void Init()
     {
-        m_events.Add(new ContentDragonDenEvent(null));
         m_events.Add(new ContentWonderousGenieEvent(null));
         m_events.Add(new ContentOverturnedCartEvent(null));
         m_events.Add(new ContentMillitiaEvent(null));

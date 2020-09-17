@@ -26,7 +26,6 @@ public class GameEntityFactory
     public static void Init()
     {
         //Player Entities
-        m_playerEntities.Add(new ContentCaveDragonEntity());
         m_playerEntities.Add(new ContentConjuredImp());
         m_playerEntities.Add(new ContentCyclops());
         m_playerEntities.Add(new ContentDemonSoldier());

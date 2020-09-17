@@ -85,7 +85,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentBlastingPurpleBeamCard());
         m_cards.Add(new ContentBloodSacrificeCard());
-        m_cards.Add(new ContentClearcutCard());
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentDrainCard());
@@ -97,7 +96,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentFireboltCard());
         m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentGrowTalonsCard());
-        m_cards.Add(new ContentGrowthCard());
         m_cards.Add(new ContentInsightCard());
         m_cards.Add(new ContentJoltCard());
         m_cards.Add(new ContentNecromanticTouchCard());
@@ -105,11 +103,14 @@ public static class GameCardFactory
         m_cards.Add(new ContentPurePurpleBeamCard());
         m_cards.Add(new ContentPurpleBeamSwordCard());
         m_cards.Add(new ContentReplenishingPurpleBeamCard());
-        m_cards.Add(new ContentSkypierceCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());
         m_cards.Add(new ContentTonicOfStrengthCard());
         m_cards.Add(new ContentTrollFormCard());
+
+        //m_cards.Add(new ContentClearcutCard());
+        //m_cards.Add(new ContentSkypierceCard());
+        //m_cards.Add(new ContentGrowthCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
@@ -301,6 +302,11 @@ public static class GameCardFactory
 
     public static GameCard GetCardFromEntity(GameEntity entity)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (entity.GetTeam() == Team.Player)
         {
             for (int i = 0; i < m_entityCards.Count; i++)

@@ -6,7 +6,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 {
     public ContentArcaneBoltCard()
     {
-        m_spellEffect = 4;
+        m_spellEffect = 2;
 
         m_name = "Arcane Bolt";
         m_playDesc = "BOOM!";
@@ -19,7 +19,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "Triple benefits from spell power.";
+        return GetDamageDescString() + "x5 benefits from spell power.";
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -36,6 +36,6 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     protected override int GetSpellValue()
     {
-        return 3 * (base.GetSpellValue() - m_spellEffect) + m_spellEffect;
+        return 5 * (base.GetSpellValue() - m_spellEffect) + m_spellEffect;
     }
 }
