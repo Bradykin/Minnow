@@ -6,7 +6,7 @@ public class ContentShadeEnemy : GameEnemyEntity
 {
     public ContentShadeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 7;
+        m_maxHealth = 25;
         m_maxAP = 6;
         m_apRegen = 4;
         m_power = 4;
@@ -17,9 +17,11 @@ public class ContentShadeEnemy : GameEnemyEntity
         m_name = "Shade";
         m_desc = "Yep, it flies.";
 
-        m_minWave = 5;
+        m_minWave = 4;
+        m_maxWave = 5;
 
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

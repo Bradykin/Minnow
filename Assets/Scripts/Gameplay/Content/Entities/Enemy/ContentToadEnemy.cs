@@ -8,7 +8,7 @@ public class ContentToadEnemy : GameEnemyEntity
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 9;
+        m_maxHealth = 7;
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 2;
@@ -19,7 +19,10 @@ public class ContentToadEnemy : GameEnemyEntity
         m_name = "Toad";
         m_desc = "Don't let this thing hit you; it'll drain your AP!";
 
-        m_minWave = 5;
+        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
+
+        m_minWave = 2;
+        m_maxWave = 3;
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

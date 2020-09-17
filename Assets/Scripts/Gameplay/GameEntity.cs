@@ -115,6 +115,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
+        GameDamageShieldKeyword damageShieldKeyword = m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
+        if (damageShieldKeyword != null)
+        {
+            if (damageShieldKeyword.m_numShields > 0)
+            {
+                damageShieldKeyword.DecreaseShield(1);
+                return 0;
+            }
+        }
+
         bool ignoreTileDamageReduction = false;
 
         if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)

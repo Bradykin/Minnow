@@ -9,7 +9,7 @@ public class ContentWerewolfEnemy : GameEnemyEntity
 {
     public ContentWerewolfEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 22;
+        m_maxHealth = 80;
         m_maxAP = 6;
         m_apRegen = 4;
         m_power = 9;
@@ -20,7 +20,8 @@ public class ContentWerewolfEnemy : GameEnemyEntity
         m_name = "Werewolf";
         m_desc = "This thing never stops healing!";
 
-        m_minWave = 6;
+        m_minWave = 4;
+        m_maxWave = 6;
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

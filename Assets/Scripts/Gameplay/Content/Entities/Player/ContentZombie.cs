@@ -7,7 +7,7 @@ public class ContentZombie : GameEntity
 {
     public ContentZombie()
     {
-        m_maxHealth = 8;
+        m_maxHealth = 50;
         m_maxAP = 3;
         m_apRegen = 2;
         m_power = 2;

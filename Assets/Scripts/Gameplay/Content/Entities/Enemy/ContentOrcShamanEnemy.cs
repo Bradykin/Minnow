@@ -6,7 +6,7 @@ public class ContentOrcShamanEnemy : GameEnemyEntity
 {
     public ContentOrcShamanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 8;
+        m_maxHealth = 25;
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 4;
@@ -14,7 +14,8 @@ public class ContentOrcShamanEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
-        m_minWave = 4;
+        m_minWave = 3;
+        m_maxWave = 4;
 
         m_name = "Orc Shaman";
         m_desc = "Magical blasts away...";

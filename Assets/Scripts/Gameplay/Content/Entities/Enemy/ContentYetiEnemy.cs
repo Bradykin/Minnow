@@ -8,7 +8,7 @@ public class ContentYetiEnemy : GameEnemyEntity
 {
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 22;
+        m_maxHealth = 110;
         m_maxAP = 4;
         m_apRegen = 2;
         m_power = 8;
@@ -19,7 +19,8 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_name = "Yeti";
         m_desc = "Is it... is it throwing snowballs?";
 
-        m_minWave = 5;
+        m_minWave = 4;
+        m_maxWave = 6;
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(5));
         m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());

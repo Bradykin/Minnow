@@ -15,6 +15,7 @@ public class ContentSlimeEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_minWave = 1;
+        m_maxWave = 3;
 
         m_name = "Slime";
         m_desc = "The basic slime.  A classic.";

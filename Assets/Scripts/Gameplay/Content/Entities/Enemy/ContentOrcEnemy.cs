@@ -6,7 +6,7 @@ public class ContentOrcEnemy : GameEnemyEntity
 {
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 14;
+        m_maxHealth = 22;
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 6;
@@ -14,7 +14,8 @@ public class ContentOrcEnemy : GameEnemyEntity
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 3; 
+        m_minWave = 3;
+        m_maxWave = 4;
 
         m_name = "Orc";
         m_desc = "Feirce and strong, the backbone of any good army.";
