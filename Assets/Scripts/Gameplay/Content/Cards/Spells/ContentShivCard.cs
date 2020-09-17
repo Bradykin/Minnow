@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ContentShivCard : GameCardSpellBase
 {
+    private int m_damage;
+    
     public ContentShivCard()
     {
+        m_damage = 3;
+
         m_name = "Shiv";
         m_desc = "Shiv the target, dealing 3 damage.";
         m_playDesc = "The target is shivved!";
@@ -26,7 +30,16 @@ public class ContentShivCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GetHit(3);
+        int damage = m_damage;
+        int apDrain = GameHelper.RelicCount<ContentPoisonedShivsRelic>();
+
+        damage += (3 * GameHelper.RelicCount<ContentBurningShivsRelic>());
+
+        if (apDrain > 0)
+        {
+            targetEntity.SpendAP(apDrain);
+        }
+        targetEntity.GetHit(damage);
     }
 
     protected override bool CanTriggerSpellPower()

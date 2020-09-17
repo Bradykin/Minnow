@@ -13,7 +13,8 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentTotemOfTheWolfRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentPoisonedShivsRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))

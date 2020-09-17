@@ -40,6 +40,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentLegacayOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
         m_relics.Add(new ContentTotemOfTheWolfRelic());
+        m_relics.Add(new ContentBurningShivsRelic());
+        m_relics.Add(new ContentPoisonedShivsRelic());
 
         m_hasInit = true;
     }

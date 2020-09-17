@@ -24,6 +24,6 @@ public class ContentFletchingCard : GameCardSpellBase
 
         base.PlayCard();
 
-        Globals.m_fletchingCount += 2;
+        Globals.m_fletchingCount += 5;
     }
 }
