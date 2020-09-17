@@ -6,7 +6,7 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
 {
     public ContentWisdomOfThePastCard()
     {
-        m_name = "Wisdom Of The Past";
+        m_name = "Wisdom of the Past";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;

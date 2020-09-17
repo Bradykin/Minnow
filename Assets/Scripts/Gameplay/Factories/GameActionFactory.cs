@@ -22,6 +22,7 @@ public class GameActionFactory
         m_actions.Add(new GameGainRangeAction(null, 0));
         m_actions.Add(new GameGainResourceAction(null));
         m_actions.Add(new GainPurpleBeamAction(0));
+        m_actions.Add(new GameSpellcraftAction());
 
         m_hasInit = true;
     }

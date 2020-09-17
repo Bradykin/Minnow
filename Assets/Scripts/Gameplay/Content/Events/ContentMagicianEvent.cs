@@ -70,7 +70,7 @@ public class GameEventCardSelectOption : GameEventOption
             return;
         }
 
-        player.AddCardToDeck(GameCardFactory.GetCardClone(m_card));
+        player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
 
         EndEvent();
     }

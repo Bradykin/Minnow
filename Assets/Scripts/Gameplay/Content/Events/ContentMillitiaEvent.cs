@@ -51,7 +51,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
         for (int i = 0; i < 2; i++)
         {
-            player.AddCardToDeck(GameCardFactory.GetCardClone(m_card));
+            player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
         }
 
         EndEvent();

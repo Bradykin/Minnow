@@ -13,7 +13,12 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentTomeOfDuluhainRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentTotemOfTheWolfRelic());
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentRainOfShivsCard()), true);
         }
     }
 }
