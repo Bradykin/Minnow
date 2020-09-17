@@ -43,7 +43,7 @@ public static class GameRelicFactory
         m_hasInit = true;
     }
 
-    public static GameRelic GetRandomRelic()
+    public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)
     {
         if (!m_hasInit)
         {
@@ -51,6 +51,18 @@ public static class GameRelicFactory
         }
 
         List<GameRelic> relicList = GetListWithoutPlayerRelics();
+
+        if (exclusionRelic != null)
+        {
+            for (int i = 0; i < relicList.Count; i++)
+            {
+                if (relicList[i].m_name == exclusionRelic.m_name)
+                {
+                    relicList.RemoveAt(i);
+                    break;
+                }
+            }
+        }
 
         int r = UnityEngine.Random.Range(0, relicList.Count);
 

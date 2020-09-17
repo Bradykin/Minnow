@@ -43,7 +43,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding(), new GameWallet(45)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding(), new GameWallet(110)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding(), new GameWallet(250)));
-        //m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFarmBuilding(), new GameWallet(15))); nmartino - Reassess the balance of this
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentGraveyardBuilding(), new GameWallet(30)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding(), new GameWallet(75)));
 

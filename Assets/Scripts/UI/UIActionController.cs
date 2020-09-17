@@ -7,6 +7,7 @@ public class UIActionController : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_iconRenderer;
+    public SpriteRenderer m_terrainRenderer;
 
     public Text m_titleText;
     public Text m_descText;
@@ -78,10 +79,30 @@ public class UIActionController : MonoBehaviour
         if (m_actionController.HasAction())
         {
             m_actionCostText.text = "Actions: " + m_actionController.GetActionCost();
+            m_terrainRenderer.gameObject.SetActive(false);
         }
         else if (m_actionController.HasBuilding())
         {
-            m_actionCostText.text = "Max Health: " + m_actionController.m_building.m_building.m_maxHealth;
+            GameBuildingBase building = m_actionController.m_building.m_building;
+
+            m_actionCostText.text = "Max Health: " + building.m_maxHealth;
+            m_terrainRenderer.gameObject.SetActive(true);
+
+            ContentForestTerrain forestTest = new ContentForestTerrain();
+            ContentMountainTerrain mountainTest = new ContentMountainTerrain();
+            ContentDirtPlainsTerrain dirtTest = new ContentDirtPlainsTerrain();
+            if (building.IsValidTerrainToPlace(forestTest))
+            {
+                m_terrainRenderer.sprite = forestTest.m_icon;
+            }
+            else if (building.IsValidTerrainToPlace(mountainTest))
+            {
+                m_terrainRenderer.sprite = mountainTest.m_icon;
+            }
+            else if (building.IsValidTerrainToPlace(dirtTest))
+            {
+                m_terrainRenderer.sprite = dirtTest.m_icon;
+            }
         }
 
         GameWallet costWallet = m_actionController.GetWallet();

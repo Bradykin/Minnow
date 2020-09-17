@@ -34,7 +34,10 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        UIRelicSelectController.Instance.Init(GameRelicFactory.GetRandomRelic(), GameRelicFactory.GetRandomRelic());
+        GameRelic relicOne = GameRelicFactory.GetRandomRelic();
+        GameRelic relicTwo = GameRelicFactory.GetRandomRelic(relicOne);
+
+        UIRelicSelectController.Instance.Init(relicOne, relicTwo);
 
         base.Die();
     }
