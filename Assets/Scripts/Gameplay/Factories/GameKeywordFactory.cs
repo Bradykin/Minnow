@@ -21,6 +21,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameKnowledgeableKeyword(null));
         m_keywords.Add(new GameMomentumKeyword(null));
         m_keywords.Add(new GameRangeKeyword(0));
+        m_keywords.Add(new GameDamageShieldKeyword(0));
         m_keywords.Add(new GameRegenerateKeyword(0));
         m_keywords.Add(new GameSpellcraftKeyword(null));
         m_keywords.Add(new GameSummonKeyword(null));

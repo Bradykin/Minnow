@@ -20,8 +20,8 @@ public class GameRangeKeyword : GameKeywordBase
     {
         m_range += increase;
 
-        m_name = "Ranged " + m_range;
-        m_desc = "Can attack at range " + m_range + ".";
+        m_name = "Ranged";
+        m_desc = "" + m_range;
     }
 
     public override string SaveToJson()
