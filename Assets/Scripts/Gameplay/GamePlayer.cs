@@ -430,25 +430,6 @@ public class GamePlayer : ITurns
             AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
-        int numMysticForesight = GameHelper.RelicCount<ContentMysticJewelRelic>();
-        if (numMysticForesight > 0 && m_currentWaveTurn + 2 > GetEndWaveTurn())
-        {
-            int numMystics = 0;
-            for (int i = 0; i < m_controlledEntities.Count; i++)
-            {
-                if (m_controlledEntities[i].GetTypeline() == Typeline.Mystic)
-                {
-                    numMystics++;
-                }
-            }
-
-            if (numMystics > 0)
-            {
-                AddEnergy(numMysticForesight * numMystics);
-                DrawCards(numMysticForesight * numMystics);
-            }
-        }
-
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].StartTurn();

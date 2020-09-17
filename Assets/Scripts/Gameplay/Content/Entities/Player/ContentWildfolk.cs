@@ -10,26 +10,26 @@ public class ContentWildfolk : GameEntity
     {
         m_keywords = new List<GameKeywordBase>();
         m_keywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
-        m_keywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(5))));
+        m_keywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
         m_keywords.Add(new GameFlyingKeyword());
         m_keywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
         m_keywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
         m_keywords.Add(new GameRangeKeyword(2));
-        m_keywords.Add(new GameRegenerateKeyword(3));
+        m_keywords.Add(new GameRegenerateKeyword(10));
         m_keywords.Add(new GameSpellcraftKeyword(new GameGainAPAction(this, 1)));
         m_keywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
 
-        m_maxHealth = 10;
+        m_maxHealth = 3;
         m_maxAP = 5;
         m_apRegen = 2;
-        m_power = 4;
+        m_power = 1;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
         m_name = "Wildfolk";
-        m_desc = "When summoned, gain a random keyword.";
-        m_typeline = Typeline.Mystic;
+        m_desc = "When summoned, gain a random keyword and +3 power and + 10 health.";
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
@@ -38,6 +38,9 @@ public class ContentWildfolk : GameEntity
     public override void OnSummon()
     {
         base.OnSummon();
+
+        AddPower(3);
+        AddMaxHealth(10);
 
         int r = Random.Range(0, m_keywords.Count);
 

@@ -6,10 +6,10 @@ public class ContentMage : GameEntity
 {
     public ContentMage()
     {
-        m_maxHealth = 3;
-        m_maxAP = 4;
-        m_apRegen = 2;
-        m_power = 1;
+        m_maxHealth = 6;
+        m_maxAP = 5;
+        m_apRegen = 3;
+        m_power = 2;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
@@ -18,7 +18,7 @@ public class ContentMage : GameEntity
         m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainPowerAction(this, 3)));
 
         m_name = "Mage";
-        m_typeline = Typeline.Mystic;
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

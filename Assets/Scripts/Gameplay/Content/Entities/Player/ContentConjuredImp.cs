@@ -6,10 +6,10 @@ public class ContentConjuredImp : GameEntity
 {
     public ContentConjuredImp()
     {
-        m_maxHealth = 15;
+        m_maxHealth = 25;
         m_maxAP = 4;
-        m_apRegen = 2;
-        m_power = 5;
+        m_apRegen = 4;
+        m_power = 8;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;

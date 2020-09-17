@@ -6,10 +6,10 @@ public class ContentDemonSoldier : GameEntity
 {
     public ContentDemonSoldier()
     {
-        m_maxHealth = 20;
-        m_maxAP = 4;
-        m_apRegen = 2;
-        m_power = 4;
+        m_maxHealth = 40;
+        m_maxAP = 5;
+        m_apRegen = 3;
+        m_power = 6;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;

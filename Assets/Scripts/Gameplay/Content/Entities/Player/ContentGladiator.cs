@@ -6,10 +6,10 @@ public class ContentGladiator : GameEntity
 {
     public ContentGladiator()
     {
-        m_maxHealth = 40;
+        m_maxHealth = 50;
         m_maxAP = 8;
         m_apRegen = 1;
-        m_power = 4;
+        m_power = 6;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;

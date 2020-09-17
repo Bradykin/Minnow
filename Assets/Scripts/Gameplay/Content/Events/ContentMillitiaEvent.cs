@@ -26,7 +26,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
     public GameEventHelpMillitiaOption(GameTile tile)
     {
         m_tile = tile;
-        m_card = new ContentDwarvenSoldierCard();
+        m_card = GameCardFactory.GetRandomStandardEntityCard();
 
         m_hasTooltip = true;
     }

@@ -12,7 +12,6 @@ public enum Team : int
 public enum Typeline : int
 {
     Humanoid,
-    Mystic,
     Monster,
     Construct
 }

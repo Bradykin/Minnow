@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameNamesFactory
 {
     private static List<string> m_humanoidNames = new List<string>();
-    private static List<string> m_mysticNames = new List<string>();
     private static List<string> m_monsterNames = new List<string>();
     private static List<string> m_constructNames = new List<string>();
 
@@ -44,37 +43,6 @@ public class GameNamesFactory
         m_humanoidNames.Add("Evrawg");
         m_humanoidNames.Add("Daniels");
         m_humanoidNames.Add("Tudful");
-
-        m_mysticNames.Add("Iqium");
-        m_mysticNames.Add("Efeus");
-        m_mysticNames.Add("Gurick");
-        m_mysticNames.Add("Itaz");
-        m_mysticNames.Add("Agast");
-        m_mysticNames.Add("Strolin");
-        m_mysticNames.Add("Abus");
-        m_mysticNames.Add("Idalf");
-        m_mysticNames.Add("Qremaex");
-        m_mysticNames.Add("Javius");
-        m_mysticNames.Add("Asaronin");
-        m_mysticNames.Add("Ozaronin");
-        m_mysticNames.Add("Dhakonn");
-        m_mysticNames.Add("Arhan");
-        m_mysticNames.Add("Aneas");
-        m_mysticNames.Add("Oruni");
-        m_mysticNames.Add("Huro");
-        m_mysticNames.Add("Uvys");
-        m_mysticNames.Add("Umunilorh");
-        m_mysticNames.Add("Enudel");
-        m_mysticNames.Add("Odaronin");
-        m_mysticNames.Add("Rekey");
-        m_mysticNames.Add("Evedel");
-        m_mysticNames.Add("Ero");
-        m_mysticNames.Add("Onnuqihr");
-        m_mysticNames.Add("Kestrea");
-        m_mysticNames.Add("Elore");
-        m_mysticNames.Add("Erias");
-        m_mysticNames.Add("Eqiohn");
-        m_mysticNames.Add("Kazor");
 
         m_monsterNames.Add("Glowdeviation");
         m_monsterNames.Add("Fogstep");
@@ -157,10 +125,6 @@ public class GameNamesFactory
         else if (entityType == Typeline.Monster)
         {
             return GetNameFromList(m_monsterNames);
-        }
-        else if (entityType == Typeline.Mystic)
-        {
-            return GetNameFromList(m_mysticNames);
         }
 
         return "Error: No name?";
