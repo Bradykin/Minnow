@@ -32,6 +32,8 @@ public class GamePlayer : ITurns
     private int m_curActions;
     private int m_maxActions;
 
+    public List<GameCard> m_cardsToDiscard = new List<GameCard>();
+
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
@@ -134,7 +136,7 @@ public class GamePlayer : ITurns
         }
         else
         {
-            m_curDeck.AddToDiscard(card);
+            m_cardsToDiscard.Add(card);
         }
 
         m_hand.Remove(card);
@@ -420,6 +422,13 @@ public class GamePlayer : ITurns
 
     public void EndTurn()
     {
+        for (int i = 0; i < m_cardsToDiscard.Count; i++)
+        {
+            m_curDeck.AddToDiscard(m_cardsToDiscard[i]);
+        }
+
+        m_cardsToDiscard = new List<GameCard>();
+
         m_currentWaveTurn++;
 
         for (int i = 0; i < m_controlledEntities.Count; i++)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDiscard : WorldElementBase
+public class UIMainDeck : WorldElementBase
 {
     public Text m_countText;
 
@@ -18,7 +18,7 @@ public class UIDiscard : WorldElementBase
             return;
         }
 
-        m_countText.text = player.m_curDeck.DiscardCount() + "";
+        m_countText.text = player.m_deckBase.Count() + "";
     }
 
     void OnMouseOver()
@@ -42,11 +42,11 @@ public class UIDiscard : WorldElementBase
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View);
+        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View);
     }
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Discard", "At the end of your turn, cards you played this turn will go here!  When you run out of cards in your deck, your discard will shuffle back in."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Full Deck", "This is your full deck, including currently played entities and exile spells."));
     }
 }
