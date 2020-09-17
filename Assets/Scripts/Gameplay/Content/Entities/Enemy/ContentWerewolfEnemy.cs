@@ -20,7 +20,7 @@ public class ContentWerewolfEnemy : GameEnemyEntity
         m_name = "Werewolf";
         m_desc = "This thing never stops healing!";
 
-        m_minWave = 4;
+        m_minWave = 5;
         m_maxWave = 6;
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));

@@ -15,7 +15,7 @@ public class ContentMage : GameEntity
         m_rarity = GameRarity.Common;
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainPowerAction(this, 1)));
+        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainPowerAction(this, 3)));
 
         m_name = "Mage";
         m_typeline = Typeline.Mystic;

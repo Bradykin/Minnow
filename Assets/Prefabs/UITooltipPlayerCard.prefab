@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.93, y: 0.03}
-  m_SizeDelta: {x: 102.91, y: 103.51}
+  m_AnchoredPosition: {x: 46.41, y: 0.03}
+  m_SizeDelta: {x: 98.69, y: 103.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6318189429689749094
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 72
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 72
     m_Alignment: 4
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.49, y: 0.11}
-  m_SizeDelta: {x: 100.6, y: 101.97}
+  m_AnchoredPosition: {x: 20.17, y: 0.11}
+  m_SizeDelta: {x: 98.07, y: 101.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6318189430772309210
 CanvasRenderer:
@@ -144,7 +144,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 72
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 72
     m_Alignment: 4
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 6713270457480724031}
   - component: {fileID: 6713270457480723968}
   m_Layer: 11
-  m_Name: UIPlayerCardTooltip
+  m_Name: UITooltipPlayerCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,8 +703,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.81, y: 80.13}
-  m_SizeDelta: {x: 403.86, y: 77.29}
+  m_AnchoredPosition: {x: 11.75, y: 80.13}
+  m_SizeDelta: {x: 379.41, y: 77.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6713270457847673498
 CanvasRenderer:
@@ -1071,7 +1071,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1732987549
-  m_SortingLayer: 22
+  m_SortingLayer: 23
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a8bdc1063eff374781d3943db7f938b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}

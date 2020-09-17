@@ -8,7 +8,7 @@ public class ContentYetiEnemy : GameEnemyEntity
 {
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 110;
+        m_maxHealth = 65;
         m_maxAP = 4;
         m_apRegen = 2;
         m_power = 8;

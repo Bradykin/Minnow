@@ -10,14 +10,14 @@ public class ContentRanger : GameEntity
 
     public ContentRanger()
     {
-        m_powerBoost = 4;
+        m_powerBoost = 8;
         m_rangeBoost = 1;
-        m_apRegenBoost = 1;
+        m_apRegenBoost = 2;
 
-        m_maxHealth = 8;
+        m_maxHealth = 15;
         m_maxAP = 5;
         m_apRegen = 2;
-        m_power = 5;
+        m_power = 9;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
