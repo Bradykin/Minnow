@@ -23,6 +23,8 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isCave;
     protected bool m_isVolcano;
 
+    protected bool m_isBurned;
+
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
     {
@@ -120,6 +122,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public bool IsEventTerrain()
     {
         return m_isEventTerrain;
+    }
+
+    public bool IsBurned()
+    {
+        return m_isBurned;
     }
 
     public string GetFocusPanelText()

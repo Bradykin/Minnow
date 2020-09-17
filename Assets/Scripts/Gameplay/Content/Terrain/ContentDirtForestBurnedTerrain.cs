@@ -19,5 +19,6 @@ public class ContentDirtForestBurnedTerrain : GameTerrainBase
 
         m_isForest = true;
         m_isHot = true;
+        m_isBurned = true;
     }
 }

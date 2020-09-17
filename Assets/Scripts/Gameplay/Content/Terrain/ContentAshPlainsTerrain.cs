@@ -16,5 +16,6 @@ public class ContentAshPlainsTerrain : GameTerrainBase
         m_costToPass = 1;
 
         m_isHot = true;
+        m_isBurned = true;
     }
 }

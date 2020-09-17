@@ -81,6 +81,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentZombieEnemyCard());
 
         //Spell Cards
+        m_cards.Add(new ContentAegisCard());
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentBlastingPurpleBeamCard());
         m_cards.Add(new ContentBloodSacrificeCard());
@@ -96,6 +97,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentFletchingCard());
         m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentGrowTalonsCard());
+        m_cards.Add(new ContentImmolationCard());
         m_cards.Add(new ContentInsightCard());
         m_cards.Add(new ContentJoltCard());
         m_cards.Add(new ContentLegionOfBladesCard());
