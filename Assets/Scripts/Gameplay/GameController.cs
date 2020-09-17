@@ -13,6 +13,7 @@ public class GameController
     private bool ShouldStartIntermission => m_currentTurn == m_player && m_player.m_currentWaveTurn > m_player.GetEndWaveTurn() && m_player.m_waveNum != Constants.FinalWaveNum;
 
     private int m_currentTurnIndex = 0;
+    public bool m_inTurns = false;
 
     public GameController()
     {
@@ -36,7 +37,11 @@ public class GameController
 
     public void BeginTurnSequence()
     {
+        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+            Globals.m_totemOfTheWolfTurn = Random.Range(0, m_player.GetEndWaveTurn() + 1);
+        
         m_currentTurnIndex = 0;
+        m_inTurns = true;
         m_currentTurn.StartTurn();
     }
 
@@ -51,6 +56,7 @@ public class GameController
 
         if (ShouldStartIntermission)
         {
+            m_inTurns = false;
             WorldController.Instance.StartIntermission();
             return;
         }

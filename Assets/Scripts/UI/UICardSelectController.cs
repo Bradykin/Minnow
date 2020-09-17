@@ -76,7 +76,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
             return;
         }
 
-        player.AddCardToDeck(card);
+        player.AddCardToDiscard(card, true);
 
         EndSelection();
     }

@@ -564,6 +564,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
         }
 
+        if (m_keywordHolder.GetKeyword<GameRangeKeyword>() != null)
+        {
+            toReturn += Globals.m_fletchingCount;
+        }
+
         if (toReturn < 0)
         {
             toReturn = 0;
@@ -772,7 +777,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     private void RegenAP()
     {
-        GainAP(GetAPRegen());
+        int apToRegen = GetAPRegen();
+        if (GameHelper.GetPlayer().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        {
+            apToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+        }
+        
+        GainAP(apToRegen);
     }
 
     public void AddPower(int m_toAdd)

@@ -244,10 +244,31 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Remove(toRemove);
     }
 
-    public void AddCardToDeck(GameCard card)
+    public void AddCardToHand(GameCard card, bool addToDeckPermanent)
+    {
+        if (m_hand.Count >= Constants.MaxHandSize)
+        {
+            Debug.Log("Add a card to discard for being past max hand size");
+            AddCardToDiscard(card, addToDeckPermanent);
+            return;
+        }
+
+        m_hand.Add(card);
+
+        if (addToDeckPermanent)
+        {
+            m_deckBase.AddCard(card);
+        }
+    }
+
+    public void AddCardToDiscard(GameCard card, bool addToDeckPermanent)
     {
         m_curDeck.AddToDiscard(card);
-        m_deckBase.AddCard(card);
+
+        if (addToDeckPermanent)
+        {
+            m_deckBase.AddCard(card);
+        }
     }
 
     public GameRelicHolder GetRelics()
@@ -260,6 +281,11 @@ public class GamePlayer : ITurns
         if (toAdd is ContentLoadedChestRelic)
         {
             m_wallet.AddResources(new GameWallet(200));
+        }
+        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inTurns && m_currentWaveTurn <= m_currentWaveEndTurn)
+        {
+            Globals.m_totemOfTheWolfTurn = Random.Range(m_currentWaveTurn + 1, m_currentWaveEndTurn + 1);
+            Debug.Log("Set wolf turn to " + Globals.m_totemOfTheWolfTurn);
         }
 
         m_relics.AddRelic(toAdd);
@@ -374,6 +400,14 @@ public class GamePlayer : ITurns
         }
     }
 
+    public void TriggerSpellcraft()
+    {
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            m_controlledEntities[i].SpellCast();
+        }
+    }
+
     //============================================================================================================//
 
     public void StartTurn()
@@ -420,6 +454,11 @@ public class GamePlayer : ITurns
         {
             m_controlledBuildings[i].StartTurn();
         }
+
+        if (m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        {
+            Debug.Log("TOTEM OF THE WOLF TURN");
+        }
     }
 
     public void EndTurn()
@@ -445,5 +484,6 @@ public class GamePlayer : ITurns
 
         Globals.m_spellsPlayedPreviousTurn = Globals.m_spellsPlayedThisTurn;
         Globals.m_spellsPlayedThisTurn = 0;
+        Globals.m_fletchingCount = 0;
     }
 }

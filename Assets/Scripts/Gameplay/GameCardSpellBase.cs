@@ -103,9 +103,6 @@ public class GameCardSpellBase : GameCard
             return;
         }
 
-        for (int i = 0; i < player.m_controlledEntities.Count; i++)
-        {
-            player.m_controlledEntities[i].SpellCast();
-        }
+        player.TriggerSpellcraft();
     }
 }
