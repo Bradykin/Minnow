@@ -6,10 +6,10 @@ public class ContentWanderer : GameEntity
 {
     public ContentWanderer()
     {
-        m_maxHealth = 10;
+        m_maxHealth = 20;
         m_maxAP = 5;
-        m_apRegen = 3;
-        m_power = 5;
+        m_apRegen = 4;
+        m_power = 9;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;

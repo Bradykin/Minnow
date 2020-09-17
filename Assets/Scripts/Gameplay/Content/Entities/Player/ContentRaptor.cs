@@ -6,7 +6,7 @@ public class ContentRaptor : GameEntity
 {
     public ContentRaptor()
     {
-        m_maxHealth = 2;
+        m_maxHealth = 4;
         m_maxAP = 5;
         m_apRegen = 3;
         m_power = 4;

@@ -6,7 +6,7 @@ public class ContentDwarfShivcaster : GameEntity
 {
     public ContentDwarfShivcaster()
     {
-        m_maxHealth = 12;
+        m_maxHealth = 30;
         m_maxAP = 6;
         m_apRegen = 3;
         m_power = 2;

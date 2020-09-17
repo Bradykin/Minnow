@@ -36,7 +36,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentCursedAmuletRelic());
         m_relics.Add(new ContentDesignSchematicsRelic());
         m_relics.Add(new ContentMedKitRelic());
-        m_relics.Add(new ContentMysticJewelRelic());
         m_relics.Add(new ContentLegacayOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
         m_relics.Add(new ContentTotemOfTheWolfRelic());

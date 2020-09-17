@@ -6,7 +6,7 @@ public class ContentDevourer : GameEntity
 {
     public ContentDevourer()
     {
-        m_maxHealth = 25;
+        m_maxHealth = 30;
         m_maxAP = 6;
         m_apRegen = 4;
         m_power = 5;

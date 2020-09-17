@@ -6,10 +6,10 @@ public class ContentCyclops : GameEntity
 {
     public ContentCyclops()
     {
-        m_maxHealth = 50;
+        m_maxHealth = 100;
         m_maxAP = 3;
         m_apRegen = 1;
-        m_power = 50;
+        m_power = 120;
         m_sightRange = 1;
 
         m_team = Team.Player;

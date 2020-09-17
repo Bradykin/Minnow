@@ -9,17 +9,17 @@ public class ContentSkeleton : GameEntity
 
     public ContentSkeleton()
     {
-        m_chance = 50;
-        m_healthBonus = 4;
+        m_chance = 75;
+        m_healthBonus = 15;
 
-        m_maxHealth = 12;
+        m_maxHealth = 5;
         m_maxAP = 4;
         m_apRegen = 2;
         m_power = 3;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(3));
+        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(5));
 
         m_name = "Skeleton";
         m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.";

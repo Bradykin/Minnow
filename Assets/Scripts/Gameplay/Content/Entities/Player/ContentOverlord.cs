@@ -19,7 +19,7 @@ public class ContentOverlord : GameEntity
 
         m_name = "Overlord";
         m_desc = "Spends all AP to attack, deals damage equal to power times AP spent.";
-        m_typeline = Typeline.Mystic;
+        m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

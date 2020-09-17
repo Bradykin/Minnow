@@ -15,7 +15,7 @@ public class GameDeck
     {
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new ContentGoblinCard());
+            m_cards.Add(new ContentDwarvenSoldierCard());
         }
 
         for (int i = 0; i < 1; i++)
@@ -25,7 +25,7 @@ public class GameDeck
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentGroundskeeperCard());
+            m_cards.Add(new ContentStoneGolemCard());
         }
 
         for (int i = 0; i < 2; i++)

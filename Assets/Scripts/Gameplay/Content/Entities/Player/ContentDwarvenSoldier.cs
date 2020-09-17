@@ -6,13 +6,13 @@ public class ContentDwarvenSoldier : GameEntity
 {
     public ContentDwarvenSoldier()
     {
-        m_maxHealth = 15;
+        m_maxHealth = 8;
         m_maxAP = 4;
-        m_apRegen = 2;
-        m_power = 5;
+        m_apRegen = 3;
+        m_power = 4;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Starter;
 
         m_name = "Dwarven Soldier";
         m_typeline = Typeline.Humanoid;

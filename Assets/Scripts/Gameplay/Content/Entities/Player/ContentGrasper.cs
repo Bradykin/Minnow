@@ -16,7 +16,7 @@ public class ContentGrasper : GameEntity
 
         m_name = "Grasper";
         m_desc = "When this hits an entity, it drains all AP from it.\nCan hit allies.";
-        m_typeline = Typeline.Mystic;
+        m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
