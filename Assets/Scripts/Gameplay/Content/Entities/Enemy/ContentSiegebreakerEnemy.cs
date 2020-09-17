@@ -10,16 +10,17 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
 {
     public ContentSiegebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 25;
+        m_maxHealth = 250;
         m_maxAP = 6;
         m_apRegen = 2;
-        m_power = 30;
+        m_power = 100;
         m_apToAttack = 2;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
         m_minWave = 4;
+        m_maxWave = 6;
 
         m_name = "Siegebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";

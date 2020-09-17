@@ -6,16 +6,17 @@ public class ContentLichEnemy : GameEnemyEntity
 {
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 80;
+        m_maxHealth = 1200;
         m_maxAP = 6;
         m_apRegen = 6;
-        m_power = 15;
+        m_power = 10;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;
         m_isBoss = true;
 
         m_minWave = Constants.FinalWaveNum;
+        m_maxWave = Constants.FinalWaveNum;
 
         m_name = "Lich";
         m_desc = "The final boss.  Kill it, and win.";

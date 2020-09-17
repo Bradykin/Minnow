@@ -91,33 +91,29 @@ public class GameEntityFactory
             {
                 m_standardEnemies.Add(m_enemies[i]);
 
-                if (m_enemies[i].m_minWave <= 1)
+                if (m_enemies[i].m_minWave <= 1 && m_enemies[i].m_maxWave >= 1)
                 {
                     m_standardWaveOneEnemies.Add(m_enemies[i]);
                 }
-                if (m_enemies[i].m_minWave <= 2)
+                if (m_enemies[i].m_minWave <= 2 && m_enemies[i].m_maxWave >= 2)
                 {
                     m_standardWaveTwoEnemies.Add(m_enemies[i]);
                 }
-                if (m_enemies[i].m_minWave <= 3)
+                if (m_enemies[i].m_minWave <= 3 && m_enemies[i].m_maxWave >= 3)
                 {
                     m_standardWaveThreeEnemies.Add(m_enemies[i]);
                 }
-                if (m_enemies[i].m_minWave <= 4)
+                if (m_enemies[i].m_minWave <= 4 && m_enemies[i].m_maxWave >= 4)
                 {
                     m_standardWaveFourEnemies.Add(m_enemies[i]);
                 }
-                if (m_enemies[i].m_minWave <= 5)
+                if (m_enemies[i].m_minWave <= 5 && m_enemies[i].m_maxWave >= 5)
                 {
                     m_standardWaveFiveEnemies.Add(m_enemies[i]);
                 }
-                if (m_enemies[i].m_minWave <= 6)
+                if (m_enemies[i].m_minWave <= 6 && m_enemies[i].m_maxWave >= 6)
                 {
                     m_standardWaveSixEnemies.Add(m_enemies[i]);
-                }
-                if (m_enemies[i].m_minWave <= 7)
-                {
-                    m_standardWaveSevenEnemies.Add(m_enemies[i]);
                 }
             }
         }

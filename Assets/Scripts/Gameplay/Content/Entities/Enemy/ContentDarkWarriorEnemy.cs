@@ -16,6 +16,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         m_isElite = true;
 
         m_minWave = 1;
+        m_maxWave = 6;
 
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
@@ -46,7 +47,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         int waveNum = GameHelper.GetPlayer().m_waveNum;
 
-        return waveNum * 20;
+        return waveNum * waveNum * 20;
     }
 
     private int GetAPRegenModByWave()

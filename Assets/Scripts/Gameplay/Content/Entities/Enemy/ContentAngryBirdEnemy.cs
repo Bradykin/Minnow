@@ -19,6 +19,7 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
         m_desc = "Bawkk!";
 
         m_minWave = 3;
+        m_maxWave = 4;
 
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
