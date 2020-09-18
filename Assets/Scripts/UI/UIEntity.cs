@@ -22,6 +22,8 @@ public class UIEntity : WorldElementBase
     private Vector3 m_moveTarget = new Vector3();
     private float m_movementSpeed = 0.5f;
 
+    public SpriteRenderer m_damageShieldIndicator;
+
     public void Init(GameEntity entity)
     {
         m_moveTarget = gameObject.transform.position;
@@ -44,6 +46,13 @@ public class UIEntity : WorldElementBase
 
     void Update()
     {
+        if (GetEntity() == null)
+        {
+            return;
+        }
+
+        m_damageShieldIndicator.gameObject.SetActive(GetEntity().GetKeyword<GameDamageShieldKeyword>() != null);
+
         if (m_moveTarget != gameObject.transform.position)
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed);

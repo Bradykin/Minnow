@@ -37,6 +37,11 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         return default(T);
     }
 
+    public void RemoveKeyword(GameKeywordBase toRemove)
+    {
+        m_keywords.Remove(toRemove);
+    }
+
     public string GetDesc()
     {
         string descString = "";
