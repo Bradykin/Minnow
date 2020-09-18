@@ -8,7 +8,7 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentOrcEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentToadEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -19,7 +19,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentImmolationCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDwarfShivcasterCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
