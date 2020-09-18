@@ -16,7 +16,13 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Draw cards equal to the number of spells played last turn (" + Globals.m_spellsPlayedPreviousTurn + ").";
+        string predictionString = "";
+        if (!Globals.m_inIntermission)
+        {
+            predictionString = "(" + Globals.m_spellsPlayedPreviousTurn + ")";
+        }
+
+        return "Draw cards equal to the number of spells played last turn " + predictionString + ".";
     }
 
     public override void PlayCard(GameEntity targetEntity)

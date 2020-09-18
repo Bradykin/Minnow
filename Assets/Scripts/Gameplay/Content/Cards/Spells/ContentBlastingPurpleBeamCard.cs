@@ -19,7 +19,7 @@ public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "If it kills the entity, increase the purple beam count by 1.";
+        return GetDamageDescString() + "If it kills the entity, increase the purple beam count by 2.";
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -35,7 +35,7 @@ public class ContentBlastingPurpleBeamCard : GameCardSpellBase
 
         if (targetEntity.m_isDead)
         {
-            Globals.m_purpleBeamCount++;
+            Globals.m_purpleBeamCount += 2;
         }
     }
 }

@@ -10,7 +10,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
     {
         m_range = 2;
 
-        m_spellEffect = 4;
+        m_spellEffect = 15;
 
         m_name = "Necromantic Touch";
         m_playDesc = "Zaaaaam!";

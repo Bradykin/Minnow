@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ContentTonicOfStrengthCard : GameCardSpellBase
 {
+    private int m_powerToGain = 5;
+    private int m_apGain = 2;
+
     public ContentTonicOfStrengthCard()
     {
         m_name = "Tonic of Strength";
-        m_desc = "Target friendly entity gets +2 power and +2 current action points.";
+        m_desc = "Target friendly entity gets +" + m_powerToGain + " power and +" + m_apGain + " current action points.";
         m_playDesc = "The target is infused with strength!";
         m_targetType = Target.Ally;
         m_cost = 3;
@@ -26,7 +29,7 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddPower(2);
-        targetEntity.GainAP(2);
+        targetEntity.AddPower(m_powerToGain);
+        targetEntity.GainAP(m_apGain);
     }
 }

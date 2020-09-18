@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ContentPurpleBeamSwordCard : GameCardSpellBase
 {
+    private int m_beamGain = 3;
+
     public ContentPurpleBeamSwordCard()
     {
         m_name = "Purple Beam Sword";
-        m_desc = "Give an entity Victorious: Gain 2 purple beam count.";
+        m_desc = "Give an entity Victorious: Gain " + m_beamGain + " purple beam count.";
         m_playDesc = "Zwooo-PURPLE-om!";
         m_targetType = Target.Entity;
         m_cost = 3;
@@ -27,7 +29,7 @@ public class ContentPurpleBeamSwordCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddKeyword(new GameVictoriousKeyword(new GainPurpleBeamAction(2)));
+        targetEntity.AddKeyword(new GameVictoriousKeyword(new GainPurpleBeamAction(m_beamGain)));
     }
 }
 

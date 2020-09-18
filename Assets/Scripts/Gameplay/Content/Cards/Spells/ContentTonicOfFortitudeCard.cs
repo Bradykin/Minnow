@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ContentTonicOfFortitudeCard : GameCardSpellBase
 {
+    private int m_healthGain = 5;
+    private int m_apGain = 2;
+
     public ContentTonicOfFortitudeCard()
     {
         m_name = "Tonic of Fortitude";
-        m_desc = "Target friendly entity gets +2 health and +2 current action points.";
+        m_desc = "Target friendly entity gets +" + m_healthGain + " health and +" + m_apGain + " current action points.";
         m_playDesc = "The target is infused with fortitude!";
         m_targetType = Target.Ally;
         m_cost = 2;
@@ -26,7 +29,7 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddMaxHealth(2);
-        targetEntity.GainAP(2);
+        targetEntity.AddMaxHealth(m_healthGain);
+        targetEntity.GainAP(m_apGain);
     }
 }

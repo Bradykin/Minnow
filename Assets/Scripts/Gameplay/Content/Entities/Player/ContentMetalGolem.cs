@@ -45,8 +45,15 @@ public class ContentMetalGolem : GameEntity
             }
         }
 
+        GameDamageShieldKeyword damageShieldKeyword = GetKeyword<GameDamageShieldKeyword>();
 
-
-        this.Heal(numMountains * m_healingVal);
+        if (damageShieldKeyword == null)
+        {
+            AddKeyword(new GameDamageShieldKeyword(numMountains));
+        }
+        else
+        {
+            damageShieldKeyword.IncreaseShield(numMountains);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class ContentTrollFormCard : GameCardSpellBase
 {
     public ContentTrollFormCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 4;
 
         m_name = "Troll Form";
         m_playDesc = "The target begins to regenerate!";
