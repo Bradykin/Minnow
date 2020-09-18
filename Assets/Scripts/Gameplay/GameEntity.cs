@@ -253,7 +253,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile());
 
-        WorldGridManager.Instance.ClearAllTilesMovementRange();
+        if (m_uiEntity == Globals.m_selectedEntity)
+        {
+            WorldGridManager.Instance.ClearAllTilesMovementRange();
+        }
         m_gameTile.GetWorldTile().RecycleEntity();
 
         m_isDead = true;
