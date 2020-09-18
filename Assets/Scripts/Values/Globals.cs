@@ -26,16 +26,18 @@ public static class Globals
     public static int GridSizeX = 30;
     public static int GridSizeY = 30;
 
+    //Values that should be in some "LevelCreatorState" data
     public static bool m_levelCreatorEraserMode = false;
     public static Type m_currentlyPaintingType;
     public static GameBuildingBase m_currentlyPaintingBuilding;
     public static GameTerrainBase m_currentlyPaintingTerrain;
     public static ContentAngelicGiftEvent m_currentlyPaintingEvent;
+
+    //Moved some some UI thing? IDK.
     public static bool m_inDeckView = false;
 
+    //Temp testing value
     public static GameEnemyEntity m_testSpawnEnemyEntity = null;
-
-    private static bool m_hasInit;
 
     //Values that will be moved into player save data
     public static int m_purpleBeamCount = 0;
@@ -45,6 +47,8 @@ public static class Globals
     public static int m_totemOfTheWolfTurn = -1;
     public static int m_goldPerShivKill = 0;
     public static int m_curChaos = 0;
+
+    private static bool m_hasInit;
 
     public static void Init()
     {
