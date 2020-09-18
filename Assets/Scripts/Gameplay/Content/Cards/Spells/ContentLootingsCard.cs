@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ContentLootingsCard : GameCardSpellBase
 {
+    private int m_lootVal = 75;
+    private int m_damageVal = 10;
+
     public ContentLootingsCard()
     {
         m_name = "Lootings";
-        m_desc = "Loot your own castle, gaining +75 gold but dealing 10 damage to the castle.";
+        m_desc = "Loot your own castle, gaining +" + m_lootVal + " gold but dealing " + m_damageVal + " damage to the castle.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -25,7 +28,7 @@ public class ContentLootingsCard : GameCardSpellBase
 
         base.PlayCard();
 
-        GameHelper.GetPlayer().Castle.GetHit(10);
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(75));
+        GameHelper.GetPlayer().Castle.GetHit(m_damageVal);
+        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(m_lootVal));
     }
 }

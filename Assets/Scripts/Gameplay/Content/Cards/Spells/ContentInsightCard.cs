@@ -6,7 +6,7 @@ public class ContentInsightCard : GameCardSpellBase
 {
     public ContentInsightCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 4;
 
         m_name = "Insight";
         m_playDesc += "Spellcraft is done here...";

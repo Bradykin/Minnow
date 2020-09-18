@@ -10,8 +10,8 @@ public static class Constants
     public static int StartingActions = 4;
     public static int MaxHandSize = 7;
 
-    public static int PercentChanceForUncommonCard = 34;
-    public static int PercentChanceForRareCard = 12;
+    public static int PercentChanceForUncommonCard = 38;
+    public static int PercentChanceForRareCard = 18;
 
     public static int PercentChanceForEliteToSpawn = 20;
     public static int PercentChanceForMobToSpawn = 33;

@@ -6,7 +6,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 {
     public ContentGrowTalonsCard()
     {
-        m_spellEffect = 1;
+        m_spellEffect = 2;
 
         m_name = "Grow Talons";
         m_playDesc = "Talons grow, slish slash!";
