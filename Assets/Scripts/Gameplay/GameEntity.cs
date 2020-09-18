@@ -120,6 +120,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             if (damageShieldKeyword.m_numShields > 0)
             {
                 damageShieldKeyword.DecreaseShield(1);
+                if (damageShieldKeyword.m_numShields == 0)
+                {
+                    m_keywordHolder.RemoveKeyword(damageShieldKeyword);
+                }
                 return 0;
             }
         }
