@@ -62,6 +62,11 @@ public class GameShivNearbyAction : GameAction
             }
         }
 
+        if (nearbyEnemies.Count == 0)
+        {
+            return;
+        }
+
         int randomIndex = Random.Range(0, nearbyEnemies.Count);
 
         shivCard.PlayCard(nearbyEnemies[randomIndex]);

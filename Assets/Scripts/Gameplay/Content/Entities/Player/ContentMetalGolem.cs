@@ -47,6 +47,6 @@ public class ContentMetalGolem : GameEntity
 
 
 
-        this.Heal(numMountains * m_healingVal);
+        this.Heal(numMountains * m_eatingVal);
     }
 }
