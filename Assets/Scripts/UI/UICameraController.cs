@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UICameraController : Singleton<UICameraController>, IReset
 {
-    private float m_cameraSpeed = 12.0f;
+    private float m_cameraSpeed = 15.0f;
     private float m_cameraBound = 40f;
 
     private float m_zoomSpeed = 20.0f;

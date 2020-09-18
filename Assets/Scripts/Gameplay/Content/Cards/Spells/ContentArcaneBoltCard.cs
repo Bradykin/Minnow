@@ -36,6 +36,13 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     protected override int GetSpellValue()
     {
-        return 5 * (base.GetSpellValue() - m_spellEffect) + m_spellEffect;
+        int spellValueBase = base.GetSpellValue() - m_spellEffect;
+
+        if (spellValueBase < 0)
+        {
+            spellValueBase = 0;
+        }
+
+        return 5 * spellValueBase + m_spellEffect;
     }
 }

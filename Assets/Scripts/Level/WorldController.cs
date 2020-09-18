@@ -203,6 +203,8 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
+        Globals.m_spellsPlayedPreviousTurn = 0;
+
         UITooltipController.Instance.ClearTooltipStack();
         ClearAllEntities();
 

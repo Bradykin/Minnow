@@ -17,7 +17,7 @@ public class ContentNaturalScout : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Natural Scout";
-        m_desc = "Takes 5 AP to attack.";
+        m_desc = "Has sight range of " + m_sightRange + ".\nTakes 5 AP to attack.";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
