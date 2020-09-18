@@ -97,8 +97,8 @@ public class UICard : WorldElementBase
         if (m_card is GameCardEntityBase)
         {
             GameCardEntityBase entityCard = (GameCardEntityBase)m_card;
-            m_powerText.text = entityCard.m_entity.GetPower() + " ";
-            m_healthText.text = entityCard.m_entity.GetMaxHealth() + " ";
+            m_powerText.text = entityCard.m_entity.GetPower() + "";
+            m_healthText.text = entityCard.m_entity.GetMaxHealth() + "";
 
             m_apContainer.gameObject.SetActive(true);
             m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
