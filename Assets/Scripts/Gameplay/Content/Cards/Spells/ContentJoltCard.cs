@@ -20,13 +20,7 @@ public class ContentJoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
-        {
-            spString = GetSpellPowerString();
-        }
-
-        return "Restore " + m_spellEffect + spString + " AP.\nDraw a card.";
+        return "Restore " + m_spellEffect + " AP.\nDraw a card.";
     }
 
     public override void PlayCard(GameEntity targetEntity)

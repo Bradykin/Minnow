@@ -21,7 +21,7 @@ public static class GameEventFactory
         m_events.Add(new ContentStablesEvent(null));
         m_events.Add(new ContentMagicianEvent(null));
         m_events.Add(new ContentGemsOfProphecyEvent(null));
-        m_events.Add(new ContentTransmuteBeamsEvent(null));
+        //m_events.Add(new ContentTransmuteBeamsEvent(null)); nmartino - Come back to this one event refactor is complete
 
         m_hasInit = true;
     }
