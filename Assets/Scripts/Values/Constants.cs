@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Constants
@@ -39,4 +40,16 @@ public static class Constants
     public static bool FogOfWar = true;
     public static bool UseSmartCameraEnemyTurns = false;
     public static bool DebugEventsVisibleInFog = true;
+
+    //Save related file path data
+    public const string REMOTE_DATA_PATH = "RemoteData";
+    public const string ADD_TO_BUILD_PATH = "AddToBuild";
+    public const string BUILD_DATA_PATH = "BuildData";
+    public const string MAP_META_DATA_PATH = "SaveMetaData.txt";
+    public const string DEFAULT_GRID_DATA_PATH = "JsonGridData0.txt";
+
+
+    //private static string DATA_FOLDER = $"{}_Data";
+    public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
+    public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
 }
