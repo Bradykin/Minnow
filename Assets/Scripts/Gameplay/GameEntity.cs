@@ -568,11 +568,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
             toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
-        }
 
-        if (m_keywordHolder.GetKeyword<GameRangeKeyword>() != null)
-        {
-            toReturn += Globals.m_fletchingCount;
+            if (m_keywordHolder.GetKeyword<GameRangeKeyword>() != null)
+            {
+                toReturn += Globals.m_fletchingCount;
+            }
         }
 
         if (toReturn < 0)
