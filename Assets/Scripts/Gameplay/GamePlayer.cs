@@ -40,7 +40,7 @@ public class GamePlayer : ITurns
         m_controlledEntities = new List<GameEntity>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
-        m_wallet = new GameWallet(100);
+        m_wallet = new GameWallet(25);
 
         m_waveNum = 1;
         m_currentWaveTurn = 0;
@@ -223,7 +223,7 @@ public class GamePlayer : ITurns
         }
 
         toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
-        toReturn -= 2 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
 
         return toReturn;
     }
