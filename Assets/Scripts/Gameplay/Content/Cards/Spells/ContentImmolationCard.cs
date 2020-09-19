@@ -30,7 +30,7 @@ public class ContentImmolationCard : GameCardSpellBase
 
         if (targetEntity.GetGameTile().GetTerrain().IsForest() && !targetEntity.GetGameTile().GetTerrain().IsBurned())
         {
-            targetEntity.GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentAshForestBurnedTerrain()));
+            targetEntity.GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentDirtForestBurnedTerrain()));
             targetEntity.GetHit(m_amount * m_multiple);
         }
         else
