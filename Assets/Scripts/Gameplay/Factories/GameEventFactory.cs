@@ -11,16 +11,16 @@ public static class GameEventFactory
 
     public static void Init()
     {
-        m_events.Add(new ContentWonderousGenieEvent(null));
+        /*m_events.Add(new ContentWonderousGenieEvent(null));
         m_events.Add(new ContentOverturnedCartEvent(null));
         m_events.Add(new ContentMillitiaEvent(null));
         m_events.Add(new ContentAngelicGiftEvent(null));
         m_events.Add(new ContentClericEvent(null));
-        m_events.Add(new ContentRogueEvent(null));
+        m_events.Add(new ContentRogueEvent(null));*/
         m_events.Add(new ContentMysteryWanderer(null));
-        m_events.Add(new ContentStablesEvent(null));
+        /*m_events.Add(new ContentStablesEvent(null));
         m_events.Add(new ContentMagicianEvent(null));
-        m_events.Add(new ContentGemsOfProphecyEvent(null));
+        m_events.Add(new ContentGemsOfProphecyEvent(null));*/
         //m_events.Add(new ContentTransmuteBeamsEvent(null)); nmartino - Come back to this one event refactor is complete
 
         m_hasInit = true;
