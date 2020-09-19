@@ -25,6 +25,8 @@ namespace Game.Util
 
         private static string currentScene;
         private static string lastScene;
+
+        public static string CurrentScene => currentScene;
         
 
         //============================================================================================================//

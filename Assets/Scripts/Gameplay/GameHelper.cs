@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -94,12 +95,12 @@ public static class GameHelper
 
     public static bool IsInLevelSelect()
     {
-        return SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelSelectScene");
+        return SceneLoader.CurrentScene == "LevelSelectScene";
     }
 
     public static bool IsInLevelBuilder()
     {
-        return SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene");
+        return SceneLoader.CurrentScene == "LevelCreatorScene";
     }
 
     public static bool IsBossOrElite(GameEntity toCheck)
