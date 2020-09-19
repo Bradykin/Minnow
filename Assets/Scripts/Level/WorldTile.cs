@@ -170,8 +170,8 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                     gameTile.ClearTerrain();
                 if (gameTile.GetBuilding() != null)
                     gameTile.ClearBuilding();
-                if (gameTile.m_event != null)
-                    gameTile.ClearEvent();
+                if (gameTile.m_event)
+                    gameTile.m_event = false;
                 if (gameTile.m_spawnPoint != null)
                     gameTile.ClearSpawnPoint();
             }
@@ -182,7 +182,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                     GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
                     if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
                     {
-                        GetGameTile().SetEvent();
+                        GetGameTile().m_event = true;
                     }
                 }
                 else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)

@@ -32,7 +32,7 @@ public class GameEventRevealRuinsOption : GameEventOption
         WorldTile[] worldTiles = WorldGridManager.Instance.m_gridArray;
         for (int i = 0; i < worldTiles.Length; i++)
         {
-            if (worldTiles[i].GetGameTile().m_event != null)
+            if (worldTiles[i].GetGameTile().m_event)
             {
                 worldTiles[i].ClearFog();
             }

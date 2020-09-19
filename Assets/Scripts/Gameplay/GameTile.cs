@@ -10,7 +10,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
     private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
-    public GameEvent m_event { get; private set; }
+    public bool m_event { get; set; }
     public GameSpawnPoint m_spawnPoint { get; private set; }
     private WorldTile m_worldTile;
 
@@ -49,11 +49,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             m_worldTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
 
-            if (m_event != null && !m_event.m_isComplete)
+            if (m_event)
             {
-                UIEventController.Instance.Init(m_event);
+                UIEventController.Instance.Init(GameEventFactory.GetRandomEvent(this));
                 SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
-                m_event = null;
+                m_event = false;
             }
         }
     }
@@ -118,22 +118,12 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool HasAvailableEvent()
     {
-        return m_event != null;
+        return m_event;
     }
 
     public bool HasBuilding()
     {
         return m_building != null;
-    }
-
-    public void SetEvent()
-    {
-        m_event = GameEventFactory.GetRandomEvent(this);
-    }
-
-    public void ClearEvent()
-    {
-        m_event = null;
     }
 
     public string GetName()
@@ -318,9 +308,9 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             jsonData.gameTerrainData = m_terrain.SaveToJson();
         }
-        if (m_event != null)
+        if (m_event)
         {
-            jsonData.gameEventData = m_event.SaveToJson();
+            jsonData.gameEventData = "True";
         }
         if (m_spawnPoint != null)
         {
@@ -360,7 +350,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         if (jsonData.gameEventData != string.Empty)
         {
             JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
-            m_event = GameEventFactory.GetRandomEvent(this);
+            m_event = true;
         }
 
         if (jsonData.gameSpawnPointData != string.Empty)
@@ -376,7 +366,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         m_occupyingEntity = null;
         m_gridPosition = Vector2Int.zero;
         m_terrain = null;
-        m_event = null;
+        m_event = false;
         m_spawnPoint = null;
         m_building = null;
         m_worldTile = null;
