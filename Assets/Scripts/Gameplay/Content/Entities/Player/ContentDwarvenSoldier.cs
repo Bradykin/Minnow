@@ -20,4 +20,17 @@ public class ContentDwarvenSoldier : GameEntity
 
         LateInit();
     }
+
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        int traditionalMethodsCount = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+
+        if (traditionalMethodsCount > 0)
+        {
+            AddPower(traditionalMethodsCount);
+            AddMaxHealth(traditionalMethodsCount);
+        }
+    }
 }

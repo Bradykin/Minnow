@@ -45,6 +45,7 @@ public static class Globals
     public static int m_goldPerShivKill = 0;
     public static int m_curChaos = 0;
     public static int m_tempSpellpower = 0;
+    public static bool m_worthySacrificeEvent = false;
 
     private static bool m_hasInit;
 

@@ -22,8 +22,11 @@ public static class GameEventFactory
         m_events.Add(new ContentMagicianEvent(null));
         m_events.Add(new ContentGemsOfProphecyEvent(null));
         m_events.Add(new ContentOrcDenEvent(null));
-        m_events.Add(new ContentForbiddenFruitEvent(null));*/
+        m_events.Add(new ContentForbiddenFruitEvent(null));
         m_events.Add(new ContentCreativeChemistEvent(null));
+        m_events.Add(new ContentCreativeChemistEvent(null));
+        m_events.Add(new ContentTraditionOrProgressEvent(null));*/
+        m_events.Add(new ContentWorthySacrificeEvent(null));
 
         //m_events.Add(new ContentTransmuteBeamsEvent(null)); nmartino - Come back to this one event refactor is complete
 

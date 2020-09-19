@@ -22,6 +22,15 @@ public class ContentCureWoundsCard : GameCardSpellBase
         return GetHealDescString();
     }
 
+    protected override int GetSpellValue()
+    {
+        int spellValue = base.GetSpellValue();
+
+        spellValue += 3 * GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+
+        return spellValue;
+    }
+
     public override void PlayCard(GameEntity targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
