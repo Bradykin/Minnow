@@ -12,7 +12,7 @@ public class ContentWonderousGenieEvent : GameEvent
         m_rarity = GameRarity.Common;
 
         m_optionOne = new GameEventTakeRelicOption();
-        m_optionTwo = new GameEventTakeRelicOption();
+        m_optionTwo = new GameEventTakeRelicOption(((GameEventTakeRelicOption)m_optionOne).m_relic);
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
@@ -21,16 +21,19 @@ public class ContentWonderousGenieEvent : GameEvent
 
 public class GameEventTakeRelicOption : GameEventOption
 {
-    private GameRelic m_relic;
+    public GameRelic m_relic;
 
-    public GameEventTakeRelicOption()
+    private GameRelic m_excludeRelic;
+
+    public GameEventTakeRelicOption(GameRelic excludeRelic = null)
     {
         m_hasTooltip = true;
+        m_excludeRelic = excludeRelic;
     }
 
     public override void Init()
     {
-        m_relic = GameRelicFactory.GetRandomRelic();
+        m_relic = GameRelicFactory.GetRandomRelic(m_excludeRelic);
 
         m_message = "Take " + m_relic.m_name;
     }

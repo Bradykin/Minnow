@@ -14,13 +14,14 @@ public class ContentJoltCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Uncommon;
+        m_shouldExile = true;
 
         SetupBasicData();
     }
 
     public override string GetDesc()
     {
-        return "Restore " + m_spellEffect + " AP.\nDraw a card.";
+        return "Restore " + m_spellEffect + GetSpellPowerString() + " AP.\nDraw a card.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -32,7 +33,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GainAP(m_spellEffect);
+        targetEntity.GainAP(GetSpellValue());
 
         GameHelper.GetPlayer().DrawCard();
     }

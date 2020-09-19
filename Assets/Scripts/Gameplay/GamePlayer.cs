@@ -115,7 +115,6 @@ public class GamePlayer : ITurns
 
             if (m_hand.Count >= Constants.MaxHandSize)
             {
-                Debug.Log("Discarding a card for being past max hand size");
                 m_curDeck.AddToDiscard(card);
             }
             else
