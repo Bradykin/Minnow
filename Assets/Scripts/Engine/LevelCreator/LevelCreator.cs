@@ -25,7 +25,7 @@ public class LevelCreator : MonoBehaviour
 
     private void Start()
     {
-        dataPath = Application.dataPath + "/RemoteData/JsonGridData";
+        dataPath = "JsonGridData";
         dataPaths = new List<string>();
         for (int i = 0; i < 6; i++)
         {
@@ -164,13 +164,21 @@ public class LevelCreator : MonoBehaviour
     public void LoadGrid(int pathIndex)
     {
         m_saveFileNotifier.text = "Save File: " + (pathIndex + 1);
-        if (!File.Exists(dataPaths[pathIndex]))
+
+#if UNITY_EDITOR
+        string path = Path.Combine(Constants.EDITOR_PATH, dataPaths[pathIndex]);
+#else
+        string path = Path.Combine(Constants.BUILD_PATH, dataPaths[pathIndex]);
+#endif
+
+        if (!File.Exists(path))
         {
             SpawnGrid();
             return;
         }
 
-        JsonGridData jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(dataPaths[pathIndex]));
+        JsonGridData jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(path));
+
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(m_worldGridLevelCreatorRoot.transform);
     }
@@ -178,7 +186,11 @@ public class LevelCreator : MonoBehaviour
     public void SaveGrid(int pathIndex)
     {
         string jsonGridData = WorldGridManager.Instance.SaveToJson();
-        File.WriteAllText(dataPaths[pathIndex], jsonGridData);
+#if UNITY_EDITOR
+        File.WriteAllText(Path.Combine(Constants.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
+#else
+        File.WriteAllText(Path.Combine(Constants.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
+#endif
 
         List<JsonMapMetaData> jsonMapMetaData = Globals.LoadMapMetaData();
         bool containsMapData = jsonMapMetaData.Any(m => m.dataPath == dataPaths[pathIndex]);

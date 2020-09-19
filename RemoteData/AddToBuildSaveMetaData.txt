@@ -1,0 +1,1 @@
+{"mapFiles":["{\"mapName\":\"JsonGridData0.txt\",\"mapID\":0,\"gridSize\":{\"x\":30,\"y\":30},\"mapDifficulty\":0,\"dataPath\":\"JsonGridData0.txt\"}","{\"mapName\":\"Hard Lakeside\",\"mapID\":1,\"gridSize\":{\"x\":30,\"y\":30},\"mapDifficulty\":2,\"dataPath\":\"JsonGridData1.txt\"}"]}

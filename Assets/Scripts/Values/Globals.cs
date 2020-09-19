@@ -7,10 +7,7 @@ using UnityEngine;
 
 public static class Globals
 {
-    //TODO: THis is temp. This datapath should be gotten from the menu before loading the level
-    private static string applicationDataPath;
-    private static string mapMetaDataPath = "/RemoteData/SaveMetaData.txt";
-    private static string defaultGridDataPath = "/RemoteData/JsonGridData0.txt";
+    //TODO: THis is temp.
     public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
@@ -52,37 +49,25 @@ public static class Globals
 
     public static void Init()
     {
-        applicationDataPath = Application.dataPath;
-
         m_hasInit = true;
-    }
-
-    public static string GetMapMetaDataPath()
-    {
-        if (!m_hasInit)
-            Init();
-
-        return applicationDataPath + mapMetaDataPath;
-    }
-
-    public static string GetDefaultGridDataPath()
-    {
-        if (!m_hasInit)
-            Init();
-
-        return applicationDataPath + defaultGridDataPath;
     }
 
     public static List<JsonMapMetaData> LoadMapMetaData()
     {
         if (!m_hasInit)
             Init();
-        
-        if (!File.Exists(applicationDataPath + mapMetaDataPath))
+
+#if UNITY_EDITOR
+        string path = Path.Combine(Constants.EDITOR_PATH, Constants.MAP_META_DATA_PATH);
+#else
+        string path = Path.Combine(Constants.BUILD_PATH, Constants.MAP_META_DATA_PATH);
+#endif
+
+        if (!File.Exists(path))
         {
             return new List<JsonMapMetaData>();
         }
-        JsonMapFilesMetaData jsonMapFilesMetaData = JsonUtility.FromJson<JsonMapFilesMetaData>(File.ReadAllText(applicationDataPath + mapMetaDataPath));
+        JsonMapFilesMetaData jsonMapFilesMetaData = JsonUtility.FromJson<JsonMapFilesMetaData>(File.ReadAllText(path));
 
         List<JsonMapMetaData> jsonMapMetaDatas = new List<JsonMapMetaData>();
         for (int i = 0; i < jsonMapFilesMetaData.mapFiles.Count; i++)
@@ -98,6 +83,12 @@ public static class Globals
         if (!m_hasInit)
             Init();
 
+#if UNITY_EDITOR
+        string path = Path.Combine(Constants.EDITOR_PATH + Constants.MAP_META_DATA_PATH);
+#else
+        string path = Path.Combine(Constants.BUILD_PATH + Constants.MAP_META_DATA_PATH);
+#endif
+
         jsonMapMetaData = jsonMapMetaData.OrderBy(j => j.mapID).ToList();
 
         JsonMapFilesMetaData jsonMapFilesMetaData = new JsonMapFilesMetaData
@@ -111,6 +102,6 @@ public static class Globals
         }
 
         string jsonData = JsonUtility.ToJson(jsonMapFilesMetaData);
-        File.WriteAllText(applicationDataPath + mapMetaDataPath, jsonData);
+        File.WriteAllText(path, jsonData);
     }
 }
