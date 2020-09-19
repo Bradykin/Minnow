@@ -431,12 +431,19 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
     }
 
-    public static void CreateEntityTooltip(GameEntity entity)
+    public static void CreateEntityTooltip(GameEntity entity, bool secondStack = false)
     {
         GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entity);
         UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromEntity, UICard.CardDisplayType.Tooltip);
 
-        UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
+        if (secondStack)
+        {
+            UITooltipController.Instance.AddTooltipToSecondStack(obj.GetCardTooltip());
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
+        }
     }
 
     public static void CreateSpellTooltip(GameCard card)

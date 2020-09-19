@@ -251,9 +251,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             }
 
             bool hasNotDestroyedBuilding = HasBuilding();
+            bool hasCastleBuilding = false;
             if (hasNotDestroyedBuilding)
             {
                 hasNotDestroyedBuilding = m_building.m_isDestroyed;
+                hasCastleBuilding = m_building is ContentCastleBuilding;
             }
 
 
@@ -263,7 +265,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             }
 
 
-            if (hasNotDestroyedBuilding)
+            if (hasNotDestroyedBuilding || hasCastleBuilding)
             {
                 return false;
             }
