@@ -20,6 +20,8 @@ public class GameOpponent : ITurns
     public void LateInit()
     {
         //Debug.Log("GameOpponent LateInit");
+
+        HandleSpawn();
     }
 
     public void AddControlledEntity(GameEnemyEntity toAdd)
@@ -80,10 +82,22 @@ public class GameOpponent : ITurns
             return;
         }
 
+        HandleSpawn();
+    }
+
+    private void HandleSpawn()
+    {
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
             if (m_spawnPoints[i].m_tile.m_occupyingEntity != null)
+            {
                 continue;
+            }
+
+            if (!m_spawnPoints[i].m_tile.m_isFog && Constants.FogOfWar)
+            {
+                continue;
+            }
 
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
             {
