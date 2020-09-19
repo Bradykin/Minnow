@@ -20,5 +20,7 @@ public class ContentSnowForestRuinsTerrain : GameTerrainBase
         m_isForest = true;
         m_isCold = true;
         m_isEventTerrain = true;
+
+        m_completedEventType = typeof(ContentSnowForestTerrain);
     }
 }

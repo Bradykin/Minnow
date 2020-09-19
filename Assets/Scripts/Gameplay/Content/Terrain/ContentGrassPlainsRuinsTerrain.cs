@@ -8,12 +8,19 @@ public class ContentGrassPlainsRuinsTerrain : GameTerrainBase
     {
         m_name = "GrassPlainsRuins";
         m_desc = "2 AP movement.";
-        m_terrainImageNumber = Random.Range(1, 3);
+        m_maxTerrainImageNumber = 3;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.yellow;
 
         m_isPassable = true;
         m_costToPass = 2;
+
+        m_isPlains = true;
+        m_canBurn = true;
+
+        m_burnedTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
+        m_completedEventType = typeof(ContentGrassPlainsTerrain);
 
         m_isEventTerrain = true;
     }

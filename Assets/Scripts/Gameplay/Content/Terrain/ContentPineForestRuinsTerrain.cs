@@ -19,5 +19,7 @@ public class ContentPineForestRuinsTerrain : GameTerrainBase
 
         m_isForest = true;
         m_isEventTerrain = true;
+
+        m_completedEventType = typeof(ContentPineForestTerrain);
     }
 }

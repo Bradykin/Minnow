@@ -17,5 +17,7 @@ public class ContentSnowRuinsTerrain : GameTerrainBase
 
         m_isCold = true;
         m_isEventTerrain = true;
+
+        m_completedEventType = typeof(ContentSnowPlainsTerrain);
     }
 }

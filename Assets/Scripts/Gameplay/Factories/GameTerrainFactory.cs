@@ -77,6 +77,7 @@ public class GameTerrainFactory
         m_forestTerrain.Add(new ContentDirtForestBurnedTerrain());
         m_forestTerrain.Add(new ContentAshForestBurnedTerrain());
         m_forestTerrain.Add(new ContentForestRuinsTerrain());
+        m_forestTerrain.Add(new ContentForestBurnedRuinsTerrain());
         m_forestTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Forest Terrain", m_forestTerrain));
 
@@ -197,6 +198,7 @@ public class GameTerrainFactory
         m_ruinsTerrain.Add(new ContentGrassPlainsRuinsTerrain());
         m_ruinsTerrain.Add(new ContentDirtPlainsRuinsTerrain());
         m_ruinsTerrain.Add(new ContentForestRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentForestBurnedRuinsTerrain());
         m_ruinsTerrain.Add(new ContentPineForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentMarshRuinsTerrain());
@@ -256,29 +258,37 @@ public class GameTerrainFactory
         return (GameTerrainBase)Activator.CreateInstance(currentTerrain.GetType());
     }
 
+    public static GameTerrainBase GetTerrainClone(Type type)
+    {
+        return (GameTerrainBase)Activator.CreateInstance(type);
+    }
+
     public static GameTerrainBase GetCompletedEventTerrainClone(GameTerrainBase currentTerrain)
     {
-        string terrainName = currentTerrain.m_name;
-        terrainName = terrainName.Remove(terrainName.IndexOf("Ruins"), 5);
-
-        for (int i = 0; i < m_terrain.Count; i++)
+        if (currentTerrain.GetCompletedEventTerrainType() == null)
         {
-            List<GameTerrainBase> currentTerrainList = m_terrain[i].Value;
-
-            int r = currentTerrainList.FindIndex(t => t.m_name == terrainName);
-
-            if (r == -1)
-            {
-                continue;
-            }
-
-            GameTerrainBase newTerrain = (GameTerrainBase)Activator.CreateInstance(currentTerrainList[r].GetType());
-
-            return newTerrain;
+            Debug.LogError("Missing completed event type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
         }
 
-        Debug.LogError("Missing terrain class for " + terrainName + " in GameTerrainFactory");
-        return null;
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetCompletedEventTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
+    public static GameTerrainBase GetBurnedTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetBurnedTerrainType() == null)
+        {
+            Debug.LogError("Missing completed event type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetBurnedTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
     }
 
 

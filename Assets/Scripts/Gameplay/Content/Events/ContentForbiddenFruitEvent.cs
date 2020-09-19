@@ -6,13 +6,13 @@ public class ContentForbiddenFruitEvent : GameEvent
 {
     public ContentForbiddenFruitEvent(GameTile tile)
     {
-        m_name = "Forbidden Cleric";
-        m_eventDesc = "A wandering cleric stops your troops on the side of the road, and offers to help purge some of the weakness from your spirit.";
+        m_name = "Forbidden Fruit";
+        m_eventDesc = "You stumble across a garden with fruit you aren't supposed to eat. Yes, that garden. Will you follow the rules and reject the fruit, or are you going to take it for yourself?";
         m_tile = tile;
         m_rarity = GameRarity.Common;
 
-        m_optionOne = new GameEventLeaveOption();
-        m_optionTwo = new GameEventLeaveOption();
+        m_optionOne = new GameEventRejectFruitOption(tile);
+        m_optionTwo = new GameEventEatFruitOption(tile);
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
