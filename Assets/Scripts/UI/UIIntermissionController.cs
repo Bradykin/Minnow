@@ -36,15 +36,15 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_intermissionActions.Add(new ContentCardIntermissionAction());
         m_intermissionActions.Add(new ContentRelicIntermissionAction());
 
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding(), new GameWallet(70)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentTempleBuilding(), new GameWallet(85)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentInnBuilding(), new GameWallet(40)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentSmithyBuilding(), new GameWallet(85)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding(), new GameWallet(45)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding(), new GameWallet(110)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding(), new GameWallet(90)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentPortBuilding(), new GameWallet(50)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentInnBuilding(), new GameWallet(75)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentSmithyBuilding(), new GameWallet(130)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding(), new GameWallet(75)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding(), new GameWallet(95)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentTempleBuilding(), new GameWallet(130)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding(), new GameWallet(80)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding(), new GameWallet(250)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentGraveyardBuilding(), new GameWallet(30)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding(), new GameWallet(75)));
 
         if (GameHelper.IsValidChaosLevel(6))
         {

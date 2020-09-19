@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInnBuilding : GameBuildingBase
+public class ContentPortBuilding : GameBuildingBase
 {
     private GameWallet m_returns;
 
-    public ContentInnBuilding()
+    public ContentPortBuilding()
     {
-        m_returns = new GameWallet(75);
+        m_returns = new GameWallet(90);
 
-        m_name = "Inn";
-        m_desc = "A bustling inn brings in the coin when times are good.  If it survives a wave, gives " + m_returns.m_gold + " coins.";
+        m_name = "Port";
+        m_desc = "A port brings in the coin when times are good.  If it survives a wave, gives " + m_returns.m_gold + " coins.";
         m_rarity = GameRarity.Common;
 
-        m_maxHealth = 25;
+        m_maxHealth = 8;
 
         m_expandsPlaceRange = false;
 
@@ -47,7 +47,7 @@ public class ContentInnBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
     {
-        if (terrain.IsFlatTerrain())
+        if (terrain.IsWater())
         {
             return true;
         }

@@ -210,7 +210,7 @@ public class WorldController : Singleton<WorldController>
 
         GamePlayer player = m_gameController.m_player;
 
-        GameWallet intermissionWallet = new GameWallet(50);
+        GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
         player.m_wallet.AddResources(intermissionWallet);
 
         player.OnEndWave();

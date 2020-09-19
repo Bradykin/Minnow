@@ -15,7 +15,7 @@ public static class GameBuildingFactory
         m_buildings.Add(new ContentEmberForgeBuilding());
         m_buildings.Add(new ContentForestLodgeBuilding());
         m_buildings.Add(new ContentFortressBuilding());
-        m_buildings.Add(new ContentGraveyardBuilding());
+        m_buildings.Add(new ContentPortBuilding());
         m_buildings.Add(new ContentInnBuilding());
         m_buildings.Add(new ContentMagicSchoolBuilding());
         m_buildings.Add(new ContentMineBuilding());

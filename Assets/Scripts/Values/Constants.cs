@@ -32,6 +32,7 @@ public static class Constants
     public static int InitialWaveSize = 6;
     public static int WaveTurnIncrement = 2;
     public static int FinalWaveNum = 6;
+    public static int GoldPerWave = 25;
 
     //Testing Data
     public static bool SnapToCastleAtStart = false;

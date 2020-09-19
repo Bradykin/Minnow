@@ -212,15 +212,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             deathKeyword.DoAction();
         }
 
-        for (int i = 0; i < player.m_controlledBuildings.Count; i++)
-        {
-            if (player.m_controlledBuildings[i] is ContentGraveyardBuilding && !player.m_controlledBuildings[i].m_isDestroyed)
-            {
-                int goldToGain = ((ContentGraveyardBuilding)player.m_controlledBuildings[i]).m_goldToGain;
-                player.m_wallet.AddResources(new GameWallet(goldToGain));
-            }
-        }
-
         if (GetTeam() == Team.Enemy)
         {
             int numSkulls = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
