@@ -310,6 +310,11 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public void HandleFogUpdate()
     {
+        if (GetGameTile().HasAvailableEvent())
+        {
+            GetGameTile().m_isSoftFog = true;
+        }
+
         if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {
             if (m_occupyingEntityObj != null)
