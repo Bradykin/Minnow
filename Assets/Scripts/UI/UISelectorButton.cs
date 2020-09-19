@@ -44,10 +44,6 @@ public class UISelectorButton : WorldElementBase
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "These actions don't cost resources, but they do still take action points."));
         }
-        else if (m_selectorType == UIIntermissionController.SelectorType.Tech)
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Tech", "While expensive, these are upgrades that will persist the rest of the run."));
-        }
         else if (m_selectorType == UIIntermissionController.SelectorType.Building)
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Buildings", "Place these in the world to either help with defense, or to help generate resources.  If one is destroyed in a wave, it will come back during the next intermission."));

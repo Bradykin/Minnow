@@ -29,7 +29,7 @@ public class ContentWildfolk : GameEntity
 
         m_name = "Wildfolk";
         m_desc = "When summoned, gain a random keyword and +3 power and + 10 health.";
-        m_typeline = Typeline.Humanoid;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
@@ -41,6 +41,11 @@ public class ContentWildfolk : GameEntity
 
         AddPower(3);
         AddMaxHealth(10);
+
+        if (m_keywords.Count == 0)
+        {
+            return;
+        }
 
         int r = Random.Range(0, m_keywords.Count);
 

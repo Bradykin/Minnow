@@ -5,17 +5,11 @@ using UnityEngine;
 public class GameIntermissionActionController
 {
     public GameBuildingIntermission m_building { get; protected set; }
-    public GameTechIntermission m_tech { get; protected set; }
     public GameActionIntermission m_action { get; protected set; }
 
     public GameIntermissionActionController(GameBuildingIntermission building)
     {
         m_building = building;
-    }
-
-    public GameIntermissionActionController(GameTechIntermission tech)
-    {
-        m_tech = tech;
     }
 
     public GameIntermissionActionController(GameActionIntermission action)
@@ -28,10 +22,6 @@ public class GameIntermissionActionController
         if (HasBuilding())
         {
             return m_building.m_building.m_name;
-        }
-        else if (HasTech())
-        {
-            return m_tech.m_name;
         }
         else if (HasAction())
         {
@@ -46,10 +36,6 @@ public class GameIntermissionActionController
         if (HasBuilding())
         {
             return m_building.m_building.m_desc;
-        }
-        else if (HasTech())
-        {
-            return m_tech.m_desc;
         }
         else if (HasAction())
         {
@@ -71,11 +57,6 @@ public class GameIntermissionActionController
             Globals.m_selectedIntermissionBuilding = m_building;
         }
 
-        if (HasTech())
-        {
-            m_tech.Activate();
-        }
-
         if (HasAction())
         {
             m_action.Activate();
@@ -87,11 +68,6 @@ public class GameIntermissionActionController
         if (HasBuilding())
         {
             return m_building.CanAfford();
-        }
-
-        if (HasTech())
-        {
-            return m_tech.CanAfford();
         }
 
         if (HasAction())
@@ -108,10 +84,6 @@ public class GameIntermissionActionController
         {
             return m_building.m_building.m_icon;
         }
-        else if (HasTech())
-        {
-            return m_tech.m_icon;
-        }
         else if (HasAction())
         {
             return m_action.m_icon;
@@ -125,10 +97,6 @@ public class GameIntermissionActionController
         if (HasBuilding())
         {
             return m_building.m_actionCost;
-        }
-        else if (HasTech())
-        {
-            return m_tech.m_actionCost;
         }
         else if (HasAction())
         {
@@ -144,10 +112,6 @@ public class GameIntermissionActionController
         {
             return m_building.m_cost;
         }
-        else if (HasTech())
-        {
-            return m_tech.m_cost;
-        }
 
         return null;
     }
@@ -155,11 +119,6 @@ public class GameIntermissionActionController
     public bool HasBuilding()
     {
         return m_building != null;
-    }
-
-    public bool HasTech()
-    {
-        return m_tech != null;
     }
 
     public bool HasAction()

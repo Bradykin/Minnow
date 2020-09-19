@@ -20,7 +20,7 @@ public class ContentHomonculus : GameEntity
 
         m_name = "Homonculus";
         m_desc = "When summoned, draw a card.";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

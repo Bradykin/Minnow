@@ -50,16 +50,6 @@ public class UIActionController : MonoBehaviour
         InitImpl();
     }
 
-    public void Init(GameTechIntermission tech)
-    {
-        m_actionController = new GameIntermissionActionController(tech);
-
-        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
-        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
-
-        InitImpl();
-    }
-
     public void Init(GameBuildingIntermission building)
     {
         m_actionController = new GameIntermissionActionController(building);

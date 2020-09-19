@@ -27,7 +27,7 @@ public class ContentZombieEnemy : GameEnemyEntity
 
         m_name = "Zombie";
         m_desc = "When this entity hits another entity, turn it into a zombie.";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));

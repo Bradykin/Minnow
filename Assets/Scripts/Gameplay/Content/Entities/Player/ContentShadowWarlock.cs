@@ -17,7 +17,7 @@ public class ContentShadowWarlock : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
 
         m_name = "Shadow Warlock";
-        m_typeline = Typeline.Humanoid;
+        m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

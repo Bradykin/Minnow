@@ -13,6 +13,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     public SpriteRenderer m_fogRenderer;
     public GameObject m_fogOfWar;
     public GameObject m_spawnIndicator;
+    public GameObject m_eventIndicator;
 
     private UIEntity m_occupyingEntityObj;
 
@@ -52,6 +53,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIcon();
         m_fogRenderer.sprite = GetGameTile().GetIcon();
+        m_eventIndicator.GetComponent<SpriteRenderer>().sprite = GetGameTile().GetIcon();
 
         if (GameHelper.IsInLevelBuilder())
         {
@@ -310,10 +312,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public void HandleFogUpdate()
     {
-        if (GetGameTile().HasAvailableEvent())
-        {
-            GetGameTile().m_isSoftFog = true;
-        }
+        m_eventIndicator.SetActive(GetGameTile().HasAvailableEvent() && GetGameTile().m_isFog && Constants.DebugEventsVisibleInFog);
 
         if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {

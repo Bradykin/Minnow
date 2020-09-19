@@ -19,7 +19,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
     public UIActionController m_actionThree;
 
     private List<GameActionIntermission> m_intermissionActions;
-    private List<GameTechIntermission> m_intermissionTech;
     private List<GameBuildingIntermission> m_intermissionBuildings;
 
     private int m_index;
@@ -29,7 +28,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_index = 0;
 
         m_intermissionActions = new List<GameActionIntermission>();
-        m_intermissionTech = new List<GameTechIntermission>();
         m_intermissionBuildings = new List<GameBuildingIntermission>();
 
         m_intermissionActions.Add(new ContentResourcesIntermissionAction());
@@ -115,38 +113,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
                 m_actionThree.Init(m_intermissionActions[m_index * 3 + 2]);
             }
         }
-        else if (m_selectorType == SelectorType.Tech)
-        {
-            if (m_intermissionTech.Count <= m_index * 3)
-            {
-                m_actionOne.gameObject.SetActive(false);
-            }
-            else
-            {
-                m_actionOne.gameObject.SetActive(true);
-                m_actionOne.Init(m_intermissionTech[m_index * 3]);
-            }
-
-            if (m_intermissionTech.Count <= m_index * 3 + 1)
-            {
-                m_actionTwo.gameObject.SetActive(false);
-            }
-            else
-            {
-                m_actionTwo.gameObject.SetActive(true);
-                m_actionTwo.Init(m_intermissionTech[m_index * 3 + 1]);
-            }
-
-            if (m_intermissionTech.Count <= m_index * 3 + 2)
-            {
-                m_actionThree.gameObject.SetActive(false);
-            }
-            else
-            {
-                m_actionThree.gameObject.SetActive(true);
-                m_actionThree.Init(m_intermissionTech[m_index * 3 + 2]);
-            }
-        }
         else if (m_selectorType == SelectorType.Building)
         {
             if (m_intermissionBuildings.Count <= m_index * 3)
@@ -186,17 +152,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         if (m_selectorType == SelectorType.Action)
         {
             if ((m_index + 1) * 3 < m_intermissionActions.Count)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (m_selectorType == SelectorType.Tech)
-        {
-            if ((m_index + 1)* 3 < m_intermissionTech.Count)
             {
                 return true;
             }

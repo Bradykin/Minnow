@@ -38,4 +38,5 @@ public static class Constants
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool UseSmartCameraEnemyTurns = false;
+    public static bool DebugEventsVisibleInFog = true;
 }

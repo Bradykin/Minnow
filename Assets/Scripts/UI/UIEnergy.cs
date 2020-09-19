@@ -46,7 +46,7 @@ public class UIEnergy : WorldElementBase
     {
         if (Globals.m_inIntermission)
         {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take actions, create buildings, or research technologies during the intermission phase!"));
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take various actions during the intermission phase!"));
         }
         else
         {

@@ -15,7 +15,7 @@ public class ContentConjuredImp : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Conjured Imp";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

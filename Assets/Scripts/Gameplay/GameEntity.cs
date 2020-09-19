@@ -13,7 +13,7 @@ public enum Typeline : int
 {
     Humanoid,
     Monster,
-    Construct
+    Creation
 }
 
 public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGameEntityData>
@@ -234,7 +234,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 player.DrawCards(numRelics);
             }
 
-            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Construct)
+            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
             {
                 GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(this);
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromEntity);

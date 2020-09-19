@@ -22,7 +22,7 @@ public class ContentMetalGolem : GameEntity
 
         m_name = "Metal Golem";
         m_desc = "At the end of the turn, gain " + m_eatingVal + " damage shield for each mountain in range " + m_eatingRange + ".";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

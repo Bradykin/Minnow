@@ -23,7 +23,7 @@ public class ContentSkeleton : GameEntity
 
         m_name = "Skeleton";
         m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

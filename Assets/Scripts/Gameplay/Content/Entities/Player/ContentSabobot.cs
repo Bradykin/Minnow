@@ -17,7 +17,7 @@ public class ContentSabobot : GameEntity
 
         m_name = "Sabobot";
         m_desc = "Starts at max AP.";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();

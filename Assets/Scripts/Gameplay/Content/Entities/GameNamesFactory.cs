@@ -118,7 +118,7 @@ public class GameNamesFactory
         {
             return GetNameFromList(m_humanoidNames);
         }
-        else if (entityType == Typeline.Construct)
+        else if (entityType == Typeline.Creation)
         {
             return GetNameFromList(m_constructNames);
         }

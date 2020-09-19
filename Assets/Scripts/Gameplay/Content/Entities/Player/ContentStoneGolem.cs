@@ -16,7 +16,7 @@ public class ContentStoneGolem : GameEntity
         m_rarity = GameRarity.Starter;
 
         m_name = "Stone Golem";
-        m_typeline = Typeline.Construct;
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
