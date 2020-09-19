@@ -15,7 +15,7 @@ public static class Constants
     public static int PercentChanceForRareCard = 18;
 
     public static int PercentChanceForEliteToSpawn = 20;
-    public static int PercentChanceForMobToSpawn = 33;
+    public static int PercentChanceForMobToSpawn = 50;
 
     public static int MaxChaos = 10;
 
