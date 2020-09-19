@@ -21,7 +21,7 @@ public class ContentSnakeEnemy : GameEnemyEntity
         m_desc = "It's venom permanently drains 2 power.";
 
         m_minWave = 4;
-        m_maxWave = 5;
+        m_maxWave = 4;
 
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
 

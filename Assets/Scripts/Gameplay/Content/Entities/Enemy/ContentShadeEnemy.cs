@@ -18,7 +18,7 @@ public class ContentShadeEnemy : GameEnemyEntity
         m_desc = "Yep, it flies.";
 
         m_minWave = 4;
-        m_maxWave = 5;
+        m_maxWave = 4;
 
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));

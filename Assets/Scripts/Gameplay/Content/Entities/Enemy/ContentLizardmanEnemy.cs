@@ -9,10 +9,10 @@ public class ContentLizardmanEnemy : GameEnemyEntity
 {
     public ContentLizardmanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 7;
+        m_maxHealth = 40;
         m_maxAP = 6;
         m_apRegen = 4;
-        m_power = 6;
+        m_power = 12;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

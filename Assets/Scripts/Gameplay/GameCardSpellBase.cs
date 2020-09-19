@@ -52,7 +52,14 @@ public class GameCardSpellBase : GameCard
 
     protected string GetSpellPowerString()
     {
-        return " (" + GetSpellValue() + ")";
+        if (GetSpellValue() == m_spellEffect)
+        {
+            return "";
+        }
+        else
+        {
+            return " (" + GetSpellValue() + ")";
+        }
     }
 
     protected virtual bool CanTriggerSpellPower()
