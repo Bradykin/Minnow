@@ -128,23 +128,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             }
         }
 
-        bool ignoreTileDamageReduction = false;
-
-        if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
-        {
-            ignoreTileDamageReduction = true;
-        }
-
-        if (!ignoreTileDamageReduction)
-        {
-            damage -= m_gameTile.GetDamageReduction(this);
-        }
-
-        if (damage < 0)
-        {
-            damage = 0;
-            return damage;
-        }
+        damage = CalculateDamageAmount(damage);
 
         m_curHealth -= damage;
 
@@ -161,6 +145,28 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         else
         {
             UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile());
+        }
+
+        return damage;
+    }
+
+    public virtual int CalculateDamageAmount(int damage)
+    {
+        bool ignoreTileDamageReduction = false;
+
+        if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
+        {
+            ignoreTileDamageReduction = true;
+        }
+
+        if (!ignoreTileDamageReduction)
+        {
+            damage -= m_gameTile.GetDamageReduction(this);
+        }
+
+        if (damage < 0)
+        {
+            damage = 0;
         }
 
         return damage;

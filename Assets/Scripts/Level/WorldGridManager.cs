@@ -506,7 +506,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             // remove it from the open list
             openList.Remove(current);
 
-            // if we added the destination to the closed list, we've found a path
+            // if we have exceeded the allowed AP usage, end this branch of the loop
             if (current.F >= currentAP)
                 continue;
 

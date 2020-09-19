@@ -50,7 +50,7 @@ public class GameOpponent : ITurns
                 UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.25f);
                 m_controlledEntities[i].TakeTurn();
-                UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
+                //UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.5f);
             }
             else

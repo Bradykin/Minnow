@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,11 +22,40 @@ public class AIScanTargetsInRangeStep : AIStep
             if (tile.m_occupyingEntity != null && tile.m_occupyingEntity.GetTeam() == Team.Player)
             {
                 possibleEntityTargets.Add(tile.m_occupyingEntity);
+
+                //Rough code - goal is to determine if the enemy could kill the target in two hits
+                int numHitsToRateVulnerable = 2;
+                if (tile.m_occupyingEntity.GetKeyword<GameDamageShieldKeyword>() != null)
+                {
+                    numHitsToRateVulnerable -= tile.m_occupyingEntity.GetKeyword<GameDamageShieldKeyword>().m_numShields;
+                }
+                int damageAmountInVulnerableRange = 0;
+                while (numHitsToRateVulnerable > 0)
+                {
+                    damageAmountInVulnerableRange += tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
+                    numHitsToRateVulnerable--;
+                }
+                if (damageAmountInVulnerableRange > tile.m_occupyingEntity.GetCurHealth())
+                {
+                    m_AIGameEnemyEntity.m_vulnerableEntityTargets.Add(tile.m_occupyingEntity);
+                }
             }
 
             if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed)
             {
                 possibleBuildingTargets.Add(tile.GetBuilding());
+
+                int numHitsToRateVulnerable = 2;
+                int damageAmountInVulnerableRange = 0;
+                while (numHitsToRateVulnerable > 0)
+                {
+                    damageAmountInVulnerableRange += m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower();
+                    numHitsToRateVulnerable--;
+                }
+                if (damageAmountInVulnerableRange > tile.GetBuilding().GetCurHealth())
+                {
+                    m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
+                }
             }
         }
 

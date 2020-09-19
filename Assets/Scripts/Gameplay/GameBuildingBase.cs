@@ -55,6 +55,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
         }
     }
 
+    public int GetCurHealth()
+    {
+        return m_curHealth;
+    }
+
     public virtual int GetHit(int damage)
     {
         m_curHealth -= damage;
