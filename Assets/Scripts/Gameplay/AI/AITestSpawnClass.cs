@@ -8,7 +8,7 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentToadEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -24,7 +24,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentHomonculusCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentSabobotCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.O))

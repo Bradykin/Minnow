@@ -76,6 +76,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
                 additiveValue = GameHelper.RelicCount<ContentUrbanTacticsRelic>();
             }
 
+            if (IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
+            {
+                return 1 + additiveValue;
+            }
+
             if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
             {
                 return 0 + additiveValue;

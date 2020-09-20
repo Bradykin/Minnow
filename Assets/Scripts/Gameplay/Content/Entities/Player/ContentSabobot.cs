@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class ContentSabobot : GameEntity
 {
+    private int m_explosionDamage = 25;
+    private int m_explosionRange = 1;
+    
     public ContentSabobot()
     {
         m_maxHealth = 1;
         m_maxAP = 8;
         m_apRegen = 2;
-        m_power = 25;
+        m_power = 1;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameDeathAction(this)));
+        m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)));
 
         m_name = "Sabobot";
         m_desc = "Starts at max AP.";
