@@ -86,9 +86,8 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-    public void PlayCard(UICard card, WorldElementBase worldElementTarget)
+    public void PlayCard(UICard card)
     {
-        card.CardPlayed(worldElementTarget);
         Recycler.Recycle<UICard>(card);
         Globals.m_selectedCard = null;
 
@@ -287,7 +286,7 @@ public class WorldController : Singleton<WorldController>
             UIHelper.SelectEntity(thisEntity);
         }
 
-        UICameraController.Instance.SnapToWorldElement(thisEntity);
+        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
     }
 
     public void FocusPrevPlayerEntity()
@@ -312,7 +311,7 @@ public class WorldController : Singleton<WorldController>
             UIHelper.SelectEntity(thisEntity);
         }
 
-        UICameraController.Instance.SnapToWorldElement(thisEntity);
+        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
     }
 
     private List<GameEntity> GetValidFocusEntities()

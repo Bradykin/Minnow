@@ -7,7 +7,11 @@ public class UIEnergy : WorldElementBase
 {
     public Text m_titleText;
     public Text m_countText;
-    public Image m_tintImage;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -28,18 +32,6 @@ public class UIEnergy : WorldElementBase
             m_titleText.text = "Energy";
             m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
         }
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

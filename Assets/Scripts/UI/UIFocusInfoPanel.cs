@@ -9,8 +9,6 @@ public class UIFocusInfoPanel : WorldElementBase
     public Text m_descText;
     public GameObject m_holder;
 
-    public Image m_tintImage;
-
     private bool m_shouldShow;
 
     void Update()
@@ -105,23 +103,6 @@ public class UIFocusInfoPanel : WorldElementBase
         {
             m_descText.text += "An unknown event! Moving some troops here will trigger it...\n";
         }
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
-    {
-        //Focus on the element
     }
 
     public override void HandleTooltip()

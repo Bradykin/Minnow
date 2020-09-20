@@ -33,16 +33,16 @@ public class UICameraController : Singleton<UICameraController>, IReset
         //HandleScrolling();
     }
 
-    public void SnapToWorldElement(WorldElementBase worldElement)
+    public void SnapToGameObject(GameObject obj)
     {
-        if (worldElement == null)
+        if (obj == null)
         {
             return;
         }
 
-        Vector3 worldElementPos = worldElement.gameObject.transform.position;
+        Vector3 objPos = obj.transform.position;
 
-        transform.position = new Vector3(worldElementPos.x, worldElementPos.y, transform.position.z);
+        transform.position = new Vector3(objPos.x, objPos.y, transform.position.z);
     }
 
     private void HandleMovement()

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIWallet : WorldElementBase
 {
     public Text m_goldText;
 
-    public Image m_tintImage;
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -21,18 +25,6 @@ public class UIWallet : WorldElementBase
         GameWallet playerWallet = player.m_wallet;
 
         m_goldText.text = "" + playerWallet.m_gold;
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

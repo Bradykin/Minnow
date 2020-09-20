@@ -252,7 +252,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        UICameraController.Instance.SnapToWorldElement(WorldController.Instance.m_gameController.m_player.Castle.GetWorldTile());
+        UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.Castle.GetWorldTile().gameObject);
     }
 
     /*public void SetupEnemies(GameOpponent gameOpponent)

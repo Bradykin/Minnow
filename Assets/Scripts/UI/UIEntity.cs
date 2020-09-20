@@ -108,7 +108,7 @@ public class UIEntity : WorldElementBase
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
-                WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
+                WorldController.Instance.PlayCard(Globals.m_selectedCard);
                 m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
             }
         }
@@ -125,7 +125,7 @@ public class UIEntity : WorldElementBase
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, this);
+            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, gameObject);
         }
         else if (GetEntity().GetTeam() == Team.Enemy)
         {

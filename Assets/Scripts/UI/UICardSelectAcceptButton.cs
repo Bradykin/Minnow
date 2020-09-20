@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UICardSelectAcceptButton : WorldElementBase
+    , IPointerClickHandler
 {
-    public Image m_tintImage;
-
     public Image m_image;
     public Text m_acceptText;
 
@@ -28,7 +28,7 @@ public class UICardSelectAcceptButton : WorldElementBase
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!m_isActive)
         {
@@ -38,16 +38,6 @@ public class UICardSelectAcceptButton : WorldElementBase
         UICardSelectController.Instance.AcceptCard(Globals.m_selectedCard.m_card);
         m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_selectedCard = null;
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     public override void HandleTooltip()

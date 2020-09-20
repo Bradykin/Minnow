@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class UIPurpleBeamCount : WorldElementBase
 {
     public Text m_valText;
-
-    public Image m_tintImage;
     public GameObject m_holder;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -28,18 +31,6 @@ public class UIPurpleBeamCount : WorldElementBase
             m_holder.SetActive(true);
             m_valText.text = "" + Globals.m_purpleBeamCount;
         }
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

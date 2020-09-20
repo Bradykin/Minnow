@@ -2,47 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIDiscard : WorldElementBase
+    , IPointerClickHandler
 {
     public Text m_countText;
 
-    public Image m_tintImage;
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        m_countText.text = player.m_curDeck.DiscardCount() + "";
+        m_countText.text = GameHelper.GetPlayer().m_curDeck.DiscardCount() + "";
     }
 
-    void OnMouseOver()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        UIDeckViewController.Instance.Init(player.m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View);
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View);
     }
 
     public override void HandleTooltip()

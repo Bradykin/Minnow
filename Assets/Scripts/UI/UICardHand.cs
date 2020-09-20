@@ -31,7 +31,7 @@ public class UICardHand : MonoBehaviour
         {
             if (m_uiCard.m_card.m_targetType == GameCard.Target.None)
             {
-                WorldController.Instance.PlayCard(m_uiCard, m_uiCard);
+                WorldController.Instance.PlayCard(m_uiCard);
                 m_uiCard.m_card.PlayCard();
             }
             else
@@ -44,7 +44,7 @@ public class UICardHand : MonoBehaviour
         {
             if (Globals.m_canSelect)
             {
-                UIHelper.CreateWorldElementNotification("Not enough energy.", false, m_uiCard);
+                UIHelper.CreateWorldElementNotification("Not enough energy.", false, m_uiCard.gameObject);
             }
         }
     }

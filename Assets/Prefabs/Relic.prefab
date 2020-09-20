@@ -83,7 +83,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7836709136237783208}
   - component: {fileID: 3485011157690503203}
-  - component: {fileID: 4356937173707632163}
   - component: {fileID: 6623070994232799992}
   m_Layer: 10
   m_Name: Relic
@@ -128,18 +127,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &4356937173707632163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422705487106061522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6623070994232799992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb2ad740c088041b2ccd2b68cf6ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_renderer: {fileID: 0}
-  m_tintRenderer: {fileID: 0}
+  m_tintImage: {fileID: 0}
+  m_image: {fileID: 0}
 --- !u!1 &6587688602625741423
 GameObject:
   m_ObjectHideFlags: 0

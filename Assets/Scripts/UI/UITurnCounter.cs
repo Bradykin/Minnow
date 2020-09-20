@@ -9,7 +9,10 @@ public class UITurnCounter : WorldElementBase
     public Text m_countText;
     public Text m_chaosText;
 
-    public Image m_tintImage;
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -60,18 +63,6 @@ public class UITurnCounter : WorldElementBase
         {
             m_chaosText.text = "Chaos: " + Globals.m_curChaos;
         }
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

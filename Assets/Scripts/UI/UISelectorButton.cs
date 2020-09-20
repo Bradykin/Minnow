@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UISelectorButton : WorldElementBase
+    , IPointerClickHandler
 {
     public Image m_image;
-    public Image m_tintImage;
 
     public UIIntermissionController.SelectorType m_selectorType;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -22,21 +28,9 @@ public class UISelectorButton : WorldElementBase
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         UIIntermissionController.Instance.SetSelectorType(m_selectorType);
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

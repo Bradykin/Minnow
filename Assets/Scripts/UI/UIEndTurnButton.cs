@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIEndTurnButton : WorldElementBase
+    , IPointerClickHandler
 {
     public Image m_image;
     public Text m_endTurnText;
-    public Image m_tintImage;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -28,7 +34,7 @@ public class UIEndTurnButton : WorldElementBase
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         EndTurn();
     }
@@ -46,18 +52,6 @@ public class UIEndTurnButton : WorldElementBase
         WorldController.Instance.MoveToNextTurn();
 
         m_tintImage.color = UIHelper.GetDefaultTintColor();
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     private bool PlayerHasActions()

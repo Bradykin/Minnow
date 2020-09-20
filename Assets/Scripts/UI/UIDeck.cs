@@ -2,45 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIDeck : WorldElementBase
+    , IPointerClickHandler
 {
     public Text m_countText;
 
-    public Image m_tintImage;
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        m_countText.text = player.m_curDeck.Count() + "";
+        m_countText.text = GameHelper.GetPlayer().m_curDeck.Count() + "";
     }
 
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
 
         UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View);
     }

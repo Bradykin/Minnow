@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UICard : WorldElementBase
+public class UICard : MonoBehaviour
+    , IPointerEnterHandler
+    , IPointerExitHandler
 {
     public enum CardDisplayType
     {
@@ -111,15 +114,7 @@ public class UICard : WorldElementBase
         }
     }
 
-    public void CardPlayed(WorldElementBase target)
-    {
-        if (target != null)
-        {
-            //UIHelper.CreateWorldElementNotification(m_card.m_playDesc, true, target); nmartino - reassess how important this is (need shorter play descs)
-        }
-    }
-
-    void OnMouseOver()
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         m_isHovered = true;
 
@@ -130,7 +125,7 @@ public class UICard : WorldElementBase
         }
     }
 
-    void OnMouseExit()
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         m_isHovered = false;
 
@@ -148,11 +143,6 @@ public class UICard : WorldElementBase
         }
 
         return m_handCard.m_isBig;
-    }
-
-    public override void HandleTooltip()
-    {
-        //Stub.  No tooltip on cards for now.
     }
 
     public void InitCardDeck(UIDeckViewController.DeckViewType viewType)

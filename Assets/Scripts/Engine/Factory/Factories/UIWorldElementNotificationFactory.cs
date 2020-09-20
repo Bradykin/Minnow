@@ -25,10 +25,10 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(string message, Color color, WorldElementBase worldElement)
+        public T CreateObject<T>(string message, Color color, GameObject positionObj)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = worldElement.transform.position;
+            obj.transform.position = positionObj.transform.position;
 
             obj.GetComponent<UIWorldElementNotification>().Init(message, color);
 

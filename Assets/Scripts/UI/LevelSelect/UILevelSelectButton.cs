@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UILevelSelectButton : WorldElementBase
+    , IPointerClickHandler
 {
     public int m_id;
-    public Image m_tintImage;
     public Text m_titleText;
 
     private JsonMapMetaData m_level;
@@ -34,11 +35,6 @@ public class UILevelSelectButton : WorldElementBase
         m_titleText.text = m_level.mapName;
     }
 
-    void OnMouseDown()
-    {
-        SelectLevel();
-    }
-
     private void SelectLevel()
     {
         if (m_id == -1)
@@ -54,16 +50,6 @@ public class UILevelSelectButton : WorldElementBase
         }
     }
 
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-    }
-
     public override void HandleTooltip()
     {
         if (m_id == -1)
@@ -77,5 +63,10 @@ public class UILevelSelectButton : WorldElementBase
                 UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_level.mapName, UIHelper.GetDifficultyText(((MapDifficulty)m_level.mapDifficulty))));
             }
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        SelectLevel();
     }
 }

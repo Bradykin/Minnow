@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UILevelSelectChaosButton : WorldElementBase
+    , IPointerClickHandler
 {
     public GameObject m_holder;
-    public Image m_tintImage;
 
     public bool m_isIncrease;
 
@@ -15,7 +16,7 @@ public class UILevelSelectChaosButton : WorldElementBase
         m_holder.SetActive(IsActive());
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!IsActive())
         {
@@ -32,16 +33,6 @@ public class UILevelSelectChaosButton : WorldElementBase
         }
 
         HandleTooltip();
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     private bool IsActive()

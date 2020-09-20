@@ -382,9 +382,9 @@ public static class UIHelper
         UnselectEntity();
     }
 
-    private static void CreateWorldElementNotificationImpl(string message, Color color, WorldElementBase worldElement)
+    private static void CreateWorldElementNotificationImpl(string message, Color color, GameObject positionObj)
     {
-        FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, worldElement);
+        FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, positionObj);
     }
 
     public static void CreateWalletWorldElementNotification(int goldToAdd)
@@ -397,10 +397,10 @@ public static class UIHelper
         }
 
         UIWallet uiWallet = walletObj.GetComponent<UIWallet>();
-        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, uiWallet);
+        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, uiWallet.gameObject);
     }
 
-    public static void CreateWorldElementNotification(string message, bool isPositive, WorldElementBase worldElement)
+    public static void CreateWorldElementNotification(string message, bool isPositive, GameObject positionObj)
     {
         Color color = Color.black;
 
@@ -413,7 +413,7 @@ public static class UIHelper
             color = m_invalid;
         }
 
-        CreateWorldElementNotificationImpl(message, color, worldElement);
+        CreateWorldElementNotificationImpl(message, color, positionObj);
     }
 
     public static UISimpleTooltip CreateSimpleTooltip(string name, string desc)

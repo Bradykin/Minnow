@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIBeginWaveButton : WorldElementBase
+    , IPointerClickHandler
 {
     public Image m_image;
     public Text m_beginWaveText;
-    public Image m_tintImage;
     public GameObject m_holder;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -24,7 +30,7 @@ public class UIBeginWaveButton : WorldElementBase
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         BeginWave();
     }
@@ -39,18 +45,6 @@ public class UIBeginWaveButton : WorldElementBase
         m_tintImage.color = UIHelper.GetDefaultTintColor();
 
         WorldController.Instance.EndIntermission();
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
     }
 
     private bool PlayerHasActions()

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIRelic : WorldElementBase
+    , IPointerClickHandler
 {
     public enum RelicSelectionType
     {
@@ -15,10 +17,11 @@ public class UIRelic : WorldElementBase
     private RelicSelectionType m_selectionType;
 
     public Image m_image;
-    public Image m_tintImage;
 
     public void Init(GameRelic newRelic, RelicSelectionType selectionType)
     {
+        m_stopScrolling = true;
+
         m_relic = newRelic;
         m_selectionType = selectionType;
 
@@ -34,19 +37,7 @@ public class UIRelic : WorldElementBase
         }
     }
 
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (m_selectionType == RelicSelectionType.Select)
         {

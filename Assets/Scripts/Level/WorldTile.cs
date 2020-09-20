@@ -5,7 +5,7 @@ using Game.Util;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class WorldTile : WorldElementBase, ICustomRecycle
+public class WorldTile : MonoBehaviour, ICustomRecycle
 {
     public SpriteRenderer m_renderer;
     public SpriteRenderer m_tintRenderer;
@@ -24,6 +24,8 @@ public class WorldTile : WorldElementBase, ICustomRecycle
     private bool m_isHovered;
     private bool m_isMoveable;
     private bool m_isAttackable;
+
+    private GameTile m_gameTile;
 
     void Start()
     {
@@ -155,7 +157,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public void Init(int x, int y)
     {
-        m_gameElement = new GameTile(this);
+        m_gameTile = new GameTile(this);
         GetGameTile().m_gridPosition = new Vector2Int(x, y);
     }
 
@@ -206,7 +208,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
             if (selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
                 selectedCard.m_card.PlayCard(GetGameTile());
-                WorldController.Instance.PlayCard(selectedCard, this);
+                WorldController.Instance.PlayCard(selectedCard);
                 return;
             }
         }
@@ -246,7 +248,8 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         m_isHovered = false;
     }
 
-    public override void HandleTooltip()
+    //TODO: nmartino - Move these to world element notifications
+    /*public override void HandleTooltip()
     {
         if (Globals.m_selectedCard != null)
         {
@@ -273,7 +276,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
                 }
             }
         }
-    }
+    }*/
 
     public void ClearFog()
     {
@@ -363,7 +366,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public GameTile GetGameTile()
     {
-        return (GameTile)m_gameElement;
+        return m_gameTile;
     }
 
     public void SetMoveable(bool isMoveable)
@@ -378,7 +381,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
     public void CustomRecycle(params object[] args)
     {
-        m_gameElement = null;
+        m_gameTile = null;
         m_renderer.sprite = null;
         m_tintRenderer.sprite = null;
         m_fogRenderer.sprite = null;

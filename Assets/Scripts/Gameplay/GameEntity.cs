@@ -144,7 +144,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
         else
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile().gameObject);
         }
 
         return damage;
@@ -199,7 +199,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (shouldRevive)
         {
             m_curHealth = 1;
-            UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_gameTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_gameTile.GetWorldTile().gameObject);
             return;
         }
 
@@ -248,7 +248,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
 
-        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile());
+        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
 
         if (m_uiEntity == Globals.m_selectedEntity)
         {
@@ -279,7 +279,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_uiEntity);
+            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_uiEntity.gameObject);
         }
 
         return realHealVal;
