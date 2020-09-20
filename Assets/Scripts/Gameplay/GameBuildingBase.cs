@@ -141,7 +141,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonGameBuildingData jsonData = new JsonGameBuildingData
         {

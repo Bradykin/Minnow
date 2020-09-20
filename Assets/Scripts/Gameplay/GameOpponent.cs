@@ -112,7 +112,7 @@ public class GameOpponent : ITurns
             m_controlledEntities[i].EndTurn();
         }
 
-        if (GameHelper.GetPlayer().m_currentWaveTurn >= GameHelper.GetPlayer().GetEndWaveTurn())
+        if (GameHelper.GetGameController().m_currentWaveTurn >= GameHelper.GetGameController().GetEndWaveTurn())
         {
             return;
         }
@@ -137,19 +137,19 @@ public class GameOpponent : ITurns
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
             {
                 GameEnemyEntity newEnemyEntity;
-                if (GameHelper.GetPlayer().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+                if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
                 {
                     newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);
                     WorldController.Instance.SetHasSpawnedBoss(true);
                 }
-                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetPlayer().m_currentWaveTurn >= 3 && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
+                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetGameController().m_currentWaveTurn >= 3 && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
                 {
                     newEnemyEntity = GameEntityFactory.GetRandomEliteEnemy(this);
                     WorldController.Instance.SetHasSpawnedEliteThisWave(true);
                 }
                 else
                 {
-                    newEnemyEntity = GameEntityFactory.GetRandomEnemy(this, GameHelper.GetPlayer().m_waveNum);
+                    newEnemyEntity = GameEntityFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
                 }
 
                 m_spawnPoints[i].m_tile.PlaceEntity(newEnemyEntity);

@@ -2,6 +2,6 @@
 {
     public interface ISave
     {
-        string SaveToJson();
+        string SaveToJsonAsString();
     }
 }

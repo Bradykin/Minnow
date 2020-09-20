@@ -32,7 +32,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_desc = "" + m_numShields;
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

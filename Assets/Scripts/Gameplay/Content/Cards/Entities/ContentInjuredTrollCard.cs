@@ -6,7 +6,7 @@ public class ContentInjuredTrollCard : GameCardEntityBase
 {
     public ContentInjuredTrollCard()
     {
-        m_entity = new ContentInjuredTrollEntity();
+        m_entity = new ContentInjuredTroll();
 
         FillBasicData();
 

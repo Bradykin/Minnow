@@ -13,7 +13,8 @@ public enum Typeline : int
 {
     Humanoid,
     Monster,
-    Creation
+    Creation,
+    Count // = 3
 }
 
 public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGameEntityData>
@@ -85,6 +86,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 AddPower(numTideOfMonsters);
             }
         }
+
+        if (GetTeam() == Team.Player)
+        {
+            GameHelper.GetPlayer().InformWasSummoned(this);
+        }
+    }
+
+    public virtual void OnOtherSummon(GameEntity other)
+    {
+
     }
 
     public GameTile GetGameTile()
@@ -355,9 +366,33 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return true;
     }
 
-    public void SpellCast()
+    public void SpellCast(GameCard.Target targetType, GameTile targetTile)
     {
         List<GameSpellcraftKeyword> spellcraftKeywords = m_keywordHolder.GetKeywords<GameSpellcraftKeyword>();
+
+        if (spellcraftKeywords.Count == 0)
+        {
+            return;
+        }
+
+        if (Constants.UseLocationalSpellcraft)
+        {
+            if (targetType != GameCard.Target.None)
+            {
+                if (targetTile == null)
+                {
+                    Debug.LogError("Spellcast that isn't target none received null target tile");
+                    return;
+                }
+
+                int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), targetTile, true, false, true);
+                if (distanceBetween > GameSpellcraftKeyword.m_spellcraftRange)
+                {
+                    return;
+                }
+            }
+        }
+
         for (int i = 0; i < spellcraftKeywords.Count; i++)
         {
             spellcraftKeywords[i].DoAction();
@@ -637,8 +672,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
-            int numAllianceOfTheTribes = GameHelper.RelicCount<ContentGrandPactRelic>();
-            if (numAllianceOfTheTribes > 0)
+            int numGrandPact = GameHelper.RelicCount<ContentGrandPactRelic>();
+            if (numGrandPact > 0)
             {
                 Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
                 List<GameEntity> gameEntities = GameHelper.GetPlayer().m_controlledEntities;
@@ -655,9 +690,19 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                     }
                 }
 
-                if (numCreatureTypes.ContainsKey(0) && numCreatureTypes.ContainsKey(1) && numCreatureTypes.ContainsKey(2) && numCreatureTypes.ContainsKey(3))
+                bool hasAll = true;
+                for (int i = 0; i < (int)Typeline.Count; i++)
                 {
-                    toReturn += 2 * numAllianceOfTheTribes;
+                    if (!numCreatureTypes.ContainsKey(0))
+                    {
+                        hasAll = false;
+                        break;
+                    }
+                }
+
+                if (hasAll)
+                {
+                    toReturn += numGrandPact;
                 }
             }
         }
@@ -786,7 +831,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     private void RegenAP()
     {
         int apToRegen = GetAPRegen();
-        if (GameHelper.GetPlayer().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
         {
             apToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
@@ -863,10 +908,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public JsonGameEntityData SaveToJsonAsJson()
     {
-        string keywordHolderJson = m_keywordHolder.SaveToJson();
-        
+        string keywordHolderJson = m_keywordHolder.SaveToJsonAsString();
+
         JsonGameEntityData jsonData = new JsonGameEntityData
         {
             name = m_name,
@@ -882,6 +927,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             apToAttack = m_apToAttack,
             sightRange = m_sightRange
         };
+
+        return jsonData;
+    }
+
+    public string SaveToJsonAsString()
+    {
+        JsonGameEntityData jsonData = SaveToJsonAsJson();
 
         var export = JsonUtility.ToJson(jsonData);
 

@@ -16,7 +16,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     public KeywordParamType m_keywordParamType;
     public string m_focusInfoText = "Focus Info Text";
 
-    public abstract string SaveToJson();
+    public abstract string SaveToJsonAsString();
 
     public abstract void LoadFromJson(JsonKeywordData jsonData);
 

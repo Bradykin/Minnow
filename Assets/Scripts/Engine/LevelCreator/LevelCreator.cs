@@ -185,7 +185,7 @@ public class LevelCreator : MonoBehaviour
 
     public void SaveGrid(int pathIndex)
     {
-        string jsonGridData = WorldGridManager.Instance.SaveToJson();
+        string jsonGridData = WorldGridManager.Instance.SaveToJsonAsString();
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Constants.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
 #else

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UITurnCounter : WorldElementBase
@@ -13,9 +11,9 @@ public class UITurnCounter : WorldElementBase
 
     void Update()
     {
-        GamePlayer player = GameHelper.GetPlayer();
+        GameController gameController = GameHelper.GetGameController();
 
-        if (player == null)
+        if (gameController == null)
         {
             return;
         }
@@ -23,27 +21,27 @@ public class UITurnCounter : WorldElementBase
         if (Globals.m_inIntermission)
         {
             m_titleText.text = "Intermission";
-            m_countText.text = "Next wave: " + player.m_waveNum;
+            m_countText.text = "Next wave: " + gameController.m_waveNum;
         }
         else
         {
-            if (player.m_waveNum == Constants.FinalWaveNum)
+            if (gameController.m_waveNum == Constants.FinalWaveNum)
             {
                 m_titleText.text = "Final Wave";
                 m_countText.text = "Beat the boss";
             }
             else
             {
-                int turnNum = player.m_currentWaveTurn;
+                int turnNum = gameController.m_currentWaveTurn;
                 if (WorldController.Instance.m_gameController.m_currentTurn == GameHelper.GetOpponent())
                 {
                     turnNum--;
                 }
 
-                m_titleText.text = "Wave " + player.m_waveNum;
-                if (turnNum < player.GetEndWaveTurn())
+                m_titleText.text = "Wave " + gameController.m_waveNum;
+                if (turnNum < gameController.GetEndWaveTurn())
                 {
-                    m_countText.text = turnNum + "/" + player.GetEndWaveTurn();
+                    m_countText.text = turnNum + "/" + gameController.GetEndWaveTurn();
                 }
                 else
                 {

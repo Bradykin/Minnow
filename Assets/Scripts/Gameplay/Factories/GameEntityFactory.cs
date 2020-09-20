@@ -38,13 +38,13 @@ public class GameEntityFactory
         m_playerEntities.Add(new ContentElvenWizard());
         m_playerEntities.Add(new ContentFishOracle());
         m_playerEntities.Add(new ContentGladiator());
-        m_playerEntities.Add(new ContentGoblinEntity());
+        m_playerEntities.Add(new ContentGoblin());
         m_playerEntities.Add(new ContentGrasper());
         m_playerEntities.Add(new ContentGroundskeeper());
         m_playerEntities.Add(new ContentGuardCaptain());
         m_playerEntities.Add(new ContentHero());
         m_playerEntities.Add(new ContentHomonculus());
-        m_playerEntities.Add(new ContentInjuredTrollEntity());
+        m_playerEntities.Add(new ContentInjuredTroll());
         m_playerEntities.Add(new ContentMage());
         m_playerEntities.Add(new ContentMetalGolem());
         m_playerEntities.Add(new ContentMiner());

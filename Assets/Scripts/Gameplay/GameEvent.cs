@@ -15,6 +15,9 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
     public GameEventOption m_optionTwo;
     public GameEventOption m_optionThree;
 
+    protected int m_minWaveToSpawn;
+    protected int m_maxWaveToSpawn;
+
     public void Init()
     {
         if (m_optionOne != null)
@@ -38,19 +41,33 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
         m_APCost = 2;
     }
 
-    public virtual bool isValidToSpawn(GameTile tile)
+    public virtual bool IsValidToSpawn()
     {
-        return !tile.HasBuilding();
+        int currentTurn = GameHelper.GetGameController().m_currentWaveTurn;
+
+        if (currentTurn >= m_minWaveToSpawn && currentTurn <= m_maxWaveToSpawn)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public JsonGameEventData SaveToJsonAsJson()
     {
         JsonGameEventData jsonData = new JsonGameEventData
         {
             name = m_name
         };
+
+        return jsonData;
+    }
+
+    public string SaveToJsonAsString()
+    {
+        JsonGameEventData jsonData = SaveToJsonAsJson();
 
         var export = JsonUtility.ToJson(jsonData);
 

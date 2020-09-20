@@ -15,7 +15,7 @@ public class ContentSabobot : GameEntity
         m_power = 1;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameDeathAction(this)));
         m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)));
 

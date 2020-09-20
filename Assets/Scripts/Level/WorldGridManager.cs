@@ -590,7 +590,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonGridData jsonData = new JsonGridData
         {
@@ -601,7 +601,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         for (int i = 0; i < m_gridArray.Length; i++)
         {
-            jsonData.jsonTileData.Add(m_gridArray[i].GetGameTile().SaveToJson());
+            jsonData.jsonTileData.Add(m_gridArray[i].GetGameTile().SaveToJsonAsString());
         }
 
         var export = JsonUtility.ToJson(jsonData);

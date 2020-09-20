@@ -6,7 +6,7 @@ public class ContentGoblinCard : GameCardEntityBase
 {
     public ContentGoblinCard()
     {
-        m_entity = new ContentGoblinEntity();
+        m_entity = new ContentGoblin();
 
         FillBasicData();
 

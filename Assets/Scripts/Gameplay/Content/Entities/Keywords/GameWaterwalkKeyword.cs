@@ -11,7 +11,7 @@ public class GameWaterwalkKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

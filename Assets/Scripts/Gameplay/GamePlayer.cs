@@ -25,14 +25,12 @@ public class GamePlayer : ITurns
 
     private GameRelicHolder m_relics;
 
-    public int m_waveNum;
-    public int m_currentWaveTurn;
-    private int m_currentWaveEndTurn;
-
     private int m_curActions;
     private int m_maxActions;
 
     public List<GameCard> m_cardsToDiscard = new List<GameCard>();
+
+    private List<GamePlayerScheduledActions> m_scheduledActions = new List<GamePlayerScheduledActions>();
 
     public GamePlayer()
     {
@@ -41,10 +39,6 @@ public class GamePlayer : ITurns
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(25);
-
-        m_waveNum = 1;
-        m_currentWaveTurn = 0;
-        m_currentWaveEndTurn = Constants.InitialWaveSize;
 
         m_maxActions = Constants.StartingActions;
         if (GameHelper.IsValidChaosLevel(9))
@@ -172,15 +166,6 @@ public class GamePlayer : ITurns
         m_curActions += toAdd;
     }
 
-    public int GetEndWaveTurn()
-    {
-        int toReturn = m_currentWaveEndTurn;
-
-        toReturn -= 3 * GameHelper.RelicCount<ContentEmblemOfTianaRelic>();
-
-        return toReturn;
-    }
-
     public void ResetCurDeck()
     {
         for (int i = 0; i < m_hand.Count; i++)
@@ -203,6 +188,17 @@ public class GamePlayer : ITurns
         }
 
         m_curDeck.Shuffle();
+    }
+
+    public void AddScheduledAction(ScheduledActionTime actionTime, GameAction action)
+    {
+        GamePlayerScheduledActions scheduledAction = new GamePlayerScheduledActions
+        {
+            scheduledActionTime = actionTime,
+            gameAction = action
+        };
+
+        m_scheduledActions.Add(scheduledAction);
     }
 
     public void AddEnergy(int toAdd)
@@ -249,6 +245,19 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Remove(toRemove);
     }
 
+    public void InformWasSummoned(GameEntity summonedEntity)
+    {
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            if (m_controlledEntities[i] == summonedEntity)
+            {
+                continue;
+            }
+
+            m_controlledEntities[i].OnOtherSummon(summonedEntity);
+        }
+    }
+
     public void AddCardToHand(GameCard card, bool addToDeckPermanent)
     {
         if (m_hand.Count >= Constants.MaxHandSize)
@@ -287,9 +296,11 @@ public class GamePlayer : ITurns
         {
             m_wallet.AddResources(new GameWallet(200));
         }
-        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inTurns && m_currentWaveTurn <= m_currentWaveEndTurn)
+
+        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inTurns && 
+            WorldController.Instance.m_gameController.m_currentWaveTurn <= WorldController.Instance.m_gameController.GetEndWaveTurn())
         {
-            Globals.m_totemOfTheWolfTurn = Random.Range(m_currentWaveTurn + 1, m_currentWaveEndTurn + 1);
+            Globals.m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentWaveTurn + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
             Debug.Log("Set wolf turn to " + Globals.m_totemOfTheWolfTurn);
         }
 
@@ -324,7 +335,7 @@ public class GamePlayer : ITurns
             toReturn -= 1;
         }
 
-        if (m_currentWaveTurn == 0)
+        if (GameHelper.GetGameController().m_currentWaveTurn == 0)
         {
             toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
         }
@@ -393,10 +404,6 @@ public class GamePlayer : ITurns
 
     public void OnEndWave()
     {
-        m_waveNum++;
-        m_currentWaveTurn = 0;
-        m_currentWaveEndTurn += Constants.WaveTurnIncrement;
-
         ResetActions();
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
@@ -405,11 +412,11 @@ public class GamePlayer : ITurns
         }
     }
 
-    public void TriggerSpellcraft()
+    public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
-            m_controlledEntities[i].SpellCast();
+            m_controlledEntities[i].SpellCast(targetType, targetTile);
         }
     }
 
@@ -419,13 +426,13 @@ public class GamePlayer : ITurns
     {
         DrawHand();
 
-        if (Castle != null && (Constants.SnapToCastleAtStart || m_currentWaveTurn == 0))
+        if (Castle != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
         {
             UICameraController.Instance.SnapToWorldElement(Castle.GetWorldTile());
         }
         m_curEnergy = GetMaxEnergy();
 
-        if (m_currentWaveTurn == 0)
+        if (GameHelper.GetGameController().m_currentWaveTurn == 0)
         {
             AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
@@ -440,9 +447,18 @@ public class GamePlayer : ITurns
             m_controlledBuildings[i].StartTurn();
         }
 
-        if (m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
         {
             Debug.Log("TOTEM OF THE WOLF TURN");
+        }
+
+        for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
+        {
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.StartOfTurn)
+            {
+                m_scheduledActions[i].gameAction.DoAction();
+                m_scheduledActions.RemoveAt(i);
+            }
         }
     }
 
@@ -455,8 +471,6 @@ public class GamePlayer : ITurns
 
         m_cardsToDiscard = new List<GameCard>();
 
-        m_currentWaveTurn++;
-
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
             m_controlledEntities[i].EndTurn();
@@ -465,6 +479,15 @@ public class GamePlayer : ITurns
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].EndTurn();
+        }
+
+        for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
+        {
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.EndOfTurn)
+            {
+                m_scheduledActions[i].gameAction.DoAction();
+                m_scheduledActions.RemoveAt(i);
+            }
         }
 
         Globals.m_spellsPlayedPreviousTurn = Globals.m_spellsPlayedThisTurn;

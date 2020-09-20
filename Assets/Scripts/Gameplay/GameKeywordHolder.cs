@@ -69,7 +69,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         return descString;
     }
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonKeywordHolderData jsonData = new JsonKeywordHolderData
         {
@@ -78,7 +78,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
 
         foreach (GameKeywordBase keyword in m_keywords)
         {
-            jsonData.keywordJson.Add(keyword.SaveToJson());
+            jsonData.keywordJson.Add(keyword.SaveToJsonAsString());
         }
 
         var export = JsonUtility.ToJson(jsonData);

@@ -27,7 +27,7 @@ public class GameEnrageKeyword : GameKeywordBase
         m_action.DoAction();
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

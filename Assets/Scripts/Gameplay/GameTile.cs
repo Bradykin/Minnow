@@ -291,7 +291,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonGameTileData jsonData = new JsonGameTileData
         {
@@ -300,15 +300,15 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (m_occupyingEntity != null)
         {
-            jsonData.gameEntityData = m_occupyingEntity.SaveToJson();
+            jsonData.gameEntityData = m_occupyingEntity.SaveToJsonAsString();
         }
         if (m_building != null)
         {
-            jsonData.gameBuildingData = m_building.SaveToJson();
+            jsonData.gameBuildingData = m_building.SaveToJsonAsString();
         }
         if (m_terrain != null)
         {
-            jsonData.gameTerrainData = m_terrain.SaveToJson();
+            jsonData.gameTerrainData = m_terrain.SaveToJsonAsString();
         }
         if (m_event)
         {
@@ -316,7 +316,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
         if (m_spawnPoint != null)
         {
-            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJson();
+            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJsonAsString();
         }
 
         var export = JsonUtility.ToJson(jsonData);
