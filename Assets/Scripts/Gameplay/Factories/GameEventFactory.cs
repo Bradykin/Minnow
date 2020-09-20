@@ -21,12 +21,11 @@ public static class GameEventFactory
         m_events.Add(new ContentStablesEvent(null));
         m_events.Add(new ContentMagicianEvent(null));
         m_events.Add(new ContentGemsOfProphecyEvent(null));
-        m_events.Add(new ContentOrcDenEvent(null));
+        //m_events.Add(new ContentOrcDenEvent(null)); nmartino - make this only spawn on the waves at or after the point where orcs start spawning
         m_events.Add(new ContentForbiddenFruitEvent(null));
-        m_events.Add(new ContentCreativeChemistEvent(null));
-        m_events.Add(new ContentCreativeChemistEvent(null));
+        //m_events.Add(new ContentCreativeChemistEvent(null)); nmartino - add this in after event rework. Make it only spawn if you have the gold for at least the second option? Maybe unless you have all of them
         m_events.Add(new ContentTraditionOrProgressEvent(null));
-        m_events.Add(new ContentWorthySacrificeEvent(null));
+        //m_events.Add(new ContentWorthySacrificeEvent(null)); ashulman - I wasn't sure how to get this working, need to consult with nmartino to finish this
 
         //m_events.Add(new ContentTransmuteBeamsEvent(null)); nmartino - Come back to this one event refactor is complete
 

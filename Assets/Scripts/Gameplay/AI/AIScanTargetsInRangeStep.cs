@@ -21,6 +21,12 @@ public class AIScanTargetsInRangeStep : AIStep
         {
             if (tile.m_occupyingEntity != null && tile.m_occupyingEntity.GetTeam() == Team.Player)
             {
+                int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
+                if (damageAmountPerHit == 0)
+                {
+                    continue;
+                }
+
                 possibleEntityTargets.Add(tile.m_occupyingEntity);
 
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
@@ -32,10 +38,10 @@ public class AIScanTargetsInRangeStep : AIStep
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
                 {
-                    damageAmountInVulnerableRange += tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
+                    damageAmountInVulnerableRange += damageAmountPerHit;
                     numHitsToRateVulnerable--;
                 }
-                if (damageAmountInVulnerableRange > tile.m_occupyingEntity.GetCurHealth())
+                if (damageAmountInVulnerableRange >= tile.m_occupyingEntity.GetCurHealth())
                 {
                     m_AIGameEnemyEntity.m_vulnerableEntityTargets.Add(tile.m_occupyingEntity);
                 }
@@ -52,7 +58,7 @@ public class AIScanTargetsInRangeStep : AIStep
                     damageAmountInVulnerableRange += m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower();
                     numHitsToRateVulnerable--;
                 }
-                if (damageAmountInVulnerableRange > tile.GetBuilding().GetCurHealth())
+                if (damageAmountInVulnerableRange >= tile.GetBuilding().GetCurHealth())
                 {
                     m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
                 }
