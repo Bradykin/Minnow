@@ -10,6 +10,7 @@ public class ContentForestRuinsTerrain : GameTerrainBase
 
         m_name = "ForestRuins";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
@@ -18,6 +19,11 @@ public class ContentForestRuinsTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_isForest = true;
+        m_canBurn = true;
+
+        m_burnedTerrainType = typeof(ContentForestBurnedRuinsTerrain);
+        m_completedEventType = typeof(ContentForestTerrain);
+
         m_isEventTerrain = true;
     }
 }

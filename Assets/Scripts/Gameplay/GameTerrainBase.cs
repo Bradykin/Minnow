@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using System;
 using UnityEngine;
 
 public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTerrainData>
@@ -9,8 +10,12 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isPassable = true;
     protected int m_costToPass;
     protected int m_terrainImageNumber;
+    protected int m_maxTerrainImageNumber;
     protected string m_focusPanelText;
+    protected Type m_burnedTerrainType;
+    protected Type m_completedEventType;
 
+    protected bool m_isPlains;
     protected bool m_isForest;
     protected bool m_isHill;
     protected bool m_isMountain;
@@ -24,6 +29,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isVolcano;
 
     protected bool m_isBurned;
+    protected bool m_canBurn;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
@@ -72,6 +78,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         }
 
         return m_costToPass + additiveValue;
+    }
+
+    public bool IsPlains()
+    {
+        return m_isPlains;
     }
 
     public bool IsForest()
@@ -129,6 +140,21 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_isBurned;
     }
 
+    public bool CanBurn()
+    {
+        return m_canBurn && !m_isBurned && m_burnedTerrainType != null;
+    }
+
+    public Type GetBurnedTerrainType()
+    {
+        return m_burnedTerrainType;
+    }
+
+    public Type GetCompletedEventTerrainType()
+    {
+        return m_completedEventType;
+    }
+
     public string GetFocusPanelText()
     {
         return m_focusPanelText;
@@ -150,6 +176,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
             m_terrainImageNumber++;
 
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+    }
+
+    public int GetTerrainImageNumber()
+    {
+        return m_terrainImageNumber;
     }
 
     //============================================================================================================//

@@ -22,6 +22,15 @@ public class ContentFireboltCard : GameCardSpellBase
         return GetDamageDescString();
     }
 
+    protected override int GetSpellValue()
+    {
+        int spellValue = base.GetSpellValue();
+
+        spellValue += 2 * GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+
+        return spellValue;
+    }
+
     public override void PlayCard(GameEntity targetEntity)
     {
         if (!IsValidToPlay(targetEntity))

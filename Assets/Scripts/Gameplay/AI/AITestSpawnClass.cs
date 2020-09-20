@@ -19,12 +19,17 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentPurpleBeamSwordCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDreamCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentAegisCard()), true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            GameHelper.GetPlayer().m_wallet.m_gold += 100;
         }
     }
 }

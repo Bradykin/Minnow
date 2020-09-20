@@ -10,7 +10,8 @@ public class ContentForestTerrain : GameTerrainBase
 
         m_name = "Forest";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
-        m_terrainImageNumber = Random.Range(1, 5);
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
 
@@ -18,5 +19,8 @@ public class ContentForestTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_isForest = true;
+        m_canBurn = true;
+
+        m_burnedTerrainType = typeof(ContentDirtForestBurnedTerrain);
     }
 }

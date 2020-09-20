@@ -8,7 +8,8 @@ public class ContentDirtPlainsRuinsTerrain : GameTerrainBase
     {
         m_name = "DirtPlainsRuins";
         m_desc = "2 AP movement.";
-        m_terrainImageNumber = Random.Range(1, 4);
+        m_maxTerrainImageNumber = 3;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.yellow;
 
@@ -16,5 +17,7 @@ public class ContentDirtPlainsRuinsTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_isEventTerrain = true;
+
+        m_completedEventType = typeof(ContentDirtPlainsTerrain);
     }
 }

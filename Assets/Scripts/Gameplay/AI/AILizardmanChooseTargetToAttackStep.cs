@@ -9,6 +9,26 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 
     public override void TakeStep()
     {
+        GameEntity closestVulnerableEntityInRage = FindClosestVulnerableEntityInRange();
+        if (closestVulnerableEntityInRage != null)
+        {
+            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableEntityInRage;
+        }
+
+        GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
+        if (closestVulnerableBuildingInRange != null)
+        {
+            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableBuildingInRange;
+            return;
+        }
+
+        GameBuildingBase castleInRange = FindCastleInRange();
+        if (castleInRange != null && m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfBuilding(castleInRange))
+        {
+            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
+            return;
+        }
+
         GameEntity closestEntityInRange = FindClosestEntityInRangeToWater();
         if (closestEntityInRange != null)
         {
@@ -16,7 +36,6 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
             return;
         }
 
-        GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
             m_AIGameEnemyEntity.m_targetGameElement = castleInRange;

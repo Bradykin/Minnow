@@ -13,7 +13,15 @@ public class GameGainPowerAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Power";
-        m_desc = "+" + m_toGain + " power";
+
+        if (toGain >= 0)
+        {
+            m_desc = "+" + m_toGain + " power";
+        }
+        else
+        {
+            m_desc = m_toGain + " power";
+        }
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 

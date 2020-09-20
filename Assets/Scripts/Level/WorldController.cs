@@ -220,6 +220,8 @@ public class WorldController : Singleton<WorldController>
         GamePlayer player = m_gameController.m_player;
 
         GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
+        intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * GameHelper.GetPlayer().m_waveNum * 15;
+
         player.m_wallet.AddResources(intermissionWallet);
 
         player.OnEndWave();

@@ -224,6 +224,7 @@ public class GamePlayer : ITurns
 
         toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
         toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        toReturn += Globals.m_tempSpellpower;
 
         return toReturn;
     }
@@ -470,5 +471,6 @@ public class GamePlayer : ITurns
         Globals.m_spellsPlayedThisTurn = 0;
         Globals.m_fletchingCount = 0;
         Globals.m_goldPerShivKill = 0;
+        Globals.m_tempSpellpower = 0;
     }
 }
