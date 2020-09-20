@@ -15,6 +15,9 @@ public class ContentAngelicGiftEvent : GameEvent
         m_optionTwo = new GameEventAngelicWings(tile);
         m_optionThree = new GameEventLeaveOption();
 
+        m_minWaveToSpawn = 2;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
+
         LateInit();
     }
 }

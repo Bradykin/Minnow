@@ -16,5 +16,8 @@ public class ContentForbiddenFruitEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 3;
+        m_maxWaveToSpawn = 4;
     }
 }

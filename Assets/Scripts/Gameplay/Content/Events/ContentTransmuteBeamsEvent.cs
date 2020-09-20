@@ -17,59 +17,22 @@ public class ContentTransmuteBeamsEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
     }
-}
 
-public class GameEventSellGoldForPurpleBeamsOption : GameEventOption
-{
-    public override void Init()
+    public override bool IsValidToSpawn()
     {
-        int goldAmount = GameHelper.GetPlayer().m_wallet.m_gold;
-        int beamAmount = goldAmount / 10;
+        bool baseValid = base.IsValidToSpawn();
 
-        if (goldAmount % 10 != 0)
+        if (!baseValid)
         {
-            beamAmount++;
+            return false;
         }
 
-        m_message = "Sacrifice " + goldAmount + " gold to gain " + beamAmount + " to the purple beam count.";
-    }
+        int playerPurpleBeams = Globals.m_purpleBeamCount;
 
-    public override void AcceptOption()
-    {
-        int goldAmount = GameHelper.GetPlayer().m_wallet.m_gold;
-        int beamAmount = goldAmount / 10;
-
-        if (goldAmount % 10 != 0)
-        {
-            beamAmount++;
-        }
-
-        GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(goldAmount));
-        Globals.m_purpleBeamCount += beamAmount;
-
-        EndEvent();
-    }
-}
-
-public class GameEventSellPurpleBeamsForGoldOption : GameEventOption
-{
-    public override void Init()
-    {
-        int beamAmount = Globals.m_purpleBeamCount;
-        int goldAmount = beamAmount * 10;
-
-        m_message = "Sacrifice " + beamAmount + " from the purple beam count to gain " + goldAmount + " gold.";
-    }
-
-    public override void AcceptOption()
-    {
-        int beamAmount = Globals.m_purpleBeamCount;
-        int goldAmount = beamAmount * 10;
-
-        Globals.m_purpleBeamCount = 0;
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(goldAmount));
-
-        EndEvent();
+        return playerPurpleBeams >= 5;
     }
 }

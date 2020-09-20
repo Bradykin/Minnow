@@ -16,6 +16,9 @@ public class ContentMagicianEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
     }
 }
 

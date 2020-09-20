@@ -19,7 +19,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShadowWarlockCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentNaturalScoutCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -34,7 +34,12 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            GameHelper.GetPlayer().m_wallet.m_gold += 100;
+            GameHelper.GetPlayer().m_wallet.m_gold += 7;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Globals.m_purpleBeamCount++;
         }
     }
 }

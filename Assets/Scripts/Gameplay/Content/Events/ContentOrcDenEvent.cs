@@ -17,5 +17,10 @@ public class ContentOrcDenEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        ContentOrcEnemy orcEnemyChecker = new ContentOrcEnemy(null);
+
+        m_minWaveToSpawn = orcEnemyChecker.m_minWave;
+        m_maxWaveToSpawn = orcEnemyChecker.m_maxWave;
     }
 }

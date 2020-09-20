@@ -16,6 +16,9 @@ public class ContentStablesEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 2;
+        m_maxWaveToSpawn = 5;
     }
 }
 
