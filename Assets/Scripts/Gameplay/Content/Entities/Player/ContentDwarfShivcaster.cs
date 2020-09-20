@@ -29,15 +29,16 @@ public class ContentDwarfShivcaster : GameEntity
 public class GameShivNearbyAction : GameAction
 {
     private GameEntity m_entity;
-    private GameCard shivCard;
+    private GameCard m_shivCard;
+    private int m_numShivsThrown = 2;
 
     public GameShivNearbyAction(GameEntity entity)
     {
         m_entity = entity;
-        shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
+        m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
 
         m_name = "Throw Shiv";
-        m_desc = "On spellcast, throw a shiv at a random nearby enemy within two tiles.";
+        m_desc = "On spellcast, throw " + m_numShivsThrown + " shivs at random nearby enemies within two tiles.";
         m_actionParamType = ActionParamType.EntityParam;
     }
 
@@ -56,7 +57,7 @@ public class GameShivNearbyAction : GameAction
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy)
+            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingEntity.m_isDead && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy)
             {
                 nearbyEnemies.Add(nearbyTiles[i].m_occupyingEntity);
             }
@@ -67,9 +68,16 @@ public class GameShivNearbyAction : GameAction
             return;
         }
 
-        int randomIndex = Random.Range(0, nearbyEnemies.Count);
+        for (int i = 0; i < m_numShivsThrown; i++)
+        {
+            int randomIndex = Random.Range(0, nearbyEnemies.Count);
+            m_shivCard.PlayCard(nearbyEnemies[randomIndex]);
 
-        shivCard.PlayCard(nearbyEnemies[randomIndex]);
+            if (nearbyEnemies[randomIndex].m_isDead)
+            {
+                nearbyEnemies.RemoveAt(randomIndex);
+            }
+        }
     }
 
     public override string SaveToJson()
