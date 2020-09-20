@@ -6,6 +6,8 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
 {
     public ContentGrassPlainsTerrain()
     {
+        m_costToPass = 1;
+
         m_name = "GrassPlains";
         m_desc = "Simple, no changes.";
         m_maxTerrainImageNumber = 4;
@@ -14,11 +16,10 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
         m_color = Color.white;
 
         m_isPassable = true;
-        m_costToPass = 1;
-
         m_isPlains = true;
         m_canBurn = true;
 
         m_burnedTerrainType = typeof(ContentDirtPlainsTerrain);
+        m_addedEventType = typeof(ContentGrassPlainsRuinsTerrain);
     }
 }

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrassPlainsRuinsTerrain : GameTerrainBase
+public class ContentScrublandPlainsRuinsTerrain : GameTerrainBase
 {
-    public ContentGrassPlainsRuinsTerrain()
+    public ContentScrublandPlainsRuinsTerrain()
     {
-        m_costToPass = 2;
+        m_costToPass = 1;
 
-        m_name = "GrassPlainsRuins";
-        m_desc = "2 AP movement.";
+        m_name = "ScrublandPlainsRuins";
+        m_desc = "Simple, no changes.";
         m_maxTerrainImageNumber = 3;
-        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
-        m_color = Color.yellow;
+        m_color = Color.white;
 
         m_isPassable = true;
         m_isPlains = true;
@@ -21,6 +21,6 @@ public class ContentGrassPlainsRuinsTerrain : GameTerrainBase
         m_isEventTerrain = true;
 
         m_burnedTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
-        m_completedEventType = typeof(ContentGrassPlainsTerrain);
+        m_completedEventType = typeof(ContentScrublandPlainsTerrain);
     }
 }

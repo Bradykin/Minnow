@@ -6,6 +6,8 @@ public class ContentWaterTerrain : GameTerrainBase
 {
     public ContentWaterTerrain()
     {
+        m_costToPass = 1;
+
         m_name = "Water";
         m_desc = "Impassable.";
         m_maxTerrainImageNumber = 4;
@@ -14,8 +16,6 @@ public class ContentWaterTerrain : GameTerrainBase
         m_color = Color.blue;
 
         m_isPassable = false;
-        m_costToPass = 1;
-
         m_isWater = true;
     }
 }

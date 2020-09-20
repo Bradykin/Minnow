@@ -8,6 +8,7 @@ public class ContentHillsTerrain : GameTerrainBase
     {
         m_rangeModifier = 1;
         m_damageReduction = 2;
+        m_costToPass = 3;
 
         m_name = "Hills";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
@@ -18,8 +19,6 @@ public class ContentHillsTerrain : GameTerrainBase
         m_color = Color.grey;
 
         m_isPassable = true;
-        m_costToPass = 3;
-
         m_isHill = true;
     }
 }
