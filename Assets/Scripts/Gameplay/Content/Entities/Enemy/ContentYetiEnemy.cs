@@ -22,11 +22,11 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_minWave = 4;
         m_maxWave = 6;
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(5));
+        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(4));
         m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIYetiChooseTargetToAttackStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
 

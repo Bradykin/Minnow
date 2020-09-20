@@ -5,6 +5,7 @@ using UnityEngine;
 public class AIGameEnemyEntity
 {
     private List<AIStep> m_AISteps;
+
     public GameEnemyEntity m_gameEnemyEntity { get; private set; }
 
     public List<GameEntity> m_possibleEntityTargets = new List<GameEntity>();
@@ -43,6 +44,8 @@ public class AIGameEnemyEntity
 
         m_possibleEntityTargets.Clear();
         m_possibleBuildingTargets.Clear();
+        m_vulnerableEntityTargets.Clear();
+        m_vulnerableBuildingTargets.Clear();
         m_targetGameElement = null;
         m_doSteps = true;
     }

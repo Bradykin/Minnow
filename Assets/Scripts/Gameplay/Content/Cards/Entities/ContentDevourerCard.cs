@@ -11,6 +11,6 @@ public class ContentDevourerCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "Vicious bites and a wild massacre mark its passage.";
-        m_cost = 3;
+        m_cost = 2;
     }
 }

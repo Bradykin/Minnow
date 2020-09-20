@@ -26,6 +26,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
 
     public T GetKeyword<T>()
     {
+        List<T> listOfKeyword = new List<T>();
         for (int i = 0; i < m_keywords.Count; i++)
         {
             if (m_keywords[i] is T val)
@@ -35,6 +36,20 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         }
 
         return default(T);
+    }
+
+    public List<T> GetKeywords<T>()
+    {
+        List<T> listOfKeyword = new List<T>();
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i] is T val)
+            {
+                listOfKeyword.Add(val);
+            }
+        }
+
+        return listOfKeyword;
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)

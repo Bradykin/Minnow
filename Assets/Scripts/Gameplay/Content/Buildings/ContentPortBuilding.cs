@@ -22,22 +22,20 @@ public class ContentPortBuilding : GameBuildingBase
     }
 
     public override void TriggerEndOfWave()
-    {
-        if (m_isDestroyed)
+    {   
+        if (!m_isDestroyed)
         {
-            return;
+            GamePlayer player = GameHelper.GetPlayer();
+
+            if (player == null)
+            {
+                return;
+            }
+
+            player.m_wallet.AddResources(new GameWallet(m_returns.m_gold));
         }
 
         base.TriggerEndOfWave();
-
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.m_wallet.AddResources(new GameWallet(m_returns.m_gold));
     }
 
     protected override void Die()

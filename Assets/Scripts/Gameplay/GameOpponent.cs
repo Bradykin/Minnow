@@ -9,11 +9,14 @@ public class GameOpponent : ITurns
 {
     public List<GameEnemyEntity> m_controlledEntities { get; private set; }
 
+    private List<GameEnemyEntity> m_secondTryAIControlledEntities;
+
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
         m_controlledEntities = new List<GameEnemyEntity>();
+        m_secondTryAIControlledEntities = new List<GameEnemyEntity>();
         m_spawnPoints = new List<GameSpawnPoint>();
     }
 
@@ -48,16 +51,48 @@ public class GameOpponent : ITurns
             if (Constants.UseSmartCameraEnemyTurns && !m_controlledEntities[i].GetGameTile().m_isFog)
             {
                 UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
+                int curAP = m_controlledEntities[i].GetCurAP();
                 yield return new WaitForSeconds(0.25f);
                 m_controlledEntities[i].TakeTurn();
                 //UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.5f);
+
+                if (curAP == m_controlledEntities[i].GetCurAP())
+                {
+                    m_secondTryAIControlledEntities.Add(m_controlledEntities[i]);
+                }
             }
             else
             {
+                int curAP = m_controlledEntities[i].GetCurAP();
+
                 m_controlledEntities[i].TakeTurn();
+
+                if (curAP == m_controlledEntities[i].GetCurAP())
+                {
+                    m_secondTryAIControlledEntities.Add(m_controlledEntities[i]);
+                }
             }
         }
+
+        for (int i = 0; i < m_secondTryAIControlledEntities.Count; i++)
+        {
+            if (Constants.UseSmartCameraEnemyTurns && !m_secondTryAIControlledEntities[i].GetGameTile().m_isFog)
+            {
+                UICameraController.Instance.SnapToWorldElement(m_secondTryAIControlledEntities[i].GetWorldTile());
+                yield return new WaitForSeconds(0.25f);
+                m_secondTryAIControlledEntities[i].TakeTurn();
+                //UICameraController.Instance.SnapToWorldElement(m_secondTryAIControlledEntities[i].GetWorldTile());
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                m_secondTryAIControlledEntities[i].TakeTurn();
+            }
+        }
+
+        m_secondTryAIControlledEntities.Clear();
+
         WorldController.Instance.m_gameController.MoveToNextTurn();
     }
 
