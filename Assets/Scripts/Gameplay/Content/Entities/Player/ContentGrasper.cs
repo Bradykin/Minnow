@@ -8,7 +8,7 @@ public class ContentGrasper : GameEntity
     {
         m_maxHealth = 9;
         m_maxAP = 3;
-        m_apRegen = 1;
+        m_apRegen = 2;
         m_power = 1;
 
         m_team = Team.Player;

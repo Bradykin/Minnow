@@ -19,21 +19,19 @@ public class ContentSmithyBuilding : GameBuildingBase
 
     public override void TriggerEndOfWave()
     {
-        if (m_isDestroyed)
+        if (!m_isDestroyed)
         {
-            return;
+            GamePlayer player = GameHelper.GetPlayer();
+
+            if (player == null)
+            {
+                return;
+            }
+
+            player.AddBonusActions(1);
         }
 
         base.TriggerEndOfWave();
-
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.AddBonusActions(1);
     }
 
     protected override void Die()

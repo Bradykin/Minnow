@@ -71,10 +71,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             m_curAP = m_maxAP;
         }
 
-        GameSummonKeyword summonKeyword = m_keywordHolder.GetKeyword<GameSummonKeyword>();
-        if (summonKeyword != null)
+        List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
+        for (int i = 0; i < summonKeywords.Count; i++)
         {
-            summonKeyword.DoAction();
+            summonKeywords[i].DoAction();
         }
 
         if (GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
@@ -132,10 +132,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         m_curHealth -= damage;
 
-        GameEnrageKeyword enrageKeyword = m_keywordHolder.GetKeyword<GameEnrageKeyword>();
-        if (enrageKeyword != null)
+        List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
+        for (int i = 0; i < enrageKeywords.Count; i++)
         {
-            enrageKeyword.DoAction();
+            enrageKeywords[i].DoAction();
         }
 
         if (m_curHealth <= 0)
@@ -212,10 +212,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return;
         }
 
-        GameDeathKeyword deathKeyword = m_keywordHolder.GetKeyword<GameDeathKeyword>();
-        if (deathKeyword != null)
+        List<GameDeathKeyword> deathKeywords = m_keywordHolder.GetKeywords<GameDeathKeyword>();
+        for (int i = 0; i < deathKeywords.Count; i++)
         {
-            deathKeyword.DoAction();
+            deathKeywords[i].DoAction();
         }
 
         if (GetTeam() == Team.Enemy)
@@ -357,19 +357,19 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public void SpellCast()
     {
-        GameSpellcraftKeyword spellcraftKeyword = m_keywordHolder.GetKeyword<GameSpellcraftKeyword>();
-        if (spellcraftKeyword != null)
+        List<GameSpellcraftKeyword> spellcraftKeywords = m_keywordHolder.GetKeywords<GameSpellcraftKeyword>();
+        for (int i = 0; i < spellcraftKeywords.Count; i++)
         {
-            spellcraftKeyword.DoAction();
+            spellcraftKeywords[i].DoAction();
         }
     }
 
     public void DrawCard()
     {
-        GameKnowledgeableKeyword knowledgeableKeyword = m_keywordHolder.GetKeyword<GameKnowledgeableKeyword>();
-        if (knowledgeableKeyword != null)
+        List<GameKnowledgeableKeyword> knowledgeableKeywords = m_keywordHolder.GetKeywords<GameKnowledgeableKeyword>();
+        for (int i = 0; i < knowledgeableKeywords.Count; i++)
         {
-            knowledgeableKeyword.DoAction();
+            knowledgeableKeywords[i].DoAction();
         }
     }
 
@@ -417,18 +417,18 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
-        GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
-        if (momentumKeyword != null)
+        List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        for (int i = 0; i < momentumKeywords.Count; i++)
         {
-            momentumKeyword.DoAction();
+            momentumKeywords[i].DoAction();
         }
 
         if (other.m_isDead)
         {
-            GameVictoriousKeyword victoriousKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
-            if (victoriousKeyword != null)
+            List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+            for (int i = 0; i < victoriousKeywords.Count; i++)
             {
-                victoriousKeyword.DoAction();
+                victoriousKeywords[i].DoAction();
             }
 
             if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentCursedAmuletRelic>() > 0)
@@ -449,18 +449,18 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
-        GameMomentumKeyword momentumKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
-        if (momentumKeyword != null)
+        List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        for (int i = 0; i < momentumKeywords.Count; i++)
         {
-            momentumKeyword.DoAction();
+            momentumKeywords[i].DoAction();
         }
 
         if (other.m_isDestroyed)
         {
-            GameVictoriousKeyword victoriousKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
-            if (victoriousKeyword != null)
+            List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+            for (int i = 0; i < victoriousKeywords.Count; i++)
             {
-                victoriousKeyword.DoAction();
+                victoriousKeywords[i].DoAction();
             }
         }
 
@@ -541,6 +541,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_keywordHolder.GetKeyword<T>();
     }
 
+    public List<T> GetKeywords<T>()
+    {
+        return m_keywordHolder.GetKeywords<T>();
+    }
+
     public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;
@@ -566,7 +571,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
             toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
-            if (m_keywordHolder.GetKeyword<GameRangeKeyword>() != null)
+            if (m_keywordHolder.GetKeywords<GameRangeKeyword>() != null)
             {
                 toReturn += Globals.m_fletchingCount;
             }
@@ -839,10 +844,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         RegenAP();
 
-        GameRegenerateKeyword regenKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
-        if (regenKeyword != null)
+        List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
+        for (int i = 0; i < regenKeywords.Count; i++)
         {
-            int regenValue = Heal(regenKeyword.m_regenVal);
+            Heal(regenKeywords[i].m_regenVal);
         }
 
         if (GetTypeline() == Typeline.Humanoid)

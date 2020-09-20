@@ -6,14 +6,14 @@ public class ContentDevourer : GameEntity
 {
     public ContentDevourer()
     {
-        m_maxHealth = 30;
+        m_maxHealth = 20;
         m_maxAP = 6;
         m_apRegen = 4;
         m_power = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 2)));
+        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 1)));
         m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
 
         m_name = "Devourer";
