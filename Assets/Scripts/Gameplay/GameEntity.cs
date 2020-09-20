@@ -33,6 +33,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_apToAttack = 2;
     protected int m_sightRange = 2;
+    public bool m_shouldAlwaysPassEnemies;
 
     //Functionality
     protected GameTile m_gameTile;

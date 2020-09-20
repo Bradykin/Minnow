@@ -9,6 +9,7 @@ public class ContentTempleBuilding : GameBuildingBase
         m_name = "Temple";
         m_desc = "Faith in the gods grants you an extra energy every turn this isn't destroyed.";
         m_rarity = GameRarity.Uncommon;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 10;
 

@@ -13,6 +13,7 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_name = "Magic School";
         m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + ".";
         m_rarity = GameRarity.Uncommon;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 12;
 

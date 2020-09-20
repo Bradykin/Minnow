@@ -18,6 +18,7 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
+        m_shouldAlwaysPassEnemies = true;
 
         m_minWave = 4;
         m_maxWave = 6;
@@ -25,9 +26,9 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
         m_name = "Siegebreaker";
         m_desc = "Do <b>not</b> let this thing get to the buildings!";
 
-        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerMoveToTargetStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerAttackUntilOutOfAPStep(m_AIGameEnemyEntity));
 
         LateInit();

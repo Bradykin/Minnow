@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: either nmartino or ashulman: make rarer events spawn farther away from base
 public static class GameEventFactory
 {
     private static List<GameEvent> m_events = new List<GameEvent>();

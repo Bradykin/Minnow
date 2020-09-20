@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIMoveToTargetStandardStep : AIMoveStep
+public class AISiegebreakerMoveToTargetStep : AIMoveStep
 {
-    public AIMoveToTargetStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerMoveToTargetStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
         if (m_AIGameEnemyEntity.m_targetGameElement == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP());
             return;
         }
 
@@ -27,7 +27,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP());
             return;
         }
 

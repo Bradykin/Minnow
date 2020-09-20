@@ -11,6 +11,7 @@ public class ContentFortressBuilding : GameBuildingBase
     {
         m_name = "Fortress";
         m_desc = "Shoots at enemies on tiles in a range of 2 with " + m_power + " power at the start of your turn.";
+        m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;
         m_rarity = GameRarity.Common;

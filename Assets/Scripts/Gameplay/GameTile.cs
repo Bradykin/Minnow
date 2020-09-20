@@ -223,6 +223,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)
     {
+        if (checkerEntity.m_shouldAlwaysPassEnemies)
+        {
+            letPassEnemies = true;
+        }
+        
         bool terrainImpassable = !m_terrain.IsPassable(checkerEntity);
 
         if (checkerEntity != null)
