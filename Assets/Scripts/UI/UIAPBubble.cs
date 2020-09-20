@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIAPBubble : MonoBehaviour
 {
-    public SpriteRenderer m_renderer;
+    public Image m_image;
 
     public void Init(bool active, Team team)
     {
-        UIHelper.SetValidColorAltByTeam(m_renderer, active, team);
+        m_image.color = UIHelper.GetValidColorAltByTeam(active, team);
     }
 }

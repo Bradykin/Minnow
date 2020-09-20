@@ -34,7 +34,7 @@ namespace Game.Util
 
             if (displayType == UICard.CardDisplayType.Hand)
             {
-                obj.transform.parent = m_waveHUD;
+                obj.transform.SetParent(m_waveHUD);
             }
             else if (displayType == UICard.CardDisplayType.Tooltip)
             {

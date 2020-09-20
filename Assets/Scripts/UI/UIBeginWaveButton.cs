@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class UIBeginWaveButton : WorldElementBase
 {
-    public SpriteRenderer m_renderer;
+    public Image m_image;
     public Text m_beginWaveText;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
     public GameObject m_holder;
 
     void Update()
     {
         if (PlayerHasActions())
         {
-            m_renderer.color = UIHelper.m_fadedColor;
+            m_image.color = UIHelper.m_fadedColor;
             m_beginWaveText.color = UIHelper.m_fadedColor;
         }
         else
         {
-            m_renderer.color = UIHelper.m_defaultColor;
+            m_image.color = UIHelper.m_defaultColor;
             m_beginWaveText.color = UIHelper.m_defaultColor;
         }
     }
@@ -36,20 +36,20 @@ public class UIBeginWaveButton : WorldElementBase
             return;
         }
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
 
         WorldController.Instance.EndIntermission();
     }
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_canScroll = true;
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UICardFrameController : MonoBehaviour
 {
@@ -10,11 +11,11 @@ public class UICardFrameController : MonoBehaviour
     public Sprite m_spellCardFrame;
     public Sprite m_entityCardFrame;
 
-    private SpriteRenderer m_renderer;
+    private Image m_image;
 
     void Start()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
+        m_image = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -29,11 +30,11 @@ public class UICardFrameController : MonoBehaviour
 
         if (card is GameCardEntityBase)
         {
-            m_renderer.sprite = m_entityCardFrame;
+            m_image.sprite = m_entityCardFrame;
         }
         else
         {
-            m_renderer.sprite = m_spellCardFrame;
+            m_image.sprite = m_spellCardFrame;
         }
     }
 }

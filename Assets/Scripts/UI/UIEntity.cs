@@ -73,11 +73,11 @@ public class UIEntity : WorldElementBase
         {
             if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy)
             {
-                UIHelper.SetSelectTintColor(m_tintRenderer, true);
+                m_tintRenderer.color = UIHelper.GetSelectTintColor(true);
             }
             else
             {
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                m_tintRenderer.color = UIHelper.GetDefaultTintColor();
             }
         }
 
@@ -109,7 +109,7 @@ public class UIEntity : WorldElementBase
             {
                 Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
-                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+                m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
             }
         }
         else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
@@ -121,7 +121,7 @@ public class UIEntity : WorldElementBase
         {
             UIHelper.SelectEntity(this);
 
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+            m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedEntity == this);
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
@@ -160,31 +160,31 @@ public class UIEntity : WorldElementBase
             bool canHit = Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity());
             if (GetEntity().GetTeam() == Team.Player && canHit)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, true);
+                m_tintRenderer.color = UIHelper.GetValidTintColor(true);
             }
             else if (GetEntity().GetTeam() == Team.Enemy)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, canHit);
+                m_tintRenderer.color = UIHelper.GetValidTintColor(canHit);
             }
             else if (GetEntity().GetTeam() == Team.Player && !canHit)
             {
                 if (Globals.m_selectedEntity == this)
                 {
-                    UIHelper.SetSelectTintColor(m_tintRenderer, CanSelect());
+                    m_tintRenderer.color = UIHelper.GetSelectTintColor(CanSelect());
                 }
                 else
                 {
-                    UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(CanSelect());
                 }
             }
         }
         else if (Globals.m_selectedCard != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
+            m_tintRenderer.color = UIHelper.GetValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
         } 
         else if (Globals.m_selectedEntity == null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+            m_tintRenderer.color = UIHelper.GetValidTintColor(CanSelect());
         }
     }
 
@@ -193,7 +193,7 @@ public class UIEntity : WorldElementBase
         m_isHovered = false;
         if (Globals.m_selectedEntity != this)
         {
-            UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+            m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
         }
     }
 

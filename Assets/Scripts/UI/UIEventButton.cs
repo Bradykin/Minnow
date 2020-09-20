@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIEventButton : WorldElementBase
 {
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
     public GameEventOption m_eventOption { get; private set; }
     public Text m_descText;
 
@@ -25,7 +25,7 @@ public class UIEventButton : WorldElementBase
 
         m_eventOption.AcceptOption();
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         GetComponent<UITooltipGenerator>().ClearTooltip();
     }
 
@@ -36,12 +36,12 @@ public class UIEventButton : WorldElementBase
             return;
         }
 
-        UIHelper.SetValidTintColor(m_tintRenderer, m_eventOption.IsOptionValid());
+        m_tintImage.color = UIHelper.GetValidTintColor(m_eventOption.IsOptionValid());
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     public override void HandleTooltip()

@@ -77,7 +77,7 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         //Handle Tint Color
         if (Globals.m_selectedTile == this)
         {
-            UIHelper.SetSelectTintColor(m_tintRenderer, true);
+            m_tintRenderer.color = UIHelper.GetSelectTintColor(true);
         }
         else
         {
@@ -93,36 +93,36 @@ public class WorldTile : WorldElementBase, ICustomRecycle
 
                 if (Globals.m_selectedEntity != null)
                 {
-                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
+                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
                 }
 
                 if (Globals.m_selectedCard != null)
                 {
-                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
+                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
                 }
 
                 if (Globals.m_selectedIntermissionBuilding != null)
                 {
-                    UIHelper.SetSelectValidTintColor(m_tintRenderer, Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
                 }
             }
             else
             {
                 if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
                 {
-                    UIHelper.SetValidTintColor(m_tintRenderer, true);
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
                 else if (Globals.m_selectedEntity != null && m_isMoveable)
                 {
-                    UIHelper.SetValidTintColor(m_tintRenderer, true);
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
                 else if (Globals.m_selectedEntity != null && m_isAttackable)
                 {
-                    UIHelper.SetAttackTintColor(m_tintRenderer);
+                    m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }
                 else
                 {
-                    UIHelper.SetDefaultTintColor(m_tintRenderer);
+                    m_tintRenderer.color = UIHelper.GetDefaultTintColor();
                 }
             }
         }
@@ -136,15 +136,15 @@ public class WorldTile : WorldElementBase, ICustomRecycle
         {
             if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
-                UIHelper.SetValidColor(m_frameRenderer, true);
+                m_tintRenderer.color = UIHelper.GetValidColor(true);
             }
             else if (Globals.m_selectedEntity != null && m_isMoveable)
             {
-                UIHelper.SetValidColor(m_frameRenderer, true);
+                m_tintRenderer.color = UIHelper.GetValidColor(true);
             }
             else if (Globals.m_selectedEntity != null && m_isAttackable)
             {
-                UIHelper.SetAttackColor(m_frameRenderer);
+                m_tintRenderer.color = UIHelper.GetAttackColor();
             }
             else
             {

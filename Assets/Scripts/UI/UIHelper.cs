@@ -35,121 +35,121 @@ public static class UIHelper
     public static Color m_difficultyHard = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
-    public static void SetSelectTintColor(SpriteRenderer renderer, bool isSelected)
+    public static Color GetSelectTintColor(bool isSelected)
     {
         if (isSelected)
         {
-            renderer.color = m_selectedTint;
+            return m_selectedTint;
         }
         else
         {
-            SetDefaultTintColor(renderer);
+            return GetDefaultTintColor();
         }
     }
 
-    public static void SetSelectHarshTintColor(SpriteRenderer renderer, bool isSelected)
+    public static Color GetSelectHarshTintColor(bool isSelected)
     {
         if (isSelected)
         {
-            renderer.color = m_selectedHarshTint;
+            return m_selectedHarshTint;
         }
         else
         {
-            SetDefaultTintColor(renderer);
+            return GetDefaultTintColor();
         }
     }
 
-    public static void SetSelectValidTintColor(SpriteRenderer renderer, bool isValid)
+    public static Color GetSelectValidTintColor(bool isValid)
     {
         if (isValid)
         {
-            renderer.color = m_selectedTint;
+            return m_selectedTint;
         }
         else
         {
-            SetValidTintColor(renderer, false);
+            return GetValidTintColor(false);
         }
     }
 
-    public static void SetValidTintColor(SpriteRenderer renderer, bool isValid)
+    public static Color GetValidTintColor(bool isValid)
     {
         if (isValid)
         {
-            renderer.color = m_validTint;
+            return m_validTint;
         }
         else
         {
-            renderer.color = m_invalidTint;
+            return m_invalidTint;
         }
     }
 
-    public static void SetAttackTintColor(SpriteRenderer renderer)
+    public static Color GetAttackTintColor()
     {
-        renderer.color = m_attackTint;
+        return m_attackTint;
     }
 
-    public static void SetValidColor(SpriteRenderer renderer, bool isValid)
+    public static Color GetValidColor(bool isValid)
     {
         if (isValid)
         {
-            renderer.color = m_valid;
+            return m_valid;
         }
         else
         {
-            renderer.color = m_invalid;
+            return m_invalid;
         }
     }
 
-    public static void SetValidColorAltByTeam(SpriteRenderer renderer, bool isValid, Team team)
+    public static Color GetValidColorAltByTeam(bool isValid, Team team)
     {
         if (isValid)
         {
             if (team == Team.Player)
             {
-                renderer.color = m_validAltPlayer;
+                return m_validAltPlayer;
             }
             else
             {
-                renderer.color = m_validAltEnemy;
+                return m_validAltEnemy;
             }
         }
         else
         {
-            renderer.color = m_invalidAlt;
+            return m_invalidAlt;
         }
     }
 
-    public static void SetAttackColor(SpriteRenderer renderer)
+    public static Color GetAttackColor()
     {
-        renderer.color = m_attackColor;
+        return m_attackColor;
     }
 
-    public static void SetDefaultTintColor(SpriteRenderer renderer)
+    public static Color GetDefaultTintColor()
     {
-        renderer.color = m_defaultTint;
+        return m_defaultTint;
     }
 
-    public static void SetDefaultTintColorForTeam(SpriteRenderer renderer, Team team)
-    {
-        if (team == Team.Player)
-        {
-            renderer.color = m_playerColorTint;
-        }
-        else
-        {
-            renderer.color = m_enemyColorTint;
-        }
-    }
-
-    public static void SetDefaultColorForTeam(SpriteRenderer renderer, Team team)
+    public static Color GetDefaultTintColorForTeam(Team team)
     {
         if (team == Team.Player)
         {
-            renderer.color = m_playerColor;
+            return m_playerColorTint;
         }
         else
         {
-            renderer.color = m_enemyColor;
+            return m_enemyColorTint;
+        }
+    }
+
+    public static Color GetDefaultColorForTeam(Team team)
+    {
+        if (team == Team.Player)
+        {
+            return m_playerColor;
+        }
+        else
+        {
+            return m_enemyColor;
         }
     }
 

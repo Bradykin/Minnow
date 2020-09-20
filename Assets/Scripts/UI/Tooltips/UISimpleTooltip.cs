@@ -8,16 +8,16 @@ public class UISimpleTooltip : UITooltipBase
     public GameObject m_titleBox;
     public GameObject m_descBox;
 
-    private SpriteRenderer m_titleRenderer;
-    private SpriteRenderer m_descRenderer;
+    private Image m_titleImage;
+    private Image m_descImage;
 
     public Text m_titleText;
     public Text m_descText;
 
     public void Init(string title, string desc)
     {
-        m_titleRenderer = m_titleBox.GetComponent<SpriteRenderer>();
-        m_descRenderer = m_descBox.GetComponent<SpriteRenderer>();
+        m_titleImage = m_titleBox.GetComponent<Image>();
+        m_descImage = m_descBox.GetComponent<Image>();
 
         m_titleText.text = title;
 
@@ -44,11 +44,11 @@ public class UISimpleTooltip : UITooltipBase
 
         if (team == Team.Player)
         {
-            m_titleRenderer.color = UIHelper.m_playerColor;
+            m_titleImage.color = UIHelper.m_playerColor;
         }
         else
         {
-            m_titleRenderer.color = UIHelper.m_enemyColor;
+            m_titleImage.color = UIHelper.m_enemyColor;
         }
     }
 
@@ -56,7 +56,7 @@ public class UISimpleTooltip : UITooltipBase
     {
         Init(title, desc);
 
-        UIHelper.SetValidColor(m_titleRenderer, isValid);
+        m_titleImage.color = UIHelper.GetValidColor(isValid);
     }
 
     void Update()

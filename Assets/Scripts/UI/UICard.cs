@@ -13,11 +13,11 @@ public class UICard : WorldElementBase
         Tooltip
     }
 
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
     public Text m_nameText;
     public Text m_costText;
-    public SpriteRenderer m_imageRenderer;
+    public Image m_image;
     public Text m_typelineText;
     public Text m_descText;
     public Text m_powerText;
@@ -39,7 +39,7 @@ public class UICard : WorldElementBase
 
     void Start()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     public void Init(GameCard card, CardDisplayType displayType)
@@ -77,7 +77,7 @@ public class UICard : WorldElementBase
         if (!m_isHovered)
         {
             bool isSelected = Globals.m_selectedCard == this;
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedCard == this);
+            m_tintImage.color = UIHelper.GetSelectTintColor(Globals.m_selectedCard == this);
         }
     }
 
@@ -88,7 +88,7 @@ public class UICard : WorldElementBase
             return;
         }
 
-        m_imageRenderer.sprite = m_card.m_icon;
+        m_image.sprite = m_card.m_icon;
         m_nameText.text = m_card.GetName();
         m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
@@ -126,7 +126,7 @@ public class UICard : WorldElementBase
         if (Globals.m_selectedCard != this)
         {
             bool isValid = m_card.IsValidToPlay() || m_cardSelect != null;
-            UIHelper.SetValidTintColor(m_tintRenderer, isValid);
+            m_tintImage.color = UIHelper.GetValidTintColor(isValid);
         }
     }
 
@@ -136,7 +136,7 @@ public class UICard : WorldElementBase
 
         if (Globals.m_selectedCard != this)
         {
-            UIHelper.SetDefaultTintColor(m_tintRenderer);
+            m_tintImage.color = UIHelper.GetDefaultTintColor();
         }
     }
 

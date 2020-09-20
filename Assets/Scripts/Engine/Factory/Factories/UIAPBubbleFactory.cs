@@ -28,7 +28,7 @@ namespace Game.Util
         public T CreateObject<T>(Transform apContainer, bool isActive, Team team, int index, bool inWorld)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.parent = apContainer;
+            obj.transform.SetParent(apContainer);
 
             float multiplier = 1f;
             if (inWorld)

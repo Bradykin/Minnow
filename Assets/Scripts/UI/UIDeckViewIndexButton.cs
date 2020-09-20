@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIDeckViewIndexButton : MonoBehaviour
 {
     public bool m_increase;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
     public GameObject m_holder;
 
     void Update()
@@ -45,11 +46,11 @@ public class UIDeckViewIndexButton : MonoBehaviour
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 }

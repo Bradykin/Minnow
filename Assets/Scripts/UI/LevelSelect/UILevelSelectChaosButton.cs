@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UILevelSelectChaosButton : WorldElementBase
 {
     public GameObject m_holder;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
     public bool m_isIncrease;
 
@@ -35,12 +36,12 @@ public class UILevelSelectChaosButton : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     private bool IsActive()

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class UICardSelectSkipButton : WorldElementBase
 {
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
-    public SpriteRenderer m_backgroundRenderer;
+    public Image m_image;
     public Text m_skipText;
 
     private bool m_isActive;
@@ -18,12 +18,12 @@ public class UICardSelectSkipButton : WorldElementBase
 
         if (m_isActive)
         {
-            m_backgroundRenderer.color = UIHelper.m_defaultColor;
+            m_image.color = UIHelper.m_defaultColor;
             m_skipText.color = UIHelper.m_defaultColor;
         }
         else
         {
-            m_backgroundRenderer.color = UIHelper.m_defaultFaded;
+            m_image.color = UIHelper.m_defaultFaded;
             m_skipText.color = UIHelper.m_defaultFaded;
         }
     }
@@ -36,18 +36,18 @@ public class UICardSelectSkipButton : WorldElementBase
         }
 
         UICardSelectController.Instance.SkipSelection();
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_selectedCard = null;
     }
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     public override void HandleTooltip()

@@ -9,7 +9,7 @@ public class UIFocusInfoPanel : WorldElementBase
     public Text m_descText;
     public GameObject m_holder;
 
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
     private bool m_shouldShow;
 
@@ -109,13 +109,13 @@ public class UIFocusInfoPanel : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_canScroll = true;
     }
 

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UILevelSelectStartButton : MonoBehaviour
 {
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
     void OnMouseDown()
     {
@@ -30,11 +31,11 @@ public class UILevelSelectStartButton : MonoBehaviour
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 }

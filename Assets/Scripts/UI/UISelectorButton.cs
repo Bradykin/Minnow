@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UISelectorButton : WorldElementBase
 {
-    public SpriteRenderer m_renderer;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_image;
+    public Image m_tintImage;
 
     public UIIntermissionController.SelectorType m_selectorType;
 
@@ -13,11 +14,11 @@ public class UISelectorButton : WorldElementBase
     {
         if (m_selectorType == UIIntermissionController.Instance.GetSelectorType())
         {
-            m_renderer.color = Color.yellow;
+            m_image.color = Color.yellow;
         }
         else
         {
-            m_renderer.color = Color.white;
+            m_image.color = Color.white;
         }
     }
 
@@ -28,13 +29,13 @@ public class UISelectorButton : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_canScroll = true;
     }
 

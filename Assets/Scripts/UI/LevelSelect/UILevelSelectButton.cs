@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UILevelSelectButton : WorldElementBase
 {
     public int m_id;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
     public Text m_titleText;
 
     private JsonMapMetaData m_level;
@@ -56,12 +56,12 @@ public class UILevelSelectButton : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     public override void HandleTooltip()

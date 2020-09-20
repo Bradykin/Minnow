@@ -7,7 +7,7 @@ public class UIEnergy : WorldElementBase
 {
     public Text m_titleText;
     public Text m_countText;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_tintImage;
 
     void Update()
     {
@@ -32,13 +32,13 @@ public class UIEnergy : WorldElementBase
 
     void OnMouseOver()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
+        m_tintImage.color = UIHelper.GetValidTintColor(true);
         Globals.m_canScroll = false;
     }
 
     void OnMouseExit()
     {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_canScroll = true;
     }
 

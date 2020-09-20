@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class UIActionController : MonoBehaviour
 {
-    public SpriteRenderer m_tintRenderer;
-    public SpriteRenderer m_iconRenderer;
-    public SpriteRenderer m_terrainRenderer;
+    public Image m_tintImage;
+    public Image m_iconImage;
+    public Image m_terrainImage;
 
     public Text m_titleText;
     public Text m_descText;
@@ -25,17 +25,17 @@ public class UIActionController : MonoBehaviour
     {
         if (m_actionController.HasBuilding() && Globals.m_selectedIntermissionBuilding == m_actionController.m_building)
         {
-            UIHelper.SetSelectTintColor(m_tintRenderer, true);
+            m_tintImage.color = UIHelper.GetSelectTintColor(true);
         }
         else
         { 
             if (m_hovered)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, m_actionController.CanAfford());
+                m_tintImage.color = UIHelper.GetValidTintColor(m_actionController.CanAfford());
             }
             else
             {
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                m_tintImage.color = UIHelper.GetDefaultTintColor();
             }
         }
     }
@@ -44,8 +44,8 @@ public class UIActionController : MonoBehaviour
     {
         m_actionController = new GameIntermissionActionController(action);
 
-        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
-        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
+        m_iconImage.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
+        m_iconImage.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 
         InitImpl();
     }
@@ -54,29 +54,29 @@ public class UIActionController : MonoBehaviour
     {
         m_actionController = new GameIntermissionActionController(building);
 
-        m_iconRenderer.gameObject.transform.localPosition = new Vector3(3.26f, 0.68f, 0.0f);
-        m_iconRenderer.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 1.0f);
+        m_iconImage.gameObject.transform.localPosition = new Vector3(3.26f, 0.68f, 0.0f);
+        m_iconImage.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 1.0f);
 
         InitImpl();
     }
 
     private void InitImpl()
     {
-        m_iconRenderer.sprite = m_actionController.GetIcon();
+        m_iconImage.sprite = m_actionController.GetIcon();
 
         m_titleText.text = m_actionController.GetName();
         m_descText.text = m_actionController.GetDesc();
         if (m_actionController.HasAction())
         {
             m_actionCostText.text = "Actions: " + m_actionController.GetActionCost();
-            m_terrainRenderer.gameObject.SetActive(false);
+            m_terrainImage.gameObject.SetActive(false);
         }
         else if (m_actionController.HasBuilding())
         {
             GameBuildingBase building = m_actionController.m_building.m_building;
 
             m_actionCostText.text = "Max Health: " + building.m_maxHealth;
-            m_terrainRenderer.gameObject.SetActive(true);
+            m_terrainImage.gameObject.SetActive(true);
 
             ContentForestTerrain forestTest = new ContentForestTerrain();
             ContentMountainTerrain mountainTest = new ContentMountainTerrain();
@@ -85,19 +85,19 @@ public class UIActionController : MonoBehaviour
 
             if (building.IsValidTerrainToPlace(forestTest))
             {
-                m_terrainRenderer.sprite = forestTest.m_icon;
+                m_terrainImage.sprite = forestTest.m_icon;
             }
             else if (building.IsValidTerrainToPlace(mountainTest))
             {
-                m_terrainRenderer.sprite = mountainTest.m_icon;
+                m_terrainImage.sprite = mountainTest.m_icon;
             }
             else if (building.IsValidTerrainToPlace(dirtTest))
             {
-                m_terrainRenderer.sprite = dirtTest.m_icon;
+                m_terrainImage.sprite = dirtTest.m_icon;
             }
             else if (building.IsValidTerrainToPlace(waterTest))
             {
-                m_terrainRenderer.sprite = waterTest.m_icon;
+                m_terrainImage.sprite = waterTest.m_icon;
             }
         }
 
