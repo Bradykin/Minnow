@@ -134,12 +134,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 damageShieldKeyword.DecreaseShield(1);
                 if (damageShieldKeyword.m_numShields == 0)
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_uiEntity);
+                    UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_uiEntity.gameObject);
                     m_keywordHolder.RemoveKeyword(damageShieldKeyword);
                 }
                 else
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_uiEntity);
+                    UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_uiEntity.gameObject);
                 }
                 return 0;
             }

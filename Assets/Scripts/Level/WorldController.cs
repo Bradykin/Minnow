@@ -131,7 +131,8 @@ public class WorldController : Singleton<WorldController>
         {
             for (int i = 0; i < m_playerHand.Count; i++)
             {
-                Vector3 pos = new Vector3(-10.0f + i * 3.75f, -8f, -3.0f);
+                //Vector3 pos = new Vector3(-10.0f + i * 3.75f, -8f, -3.0f);
+                Vector3 pos = new Vector3(-500.0f + i * 180.0f, -350.0f, 0f);
                 m_playerHand[i].gameObject.transform.localPosition = pos;
                 m_playerHand[i].gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
             }
@@ -145,15 +146,15 @@ public class WorldController : Singleton<WorldController>
 
                 if (i < bigCardIndex)
                 {
-                    pos = new Vector3(-11f + i * 3.75f, -8f, -3.0f);
+                    pos = new Vector3(-550.0f + i * 180.0f, -350.0f, 0f);
                 }
                 else if (i > bigCardIndex)
                 {
-                    pos = new Vector3(-9f + i * 3.75f, -8f, -3.0f);
+                    pos = new Vector3(-450.0f + i * 180.0f, -350.0f, 0f);
                 }
                 else
                 {
-                    pos = new Vector3(-10.0f + i * 3.75f, -5.8f, -3.0f);
+                    pos = new Vector3(-500.0f + i * 180.0f, -350.0f, 0f);
                     m_playerHand[i].gameObject.transform.localScale = new Vector3(1.75f, 1.75f, 1f);
                 }
 
