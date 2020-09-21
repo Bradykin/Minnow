@@ -459,7 +459,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return tilesInMoveAttackRange;
     }
 
-    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
     {
         if (!startingGridTile.IsOccupied())
         {
@@ -469,7 +469,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
         int range = startingGridTile.m_occupyingEntity.GetRange();
 
-        List<GameTile> tilesInMovementRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences);
+        List<GameTile> tilesInMovementRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
 
         List<GameTile> tilesInAttackRange = new List<GameTile>();
         tilesInAttackRange.AddRange(tilesInMovementRange);
