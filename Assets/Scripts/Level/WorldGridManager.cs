@@ -436,17 +436,17 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return openList[indexToReturn];
     }
 
-    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
     {
         if (!startingGridTile.IsOccupied())
         {
             Debug.Log("NO ENTITY ON TILE");
             return new List<GameTile>();
         }
-        return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences);
+        return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences, letPassEnemies);
     }
 
-    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences)
+    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
     {
         if (!startingGridTile.IsOccupied())
         {
@@ -455,7 +455,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
         int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
 
-        List<GameTile> tilesInMoveAttackRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences);
+        List<GameTile> tilesInMoveAttackRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
         return tilesInMoveAttackRange;
     }
 
@@ -489,7 +489,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return tilesInAttackRange;
     }
 
-    private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences)
+    private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
         Location current = null;
         var start = new Location(startingGridTile, 0);
@@ -524,7 +524,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (ignoreTerrainDifferences || !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, false))
+                if (ignoreTerrainDifferences || !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, letPassEnemies))
                     continue;
 
                 // if it's not in the open list...
