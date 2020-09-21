@@ -436,9 +436,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return openList[indexToReturn];
     }
 
-    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
+    public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied())
+        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return new List<GameTile>();
@@ -446,9 +446,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences, letPassEnemies);
     }
 
-    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
+    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied())
+        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
@@ -459,9 +459,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return tilesInMoveAttackRange;
     }
 
-    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies = false)
+    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied())
+        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
@@ -476,6 +476,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         for (int i = 0; i < tilesInMovementRange.Count; i++)
         {
+            if (!tilesInMovementRange[i].IsOccupied() || tilesInMovementRange[i].m_occupyingEntity.m_isDead)
+            {
+                continue;
+            }
+            
             List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRange[i].m_gridPosition), range);
             for (int k = 0; k < tiles.Count; k++)
             {
