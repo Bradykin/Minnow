@@ -93,7 +93,7 @@ public class GameCardEntityBase : GameCard
 
     public override string GetDesc()
     {
-        string desc = base.GetDesc();
+        string desc = m_entity.GetDesc();
 
         if (GetEntity().GetKeywordHolderForRead().m_keywords.Count > 0)
         {

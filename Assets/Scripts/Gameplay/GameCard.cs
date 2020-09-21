@@ -51,6 +51,11 @@ public abstract class GameCard : GameElementBase
         return m_desc;
     }
 
+    public void SetDesc(string desc)
+    {
+        m_desc = desc;
+    }
+
     public virtual void PlayCard() 
     {
         PayCost();

@@ -831,7 +831,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         UIHelper.ReselectEntity();
     }
 
-    public string GetDesc()
+    public virtual string GetDesc()
     {
         string descString = "";
         if (m_desc != null && m_desc != "")
