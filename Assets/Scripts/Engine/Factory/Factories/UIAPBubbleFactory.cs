@@ -38,11 +38,11 @@ namespace Game.Util
 
             if (index < 6)
             {
-                obj.transform.localPosition = new Vector3(index * 0.2f, 0.0f, 0.0f);
+                obj.transform.localPosition = new Vector3(4.0f + index * 10f, multiplier * -10.0f, 0.0f);
             }
             else
             {
-                obj.transform.localPosition = new Vector3((index - 6f) * 0.2f, multiplier * 0.3f, 0.0f);
+                obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 10f, 0.0f, 0.0f);
             }
 
             obj.GetComponent<UIAPBubble>().Init(isActive, team);
