@@ -29,7 +29,7 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject();
 
-            obj.transform.parent = parent;
+            obj.transform.SetParent(parent);
 
             obj.GetComponent<UIRelic>().Init(relic, UIRelic.RelicSelectionType.View);
 
