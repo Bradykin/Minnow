@@ -65,6 +65,13 @@ public class UIBeginWaveButton : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", !PlayerHasActions()));
+        if (PlayerHasActions())
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Need to spend all actions before starting the next wave.", false));
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", true));
+        }
     }
 }
