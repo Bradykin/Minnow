@@ -10,7 +10,8 @@ public class UIActionController : MonoBehaviour
     , IPointerClickHandler
 {
     public Image m_tintImage;
-    public Image m_iconImage;
+    public Image m_iconBuildingImage;
+    public Image m_iconActionImage;
     public Image m_terrainImage;
 
     public Text m_titleText;
@@ -48,8 +49,8 @@ public class UIActionController : MonoBehaviour
     {
         m_actionController = new GameIntermissionActionController(action);
 
-        m_iconImage.gameObject.transform.localPosition = new Vector3(3.26f, 0.05f, 0.0f);
-        m_iconImage.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
+        m_iconBuildingImage.gameObject.SetActive(false);
+        m_iconActionImage.gameObject.SetActive(true);
 
         InitImpl();
     }
@@ -58,15 +59,16 @@ public class UIActionController : MonoBehaviour
     {
         m_actionController = new GameIntermissionActionController(building);
 
-        m_iconImage.gameObject.transform.localPosition = new Vector3(3.26f, 0.68f, 0.0f);
-        m_iconImage.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 1.0f);
+        m_iconBuildingImage.gameObject.SetActive(true);
+        m_iconActionImage.gameObject.SetActive(false);
 
         InitImpl();
     }
 
     private void InitImpl()
     {
-        m_iconImage.sprite = m_actionController.GetIcon();
+        m_iconBuildingImage.sprite = m_actionController.GetIcon();
+        m_iconActionImage.sprite = m_actionController.GetIcon();
 
         m_titleText.text = m_actionController.GetName();
         m_descText.text = m_actionController.GetDesc();
