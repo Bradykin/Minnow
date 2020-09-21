@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UICloseDeckViewButton : MonoBehaviour
+public class UICloseDeckViewButton : WorldElementBase
+    , IPointerClickHandler
 {
-    public Image m_tintImage;
+    public override void HandleTooltip()
+    {
+        //Left as stub.
+    }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         Globals.m_inDeckView = false;
-    }
-
-    void OnMouseOver()
-    {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 }
