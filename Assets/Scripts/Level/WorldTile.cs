@@ -163,6 +163,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     void OnMouseDown()
     {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
         {
             if (Globals.m_levelCreatorEraserMode)

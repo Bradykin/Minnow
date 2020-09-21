@@ -95,7 +95,7 @@ public class GameCardEntityBase : GameCard
     {
         string desc = base.GetDesc();
 
-        if (GetEntity().GetKeywordHolderForRead().m_keywords.Count > 0)
+        if (GetEntity().GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
         {
             desc += "\n";
         }

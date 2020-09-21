@@ -38,7 +38,7 @@ public class GameShivNearbyAction : GameAction
         m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
 
         m_name = "Throw Shiv";
-        m_desc = "On spellcast, throw " + m_numShivsThrown + " shivs at random nearby enemies within two tiles.";
+        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemies within two tiles.";
         m_actionParamType = ActionParamType.EntityParam;
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Game.Util;
 
 public class UIFocusInfoPanel : WorldElementBase
 {
@@ -63,11 +64,13 @@ public class UIFocusInfoPanel : WorldElementBase
 
             if (spellCard.m_shouldExile)
             {
-                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.";
+                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.\n\n";
             }
 
             m_shouldShow = true;
         }
+
+        m_descText.text += "<b>Card Text</b>\n" + cardData.m_card.GetDesc();
     }
 
     private void UpdateFocusData(UIEntity entityData)
@@ -80,6 +83,10 @@ public class UIFocusInfoPanel : WorldElementBase
         {
             m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n\n";
         }
+
+        GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entityData.GetEntity());
+
+        m_descText.text += "<b>Entity Text</b>\n" + cardFromEntity.GetDesc();
     }
 
     private void UpdateFocusData(WorldTile worldTile)
