@@ -13,8 +13,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
-            GameHelper.GetPlayer().AddRelic(new ContentPoisonedShivsRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -24,7 +23,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDreamCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.P))

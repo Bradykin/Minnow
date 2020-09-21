@@ -107,8 +107,12 @@ public class UIEntity : WorldElementBase
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
-                Globals.m_selectedCard.m_card.PlayCard(GetEntity());
+                //Keep an eye on this if playing cards on units, particularly ones that draw cards like blood sac, do some weird behaviour .I modified this from:
+                //                  Globals.m_selectedCard.m_card.PlayCard(GetEntity());
+                //                  WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
+                UICard card = Globals.m_selectedCard;
                 WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
+                card.m_card.PlayCard(GetEntity());
                 UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
             }
         }
