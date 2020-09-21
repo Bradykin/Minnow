@@ -415,6 +415,28 @@ public class GamePlayer : ITurns
         {
             m_controlledBuildings[i].TriggerEndOfWave();
         }
+
+        for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
+        {
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.EndOfWave)
+            {
+                m_scheduledActions[i].gameAction.DoAction();
+                m_scheduledActions.RemoveAt(i);
+                continue;
+            }
+
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.StartOfTurn)
+            {
+                m_scheduledActions.RemoveAt(i);
+                continue;
+            }
+
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.EndOfTurn)
+            {
+                m_scheduledActions.RemoveAt(i);
+                continue;
+            }
+        }
     }
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)

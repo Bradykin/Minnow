@@ -648,9 +648,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return toReturn;
     }
 
-    public void AddMaxHealth(int toAdd)
+    public void AddMaxHealth(int toAdd, bool shouldIncreaseCurrent = true)
     {
         m_maxHealth += toAdd;
+
+        if (toAdd > 0 && shouldIncreaseCurrent)
+        {
+            m_curHealth += toAdd;
+        }
 
         if (!HasCustomName())
         {

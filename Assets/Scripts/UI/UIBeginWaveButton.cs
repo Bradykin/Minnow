@@ -32,6 +32,11 @@ public class UIBeginWaveButton : WorldElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (GameHelper.GetPlayer().GetCurActions() > 0)
+        {
+            return;
+        }
+
         BeginWave();
     }
 

@@ -212,12 +212,12 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
+        GamePlayer player = m_gameController.m_player;
+
         Globals.m_spellsPlayedPreviousTurn = 0;
 
         UITooltipController.Instance.ClearTooltipStack();
         ClearAllEntities();
-
-        GamePlayer player = m_gameController.m_player;
 
         GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
         intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_waveNum * 15;
@@ -263,6 +263,7 @@ public class WorldController : Singleton<WorldController>
     public void WinGame()
     {
         Debug.Log("The player has won!");
+        //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
     public void FocusNextPlayerEntity()

@@ -15,6 +15,7 @@ public class ContentConjuredImp : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Conjured Imp";
+        m_desc = "When you play this, add an identical copy of this card to your hand at the beginning of the next turn.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

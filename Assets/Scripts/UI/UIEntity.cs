@@ -152,7 +152,7 @@ public class UIEntity : MonoBehaviour
         targetTile.GetWorldTile().PlaceEntity(this);
         GetEntity().MoveTo(targetTile);
 
-        m_moveTarget = new Vector3(targetTile.GetWorldTile().gameObject.transform.position.x, targetTile.GetWorldTile().gameObject.transform.position.y, gameObject.transform.position.z);
+        m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForEntity();
     }
 
     public void SetVisible(bool isVisible)

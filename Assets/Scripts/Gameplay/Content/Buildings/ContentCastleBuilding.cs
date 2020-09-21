@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class ContentCastleBuilding : GameBuildingBase
         m_isDestroyed = true;
 
         UIHelper.CreateWorldElementNotification("Your castle has been destroyed, you have lost!", false, m_gameTile.GetWorldTile().gameObject);
+        //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
