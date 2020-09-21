@@ -6,7 +6,7 @@ public class ContentShivCard : GameCardSpellBase
 {
     public ContentShivCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 4;
 
         m_name = "Shiv";
         m_playDesc = "The target is shivved!";
@@ -30,15 +30,30 @@ public class ContentShivCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard(targetEntity);
-
         int apDrain = GameHelper.RelicCount<ContentPoisonedShivsRelic>();
 
         if (apDrain > 0)
         {
             targetEntity.SpendAP(apDrain);
         }
-        targetEntity.GetHit(GetSpellValue());
+
+        if (GameHelper.RelicCount<ContentBurningShivsRelic>() > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (!targetEntity.m_isDead)
+                {
+                    base.PlayCard(targetEntity);
+                    targetEntity.GetHit(GetSpellValue());
+                }
+            }
+        }
+        else
+        {
+            base.PlayCard(targetEntity);
+            targetEntity.GetHit(GetSpellValue());
+        }
+
         if (targetEntity.m_isDead && Globals.m_goldPerShivKill > 0)
         {
             GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(Globals.m_goldPerShivKill));
@@ -56,14 +71,5 @@ public class ContentShivCard : GameCardSpellBase
             }
         }
         return true;
-    }
-
-    protected override int GetSpellValue()
-    {
-        int damage = base.GetSpellValue();
-
-        damage += (3 * GameHelper.RelicCount<ContentBurningShivsRelic>());
-
-        return damage;
     }
 }

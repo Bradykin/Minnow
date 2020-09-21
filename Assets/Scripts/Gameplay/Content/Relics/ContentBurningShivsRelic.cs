@@ -7,7 +7,7 @@ public class ContentBurningShivsRelic : GameRelic
     public ContentBurningShivsRelic()
     {
         m_name = "Burning Shivs";
-        m_desc = "Shivs deal +3 damage.";
+        m_desc = "Shivs hit three times.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

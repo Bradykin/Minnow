@@ -6,15 +6,22 @@ public class ContentDesertRedDirtPlainsTerrain : GameTerrainBase
 {
     public ContentDesertRedDirtPlainsTerrain()
     {
+        m_costToPass = 1;
+        
         m_name = "DesertRedDirtPlains";
         m_desc = "Simple, no changes.";
-        m_terrainImageNumber = Random.Range(1, 5);
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.yellow;
 
         m_isPassable = true;
-        m_costToPass = 1;
+        m_isPlains = true;
+        m_canBurn = false;
 
         m_isHot = true;
+
+        m_unburnedTerrainType = typeof(ContentDesertRedGrassPlainsTerrain);
+        m_addedEventType = typeof(ContentDesertRedDirtPlainsRuinsTerrain);
     }
 }

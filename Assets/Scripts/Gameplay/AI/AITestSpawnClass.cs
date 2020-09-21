@@ -8,12 +8,12 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentSpinnerEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))
