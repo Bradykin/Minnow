@@ -6,7 +6,7 @@ public class ContentForestTerrain : GameTerrainBase
 {
     public ContentForestTerrain()
     {
-        m_damageReduction = 2;
+        m_damageReduction = 1;
         m_costToPass = 2;
 
         m_name = "Forest";

@@ -76,6 +76,10 @@ public class GameShivNearbyAction : GameAction
             if (nearbyEnemies[randomIndex].m_isDead)
             {
                 nearbyEnemies.RemoveAt(randomIndex);
+                if (nearbyEnemies.Count == 0)
+                {
+                    break;
+                }
             }
         }
     }

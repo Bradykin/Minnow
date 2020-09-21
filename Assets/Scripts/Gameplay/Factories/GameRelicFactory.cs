@@ -63,7 +63,13 @@ public static class GameRelicFactory
                 if (relicList[i].m_name == exclusionRelic.m_name)
                 {
                     relicList.RemoveAt(i);
-                    break;
+                    continue;
+                }
+
+                if (relicList[i].m_rarity == GameElementBase.GameRarity.Event)
+                {
+                    relicList.RemoveAt(i);
+                    continue;
                 }
             }
         }

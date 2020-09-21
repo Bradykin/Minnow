@@ -223,7 +223,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)
     {
-        if (checkerEntity.m_shouldAlwaysPassEnemies)
+        if (checkerEntity != null && checkerEntity.m_shouldAlwaysPassEnemies)
         {
             letPassEnemies = true;
         }

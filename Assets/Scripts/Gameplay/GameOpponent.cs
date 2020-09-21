@@ -142,7 +142,7 @@ public class GameOpponent : ITurns
                     newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);
                     WorldController.Instance.SetHasSpawnedBoss(true);
                 }
-                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetGameController().m_currentWaveTurn >= 3 && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
+                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetGameController().m_currentWaveTurn >= Constants.SpawnEliteWave && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
                 {
                     newEnemyEntity = GameEntityFactory.GetRandomEliteEnemy(this);
                     WorldController.Instance.SetHasSpawnedEliteThisWave(true);
