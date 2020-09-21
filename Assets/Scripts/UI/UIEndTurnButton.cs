@@ -40,6 +40,11 @@ public class UIEndTurnButton : WorldElementBase
             return;
         }
 
+        if (!WorldGridManager.Instance.IsSetup())
+        {
+            return;
+        }
+
         Globals.m_selectedCard = null;
         UIHelper.UnselectEntity();
 
