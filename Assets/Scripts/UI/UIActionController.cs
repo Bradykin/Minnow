@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIActionController : MonoBehaviour
+    , IPointerEnterHandler
+    , IPointerExitHandler
+    , IPointerClickHandler
 {
     public Image m_tintImage;
     public Image m_iconImage;
@@ -115,7 +119,17 @@ public class UIActionController : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        m_hovered = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        m_hovered = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!Globals.m_canSelect)
         {
@@ -123,15 +137,5 @@ public class UIActionController : MonoBehaviour
         }
 
         m_actionController.Activate();
-    }
-
-    void OnMouseOver()
-    {
-        m_hovered = true;
-    }
-
-    void OnMouseExit()
-    {
-        m_hovered = false;
     }
 }

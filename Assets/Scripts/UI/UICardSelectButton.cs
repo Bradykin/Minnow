@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UICardSelectButton : MonoBehaviour
+    , IPointerClickHandler
 {
     private UICard m_uiCard;
 
@@ -12,7 +14,7 @@ public class UICardSelectButton : MonoBehaviour
         m_uiCard = GetComponent<UICard>();
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (Globals.m_selectedCard == m_uiCard)
         {
