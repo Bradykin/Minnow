@@ -5,13 +5,21 @@ using UnityEngine;
 public class GameSpellcraftKeyword : GameKeywordBase
 {
     private GameAction m_action;
+    public readonly static int m_spellcraftRange = 3;
 
     public GameSpellcraftKeyword(GameAction action)
     {
         m_action = action;
 
         m_name = "Spellcraft";
-        m_focusInfoText = "Triggers when the player casts a spell card.";
+        if (Constants.UseLocationalSpellcraft)
+        {
+            m_focusInfoText = "Triggers when the palyer cast a spell card that has no target, or is targeted within " + m_spellcraftRange + " tiles of this entity.";
+        }
+        else
+        {
+            m_focusInfoText = "Triggers when the player casts a spell card.";
+        }
         m_keywordParamType = KeywordParamType.ActionParam;
 
         if (action == null)
@@ -27,7 +35,7 @@ public class GameSpellcraftKeyword : GameKeywordBase
         m_action.DoAction();
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

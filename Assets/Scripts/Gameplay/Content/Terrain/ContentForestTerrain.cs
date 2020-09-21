@@ -6,7 +6,8 @@ public class ContentForestTerrain : GameTerrainBase
 {
     public ContentForestTerrain()
     {
-        m_damageReduction = 2;
+        m_damageReduction = 1;
+        m_costToPass = 2;
 
         m_name = "Forest";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
@@ -16,11 +17,10 @@ public class ContentForestTerrain : GameTerrainBase
         m_color = Color.green;
 
         m_isPassable = true;
-        m_costToPass = 2;
-
         m_isForest = true;
         m_canBurn = true;
 
-        m_burnedTerrainType = typeof(ContentDirtForestBurnedTerrain);
+        m_burnedTerrainType = typeof(ContentForestBurnedTerrain);
+        m_addedEventType = typeof(ContentForestRuinsTerrain);
     }
 }

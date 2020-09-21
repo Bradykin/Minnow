@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class ContentRanger : GameEntity
 {
-    private int m_powerBoost;
-    private int m_rangeBoost;
-    private int m_apRegenBoost;
+    private int m_powerBoost = 8;
+    private int m_rangeBoost = 1;
+    private int m_apRegenBoost = 2;
 
     public ContentRanger()
     {
-        m_powerBoost = 8;
-        m_rangeBoost = 1;
-        m_apRegenBoost = 2;
-
         m_maxHealth = 15;
         m_maxAP = 5;
         m_apRegen = 2;

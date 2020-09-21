@@ -11,7 +11,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
     {
         if (m_AIGameEnemyEntity.m_targetGameElement == null)
         {
-            MoveTowardsCastle();
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
             return;
         }
 
@@ -27,7 +27,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            MoveTowardsCastle();
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
             return;
         }
 

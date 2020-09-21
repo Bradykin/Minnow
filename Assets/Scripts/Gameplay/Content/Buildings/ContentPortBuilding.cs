@@ -13,6 +13,7 @@ public class ContentPortBuilding : GameBuildingBase
         m_name = "Port";
         m_desc = "A port brings in the coin when times are good.  If it survives a wave, gives " + m_returns.m_gold + " coins.";
         m_rarity = GameRarity.Common;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 8;
 

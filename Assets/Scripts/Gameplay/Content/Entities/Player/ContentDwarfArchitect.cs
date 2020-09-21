@@ -4,46 +4,39 @@ using UnityEngine;
 
 public class ContentDwarfArchitect : GameEntity
 {
-    private int m_healingRange;
-    private int m_healingPower;
+    private int m_maxAPIncrease = 1;
+    private int m_effectRange = 2;
 
     public ContentDwarfArchitect()
     {
-        m_healingRange = 2;
-        m_healingPower = 10;
-
-        m_maxHealth = 6;
-        m_maxAP = 3;
-        m_apRegen = 1;
-        m_power = 2;
+        m_maxHealth = 20;
+        m_maxAP = 5;
+        m_apRegen = 3;
+        m_power = 4;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Architect";
-        m_desc = "At the end of each turn, heal all buildings within range " + m_healingRange + " for " + m_healingPower + " (and restoring all destroyed ones).";
+        m_desc = "When a Creation is summoned within " + m_effectRange + " range, give it +" + m_maxAPIncrease + " max AP and have it start at max.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
     }
 
-    public override void EndTurn()
+    public override void OnOtherSummon(GameEntity other)
     {
-        base.EndTurn();
+        base.OnOtherSummon(other);
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_healingRange, 0);
-
-        for (int i = 0; i < surroundingTiles.Count; i++)
+        if (other.GetTypeline() == Typeline.Creation)
         {
-            GameBuildingBase building = surroundingTiles[i].GetBuilding();
-
-            if (building == null)
+            int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), other.GetGameTile(), true, false, true);
+            if (distanceBetween <= m_effectRange)
             {
-                continue;
+                other.AddMaxAP(m_maxAPIncrease);
+                other.GainAP(other.GetMaxAP());
             }
-
-            building.GetHealed(m_healingPower);
         }
     }
 }

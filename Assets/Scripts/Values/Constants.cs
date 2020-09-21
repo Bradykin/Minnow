@@ -10,12 +10,13 @@ public static class Constants
     public static int StartingEnergy = 3;
     public static int StartingActions = 4;
     public static int MaxHandSize = 7;
+    public static int SpawnEliteWave = 4;
 
     public static int PercentChanceForUncommonCard = 38;
     public static int PercentChanceForRareCard = 18;
 
     public static int PercentChanceForEliteToSpawn = 20;
-    public static int PercentChanceForMobToSpawn = 50;
+    public static int PercentChanceForMobToSpawn = 40;
 
     public static int MaxChaos = 10;
 
@@ -30,8 +31,8 @@ public static class Constants
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 
     //Wave Data
-    public static int InitialWaveSize = 6;
-    public static int WaveTurnIncrement = 2;
+    public static int InitialWaveSize = 7;
+    public static int WaveTurnIncrement = 1;
     public static int FinalWaveNum = 6;
     public static int GoldPerWave = 25;
 
@@ -41,6 +42,7 @@ public static class Constants
     public static bool UseSmartCameraEnemyTurns = false;
     public static bool DebugEventsVisibleInFog = true;
     public static bool CheatsOn = true;
+    public static bool UseLocationalSpellcraft = true;
 
     //Save related file path data
     public const string REMOTE_DATA_PATH = "RemoteData";

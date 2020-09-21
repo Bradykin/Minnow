@@ -60,6 +60,6 @@ public class GameKeywordFactory
 
     public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameEntity gameEntity)
     {
-        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJson()), gameEntity);
+        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJsonAsString()), gameEntity);
     }
 }

@@ -16,5 +16,8 @@ public class ContentTraditionOrProgressEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = 4;
     }
 }

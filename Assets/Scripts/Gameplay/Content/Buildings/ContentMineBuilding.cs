@@ -9,6 +9,7 @@ public class ContentMineBuilding : GameBuildingBase
         m_name = "Mine";
         m_desc = "Mines boost production, giving an extra draw every turn.";
         m_rarity = GameRarity.Uncommon;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 15;
 

@@ -16,6 +16,13 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
             return;
         }
 
+        GameBuildingBase closestDefensiveBuildingInRange = FindClosestDefensiveBuildingInRange();
+        if (closestDefensiveBuildingInRange != null)
+        {
+            m_AIGameEnemyEntity.m_targetGameElement = closestDefensiveBuildingInRange;
+            return;
+        }
+
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
@@ -24,5 +31,29 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
         }
 
         m_AIGameEnemyEntity.m_targetGameElement = null;
+    }
+
+    protected GameBuildingBase FindClosestDefensiveBuildingInRange()
+    {
+        if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count == 1)
+        {
+            if (m_AIGameEnemyEntity.m_possibleBuildingTargets[0].m_buildingType == BuildingType.Defensive)
+            {
+                return m_AIGameEnemyEntity.m_possibleBuildingTargets[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count > 1)
+        {
+            int closestEnemyBuilding = m_AIGameEnemyEntity.m_possibleBuildingTargets.Where(b => b.m_buildingType == BuildingType.Defensive).Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()));
+            return m_AIGameEnemyEntity.m_possibleBuildingTargets.Where(b => b.m_buildingType == BuildingType.Defensive).First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
+        }
+        else
+        {
+            return null;
+        }
     }
 }

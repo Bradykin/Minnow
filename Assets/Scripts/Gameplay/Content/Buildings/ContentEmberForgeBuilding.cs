@@ -9,6 +9,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         m_name = "Ember Forge";
         m_desc = "<b>Permanently</b> lowers max energy by 1 when built, but instantly kills <b>any</b> random entity within range 3 every turn.";
         m_rarity = GameRarity.Rare;
+        m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 150;
 

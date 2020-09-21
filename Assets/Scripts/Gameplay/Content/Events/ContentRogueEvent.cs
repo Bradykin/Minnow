@@ -15,6 +15,9 @@ public class ContentRogueEvent : GameEvent
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardCard());
         m_optionThree = new GameEventLeaveOption();
 
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
+
         LateInit();
     }
 }

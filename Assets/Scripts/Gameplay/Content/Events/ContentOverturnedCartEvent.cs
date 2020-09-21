@@ -14,6 +14,9 @@ public class ContentOverturnedCartEvent : GameEvent
         m_optionOne = new GameEventTakeGoldOption(75);
         m_optionTwo = new GameEventLeaveOption();
 
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = 3;
+
         LateInit();
     }
 }

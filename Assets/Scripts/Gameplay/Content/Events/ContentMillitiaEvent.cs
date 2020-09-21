@@ -14,6 +14,9 @@ public class ContentMillitiaEvent : GameEvent
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
 
+        m_minWaveToSpawn = 2;
+        m_maxWaveToSpawn = 4;
+
         LateInit();
     }
 }

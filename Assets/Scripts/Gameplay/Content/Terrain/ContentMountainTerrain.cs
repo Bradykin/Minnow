@@ -7,6 +7,7 @@ public class ContentMountainTerrain : GameTerrainBase
     public ContentMountainTerrain()
     {
         m_damageReduction = 4;
+        m_costToPass = 2;
 
         m_name = "Mountain";
         m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
@@ -16,8 +17,6 @@ public class ContentMountainTerrain : GameTerrainBase
         m_color = Color.red;
 
         m_isPassable = false;
-        m_costToPass = 2;
-
         m_isMountain = true;
     }
 }

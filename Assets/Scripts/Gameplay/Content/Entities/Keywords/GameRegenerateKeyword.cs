@@ -16,7 +16,7 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

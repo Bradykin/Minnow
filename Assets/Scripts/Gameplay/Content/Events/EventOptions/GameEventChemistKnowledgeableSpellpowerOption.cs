@@ -15,7 +15,7 @@ public class GameEventChemistKnowledgeableSpellpowerOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Spend " + m_goldCost + " gold: Gain " + m_spellpowerIncrease + " spellpower until end of turn on Knowledgeable.";
+        m_message = "Spend " + m_goldCost + " gold: Gain Knowledgeable: get " + m_spellpowerIncrease + " spellpower until end of turn.";
 
         return base.GetMessage();
     }

@@ -17,6 +17,9 @@ public class ContentGemsOfProphecyEvent : GameEvent
         m_optionThree = new GameEventProphecyTakeGoldOption(100);
 
         LateInit();
+
+        m_minWaveToSpawn = 3;
+        m_maxWaveToSpawn = 5;
     }
 }
 

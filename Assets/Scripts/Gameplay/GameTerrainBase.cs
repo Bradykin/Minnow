@@ -2,34 +2,49 @@
 using System;
 using UnityEngine;
 
+//Checklist for setting up new terrain tiles:
+//Add all image variants to Terrain file with naming scheme "Name1, Name2"
+//Add tiny image variants to Terrain file with naming scheme "Name1W, Name2W"
+//Create class inheriting from GameTerrainBase with naming scheme "ContentNameTerrain". In this class, do the following:
+//Set m_name value to "Name"
+//Configure the following terrain statistics: m_damageReduction, m_rangeModifier, m_costToPass
+//Add an m_desc. Describe the effects of the above statistics
+//Configure the follow icon choosing stats: m_maxTerrainImageNumber(the number of variants of the terrain image), m_terrainImageNumber(Set to Random.Range(0, m_maxTerrainImageNumber + 1)
+//set m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+//Review the following list of "terrain attributes", and set any applicable to true:
+//m_isPlains, m_isForest, m_isHill, m_isMountain, m_isWater, m_isHot, m_isCold, m_isEventTerrain, m_isCave, m_isVolcano, m_isBurned, m_canBurn;
+//If applicable, add a type value for the type of terrain this should become in the following scenarios: m_burnedTerrainType, m_unburnedTerrainType, m_completedEventType, m_addedEventType
+//Add new class to the appropriate lists in GameTerrainFactory.Init
 public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTerrainData>
 {
     public int m_damageReduction { get; protected set; }
     public int m_rangeModifier { get; protected set; }
 
-    protected bool m_isPassable = true;
     protected int m_costToPass;
     protected int m_terrainImageNumber;
     protected int m_maxTerrainImageNumber;
     protected string m_focusPanelText;
-    protected Type m_burnedTerrainType;
-    protected Type m_completedEventType;
 
+    protected bool m_isPassable = true;
     protected bool m_isPlains;
     protected bool m_isForest;
     protected bool m_isHill;
     protected bool m_isMountain;
     protected bool m_isWater;
 
-    protected bool m_isHot;
-    protected bool m_isCold;
-
     protected bool m_isEventTerrain;
     protected bool m_isCave;
     protected bool m_isVolcano;
 
+    protected bool m_isHot;
+    protected bool m_isCold;
     protected bool m_isBurned;
     protected bool m_canBurn;
+
+    protected Type m_burnedTerrainType;
+    protected Type m_unburnedTerrainType;
+    protected Type m_completedEventType;
+    protected Type m_addedEventType;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
@@ -59,6 +74,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
             if (checkerEntity.GetTeam() == Team.Player)
             {
                 additiveValue = GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+            }
+
+            if (IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
+            {
+                return 1 + additiveValue;
             }
 
             if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
@@ -185,7 +205,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonGameTerrainData jsonData = new JsonGameTerrainData
         {

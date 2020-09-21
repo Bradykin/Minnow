@@ -81,14 +81,14 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard();
 
-        TriggerSpellcraft();
+        TriggerSpellcraft(null);
     }
 
     public override void PlayCard(GameBuildingBase targetBuilding)
     {
         base.PlayCard(targetBuilding);
 
-        TriggerSpellcraft();
+        TriggerSpellcraft(targetBuilding.GetGameTile());
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -98,7 +98,7 @@ public class GameCardSpellBase : GameCard
         Globals.m_spellsPlayedThisTurn++;
         if (CanTriggerSpellPower())
         {
-            TriggerSpellcraft();
+            TriggerSpellcraft(targetEntity.GetGameTile());
         }
     }
 
@@ -106,10 +106,10 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetTile);
 
-        TriggerSpellcraft();
+        TriggerSpellcraft(targetTile);
     }
 
-    protected void TriggerSpellcraft()
+    protected void TriggerSpellcraft(GameTile tileCastAt)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -118,6 +118,6 @@ public class GameCardSpellBase : GameCard
             return;
         }
 
-        player.TriggerSpellcraft();
+        player.TriggerSpellcraft(m_targetType, tileCastAt);
     }
 }

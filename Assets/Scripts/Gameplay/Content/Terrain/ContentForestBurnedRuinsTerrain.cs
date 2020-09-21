@@ -6,6 +6,8 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
 {
     public ContentForestBurnedRuinsTerrain()
     {
+        m_costToPass = 2;
+
         m_name = "ForestBurnedRuins";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = 1;
@@ -13,14 +15,12 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
         m_color = Color.green;
 
         m_isPassable = true;
-        m_costToPass = 2;
-
         m_isForest = true;
         m_isBurned = true;
-
         m_isEventTerrain = true;
 
-        m_completedEventType = typeof(ContentDirtForestBurnedTerrain);
+        m_unburnedTerrainType = typeof(ContentForestRuinsTerrain);
+        m_completedEventType = typeof(ContentForestBurnedTerrain);
     }
 }
 

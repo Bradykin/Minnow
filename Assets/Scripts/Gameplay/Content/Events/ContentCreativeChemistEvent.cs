@@ -15,19 +15,26 @@ public class ContentCreativeChemistEvent : GameEvent
         m_rarity = GameRarity.Common;
 
         m_optionOne = new GameEventChemistSmallStatsOption(tile);
-
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player.m_wallet.m_gold >= m_costOption2)
-        {
-            m_optionTwo = new GameEventChemistEnergyHealOption(tile, m_costOption2);
-        }
-
-        if (player.m_wallet.m_gold >= m_costOption3)
-        {
-            m_optionThree = new GameEventChemistKnowledgeableSpellpowerOption(tile, m_costOption3);
-        }
+        m_optionTwo = new GameEventChemistEnergyHealOption(tile, m_costOption2);
+        m_optionThree = new GameEventChemistKnowledgeableSpellpowerOption(tile, m_costOption3);
 
         LateInit();
+
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
+    }
+
+    public override bool IsValidToSpawn()
+    {
+        bool baseValid = base.IsValidToSpawn();
+
+        if (!baseValid)
+        {
+            return false;
+        }
+
+        int playerGold = GameHelper.GetPlayer().m_wallet.m_gold;
+
+        return playerGold >= m_costOption3;
     }
 }

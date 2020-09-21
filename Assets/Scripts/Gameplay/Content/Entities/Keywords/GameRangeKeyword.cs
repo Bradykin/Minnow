@@ -24,7 +24,7 @@ public class GameRangeKeyword : GameKeywordBase
         m_desc = "" + m_range;
     }
 
-    public override string SaveToJson()
+    public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {

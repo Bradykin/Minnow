@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentAegisCard : GameCardSpellBase
 {
-    private int m_amount = 2;
+    private int m_amount = 1;
     
     public ContentAegisCard()
     {
@@ -12,7 +12,7 @@ public class ContentAegisCard : GameCardSpellBase
         m_desc = "Give target ally " + m_amount + " damage shield.";
         m_playDesc = "Shields up!";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 0;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();

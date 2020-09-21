@@ -9,6 +9,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
         m_name = "Forest Lodge";
         m_desc = "Expand the range you can summon entities around the lodge!.";
         m_rarity = GameRarity.Common;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 30;
 

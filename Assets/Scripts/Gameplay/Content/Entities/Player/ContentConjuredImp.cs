@@ -6,10 +6,10 @@ public class ContentConjuredImp : GameEntity
 {
     public ContentConjuredImp()
     {
-        m_maxHealth = 25;
+        m_maxHealth = 15;
         m_maxAP = 4;
-        m_apRegen = 4;
-        m_power = 8;
+        m_apRegen = 3;
+        m_power = 6;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
@@ -19,5 +19,12 @@ public class ContentConjuredImp : GameEntity
         m_icon = UIHelper.GetIconEntity(m_name);
 
         LateInit();
+    }
+
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameAddEntityCardToHandAction(GameEntityFactory.GetEntityFromJson(this.SaveToJsonAsJson())));
     }
 }

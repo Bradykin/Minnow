@@ -11,6 +11,6 @@ public class ContentDwarfArchitectCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "Hammers ring through the air as the wheels of production are restored.";
-        m_cost = 1;
+        m_cost = 2;
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInjuredTrollEntity : GameEntity
+public class ContentInjuredTroll : GameEntity
 {
-    public ContentInjuredTrollEntity()
+    public ContentInjuredTroll()
     {
         m_maxHealth = 20;
         m_maxAP = 6;

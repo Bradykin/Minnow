@@ -16,5 +16,8 @@ public class ContentMysteryWanderer : GameEvent
         m_optionThree = new GameEventDuplicateCardOption();
 
         LateInit();
+
+        m_minWaveToSpawn = 2;
+        m_maxWaveToSpawn = Constants.FinalWaveNum;
     }
 }

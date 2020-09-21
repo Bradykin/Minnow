@@ -53,7 +53,7 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
         if (tilesWithMaxAdjacent.Count == 0)
         {
             m_AIGameEnemyEntity.m_targetGameTile = null;
-            MoveTowardsCastle();
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
         }
         else if (tilesWithMaxAdjacent.Count == 1)
         {

@@ -13,6 +13,7 @@ public class ContentInnBuilding : GameBuildingBase
         m_name = "Inn";
         m_desc = "A bustling inn brings in the coin when times are good.  If it survives a wave, gives " + m_returns.m_gold + " coins.";
         m_rarity = GameRarity.Common;
+        m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 25;
 

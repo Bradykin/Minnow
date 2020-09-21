@@ -13,7 +13,7 @@ public class AIMoveToTileStandardStep : AIMoveStep
 
         if (targetTile == null)
         {
-            MoveTowardsCastle();
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
             return;
         }
 

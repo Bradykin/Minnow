@@ -35,6 +35,7 @@ public class GameTerrainFactory
         m_basicTerrain.Add(new ContentWaterTerrain());
         m_basicTerrain.Add(new ContentGrassPlainsRuinsTerrain());
         m_basicTerrain.Add(new ContentForestRuinsTerrain());
+        m_basicTerrain.Add(new ContentScrublandPlainsRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Basic Terrain", m_basicTerrain));
 
         //Plains Terrain
@@ -74,7 +75,7 @@ public class GameTerrainFactory
         m_forestTerrain.Add(new ContentDesertRedForestTerrain());
         m_forestTerrain.Add(new ContentDesertRedForestPondTerrain());
         m_forestTerrain.Add(new ContentDesertYellowForestTerrain());
-        m_forestTerrain.Add(new ContentDirtForestBurnedTerrain());
+        m_forestTerrain.Add(new ContentForestBurnedTerrain());
         m_forestTerrain.Add(new ContentAshForestBurnedTerrain());
         m_forestTerrain.Add(new ContentForestRuinsTerrain());
         m_forestTerrain.Add(new ContentForestBurnedRuinsTerrain());
@@ -186,7 +187,7 @@ public class GameTerrainFactory
         //Volcanic Terrain
         m_volcanicTerrain.Add(new ContentAshPlainsTerrain());
         m_volcanicTerrain.Add(new ContentAshForestBurnedTerrain());
-        m_volcanicTerrain.Add(new ContentDirtForestBurnedTerrain());
+        m_volcanicTerrain.Add(new ContentForestBurnedTerrain());
         m_volcanicTerrain.Add(new ContentLavaFieldActiveTerrain());
         m_volcanicTerrain.Add(new ContentLavaFieldInactiveTerrain());
         m_volcanicTerrain.Add(new ContentVolcanoActiveTerrain());

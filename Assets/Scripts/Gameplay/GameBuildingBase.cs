@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BuildingType
+{
+    Critical,
+    Economic,
+    Defensive
+}
+
 public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, ISave, ILoad<JsonGameBuildingData>
 {
     protected GameTile m_gameTile;
@@ -10,6 +17,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     public Sprite m_destroyedIcon;
     public int m_curHealth;
     public int m_maxHealth;
+    public BuildingType m_buildingType;
 
     public int m_sightRange = 2;
 
@@ -141,7 +149,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
     //============================================================================================================//
 
-    public string SaveToJson()
+    public string SaveToJsonAsString()
     {
         JsonGameBuildingData jsonData = new JsonGameBuildingData
         {

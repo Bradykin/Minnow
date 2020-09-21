@@ -3,31 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: either nmartino or ashulman: make rarer events spawn farther away from base
 public static class GameEventFactory
 {
     private static List<GameEvent> m_events = new List<GameEvent>();
+
+    private static List<GameEvent> m_recentEvents = new List<GameEvent>();
+    private static int m_numTrackRecentEvents = 5;
 
     private static bool m_hasInit = false;
 
     public static void Init()
     {
-        m_events.Add(new ContentWonderousGenieEvent(null));
-        m_events.Add(new ContentOverturnedCartEvent(null));
-        m_events.Add(new ContentMillitiaEvent(null));
-        m_events.Add(new ContentAngelicGiftEvent(null));
-        m_events.Add(new ContentClericEvent(null));
-        m_events.Add(new ContentRogueEvent(null));
-        m_events.Add(new ContentMysteryWanderer(null));
-        m_events.Add(new ContentStablesEvent(null));
-        m_events.Add(new ContentMagicianEvent(null));
-        m_events.Add(new ContentGemsOfProphecyEvent(null));
-        //m_events.Add(new ContentOrcDenEvent(null)); nmartino - make this only spawn on the waves at or after the point where orcs start spawning
-        m_events.Add(new ContentForbiddenFruitEvent(null));
-        //m_events.Add(new ContentCreativeChemistEvent(null)); nmartino - add this in after event rework. Make it only spawn if you have the gold for at least the second option? Maybe unless you have all of them
-        m_events.Add(new ContentTraditionOrProgressEvent(null));
-        //m_events.Add(new ContentWorthySacrificeEvent(null)); ashulman - I wasn't sure how to get this working, need to consult with nmartino to finish this
+        m_events.Add(new ContentWonderousGenieEvent(null)); // waves 1-6
+        m_events.Add(new ContentOverturnedCartEvent(null)); // waves 1-3 - potential early script
+        m_events.Add(new ContentMillitiaEvent(null)); // waves 2-4
+        m_events.Add(new ContentAngelicGiftEvent(null)); // waves 2-6
+        m_events.Add(new ContentClericEvent(null)); // waves 1-6 - potential early script
+        m_events.Add(new ContentRogueEvent(null)); // waves 1-6 - potential early script
+        m_events.Add(new ContentMysteryWanderer(null)); // waves 2-6
+        m_events.Add(new ContentStablesEvent(null)); // waves 2-5
+        m_events.Add(new ContentMagicianEvent(null)); // waves 1-6 - potential early script
+        m_events.Add(new ContentGemsOfProphecyEvent(null)); // waves 3-5
+        m_events.Add(new ContentOrcDenEvent(null)); // waves that orcs can spawn in - waves 3-4
+        m_events.Add(new ContentForbiddenFruitEvent(null)); // waves 3-4
+        m_events.Add(new ContentCreativeChemistEvent(null)); // waves 1-6 only if you have gold to spend
+        m_events.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-4
+        m_events.Add(new ContentTransmuteBeamsEvent(null)); // waves 1-6 only if you have 5+ purple beams
 
-        //m_events.Add(new ContentTransmuteBeamsEvent(null)); nmartino - Come back to this one event refactor is complete
+        //m_events.Add(new ContentWorthySacrificeEvent(null)); // ashulman - I wasn't sure how to get this working, need to consult with nmartino to finish this
 
         m_hasInit = true;
     }
@@ -39,9 +43,44 @@ public static class GameEventFactory
             Init();
         }
 
-        int r = UnityEngine.Random.Range(0, m_events.Count);
+        List<GameEvent> availableEvents = new List<GameEvent>();
 
-        return (GameEvent)Activator.CreateInstance(m_events[r].GetType(), tile);
+        for (int i = 0; i < m_events.Count; i++)
+        {
+            if (m_recentEvents.Contains(m_events[i]))
+            {
+                continue;
+            }
+            
+            if (m_events[i].IsValidToSpawn())
+            {
+                availableEvents.Add(m_events[i]);
+            }
+        }
+
+        if (availableEvents.Count == 0)
+        {
+            Debug.LogError("All events are not available to spawn. Sending random event instead.");
+            if (m_recentEvents.Count > 0)
+            {
+                m_recentEvents.Clear();
+                return GetRandomEvent(tile);
+            }
+            else
+            {
+                return (GameEvent)Activator.CreateInstance(m_events[UnityEngine.Random.Range(0, m_events.Count)].GetType(), tile);
+            }
+        }
+
+        int r = UnityEngine.Random.Range(0, availableEvents.Count);
+
+        m_recentEvents.Add(availableEvents[r]);
+        if (m_recentEvents.Count > m_numTrackRecentEvents)
+        {
+            m_recentEvents.RemoveAt(0);
+        }
+
+        return (GameEvent)Activator.CreateInstance(availableEvents[r].GetType(), tile);
     }
 
     public static GameEvent GetEventFromJson(JsonGameEventData jsonData, GameTile tile)
