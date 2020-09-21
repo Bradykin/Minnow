@@ -138,15 +138,15 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
-                m_tintRenderer.color = UIHelper.GetValidColor(true);
+                m_frameRenderer.color = UIHelper.GetValidColor(true);
             }
             else if (Globals.m_selectedEntity != null && m_isMoveable)
             {
-                m_tintRenderer.color = UIHelper.GetValidColor(true);
+                m_frameRenderer.color = UIHelper.GetValidColor(true);
             }
             else if (Globals.m_selectedEntity != null && m_isAttackable)
             {
-                m_tintRenderer.color = UIHelper.GetAttackColor();
+                m_frameRenderer.color = UIHelper.GetAttackColor();
             }
             else
             {

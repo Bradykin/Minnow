@@ -214,6 +214,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6319283262748190525, guid: 4208289fcc803664bbc3eb8af72294ff,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8360517810199140739, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_uiCardTooltipPrefab
