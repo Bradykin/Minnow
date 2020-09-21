@@ -24,7 +24,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentLootingsCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDreamCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -34,12 +34,12 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            GameHelper.GetPlayer().m_wallet.m_gold += 7;
+            GameHelper.GetPlayer().m_wallet.m_gold += 50;
         }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Globals.m_purpleBeamCount++;
+            GameHelper.GetPlayer().AddEnergy(1);
         }
     }
 }
