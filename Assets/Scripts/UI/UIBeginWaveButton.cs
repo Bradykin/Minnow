@@ -26,6 +26,11 @@ public class UIBeginWaveButton : WorldElementBase
 
     void OnMouseDown()
     {
+        if (GameHelper.GetPlayer().GetCurActions() > 0)
+        {
+            return;
+        }
+
         BeginWave();
     }
 

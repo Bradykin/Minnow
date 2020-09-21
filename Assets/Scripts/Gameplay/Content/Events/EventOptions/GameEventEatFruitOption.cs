@@ -15,7 +15,7 @@ public class GameEventEatFruitOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Blast all nearby units for " + m_blastDamage + " damage. Gain +" + m_powerIncrease + "/+" + m_healthIncrease + " on Knowledgeable.";
+        m_message = "Blast all tiles within + " + m_tileRange + " range, damaging nearby units for " + m_blastDamage + " damage and burning the tiles. Gain +" + m_powerIncrease + "/+" + m_healthIncrease + " on Knowledgeable.";
     }
 
     public override void AcceptOption()

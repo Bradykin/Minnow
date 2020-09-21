@@ -27,7 +27,6 @@ public class GameEventRejectFruitOption : GameEventOption
 
         entity.AddPower(m_powerIncrease);
         entity.AddMaxHealth(m_healthIncrease);
-        entity.Heal(10);
         entity.GainAP(m_apIncrease);
 
         entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(entity, -m_knowledgeableDecrease)));

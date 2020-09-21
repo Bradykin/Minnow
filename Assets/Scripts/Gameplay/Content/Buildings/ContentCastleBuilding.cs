@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class ContentCastleBuilding : GameBuildingBase
     {
         m_isDestroyed = true;
 
+        //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
         UIHelper.CreateWorldElementNotification("Your castle has been destroyed, you have lost!", false, m_gameTile.GetWorldTile());
     }
 
