@@ -808,7 +808,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (destinationTile.IsOccupied())
             return;
 
-        m_uiEntity.MoveTo(destinationTile);
+        if (m_uiEntity != null)
+        {
+            m_uiEntity.MoveTo(destinationTile);
+        }
     }
 
     public void SpendAP(int toSpend)

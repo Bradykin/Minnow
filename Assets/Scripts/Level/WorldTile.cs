@@ -207,8 +207,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
-                selectedCard.m_card.PlayCard(GetGameTile());
                 WorldController.Instance.PlayCard(selectedCard);
+                selectedCard.m_card.PlayCard(GetGameTile());
                 return;
             }
         }

@@ -2,7 +2,7 @@
 
 public class GameEventSellPurpleBeamsForGoldOption : GameEventOption
 {
-    private int m_exchangeRate = 10;
+    private int m_exchangeRate = 15;
     private int m_maxBeams = 10;
 
     public override void Init()
@@ -18,7 +18,7 @@ public class GameEventSellPurpleBeamsForGoldOption : GameEventOption
         int beamAmount = Mathf.Min(Globals.m_purpleBeamCount, m_maxBeams);
         int goldAmount = beamAmount * m_exchangeRate;
 
-        Globals.m_purpleBeamCount = 0;
+        Globals.m_purpleBeamCount -= beamAmount;
         GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(goldAmount));
 
         EndEvent();

@@ -319,6 +319,11 @@ public class GamePlayer : ITurns
             {
                 toReturn -= 1;
             }
+
+            if (m_controlledBuildings[i] is ContentTempleBuilding)
+            {
+                toReturn += 1;
+            }
         }
 
         toReturn += 1 * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();

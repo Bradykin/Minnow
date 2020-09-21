@@ -18,7 +18,8 @@ public class ContentTempleBuilding : GameBuildingBase
         LateInit();
     }
 
-    public override void StartTurn()
+    //Not currently needed since temples add 1 max energy, and startturn sets cur energy to max
+    /*public override void StartTurn()
     {
         if (m_isDestroyed)
         {
@@ -35,7 +36,7 @@ public class ContentTempleBuilding : GameBuildingBase
         }
 
         player.AddEnergy(1);
-    }
+    }*/
 
     protected override void Die()
     {

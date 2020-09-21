@@ -31,6 +31,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             return;
     }
 
+    public bool IsSetup()
+    {
+        return m_setup;
+    }
+
     public void Setup(Transform parent)
     {
         if (m_setup)
