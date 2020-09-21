@@ -31,7 +31,7 @@ namespace Game.Util
         private GameObject m_uiSimpleTooltipPrefab = null;
 
         [SerializeField]
-        private UIHUDController m_uiHUDController = null;
+        private GameObject m_uiPlayerHandParent = null;
 
         //============================================================================================================//;
 
@@ -67,7 +67,7 @@ namespace Game.Util
                 case bool _ when type == typeof(UIEntityFactory):
                     return new UIEntityFactory(m_uiEntityPrefab) as T;
                 case bool _ when type == typeof(UICardFactory):
-                    return new UICardFactory(m_uiCardPrefab, m_uiHUDController.m_waveHUD) as T;
+                    return new UICardFactory(m_uiCardPrefab, m_uiPlayerHandParent) as T;
                 case bool _ when type == typeof(UICardTooltipFactory):
                     return new UICardTooltipFactory(m_uiCardTooltipPrefab) as T;
                 case bool _ when type == typeof(UIWorldElementNotificationFactory):

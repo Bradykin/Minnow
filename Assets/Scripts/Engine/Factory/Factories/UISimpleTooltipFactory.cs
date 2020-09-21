@@ -28,7 +28,7 @@ namespace Game.Util
         public T CreateObject<T>(string title, string desc)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.parent = UITooltipController.Instance.transform;
+            obj.transform.SetParent(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc);
 
@@ -48,7 +48,7 @@ namespace Game.Util
         public T CreateObject<T>(string title, string desc, bool isValid)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.parent = UITooltipController.Instance.transform;
+            obj.transform.SetParent(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc, isValid);
 

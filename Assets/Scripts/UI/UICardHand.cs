@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UICardHand : MonoBehaviour
+    , IPointerClickHandler
 {
     private UICard m_uiCard;
 
@@ -25,7 +27,7 @@ public class UICardHand : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (m_uiCard.m_card.IsValidToPlay())
         {

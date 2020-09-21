@@ -726,7 +726,6 @@ GameObject:
   - component: {fileID: 295745349}
   - component: {fileID: 295745350}
   - component: {fileID: 295745352}
-  - component: {fileID: 295745351}
   m_Layer: 11
   m_Name: ChaosLevelButtonDown
   m_TagString: Untagged
@@ -766,21 +765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3416e15a76b2b0446ae1678a294f5ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tintImage: {fileID: 0}
   m_holder: {fileID: 513014279}
-  m_tintRenderer: {fileID: 750265574}
   m_isIncrease: 0
---- !u!114 &295745351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295745348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &295745352
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1255,7 +1242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da0499ffcc80054fa87f5a8114aec6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tintRenderer: {fileID: 1513359006}
+  m_tintImage: {fileID: 0}
 --- !u!61 &649650762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2322,7 +2309,6 @@ GameObject:
   - component: {fileID: 1574642616}
   - component: {fileID: 1574642617}
   - component: {fileID: 1574642618}
-  - component: {fileID: 1574642619}
   m_Layer: 11
   m_Name: LakesideViewButton
   m_TagString: Untagged
@@ -2380,21 +2366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tintImage: {fileID: 0}
   m_id: 0
-  m_tintRenderer: {fileID: 490146870}
   m_titleText: {fileID: 1695651651}
---- !u!114 &1574642619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574642615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1631954719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,7 +2380,6 @@ GameObject:
   - component: {fileID: 1631954720}
   - component: {fileID: 1631954722}
   - component: {fileID: 1631954721}
-  - component: {fileID: 1631954723}
   m_Layer: 11
   m_Name: Desert Kingdom
   m_TagString: Untagged
@@ -2464,21 +2437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tintImage: {fileID: 0}
   m_id: 1
-  m_tintRenderer: {fileID: 488713968}
   m_titleText: {fileID: 1638939093}
---- !u!114 &1631954723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631954719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1638939091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,7 +2639,6 @@ GameObject:
   - component: {fileID: 1815815829}
   - component: {fileID: 1815815831}
   - component: {fileID: 1815815830}
-  - component: {fileID: 1815815832}
   m_Layer: 11
   m_Name: Level Select
   m_TagString: Untagged
@@ -2720,8 +2680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tintImage: {fileID: 0}
   m_id: -1
-  m_tintRenderer: {fileID: 62393853}
   m_titleText: {fileID: 1544883150}
 --- !u!58 &1815815831
 CircleCollider2D:
@@ -2739,18 +2699,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 8.619938
---- !u!114 &1815815832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815815828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1938586328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2791,6 @@ GameObject:
   - component: {fileID: 1989358280}
   - component: {fileID: 1989358281}
   - component: {fileID: 1989358283}
-  - component: {fileID: 1989358282}
   m_Layer: 11
   m_Name: ChaosLevelButtonUp
   m_TagString: Untagged
@@ -2883,21 +2830,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3416e15a76b2b0446ae1678a294f5ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tintImage: {fileID: 0}
   m_holder: {fileID: 132433269}
-  m_tintRenderer: {fileID: 556667128}
   m_isIncrease: 1
---- !u!114 &1989358282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989358279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b185a1e26dcdce469dc9931dc250005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1989358283
 BoxCollider2D:
   m_ObjectHideFlags: 0
