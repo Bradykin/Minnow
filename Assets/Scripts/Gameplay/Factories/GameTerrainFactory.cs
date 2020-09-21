@@ -60,6 +60,8 @@ public class GameTerrainFactory
         m_plainsTerrain.Add(new ContentTundraPlainsPondTerrain());
         m_plainsTerrain.Add(new ContentSnowPlainsPondTerrain());
         m_plainsTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
+        m_plainsTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
+        m_plainsTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Plains Terrain", m_plainsTerrain));
 
         //Forest Terrain
@@ -164,7 +166,9 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedForestPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertDunesTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRuinsTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
+        m_redDesertTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Red Desert Terrain", m_redDesertTerrain));
 
         //Desert Yellow Terrain
@@ -181,7 +185,7 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertDunesTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertRuinsTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Yellow Desert Terrain", m_yellowDesertTerrain));
 
         //Volcanic Terrain
@@ -197,13 +201,15 @@ public class GameTerrainFactory
 
         //Ruins Terrain
         m_ruinsTerrain.Add(new ContentGrassPlainsRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
         m_ruinsTerrain.Add(new ContentDirtPlainsRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
         m_ruinsTerrain.Add(new ContentForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentForestBurnedRuinsTerrain());
         m_ruinsTerrain.Add(new ContentPineForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentMarshRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentDesertRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_ruinsTerrain.Add(new ContentSnowRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Ruins Terrain", m_ruinsTerrain));
 

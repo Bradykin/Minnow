@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDesertRedGrassDunesTerrain : GameTerrainBase
+public class ContentDesertDunesRuinsTerrain : GameTerrainBase
 {
-    public ContentDesertRedGrassDunesTerrain()
+    public ContentDesertDunesRuinsTerrain()
     {
         m_costToPass = 2;
 
-        m_name = "DesertRedGrassDunes";
-        m_desc = "Simple, no changes.";
-        m_maxTerrainImageNumber = 4;
+        m_name = "DesertDunesRuins";
+        m_desc = "2 AP movement.";
+        m_maxTerrainImageNumber = 2;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
-        m_color = Color.white;
+        m_color = Color.yellow;
 
         m_isPassable = true;
         m_canBurn = false;
 
         m_isHot = true;
+        m_isEventTerrain = true;
 
-        m_unburnedTerrainType = null;
-        //Add event type
+        m_completedEventType = typeof(ContentDesertDunesTerrain);
     }
 }
