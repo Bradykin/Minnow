@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UILevelSelectChaosButton : WorldElementBase
+public class UILevelSelectChaosButton : UIElementBase
     , IPointerClickHandler
 {
     public GameObject m_holder;

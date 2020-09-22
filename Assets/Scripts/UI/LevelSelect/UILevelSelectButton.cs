@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UILevelSelectButton : WorldElementBase
+public class UILevelSelectButton : UIElementBase
     , IPointerClickHandler
 {
     public int m_id;

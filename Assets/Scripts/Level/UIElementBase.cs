@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class WorldElementBase : MonoBehaviour
+public abstract class UIElementBase : MonoBehaviour
      , IPointerEnterHandler
      , IPointerExitHandler
 {

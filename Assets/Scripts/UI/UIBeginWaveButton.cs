@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIBeginWaveButton : WorldElementBase
+public class UIBeginWaveButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UICardSelectAcceptButton : WorldElementBase
+public class UICardSelectAcceptButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;

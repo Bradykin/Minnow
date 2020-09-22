@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UISelectorButton : WorldElementBase
+public class UISelectorButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UICloseDeckViewButton : WorldElementBase
+public class UICloseDeckViewButton : UIElementBase
     , IPointerClickHandler
 {
     public override void HandleTooltip()

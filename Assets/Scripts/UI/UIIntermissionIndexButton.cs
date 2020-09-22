@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIIntermissionIndexButton : WorldElementBase
+public class UIIntermissionIndexButton : UIElementBase
     , IPointerClickHandler
 {
     public bool m_increase;

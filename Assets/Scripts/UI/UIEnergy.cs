@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIEnergy : WorldElementBase
+public class UIEnergy : UIElementBase
 {
     public Text m_titleText;
     public Text m_countText;

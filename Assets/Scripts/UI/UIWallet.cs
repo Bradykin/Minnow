@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIWallet : WorldElementBase
+public class UIWallet : UIElementBase
 {
     public Text m_goldText;
 

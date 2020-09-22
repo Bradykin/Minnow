@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIEndTurnButton : WorldElementBase
+public class UIEndTurnButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;

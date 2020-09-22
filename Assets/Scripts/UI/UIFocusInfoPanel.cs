@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Game.Util;
 
-public class UIFocusInfoPanel : WorldElementBase
+public class UIFocusInfoPanel : UIElementBase
 {
     public Text m_titleText;
     public Text m_descText;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIDeck : WorldElementBase
+public class UIDeck : UIElementBase
     , IPointerClickHandler
 {
     public Text m_countText;

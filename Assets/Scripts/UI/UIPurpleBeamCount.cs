@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPurpleBeamCount : WorldElementBase
+public class UIPurpleBeamCount : UIElementBase
 {
     public Text m_valText;
     public GameObject m_holder;

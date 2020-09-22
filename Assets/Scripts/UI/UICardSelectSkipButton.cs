@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UICardSelectSkipButton : WorldElementBase
+public class UICardSelectSkipButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;

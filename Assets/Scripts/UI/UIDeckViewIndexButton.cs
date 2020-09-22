@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIDeckViewIndexButton : WorldElementBase
+public class UIDeckViewIndexButton : UIElementBase
     , IPointerClickHandler
 {
     public bool m_increase;

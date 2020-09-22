@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIRelic : WorldElementBase
+public class UIRelic : UIElementBase
     , IPointerClickHandler
 {
     public enum RelicSelectionType

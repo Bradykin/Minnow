@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIEventButton : WorldElementBase
+public class UIEventButton : UIElementBase
     , IPointerClickHandler
 {
     public GameEventOption m_eventOption { get; private set; }

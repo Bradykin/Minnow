@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIRelicSelectSkipButton : WorldElementBase
+public class UIRelicSelectSkipButton : UIElementBase
     , IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)

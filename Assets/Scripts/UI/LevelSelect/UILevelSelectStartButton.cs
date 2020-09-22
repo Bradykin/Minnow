@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UILevelSelectStartButton : WorldElementBase
+public class UILevelSelectStartButton : UIElementBase
     , IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
