@@ -30,19 +30,27 @@ namespace Game.Util
             GameObject obj = CreateGameObject();
             obj.transform.SetParent(apContainer);
 
-            float multiplier = 1f;
-            if (inWorld)
-            {
-                multiplier = -1f;
-            }
-
             if (index < 6)
             {
-                obj.transform.localPosition = new Vector3(4.0f + index * 10f, multiplier * -10.0f, 0.0f);
+                if (inWorld)
+                {
+                    obj.transform.localPosition = new Vector3(0.35f * index, 0, 0.0f);
+                }
+                else
+                {
+                    obj.transform.localPosition = new Vector3(4.0f + index * 10f, -10.0f, 0.0f);
+                }
             }
             else
             {
-                obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 10f, 0.0f, 0.0f);
+                if (inWorld)
+                {
+                    obj.transform.localPosition = new Vector3(0.35f * (index - 6f), -0.35f, 0.0f);
+                }
+                else
+                {
+                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 10f, 0.0f, 0.0f);
+                }
             }
 
             obj.GetComponent<UIAPBubble>().Init(isActive, team);
