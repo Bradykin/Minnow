@@ -227,7 +227,7 @@ public static class UIHelper
                 tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
             }
 
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
 
             if (tilesInAttackRange == null)
             {
@@ -272,7 +272,7 @@ public static class UIHelper
                 tilesInRange[i].GetWorldTile().SetMoveable(true);
             }
 
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEnemy.GetEntity().GetGameTile(), false, false);
+            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEnemy.GetEntity().GetGameTile(), false, false);
 
             if (tilesInAttackRange == null)
             {
@@ -319,7 +319,7 @@ public static class UIHelper
             tilesInRange[i].GetWorldTile().SetMoveable(true);
         }
 
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInAttackRange(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
 
         if (tilesInAttackRange == null)
         {

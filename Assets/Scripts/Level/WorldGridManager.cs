@@ -3,9 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGridData>
 {
@@ -446,7 +444,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences, letPassEnemies);
     }
 
-    public List<GameTile> GetTilesInMoveAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
+    public List<GameTile> GetTilesInMovementRangeWithAPToAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
         if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
@@ -455,43 +453,41 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
         int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
 
-        List<GameTile> tilesInMoveAttackRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
-        return tilesInMoveAttackRange;
+        List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
+        return tilesInMovementRangeWithAPToAttack;
     }
 
-    public List<GameTile> GetTilesInAttackRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
+    public List<GameTile> GetTilesInRangeToMoveAndAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
         if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
         }
-        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
+
+        List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRangeWithAPToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
         int range = startingGridTile.m_occupyingEntity.GetRange();
 
-        List<GameTile> tilesInMovementRange = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
+        List<GameTile> tilesInRangeToMoveAndAttack = new List<GameTile>();
 
-        List<GameTile> tilesInAttackRange = new List<GameTile>();
-        tilesInAttackRange.AddRange(tilesInMovementRange);
-
-        for (int i = 0; i < tilesInMovementRange.Count; i++)
+        for (int i = 0; i < tilesInMovementRangeWithAPToAttack.Count; i++)
         {
-            if (tilesInMovementRange[i].IsOccupied() && !tilesInMovementRange[i].m_occupyingEntity.m_isDead)
+            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead)
             {
                 continue;
             }
             
-            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRange[i].m_gridPosition), range);
+            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithAPToAttack[i].m_gridPosition), range);
             for (int k = 0; k < tiles.Count; k++)
             {
-                if (!tilesInAttackRange.Contains(tiles[k].GetGameTile()))
+                if (!tilesInRangeToMoveAndAttack.Contains(tiles[k].GetGameTile()))
                 {
-                    tilesInAttackRange.Add(tiles[k].GetGameTile());
+                    tilesInRangeToMoveAndAttack.Add(tiles[k].GetGameTile());
                 }
             }
         }
 
-        return tilesInAttackRange;
+        return tilesInRangeToMoveAndAttack;
     }
 
     private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences, bool letPassEnemies)

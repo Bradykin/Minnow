@@ -10,7 +10,7 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
 
     public override void TakeStep()
     {
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMoveAttackRange(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithAPToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
 
         List<GameTile> tilesWithMaxAdjacent = new List<GameTile>();
         int maxAdjacent = 0;
