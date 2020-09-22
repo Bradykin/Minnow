@@ -35,7 +35,7 @@ public class AILizardmanFleeToWaterStep : AIStep
                 bool isOpenWater = true;
                 for (int k = 0; k < surroundingTiles.Count; k++)
                 {
-                    if (!surroundingTiles[i].GetTerrain().IsWater())
+                    if (!surroundingTiles[k].GetTerrain().IsWater())
                     {
                         isOpenWater = false;
                         break;

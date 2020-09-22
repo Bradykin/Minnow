@@ -22,13 +22,6 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
             return;
         }
 
-        GameBuildingBase castleInRange = FindCastleInRange();
-        if (castleInRange != null && m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfBuilding(castleInRange))
-        {
-            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
-            return;
-        }
-
         GameEntity closestEntityInRange = FindClosestEntityInRangeToWater();
         if (closestEntityInRange != null)
         {
@@ -36,6 +29,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
             return;
         }
 
+        GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
             m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
