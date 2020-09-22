@@ -4,17 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UILevelSelectStartButton : MonoBehaviour
+public class UILevelSelectStartButton : WorldElementBase
+    , IPointerClickHandler
 {
-    public Image m_tintImage;
-
-    void OnMouseDown()
-    {
-        StartGame();
-    }
-
-    private void StartGame()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (UILevelSelectController.Instance.m_levelBuilderSelected)
         {
@@ -26,16 +21,10 @@ public class UILevelSelectStartButton : MonoBehaviour
             Globals.mapToLoad = m_curLevel.dataPath;
             SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
         }
-
     }
 
-    void OnMouseOver()
+    public override void HandleTooltip()
     {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
-    }
-
-    void OnMouseExit()
-    {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
+        //Left as stub
     }
 }
