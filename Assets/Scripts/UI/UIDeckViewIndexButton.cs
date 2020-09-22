@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIDeckViewIndexButton : MonoBehaviour
+public class UIDeckViewIndexButton : WorldElementBase
+    , IPointerClickHandler
 {
     public bool m_increase;
-    public Image m_tintImage;
     public GameObject m_holder;
 
     void Update()
@@ -19,16 +20,6 @@ public class UIDeckViewIndexButton : MonoBehaviour
         {
             m_holder.SetActive(UIDeckViewController.Instance.m_index > 0);
         }
-    }
-
-    void OnMouseDown()
-    {
-        if (!m_holder.activeSelf)
-        {
-            return;
-        }
-
-        AdjustIndex();
     }
 
     private void AdjustIndex()
@@ -44,13 +35,18 @@ public class UIDeckViewIndexButton : MonoBehaviour
         }
     }
 
-    void OnMouseOver()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        m_tintImage.color = UIHelper.GetValidTintColor(true);
+        if (!m_holder.activeSelf)
+        {
+            return;
+        }
+
+        AdjustIndex();
     }
 
-    void OnMouseExit()
+    public override void HandleTooltip()
     {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
+        //Left as stub
     }
 }
