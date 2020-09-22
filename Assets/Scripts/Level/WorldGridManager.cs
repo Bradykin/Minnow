@@ -469,7 +469,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         int range = startingGridTile.m_occupyingEntity.GetRange();
 
         List<GameTile> tilesInRangeToMoveAndAttack = new List<GameTile>();
-        tilesInRangeToMoveAndAttack.AddRange(tilesInMovementRangeWithAPToAttack);
 
         for (int i = 0; i < tilesInMovementRangeWithAPToAttack.Count; i++)
         {
