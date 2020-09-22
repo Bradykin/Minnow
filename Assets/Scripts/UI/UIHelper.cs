@@ -31,7 +31,7 @@ public static class UIHelper
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
-    public static Color m_difficultyNormal = new Color(Color.green.r, Color.green.g, Color.green.b, 1f);
+    public static Color m_difficultyNormal = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1f);
     public static Color m_difficultyHard = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 

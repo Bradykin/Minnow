@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UICardDeckView : MonoBehaviour
+    , IPointerClickHandler
 {
     private UIDeckViewController.DeckViewType m_viewType;
 
@@ -15,7 +17,7 @@ public class UICardDeckView : MonoBehaviour
         m_uiCard = GetComponent<UICard>();
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (m_viewType == UIDeckViewController.DeckViewType.View)
         {
