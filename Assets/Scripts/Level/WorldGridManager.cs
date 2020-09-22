@@ -476,7 +476,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         for (int i = 0; i < tilesInMovementRange.Count; i++)
         {
-            if (!tilesInMovementRange[i].IsOccupied() || tilesInMovementRange[i].m_occupyingEntity.m_isDead)
+            if (tilesInMovementRange[i].IsOccupied() && !tilesInMovementRange[i].m_occupyingEntity.m_isDead)
             {
                 continue;
             }
