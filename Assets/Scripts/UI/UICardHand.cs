@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UICardHand : MonoBehaviour
+    , IPointerClickHandler
 {
     private UICard m_uiCard;
 
@@ -25,26 +27,26 @@ public class UICardHand : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (m_uiCard.m_card.IsValidToPlay())
         {
             if (m_uiCard.m_card.m_targetType == GameCard.Target.None)
             {
-                WorldController.Instance.PlayCard(m_uiCard, m_uiCard);
+                WorldController.Instance.PlayCard(m_uiCard);
                 m_uiCard.m_card.PlayCard();
             }
             else
             {
                 UIHelper.SelectCard(m_uiCard);
-                UIHelper.SetSelectTintColor(m_uiCard.m_tintRenderer, Globals.m_selectedCard == m_uiCard);
+                m_uiCard.m_tintImage.color = UIHelper.GetSelectTintColor(Globals.m_selectedCard == m_uiCard);
             }
         }
         else
         {
             if (Globals.m_canSelect)
             {
-                UIHelper.CreateWorldElementNotification("Not enough energy.", false, m_uiCard);
+                UIHelper.CreateWorldElementNotification("Not enough energy.", false, m_uiCard.gameObject);
             }
         }
     }

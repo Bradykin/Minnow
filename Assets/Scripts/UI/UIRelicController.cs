@@ -21,7 +21,7 @@ public class UIRelicController : Singleton<UIRelicController>
     {
         for (int i = 0; i < m_relics.Count; i++)
         {
-            m_relics[i].transform.localPosition = new Vector3(i * 1.5f, 0.0f, 0.0f);
+            m_relics[i].transform.localPosition = new Vector3(225.0f + i * 75.0f, -50.0f, 0.0f);
         }
     }
 }

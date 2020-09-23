@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIEntity : WorldElementBase
+public class UIEntity : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
@@ -18,17 +19,20 @@ public class UIEntity : WorldElementBase
     public GameObject m_titleBlock;
 
     private bool m_isHovered;
+    private bool m_isShowingTooltip;
 
     private Vector3 m_moveTarget = new Vector3();
     private float m_movementSpeed = 0.5f;
 
     public SpriteRenderer m_damageShieldIndicator;
 
+    private GameEntity m_entity;
+
     public void Init(GameEntity entity)
     {
         m_moveTarget = gameObject.transform.position;
 
-        m_gameElement = entity;
+        m_entity = entity;
         entity.m_uiEntity = this;
 
         m_renderer.sprite = GetEntity().m_icon;
@@ -73,11 +77,11 @@ public class UIEntity : WorldElementBase
         {
             if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy)
             {
-                UIHelper.SetSelectTintColor(m_tintRenderer, true);
+                m_tintRenderer.color = UIHelper.GetSelectTintColor(true);
             }
             else
             {
-                UIHelper.SetDefaultTintColor(m_tintRenderer);
+                m_tintRenderer.color = UIHelper.GetDefaultTintColor();
             }
         }
 
@@ -111,9 +115,9 @@ public class UIEntity : WorldElementBase
                 //                  Globals.m_selectedCard.m_card.PlayCard(GetEntity());
                 //                  WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
                 UICard card = Globals.m_selectedCard;
-                WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
+                WorldController.Instance.PlayCard(Globals.m_selectedCard);
                 card.m_card.PlayCard(GetEntity());
-                UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+                m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
             }
         }
         else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))
@@ -125,11 +129,11 @@ public class UIEntity : WorldElementBase
         {
             UIHelper.SelectEntity(this);
 
-            UIHelper.SetSelectTintColor(m_tintRenderer, Globals.m_selectedEntity == this);
+            m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedEntity == this);
         }
         else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, this);
+            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, gameObject);
         }
         else if (GetEntity().GetTeam() == Team.Enemy)
         {
@@ -158,52 +162,63 @@ public class UIEntity : WorldElementBase
 
     void OnMouseOver()
     {
+        if (!m_isShowingTooltip)
+        {
+            HandleTooltip();
+
+            m_isShowingTooltip = true;
+        }
+
         m_isHovered = true;
         if (Globals.m_selectedEntity != null)
         {
             bool canHit = Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity());
             if (GetEntity().GetTeam() == Team.Player && canHit)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, true);
+                m_tintRenderer.color = UIHelper.GetValidTintColor(true);
             }
             else if (GetEntity().GetTeam() == Team.Enemy)
             {
-                UIHelper.SetValidTintColor(m_tintRenderer, canHit);
+                m_tintRenderer.color = UIHelper.GetValidTintColor(canHit);
             }
             else if (GetEntity().GetTeam() == Team.Player && !canHit)
             {
                 if (Globals.m_selectedEntity == this)
                 {
-                    UIHelper.SetSelectTintColor(m_tintRenderer, CanSelect());
+                    m_tintRenderer.color = UIHelper.GetSelectTintColor(CanSelect());
                 }
                 else
                 {
-                    UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(CanSelect());
                 }
             }
         }
         else if (Globals.m_selectedCard != null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
+            m_tintRenderer.color = UIHelper.GetValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()));
         } 
         else if (Globals.m_selectedEntity == null)
         {
-            UIHelper.SetValidTintColor(m_tintRenderer, CanSelect());
+            m_tintRenderer.color = UIHelper.GetValidTintColor(CanSelect());
         }
     }
 
     void OnMouseExit()
     {
+        UITooltipController.Instance.ClearTooltipStack();
+
+        m_isShowingTooltip = false;
+
         m_isHovered = false;
         if (Globals.m_selectedEntity != this)
         {
-            UIHelper.SetDefaultTintColorForTeam(m_tintRenderer, GetEntity().GetTeam());
+            m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
         }
     }
 
     public GameEntity GetEntity()
     {
-        return (GameEntity)m_gameElement;
+        return m_entity;
     }
 
     public void PlayHitAnim()
@@ -231,7 +246,7 @@ public class UIEntity : WorldElementBase
         return true;
     }
 
-    public override void HandleTooltip()
+    public void HandleTooltip()
     {
         if (Globals.m_canSelect)
         {

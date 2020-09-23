@@ -72,7 +72,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_curHealth -= damage;
 
-        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile());
+        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile().gameObject);
 
         if (m_curHealth <= 0)
         {
@@ -98,7 +98,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_gameTile.GetWorldTile());
+            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_gameTile.GetWorldTile().gameObject);
         }
 
         if (m_curHealth > 0)
@@ -113,7 +113,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     {
         m_isDestroyed = true;
 
-        UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile());
+        UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile().gameObject);
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);

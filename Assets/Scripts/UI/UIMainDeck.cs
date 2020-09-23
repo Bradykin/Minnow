@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIMainDeck : WorldElementBase
+public class UIMainDeck : UIElementBase
+    , IPointerClickHandler
 {
     public Text m_countText;
 
-    public SpriteRenderer m_tintRenderer;
-
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
+    
     void Update()
     {
         GamePlayer player = GameHelper.GetPlayer();
@@ -21,28 +26,9 @@ public class UIMainDeck : WorldElementBase
         m_countText.text = player.m_deckBase.Count() + "";
     }
 
-    void OnMouseOver()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View);
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View);
     }
 
     public override void HandleTooltip()

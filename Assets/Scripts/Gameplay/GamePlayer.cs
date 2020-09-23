@@ -450,7 +450,7 @@ public class GamePlayer : ITurns
 
         if (Castle != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
         {
-            UICameraController.Instance.SnapToWorldElement(Castle.GetWorldTile());
+            UICameraController.Instance.SnapToGameObject(Castle.GetWorldTile().gameObject);
         }
         m_curEnergy = GetMaxEnergy();
 

@@ -35,6 +35,15 @@ public class WorldController : Singleton<WorldController>
         {
             FocusNextPlayerEntity();
         }
+
+        if (Constants.CheatsOn)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentPoisonedShivsRelic());
+            }
+        }
     }
 
     public void AdjustHandAroundBigCard(UICard bigCard)
@@ -77,9 +86,8 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-    public void PlayCard(UICard card, WorldElementBase worldElementTarget)
+    public void PlayCard(UICard card)
     {
-        card.CardPlayed(worldElementTarget);
         Recycler.Recycle<UICard>(card);
         Globals.m_selectedCard = null;
 
@@ -119,13 +127,22 @@ public class WorldController : Singleton<WorldController>
             }
         }
 
+        float xPosBase = -500.0f;
+        float xPosMult = 200.0f;
+        float yPos = -400.0f;
+        float yPosBigOffset = 125.0f;
+        float zPos = 0.0f;
+        float smallCardScale = 1.25f;
+        float bigCardScale = 1.75f;
+        float splitDif = 0.2f;
+
         if (bigCardIndex == -1)
         {
             for (int i = 0; i < m_playerHand.Count; i++)
             {
-                Vector3 pos = new Vector3(-10.0f + i * 3.75f, -8f, -3.0f);
+                Vector3 pos = new Vector3(xPosBase + i * xPosMult, yPos, zPos);
                 m_playerHand[i].gameObject.transform.localPosition = pos;
-                m_playerHand[i].gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
+                m_playerHand[i].gameObject.transform.localScale = new Vector3(smallCardScale, smallCardScale, smallCardScale);
             }
         }
         else
@@ -133,20 +150,20 @@ public class WorldController : Singleton<WorldController>
             for (int i = 0; i < m_playerHand.Count; i++)
             {
                 Vector3 pos = new Vector3(0f,0f,0f);
-                m_playerHand[i].gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
+                m_playerHand[i].gameObject.transform.localScale = new Vector3(smallCardScale, smallCardScale, smallCardScale);
 
                 if (i < bigCardIndex)
                 {
-                    pos = new Vector3(-11f + i * 3.75f, -8f, -3.0f);
+                    pos = new Vector3((xPosBase * (1.0f + (splitDif/3.0f))) + i * xPosMult, yPos, zPos);
                 }
                 else if (i > bigCardIndex)
                 {
-                    pos = new Vector3(-9f + i * 3.75f, -8f, -3.0f);
+                    pos = new Vector3((xPosBase * (0.9f - splitDif)) + i * xPosMult, yPos, zPos);
                 }
                 else
                 {
-                    pos = new Vector3(-10.0f + i * 3.75f, -5.8f, -3.0f);
-                    m_playerHand[i].gameObject.transform.localScale = new Vector3(1.75f, 1.75f, 1f);
+                    pos = new Vector3(xPosBase + i * xPosMult, yPos + yPosBigOffset, zPos);
+                    m_playerHand[i].gameObject.transform.localScale = new Vector3(bigCardScale, bigCardScale, bigCardScale);
                 }
 
                 m_playerHand[i].gameObject.transform.localPosition = pos;
@@ -279,7 +296,7 @@ public class WorldController : Singleton<WorldController>
             UIHelper.SelectEntity(thisEntity);
         }
 
-        UICameraController.Instance.SnapToWorldElement(thisEntity);
+        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
     }
 
     public void FocusPrevPlayerEntity()
@@ -304,7 +321,7 @@ public class WorldController : Singleton<WorldController>
             UIHelper.SelectEntity(thisEntity);
         }
 
-        UICameraController.Instance.SnapToWorldElement(thisEntity);
+        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
     }
 
     private List<GameEntity> GetValidFocusEntities()

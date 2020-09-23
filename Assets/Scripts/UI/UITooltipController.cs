@@ -107,11 +107,11 @@ public class UITooltipController : Singleton<UITooltipController>
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
         if (m_flipStackHorizontal)
         {
-            worldPoint.x = worldPoint.x - 2.5f;
+            worldPoint.x = worldPoint.x - 1.72f;
         }
         else
         {
-            worldPoint.x = worldPoint.x + 2.5f;
+            worldPoint.x = worldPoint.x + 1.74f;
         }
 
         if (m_flipStackVertical)
@@ -119,14 +119,14 @@ public class UITooltipController : Singleton<UITooltipController>
             float flipSize = 3.0f;
             if (m_tooltipStack.Count > 0)
             {
-                flipSize = m_tooltipStack[0].m_height - 1.5f;
+                flipSize = m_tooltipStack[0].m_height - 2.5f;
             }
 
             worldPoint.y = worldPoint.y + flipSize;
         }
         else
         {
-            worldPoint.y = worldPoint.y - 0.6f;
+            worldPoint.y = worldPoint.y - 1.6f;
         }
 
         transform.position = worldPoint;

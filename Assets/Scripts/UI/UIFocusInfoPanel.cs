@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Game.Util;
 
-public class UIFocusInfoPanel : WorldElementBase
+public class UIFocusInfoPanel : UIElementBase
 {
     public Text m_titleText;
     public Text m_descText;
     public GameObject m_holder;
-
-    public SpriteRenderer m_tintRenderer;
 
     private bool m_shouldShow;
 
@@ -65,11 +64,13 @@ public class UIFocusInfoPanel : WorldElementBase
 
             if (spellCard.m_shouldExile)
             {
-                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.";
+                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.\n\n";
             }
 
             m_shouldShow = true;
         }
+
+        m_descText.text += "<b>Card Text</b>\n" + cardData.m_card.GetDesc();
     }
 
     private void UpdateFocusData(UIEntity entityData)
@@ -82,6 +83,10 @@ public class UIFocusInfoPanel : WorldElementBase
         {
             m_descText.text += keywords[i].m_name + ": " + keywords[i].GetFocusInfoText() + "\n\n";
         }
+
+        GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entityData.GetEntity());
+
+        m_descText.text += "<b>Entity Text</b>\n" + cardFromEntity.GetDesc();
     }
 
     private void UpdateFocusData(WorldTile worldTile)
@@ -105,23 +110,6 @@ public class UIFocusInfoPanel : WorldElementBase
         {
             m_descText.text += "An unknown event! Moving some troops here will trigger it...\n";
         }
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
-    }
-
-    void OnMouseDown()
-    {
-        //Focus on the element
     }
 
     public override void HandleTooltip()

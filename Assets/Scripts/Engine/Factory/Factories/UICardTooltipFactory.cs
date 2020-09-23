@@ -31,7 +31,7 @@ namespace Game.Util
 
             if (displayType == UICard.CardDisplayType.Tooltip)
             {
-                obj.transform.parent = UITooltipController.Instance.transform;
+                obj.transform.SetParent(UITooltipController.Instance.transform);
             }
 
             obj.GetComponent<UICard>().Init(card, displayType);

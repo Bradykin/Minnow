@@ -23,8 +23,8 @@ public class ContentCastleBuilding : GameBuildingBase
     {
         m_isDestroyed = true;
 
+        UIHelper.CreateWorldElementNotification("Your castle has been destroyed, you have lost!", false, m_gameTile.GetWorldTile().gameObject);
         //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
-        UIHelper.CreateWorldElementNotification("Your castle has been destroyed, you have lost!", false, m_gameTile.GetWorldTile());
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain)

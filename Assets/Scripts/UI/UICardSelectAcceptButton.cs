@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UICardSelectAcceptButton : WorldElementBase
+public class UICardSelectAcceptButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_tintRenderer;
-
-    public SpriteRenderer m_backgroundRenderer;
+    public Image m_image;
     public Text m_acceptText;
 
     private bool m_isActive;
@@ -18,17 +18,17 @@ public class UICardSelectAcceptButton : WorldElementBase
 
         if (m_isActive)
         {
-            m_backgroundRenderer.color = UIHelper.m_defaultColor;
+            m_image.color = UIHelper.m_defaultColor;
             m_acceptText.color = UIHelper.m_defaultColor;
         }
         else
         {
-            m_backgroundRenderer.color = UIHelper.m_defaultFaded;
+            m_image.color = UIHelper.m_defaultFaded;
             m_acceptText.color = UIHelper.m_defaultFaded;
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!m_isActive)
         {
@@ -36,18 +36,8 @@ public class UICardSelectAcceptButton : WorldElementBase
         }
 
         UICardSelectController.Instance.AcceptCard(Globals.m_selectedCard.m_card);
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_selectedCard = null;
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
     }
 
     public override void HandleTooltip()

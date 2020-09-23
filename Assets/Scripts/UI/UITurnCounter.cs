@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UITurnCounter : WorldElementBase
+public class UITurnCounter : UIElementBase
 {
     public Text m_titleText;
     public Text m_countText;
     public Text m_chaosText;
 
-    public SpriteRenderer m_tintRenderer;
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -58,18 +61,6 @@ public class UITurnCounter : WorldElementBase
         {
             m_chaosText.text = "Chaos: " + Globals.m_curChaos;
         }
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

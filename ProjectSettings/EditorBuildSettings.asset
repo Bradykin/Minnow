@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelectScene.unity
     guid: a97d58e4c4c48ef4e84643eebbb6923e
   - enabled: 1
-    path: Assets/Scenes/AlexTestScene.unity
-    guid: 2af0baaf57b37e14ca63139d03cdf766
-  - enabled: 1
     path: Assets/Scenes/NickTestScene.unity
     guid: defb7e16fecba7a41ab385e946b4829a
+  - enabled: 1
+    path: Assets/Scenes/AlexTestScene.unity
+    guid: 2af0baaf57b37e14ca63139d03cdf766
   - enabled: 1
     path: Assets/Scenes/LevelScene.unity
     guid: f7338afe69f436d4589caad8c9a098f0

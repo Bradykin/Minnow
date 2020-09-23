@@ -41,6 +41,7 @@ public static class Constants
     public static bool FogOfWar = true;
     public static bool UseSmartCameraEnemyTurns = false;
     public static bool DebugEventsVisibleInFog = true;
+    public static bool CheatsOn = true;
     public static bool UseLocationalSpellcraft = true;
 
     //Save related file path data

@@ -1,41 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UISelectorButton : WorldElementBase
+public class UISelectorButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_renderer;
-    public SpriteRenderer m_tintRenderer;
+    public Image m_image;
 
     public UIIntermissionController.SelectorType m_selectorType;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
         if (m_selectorType == UIIntermissionController.Instance.GetSelectorType())
         {
-            m_renderer.color = Color.yellow;
+            m_image.color = Color.yellow;
         }
         else
         {
-            m_renderer.color = Color.white;
+            m_image.color = Color.white;
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         UIIntermissionController.Instance.SetSelectorType(m_selectorType);
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

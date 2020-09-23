@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIBeginWaveButton : WorldElementBase
+public class UIBeginWaveButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_renderer;
+    public Image m_image;
     public Text m_beginWaveText;
-    public SpriteRenderer m_tintRenderer;
     public GameObject m_holder;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
         if (PlayerHasActions())
         {
-            m_renderer.color = UIHelper.m_fadedColor;
+            m_image.color = UIHelper.m_fadedColor;
             m_beginWaveText.color = UIHelper.m_fadedColor;
         }
         else
         {
-            m_renderer.color = UIHelper.m_defaultColor;
+            m_image.color = UIHelper.m_defaultColor;
             m_beginWaveText.color = UIHelper.m_defaultColor;
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (GameHelper.GetPlayer().GetCurActions() > 0)
         {
@@ -41,21 +47,9 @@ public class UIBeginWaveButton : WorldElementBase
             return;
         }
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
 
         WorldController.Instance.EndIntermission();
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
     }
 
     private bool PlayerHasActions()
@@ -71,6 +65,13 @@ public class UIBeginWaveButton : WorldElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", !PlayerHasActions()));
+        if (PlayerHasActions())
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Need to spend all actions before starting the next wave.", false));
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", true));
+        }
     }
 }

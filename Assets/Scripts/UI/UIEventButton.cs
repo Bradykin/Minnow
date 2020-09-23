@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIEventButton : WorldElementBase
+public class UIEventButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_tintRenderer;
     public GameEventOption m_eventOption { get; private set; }
     public Text m_descText;
 
@@ -16,7 +17,7 @@ public class UIEventButton : WorldElementBase
         m_descText.text = m_eventOption.GetMessage();
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (m_eventOption == null)
         {
@@ -25,23 +26,20 @@ public class UIEventButton : WorldElementBase
 
         m_eventOption.AcceptOption();
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        GetComponent<UITooltipGenerator>().ClearTooltip();
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
+        ClearTooltip();
     }
 
-    void OnMouseOver()
+    public override void OnPointerEnter(PointerEventData eventData)
     {
+        base.OnPointerEnter(eventData);
+
         if (m_eventOption == null)
         {
             return;
         }
 
-        UIHelper.SetValidTintColor(m_tintRenderer, m_eventOption.IsOptionValid());
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetValidTintColor(m_eventOption.IsOptionValid());
     }
 
     public override void HandleTooltip()

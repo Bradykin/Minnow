@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIEndTurnButton : WorldElementBase
+public class UIEndTurnButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_renderer;
+    public Image m_image;
     public Text m_endTurnText;
-    public SpriteRenderer m_tintRenderer;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
         if (PlayerHasActions())
         {
-            m_renderer.color = UIHelper.m_fadedColor;
+            m_image.color = UIHelper.m_fadedColor;
             m_endTurnText.color = UIHelper.m_fadedColor;
         }
         else
         {
-            m_renderer.color = UIHelper.m_defaultColor;
+            m_image.color = UIHelper.m_defaultColor;
             m_endTurnText.color = UIHelper.m_defaultColor;
         }
 
@@ -28,7 +34,7 @@ public class UIEndTurnButton : WorldElementBase
         }
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         EndTurn();
     }
@@ -50,19 +56,7 @@ public class UIEndTurnButton : WorldElementBase
 
         WorldController.Instance.MoveToNextTurn();
 
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
     private bool PlayerHasActions()

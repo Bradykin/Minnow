@@ -1,25 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIRelicSelectSkipButton : MonoBehaviour
+public class UIRelicSelectSkipButton : UIElementBase
+    , IPointerClickHandler
 {
-    public SpriteRenderer m_tintRenderer;
-
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         UIRelicSelectController.Instance.SkipSelection();
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_selectedCard = null;
     }
 
-    void OnMouseOver()
+    public override void HandleTooltip()
     {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
+        //Left as stub
     }
 }

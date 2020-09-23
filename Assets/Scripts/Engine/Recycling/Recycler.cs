@@ -117,7 +117,7 @@ namespace Game.Util
 			//--------------------------------------------------------------------------------------------------------//
 			
 			bin.Store(gameObject);
-			gameObject.transform.parent = transform;
+			gameObject.transform.SetParent(transform);
 			gameObject.transform.rotation = Quaternion.identity;
 			
 			gameObject.SetActive(false);

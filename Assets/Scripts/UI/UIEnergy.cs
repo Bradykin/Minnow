@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIEnergy : WorldElementBase
+public class UIEnergy : UIElementBase
 {
     public Text m_titleText;
     public Text m_countText;
-    public SpriteRenderer m_tintRenderer;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -28,18 +32,6 @@ public class UIEnergy : WorldElementBase
             m_titleText.text = "Energy";
             m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
         }
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

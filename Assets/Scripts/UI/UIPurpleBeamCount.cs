@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPurpleBeamCount : WorldElementBase
+public class UIPurpleBeamCount : UIElementBase
 {
     public Text m_valText;
-
-    public SpriteRenderer m_tintRenderer;
     public GameObject m_holder;
+
+    void Start()
+    {
+        m_stopScrolling = true;
+    }
 
     void Update()
     {
@@ -28,18 +31,6 @@ public class UIPurpleBeamCount : WorldElementBase
             m_holder.SetActive(true);
             m_valText.text = "" + Globals.m_purpleBeamCount;
         }
-    }
-
-    void OnMouseOver()
-    {
-        UIHelper.SetValidTintColor(m_tintRenderer, true);
-        Globals.m_canScroll = false;
-    }
-
-    void OnMouseExit()
-    {
-        UIHelper.SetDefaultTintColor(m_tintRenderer);
-        Globals.m_canScroll = true;
     }
 
     public override void HandleTooltip()

@@ -9,15 +9,15 @@ namespace Game.Util
     public class UICardFactory : FactoryBase
     {
 
-        private Transform m_waveHUD;
+        private Transform m_playerHandParent;
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UICardFactory(GameObject uiCardPrefab, GameObject waveHUD)
+        public UICardFactory(GameObject uiCardPrefab, GameObject playerHandParent)
         {
             m_prefab = uiCardPrefab;
-            m_waveHUD = waveHUD.transform;
+            m_playerHandParent = playerHandParent.transform;
         }
 
         //============================================================================================================//
@@ -34,7 +34,7 @@ namespace Game.Util
 
             if (displayType == UICard.CardDisplayType.Hand)
             {
-                obj.transform.parent = m_waveHUD;
+                obj.transform.SetParent(m_playerHandParent);
             }
             else if (displayType == UICard.CardDisplayType.Tooltip)
             {
