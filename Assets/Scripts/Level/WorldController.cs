@@ -128,7 +128,7 @@ public class WorldController : Singleton<WorldController>
         }
 
         float xPosBase = -500.0f;
-        float xPosMult = 160.0f;
+        float xPosMult = (160.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 12.3f));
         float yPos = -315.0f;
         float yPosBigOffset = 125.0f;
         float zPos = 0.0f;
