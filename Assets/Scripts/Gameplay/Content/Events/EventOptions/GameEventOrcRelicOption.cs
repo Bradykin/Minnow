@@ -72,6 +72,5 @@ public class GameEventOrcRelicOption : GameEventOption
     public override void BuildTooltip()
     {
         UIHelper.CreateRelicTooltip(m_relic);
-        UIHelper.CreateEntityTooltip(m_orcCheckerEntity, true);
     }
 }
