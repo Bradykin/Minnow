@@ -25,7 +25,7 @@ public class GameDeck
 
         for (int i = 0; i < 2; i++)
         {
-            m_cards.Add(new ContentCureWoundsCard());
+            m_cards.Add(new ContentAegisCard());
         }
 
         for (int i = 0; i < 2; i++)

@@ -113,10 +113,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentTonicOfStrengthCard());
         m_cards.Add(new ContentTrollFormCard());
 
-        //m_cards.Add(new ContentClearcutCard());
-        //m_cards.Add(new ContentSkypierceCard());
-        //m_cards.Add(new ContentGrowthCard());
-
 
         for (int i = 0; i < m_cards.Count; i++)
         {
