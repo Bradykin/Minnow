@@ -11,6 +11,6 @@ public class ContentStoneGolemCard : GameCardEntityBase
         FillBasicData();
 
         m_playDesc = "Stone stands unbreaking.";
-        m_cost = 1;
+        m_cost = 2;
     }
 }

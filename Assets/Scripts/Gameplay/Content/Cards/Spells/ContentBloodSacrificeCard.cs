@@ -25,7 +25,7 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Sacrifice a friendly entity to draw " + m_spellEffect + spString + " card and gain " + m_spellEffect + "(" + GetSpellValue() + ") energy.\n" + GetModifiedBySpellPowerString();
+        return "Sacrifice a friendly entity to draw " + m_spellEffect + spString + " card and gain " + m_spellEffect + spString + " energy.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)
