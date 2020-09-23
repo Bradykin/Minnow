@@ -4,6 +4,7 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class WorldTile : MonoBehaviour, ICustomRecycle
 {
@@ -168,6 +169,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
         {
             if (Globals.m_levelCreatorEraserMode)
@@ -245,6 +251,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     void OnMouseOver()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         m_isHovered = true;
     }
 

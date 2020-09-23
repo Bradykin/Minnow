@@ -107,6 +107,11 @@ public class UIEntity : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         if (Globals.m_selectedCard != null)
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
@@ -162,6 +167,11 @@ public class UIEntity : MonoBehaviour
 
     void OnMouseOver()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         if (!m_isShowingTooltip)
         {
             HandleTooltip();
