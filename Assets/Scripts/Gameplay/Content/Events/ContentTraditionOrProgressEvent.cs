@@ -6,7 +6,7 @@ public class ContentTraditionOrProgressEvent : GameEvent
 {
     public ContentTraditionOrProgressEvent(GameTile tile)
     {
-        m_name = "Tradition of Progress";
+        m_name = "Tradition or Progress";
         m_eventDesc = "Sometimes life gives you a choice: you can honour the traditions of the past or forge forward for new opportunities. What kind of person are you?";
         m_tile = tile;
         m_rarity = GameRarity.Common;
@@ -18,6 +18,16 @@ public class ContentTraditionOrProgressEvent : GameEvent
         LateInit();
 
         m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = 4;
+        m_maxWaveToSpawn = 2;
+    }
+
+    public override bool IsValidToSpawn()
+    {
+        if (GameHelper.RelicCount<ContentTraditionalMethodsRelic>() > 0 || GameHelper.RelicCount<ContentNewInvestmentsRelic>() > 0)
+        {
+            return false;
+        }
+
+        return base.IsValidToSpawn();
     }
 }
