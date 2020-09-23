@@ -315,11 +315,6 @@ public class GamePlayer : ITurns
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
-            if (m_controlledBuildings[i] is ContentEmberForgeBuilding)
-            {
-                toReturn -= 1;
-            }
-
             if (m_controlledBuildings[i] is ContentTempleBuilding)
             {
                 toReturn += 1;
