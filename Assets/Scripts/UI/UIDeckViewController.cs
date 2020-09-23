@@ -36,6 +36,11 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
     public bool CanIndexIncrease()
     {
+        if (m_deck == null)
+        {
+            return false;
+        }
+
         if ((m_index+1) * m_cards.Length < m_deck.Count)
         {
             return true;
