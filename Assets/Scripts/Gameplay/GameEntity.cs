@@ -612,7 +612,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
             toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
-            if (m_keywordHolder.GetKeywords<GameRangeKeyword>() != null)
+            if (GetRange() > 1)
             {
                 toReturn += Globals.m_fletchingCount;
             }
