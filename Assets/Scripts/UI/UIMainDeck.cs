@@ -28,7 +28,7 @@ public class UIMainDeck : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View, UIDeckViewController.DeckFilterType.All, "Base Deck");
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View, "Base Deck");
     }
 
     public override void HandleTooltip()

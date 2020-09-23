@@ -21,7 +21,7 @@ public class UIDiscard : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View, UIDeckViewController.DeckFilterType.All, "Discard");
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_curDeck.GetDiscard(), UIDeckViewController.DeckViewType.View, "Discard");
     }
 
     public override void HandleTooltip()

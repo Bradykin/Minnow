@@ -23,7 +23,7 @@ public class UIDeck : UIElementBase
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View, UIDeckViewController.DeckFilterType.All, "Current Deck");
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View, "Current Deck");
     }
 
     public override void HandleTooltip()

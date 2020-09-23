@@ -11,9 +11,9 @@ public class ContentMagicianEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckFilterType.Entities);
-        m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckFilterType.Spells);
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
+        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Spells);
+        m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
+        m_optionThree = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         LateInit();
 
