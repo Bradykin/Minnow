@@ -20,6 +20,16 @@ public class ContentAngelicGiftEvent : GameEvent
 
         LateInit();
     }
+
+    public override bool IsValidToSpawn(GameTile tile)
+    {
+        if (tile.IsOccupied() && !tile.m_occupyingEntity.m_isDead && tile.m_occupyingEntity.GetKeyword<GameFlyingKeyword>() != null)
+        {
+            return false;
+        }
+
+        return base.IsValidToSpawn(tile);
+    }
 }
 
 public class GameEventAngelicWings : GameEventOption

@@ -536,6 +536,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public virtual int GetAPToAttack()
     {
         int apToAttack = m_apToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        {
+            apToAttack = Mathf.Max(1, apToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+        }
 
         return Mathf.Max(1, apToAttack);
     }
@@ -852,7 +856,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     private void RegenAP()
     {
         int apToRegen = GetAPRegen();
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
+        if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn)
         {
             apToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }

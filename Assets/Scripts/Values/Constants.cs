@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Policy;
 using UnityEngine;
 
 public static class Constants
@@ -43,6 +44,21 @@ public static class Constants
     public static bool DebugEventsVisibleInFog = true;
     public static bool CheatsOn = true;
     public static bool UseLocationalSpellcraft = true;
+
+    //Terrain Data
+    public static int ForestDamageReduction = 1;
+    public static int ForestMovementCost = 2;
+    public static int BurnedForestDamageReduction = 0;
+    public static int BurnedForestMovementCost = 2;
+    public static int PlainsDamageReduction = 0;
+    public static int PlainsMovementCost = 1;
+    public static int HillsDamageReduction = 2;
+    public static int HillsMovementCost = 3;
+    public static int HillsRangeModifier = 1;
+    public static int MountainsDamageReduction = 4;
+    public static int MountainsMovementCost = 2;
+    public static int RuinsDamageReduction = 0;
+    public static int RuinsMovementCost = 2;
 
     //Save related file path data
     public const string REMOTE_DATA_PATH = "RemoteData";

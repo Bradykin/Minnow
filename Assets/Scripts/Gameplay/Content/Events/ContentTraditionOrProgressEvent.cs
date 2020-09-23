@@ -21,13 +21,13 @@ public class ContentTraditionOrProgressEvent : GameEvent
         m_maxWaveToSpawn = 2;
     }
 
-    public override bool IsValidToSpawn()
+    public override bool IsValidToSpawn(GameTile tile)
     {
         if (GameHelper.RelicCount<ContentTraditionalMethodsRelic>() > 0 || GameHelper.RelicCount<ContentNewInvestmentsRelic>() > 0)
         {
             return false;
         }
 
-        return base.IsValidToSpawn();
+        return base.IsValidToSpawn(tile);
     }
 }

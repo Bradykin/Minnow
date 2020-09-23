@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContentGoblin : GameEntity
 {
     private int m_effectRange = 2;
-    private int m_effectIncrease = 1;
+    private int m_effectIncrease = 4;
     
     public ContentGoblin()
     {

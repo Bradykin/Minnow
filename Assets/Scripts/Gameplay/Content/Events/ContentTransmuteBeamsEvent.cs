@@ -22,9 +22,9 @@ public class ContentTransmuteBeamsEvent : GameEvent
         m_maxWaveToSpawn = Constants.FinalWaveNum;
     }
 
-    public override bool IsValidToSpawn()
+    public override bool IsValidToSpawn(GameTile tile)
     {
-        bool baseValid = base.IsValidToSpawn();
+        bool baseValid = base.IsValidToSpawn(tile);
 
         if (!baseValid)
         {

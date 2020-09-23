@@ -8,4 +8,9 @@ public abstract class GameRelic : GameElementBase
     {
         m_icon = UIHelper.GetIconRelic(m_name);
     }
+
+    public virtual string GetDesc()
+    {
+        return m_desc;
+    }
 }

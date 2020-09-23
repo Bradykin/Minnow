@@ -324,6 +324,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies)
     {
+        if (letPassEnemies)
+        {
+            print("LET PASS ENEMIES");
+        }
+
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
         var target = new Location(targetGridTile);
@@ -466,6 +471,14 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
 
         List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRangeWithAPToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
+        /*for (int i = tilesInMovementRangeWithAPToAttack.Count - 1; i >= 0; i--)
+        {
+            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead)
+            {
+                tilesInMovementRangeWithAPToAttack.RemoveAt(i);
+            }
+        }*/
+
         int range = startingGridTile.m_occupyingEntity.GetRange();
 
         List<GameTile> tilesInRangeToMoveAndAttack = new List<GameTile>();
@@ -492,6 +505,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
+        if (letPassEnemies)
+        {
+            print("LET PASS ENEMIES");
+        }
+        
         Location current = null;
         var start = new Location(startingGridTile, 0);
         var openList = new List<Location>();

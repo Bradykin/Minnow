@@ -25,15 +25,18 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
         return "Draw cards equal to the number of spells played last turn " + predictionString + ".";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard()
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay())
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard();
 
-        targetEntity.GetHit(GetSpellValue());
+        for (int i = 0; i < Globals.m_spellsPlayedPreviousTurn; i++)
+        {
+            GameHelper.GetPlayer().DrawCard();
+        }
     }
 }

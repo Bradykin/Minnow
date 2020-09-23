@@ -41,7 +41,7 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
         m_APCost = 2;
     }
 
-    public virtual bool IsValidToSpawn()
+    public virtual bool IsValidToSpawn(GameTile tile)
     {
         int currentTurn = GameHelper.GetGameController().m_waveNum;
 
