@@ -108,6 +108,36 @@ public static class GameHelper
         return false;
     }
 
+    public static List<GameCard> GetPlayerBaseDeckOfEntities()
+    {
+        List<GameCard> deckOfEntities = new List<GameCard>();
+
+        foreach (var card in GetPlayer().m_deckBase.GetCardsForRead())
+        {
+            if (card is GameCardEntityBase)
+            {
+                deckOfEntities.Add(card);
+            }
+        }
+
+        return deckOfEntities;
+    }
+
+    public static List<GameCard> GetPlayerBaseDeckOfSpells()
+    {
+        List<GameCard> deckOfSpells = new List<GameCard>();
+
+        foreach (var card in GetPlayer().m_deckBase.GetCardsForRead())
+        {
+            if (card is GameCardSpellBase)
+            {
+                deckOfSpells.Add(card);
+            }
+        }
+
+        return deckOfSpells;
+    }
+
     public static bool IsInLevelSelect()
     {
         return SceneLoader.CurrentScene == "LevelSelectScene";

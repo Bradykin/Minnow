@@ -14,6 +14,13 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         Duplicate
     }
 
+    public enum DeckViewFilter
+    {
+        All,
+        Entities,
+        Spells
+    }
+
     public UICard[] m_cards;
 
     public GameObject m_holder;
@@ -22,6 +29,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
     private List<GameCard> m_deck;
     private DeckViewType m_viewType;
+    
 
     void Update()
     {
@@ -75,6 +83,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
         for (int i = 0; i < m_cards.Length; i++)
         {
+            
             if (m_deck.Count > i + indexMod)
             {
                 m_cards[i].Init(m_deck[i + indexMod], UICard.CardDisplayType.Deck);

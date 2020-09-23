@@ -11,84 +11,13 @@ public class ContentMagicianEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTransformCardOption();
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
-        m_optionThree = new GameEventLeaveOption();
+        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Spells);
+        m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
+        m_optionThree = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         LateInit();
 
         m_minWaveToSpawn = 1;
         m_maxWaveToSpawn = Constants.FinalWaveNum;
-    }
-}
-
-public class GameEventDuplicateCardOption : GameEventOption
-{
-    public override string GetMessage()
-    {
-        m_message = "Create a copy of a card in your deck!";
-
-        return base.GetMessage();
-    }
-
-    public override void AcceptOption()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Duplicate, "Duplicate a Card");
-
-        EndEvent();
-    }
-}
-
-public class GameEventCardSelectOption : GameEventOption
-{
-    private GameCard m_card;
-
-    public GameEventCardSelectOption(GameCard card)
-    {
-        m_card = card;
-
-        m_hasTooltip = true;
-    }
-
-    public override string GetMessage()
-    {
-        m_message = "Gain " + m_card.m_name + ".";
-
-        return base.GetMessage();
-    }
-
-    public override void AcceptOption()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
-
-        EndEvent();
-    }
-
-    public override void BuildTooltip()
-    {
-        if (m_card is GameCardEntityBase)
-        {
-            GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
-
-            UIHelper.CreateEntityTooltip(entity);
-        }
-        else
-        {
-            UIHelper.CreateSpellTooltip(m_card);
-        }
     }
 }

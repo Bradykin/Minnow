@@ -51,7 +51,20 @@ public class UICardDeckView : MonoBehaviour
         }
         else if (m_viewType == UIDeckViewController.DeckViewType.Transform)
         {
-            GameCard newCard = GameCardFactory.GetRandomStandardCard();
+            GameCard newCard;
+
+            if (m_uiCard.m_card is GameCardEntityBase)
+            {
+                newCard = GameCardFactory.GetRandomStandardEntityCard();
+            }
+            else if (m_uiCard.m_card is GameCardSpellBase)
+            {
+                newCard = GameCardFactory.GetRandomStandardSpellCard();
+            }
+            else
+            {
+                newCard = GameCardFactory.GetRandomStandardCard();
+            }
 
             if (player.m_hand.Contains(m_uiCard.m_card))
             {
