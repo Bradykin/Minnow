@@ -257,31 +257,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6319283262748190525, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1280
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319283262748190525, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 720
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319283262748190525, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319283262748190525, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_ReferencePixelsPerUnit
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7148913303642936751, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8406844693250347377, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,19 +317,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Singletons
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7489386725141681298, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 6319283261479085375, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 4917939617118456807, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 4917939617123857410, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 4917939617151257174, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 6169110883891680588, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 4772152489402668553, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 5459937433918363976, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 3714057775821960854, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 3714057775821960855, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 7571927743791530398, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 7571927743791530399, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 7571927744336054224, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
-    - {fileID: 7571927744336054225, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4208289fcc803664bbc3eb8af72294ff, type: 3}

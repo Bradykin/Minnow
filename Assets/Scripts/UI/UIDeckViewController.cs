@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.UI;
 
 public class UIDeckViewController : Singleton<UIDeckViewController>
 {
@@ -16,6 +17,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     public UICard[] m_cards;
 
     public GameObject m_holder;
+    public Text m_deckViewText;
     public int m_index;
 
     private List<GameCard> m_deck;
@@ -26,10 +28,12 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         m_holder.SetActive(Globals.m_inDeckView);
     }
 
-    public void Init(List<GameCard> deck, DeckViewType viewType)
+    public void Init(List<GameCard> deck, DeckViewType viewType, string displayString)
     {
         m_deck = deck;
         m_viewType = viewType;
+
+        m_deckViewText.text = displayString;
 
         SetIndex(0);
     }

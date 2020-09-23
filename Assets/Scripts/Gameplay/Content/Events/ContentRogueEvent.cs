@@ -40,7 +40,7 @@ public class GameEventTransformCardOption : GameEventOption
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Transform);
+        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Transform, "Transform a card");
 
         EndEvent();
     }

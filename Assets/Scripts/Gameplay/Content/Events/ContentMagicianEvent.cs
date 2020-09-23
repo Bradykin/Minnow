@@ -40,7 +40,7 @@ public class GameEventDuplicateCardOption : GameEventOption
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Duplicate);
+        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Duplicate, "Duplicate a Card");
 
         EndEvent();
     }
