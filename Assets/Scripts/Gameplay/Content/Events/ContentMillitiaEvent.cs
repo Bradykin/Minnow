@@ -36,7 +36,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain 2 " + m_card.m_name + " cards.";
+        m_message = "Sacrifice " + m_tile.m_occupyingEntity.m_name + ", but gain a " + m_card.m_name + " card.";
 
         return base.GetMessage();
     }
@@ -52,10 +52,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
         m_tile.m_occupyingEntity.Die();
 
-        for (int i = 0; i < 2; i++)
-        {
-            player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
-        }
+        player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
 
         EndEvent();
     }

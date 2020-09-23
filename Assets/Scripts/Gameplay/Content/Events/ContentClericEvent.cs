@@ -12,7 +12,7 @@ public class ContentClericEvent : GameEvent
         m_rarity = GameRarity.Common;
 
         m_optionOne = new GameEventRemoveCardOption();
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardEntityCard());
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
         m_optionThree = new GameEventLeaveOption();
 
         m_minWaveToSpawn = 1;
