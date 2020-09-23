@@ -33,6 +33,7 @@ public class GameEventChemistKnowledgeableSpellpowerOption : GameEventOption
         }
 
         m_tile.m_occupyingEntity.AddKeyword(new GameKnowledgeableKeyword(new GameGainTempSpellpowerAction(m_spellpowerIncrease)));
+        GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(m_goldCost));
 
         EndEvent();
     }
