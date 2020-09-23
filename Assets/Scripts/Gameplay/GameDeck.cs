@@ -106,6 +106,18 @@ public class GameDeck
             m_cards[i] = m_cards[randomIndex];
             m_cards[randomIndex] = temp;
         }
+
+        //After shuffle, put an entity on top of library
+        for (int i = 0; i < m_cards.Count; i++)
+        {
+            if (m_cards[i] is GameCardEntityBase)
+            {
+                GameCard tempCard = m_cards[0];
+                m_cards[0] = m_cards[i];
+                m_cards[i] = tempCard;
+                break;
+            }
+        }
     }
 
     public GameCard DrawCard()
