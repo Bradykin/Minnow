@@ -16,7 +16,7 @@
             return;
         }
 
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Remove, "Remove a Card");
+        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Remove, UIDeckViewController.DeckFilterType.All, "Remove a Card");
 
         EndEvent();
     }

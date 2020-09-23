@@ -11,9 +11,9 @@ public class ContentMysteryWanderer : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Rare;
 
-        m_optionOne = new GameEventTransformCardOption();
+        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckFilterType.Entities);
         m_optionTwo = new GameEventRemoveCardOption();
-        m_optionThree = new GameEventDuplicateCardOption();
+        m_optionThree = new GameEventDuplicateCardOption(UIDeckViewController.DeckFilterType.Spells);
 
         LateInit();
 

@@ -11,7 +11,7 @@ public class ContentRogueEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTransformCardOption();
+        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckFilterType.All);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardCard());
         m_optionThree = new GameEventLeaveOption();
 
@@ -19,29 +19,5 @@ public class ContentRogueEvent : GameEvent
         m_maxWaveToSpawn = Constants.FinalWaveNum;
 
         LateInit();
-    }
-}
-
-public class GameEventTransformCardOption : GameEventOption
-{
-    public override string GetMessage()
-    {
-        m_message = "Transform a card in your deck into a random other one.";
-
-        return base.GetMessage();
-    }
-
-    public override void AcceptOption()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Transform, "Transform a card");
-
-        EndEvent();
     }
 }

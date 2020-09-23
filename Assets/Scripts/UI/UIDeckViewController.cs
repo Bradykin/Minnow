@@ -14,6 +14,13 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         Duplicate
     }
 
+    public enum DeckFilterType
+    {
+        All,
+        Entities,
+        Spells
+    }
+
     public UICard[] m_cards;
 
     public GameObject m_holder;
@@ -22,16 +29,19 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
     private List<GameCard> m_deck;
     private DeckViewType m_viewType;
+    private DeckFilterType m_filterType;
+    
 
     void Update()
     {
         m_holder.SetActive(Globals.m_inDeckView);
     }
 
-    public void Init(List<GameCard> deck, DeckViewType viewType, string displayString)
+    public void Init(List<GameCard> deck, DeckViewType viewType, DeckFilterType filterType, string displayString)
     {
         m_deck = deck;
         m_viewType = viewType;
+        m_filterType = filterType;
 
         m_deckViewText.text = displayString;
 
@@ -75,6 +85,25 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
         for (int i = 0; i < m_cards.Length; i++)
         {
+            /*switch(m_filterType)
+            {
+                case DeckFilterType.Entities:
+                    if (!(m_deck[i + indexMod] is GameCardEntityBase))
+                    {
+                        continue;
+                    }
+                    break;
+                case DeckFilterType.Spells:
+                    if (!(m_deck[i + indexMod] is GameCardSpellBase))
+                    {
+                        continue;
+                    }
+                    break;
+                case DeckFilterType.All:
+                default:
+                    break;
+            }*/
+            
             if (m_deck.Count > i + indexMod)
             {
                 m_cards[i].Init(m_deck[i + indexMod], UICard.CardDisplayType.Deck);
@@ -86,5 +115,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
                 m_cards[i].gameObject.SetActive(false);
             }
         }
+
+        m_filterType = DeckFilterType.All;
     }
 }
