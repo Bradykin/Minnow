@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class ContentMetalGolem : GameEntity
@@ -41,6 +42,11 @@ public class ContentMetalGolem : GameEntity
             {
                 numMountains++;
             }
+        }
+
+        if (numMountains == 0)
+        {
+            return;
         }
 
         GameDamageShieldKeyword damageShieldKeyword = GetKeyword<GameDamageShieldKeyword>();

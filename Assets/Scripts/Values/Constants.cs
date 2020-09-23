@@ -11,7 +11,7 @@ public static class Constants
     public static int StartingEnergy = 3;
     public static int StartingActions = 4;
     public static int MaxHandSize = 10;
-    public static int SpawnEliteWave = 4;
+    public static int SpawnEliteWave = 3;
 
     public static int PercentChanceForUncommonCard = 38;
     public static int PercentChanceForRareCard = 18;
@@ -32,7 +32,7 @@ public static class Constants
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 
     //Wave Data
-    public static int InitialWaveSize = 4;
+    public static int InitialWaveSize = 5;
     public static int WaveTurnIncrement = 1;
     public static int FinalWaveNum = 6;
     public static int GoldPerWave = 25;

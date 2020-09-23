@@ -24,7 +24,7 @@ public class GameOpponent : ITurns
     {
         //Debug.Log("GameOpponent LateInit");
 
-        //HandleSpawn();
+        HandleSpawn();
     }
 
     public void AddControlledEntity(GameEnemyEntity toAdd)
@@ -117,7 +117,7 @@ public class GameOpponent : ITurns
             return;
         }
 
-        //HandleSpawn();
+        HandleSpawn();
     }
 
     private void HandleSpawn()

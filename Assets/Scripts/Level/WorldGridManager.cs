@@ -400,7 +400,21 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        print("NO VALID PATHS");
+        /*string targetAt = "";
+        if (targetGridTile.m_occupyingEntity != null)
+        {
+            targetAt = targetGridTile.m_occupyingEntity.m_name;
+        }
+        else if (targetGridTile.GetBuilding() != null)
+        {
+            targetAt = targetGridTile.GetBuilding().m_name;
+        }
+        else
+        {
+            targetAt = "NoTarget";
+        }
+
+        print("NO VALID PATHS FOR " + startingGridTile.m_occupyingEntity + " AT " + startingGridTile.m_gridPosition + " TO " + targetAt + " AT " + targetGridTile.m_gridPosition);*/
 
         return null;
     }
