@@ -32,7 +32,7 @@ public static class Constants
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 
     //Wave Data
-    public static int InitialWaveSize = 7;
+    public static int InitialWaveSize = 4;
     public static int WaveTurnIncrement = 1;
     public static int FinalWaveNum = 6;
     public static int GoldPerWave = 25;
