@@ -43,7 +43,8 @@ public class ContentInsightCard : GameCardSpellBase
             return;
         }
 
-        for (int i = 0; i < GetSpellValue() -1; i++)
+        int spellValue = GetSpellValue();
+        for (int i = 0; i < spellValue - 1; i++)
         {
             TriggerSpellcraft(null);
         }
