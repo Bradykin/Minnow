@@ -6,15 +6,15 @@ public class ContentInjuredTroll : GameEntity
 {
     public ContentInjuredTroll()
     {
-        m_maxHealth = 20;
-        m_maxAP = 6;
-        m_apRegen = 3;
-        m_power = 6;
+        m_maxHealth = 45;
+        m_maxAP = 8;
+        m_apRegen = 4;
+        m_power = 12;
 
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(5));
+        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(20));
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Starter;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Injured Troll";
         m_desc = "Starts at 1 health and 0 AP.";
