@@ -39,6 +39,11 @@ public class UIRelic : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
         if (m_selectionType == RelicSelectionType.Select)
         {
             UIRelicSelectController.Instance.AcceptRelic(m_relic);

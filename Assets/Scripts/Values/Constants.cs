@@ -9,7 +9,7 @@ public static class Constants
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
     public static int StartingActions = 4;
-    public static int MaxHandSize = 7;
+    public static int MaxHandSize = 10;
     public static int SpawnEliteWave = 4;
 
     public static int PercentChanceForUncommonCard = 38;
