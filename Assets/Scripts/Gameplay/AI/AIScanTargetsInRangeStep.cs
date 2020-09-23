@@ -23,9 +23,9 @@ public class AIScanTargetsInRangeStep : AIStep
         {
             if (tile.IsOccupied() && !tile.m_occupyingEntity.m_isDead && tile.m_occupyingEntity.GetTeam() == Team.Player)
             {
+                int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
                 if (ignoreTargetsCantDamage)
                 {
-                    int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
                     if (damageAmountPerHit == 0)
                     {
                         continue;
