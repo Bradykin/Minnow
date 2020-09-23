@@ -202,7 +202,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
             {
-                shouldRevive = GameHelper.PercentChanceRoll(25);
+                shouldRevive = GameHelper.PercentChanceRoll(33);
             }
         }
 
@@ -259,7 +259,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             int numRelics = GameHelper.RelicCount<ContentSoulTrapRelic>();
             if (numRelics > 0)
             {
-                player.DrawCards(numRelics);
+                player.DrawCards(3 * numRelics);
             }
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
@@ -625,8 +625,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 1 * GameHelper.RelicCount<ContentWolvenFangRelic>();
-            toReturn -= 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+            toReturn += 2 * GameHelper.RelicCount<ContentWolvenFangRelic>();
+            toReturn -= 2 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
             if (GetRange() > 1)
             {

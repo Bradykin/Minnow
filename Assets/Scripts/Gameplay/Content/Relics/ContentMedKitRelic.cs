@@ -7,7 +7,7 @@ public class ContentMedKitRelic : GameRelic
     public ContentMedKitRelic()
     {
         m_name = "Med Kit";
-        m_desc = "Humanoid creatures heal equal to 3* the terrain cost of the tile they are on at the end of each round.";
+        m_desc = "Humanoid creatures heal equal to 3* the movement cost of the tile they are on at the end of each round.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

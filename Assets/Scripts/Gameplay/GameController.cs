@@ -90,8 +90,6 @@ public class GameController
     {
         int toReturn = m_currentWaveEndTurn;
 
-        toReturn -= 3 * GameHelper.RelicCount<ContentEmblemOfTianaRelic>();
-
         return toReturn;
     }
 }

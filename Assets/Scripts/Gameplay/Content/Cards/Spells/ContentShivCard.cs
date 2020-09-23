@@ -30,7 +30,7 @@ public class ContentShivCard : GameCardSpellBase
             return;
         }
 
-        int apDrain = GameHelper.RelicCount<ContentPoisonedShivsRelic>();
+        int apDrain = 2 * GameHelper.RelicCount<ContentPoisonedShivsRelic>();
 
         if (apDrain > 0)
         {
