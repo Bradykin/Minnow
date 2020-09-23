@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class AIScanTargetsInRangeStep : AIStep
 {
+    protected bool ignoreTargetsCantDamage = true;
+
     public AIScanTargetsInRangeStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
-    
+
     public override void TakeStep()
     {
         List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
@@ -21,10 +23,13 @@ public class AIScanTargetsInRangeStep : AIStep
         {
             if (tile.IsOccupied() && !tile.m_occupyingEntity.m_isDead && tile.m_occupyingEntity.GetTeam() == Team.Player)
             {
-                int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
-                if (damageAmountPerHit == 0)
+                if (ignoreTargetsCantDamage)
                 {
-                    continue;
+                    int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
+                    if (damageAmountPerHit == 0)
+                    {
+                        continue;
+                    }
                 }
 
                 possibleEntityTargets.Add(tile.m_occupyingEntity);
