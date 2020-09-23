@@ -23,7 +23,7 @@ public class ContentZombie : GameEntity
         LateInit();
     }
 
-    public override bool CanHitEntity(GameEntity other)
+    public override bool CanHitEntity(GameEntity other, bool checkRange = true)
     {
         if (other is ContentZombie)
         {
@@ -35,7 +35,7 @@ public class ContentZombie : GameEntity
             return false;
         }
 
-        return base.CanHitEntity(other);
+        return base.CanHitEntity(other, checkRange);
     }
 
     public override int HitEntity(GameEntity other, bool spendAP = true)

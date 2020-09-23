@@ -64,7 +64,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
     }
 
-    public virtual void OnSummon()
+    public void SetHealthAPValues()
     {
         m_curHealth = GetMaxHealth();
         m_curAP = GetAPRegen();
@@ -72,7 +72,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             m_curAP = m_maxAP;
         }
+    }
 
+    public virtual void OnSummon()
+    {
+        SetHealthAPValues();
+        
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
@@ -302,7 +307,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return realHealVal;
     }
 
-    public virtual bool CanHitEntity(GameEntity other)
+    public virtual bool CanHitEntity(GameEntity other, bool checkRange = true)
     {
         if (GetTeam() == other.GetTeam()) //Can't attack your own team
         {
@@ -314,7 +319,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (!IsInRangeOfEntity(other))
+        if (checkRange && !IsInRangeOfEntity(other))
         {
             return false;
         }
@@ -536,6 +541,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public virtual int GetAPToAttack()
     {
         int apToAttack = m_apToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        {
+            apToAttack = Mathf.Max(1, apToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+        }
 
         return Mathf.Max(1, apToAttack);
     }
@@ -790,7 +799,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (apToUse <= 0)
             return;
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, false);
 
         if (pathToTile == null || pathToTile.Count == 0)
             return;
@@ -852,7 +861,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     private void RegenAP()
     {
         int apToRegen = GetAPRegen();
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
+        if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn)
         {
             apToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }

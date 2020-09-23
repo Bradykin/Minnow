@@ -8,12 +8,12 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentZombieEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -23,7 +23,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFletchingCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWisdomOfThePastCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.P))

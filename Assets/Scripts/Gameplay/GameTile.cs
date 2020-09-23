@@ -32,7 +32,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         m_occupyingEntity = newEntity;
         newEntity.SetGameTile(this);
-        newEntity.OnSummon();
+        newEntity.SetHealthAPValues();
     }
 
     public void PlaceEntity(GameEntity newEntity)

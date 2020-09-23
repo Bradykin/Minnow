@@ -34,8 +34,8 @@ public class GameTerrainFactory
         m_basicTerrain.Add(new ContentMountainTerrain());
         m_basicTerrain.Add(new ContentWaterTerrain());
         m_basicTerrain.Add(new ContentGrassPlainsRuinsTerrain());
-        m_basicTerrain.Add(new ContentForestRuinsTerrain());
         m_basicTerrain.Add(new ContentScrublandPlainsRuinsTerrain());
+        m_basicTerrain.Add(new ContentForestRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Basic Terrain", m_basicTerrain));
 
         //Plains Terrain

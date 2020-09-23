@@ -52,7 +52,7 @@ public static class GameEventFactory
                 continue;
             }
             
-            if (m_events[i].IsValidToSpawn())
+            if (m_events[i].IsValidToSpawn(tile))
             {
                 availableEvents.Add(m_events[i]);
             }

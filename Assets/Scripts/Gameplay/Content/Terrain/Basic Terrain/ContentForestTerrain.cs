@@ -6,11 +6,11 @@ public class ContentForestTerrain : GameTerrainBase
 {
     public ContentForestTerrain()
     {
-        m_damageReduction = 1;
-        m_costToPass = 2;
+        m_damageReduction = Constants.ForestDamageReduction;
+        m_costToPass = Constants.ForestMovementCost;
 
         m_name = "Forest";
-        m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);

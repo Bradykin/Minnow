@@ -6,16 +6,19 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
 {
     public ContentForestBurnedRuinsTerrain()
     {
-        m_costToPass = 2;
+        m_damageReduction = Mathf.Max(Constants.BurnedForestDamageReduction, Constants.RuinsDamageReduction);
+        m_costToPass = Mathf.Max(Constants.BurnedForestMovementCost, Constants.RuinsMovementCost);
 
         m_name = "ForestBurnedRuins";
-        m_desc = "2 AP movement.";
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
 
         m_isPassable = true;
         m_isForest = true;
+        m_isHot = true;
         m_isBurned = true;
         m_isEventTerrain = true;
 

@@ -373,12 +373,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                /*if (getAdjacentPosition && adjacentTile.m_gridPosition.x == target.X && adjacentTile.m_gridPosition.y == target.Y)
-                {
-                    target = current;
-                    break;
-                }*/
-
                 if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, letPassEnemies))
                     continue;
 
@@ -406,7 +400,21 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        print("NO VALID PATHS");
+        /*string targetAt = "";
+        if (targetGridTile.m_occupyingEntity != null)
+        {
+            targetAt = targetGridTile.m_occupyingEntity.m_name;
+        }
+        else if (targetGridTile.GetBuilding() != null)
+        {
+            targetAt = targetGridTile.GetBuilding().m_name;
+        }
+        else
+        {
+            targetAt = "NoTarget";
+        }
+
+        print("NO VALID PATHS FOR " + startingGridTile.m_occupyingEntity + " AT " + startingGridTile.m_gridPosition + " TO " + targetAt + " AT " + targetGridTile.m_gridPosition);*/
 
         return null;
     }
@@ -466,13 +474,21 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
 
         List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRangeWithAPToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
+        for (int i = tilesInMovementRangeWithAPToAttack.Count - 1; i >= 0; i--)
+        {
+            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithAPToAttack[i] != startingGridTile)
+            {
+                tilesInMovementRangeWithAPToAttack.RemoveAt(i);
+            }
+        }
+
         int range = startingGridTile.m_occupyingEntity.GetRange();
 
         List<GameTile> tilesInRangeToMoveAndAttack = new List<GameTile>();
 
         for (int i = 0; i < tilesInMovementRangeWithAPToAttack.Count; i++)
         {
-            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead)
+            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithAPToAttack[i] != startingGridTile)
             {
                 continue;
             }

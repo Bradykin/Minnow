@@ -203,6 +203,44 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_terrainImageNumber;
     }
 
+    public virtual string GenerateDescription()
+    {
+        string description = "";
+
+        if (m_isPassable)
+        {
+            description += m_costToPass + " AP movement.";
+        }
+        else
+        {
+            description += "Impassable.";
+        }
+
+        if (m_damageReduction > 0)
+        {
+            description += "\nEntities on this tile take " + m_damageReduction + " less damage.";
+        }
+
+        if (m_rangeModifier > 0)
+        {
+            description += "\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
+        }
+
+        return description;
+    }
+
+    public virtual string GenerateFocusText()
+    {
+        string description = "";
+
+        if (m_rangeModifier > 0)
+        {
+            description += "Ranged entities on this tile get +" + m_rangeModifier + " increased range.";
+        }
+
+        return description;
+    }
+
     //============================================================================================================//
 
     public string SaveToJsonAsString()

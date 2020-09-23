@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentExpendingPurpleBeamCard : GameCardSpellBase
 {
-    private int m_multiplier = 5;
+    private int m_multiplier = 10;
 
     public ContentExpendingPurpleBeamCard()
     {
@@ -21,7 +21,7 @@ public class ContentExpendingPurpleBeamCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Spend up to " + GetSpellValue() + " from the purple beam count to deal damage equal to " + m_multiplier  + "* the amount of purple beams expended.\n" + GetModifiedBySpellPowerString();
+        return "Spend up to " + m_spellEffect + " (" + GetSpellValue() + ") from the purple beam count to deal damage equal to " + m_multiplier  + " * the amount of purple beams expended.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

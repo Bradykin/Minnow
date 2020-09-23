@@ -6,10 +6,11 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
 {
     public ContentGrassPlainsTerrain()
     {
-        m_costToPass = 1;
+        m_damageReduction = Constants.PlainsDamageReduction;
+        m_costToPass = Constants.PlainsMovementCost;
 
         m_name = "GrassPlains";
-        m_desc = "Simple, no changes.";
+        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
         m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);

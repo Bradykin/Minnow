@@ -81,6 +81,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard();
 
+        Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(null);
     }
 
@@ -88,6 +89,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetBuilding);
 
+        Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetBuilding.GetGameTile());
     }
 
@@ -106,6 +108,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetTile);
 
+        Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetTile);
     }
 

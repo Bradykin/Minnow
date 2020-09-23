@@ -12,4 +12,9 @@ public class ContentTotemOfTheWolfRelic : GameRelic
 
         LateInit();
     }
+
+    public override string GetDesc()
+    {
+        return base.GetDesc() + "\nTotem of the wolf turn: " + Globals.m_totemOfTheWolfTurn;
+    }
 }

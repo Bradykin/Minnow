@@ -19,6 +19,7 @@ public class ContentGroundskeeper : GameEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Groundskeeper";
+        m_desc = "Gains +2 AP regen while in a forest.";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 

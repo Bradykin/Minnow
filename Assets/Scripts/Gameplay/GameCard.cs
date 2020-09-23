@@ -80,7 +80,7 @@ public abstract class GameCard : GameElementBase
     {
         if (GameHelper.RelicCount<ContentMysticRuneRelic>() > 0)
         {
-            m_cost = Random.Range(0, 4);
+            m_cost = Random.Range(0, 3);
         }
     }
 
