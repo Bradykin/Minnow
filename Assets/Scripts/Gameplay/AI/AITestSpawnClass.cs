@@ -8,7 +8,7 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentSiegebreakerEntity(null);
+            Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -18,7 +18,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentImmolationCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWandererCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
