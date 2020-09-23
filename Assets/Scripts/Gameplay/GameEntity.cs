@@ -50,7 +50,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_power = other.m_power;
         m_typeline = other.m_typeline;
 
-        m_keywordHolder = other.m_keywordHolder.Clone(other);
+        m_keywordHolder = other.m_keywordHolder.Clone(other, this);
 
         if (other.HasCustomName())
         {

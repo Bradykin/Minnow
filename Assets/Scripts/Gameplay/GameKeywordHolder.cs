@@ -12,13 +12,13 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         m_keywords = new List<GameKeywordBase>();
     }
 
-    public GameKeywordHolder Clone(GameEntity gameEntity)
+    public GameKeywordHolder Clone(GameEntity gameEntity, GameEntity cloneTo)
     {
         GameKeywordHolder newHolder = new GameKeywordHolder();
 
         for (int i = 0; i < m_keywords.Count; i++)
         {
-            newHolder.m_keywords.Add(GameKeywordFactory.GetKeywordClone(m_keywords[i], gameEntity));
+            newHolder.m_keywords.Add(GameKeywordFactory.GetKeywordClone(m_keywords[i], cloneTo));
         }
 
         return newHolder;
