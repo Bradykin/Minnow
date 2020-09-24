@@ -22,8 +22,10 @@ public class ContentRelicIntermissionAction : GameActionIntermission
             return;
         }
 
-        GameRelic relicOne = GameRelicFactory.GetRandomRelic();
-        GameRelic relicTwo = GameRelicFactory.GetRandomRelic(relicOne);
+        GameRarity rarity = GameRelicFactory.GetRandomRarity();
+
+        GameRelic relicOne = GameRelicFactory.GetRandomRelicAtRarity(rarity);
+        GameRelic relicTwo = GameRelicFactory.GetRandomRelicAtRarity(rarity, relicOne);
 
         UIRelicSelectController.Instance.Init(relicOne, relicTwo);
 

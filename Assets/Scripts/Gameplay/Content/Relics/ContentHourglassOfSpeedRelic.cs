@@ -8,7 +8,7 @@ public class ContentHourglassOfSpeedRelic : GameRelic
     {
         m_name = "Hourglass of Speed";
         m_desc = "Increase max AP of all friendly units by 1.";
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

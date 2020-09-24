@@ -8,7 +8,7 @@ public class ContentCursedAmuletRelic : GameRelic
     {
         m_name = "Cursed Amulet";
         m_desc = "When an ally dies, all adjacent enemies are drained of all action points.";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
     }

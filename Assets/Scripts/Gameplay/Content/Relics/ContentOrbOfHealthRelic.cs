@@ -8,7 +8,7 @@ public class ContentOrbOfHealthRelic : GameRelic
     {
         m_name = "Orb of Health";
         m_desc = "Increase the max health of all entities you control by 6!";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
     }

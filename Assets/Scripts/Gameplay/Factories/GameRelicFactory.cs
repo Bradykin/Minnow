@@ -53,23 +53,48 @@ public static class GameRelicFactory
             Init();
         }
 
+        return GetRandomRelicAtRarity(GetRandomRarity(), exclusionRelic);
+    }
+
+    public static GameElementBase.GameRarity GetRandomRarity()
+    {
+        float random = UnityEngine.Random.Range(0.0f, 100.0f);
+
+        if (random <= Constants.PercentChanceForRareRelic)
+        {
+            return GameElementBase.GameRarity.Rare;
+        }
+        else if (random <= Constants.PercentChanceForRareRelic + Constants.PercentChanceForUncommonRelic)
+        {
+            return GameElementBase.GameRarity.Uncommon;
+        }
+        else
+        {
+            return GameElementBase.GameRarity.Common;
+        }
+    }
+
+    public static GameRelic GetRandomRelicAtRarity(GameElementBase.GameRarity rarity, GameRelic exclusionRelic = null)
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameRelic> relicList = GetListWithoutPlayerRelics();
 
-        if (exclusionRelic != null)
+        for (int i = relicList.Count - 1; i >= 0; i--)
         {
-            for (int i = 0; i < relicList.Count; i++)
+            if (exclusionRelic != null && relicList[i].m_name == exclusionRelic.m_name)
             {
-                if (relicList[i].m_name == exclusionRelic.m_name)
-                {
-                    relicList.RemoveAt(i);
-                    continue;
-                }
+                relicList.RemoveAt(i);
+                continue;
+            }
 
-                if (relicList[i].m_rarity == GameElementBase.GameRarity.Event)
-                {
-                    relicList.RemoveAt(i);
-                    continue;
-                }
+            if (relicList[i].m_rarity != rarity)
+            {
+                relicList.RemoveAt(i);
+                continue;
             }
         }
 

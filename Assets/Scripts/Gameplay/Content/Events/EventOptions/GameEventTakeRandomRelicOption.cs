@@ -2,17 +2,26 @@
 {
     public GameRelic m_relic;
 
+    private GameElementBase.GameRarity? m_rarity;
     private GameRelic m_excludeRelic;
 
-    public GameEventTakeRandomRelicOption(GameRelic excludeRelic = null)
+    public GameEventTakeRandomRelicOption(GameElementBase.GameRarity? rarity = null, GameRelic excludeRelic = null)
     {
         m_hasTooltip = true;
+        m_rarity = rarity;
         m_excludeRelic = excludeRelic;
     }
 
     public override void Init()
     {
-        m_relic = GameRelicFactory.GetRandomRelic(m_excludeRelic);
+        if (m_rarity == null)
+        {
+            m_relic = GameRelicFactory.GetRandomRelic(m_excludeRelic);
+        }
+        else
+        {
+            m_relic = GameRelicFactory.GetRandomRelicAtRarity(m_rarity.Value, m_excludeRelic);
+        }
 
         m_message = "Take " + m_relic.m_name;
     }

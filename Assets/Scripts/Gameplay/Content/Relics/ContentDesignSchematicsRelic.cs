@@ -8,7 +8,7 @@ public class ContentDesignSchematicsRelic : GameRelic
     {
         m_name = "Design Schematics";
         m_desc = "When a construct ally unit dies, return its card to the discard pile.";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

@@ -8,7 +8,7 @@ public class ContentTotemOfTheWolfRelic : GameRelic
     {
         m_name = "Totem of the Wolf";
         m_desc = "One turn per wave, enter the full moon. Your units will gain double AP regen and attacking costs 1 less (minimum of 1).";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
     }

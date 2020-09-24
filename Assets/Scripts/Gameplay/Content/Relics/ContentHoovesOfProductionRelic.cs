@@ -8,7 +8,7 @@ public class ContentHoovesOfProductionRelic : GameRelic
     {
         m_name = "Hooves of Production";
         m_desc = "+1 max actions during intermission phase.";
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

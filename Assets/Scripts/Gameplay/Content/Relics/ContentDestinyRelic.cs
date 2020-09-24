@@ -8,7 +8,7 @@ public class ContentDestinyRelic : GameRelic
     {
         m_name = "Destiny";
         m_desc = "When a friendly unit would die, 33% chance it instead survives at 1 health.";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
     }

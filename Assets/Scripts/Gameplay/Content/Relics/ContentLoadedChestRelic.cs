@@ -8,7 +8,7 @@ public class ContentLoadedChestRelic : GameRelic
     {
         m_name = "Loaded Chest";
         m_desc = "On pickup, gain 200 gold.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
     }

@@ -8,7 +8,7 @@ public class ContentPinnacleOfFearRelic : GameRelic
     {
         m_name = "Pinnacle of Fear";
         m_desc = "Entities cost 1 less, but draw 1 less each turn.";
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }

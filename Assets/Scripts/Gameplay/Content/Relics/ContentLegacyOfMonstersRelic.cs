@@ -7,8 +7,8 @@ public class ContentLegacyOfMonstersRelic : GameRelic
     public ContentLegacyOfMonstersRelic()
     {
         m_name = "Legacy of Monsters";
-        m_desc = "Allies monsters get +1 AP regen.";
-        m_rarity = GameRarity.Uncommon;
+        m_desc = "Allied monsters get +1 AP regen.";
+        m_rarity = GameRarity.Common;
 
         LateInit();
     }
