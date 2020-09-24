@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIEnergy : UIElementBase
 {
-    public Text m_titleText;
     public Text m_countText;
 
     void Start()
@@ -24,12 +23,10 @@ public class UIEnergy : UIElementBase
 
         if (Globals.m_inIntermission)
         {
-            m_titleText.text = "Actions";
             m_countText.text = player.GetCurActions() + "/" + player.GetMaxActions();
         }
         else
         {
-            m_titleText.text = "Energy";
             m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
         }
     }

@@ -46,38 +46,6 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-    public void AdjustHandAroundBigCard(UICard bigCard)
-    {
-        if (bigCard == null)
-        {
-            HandlePlayerHand();
-            return;
-        }
-
-        bool beforeBigCard = true;
-        for (int i = 0; i < m_playerHand.Count; i++)
-        {
-            if (bigCard == m_playerHand[i])
-            {
-                beforeBigCard = false;
-                continue;
-            }
-
-            Vector3 pos = new Vector3(0, 0, 0);
-            if (beforeBigCard)
-            {
-                pos = new Vector3(-12.0f + i * 3.75f, -8f, -3.0f);
-            }
-            else
-            {
-                pos = new Vector3(-8.0f + i * 3.75f, -8f, -3.0f);
-            }
-
-            m_playerHand[i].gameObject.transform.localPosition = pos;
-            m_playerHand[i].gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
-        }
-    }
-
     public void UpdateHand()
     {
         for (int i = 0; i < m_playerHand.Count; i++)
@@ -128,12 +96,12 @@ public class WorldController : Singleton<WorldController>
         }
 
         float xPosBase = -500.0f;
-        float xPosMult = (160.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 12.3f));
-        float yPos = -315.0f;
+        float xPosMult = (120.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 5f));
+        float yPos = -330.0f;
         float yPosBigOffset = 125.0f;
         float zPos = 0.0f;
-        float smallCardScale = 1f;
-        float bigCardScale = 1.75f;
+        float smallCardScale = 0.75f;
+        float bigCardScale = 1.5f;
         float splitDif = 0.2f;
 
         if (bigCardIndex == -1)
