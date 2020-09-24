@@ -38,7 +38,7 @@ namespace Game.Util
         public T CreateObject<T>(string title, string desc, Team team)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.parent = UITooltipController.Instance.transform;
+            obj.transform.SetParent(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc, team);
 
