@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLegacayOfMonstersRelic : GameRelic
+public class ContentLegacyOfMonstersRelic : GameRelic
 {
-    public ContentLegacayOfMonstersRelic()
+    public ContentLegacyOfMonstersRelic()
     {
         m_name = "Legacy of Monsters";
-        m_desc = "When an ally monster is summoned, it gains +1 power";
+        m_desc = "Allies monsters get +1 AP regen.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

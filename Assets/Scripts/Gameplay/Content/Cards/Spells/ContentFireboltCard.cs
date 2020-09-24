@@ -19,16 +19,20 @@ public class ContentFireboltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString();
-    }
+        string description = GetDamageDescString();
 
-    protected override int GetSpellValue()
-    {
-        int spellValue = base.GetSpellValue();
+        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
 
-        spellValue += 2 * GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-
-        return spellValue;
+        if (numTraditionalMethods > 1)
+        {
+            description += "Draw " + numTraditionalMethods + " cards.";
+        }
+        else if (numTraditionalMethods > 0)
+        {
+            description += "Draw a card.";
+        }
+        
+        return description;
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -41,5 +45,11 @@ public class ContentFireboltCard : GameCardSpellBase
         base.PlayCard(targetEntity);
 
         targetEntity.GetHit(GetSpellValue());
+
+        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+        for (int i = 0; i < numTraditionalMethods; i++)
+        {
+            GameHelper.GetPlayer().DrawCard();
+        }
     }
 }

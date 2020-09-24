@@ -290,7 +290,14 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
         else
         {
-            return m_terrain.m_damageReduction;
+            int damageReduction = m_terrain.m_damageReduction;
+
+            if (damageReduction > 0 && checkerEntity.GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+            {
+                damageReduction += damageReduction * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
+            }
+            
+            return damageReduction;
         }
     }
 

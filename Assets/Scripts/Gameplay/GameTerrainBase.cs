@@ -71,11 +71,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         
         if (checkerEntity != null)
         {
-            if (checkerEntity.GetTeam() == Team.Player)
-            {
-                additiveValue = GameHelper.RelicCount<ContentUrbanTacticsRelic>();
-            }
-
             if (IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
             {
                 return 1 + additiveValue;

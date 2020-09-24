@@ -13,12 +13,12 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentNaturalProtectionRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWandererCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentElvenWizardCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))

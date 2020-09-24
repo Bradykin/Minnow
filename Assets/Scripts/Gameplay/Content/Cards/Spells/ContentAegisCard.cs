@@ -18,6 +18,24 @@ public class ContentAegisCard : GameCardSpellBase
         SetupBasicData();
     }
 
+    public override string GetDesc()
+    {
+        string description = m_desc;
+
+        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+
+        if (numTraditionalMethods > 1)
+        {
+            description += "\nDraw " + numTraditionalMethods + " cards.";
+        }
+        else if (numTraditionalMethods > 0)
+        {
+            description += "\nDraw a card.";
+        }
+
+        return description;
+    }
+
     public override void PlayCard(GameEntity targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
@@ -36,6 +54,12 @@ public class ContentAegisCard : GameCardSpellBase
         else
         {
             damageShieldKeyword.IncreaseShield(m_amount);
+        }
+
+        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+        for (int i = 0; i < numTraditionalMethods; i++)
+        {
+            GameHelper.GetPlayer().DrawCard();
         }
     }
 }

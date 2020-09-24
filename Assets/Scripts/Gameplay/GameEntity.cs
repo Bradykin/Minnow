@@ -86,7 +86,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
         {
-            int numTideOfMonsters = GameHelper.RelicCount<ContentLegacayOfMonstersRelic>();
+            int numTideOfMonsters = GameHelper.RelicCount<ContentLegacyOfMonstersRelic>();
             if (numTideOfMonsters > 0)
             {
                 AddPower(numTideOfMonsters);
@@ -176,11 +176,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         bool ignoreTileDamageReduction = false;
 
-        if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentNaturalDaggerRelic>() > 0)
-        {
-            ignoreTileDamageReduction = true;
-        }
-
         if (!ignoreTileDamageReduction)
         {
             damage -= m_gameTile.GetDamageReduction(this);
@@ -256,10 +251,23 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
         else if (GetTeam() == Team.Player)
         {
-            int numRelics = GameHelper.RelicCount<ContentSoulTrapRelic>();
-            if (numRelics > 0)
+            int numSoulTrap = GameHelper.RelicCount<ContentSoulTrapRelic>();
+            if (numSoulTrap > 0)
             {
-                player.DrawCards(3 * numRelics);
+                player.DrawCards(3 * numSoulTrap);
+            }
+
+            int numCursedAmulet = GameHelper.RelicCount<ContentCursedAmuletRelic>();
+            if (numCursedAmulet > 0 && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 1);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingEntity.m_isDead)
+                    {
+                        adjacentTiles[i].m_occupyingEntity.SpendAP(adjacentTiles[i].m_occupyingEntity.GetCurAP());
+                    }
+                }
             }
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
@@ -476,11 +484,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             {
                 victoriousKeywords[i].DoAction();
             }
-
-            if (GetTeam() == Team.Enemy && GameHelper.RelicCount<ContentCursedAmuletRelic>() > 0)
-            {
-                SpendAP(GetCurAP());
-            }
         }
 
         return damageTaken;
@@ -610,7 +613,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
             if (m_gameTile != null)
             {
-                range += m_gameTile.GetTerrain().m_rangeModifier;
+                int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
+
+                if (terrainRange > 0 && GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+                {
+                    terrainRange += terrainRange * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
+                }
+                
+                range += terrainRange;
             }
 
             return range;
@@ -699,6 +709,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
+            toReturn -= 2 * GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+
             int numGrandPact = GameHelper.RelicCount<ContentGrandPactRelic>();
             if (numGrandPact > 0)
             {
@@ -731,6 +743,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 {
                     toReturn += numGrandPact;
                 }
+            }
+
+            if (this is ContentDwarvenSoldier)
+            {
+                toReturn += GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+            }
+            
+            if (m_typeline == Typeline.Monster)
+            {
+                toReturn += GameHelper.RelicCount<ContentLegacyOfMonstersRelic>();
             }
         }
         
