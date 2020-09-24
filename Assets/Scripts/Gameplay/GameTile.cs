@@ -159,22 +159,24 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             return m_building.GetIcon();
         }
-
-        /*else if (HasAvailableEvent())
-        {
-            if (m_event.m_isComplete)
-            {
-                return m_event.m_iconComplete;
-            }
-            else
-            {
-                return m_event.m_icon;
-            }
-        }*/
-
         else
         {
             return m_terrain.m_icon;
+        }
+    }
+
+    public Sprite GetIconWhite()
+    {
+        if (m_terrain == null)
+            return null;
+
+        if (HasBuilding())
+        {
+            return m_building.GetIconWhite();
+        }
+        else
+        {
+            return m_terrain.m_iconWhite;
         }
     }
 

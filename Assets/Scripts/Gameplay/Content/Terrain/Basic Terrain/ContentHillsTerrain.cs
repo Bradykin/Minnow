@@ -15,10 +15,11 @@ public class ContentHillsTerrain : GameTerrainBase
         m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.grey;
 
         m_isPassable = true;
         m_isHill = true;
+
+        LateInit();
     }
 }

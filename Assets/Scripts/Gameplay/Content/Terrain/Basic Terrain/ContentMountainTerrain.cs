@@ -14,9 +14,10 @@ public class ContentMountainTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.red;
 
         m_isMountain = true;
+
+        LateInit();
     }
 }

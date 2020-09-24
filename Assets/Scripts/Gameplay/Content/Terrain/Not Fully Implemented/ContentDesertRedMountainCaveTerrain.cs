@@ -11,7 +11,6 @@ public class ContentDesertRedMountainCaveTerrain : GameTerrainBase
         m_name = "DesertRedMountainCave";
         m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.red;
 
         m_isPassable = false;
@@ -20,5 +19,7 @@ public class ContentDesertRedMountainCaveTerrain : GameTerrainBase
         m_isMountain = true;
         m_isHot = true;
         m_isCave = true;
+
+        LateInit();
     }
 }

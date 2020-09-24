@@ -13,7 +13,6 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
@@ -22,5 +21,7 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
 
         m_burnedTerrainType = typeof(ContentDirtPlainsTerrain);
         m_addedEventType = typeof(ContentGrassPlainsRuinsTerrain);
+
+        LateInit();
     }
 }

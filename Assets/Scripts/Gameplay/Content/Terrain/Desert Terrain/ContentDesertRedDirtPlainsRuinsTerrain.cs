@@ -12,7 +12,6 @@ public class ContentDesertRedDirtPlainsRuinsTerrain : GameTerrainBase
         m_desc = "2 AP movement.";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.yellow;
 
         m_isPassable = true;
@@ -24,5 +23,7 @@ public class ContentDesertRedDirtPlainsRuinsTerrain : GameTerrainBase
 
         m_unburnedTerrainType = typeof(ContentDesertRedGrassPlainsTerrain);
         m_completedEventType = typeof(ContentDesertRedDirtPlainsTerrain);
+
+        LateInit();
     }
 }

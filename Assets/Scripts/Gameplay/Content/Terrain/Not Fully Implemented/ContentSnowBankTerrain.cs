@@ -11,7 +11,6 @@ public class ContentSnowBankTerrain : GameTerrainBase
         m_name = "SnowBank";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
@@ -19,5 +18,7 @@ public class ContentSnowBankTerrain : GameTerrainBase
 
         m_isForest = true;
         m_isCold = true;
+
+        LateInit();
     }
 }

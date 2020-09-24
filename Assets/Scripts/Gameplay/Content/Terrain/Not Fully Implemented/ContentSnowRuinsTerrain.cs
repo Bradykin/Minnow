@@ -9,7 +9,6 @@ public class ContentSnowRuinsTerrain : GameTerrainBase
         m_name = "SnowRuins";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = 1;
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
 
         m_isPassable = true;
@@ -19,5 +18,7 @@ public class ContentSnowRuinsTerrain : GameTerrainBase
         m_isEventTerrain = true;
 
         m_completedEventType = typeof(ContentSnowPlainsTerrain);
+
+        LateInit();
     }
 }

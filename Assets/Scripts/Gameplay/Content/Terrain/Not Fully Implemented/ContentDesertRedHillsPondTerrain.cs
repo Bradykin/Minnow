@@ -11,7 +11,6 @@ public class ContentDesertRedHillsPondTerrain : GameTerrainBase
         m_name = "DesertRedHillsPond";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
         m_terrainImageNumber = Random.Range(1, 3);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.grey;
 
         m_isPassable = true;
@@ -20,5 +19,7 @@ public class ContentDesertRedHillsPondTerrain : GameTerrainBase
         m_isHill = true;
         m_isHot = true;
         m_isWater = true;
+
+        LateInit();
     }
 }

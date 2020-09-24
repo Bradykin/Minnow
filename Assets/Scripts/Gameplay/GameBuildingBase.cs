@@ -24,9 +24,12 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     public bool m_isDestroyed;
     public bool m_expandsPlaceRange = false;
 
+    private Sprite m_iconWhite;
+
     public void LateInit()
     {
         m_icon = UIHelper.GetIconBuilding(m_name);
+        m_iconWhite = UIHelper.GetIconBuilding(m_name + "W");
         m_destroyedIcon = UIHelper.GetIconBuilding(m_name + "D");
         m_curHealth = m_maxHealth;
     }
@@ -61,6 +64,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
         {
             return m_icon;
         }
+    }
+
+    public virtual Sprite GetIconWhite()
+    {
+        return m_iconWhite;
     }
 
     public int GetCurHealth()

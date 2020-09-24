@@ -54,7 +54,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         m_renderer.sprite = GetGameTile().GetIcon();
-        m_tintRenderer.sprite = GetGameTile().GetIcon();
+        m_tintRenderer.sprite = GetGameTile().GetIconWhite();
         m_fogRenderer.sprite = GetGameTile().GetIcon();
         m_eventIndicator.GetComponent<SpriteRenderer>().sprite = GetGameTile().GetIcon();
 

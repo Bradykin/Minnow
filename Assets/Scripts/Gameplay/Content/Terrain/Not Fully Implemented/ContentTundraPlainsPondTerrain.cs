@@ -9,7 +9,6 @@ public class ContentTundraPlainsPondTerrain : GameTerrainBase
         m_name = "TundraPlainsPond";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = 1;
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
@@ -17,5 +16,7 @@ public class ContentTundraPlainsPondTerrain : GameTerrainBase
 
         m_isCold = true;
         m_isWater = true;
+
+        LateInit();
     }
 }
