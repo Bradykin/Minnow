@@ -257,29 +257,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3690558650499613769, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.3271008
-      objectReference: {fileID: 0}
-    - target: {fileID: 6104110035852779120, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -89.20001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720640937919636018, guid: 4208289fcc803664bbc3eb8af72294ff,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Damage Reduction: 4
-
-
-        AP Cost: 2
-
-
-        Text: This is long
-        text that crosses multiple lines with some superextraordinary long words
-        that fill up space.'
-      objectReference: {fileID: 0}
     - target: {fileID: 8406844693250347377, guid: 4208289fcc803664bbc3eb8af72294ff,
         type: 3}
       propertyPath: m_LocalPosition.x
