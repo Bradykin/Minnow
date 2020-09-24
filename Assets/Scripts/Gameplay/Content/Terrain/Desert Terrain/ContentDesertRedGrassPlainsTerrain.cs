@@ -12,7 +12,6 @@ public class ContentDesertRedGrassPlainsTerrain : GameTerrainBase
         m_desc = "Simple, no changes.";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
@@ -23,5 +22,7 @@ public class ContentDesertRedGrassPlainsTerrain : GameTerrainBase
 
         m_burnedTerrainType = typeof(ContentDesertRedDirtPlainsTerrain);
         m_addedEventType = typeof(ContentDesertRedGrassPlainsRuinsTerrain);
+
+        LateInit();
     }
 }

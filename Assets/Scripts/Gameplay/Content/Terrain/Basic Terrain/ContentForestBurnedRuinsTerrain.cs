@@ -13,7 +13,6 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
 
         m_isPassable = true;
@@ -24,6 +23,8 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
 
         m_unburnedTerrainType = typeof(ContentForestRuinsTerrain);
         m_completedEventType = typeof(ContentForestBurnedTerrain);
+
+        LateInit();
     }
 }
 

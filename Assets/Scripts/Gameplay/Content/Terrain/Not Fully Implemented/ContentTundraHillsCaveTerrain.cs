@@ -11,7 +11,6 @@ public class ContentTundraHillsCaveTerrain : GameTerrainBase
         m_name = "TundraHillsCave";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
         m_terrainImageNumber = 1;
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.grey;
 
         m_isPassable = true;
@@ -20,5 +19,7 @@ public class ContentTundraHillsCaveTerrain : GameTerrainBase
         m_isHill = true;
         m_isCold = true;
         m_isCave = true;
+
+        LateInit();
     }
 }

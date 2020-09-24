@@ -186,9 +186,9 @@ public static class UIHelper
         return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
     }*/
 
-    public static Sprite GetIconTerrain(string terrainName, int index)
+    public static Sprite GetIconTerrain(string terrainName)
     {
-        return Resources.Load<Sprite>("Terrain/" + terrainName + index) as Sprite;
+        return Resources.Load<Sprite>("Terrain/" + terrainName) as Sprite;
     }
 
     public static Sprite GetIconIntermissionAction(string actionName)

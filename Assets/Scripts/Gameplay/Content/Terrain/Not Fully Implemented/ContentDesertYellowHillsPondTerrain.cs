@@ -9,7 +9,6 @@ public class ContentDesertYellowHillsPondTerrain : GameTerrainBase
         m_name = "DesertYellowHillsPond";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.grey;
 
         m_isPassable = true;
@@ -18,5 +17,7 @@ public class ContentDesertYellowHillsPondTerrain : GameTerrainBase
         m_isHill = true;
         m_isHot = true;
         m_isWater = true;
+
+        LateInit();
     }
 }

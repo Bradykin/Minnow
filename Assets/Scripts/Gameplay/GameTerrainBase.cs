@@ -46,6 +46,8 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected Type m_completedEventType;
     protected Type m_addedEventType;
 
+    public Sprite m_iconWhite;
+
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameEntity checkerEntity)
     {
@@ -175,12 +177,19 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_focusPanelText;
     }
 
+    protected void LateInit()
+    {
+        m_icon = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber);
+        m_iconWhite = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber + "W");
+    }
+
     public void SetSprite(int x)
     {
         if (x >= 0 && x <= 4)
             m_terrainImageNumber = x;
 
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+        m_icon = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber);
+        m_iconWhite = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber + "W");
     }
 
     public void SetNextSprite()
@@ -190,7 +199,8 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         else
             m_terrainImageNumber++;
 
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
+        m_icon = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber);
+        m_iconWhite = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber + "W");
     }
 
     public int GetTerrainImageNumber()

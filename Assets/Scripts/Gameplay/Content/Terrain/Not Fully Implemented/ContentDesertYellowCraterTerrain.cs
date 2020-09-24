@@ -9,7 +9,6 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
         m_name = "DesertYellowCrater";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = 1;
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.green;
 
         m_isPassable = true;
@@ -17,5 +16,7 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
 
         m_isForest = true;
         m_isHot = true;
+
+        LateInit();
     }
 }

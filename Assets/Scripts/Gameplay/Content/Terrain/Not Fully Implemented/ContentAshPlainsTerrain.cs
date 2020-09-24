@@ -9,7 +9,6 @@ public class ContentAshPlainsTerrain : GameTerrainBase
         m_name = "AshPlains";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
@@ -17,5 +16,7 @@ public class ContentAshPlainsTerrain : GameTerrainBase
 
         m_isHot = true;
         m_isBurned = true;
+
+        LateInit();
     }
 }

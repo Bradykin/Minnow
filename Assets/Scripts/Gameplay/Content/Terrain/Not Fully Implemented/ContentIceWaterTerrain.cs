@@ -9,7 +9,6 @@ public class ContentIceWaterTerrain : GameTerrainBase
         m_name = "IceWater";
         m_desc = "Impassable.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.blue;
 
         m_isPassable = false;
@@ -17,6 +16,8 @@ public class ContentIceWaterTerrain : GameTerrainBase
 
         m_isWater = true;
         m_isCold = true;
+
+        LateInit();
     }
 }
 

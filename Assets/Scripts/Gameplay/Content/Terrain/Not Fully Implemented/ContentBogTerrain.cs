@@ -9,12 +9,13 @@ public class ContentBogTerrain : GameTerrainBase
         m_name = "Bog";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_icon = UIHelper.GetIconTerrain(m_name, m_terrainImageNumber);
         m_color = Color.white;
 
         m_isPassable = true;
         m_costToPass = 2;
 
         m_isWater = true;
+
+        LateInit();
     }
 }
