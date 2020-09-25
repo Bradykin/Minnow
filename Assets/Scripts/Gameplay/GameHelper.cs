@@ -138,6 +138,11 @@ public static class GameHelper
         return deckOfSpells;
     }
 
+    public static void ReturnToLevelSelectFromLevelScene()
+    {
+        SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
+    }
+
     public static bool IsInLevelSelect()
     {
         return SceneLoader.CurrentScene == "LevelSelectScene";
