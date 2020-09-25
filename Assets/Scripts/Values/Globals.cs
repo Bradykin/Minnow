@@ -37,7 +37,6 @@ public static class Globals
     public static GameEnemyEntity m_testSpawnEnemyEntity = null;
 
     //Values that will be moved into player save data
-    public static int m_purpleBeamCount = 0;
     public static int m_spellsPlayedPreviousTurn = 0;
     public static int m_spellsPlayedThisTurn = 0;
     public static int m_fletchingCount = 0;
@@ -48,6 +47,7 @@ public static class Globals
     public static bool m_worthySacrificeEvent = false;
 
     private static bool m_hasInit;
+    public static bool m_levelActive;
 
     public static void Init()
     {

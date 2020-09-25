@@ -150,6 +150,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             return returnList;
         }
 
+        if (centerPoint == null || centerPoint.GetGameTile() == null || centerPoint.GetGameTile().m_gridPosition == null)
+        {
+            return returnList;
+        }
+
         Vector2Int startingTileCoordinates = centerPoint.GetGameTile().m_gridPosition;
         for (int i = 0; i < range; i++)
             startingTileCoordinates = startingTileCoordinates.LeftCoordinate();

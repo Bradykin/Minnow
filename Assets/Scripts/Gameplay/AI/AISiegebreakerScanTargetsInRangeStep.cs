@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.XR.WSA;
 
 public class AISiegebreakerScanTargetsInRangeStep : AIStep
 {
@@ -14,7 +17,9 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
         List<GameTile> tilesInScanRange = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_scanRadius);
 
         if (tilesInScanRange == null)
+        {
             return;
+        }
 
         List<GameEntity> possibleEntityTargets = new List<GameEntity>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();

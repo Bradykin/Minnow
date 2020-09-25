@@ -38,6 +38,7 @@ public class GameController
         WorldGridManager.Instance.SetupWorldGridTeams(m_player, m_gameOpponent);
         m_player.LateInit();
         m_gameOpponent.LateInit();
+        Globals.m_levelActive = true;
         //WorldGridManager.Instance.SetupEnemies(m_gameOpponent);
 
         //TEMP: to start the turns. Should happen in a different way in future
@@ -91,5 +92,18 @@ public class GameController
         int toReturn = m_currentWaveEndTurn;
 
         return toReturn;
+    }
+
+    public void OnEndPlaythrough()
+    {
+        m_player = new GamePlayer();
+        m_gameOpponent = new GameOpponent();
+        m_teamTurns = new List<ITurns>();
+        m_teamTurns.Add(m_player);
+        m_teamTurns.Add(m_gameOpponent);
+
+        m_waveNum = 1;
+        m_currentWaveTurn = 1;
+        m_currentWaveTurn = Constants.InitialWaveSize;
     }
 }

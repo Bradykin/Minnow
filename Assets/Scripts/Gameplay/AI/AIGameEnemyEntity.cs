@@ -38,6 +38,10 @@ public class AIGameEnemyEntity
             m_doSteps = false;
             for (int i = 0; i < m_AISteps.Count; i++)
             {
+                if (!Globals.m_levelActive)
+                {
+                    break;
+                }
                 m_AISteps[i].TakeStep();
             }
         }

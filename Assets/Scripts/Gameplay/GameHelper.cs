@@ -140,6 +140,7 @@ public static class GameHelper
 
     public static void ReturnToLevelSelectFromLevelScene()
     {
+        Globals.m_levelActive = false;
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 

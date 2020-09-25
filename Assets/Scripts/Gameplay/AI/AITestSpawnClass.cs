@@ -8,7 +8,7 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentZombieEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentOrcEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -18,7 +18,7 @@ public class AITestSpawnClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentElvenWizardCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFossilizeCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))

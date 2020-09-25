@@ -181,6 +181,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             damage -= m_gameTile.GetDamageReduction(this);
         }
 
+        GameBrittleKeyword brittleKeyword = m_keywordHolder.GetKeyword<GameBrittleKeyword>();
+        if (brittleKeyword != null)
+        {
+            damage += brittleKeyword.m_amount;
+        }
+
         if (damage < 0)
         {
             damage = 0;

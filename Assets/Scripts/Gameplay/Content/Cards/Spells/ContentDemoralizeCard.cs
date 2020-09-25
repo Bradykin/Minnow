@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDrainCard : GameCardSpellBase
+public class ContentDemoralizeCard : GameCardSpellBase
 {
-    public ContentDrainCard()
+    public ContentDemoralizeCard()
     {
-        m_name = "Drain";
-        m_desc = "Set an entities AP to 0.";
+        m_name = "Demoralize";
+        m_desc = "Set an entities AP to 2.";
         m_playDesc = "The target gets drained!";
         m_targetType = Target.Entity;
         m_cost = 1;
@@ -26,5 +26,6 @@ public class ContentDrainCard : GameCardSpellBase
         base.PlayCard(targetEntity);
 
         targetEntity.EmptyAP();
+        targetEntity.GainAP(2);
     }
 }

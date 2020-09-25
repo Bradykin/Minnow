@@ -83,19 +83,14 @@ public static class GameCardFactory
         //Spell Cards
         m_cards.Add(new ContentAegisCard());
         m_cards.Add(new ContentArcaneBoltCard());
-        m_cards.Add(new ContentBlastingPurpleBeamCard());
         m_cards.Add(new ContentBloodSacrificeCard());
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentDemoncAspectCard());
-        m_cards.Add(new ContentDrainCard());
+        m_cards.Add(new ContentDemoralizeCard());
         m_cards.Add(new ContentDreamCard());
         m_cards.Add(new ContentEnergizeCard());
-        m_cards.Add(new ContentEnergizingPurpleBeamCard());
-        m_cards.Add(new ContentEntangleCard());
-        m_cards.Add(new ContentExpendingPurpleBeamCard());
         m_cards.Add(new ContentFireboltCard());
         m_cards.Add(new ContentFletchingCard());
-        m_cards.Add(new ContentFortifyingPurpleBeamCard());
         m_cards.Add(new ContentGrowTalonsCard());
         m_cards.Add(new ContentImmolationCard());
         m_cards.Add(new ContentInsightCard());
@@ -104,9 +99,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentLootingsCard());
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
-        m_cards.Add(new ContentPurePurpleBeamCard());
-        m_cards.Add(new ContentPurpleBeamSwordCard());
-        m_cards.Add(new ContentReplenishingPurpleBeamCard());
         m_cards.Add(new ContentShivCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());
