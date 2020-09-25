@@ -35,6 +35,31 @@ public static class UIHelper
     public static Color m_difficultyHard = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
+    public static Color m_commonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.1f);
+    public static Color m_uncommonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.7f);
+    public static Color m_rareRarity = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1.0f);
+    public static Color m_noRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.0f);
+
+    public static Color GetRarityColor(GameElementBase.GameRarity rarity)
+    {
+        if (rarity == GameElementBase.GameRarity.Common)
+        {
+            return m_commonRarity;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return m_uncommonRarity;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Rare)
+        {
+            return m_rareRarity;
+        }
+
+        return m_noRarity;
+    }
+
     public static Color GetSelectTintColor(bool isSelected)
     {
         if (isSelected)
@@ -196,6 +221,33 @@ public static class UIHelper
         return Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
     }
 
+    public static void SetMoveableTileForEntity(UIEntity entity)
+    {
+        List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(entity.GetEntity().GetGameTile(), false, false);
+
+        if (tilesInMovementRange == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < tilesInMovementRange.Count; i++)
+        {
+            tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
+        }
+
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(entity.GetEntity().GetGameTile(), false, false);
+
+        if (tilesInAttackRange == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < tilesInAttackRange.Count; i++)
+        {
+            tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
+        }
+    }
+
     public static void SelectEntity(UIEntity entity)
     {
         bool entityAlreadySelected = Globals.m_selectedEntity == entity;
@@ -215,29 +267,7 @@ public static class UIHelper
             UnselectAll();
             Globals.m_selectedEntity = entity;
 
-            List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
-
-            if (tilesInMovementRange == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tilesInMovementRange.Count; i++)
-            {
-                tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
-            }
-
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
-
-            if (tilesInAttackRange == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tilesInAttackRange.Count; i++)
-            {
-                tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
-            }
+            SetMoveableTileForEntity(Globals.m_selectedEntity);
         }
     }
 
@@ -260,29 +290,7 @@ public static class UIHelper
             UnselectAll();
             Globals.m_selectedEnemy = entity;
 
-            List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEnemy.GetEntity().GetGameTile(), false, false);
-
-            if (tilesInRange == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tilesInRange.Count; i++)
-            {
-                tilesInRange[i].GetWorldTile().SetMoveable(true);
-            }
-
-            List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEnemy.GetEntity().GetGameTile(), false, false);
-
-            if (tilesInAttackRange == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tilesInAttackRange.Count; i++)
-            {
-                tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
-            }
+            SetMoveableTileForEntity(Globals.m_selectedEnemy);
         }
     }
 
@@ -307,29 +315,7 @@ public static class UIHelper
 
         WorldGridManager.Instance.ClearAllTilesMovementRange();
 
-        List<GameTile> tilesInRange = WorldGridManager.Instance.GetTilesInMovementRange(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
-
-        if (tilesInRange == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < tilesInRange.Count; i++)
-        {
-            tilesInRange[i].GetWorldTile().SetMoveable(true);
-        }
-
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedEntity.GetEntity().GetGameTile(), false, false);
-
-        if (tilesInAttackRange == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < tilesInAttackRange.Count; i++)
-        {
-            tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
-        }
+        SetMoveableTileForEntity(Globals.m_selectedEntity);
     }
 
     public static void SelectCard(UICard card)

@@ -17,6 +17,7 @@ public class UIRelic : UIElementBase
     private RelicSelectionType m_selectionType;
 
     public Image m_image;
+    public Image m_rarityTint;
 
     public void Init(GameRelic newRelic, RelicSelectionType selectionType)
     {
@@ -26,7 +27,7 @@ public class UIRelic : UIElementBase
         m_selectionType = selectionType;
 
         m_image.sprite = m_relic.m_icon;
-        m_tintImage.sprite = m_relic.m_icon;
+        m_tintImage.color = UIHelper.GetRarityColor(m_relic.m_rarity);
     }
 
     public override void HandleTooltip()

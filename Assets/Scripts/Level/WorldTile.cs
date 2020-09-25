@@ -93,20 +93,21 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
                     Globals.m_testSpawnEnemyEntity = null;
                 }
-
-                if (Globals.m_selectedEntity != null)
+                else if (Globals.m_selectedEntity != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
-                }
-
-                if (Globals.m_selectedCard != null)
+                } 
+                else if (Globals.m_selectedCard != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
                 }
-
-                if (Globals.m_selectedIntermissionBuilding != null)
+                else if (Globals.m_selectedIntermissionBuilding != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+                }
+                else
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
             }
             else
