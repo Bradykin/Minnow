@@ -16,7 +16,7 @@ public static class UIHelper
     public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-    public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.g, 0.3f);
+    public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.b, 0.3f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_validAltPlayer = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);

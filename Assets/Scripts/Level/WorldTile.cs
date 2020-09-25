@@ -116,11 +116,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedEntity != null && m_isMoveable)
+                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedEntity != null && m_isAttackable)
+                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isAttackable)
                 {
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }
