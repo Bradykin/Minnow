@@ -48,13 +48,12 @@ public class GameOpponent : ITurns
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
-            if (Constants.UseSmartCameraEnemyTurns && !m_controlledEntities[i].GetGameTile().m_isFog)
+            if (Constants.UseSteppedOutEnemyTurns && !m_controlledEntities[i].GetGameTile().m_isFog)
             {
-                UICameraController.Instance.SnapToGameObject(m_controlledEntities[i].GetWorldTile().gameObject);
+                //UICameraController.Instance.SnapToGameObject(m_controlledEntities[i].GetWorldTile().gameObject);
                 int curAP = m_controlledEntities[i].GetCurAP();
                 yield return new WaitForSeconds(0.25f);
                 m_controlledEntities[i].TakeTurn();
-                //UICameraController.Instance.SnapToWorldElement(m_controlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.5f);
 
                 if (curAP == m_controlledEntities[i].GetCurAP())
@@ -77,7 +76,7 @@ public class GameOpponent : ITurns
 
         for (int i = 0; i < m_secondTryAIControlledEntities.Count; i++)
         {
-            if (Constants.UseSmartCameraEnemyTurns && !m_secondTryAIControlledEntities[i].GetGameTile().m_isFog)
+            if (Constants.UseSteppedOutEnemyTurns && !m_secondTryAIControlledEntities[i].GetGameTile().m_isFog)
             {
                 UICameraController.Instance.SnapToGameObject(m_secondTryAIControlledEntities[i].GetWorldTile().gameObject);
                 yield return new WaitForSeconds(0.25f);
