@@ -5828,6 +5828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tintImage: {fileID: 3800465247453122896}
+  m_holder: {fileID: 3800465246437485119}
 --- !u!1 &3714057777229054499
 GameObject:
   m_ObjectHideFlags: 0
@@ -25582,6 +25583,7 @@ MonoBehaviour:
   m_holder: {fileID: 7148913303642936751}
   m_deckViewText: {fileID: 1673438121}
   m_index: 0
+  m_viewType: 0
 --- !u!1 &7148913303642936751
 GameObject:
   m_ObjectHideFlags: 0
