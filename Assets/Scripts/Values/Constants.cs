@@ -63,6 +63,8 @@ public static class Constants
     public static int HillsRangeModifier = 1;
     public static int MountainsDamageReduction = 4;
     public static int MountainsMovementCost = 2;
+    public static int WaterDamageReduction = 0;
+    public static int WaterMovementCost = 2;
     public static int RuinsDamageReduction = 0;
     public static int RuinsMovementCost = 2;
 

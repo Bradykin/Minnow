@@ -6,8 +6,8 @@ public class ContentWaterTerrain : GameTerrainBase
 {
     public ContentWaterTerrain()
     {
-        m_damageReduction = Constants.MountainsDamageReduction;
-        m_costToPass = Constants.MountainsMovementCost;
+        m_damageReduction = Constants.WaterDamageReduction;
+        m_costToPass = Constants.WaterMovementCost;
         m_isPassable = false;
 
         m_name = "Water";
