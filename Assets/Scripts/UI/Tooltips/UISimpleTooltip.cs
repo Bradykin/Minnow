@@ -36,6 +36,9 @@ public class UISimpleTooltip : UITooltipBase
 
             m_height = 4.0f;
         }
+
+        m_widthLeft = 1.72f;
+        m_widthRight = 1.74f;
     }
 
     public void Init(string title, string desc, Team team)

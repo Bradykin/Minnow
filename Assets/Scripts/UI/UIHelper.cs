@@ -245,7 +245,10 @@ public static class UIHelper
 
         for (int i = 0; i < tilesInAttackRange.Count; i++)
         {
-            tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
+            if (tilesInAttackRange[i].IsOccupied() && tilesInAttackRange[i].m_occupyingEntity.GetTeam() != entity.GetEntity().GetTeam())
+            {
+                tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
+            }
         }
     }
 
