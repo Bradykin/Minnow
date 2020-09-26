@@ -29,7 +29,6 @@ public static class GameEventFactory
         m_events.Add(new ContentForbiddenFruitEvent(null)); // waves 3-4
         m_events.Add(new ContentCreativeChemistEvent(null)); // waves 1-6 only if you have gold to spend
         m_events.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-4
-        m_events.Add(new ContentTransmuteBeamsEvent(null)); // waves 1-6 only if you have 5+ purple beams
 
         //m_events.Add(new ContentWorthySacrificeEvent(null)); // ashulman - I wasn't sure how to get this working, need to consult with nmartino to finish this
 

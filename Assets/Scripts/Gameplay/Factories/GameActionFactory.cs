@@ -18,12 +18,12 @@ public class GameActionFactory
         m_actions.Add(new GameFullHealAction(null));
         m_actions.Add(new GameHealAction(null, 0));
         m_actions.Add(new GameGainAPAction(null, 0));
+        m_actions.Add(new GameGainBrittleAction(null, 0));
         m_actions.Add(new GameGainEnergyAction(0));
         m_actions.Add(new GameGainMaxHealthAction(null, 0));
         m_actions.Add(new GameGainPowerAction(null, 0));
         m_actions.Add(new GameGainRangeAction(null, 0));
         m_actions.Add(new GameGainResourceAction(null));
-        m_actions.Add(new GainPurpleBeamAction(0));
         m_actions.Add(new GameSpellcraftAttackAction(null));
 
         m_hasInit = true;
