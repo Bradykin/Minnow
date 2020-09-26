@@ -9,10 +9,10 @@ public class ContentWerewolfEnemy : GameEnemyEntity
 {
     public ContentWerewolfEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 80;
+        m_maxHealth = 60;
         m_maxAP = 6;
         m_apRegen = 4;
-        m_power = 9;
+        m_power = 12;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;

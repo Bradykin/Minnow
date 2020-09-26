@@ -93,12 +93,12 @@ public class WorldController : Singleton<WorldController>
 
         float xPosBase = -500.0f;
         float xPosMult = (120.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 5f));
-        float yPos = -330.0f;
+        float yPos = -350.0f;
         float yPosBigOffset = 125.0f;
         float zPos = 0.0f;
         float smallCardScale = 0.75f;
-        float bigCardScale = 1.5f;
-        float splitDif = 0.2f;
+        float bigCardScale = 1.25f;
+        float splitDif = 0.1f;
 
         if (bigCardIndex == -1)
         {
