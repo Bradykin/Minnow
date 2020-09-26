@@ -115,6 +115,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentRoarOfVictoryCard());
         m_cards.Add(new ContentShivCard());
+        m_cards.Add(new ContentSummoningCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());
         m_cards.Add(new ContentTonicOfStrengthCard());
