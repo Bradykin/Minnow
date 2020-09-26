@@ -29,7 +29,7 @@ public class ContentPurgeCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         if (targetEntity.GetTeam() == Team.Player)
         {

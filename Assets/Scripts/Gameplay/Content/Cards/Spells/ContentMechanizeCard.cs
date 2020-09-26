@@ -28,7 +28,7 @@ public class ContentMechanizeCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         int curAP = targetEntity.GetCurAP();
         targetEntity.SpendAP(curAP);

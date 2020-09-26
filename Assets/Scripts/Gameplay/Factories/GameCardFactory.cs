@@ -93,7 +93,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentCosmicPactCard());
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentCurseOfInactionCard());
-        m_cards.Add(new ContentDemoncAspectCard());
+        m_cards.Add(new ContentDemonicAspectCard());
         m_cards.Add(new ContentDemoralizeCard());
         m_cards.Add(new ContentDreamCard());
         m_cards.Add(new ContentEncouragementCard());
@@ -101,6 +101,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentFireboltCard());
         m_cards.Add(new ContentFirestormCard());
         m_cards.Add(new ContentFletchingCard());
+        m_cards.Add(new ContentFossilizeCard());
         m_cards.Add(new ContentFuryCard());
         m_cards.Add(new ContentGrowTalonsCard());
         m_cards.Add(new ContentImmolationCard());
@@ -116,14 +117,16 @@ public static class GameCardFactory
         m_cards.Add(new ContentOverchargeCard());
         m_cards.Add(new ContentPhalanxCard());
         m_cards.Add(new ContentPurgeCard());
+        m_cards.Add(new ContentRainOfShivsCard());
         m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentRoarOfVictoryCard());
+        m_cards.Add(new ContentRunicBladeCard());
         m_cards.Add(new ContentShivCard());
         m_cards.Add(new ContentSummoningCard());
-        m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());
         m_cards.Add(new ContentTonicOfStrengthCard());
         m_cards.Add(new ContentTrollFormCard());
+        m_cards.Add(new ContentWisdomOfThePastCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)

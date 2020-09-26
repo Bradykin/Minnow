@@ -34,7 +34,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.AddMaxAP(GetSpellValue());
     }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDemoncAspectCard : GameCardSpellBase
+public class ContentDemonicAspectCard : GameCardSpellBase
 {
-    public ContentDemoncAspectCard()
+    public ContentDemonicAspectCard()
     {
         m_name = "Demonic Aspect";
         m_desc = "Give an entity Victorious: Gain 2 AP.";

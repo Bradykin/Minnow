@@ -28,7 +28,7 @@ public class ContentEncouragementCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.GetHit(1);
 

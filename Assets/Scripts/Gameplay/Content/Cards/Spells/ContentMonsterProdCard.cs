@@ -29,7 +29,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainAPAction(targetEntity, 1)));
     }

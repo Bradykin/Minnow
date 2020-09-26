@@ -28,7 +28,7 @@ public class ContentBullheadedCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(targetEntity, 1)));
     }

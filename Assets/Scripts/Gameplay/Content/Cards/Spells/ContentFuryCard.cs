@@ -28,7 +28,7 @@ public class ContentFuryCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         List<GameMomentumKeyword> momentumKeywords = targetEntity.GetKeywords<GameMomentumKeyword>();
         List<GameEnrageKeyword> enrageKeywords = targetEntity.GetKeywords<GameEnrageKeyword>();

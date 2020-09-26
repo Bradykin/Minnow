@@ -29,7 +29,7 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.AddKeyword(new GameVictoriousKeyword(new GameRoarOfVictoryAction(targetEntity)));
     }

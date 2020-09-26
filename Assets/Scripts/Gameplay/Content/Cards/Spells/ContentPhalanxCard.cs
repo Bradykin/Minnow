@@ -29,7 +29,7 @@ public class ContentPhalanxCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         GameTile tile = targetEntity.GetGameTile();
 

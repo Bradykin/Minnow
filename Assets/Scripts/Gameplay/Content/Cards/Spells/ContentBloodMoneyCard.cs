@@ -28,7 +28,7 @@ public class ContentBloodMoneyCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard();
+        base.PlayCard(targetEntity);
 
         targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetEntity)));
     }
