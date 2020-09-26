@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using System.IO;
+using UnityEngine.EventSystems;
 
 public static class UIHelper
 {
@@ -545,5 +546,35 @@ public static class UIHelper
         }
 
         return Color.white;
+    }
+
+    public static bool UIShouldBlockClick()
+    {
+        bool isOverTaggedElement = false;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            PointerEventData pointerData = new PointerEventData(EventSystem.current)
+            {
+                pointerId = -1,
+            };
+
+            pointerData.position = Input.mousePosition;
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            if (results.Count > 0)
+            {
+                for (int i = 0; i < results.Count; ++i)
+                {
+                    if (!results[i].gameObject.CompareTag("IgnoreUIBlocker"))
+                    {
+                        isOverTaggedElement = true;
+                    }
+                }
+            }
+        }
+
+        return isOverTaggedElement;
     }
 }
