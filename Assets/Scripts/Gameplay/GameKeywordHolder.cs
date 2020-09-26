@@ -52,9 +52,19 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         return listOfKeyword;
     }
 
+    public List<GameKeywordBase> GetKeywords()
+    {
+        return m_keywords;
+    }
+
     public void RemoveKeyword(GameKeywordBase toRemove)
     {
         m_keywords.Remove(toRemove);
+    }
+
+    public void RemoveAllKeywords()
+    {
+        m_keywords.Clear();
     }
 
     public string GetDesc()

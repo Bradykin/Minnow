@@ -605,6 +605,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_keywordHolder.GetKeywords<T>();
     }
 
+    public List<GameKeywordBase> GetKeywords()
+    {
+        return m_keywordHolder.GetKeywords();
+    }
+
     public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;

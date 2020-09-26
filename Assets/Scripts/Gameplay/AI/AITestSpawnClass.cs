@@ -8,22 +8,22 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Globals.m_testSpawnEnemyEntity = new ContentOrcEnemy(null);
+            Globals.m_testSpawnEnemyEntity = new ContentOrcShamanEnemy(null);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameHelper.GetPlayer().AddRelic(new ContentNaturalProtectionRelic());
+            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
         }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFossilizeCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentMarkedForDeathCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWisdomOfThePastCard()), true);
+            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentPurgeCard()), true);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
