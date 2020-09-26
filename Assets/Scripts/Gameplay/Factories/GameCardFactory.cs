@@ -90,9 +90,12 @@ public static class GameCardFactory
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentDemoralizeCard());
         m_cards.Add(new ContentDreamCard());
+        m_cards.Add(new ContentEncouragementCard());
         m_cards.Add(new ContentEnergizeCard());
         m_cards.Add(new ContentFireboltCard());
+        m_cards.Add(new ContentFirestormCard());
         m_cards.Add(new ContentFletchingCard());
+        m_cards.Add(new ContentFuryCard());
         m_cards.Add(new ContentGrowTalonsCard());
         m_cards.Add(new ContentImmolationCard());
         m_cards.Add(new ContentInsightCard());
@@ -101,10 +104,13 @@ public static class GameCardFactory
         m_cards.Add(new ContentLootingsCard());
         m_cards.Add(new ContentMarkedForDeathCard());
         m_cards.Add(new ContentMechanizeCard());
+        m_cards.Add(new ContentMonsterProdCard());
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
+        m_cards.Add(new ContentOverchargeCard());
         m_cards.Add(new ContentPurgeCard());
         m_cards.Add(new ContentReforgingCard());
+        m_cards.Add(new ContentRoarOfVictoryCard());
         m_cards.Add(new ContentShivCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());
