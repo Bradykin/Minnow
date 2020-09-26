@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentCreativeChemistEvent : GameEvent
 {
-    private int m_costOption2 = 50;
-    private int m_costOption3 = 75;
+    private int m_costOption2 = 10;
+    private int m_costOption3 = 40;
     
     public ContentCreativeChemistEvent(GameTile tile)
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 public class GameEventChemistSmallStatsOption : GameEventOption
 {
     GameTile m_tile;
-    int m_powerIncrease = 1;
-    int m_maxHealthIncrease = 2;
+    int m_powerIncrease = 2;
+    int m_maxHealthIncrease = 5;
 
     public GameEventChemistSmallStatsOption(GameTile tile)
     {
