@@ -6,7 +6,7 @@ public class ContentLichEnemy : GameEnemyEntity
 {
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 200;
+        m_maxHealth = 350;
         m_maxAP = 10;
         m_apRegen = 6;
         m_power = 15;
