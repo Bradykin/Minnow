@@ -93,20 +93,21 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
                     Globals.m_testSpawnEnemyEntity = null;
                 }
-
-                if (Globals.m_selectedEntity != null)
+                else if (Globals.m_selectedEntity != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
-                }
-
-                if (Globals.m_selectedCard != null)
+                } 
+                else if (Globals.m_selectedCard != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
                 }
-
-                if (Globals.m_selectedIntermissionBuilding != null)
+                else if (Globals.m_selectedIntermissionBuilding != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+                }
+                else
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
             }
             else
@@ -115,11 +116,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedEntity != null && m_isMoveable)
+                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedEntity != null && m_isAttackable)
+                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isAttackable)
                 {
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }

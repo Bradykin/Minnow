@@ -455,12 +455,17 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public void AddMaxAP(int toAdd)
     {
-        m_maxAP += toAdd;
-
         if (!HasCustomName())
         {
             SetCustomName();
         }
+
+        if (m_maxAP >= Constants.MaxTotalAP)
+        {
+            return;
+        }
+
+        m_maxAP += toAdd;
     }
 
     public int GetSightRange()
@@ -817,11 +822,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         if (tile == m_gameTile)
             return;
-        
-        SpendAP(WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false));
+
+        int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
 
         m_gameTile.ClearEntity();
         tile.PlaceEntity(this);
+
+        SpendAP(pathCost);
     }
 
     public void MoveTowards(GameTile tile, int apToUse)

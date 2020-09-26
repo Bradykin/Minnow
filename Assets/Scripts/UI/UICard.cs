@@ -21,6 +21,7 @@ public class UICard : MonoBehaviour
     public Text m_nameText;
     public Text m_costText;
     public Image m_image;
+    public Image m_rarityImage;
     public Text m_typelineText;
     public Text m_descText;
     public Text m_powerText;
@@ -96,6 +97,8 @@ public class UICard : MonoBehaviour
         m_costText.text = m_card.GetCost() + "";
         m_typelineText.text = m_card.m_typeline;
         m_descText.text = m_card.GetDesc();
+
+        m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
 
         if (m_card is GameCardEntityBase)
         {
