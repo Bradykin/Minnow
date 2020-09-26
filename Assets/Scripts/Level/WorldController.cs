@@ -35,15 +35,6 @@ public class WorldController : Singleton<WorldController>
         {
             FocusNextPlayerEntity();
         }
-
-        if (Constants.CheatsOn)
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                GameHelper.GetPlayer().AddRelic(new ContentBurningShivsRelic());
-                GameHelper.GetPlayer().AddRelic(new ContentPoisonedShivsRelic());
-            }
-        }
     }
 
     public void UpdateHand()
