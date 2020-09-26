@@ -92,6 +92,23 @@ public static class GameEventFactory
             }
         }
 
+        //TEMP CODE
+        if (availableEvents.Count == 0)
+        {
+            for (int i = 0; i < m_events.Count; i++)
+            {
+                if (m_recentEvents.Contains(m_events[i]))
+                {
+                    continue;
+                }
+
+                if (m_events[i].IsValidToSpawn(tile))
+                {
+                    availableEvents.Add(m_events[i]);
+                }
+            }
+        }
+
         if (availableEvents.Count == 0)
         {
             Debug.LogError("All events are not available to spawn. Sending random event instead.");
