@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2513313019296976355}
   m_Layer: 0
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 5267820902191216701}
   m_Layer: 0
   m_Name: APBubble
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
