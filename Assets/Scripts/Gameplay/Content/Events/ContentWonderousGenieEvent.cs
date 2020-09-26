@@ -13,9 +13,7 @@ public class ContentWonderousGenieEvent : GameEvent
 
         GameRarity rarity = GameRelicFactory.GetRandomRarity();
 
-        m_optionOne = new GameEventTakeRandomRelicOption(rarity);
-        m_optionTwo = new GameEventTakeRandomRelicOption(rarity, ((GameEventTakeRandomRelicOption)m_optionOne).m_relic);
-        m_optionThree = new GameEventLeaveOption();
+        m_optionOne = new GameEventTakeRandomRelicChoiceOption(rarity);
 
         m_minWaveToSpawn = 1;
         m_maxWaveToSpawn = Constants.FinalWaveNum;
