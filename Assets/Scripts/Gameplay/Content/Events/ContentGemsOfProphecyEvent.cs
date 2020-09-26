@@ -12,7 +12,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Rare;
 
-        m_optionOne = new GameEventRevealRuinsOption();
+        m_optionOne = new GameEventProphecyOfAdventureOption(m_tile);
         m_optionTwo = new GameEventDamageReductionOption(m_tile);
         m_optionThree = new GameEventProphecyTakeGoldOption(100);
 
@@ -23,23 +23,24 @@ public class ContentGemsOfProphecyEvent : GameEvent
     }
 }
 
-public class GameEventRevealRuinsOption : GameEventOption
+public class GameEventProphecyOfAdventureOption : GameEventOption
 {
+    private GameTile m_tile;
+    private int m_powerGain = 5;
+
+    public GameEventProphecyOfAdventureOption(GameTile tile)
+    {
+        m_tile = tile;
+    }
+
     public override void Init()
     {
-        m_message = "Receive the prophecy of adventure: Reveal the locations of all ruins on the map.";
+        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingEntity.m_name + " gains Victorious: gain " + m_powerGain + " power.";
     }
 
     public override void AcceptOption()
     {
-        WorldTile[] worldTiles = WorldGridManager.Instance.m_gridArray;
-        for (int i = 0; i < worldTiles.Length; i++)
-        {
-            if (worldTiles[i].GetGameTile().m_event)
-            {
-                worldTiles[i].ClearFog();
-            }
-        }
+        m_tile.m_occupyingEntity.AddKeyword(new GameVictoriousKeyword(new GameGainPowerAction(m_tile.m_occupyingEntity, m_powerGain)));
 
         EndEvent();
     }
@@ -48,6 +49,7 @@ public class GameEventRevealRuinsOption : GameEventOption
 public class GameEventDamageReductionOption : GameEventOption
 {
     private GameTile m_tile;
+    private int m_heal = 5;
 
     public GameEventDamageReductionOption(GameTile tile)
     {
@@ -56,12 +58,12 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingEntity.m_name + " gains Enrage: heal for 2 health.";
+        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingEntity.m_name + " gains Enrage: heal for " + m_heal + " health.";
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingEntity.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingEntity, 2)));
+        m_tile.m_occupyingEntity.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingEntity, m_heal)));
 
         EndEvent();
     }
