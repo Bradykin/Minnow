@@ -123,6 +123,7 @@ public class UIEntity : MonoBehaviour
                 WorldController.Instance.PlayCard(Globals.m_selectedCard);
                 card.m_card.PlayCard(GetEntity());
                 m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetEntity().GetTeam());
+                WorldController.Instance.PostPlayCard();
             }
         }
         else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetEntity().CanHitEntity(GetEntity()))

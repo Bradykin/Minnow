@@ -35,6 +35,7 @@ public class UICardHand : MonoBehaviour
             {
                 WorldController.Instance.PlayCard(m_uiCard);
                 m_uiCard.m_card.PlayCard();
+                WorldController.Instance.PostPlayCard();
             }
             else
             {

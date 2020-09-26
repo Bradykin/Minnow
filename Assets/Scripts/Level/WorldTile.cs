@@ -221,6 +221,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 WorldController.Instance.PlayCard(selectedCard);
                 selectedCard.m_card.PlayCard(GetGameTile());
+                WorldController.Instance.PostPlayCard();
                 return;
             }
         }

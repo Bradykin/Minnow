@@ -55,6 +55,11 @@ public class WorldController : Singleton<WorldController>
         m_playerHand.Remove(card);
     }
 
+    public void PostPlayCard()
+    {
+        WorldController.Instance.UpdateHand();
+    }
+
     private void HandlePlayerHand()
     {
         List<GameCard> playerHand = m_gameController.m_player.m_hand;
