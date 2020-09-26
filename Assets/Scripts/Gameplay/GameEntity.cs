@@ -883,7 +883,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         if (apToUse <= 0)
             return;
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, false);
+        //TODO: ashulman rethink this. TEMP CODE TO REMOVE END OF TURN LAG WHEN BLOCKING CHOKEPOINT
+        int absoluteDistance = WorldGridManager.Instance.GetPathLength(GetGameTile(), tile, true, true, true);
+        bool letPassEnemies = absoluteDistance >= 8 && (!Constants.FogOfWar || GetGameTile().m_isFog || GetGameTile().m_isSoftFog);
+
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, letPassEnemies);
 
         if (pathToTile == null || pathToTile.Count == 0)
             return;
