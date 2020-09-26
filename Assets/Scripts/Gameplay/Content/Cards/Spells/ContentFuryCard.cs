@@ -41,7 +41,7 @@ public class ContentFuryCard : GameCardSpellBase
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
-            enrageKeywords[i].DoAction();
+            enrageKeywords[i].DoAction(0);
         }
 
         for (int i = 0; i < victoriousKeywords.Count; i++)

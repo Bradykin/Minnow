@@ -85,7 +85,10 @@ public static class GameCardFactory
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentAssassinationContractCard());
         m_cards.Add(new ContentBatteryPackCard());
+        m_cards.Add(new ContentBloodMoneyCard());
         m_cards.Add(new ContentBloodSacrificeCard());
+        m_cards.Add(new ContentBullheadedCard());
+        m_cards.Add(new ContentCosmicPactCard());
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentDemoralizeCard());

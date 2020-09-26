@@ -26,7 +26,7 @@ public class GameRoarOfVictoryAction : GameAction
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
-            enrageKeywords[i].DoAction();
+            enrageKeywords[i].DoAction(0);
         }
     }
 

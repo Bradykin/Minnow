@@ -437,6 +437,11 @@ public class GamePlayer : ITurns
                 continue;
             }
         }
+
+        for (int i = 0; i < m_deckBase.GetDeck().Count; i++)
+        {
+            m_deckBase.GetDeck()[i].SetTempCost(0);
+        }
     }
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
