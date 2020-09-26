@@ -27,7 +27,7 @@ public class UIRelic : UIElementBase
         m_selectionType = selectionType;
 
         m_image.sprite = m_relic.m_icon;
-        m_tintImage.color = UIHelper.GetRarityColor(m_relic.m_rarity);
+        m_rarityTint.color = UIHelper.GetRarityColor(m_relic.m_rarity);
     }
 
     public override void HandleTooltip()
