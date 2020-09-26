@@ -19,7 +19,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target ally construct gains " + m_spellEffect + " (" + GetSpellValue() + ") max AP.\n" + GetModifiedBySpellPowerString();
+        return "Target ally creation gains " + m_spellEffect + " (" + GetSpellValue() + ") max AP.\n" + GetModifiedBySpellPowerString();
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)
