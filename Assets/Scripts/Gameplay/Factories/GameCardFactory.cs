@@ -84,6 +84,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentAegisCard());
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentAssassinationContractCard());
+        m_cards.Add(new ContentBatteryPackCard());
         m_cards.Add(new ContentBloodSacrificeCard());
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentDemoncAspectCard());
@@ -99,9 +100,11 @@ public static class GameCardFactory
         m_cards.Add(new ContentLegionOfBladesCard());
         m_cards.Add(new ContentLootingsCard());
         m_cards.Add(new ContentMarkedForDeathCard());
+        m_cards.Add(new ContentMechanizeCard());
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
         m_cards.Add(new ContentPurgeCard());
+        m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentShivCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentTonicOfFortitudeCard());

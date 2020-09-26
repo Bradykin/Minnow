@@ -24,7 +24,7 @@ public class ContentPurgeCard : GameCardSpellBase
 
     public override void PlayCard(GameEntity targetEntity)
     {
-        if (!IsValidToPlay())
+        if (!IsValidToPlay(targetEntity))
         {
             return;
         }

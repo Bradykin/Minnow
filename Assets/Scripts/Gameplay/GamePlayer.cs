@@ -29,6 +29,7 @@ public class GamePlayer : ITurns
     private int m_maxActions;
 
     public List<GameCard> m_cardsToDiscard = new List<GameCard>();
+    public List<GameCard> m_cardsInExile = new List<GameCard>();
 
     private List<GamePlayerScheduledActions> m_scheduledActions = new List<GamePlayerScheduledActions>();
 
@@ -48,6 +49,7 @@ public class GamePlayer : ITurns
 
         m_deckBase = new GameDeck();
         m_curDeck = new GameDeck();
+        m_cardsInExile = new List<GameCard>();
     }
 
     public void LateInit()
@@ -130,6 +132,7 @@ public class GamePlayer : ITurns
     {
         if (card.m_shouldExile)
         {
+            m_cardsInExile.Add(card);
             m_curDeck.RemoveCard(card);
         }
         else
@@ -405,6 +408,8 @@ public class GamePlayer : ITurns
     public void OnEndWave()
     {
         ResetActions();
+
+        m_cardsInExile.Clear();
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
