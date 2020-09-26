@@ -157,7 +157,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
-            enrageKeywords[i].DoAction();
+            enrageKeywords[i].DoAction(damage);
         }
 
         if (m_curHealth <= 0)

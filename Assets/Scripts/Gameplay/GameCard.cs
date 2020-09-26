@@ -15,6 +15,7 @@ public abstract class GameCard : GameElementBase
     }
 
     protected int m_cost { set; private get; }
+    protected int m_costTempModifier = 0;
     public string m_typeline;
     public string m_playDesc;
     public Target m_targetType;
@@ -27,7 +28,7 @@ public abstract class GameCard : GameElementBase
 
     public int GetCost()
     {
-        int toReturn = m_cost;
+        int toReturn = m_cost + m_costTempModifier;
 
         if (this is GameCardSpellBase)
         {
@@ -44,6 +45,11 @@ public abstract class GameCard : GameElementBase
         }
 
         return toReturn;
+    }
+
+    public void SetTempCost(int i)
+    {
+        m_costTempModifier = i;
     }
 
     public virtual string GetDesc()

@@ -22,9 +22,16 @@ public class GameEnrageKeyword : GameKeywordBase
         m_desc = action.m_desc;
     }
 
-    public void DoAction()
+    public void DoAction(int damageAmount)
     {
-        m_action.DoAction();
+        if (m_action is GameGainGoldEnrageAction gainGoldEnrageAction)
+        {
+            gainGoldEnrageAction.DoAction(damageAmount);
+        }
+        else
+        {
+            m_action.DoAction();
+        }
     }
 
     public override string SaveToJsonAsString()

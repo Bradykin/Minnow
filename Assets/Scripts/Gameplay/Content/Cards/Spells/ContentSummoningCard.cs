@@ -10,7 +10,7 @@ public class ContentSummoningCard : GameCardSpellBase
         m_desc = "Add a random entity card to your hand.";
         m_targetType = Target.None;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Rare;
 
         SetupBasicData();
     }
