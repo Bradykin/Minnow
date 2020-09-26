@@ -19,14 +19,24 @@ public class GameRoarOfVictoryAction : GameAction
         List<GameMomentumKeyword> momentumKeywords = m_entity.GetKeywords<GameMomentumKeyword>();
         List<GameEnrageKeyword> enrageKeywords = m_entity.GetKeywords<GameEnrageKeyword>();
 
+        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
+
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
+            for (int k = 0; k < numBestialWrath; k++)
+            {
+                momentumKeywords[i].DoAction();
+            }
         }
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
             enrageKeywords[i].DoAction(0);
+            for (int k = 0; k < numBestialWrath; k++)
+            {
+                enrageKeywords[i].DoAction(0);
+            }
         }
     }
 

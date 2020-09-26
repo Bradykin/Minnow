@@ -11,6 +11,7 @@ public static class GameRelicFactory
 
     public static void Init()
     {
+        m_relics.Add(new ContentBestialWrathRelic());
         m_relics.Add(new ContentDominerickRefrainRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
         m_relics.Add(new ContentMaskOfAgesRelic());

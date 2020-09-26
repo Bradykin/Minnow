@@ -83,6 +83,7 @@ public static class GameCardFactory
 
         //Spell Cards
         m_cards.Add(new ContentAegisCard());
+        m_cards.Add(new ContentAncientTextsCard());
         m_cards.Add(new ContentArcaneBoltCard());
         m_cards.Add(new ContentAssassinationContractCard());
         m_cards.Add(new ContentBatteryPackCard());
@@ -91,6 +92,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentBullheadedCard());
         m_cards.Add(new ContentCosmicPactCard());
         m_cards.Add(new ContentCureWoundsCard());
+        m_cards.Add(new ContentCurseOfInactionCard());
         m_cards.Add(new ContentDemoncAspectCard());
         m_cards.Add(new ContentDemoralizeCard());
         m_cards.Add(new ContentDreamCard());
@@ -112,6 +114,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentNecromanticTouchCard());
         m_cards.Add(new ContentNightWingsCard());
         m_cards.Add(new ContentOverchargeCard());
+        m_cards.Add(new ContentPhalanxCard());
         m_cards.Add(new ContentPurgeCard());
         m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentRoarOfVictoryCard());
