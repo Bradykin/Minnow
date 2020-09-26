@@ -33,7 +33,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_apToAttack = 2;
-    protected int m_sightRange = 2;
+    protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
 
     //Functionality

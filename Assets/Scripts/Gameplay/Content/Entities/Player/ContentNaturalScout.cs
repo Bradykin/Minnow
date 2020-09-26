@@ -11,7 +11,7 @@ public class ContentNaturalScout : GameEntity
         m_apRegen = 5;
         m_power = 1;
         m_apToAttack = 5;
-        m_sightRange = 4;
+        m_sightRange = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;

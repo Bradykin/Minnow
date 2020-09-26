@@ -69,7 +69,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (newBuilding.m_expandsPlaceRange)
         {
-            m_worldTile.ExpandPlaceRange(newBuilding.m_sightRange);
+            m_worldTile.ExpandPlaceRange(newBuilding.m_sightRange-1);
         }
 
         m_building = newBuilding;

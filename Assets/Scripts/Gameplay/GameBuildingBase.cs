@@ -19,7 +19,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
     public int m_maxHealth;
     public BuildingType m_buildingType;
 
-    public int m_sightRange = 2;
+    public int m_sightRange = 3;
 
     public bool m_isDestroyed;
     public bool m_expandsPlaceRange = false;
