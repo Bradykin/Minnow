@@ -53,6 +53,8 @@ public class UIEndTurnButton : UIElementBase
 
         Globals.m_selectedCard = null;
         UIHelper.UnselectEntity();
+        UIHelper.UnselectEnemy();
+        Globals.m_selectedTile = null;
 
         WorldController.Instance.MoveToNextTurn();
 

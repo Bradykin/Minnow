@@ -61,6 +61,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentStoneGolemCard());
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
+        m_cards.Add(new ContentZombieCard());
 
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());

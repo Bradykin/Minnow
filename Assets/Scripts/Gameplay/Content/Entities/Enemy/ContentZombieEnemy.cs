@@ -56,6 +56,7 @@ public class ContentZombieEnemy : GameEnemyEntity
     public override int HitEntity(GameEntity other, bool spendAP = true)
     {
         GameEntity newZombie = new ContentZombie();
+        other.m_uiEntity.Init(newZombie);
         GameHelper.GetPlayer().RemoveControlledEntity(other);
         GameHelper.GetPlayer().AddControlledEntity(newZombie);
 

@@ -21,7 +21,7 @@ public class AIAttackUntilOutOfAPStandardStep : AIStep
                 case GameEntity gameEntity:
                     didAttack = true;
                     m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(gameEntity);
-                    if (gameEntity.m_isDead)
+                    if (gameEntity.m_isDead || gameEntity == null)
                     {
                         if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
                         {
