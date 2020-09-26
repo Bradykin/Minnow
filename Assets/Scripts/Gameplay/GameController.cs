@@ -30,7 +30,7 @@ public class GameController
 
         m_waveNum = 1;
         m_currentWaveTurn = 1;
-        m_currentWaveEndTurn = Constants.InitialWaveSize;
+        m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
     }
 
     public void LateInit()
@@ -84,7 +84,7 @@ public class GameController
     {
         m_waveNum++;
         m_currentWaveTurn = 1;
-        m_currentWaveEndTurn += Constants.WaveTurnIncrement;
+        m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
     }
 
     public int GetEndWaveTurn()
@@ -104,6 +104,6 @@ public class GameController
 
         m_waveNum = 1;
         m_currentWaveTurn = 1;
-        m_currentWaveTurn = Constants.InitialWaveSize;
+        m_currentWaveTurn = Constants.GetWaveLength(m_waveNum);
     }
 }

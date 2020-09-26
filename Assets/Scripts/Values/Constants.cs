@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Policy;
 using UnityEngine;
 
 public static class Constants
@@ -38,8 +39,18 @@ public static class Constants
     public static float HexagonOuterRadius = HexagonInnerRadius / 0.866025404f;
 
     //Wave Data
-    public static int InitialWaveSize = 5;
-    public static int WaveTurnIncrement = 1;
+    //public static int InitialWaveSize = 5;
+    //public static int WaveTurnIncrement = 1;
+    private static List<int> WaveLength = new List<int>
+    {
+        7,
+        7,
+        8,
+        8,
+        9,
+        9
+    };
+
     public static int FinalWaveNum = 6;
     public static int GoldPerWave = 25;
 
@@ -79,4 +90,9 @@ public static class Constants
     //private static string DATA_FOLDER = $"{}_Data";
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
     public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
+
+    public static int GetWaveLength (int waveNum)
+    {
+        return WaveLength[waveNum - 1];
+    }
 }
