@@ -6,39 +6,42 @@ public class AITestSpawnClass : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Constants.CheatsOn)
         {
-            Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
-        }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Globals.m_testSpawnEnemyEntity = new ContentZombieEnemy(null);
+            }
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
-        }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
+            }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentCosmicPactCard()), true);
-        }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentSabobotCard()), true);
+            }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDevourerCard()), true);
-        }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
+            }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFuryCard()), true);
-        }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentReforgingCard()), true);
+            }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            GameHelper.GetPlayer().m_wallet.m_gold += 50;
-        }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                GameHelper.GetPlayer().m_wallet.m_gold += 50;
+            }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            GameHelper.GetPlayer().AddEnergy(1);
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                GameHelper.GetPlayer().AddEnergy(1);
+            }
         }
     }
 }

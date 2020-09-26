@@ -291,6 +291,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             WorldGridManager.Instance.ClearAllTilesMovementRange();
         }
         m_gameTile.GetWorldTile().RecycleEntity();
+        UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = true;
     }

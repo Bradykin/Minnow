@@ -19,6 +19,7 @@ public class UICardSelectButton : MonoBehaviour
         if (Globals.m_selectedCard == m_uiCard)
         {
             Globals.m_selectedCard = null;
+            m_uiCard.m_tintImage.color = UIHelper.GetValidTintColor(true);
         }
         else
         {

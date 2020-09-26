@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 3599552122585350603}
   m_Layer: 11
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 3599552122799273615}
   m_Layer: 11
   m_Name: NotificationText
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

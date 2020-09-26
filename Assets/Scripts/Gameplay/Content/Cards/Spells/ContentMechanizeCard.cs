@@ -7,7 +7,7 @@ public class ContentMechanizeCard : GameCardSpellBase
     public ContentMechanizeCard()
     {
         m_name = "Mechanize";
-        m_desc = "Target ally construct loses all current AP and gains an equal amount of power.";
+        m_desc = "Target ally creation loses all current AP and gains an equal amount of power.";
         m_playDesc = "Charging up!";
         m_targetType = Target.Ally;
         m_cost = 2;

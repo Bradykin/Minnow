@@ -101,17 +101,22 @@ public class UITooltipController : Singleton<UITooltipController>
 
     private void UpdatePosition()
     {
+        if (m_tooltipStack.Count == 0)
+        {
+            return;
+        }
+
         Vector3 pos = Input.mousePosition;
         pos.z = transform.position.z - Camera.main.transform.position.z;
 
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(pos);
         if (m_flipStackHorizontal)
         {
-            worldPoint.x = worldPoint.x - 1.72f;
+            worldPoint.x = worldPoint.x - m_tooltipStack[0].m_widthLeft;
         }
         else
         {
-            worldPoint.x = worldPoint.x + 1.74f;
+            worldPoint.x = worldPoint.x + m_tooltipStack[0].m_widthRight;
         }
 
         if (m_flipStackVertical)

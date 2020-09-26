@@ -107,7 +107,7 @@ public class UIEntity : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIHelper.UIShouldBlockClick())
         {
             return;
         }
@@ -167,7 +167,7 @@ public class UIEntity : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIHelper.UIShouldBlockClick())
         {
             return;
         }

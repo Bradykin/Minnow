@@ -170,7 +170,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIHelper.UIShouldBlockClick())
         {
             return;
         }
@@ -252,7 +252,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     void OnMouseOver()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIHelper.UIShouldBlockClick())
         {
             return;
         }

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - IgnoreUIBlocker
   layers:
   - Default
   - TransparentFX
@@ -73,6 +74,12 @@ TagManager:
     locked: 0
   - name: EntityText
     uniqueID: 510882381
+    locked: 0
+  - name: EntityTitleBackground
+    uniqueID: 1166923795
+    locked: 0
+  - name: EntityTitleText
+    uniqueID: 2692706239
     locked: 0
   - name: TileFog
     uniqueID: 1664957867

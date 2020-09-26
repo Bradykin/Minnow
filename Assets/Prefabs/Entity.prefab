@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 143361353}
   - component: {fileID: 143361352}
   - component: {fileID: 143361351}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &391321572
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,9 +192,9 @@ GameObject:
   - component: {fileID: 1347756751}
   - component: {fileID: 1347756753}
   - component: {fileID: 1347756752}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: HealthText
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,7 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0816cda7804a804428572b6f2ff73f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tintImage: {fileID: 0}
   m_tintRenderer: {fileID: 28897412925903876}
   m_renderer: {fileID: 7836011148731078566}
   m_apContainer: {fileID: 3928984336708278012}
@@ -444,7 +443,7 @@ GameObject:
   - component: {fileID: 976151315011736092}
   m_Layer: 0
   m_Name: TitleFrame
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,9 +523,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579057718032412005}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,9 +562,9 @@ GameObject:
   - component: {fileID: 4853070031593542119}
   - component: {fileID: 6768549724035438775}
   - component: {fileID: 6228153598567276208}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: PowerText
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -673,9 +672,9 @@ GameObject:
   - component: {fileID: 5209630644929535431}
   - component: {fileID: 4942688219189091081}
   - component: {fileID: 6790110381055935183}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: TitleText
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,7 +831,7 @@ GameObject:
   - component: {fileID: 3928984336708278012}
   m_Layer: 0
   m_Name: APContainer
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
