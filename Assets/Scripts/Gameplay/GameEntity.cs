@@ -132,6 +132,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return 0;
         }
 
+        damage = CalculateDamageAmount(damage);
+
+        if (damage <= 0)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " takes no damage from the hit!", false, m_gameTile.GetWorldTile().gameObject);
+            return 0;
+        }
+
         GameDamageShieldKeyword damageShieldKeyword = m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
         if (damageShieldKeyword != null)
         {
@@ -150,8 +158,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 return 0;
             }
         }
-
-        damage = CalculateDamageAmount(damage);
 
         m_curHealth -= damage;
 
@@ -603,7 +609,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public virtual int GetAPToAttack()
     {
         int apToAttack = m_apToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
             apToAttack = Mathf.Max(1, apToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }

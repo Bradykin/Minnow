@@ -11,7 +11,7 @@ public static class Constants
     public static int StartingActions = 4;
     public static int MaxHandSize = 10;
     public static int MaxTotalAP = 12;
-    public static int SpawnEliteWave = 3;
+    public static int SpawnEliteWave = 2;
 
     public static int PercentChanceForUncommonCard = 38;
     public static int PercentChanceForRareCard = 18;
