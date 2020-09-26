@@ -11,7 +11,7 @@ public class ContentAngelicGiftEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Rare;
 
-        m_optionOne = new GameEventTakeRandomRelicOption();
+        m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Uncommon);
         m_optionTwo = new GameEventAngelicWings(tile);
         m_optionThree = new GameEventLeaveOption();
 
