@@ -13,7 +13,7 @@ public class ContentZombie : GameEntity
         m_power = 2;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Event;
 
         m_name = "Zombie";
         m_desc = "When this entity hits another entity, turn it into a zombie.";

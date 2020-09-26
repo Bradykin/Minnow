@@ -449,7 +449,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
+        if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return new List<GameTile>();
@@ -459,7 +459,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public List<GameTile> GetTilesInMovementRangeWithAPToAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
+        if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
@@ -472,7 +472,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     public List<GameTile> GetTilesInRangeToMoveAndAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
-        if (!startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
+        if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
