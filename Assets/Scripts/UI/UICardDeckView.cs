@@ -81,6 +81,6 @@ public class UICardDeckView : MonoBehaviour
             player.m_deckBase.AddCard(newCard);
         }
 
-        UIDeckViewController.Instance.UpdateDeck(UIDeckViewController.DeckViewType.View);
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetCardsForRead(), UIDeckViewController.DeckViewType.View, "Base Deck");
     }
 }
