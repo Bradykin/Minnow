@@ -55,7 +55,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
             scalingValue += (waveNum - 2);
         }
 
-        return scalingValue * 20;
+        return scalingValue * 10;
     }
 
     private int GetAPRegenModByWave()
@@ -69,6 +69,6 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         int waveNum = GameHelper.GetGameController().m_waveNum;
 
-        return waveNum * 2;
+        return waveNum * 5;
     }
 }

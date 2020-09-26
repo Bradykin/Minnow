@@ -6,10 +6,10 @@ public class ContentLichEnemy : GameEnemyEntity
 {
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 1200;
-        m_maxAP = 6;
+        m_maxHealth = 200;
+        m_maxAP = 10;
         m_apRegen = 6;
-        m_power = 10;
+        m_power = 15;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;

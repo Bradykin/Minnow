@@ -16,7 +16,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         m_playDesc = "Zaaaaam!";
         m_targetType = Target.Entity;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
     }

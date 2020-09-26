@@ -10,7 +10,7 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
 {
     public ContentSiegebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 250;
+        m_maxHealth = 90;
         m_maxAP = 6;
         m_apRegen = 2;
         m_power = 100;

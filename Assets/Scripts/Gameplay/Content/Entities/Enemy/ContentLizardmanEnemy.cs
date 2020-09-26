@@ -9,7 +9,7 @@ public class ContentLizardmanEnemy : GameEnemyEntity
 {
     public ContentLizardmanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 40;
+        m_maxHealth = 15;
         m_maxAP = 6;
         m_apRegen = 4;
         m_power = 12;

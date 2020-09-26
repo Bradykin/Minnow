@@ -6,7 +6,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 {
     public ContentArcaneBoltCard()
     {
-        m_spellEffect = 2;
+        m_spellEffect = 3;
 
         m_name = "Arcane Bolt";
         m_playDesc = "BOOM!";
