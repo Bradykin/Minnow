@@ -10,27 +10,32 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                Globals.m_testSpawnEnemyEntity = new ContentZombieEnemy(null);
+                Globals.m_testSpawnEnemyEntity = new ContentSlimeEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentBestialWrathRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentCosmicPactCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDevourerCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFuryCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentReforgingCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentRoarOfVictoryCard()), true);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentCurseOfInactionCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.O))

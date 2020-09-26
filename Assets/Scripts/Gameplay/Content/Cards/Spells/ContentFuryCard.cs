@@ -34,19 +34,33 @@ public class ContentFuryCard : GameCardSpellBase
         List<GameEnrageKeyword> enrageKeywords = targetEntity.GetKeywords<GameEnrageKeyword>();
         List<GameVictoriousKeyword> victoriousKeywords = targetEntity.GetKeywords<GameVictoriousKeyword>();
 
+        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
+
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
+            for (int k = 0; k < numBestialWrath; k++)
+            {
+                momentumKeywords[i].DoAction();
+            }
         }
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
             enrageKeywords[i].DoAction(0);
+            for (int k = 0; k < numBestialWrath; k++)
+            {
+                enrageKeywords[i].DoAction(0);
+            }
         }
 
         for (int i = 0; i < victoriousKeywords.Count; i++)
         {
             victoriousKeywords[i].DoAction();
+            for (int k = 0; k < numBestialWrath; k++)
+            {
+                victoriousKeywords[i].DoAction();
+            }
         }
     }
 }

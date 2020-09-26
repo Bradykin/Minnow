@@ -103,10 +103,7 @@ public class GamePlayer : ITurns
 
             if (triggerKnowledgeable)
             {
-                for (int i = 0; i < m_controlledEntities.Count; i++)
-                {
-                    m_controlledEntities[i].DrawCard();
-                }
+                TriggerKnowledgeable();
             }
 
             if (m_hand.Count >= Constants.MaxHandSize)
@@ -117,6 +114,14 @@ public class GamePlayer : ITurns
             {
                 m_hand.Add(card);
             }
+        }
+    }
+
+    public void TriggerKnowledgeable()
+    {
+        for (int i = 0; i < m_controlledEntities.Count; i++)
+        {
+            m_controlledEntities[i].TriggerKnowledgeable();
         }
     }
 

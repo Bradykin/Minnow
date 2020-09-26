@@ -155,9 +155,18 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_curHealth -= damage;
 
         List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
+        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
+
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
             enrageKeywords[i].DoAction(damage);
+            if (GetTypeline() == Typeline.Monster)
+            {
+                for (int k = 0; k < numBestialWrath; k++)
+                {
+                    enrageKeywords[i].DoAction(damage);
+                }
+            }
         }
 
         if (m_curHealth <= 0)
@@ -425,7 +434,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    public void DrawCard()
+    public void TriggerKnowledgeable()
     {
         List<GameKnowledgeableKeyword> knowledgeableKeywords = m_keywordHolder.GetKeywords<GameKnowledgeableKeyword>();
         for (int i = 0; i < knowledgeableKeywords.Count; i++)
@@ -484,17 +493,34 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
+
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
+            if (GetTypeline() == Typeline.Monster)
+            {
+                for (int k = 0; k < numBestialWrath; k++)
+                {
+                    momentumKeywords[i].DoAction();
+                }
+            }
         }
 
         if (other.m_isDead)
         {
             List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+
             for (int i = 0; i < victoriousKeywords.Count; i++)
             {
                 victoriousKeywords[i].DoAction();
+                if (GetTypeline() == Typeline.Monster)
+                {
+                    for (int k = 0; k < numBestialWrath; k++)
+                    {
+                        victoriousKeywords[i].DoAction();
+                    }
+                }
             }
         }
 
@@ -511,17 +537,34 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
+
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
+            if (GetTypeline() == Typeline.Monster)
+            {
+                for (int k = 0; k < numBestialWrath; k++)
+                {
+                    momentumKeywords[i].DoAction();
+                }
+            }
         }
 
         if (other.m_isDestroyed)
         {
             List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+            
             for (int i = 0; i < victoriousKeywords.Count; i++)
             {
                 victoriousKeywords[i].DoAction();
+                if (GetTypeline() == Typeline.Monster)
+                {
+                    for (int k = 0; k < numBestialWrath; k++)
+                    {
+                        victoriousKeywords[i].DoAction();
+                    }
+                }
             }
         }
 
