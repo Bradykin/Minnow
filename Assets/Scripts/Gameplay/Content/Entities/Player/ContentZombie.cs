@@ -7,9 +7,9 @@ public class ContentZombie : GameEntity
 {
     public ContentZombie()
     {
-        m_maxHealth = 25;
-        m_maxAP = 4;
-        m_apRegen = 2;
+        m_maxHealth = 35;
+        m_maxAP = 6;
+        m_apRegen = 3;
         m_power = 4;
 
         m_team = Team.Player;

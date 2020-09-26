@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentRanger : GameEntity
 {
     private int m_powerBoost = 8;
-    private int m_rangeBoost = 1;
     private int m_apRegenBoost = 2;
 
     public ContentRanger()
@@ -18,8 +17,10 @@ public class ContentRanger : GameEntity
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
+        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+
         m_name = "Ranger";
-        m_desc = "When in a forest, gains: " + m_powerBoost + " power, " + m_rangeBoost + " range, " + m_apRegenBoost + " ap regen.";
+        m_desc = "When in a forest, gains: " + m_powerBoost + " power and " + m_apRegenBoost + " ap regen.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -58,22 +59,5 @@ public class ContentRanger : GameEntity
         }
 
         return returnAPRegen;
-    }
-
-    public override int GetRange()
-    {
-        int returnRange = base.GetRange();
-
-        if (m_gameTile == null)
-        {
-            return returnRange;
-        }
-
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnRange += m_rangeBoost;
-        }
-
-        return returnRange;
     }
 }

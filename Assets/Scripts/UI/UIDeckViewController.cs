@@ -28,7 +28,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     public int m_index;
 
     private List<GameCard> m_deck;
-    private DeckViewType m_viewType;
+    public DeckViewType m_viewType;
     
 
     void Update()
