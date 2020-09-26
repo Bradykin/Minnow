@@ -40,6 +40,7 @@ public class ContentReforgingCard : GameCardSpellBase
         if (deadCreations.Count > 0)
         {
             int index = Random.Range(0, deadCreations.Count);
+            ((GameCardEntityBase)deadCreations[index]).m_entity.m_isDead = false;
             player.AddCardToHand(deadCreations[index], false);
             player.m_cardsInExile.Remove(deadCreations[index]);
         }

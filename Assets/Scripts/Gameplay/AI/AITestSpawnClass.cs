@@ -15,17 +15,17 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentBestialWrathRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDesignSchematicsRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDevourerCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWildfolkCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFuryCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.P))

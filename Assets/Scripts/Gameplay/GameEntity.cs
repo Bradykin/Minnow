@@ -1,6 +1,7 @@
 ﻿using Game.Util;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public enum Team : int
@@ -226,6 +227,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return;
         }
 
+        bool willSetDead = true;
+
         bool shouldRevive = ShouldRevive();
 
         if (shouldRevive)
@@ -287,8 +290,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
             {
-                GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(this);
+                GameCardEntityBase cardFromEntity = GameCardFactory.GetCardFromEntity(this);
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromEntity);
+                willSetDead = false;
             }
             WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
         }
@@ -302,7 +306,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_gameTile.GetWorldTile().RecycleEntity();
         UITooltipController.Instance.ClearTooltipStack();
 
-        m_isDead = true;
+        m_isDead = willSetDead;
     }
 
     //Returns the amount actually healed

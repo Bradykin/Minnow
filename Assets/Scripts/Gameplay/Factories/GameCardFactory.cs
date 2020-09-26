@@ -313,7 +313,7 @@ public static class GameCardFactory
         return GetCardClone(finalList[r]);
     }
 
-    public static GameCard GetCardFromEntity(GameEntity entity)
+    public static GameCardEntityBase GetCardFromEntity(GameEntity entity)
     {
         if (!m_hasInit)
         {
