@@ -78,7 +78,7 @@ public class GameOpponent : ITurns
         {
             if (Constants.UseSteppedOutEnemyTurns && !m_secondTryAIControlledEntities[i].GetGameTile().m_isFog)
             {
-                UICameraController.Instance.SnapToGameObject(m_secondTryAIControlledEntities[i].GetWorldTile().gameObject);
+                //UICameraController.Instance.SnapToGameObject(m_secondTryAIControlledEntities[i].GetWorldTile().gameObject);
                 yield return new WaitForSeconds(0.25f);
                 m_secondTryAIControlledEntities[i].TakeTurn();
                 //UICameraController.Instance.SnapToWorldElement(m_secondTryAIControlledEntities[i].GetWorldTile());

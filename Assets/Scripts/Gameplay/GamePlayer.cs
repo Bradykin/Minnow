@@ -497,6 +497,7 @@ public class GamePlayer : ITurns
                 m_scheduledActions.RemoveAt(i);
             }
         }
+        Globals.m_canSelect = true;
     }
 
     public void EndTurn()
@@ -532,5 +533,6 @@ public class GamePlayer : ITurns
         Globals.m_fletchingCount = 0;
         Globals.m_goldPerShivKill = 0;
         Globals.m_tempSpellpower = 0;
+        Globals.m_canSelect = false;
     }
 }
