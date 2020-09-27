@@ -250,7 +250,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetEntity().GetGameTile(), GetGameTile(), true, false, true);
                     if (pathLength == 1)
                     {
-                        UIHelper.CreateWorldElementNotification("Can't move, requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " AP.", false, gameObject);
+                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " AP.", false, gameObject);
                     }
                     else
                     {
