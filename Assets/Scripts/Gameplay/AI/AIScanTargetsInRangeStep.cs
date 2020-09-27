@@ -16,6 +16,11 @@ public class AIScanTargetsInRangeStep : AIStep
         if (tilesInAttackRange == null)
             return;
 
+        for (int i = 0; i < tilesInAttackRange.Count; i++)
+        {
+            m_AIGameEnemyEntity.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInAttackRange[i].m_gridPosition.ToString());
+        }
+
         List<GameEntity> possibleEntityTargets = new List<GameEntity>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 

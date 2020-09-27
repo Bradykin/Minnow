@@ -21,6 +21,11 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
             return;
         }
 
+        for (int i = 0; i < tilesInScanRange.Count; i++)
+        {
+            m_AIGameEnemyEntity.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInScanRange[i].m_gridPosition.ToString());
+        }
+
         List<GameEntity> possibleEntityTargets = new List<GameEntity>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 

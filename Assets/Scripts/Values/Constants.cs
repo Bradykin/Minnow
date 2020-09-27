@@ -57,7 +57,7 @@ public static class Constants
     public static bool FogOfWar = true;
     public static bool UseSteppedOutEnemyTurns = true;
     public static bool DebugEventsVisibleInFog = true;
-    public static bool CheatsOn = false;
+    public static bool CheatsOn = true;
     public static bool UseLocationalSpellcraft = true;
 
     //Terrain Data

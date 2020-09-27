@@ -35,6 +35,7 @@ public static class Globals
 
     //Temp testing value
     public static GameEnemyEntity m_testSpawnEnemyEntity = null;
+    public static GameEnemyEntity m_focusedDebugEnemyEntity = null;
 
     //Values that will be moved into player save data
     public static int m_spellsPlayedPreviousTurn = 0;

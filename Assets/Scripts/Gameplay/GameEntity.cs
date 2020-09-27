@@ -887,6 +887,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public void MoveTowards(GameTile tile, int apToUse)
     {
+        if (this == Globals.m_focusedDebugEnemyEntity)
+        {
+            Debug.Log("IS FOCUSED ENEMY");
+        }
+
         if (tile == m_gameTile)
             return;
 
@@ -894,10 +899,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return;
 
         //TODO: ashulman rethink this. TEMP CODE TO REMOVE END OF TURN LAG WHEN BLOCKING CHOKEPOINT
-        int absoluteDistance = WorldGridManager.Instance.GetPathLength(GetGameTile(), tile, true, true, true);
-        bool letPassEnemies = absoluteDistance >= 8 && (!Constants.FogOfWar || GetGameTile().m_isFog || GetGameTile().m_isSoftFog);
+        //int absoluteDistance = WorldGridManager.Instance.GetPathLength(GetGameTile(), tile, true, true, true);
+        //bool letPassEnemies = absoluteDistance >= 8 && (!Constants.FogOfWar || GetGameTile().m_isFog || GetGameTile().m_isSoftFog);
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, letPassEnemies);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
             return;
@@ -908,6 +913,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         {
             if (pathToTile[i] == m_gameTile)
                 continue;
+
+            if (!pathToTile[i].IsPassable(this, false))
+                break;
 
             int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
 

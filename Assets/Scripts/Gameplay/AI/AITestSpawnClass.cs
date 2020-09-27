@@ -47,6 +47,20 @@ public class AITestSpawnClass : MonoBehaviour
             {
                 GameHelper.GetPlayer().AddEnergy(1);
             }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                if (Globals.m_selectedEnemy != null)
+                {
+                    GameEnemyEntity gameEnemyEntity = Globals.m_selectedEnemy.GetEntity() as GameEnemyEntity;
+                    Globals.m_focusedDebugEnemyEntity = gameEnemyEntity;
+                    AIGameEnemyEntity AIGameEnemyEntity = gameEnemyEntity.m_AIGameEnemyEntity;
+                    for (int i = 0; i < AIGameEnemyEntity.m_AIDebugLogs.Count; i++)
+                    {
+                        Debug.Log(AIGameEnemyEntity.m_AIDebugLogs[i]);
+                    }
+                }
+            }
         }
     }
 }

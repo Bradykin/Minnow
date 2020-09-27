@@ -19,6 +19,10 @@ public class AIGameEnemyEntity
 
     public bool m_doSteps = true;
 
+    public List<string> m_AIDebugLogs = new List<string>();
+
+    public AIDebugTurnLog m_newAIDebugLog = null;
+
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
         m_gameEnemyEntity = gameEnemyEntity;
@@ -33,6 +37,8 @@ public class AIGameEnemyEntity
 
     public void TakeTurn()
     {
+        m_newAIDebugLog = new AIDebugTurnLog();
+        
         while (m_doSteps)
         {
             m_doSteps = false;
@@ -46,11 +52,55 @@ public class AIGameEnemyEntity
             }
         }
 
+        m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_waveNum;
+        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentWaveTurn;
+        if (m_targetGameElement == null)
+        {
+            m_newAIDebugLog.m_targetGameElementName = "Null";
+        }
+        else
+        {
+            m_newAIDebugLog.m_targetGameElementName = m_targetGameElement.m_name;
+        }
+
+        if (m_targetGameTile == null)
+        {
+            m_newAIDebugLog.m_targetGameTileLocation = "Null";
+        }
+        else
+        {
+            m_newAIDebugLog.m_targetGameTileLocation = m_targetGameTile.m_gridPosition.ToString();
+        }
+
+        for (int i = 0; i < m_possibleEntityTargets.Count; i++)
+        {
+            m_newAIDebugLog.m_possibleEntityTargets.Add(m_possibleEntityTargets[i].m_name);
+        }
+
+        for (int i = 0; i < m_possibleBuildingTargets.Count; i++)
+        {
+            m_newAIDebugLog.m_possibleBuildingTargets.Add(m_possibleBuildingTargets[i].m_name);
+        }
+
+        for (int i = 0; i < m_vulnerableEntityTargets.Count; i++)
+        {
+            m_newAIDebugLog.m_vulnerableEntityTargets.Add(m_vulnerableEntityTargets[i].m_name);
+        }
+
+        for (int i = 0; i < m_vulnerableBuildingTargets.Count; i++)
+        {
+            m_newAIDebugLog.m_vulnerableBuildingTargets.Add(m_vulnerableBuildingTargets[i].m_name);
+        }
+
+        m_AIDebugLogs.Add(JsonUtility.ToJson(m_newAIDebugLog));
+        m_newAIDebugLog = null;
+
         m_possibleEntityTargets.Clear();
         m_possibleBuildingTargets.Clear();
         m_vulnerableEntityTargets.Clear();
         m_vulnerableBuildingTargets.Clear();
         m_targetGameElement = null;
+        m_targetGameTile = null;
         m_doSteps = true;
     }
 }
