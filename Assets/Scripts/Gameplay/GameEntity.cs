@@ -176,13 +176,19 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             }
         }
 
+        string damageReducDesc = "";
+        if (m_gameTile.GetDamageReduction(this) > 0)
+        {
+            damageReducDesc = " (Reduced by " + m_gameTile.GetDamageReduction(this) + " from " + m_gameTile.GetName() + ")";
+        }
+
         if (m_curHealth <= 0)
         {
             Die();
         }
         else
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!" + damageReducDesc, false, m_gameTile.GetWorldTile().gameObject);
         }
 
         return damage;
@@ -190,12 +196,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual int CalculateDamageAmount(int damage)
     {
-        bool ignoreTileDamageReduction = false;
-
-        if (!ignoreTileDamageReduction)
-        {
-            damage -= m_gameTile.GetDamageReduction(this);
-        }
+        damage -= m_gameTile.GetDamageReduction(this);
 
         GameBrittleKeyword brittleKeyword = m_keywordHolder.GetKeyword<GameBrittleKeyword>();
         if (brittleKeyword != null)
