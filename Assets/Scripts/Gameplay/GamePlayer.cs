@@ -67,8 +67,6 @@ public class GamePlayer : ITurns
         ResetCurDeck();
 
         m_curDeck.Shuffle();
-
-        //DrawHand();
     }
 
     public void DrawHand()
@@ -98,7 +96,6 @@ public class GamePlayer : ITurns
 
         if (card != null) //This can be null if the deck and discard are both empty
         {
-
             card.OnDraw();
 
             if (triggerKnowledgeable)

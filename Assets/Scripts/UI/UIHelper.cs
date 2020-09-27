@@ -379,15 +379,26 @@ public static class UIHelper
 
     public static void CreateWalletWorldElementNotification(int goldToAdd)
     {
-        GameObject walletObj = GameObject.Find("Wallet");
+        GameObject walletObj = GameObject.Find("WalletNotifier");
 
         if (walletObj == null)
         {
             return;
         }
 
-        UIWallet uiWallet = walletObj.GetComponent<UIWallet>();
-        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, uiWallet.gameObject);
+        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, walletObj);
+    }
+
+    public static void CreateDeckWorldElementNotification(string message)
+    {
+        GameObject deckObj = GameObject.Find("DeckNotifier");
+
+        if (deckObj == null)
+        {
+            return;
+        }
+
+        CreateWorldElementNotification(message, true, deckObj);
     }
 
     public static void CreateWorldElementNotification(string message, bool isPositive, GameObject positionObj)
