@@ -649,7 +649,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         m_keywordHolder.m_keywords.Add(newKeyword);
 
-        if (!HasCustomName())
+        if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword))
         {
             SetCustomName();
         }
@@ -1004,6 +1004,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     protected void SetCustomName()
     {
+        if (GetTeam() == Team.Enemy)
+        {
+            return;
+        }
+
         m_customName = GameNamesFactory.GetCustomEntityName(m_typeline);
     }
 

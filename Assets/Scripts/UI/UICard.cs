@@ -119,6 +119,7 @@ public class UICard : MonoBehaviour
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        Globals.m_canScroll = false;
         m_isHovered = true;
 
         if (Globals.m_selectedCard != this)
@@ -130,6 +131,7 @@ public class UICard : MonoBehaviour
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
+        Globals.m_canScroll = true;
         m_isHovered = false;
 
         if (Globals.m_selectedCard != this)

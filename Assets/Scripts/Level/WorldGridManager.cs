@@ -20,7 +20,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()
