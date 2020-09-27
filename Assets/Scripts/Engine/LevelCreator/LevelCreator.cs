@@ -166,9 +166,9 @@ public class LevelCreator : MonoBehaviour
         m_saveFileNotifier.text = "Save File: " + (pathIndex + 1);
 
 #if UNITY_EDITOR
-        string path = Path.Combine(Constants.EDITOR_PATH, dataPaths[pathIndex]);
+        string path = Path.Combine(GameFiles.EDITOR_PATH, dataPaths[pathIndex]);
 #else
-        string path = Path.Combine(Constants.BUILD_PATH, dataPaths[pathIndex]);
+        string path = Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]);
 #endif
 
         if (!File.Exists(path))
@@ -187,9 +187,9 @@ public class LevelCreator : MonoBehaviour
     {
         string jsonGridData = WorldGridManager.Instance.SaveToJsonAsString();
 #if UNITY_EDITOR
-        File.WriteAllText(Path.Combine(Constants.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
+        File.WriteAllText(Path.Combine(GameFiles.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
 #else
-        File.WriteAllText(Path.Combine(Constants.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
+        File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
 #endif
 
         List<JsonMapMetaData> jsonMapMetaData = Globals.LoadMapMetaData();

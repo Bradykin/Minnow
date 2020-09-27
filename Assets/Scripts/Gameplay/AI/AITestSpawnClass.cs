@@ -35,7 +35,8 @@ public class AITestSpawnClass : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.H))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentCurseOfInactionCard()), true);
+                GameFiles.ClearPlayerSaveData();
+                GameHelper.GetGameController().GamePlayerSaveData = new GamePlayerSaveData();
             }
 
             if (Input.GetKeyDown(KeyCode.O))

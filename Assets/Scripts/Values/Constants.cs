@@ -77,18 +77,6 @@ public static class Constants
     public static int RuinsDamageReduction = 0;
     public static int RuinsMovementCost = 2;
 
-    //Save related file path data
-    public const string REMOTE_DATA_PATH = "RemoteData";
-    public const string ADD_TO_BUILD_PATH = "AddToBuild";
-    public const string BUILD_DATA_PATH = "BuildData";
-    public const string MAP_META_DATA_PATH = "SaveMetaData.txt";
-    public const string DEFAULT_GRID_DATA_PATH = "JsonGridData0.txt";
-
-
-    //private static string DATA_FOLDER = $"{}_Data";
-    public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
-    public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
-
     public static int GetWaveLength (int waveNum)
     {
         return WaveLength[waveNum - 1];

@@ -61,9 +61,9 @@ public static class Globals
             Init();
 
 #if UNITY_EDITOR
-        string path = Path.Combine(Constants.EDITOR_PATH, Constants.MAP_META_DATA_PATH);
+        string path = Path.Combine(GameFiles.EDITOR_PATH, GameFiles.MAP_META_DATA_PATH);
 #else
-        string path = Path.Combine(Constants.BUILD_PATH, Constants.MAP_META_DATA_PATH);
+        string path = Path.Combine(GameFiles.BUILD_PATH, GameFiles.MAP_META_DATA_PATH);
 #endif
 
         if (!File.Exists(path))
@@ -87,9 +87,9 @@ public static class Globals
             Init();
 
 #if UNITY_EDITOR
-        string path = Path.Combine(Constants.EDITOR_PATH + Constants.MAP_META_DATA_PATH);
+        string path = Path.Combine(GameFiles.EDITOR_PATH + GameFiles.MAP_META_DATA_PATH);
 #else
-        string path = Path.Combine(Constants.BUILD_PATH + Constants.MAP_META_DATA_PATH);
+        string path = Path.Combine(GameFiles.BUILD_PATH + GameFiles.MAP_META_DATA_PATH);
 #endif
 
         jsonMapMetaData = jsonMapMetaData.OrderBy(j => j.mapID).ToList();

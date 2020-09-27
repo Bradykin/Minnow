@@ -339,4 +339,12 @@ public class WorldController : Singleton<WorldController>
     {
         m_hasSpawnedBoss = newVal;
     }
+
+    public void OnApplicationQuit()
+    {
+        if (m_gameController != null)
+        {
+            GameFiles.ExportPlayerSaveData(m_gameController.GamePlayerSaveData);
+        }
+    }
 }

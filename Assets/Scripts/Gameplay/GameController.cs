@@ -10,6 +10,24 @@ public class GameController
     public GameOpponent m_gameOpponent;
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
 
+
+    public GamePlayerSaveData GamePlayerSaveData
+    {
+        get
+        {
+            if (m_gamePlayerSaveData == null)
+            {
+                m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
+            }
+            return m_gamePlayerSaveData;
+        }
+        set
+        {
+            m_gamePlayerSaveData = value;
+        }
+    }
+    private GamePlayerSaveData m_gamePlayerSaveData;
+
     private bool ShouldStartIntermission => m_currentTurn == m_player && m_currentWaveTurn > m_currentWaveEndTurn && m_waveNum != Constants.FinalWaveNum;
 
     private int m_currentTurnIndex = 0;
@@ -31,6 +49,9 @@ public class GameController
         m_waveNum = 1;
         m_currentWaveTurn = 1;
         m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
+
+        m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
+        m_gamePlayerSaveData.m_numPlaySessions++;
     }
 
     public void LateInit()

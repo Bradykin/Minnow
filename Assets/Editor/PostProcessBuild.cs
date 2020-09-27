@@ -12,10 +12,10 @@ namespace Game.Util
         {
             var buildDirectory = new DirectoryInfo(pathToBuiltProject).Parent;
 
-            var dataDirectory = Path.Combine(buildDirectory.FullName, Constants.BUILD_PATH);
-            Debug.Log($"Moving files from {Constants.EDITOR_PATH} to {buildDirectory}");
+            var dataDirectory = Path.Combine(buildDirectory.FullName, GameFiles.BUILD_PATH);
+            Debug.Log($"Moving files from {GameFiles.EDITOR_PATH} to {buildDirectory}");
 
-            var editorDirectory = new DirectoryInfo(Constants.EDITOR_PATH);
+            var editorDirectory = new DirectoryInfo(GameFiles.EDITOR_PATH);
             var files = editorDirectory.GetFiles("*.txt");
 
 
