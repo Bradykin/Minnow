@@ -69,6 +69,6 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     {
         int waveNum = GameHelper.GetGameController().m_waveNum;
 
-        return waveNum * 5;
+        return waveNum * 3;
     }
 }
