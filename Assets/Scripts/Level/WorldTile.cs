@@ -233,6 +233,28 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 selectedEntity.MoveTo(GetGameTile());
             }
+            else
+            {
+                if (GetGameTile().IsPassable(selectedEntity.GetEntity(), false))
+                {
+                    int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetEntity().GetGameTile(), GetGameTile(), true, false, true);
+                    if (pathLength == 1)
+                    {
+                        UIHelper.CreateWorldElementNotification("Can't move, requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " AP.", false, gameObject);
+                    }
+                    else
+                    {
+                        UIHelper.CreateWorldElementNotification("Out of movement range.", false, gameObject);
+                    }
+                }
+                else
+                {
+                    if (!GetGameTile().IsOccupied())
+                    {
+                        UIHelper.CreateWorldElementNotification(GetGameTile().GetName() + " is impassable.", false, gameObject);
+                    }
+                }
+            }
         }
 
         GameBuildingIntermission selectedBuilding = Globals.m_selectedIntermissionBuilding;
