@@ -27,7 +27,6 @@ public static class UIHelper
     public static Color m_attackColor = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
-    public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
     public static Color m_playerColor = new Color(Color.cyan.r, Color.blue.g, Color.blue.b, 1f);
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);

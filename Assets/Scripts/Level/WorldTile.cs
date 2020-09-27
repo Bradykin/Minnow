@@ -99,7 +99,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 } 
                 else if (Globals.m_selectedCard != null)
                 {
-                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
+                    if (!Globals.m_inIntermission)
+                    {
+                        m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
+                    }
                 }
                 else if (Globals.m_selectedIntermissionBuilding != null)
                 {
@@ -112,7 +115,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else
             {
-                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
+                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && !Globals.m_inIntermission)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
@@ -123,6 +126,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isAttackable)
                 {
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
+                }
+                else if (Globals.m_selectedIntermissionBuilding != null && 
+                    Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain()) && 
+                    !GetGameTile().HasAvailableEvent() &&
+                    !GetGameTile().m_isFog)
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
                 else
                 {
@@ -287,36 +297,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     {
         m_isHovered = false;
     }
-
-    //TODO: nmartino - Move these to world element notifications
-    /*public override void HandleTooltip()
-    {
-        if (Globals.m_selectedCard != null)
-        {
-            if (!Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()))
-            {
-                string titleText = "Can't Place";
-                GameCardEntityBase entityCard = null;
-                if (Globals.m_selectedCard.m_card is GameCardEntityBase)
-                {
-                    entityCard = (GameCardEntityBase)Globals.m_selectedCard.m_card;
-                }
-
-                if (Globals.m_selectedCard.m_card is GameCardEntityBase && !GetGameTile().m_canPlace && GetGameTile().IsPassable(entityCard.GetEntity(), false))
-                {
-                     UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Placement is too far away from buildings that extend range.", false));
-                }
-                else if (GetGameTile().m_canPlace && entityCard != null && !GetGameTile().IsPassable(entityCard.GetEntity(), false))
-                {
-                    UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Impassable terrain.", false));
-                }
-                else if (GetGameTile().IsOccupied())
-                {
-                    UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(titleText, "Tile already occupied.", false));
-                }
-            }
-        }
-    }*/
 
     public void ClearFog()
     {
