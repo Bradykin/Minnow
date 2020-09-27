@@ -116,9 +116,6 @@ public class UIEntity : MonoBehaviour
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetEntity()))
             {
-                //Keep an eye on this if playing cards on units, particularly ones that draw cards like blood sac, do some weird behaviour .I modified this from:
-                //                  Globals.m_selectedCard.m_card.PlayCard(GetEntity());
-                //                  WorldController.Instance.PlayCard(Globals.m_selectedCard, this);
                 UICard card = Globals.m_selectedCard;
                 WorldController.Instance.PlayCard(Globals.m_selectedCard);
                 card.m_card.PlayCard(GetEntity());
@@ -143,7 +140,21 @@ public class UIEntity : MonoBehaviour
         }
         else if (GetEntity().GetTeam() == Team.Enemy)
         {
-            UIHelper.SelectEnemy(this);
+            if (Globals.m_selectedEntity != null)
+            {
+                if (!Globals.m_selectedEntity.GetEntity().IsInRangeOfEntity(GetEntity()))
+                {
+                    UIHelper.CreateWorldElementNotification("Out of range.", false, GetEntity().m_uiEntity.gameObject);
+                }
+                else if (!Globals.m_selectedEntity.GetEntity().HasAPToAttack())
+                {
+                    UIHelper.CreateWorldElementNotification("Requires " + GetEntity().GetAPToAttack() + " AP to attack.", false, GetEntity().m_uiEntity.gameObject);
+                }
+            }
+            else
+            {
+                UIHelper.SelectEnemy(this);
+            }
         }
     }
 
