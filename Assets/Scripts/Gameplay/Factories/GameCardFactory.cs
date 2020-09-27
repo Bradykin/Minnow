@@ -117,7 +117,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentOverchargeCard());
         m_cards.Add(new ContentPhalanxCard());
         m_cards.Add(new ContentPurgeCard());
-        m_cards.Add(new ContentRainOfShivsCard());
         m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentRoarOfVictoryCard());
         m_cards.Add(new ContentRunicBladeCard());
