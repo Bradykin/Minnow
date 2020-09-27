@@ -27,7 +27,6 @@ public static class UIHelper
     public static Color m_attackColor = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
 
     public static Color m_playerColorTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.2f);
-    public static Color m_canPlaceTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.6f);
     public static Color m_playerColor = new Color(Color.cyan.r, Color.blue.g, Color.blue.b, 1f);
     public static Color m_enemyColorTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
     public static Color m_enemyColor = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
@@ -379,15 +378,26 @@ public static class UIHelper
 
     public static void CreateWalletWorldElementNotification(int goldToAdd)
     {
-        GameObject walletObj = GameObject.Find("Wallet");
+        GameObject walletObj = GameObject.Find("WalletNotifier");
 
         if (walletObj == null)
         {
             return;
         }
 
-        UIWallet uiWallet = walletObj.GetComponent<UIWallet>();
-        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, uiWallet.gameObject);
+        CreateWorldElementNotification("+" + goldToAdd + " gold!", true, walletObj);
+    }
+
+    public static void CreateDeckWorldElementNotification(string message)
+    {
+        GameObject deckObj = GameObject.Find("DeckNotifier");
+
+        if (deckObj == null)
+        {
+            return;
+        }
+
+        CreateWorldElementNotification(message, true, deckObj);
     }
 
     public static void CreateWorldElementNotification(string message, bool isPositive, GameObject positionObj)

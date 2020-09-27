@@ -31,6 +31,7 @@ public class UISelectorButton : UIElementBase
     public void OnPointerClick(PointerEventData eventData)
     {
         UIIntermissionController.Instance.SetSelectorType(m_selectorType);
+        Globals.m_selectedIntermissionBuilding = null;
     }
 
     public override void HandleTooltip()

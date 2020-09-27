@@ -11,7 +11,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 
-        m_maxHealth = 150;
+        m_maxHealth = 90;
 
         m_expandsPlaceRange = false;
 

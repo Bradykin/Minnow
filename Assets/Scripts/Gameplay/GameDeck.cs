@@ -129,6 +129,7 @@ public class GameDeck
 
         if (m_cards.Count == 0) //This means that both the deck and the discard are empty
         {
+            UIHelper.CreateDeckWorldElementNotification("No cards left.");
             return null;
         }
 

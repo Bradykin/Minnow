@@ -54,7 +54,14 @@ public class GameIntermissionActionController
 
         if (HasBuilding())
         {
-            Globals.m_selectedIntermissionBuilding = m_building;
+            if (Globals.m_selectedIntermissionBuilding == m_building)
+            {
+                Globals.m_selectedIntermissionBuilding = null;
+            }
+            else
+            {
+                Globals.m_selectedIntermissionBuilding = m_building;
+            }
         }
 
         if (HasAction())
