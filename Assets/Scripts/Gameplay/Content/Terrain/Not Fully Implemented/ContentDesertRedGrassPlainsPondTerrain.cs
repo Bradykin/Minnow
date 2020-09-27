@@ -9,7 +9,6 @@ public class ContentDesertRedGrassPlainsPondTerrain : GameTerrainBase
         m_name = "DesertRedGrassPlainsPond";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = Random.Range(1, 3);
-        m_color = Color.white;
 
         m_isPassable = true;
         m_costToPass = 1;

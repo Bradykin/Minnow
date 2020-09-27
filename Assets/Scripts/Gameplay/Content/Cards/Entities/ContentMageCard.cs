@@ -8,9 +8,10 @@ public class ContentMageCard : GameCardEntityBase
     {
         m_entity = new ContentMage();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Still learning, but soon a force to be reckoned with!";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

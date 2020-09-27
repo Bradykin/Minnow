@@ -9,13 +9,15 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_spellEffect = 2;
 
         m_name = "Marked for Death";
-        m_playDesc = "The target gets a jolt of energy!";
         m_targetType = Target.Enemy;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override string GetDesc()

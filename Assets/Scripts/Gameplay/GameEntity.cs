@@ -839,7 +839,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return toReturn;
     }
 
-    public override Color GetColor()
+    public Color GetColor()
     {
         if (GetTeam() == Team.Player)
         {

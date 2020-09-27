@@ -8,9 +8,10 @@ public class ContentHomonculusCard : GameCardEntityBase
     {
         m_entity = new ContentHomonculus();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Are we sure this is a good idea?";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.APRegen);
     }
 }

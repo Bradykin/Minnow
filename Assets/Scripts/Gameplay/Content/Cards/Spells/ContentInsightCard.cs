@@ -9,12 +9,15 @@ public class ContentInsightCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Insight";
-        m_playDesc += "Spellcraft is done here...";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override string GetDesc()

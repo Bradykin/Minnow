@@ -9,12 +9,15 @@ public class ContentCureWoundsCard : GameCardSpellBase
         m_spellEffect = 12;
 
         m_name = "Cure Wounds";
-        m_playDesc = "A stream of healing restores the troops!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tags.AddTag(GameTag.TagType.Enrage);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
     }
 
     public override string GetDesc()

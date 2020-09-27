@@ -13,7 +13,6 @@ public class ContentScrublandPlainsTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 5;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber);
-        m_color = Color.white;
 
         m_isPassable = true;
         m_isPlains = true;

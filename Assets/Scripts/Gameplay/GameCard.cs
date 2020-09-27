@@ -14,13 +14,13 @@ public abstract class GameCard : GameElementBase
         None //This is used for spells like 'Draw 3'
     }
 
-    protected int m_cost { set; private get; }
+    protected int m_cost;
     protected int m_costTempModifier = 0;
     public string m_typeline;
-    public string m_playDesc;
     public Target m_targetType;
     public bool m_shouldExile;
     public int m_unlockLevel;
+    public int m_storedTagWeight;
 
     public virtual string GetName()
     {

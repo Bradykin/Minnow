@@ -8,9 +8,13 @@ public class ContentGrasperCard : GameCardEntityBase
     {
         m_entity = new ContentGrasper();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Sluuuurp!";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

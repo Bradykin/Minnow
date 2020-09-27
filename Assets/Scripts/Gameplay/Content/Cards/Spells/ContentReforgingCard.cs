@@ -8,12 +8,14 @@ public class ContentReforgingCard : GameCardSpellBase
     {
         m_name = "Reforging";
         m_desc = "Return a random ally creation unit which has died this wave to your hand.";
-        m_playDesc = "Good as new!";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.Reanimate);
     }
 
     public override void PlayCard()

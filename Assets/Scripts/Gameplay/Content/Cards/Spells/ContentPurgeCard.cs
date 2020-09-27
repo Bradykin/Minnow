@@ -9,12 +9,14 @@ public class ContentPurgeCard : GameCardSpellBase
         m_spellEffect = 5;
         
         m_name = "Purge";
-        m_playDesc = "Purged!";
         m_targetType = Target.Entity;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override string GetDesc()

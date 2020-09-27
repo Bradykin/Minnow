@@ -9,7 +9,6 @@ public class ContentSnowPlainsPondTerrain : GameTerrainBase
         m_name = "SnowPlainsPond";
         m_desc = "Simple, no changes.";
         m_terrainImageNumber = 1;
-        m_color = Color.white;
 
         m_isPassable = true;
         m_costToPass = 1;

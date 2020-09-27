@@ -11,13 +11,15 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
     {
         m_name = "Tonic of Fortitude";
         m_desc = "Target friendly entity gets +" + m_healthGain + " health and +" + m_apGain + " current action points.";
-        m_playDesc = "The target is infused with fortitude!";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Common;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.APRegen);
     }
 
     public override void PlayCard(GameEntity targetEntity)

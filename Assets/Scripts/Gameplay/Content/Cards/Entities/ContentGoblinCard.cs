@@ -8,9 +8,10 @@ public class ContentGoblinCard : GameCardEntityBase
     {
         m_entity = new ContentGoblin();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "A dubious goblin joins the fray on your side!  Yay...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

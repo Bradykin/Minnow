@@ -8,9 +8,10 @@ public class ContentDevourerCard : GameCardEntityBase
     {
         m_entity = new ContentDevourer();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "Vicious bites and a wild massacre mark its passage.";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

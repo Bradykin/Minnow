@@ -8,9 +8,10 @@ public class ContentDemonSoldierCard : GameCardEntityBase
     {
         m_entity = new ContentDemonSoldier();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "The flapping of wings high above is often the final sound mortals hear.";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Explorer);
     }
 }

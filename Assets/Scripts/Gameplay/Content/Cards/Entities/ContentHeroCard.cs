@@ -8,9 +8,10 @@ public class ContentHeroCard : GameCardEntityBase
     {
         m_entity = new ContentHero();
 
+        m_cost = 4;
+
         FillBasicData();
 
-        m_playDesc = "Fear not, a hero has arrived.";
-        m_cost = 4;
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

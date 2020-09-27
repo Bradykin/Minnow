@@ -11,12 +11,14 @@ public class ContentFirestormCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Firestorm";
-        m_playDesc = "Raining fire!";
         m_targetType = Target.Entity;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
     }
 
     public override string GetDesc()

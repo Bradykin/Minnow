@@ -8,12 +8,15 @@ public class ContentEncouragementCard : GameCardSpellBase
     {
         m_name = "Encouragement";
         m_desc = "Deal 1 damage to target ally monster, then give them +3 maximum health.";
-        m_playDesc = "Sometimes pain is a good teacher.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)

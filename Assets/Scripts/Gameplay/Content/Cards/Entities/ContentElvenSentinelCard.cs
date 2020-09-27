@@ -8,9 +8,12 @@ public class ContentElvenSentinelCard : GameCardEntityBase
     {
         m_entity = new ContentElvenSentinel();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "A young marksman.  With training, he could be fierce!";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

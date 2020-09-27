@@ -8,9 +8,11 @@ public class ContentMinerCard : GameCardEntityBase
     {
         m_entity = new ContentMiner();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Hi ho, hi ho!  It's off to...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Gold);
+        m_tags.AddTag(GameTag.TagType.Mountain);
     }
 }

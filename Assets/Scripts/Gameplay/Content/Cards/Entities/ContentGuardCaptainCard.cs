@@ -8,9 +8,10 @@ public class ContentGuardCaptainCard : GameCardEntityBase
     {
         m_entity = new ContentGuardCaptain();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "With a single shout, the troops respond with renewed vigor!";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.APRegen);
     }
 }

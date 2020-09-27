@@ -14,7 +14,6 @@ public class ContentWaterTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_color = Color.blue;
 
         m_isWater = true;
 

@@ -311,9 +311,35 @@ public static class GameCardFactory
             }
         }
 
-        int r = UnityEngine.Random.Range(0, finalList.Count);
+        //Use the tag weights + randomization to get the correct card here.
+        int totalWeight = 0;
+        for (int i = 0; i < finalList.Count; i++)
+        {
+            int tagWeight = GameTag.GetTagValueFor(finalList[i]);
+            if (tagWeight > 0)
+            {
+                finalList[i].m_storedTagWeight = tagWeight + totalWeight;
+                totalWeight += tagWeight;
+            }
+            else
+            {
+                finalList.RemoveAt(i);
+                i--;
+            }
+        }
 
-        return GetCardClone(finalList[r]);
+        int r = UnityEngine.Random.Range(0, totalWeight);
+
+        for (int i = 0; i < finalList.Count; i++)
+        {
+            if (r <= finalList[i].m_storedTagWeight)
+            {
+                return GetCardClone(finalList[i]);
+            }
+        }
+
+        Debug.LogError("Failed to find any card when trying get one (likely caused by tag weighting issues).");
+        return null;
     }
 
     public static GameCardEntityBase GetCardFromEntity(GameEntity entity)

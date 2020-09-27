@@ -9,12 +9,18 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Blood Sacrifice";
-        m_playDesc = "The sacrifice was for greater power...";
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Rare;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Creation);
     }
 
     public override string GetDesc()

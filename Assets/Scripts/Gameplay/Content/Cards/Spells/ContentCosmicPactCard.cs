@@ -8,13 +8,17 @@ public class ContentCosmicPactCard : GameCardSpellBase
     {
         m_name = "Cosmic Pact";
         m_desc = "For the rest of this wave, all spells in your current hand cost 1 less.";
-        m_playDesc = "You draw some cards!";
         m_targetType = Target.None;
         m_cost = 3;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
     }
 
     public override void PlayCard()

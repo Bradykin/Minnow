@@ -8,9 +8,8 @@ public class ContentStoneGolemCard : GameCardEntityBase
     {
         m_entity = new ContentStoneGolem();
 
-        FillBasicData();
-
-        m_playDesc = "Stone stands unbreaking.";
         m_cost = 2;
+
+        FillBasicData();
     }
 }

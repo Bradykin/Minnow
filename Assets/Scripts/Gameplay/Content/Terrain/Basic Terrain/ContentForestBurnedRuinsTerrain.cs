@@ -13,7 +13,6 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
-        m_color = Color.green;
 
         m_isPassable = true;
         m_isForest = true;

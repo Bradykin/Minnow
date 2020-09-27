@@ -8,12 +8,14 @@ public class ContentDemoralizeCard : GameCardSpellBase
     {
         m_name = "Demoralize";
         m_desc = "Set an entities AP to 2.";
-        m_playDesc = "The target gets drained!";
         m_targetType = Target.Entity;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
     public override void PlayCard(GameEntity targetEntity)

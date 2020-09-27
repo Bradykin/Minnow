@@ -11,7 +11,6 @@ public class ContentDesertYellowMesaLargeTerrain : GameTerrainBase
         m_name = "DesertYellowMesaLarge";
         m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 3);
-        m_color = Color.red;
 
         m_isPassable = false;
         m_costToPass = 2;

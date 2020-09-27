@@ -10,12 +10,16 @@ public class ContentAssassinationContractCard : GameCardSpellBase
     {
         m_name = "Assassination Contract";
         m_desc = "Add " + m_shivAmount + " shivs to your hand.";
-        m_playDesc = "I'll take that mark...";
         m_targetType = Target.None;
         m_cost = 2;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override void PlayCard()

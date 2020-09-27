@@ -8,9 +8,13 @@ public class ContentOverlordCard : GameCardEntityBase
     {
         m_entity = new ContentOverlord();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "So many eyeballs...";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Explorer);
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

@@ -8,9 +8,12 @@ public class ContentSabobotCard : GameCardEntityBase
     {
         m_entity = new ContentSabobot();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "One shot is all it needs!";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.Explorer);
+        m_tags.AddTag(GameTag.TagType.MaxAP);
     }
 }

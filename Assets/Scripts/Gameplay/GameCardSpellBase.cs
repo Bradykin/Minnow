@@ -14,6 +14,26 @@ public class GameCardSpellBase : GameCard
         }
         m_typeline += "Spell - " + m_targetType.ToString();
         m_icon = UIHelper.GetIconCard(m_name);
+
+        AddBasicTags();
+    }
+
+    private void AddBasicTags()
+    {
+        if (m_shouldExile)
+        {
+            m_tags.AddTag(GameTag.TagType.Exile);
+        }
+
+        if (m_cost >= 2)
+        {
+            m_tags.AddTag(GameTag.TagType.HighCost);
+        }
+
+        if (m_cost == 0)
+        {
+            m_tags.AddTag(GameTag.TagType.LowCost);
+        }
     }
 
     protected virtual int GetSpellValue()

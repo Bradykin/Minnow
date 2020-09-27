@@ -8,9 +8,11 @@ public class ContentInjuredTrollCard : GameCardEntityBase
     {
         m_entity = new ContentInjuredTroll();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "This troll may be injured for now, but it will soon be full strength and mighty!";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

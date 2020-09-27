@@ -8,9 +8,12 @@ public class ContentWildfolkCard : GameCardEntityBase
     {
         m_entity = new ContentWildfolk();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "Poof!  Wiz!  Zabang!";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.APRegen);
     }
 }

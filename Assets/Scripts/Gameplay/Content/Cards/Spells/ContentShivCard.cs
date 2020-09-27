@@ -9,13 +9,14 @@ public class ContentShivCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Shiv";
-        m_playDesc = "The target is shivved!";
         m_targetType = Target.Entity;
         m_cost = 0;
         m_rarity = GameRarity.Event;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Shiv);
     }
 
     public override string GetDesc()

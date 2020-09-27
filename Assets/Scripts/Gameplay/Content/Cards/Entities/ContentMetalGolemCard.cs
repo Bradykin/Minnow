@@ -8,9 +8,12 @@ public class ContentMetalGolemCard : GameCardEntityBase
     {
         m_entity = new ContentMetalGolem();
 
+        m_cost = 3;
+
         FillBasicData();
 
-        m_playDesc = "Does it look hungry to anyone else?";
-        m_cost = 3;
+        m_tags.AddTag(GameTag.TagType.Mountain);
+        m_tags.AddTag(GameTag.TagType.DamageShield);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

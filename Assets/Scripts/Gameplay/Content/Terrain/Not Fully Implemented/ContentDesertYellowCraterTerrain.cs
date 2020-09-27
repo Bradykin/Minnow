@@ -9,7 +9,6 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
         m_name = "DesertYellowCrater";
         m_desc = "2 AP movement.";
         m_terrainImageNumber = 1;
-        m_color = Color.green;
 
         m_isPassable = true;
         m_costToPass = 2;

@@ -8,9 +8,11 @@ public class ContentGroundskeeperCard : GameCardEntityBase
     {
         m_entity = new ContentGroundskeeper();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "A mighty tree; unwavering in its defense.";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

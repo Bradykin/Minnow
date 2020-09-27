@@ -8,9 +8,12 @@ public class ContentFishOracleCard : GameCardEntityBase
     {
         m_entity = new ContentFishOracle();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Reading the bones tells either truths or lies...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

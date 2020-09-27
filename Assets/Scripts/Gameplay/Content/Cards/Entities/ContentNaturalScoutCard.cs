@@ -8,9 +8,10 @@ public class ContentNaturalScoutCard : GameCardEntityBase
     {
         m_entity = new ContentNaturalScout();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "This thing is so quick; it's wild!";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Explorer);
     }
 }

@@ -8,9 +8,10 @@ public class ContentCyclopsCard : GameCardEntityBase
     {
         m_entity = new ContentCyclops();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Slow and steady...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

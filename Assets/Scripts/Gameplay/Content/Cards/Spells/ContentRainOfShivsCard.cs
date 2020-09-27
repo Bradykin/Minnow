@@ -8,12 +8,16 @@ public class ContentRainOfShivsCard : GameCardSpellBase
     {
         m_name = "Rain of Shivs";
         m_desc = "Add three shivs to your hand.";
-        m_playDesc = "Three shivs are better then one!";
         m_targetType = Target.None;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override void PlayCard()

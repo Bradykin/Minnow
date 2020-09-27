@@ -9,12 +9,15 @@ public class ContentArcaneBoltCard : GameCardSpellBase
         m_spellEffect = 3;
 
         m_name = "Arcane Bolt";
-        m_playDesc = "BOOM!";
         m_targetType = Target.Enemy;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
     public override string GetDesc()

@@ -8,9 +8,12 @@ public class ContentSkeletonCard : GameCardEntityBase
     {
         m_entity = new ContentSkeleton();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "It rises from the grave again and again...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 }

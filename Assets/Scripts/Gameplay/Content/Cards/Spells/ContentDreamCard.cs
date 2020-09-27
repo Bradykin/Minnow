@@ -9,12 +9,15 @@ public class ContentDreamCard : GameCardSpellBase
         m_spellEffect = 2;
 
         m_name = "Dream";
-        m_playDesc = "You draw some cards!";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.LowCost);
     }
 
     public override string GetDesc()

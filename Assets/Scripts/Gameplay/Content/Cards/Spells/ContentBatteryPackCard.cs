@@ -9,12 +9,15 @@ public class ContentBatteryPackCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Battery Pack";
-        m_playDesc = "Charging up!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
     public override string GetDesc()

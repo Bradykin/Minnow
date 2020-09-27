@@ -9,7 +9,6 @@ public class ContentFireboltCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Firebolt";
-        m_playDesc = "The foe is blasted!";
         m_targetType = Target.Entity;
         m_cost = 1;
         m_rarity = GameRarity.Starter;

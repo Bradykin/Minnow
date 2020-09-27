@@ -11,7 +11,6 @@ public class ContentDesertRedForestPondTerrain : GameTerrainBase
         m_name = "DesertRedForestPond";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 3);
-        m_color = Color.green;
 
         m_isPassable = true;
         m_costToPass = 2;

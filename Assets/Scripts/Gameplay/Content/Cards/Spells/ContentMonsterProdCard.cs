@@ -8,13 +8,18 @@ public class ContentMonsterProdCard : GameCardSpellBase
     {
         m_name = "Monster Prod";
         m_desc = "Target ally monster gets Enrage: Gain 1 AP.";
-        m_playDesc = "Every monster needs a push once in a while.";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Enrage);
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)

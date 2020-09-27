@@ -8,12 +8,16 @@ public class ContentMechanizeCard : GameCardSpellBase
     {
         m_name = "Mechanize";
         m_desc = "Target ally creation loses all current AP and gains an equal amount of power.";
-        m_playDesc = "Charging up!";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)

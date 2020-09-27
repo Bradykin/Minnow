@@ -10,7 +10,6 @@ public class ContentAegisCard : GameCardSpellBase
     {
         m_name = "Aegis";
         m_desc = "Give target ally " + m_amount + " damage shield.";
-        m_playDesc = "Shields up!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Starter;

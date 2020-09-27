@@ -13,12 +13,14 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         m_spellEffect = 12;
 
         m_name = "Necromantic Touch";
-        m_playDesc = "Zaaaaam!";
         m_targetType = Target.Entity;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override string GetDesc()

@@ -8,12 +8,16 @@ public class ContentBullheadedCard : GameCardSpellBase
     {
         m_name = "Bullheaded";
         m_desc = "Target ally monster gains Enrage: +1 power.";
-        m_playDesc = "Bulls are great role models!";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Enrage);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)

@@ -7,13 +7,16 @@ public class ContentRunicBladeCard : GameCardSpellBase
     public ContentRunicBladeCard()
     {
         m_name = "Runic Blade";
-        m_playDesc = "The blade shimmers with fire!";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Victorious);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
     }
 
     public override string GetDesc()

@@ -10,12 +10,18 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
     {
         m_name = "Legion of Blades";
         m_desc = "Discard your hand, and gain that many shivs. This turn, you gain " + m_goldGain + " gold whenever an enemy unit dies to a shiv.";
-        m_playDesc = "The blades draw near...";
         m_targetType = Target.None;
         m_cost = 2;
         m_rarity = GameRarity.Rare;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Gold);
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
     public override void PlayCard()

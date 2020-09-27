@@ -8,9 +8,11 @@ public class ContentShadowWarlockCard : GameCardEntityBase
     {
         m_entity = new ContentShadowWarlock();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "Dark powers form a figure out of the shadows!";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.APRegen);
     }
 }

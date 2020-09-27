@@ -8,9 +8,13 @@ public class ContentElvenWizardCard : GameCardEntityBase
     {
         m_entity = new ContentElvenWizard();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "A mighty wizard joins your cause.";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

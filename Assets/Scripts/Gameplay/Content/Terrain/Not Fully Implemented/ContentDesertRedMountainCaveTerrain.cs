@@ -11,7 +11,6 @@ public class ContentDesertRedMountainCaveTerrain : GameTerrainBase
         m_name = "DesertRedMountainCave";
         m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 5);
-        m_color = Color.red;
 
         m_isPassable = false;
         m_costToPass = 2;

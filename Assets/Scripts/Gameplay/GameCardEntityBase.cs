@@ -30,13 +30,68 @@ public class GameCardEntityBase : GameCard
         m_typeline = GetTypeline();
 
         m_shouldExile = true;
+
+        if (m_rarity != GameRarity.Starter)
+        {
+            AddBasicTags();
+        }
+    }
+
+    private void AddBasicTags()
+    {
+        if (GetEntity().GetTypeline() == Typeline.Humanoid)
+        {
+            m_tags.AddTag(GameTag.TagType.Humanoid);
+        }
+        if (GetEntity().GetTypeline() == Typeline.Monster)
+        {
+            m_tags.AddTag(GameTag.TagType.Monster);
+        }
+        if (GetEntity().GetTypeline() == Typeline.Creation)
+        {
+            m_tags.AddTag(GameTag.TagType.Creation);
+        }
+
+        if (GetEntity().GetKeyword<GameKnowledgeableKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        }
+        if (GetEntity().GetKeyword<GameVictoriousKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Victorious);
+        }
+        if (GetEntity().GetKeyword<GameEnrageKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Enrage);
+        }
+        if (GetEntity().GetKeyword<GameMomentumKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Momentum);
+        }
+        if (GetEntity().GetKeyword<GameRangeKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Range);
+        }
+        if (GetEntity().GetKeyword<GameSpellcraftKeyword>() != null)
+        {
+            m_tags.AddTag(GameTag.TagType.Spellcraft);
+        }
+
+        if (m_cost >= 2) //Not calling GetCost() here to avoid all temp modifiers
+        {
+            m_tags.AddTag(GameTag.TagType.HighCost);
+        }
+
+        if (m_cost == 0) //Not calling GetCost() here to avoid all temp modifiers
+        {
+            m_tags.AddTag(GameTag.TagType.LowCost);
+        }
     }
 
     public void InitEnemyCard()
     {
         FillBasicData();
 
-        m_playDesc = "Error: ENEMY ENTITY PLAYED?";
         m_cost = -1;
     }
 

@@ -8,9 +8,12 @@ public class ContentDwarfShivcasterCard : GameCardEntityBase
     {
         m_entity = new ContentDwarfShivcaster();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "When did magic become shiv related? Your guess is as good as mine.";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

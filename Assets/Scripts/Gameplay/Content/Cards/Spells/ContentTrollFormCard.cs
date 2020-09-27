@@ -9,13 +9,15 @@ public class ContentTrollFormCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Troll Form";
-        m_playDesc = "The target begins to regenerate!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override string GetDesc()

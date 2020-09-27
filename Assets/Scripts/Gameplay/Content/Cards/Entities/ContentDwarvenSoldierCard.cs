@@ -8,9 +8,8 @@ public class ContentDwarvenSoldierCard : GameCardEntityBase
     {
         m_entity = new ContentDwarvenSoldier();
 
-        FillBasicData();
-
-        m_playDesc = "Hi ho!  Hi ho, it's off to work we go!";
         m_cost = 1;
+
+        FillBasicData();
     }
 }

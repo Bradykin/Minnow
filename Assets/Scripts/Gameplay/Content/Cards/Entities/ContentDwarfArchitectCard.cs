@@ -8,9 +8,12 @@ public class ContentDwarfArchitectCard : GameCardEntityBase
     {
         m_entity = new ContentDwarfArchitect();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "Hammers ring through the air as the wheels of production are restored.";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.MaxAP);
     }
 }

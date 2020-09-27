@@ -11,7 +11,6 @@ public class ContentColdHillsCaveTerrain : GameTerrainBase
         m_name = "ColdHillsCave";
         m_desc = "3 AP movement.\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
         m_terrainImageNumber = 1;
-        m_color = Color.grey;
 
         m_isPassable = true;
         m_costToPass = 3;

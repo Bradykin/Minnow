@@ -11,7 +11,6 @@ public class ContentPineForestRuinsTerrain : GameTerrainBase
         m_name = "PineForestRuins";
         m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = 1;
-        m_color = Color.green;
 
         m_isPassable = true;
         m_costToPass = 2;

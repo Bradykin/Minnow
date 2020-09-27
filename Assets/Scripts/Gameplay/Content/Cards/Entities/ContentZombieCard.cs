@@ -8,9 +8,11 @@ public class ContentZombieCard : GameCardEntityBase
     {
         m_entity = new ContentZombie();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "A plague unpon this earth.";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

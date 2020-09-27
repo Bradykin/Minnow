@@ -8,9 +8,11 @@ public class ContentWandererCard : GameCardEntityBase
     {
         m_entity = new ContentWanderer();
 
+        m_cost = 2;
+
         FillBasicData();
 
-        m_playDesc = "He wanders in from a nearby land. With many shivs.";
-        m_cost = 2;
+        m_tags.AddTag(GameTag.TagType.Shiv);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

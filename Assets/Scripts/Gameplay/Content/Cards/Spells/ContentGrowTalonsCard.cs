@@ -9,7 +9,6 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         m_spellEffect = 2;
 
         m_name = "Grow Talons";
-        m_playDesc = "Talons grow, slish slash!";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Starter;

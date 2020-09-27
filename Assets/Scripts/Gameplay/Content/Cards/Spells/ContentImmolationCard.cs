@@ -11,12 +11,15 @@ public class ContentImmolationCard : GameCardSpellBase
         m_spellEffect = 5;
 
         m_name = "Immolation";
-        m_playDesc = "The foe is burned up!";
         m_targetType = Target.Enemy;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
     }
 
     public override string GetDesc()

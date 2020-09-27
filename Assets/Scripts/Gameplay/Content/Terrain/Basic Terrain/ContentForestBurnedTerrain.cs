@@ -13,7 +13,6 @@ public class ContentForestBurnedTerrain : GameTerrainBase
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
-        m_color = Color.grey;
 
         m_isPassable = true;
         m_isForest = true;

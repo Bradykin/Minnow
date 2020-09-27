@@ -12,12 +12,13 @@ public class ContentFossilizeCard : GameCardSpellBase
     {
         m_name = "Fossilize";
         m_desc = "Target enemy loses " + m_powerAmount + " power, " + m_apDrainAmount + " AP, and gains Brittle " + m_brittleAmount + ".";
-        m_playDesc = "Fossilized!";
         m_targetType = Target.Enemy;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
     public override void PlayCard(GameEntity targetEntity)

@@ -9,12 +9,16 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Ancient Texts";
-        m_playDesc += "Spellcraft is done here...";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
     }
 
     public override string GetDesc()

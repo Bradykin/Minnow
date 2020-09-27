@@ -8,9 +8,11 @@ public class ContentRaptorCard : GameCardEntityBase
     {
         m_entity = new ContentRaptor();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "Rawk.  Rawwwwk!";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

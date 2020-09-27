@@ -8,9 +8,11 @@ public class ContentConjuredImpCard : GameCardEntityBase
     {
         m_entity = new ContentConjuredImp();
 
+        m_cost = 0;
+
         FillBasicData();
 
-        m_playDesc = "With a poof and a giggle, a mighty imp appears.";
-        m_cost = 0;
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

@@ -8,9 +8,10 @@ public class ContentElvenRogueCard : GameCardEntityBase
     {
         m_entity = new ContentElvenRogue();
 
+        m_cost = 1;
+
         FillBasicData();
 
-        m_playDesc = "A rogue only grows stronger with experience...";
-        m_cost = 1;
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }
