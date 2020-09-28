@@ -36,7 +36,7 @@ public class AITestSpawnClass : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.H))
             {
                 GameFiles.ClearPlayerSaveData();
-                GameHelper.GetGameController().GamePlayerSaveData = new GamePlayerSaveData();
+                GameMetaProgression.GamePlayerSaveData = new GamePlayerSaveData();
             }
 
             if (Input.GetKeyDown(KeyCode.O))

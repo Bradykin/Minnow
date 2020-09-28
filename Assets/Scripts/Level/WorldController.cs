@@ -344,7 +344,7 @@ public class WorldController : Singleton<WorldController>
     {
         if (m_gameController != null)
         {
-            GameFiles.ExportPlayerSaveData(m_gameController.GamePlayerSaveData);
+            GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
         }
     }
 }

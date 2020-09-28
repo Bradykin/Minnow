@@ -2,17 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameMetaprogression
+public static class GameMetaProgression
 {
-    public static int m_curExp = 0;
+    public static GamePlayerSaveData GamePlayerSaveData
+    {
+        get
+        {
+            if (m_gamePlayerSaveData == null)
+            {
+                m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
+            }
+            return m_gamePlayerSaveData;
+        }
+        set
+        {
+            m_gamePlayerSaveData = value;
+        }
+    }
+    private static GamePlayerSaveData m_gamePlayerSaveData;
+
+    public static bool m_hasInit;
+
+    public static void Init()
+    {
+        m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
+        m_gamePlayerSaveData.m_numPlaySessions++;
+
+        m_hasInit = true;
+    }
 
     public static int GetCurLevel()
     {
-        return Mathf.FloorToInt((float)(m_curExp)/1000.0f);
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        return Mathf.FloorToInt((float)(GamePlayerSaveData.m_playerExperience)/1000.0f);
     }
 
     public static bool IsMapUnlocked(int mapId)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (mapId == 0)
         {
             return GetCurLevel() >= 1;
@@ -35,6 +70,11 @@ public static class GameMetaprogression
 
     public static bool IsCardUnlocked(GameCard card)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (card.m_unlockLevel <= GetCurLevel())
         {
             return true;
