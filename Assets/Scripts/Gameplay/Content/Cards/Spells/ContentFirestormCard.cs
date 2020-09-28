@@ -18,7 +18,8 @@ public class ContentFirestormCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Enrage);
     }
 
     public override string GetDesc()
