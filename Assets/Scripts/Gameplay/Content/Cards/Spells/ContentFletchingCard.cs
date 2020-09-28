@@ -15,6 +15,9 @@ public class ContentFletchingCard : GameCardSpellBase
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Range);
     }
 
     public override void PlayCard()

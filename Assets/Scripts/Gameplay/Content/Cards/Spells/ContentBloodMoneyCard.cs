@@ -14,11 +14,11 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_shouldExile = true;
 
         SetupBasicData();
-    }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
-    {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Monster;
+        m_tags.AddTag(GameTag.TagType.Gold);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.Enrage);
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 
     public override void PlayCard(GameEntity targetEntity)

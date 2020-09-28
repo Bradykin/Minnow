@@ -12,6 +12,9 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.LowCost);
     }
 
     public override string GetDesc()
