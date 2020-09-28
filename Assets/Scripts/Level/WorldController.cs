@@ -29,6 +29,12 @@ public class WorldController : Singleton<WorldController>
         if (Input.GetKeyUp(KeyCode.Q))
         {
             FocusPrevPlayerEntity();
+
+            for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledEntities.Count; i++)
+            {
+                GameEntity entity = m_gameController.m_gameOpponent.m_controlledEntities[i];
+                print("Player Entity: " + entity.GetName());
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.E))
