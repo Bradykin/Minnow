@@ -254,7 +254,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     }
                     else
                     {
-                        UIHelper.CreateWorldElementNotification("Out of movement range.", false, gameObject);
+                        if (GetGameTile().m_occupyingEntity != Globals.m_selectedEntity.GetEntity())
+                        {
+                            UIHelper.CreateWorldElementNotification("Out of movement range.", false, gameObject);
+                        }
                     }
                 }
                 else

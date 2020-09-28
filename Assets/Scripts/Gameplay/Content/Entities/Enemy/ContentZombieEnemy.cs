@@ -55,15 +55,22 @@ public class ContentZombieEnemy : GameEnemyEntity
 
     public override int HitEntity(GameEntity other, bool spendAP = true)
     {
-        GameEntity newZombie = new ContentZombie();
-        other.m_uiEntity.Init(newZombie);
-        GameHelper.GetPlayer().RemoveControlledEntity(other);
-        GameHelper.GetPlayer().AddControlledEntity(newZombie);
+        int damageTaken = 0;
+        if (!(other is ContentZombie))
+        {
+            GameEntity newZombie = new ContentZombie();
+            other.m_uiEntity.Init(newZombie);
+            GameHelper.GetPlayer().RemoveControlledEntity(other);
+            GameHelper.GetPlayer().AddControlledEntity(newZombie);
 
-        other.GetGameTile().SwapEntity(newZombie);
+            other.GetGameTile().SwapEntity(newZombie);
 
-
-        int damageTaken = base.HitEntity(newZombie, spendAP);
+            damageTaken = base.HitEntity(newZombie, spendAP);
+        }
+        else
+        {
+            damageTaken = base.HitEntity(other, spendAP);
+        }
 
         return damageTaken;
     }
