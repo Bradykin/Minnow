@@ -18,12 +18,14 @@ public class UICameraController : Singleton<UICameraController>, IReset
     private Vector3 m_startingTransform;
 
     private Vector3 m_smoothTarget;
+    private float m_smoothSpeed;
 
     void Start()
     {
         m_startingTransform = transform.position;
 
         m_smoothTarget = new Vector3(0,0,0);
+        m_smoothSpeed = m_cameraSpeed;
     }
 
     void Update()
@@ -39,7 +41,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
         }
         else if (m_smoothTarget != new Vector3(0,0,0))
         {
-            transform.position = Vector3.MoveTowards(transform.position, m_smoothTarget, m_cameraSpeed * Time.deltaTime * 3);
+            transform.position = Vector3.MoveTowards(transform.position, m_smoothTarget, m_smoothSpeed * Time.deltaTime);
         }
 
         HandleMovement();
@@ -50,6 +52,15 @@ public class UICameraController : Singleton<UICameraController>, IReset
     {
         Vector3 vec = new Vector3(obj.transform.position.x, obj.transform.position.y, -10.0f);
         m_smoothTarget = vec;
+
+        float dist = Vector3.Distance(transform.position, m_smoothTarget);
+
+        m_smoothSpeed = dist / 3.0f;
+
+        if (m_smoothSpeed <= m_cameraSpeed * 2.0f)
+        {
+            m_smoothSpeed = m_cameraSpeed * 2.0f;
+        }
     }
 
     public void SnapToGameObject(GameObject obj)
