@@ -15,7 +15,7 @@ public class ContentShadeEnemy : GameEnemyEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Shade";
-        m_desc = "Yep, it flies.";
+        m_desc = "";
 
         m_minWave = 4;
         m_maxWave = 4;

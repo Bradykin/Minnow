@@ -13,7 +13,7 @@ public class GameGainAPAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain AP";
-        m_desc = "+ " + m_toGain + " AP";
+        m_desc = "Gain " + m_toGain + " AP";
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 

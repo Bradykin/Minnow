@@ -18,7 +18,7 @@ public class ContentSnakeEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Snake";
-        m_desc = "It's venom permanently drains 2 power.";
+        m_desc = "On hit, permanently give -2/-0.";
 
         m_minWave = 4;
         m_maxWave = 4;

@@ -18,7 +18,7 @@ public class ContentSlimeEnemy : GameEnemyEntity
         m_maxWave = 2;
 
         m_name = "Slime";
-        m_desc = "The basic slime.  A classic.";
+        m_desc = "";
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

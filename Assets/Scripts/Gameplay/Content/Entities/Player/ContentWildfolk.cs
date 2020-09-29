@@ -28,7 +28,7 @@ public class ContentWildfolk : GameEntity
         m_rarity = GameRarity.Rare;
 
         m_name = "Wildfolk";
-        m_desc = "When summoned, gain a random keyword and +3 power and + 10 health.";
+        m_desc = "When summoned, gain a random keyword and +3/+10.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

@@ -10,7 +10,7 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
     public ContentTonicOfStrengthCard()
     {
         m_name = "Tonic of Strength";
-        m_desc = "Target friendly entity gets +" + m_powerToGain + " power and +" + m_apGain + " current action points.";
+        m_desc = "Target allied unit gain +" + m_powerToGain + "/+0 and +" + m_apGain + " AP.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;

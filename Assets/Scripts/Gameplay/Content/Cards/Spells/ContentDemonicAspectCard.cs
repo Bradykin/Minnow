@@ -7,7 +7,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
     public ContentDemonicAspectCard()
     {
         m_name = "Demonic Aspect";
-        m_desc = "Give an entity Victorious: Gain 2 AP.";
+        m_desc = "Give a unit 'Victorious: Gain 2 AP.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_shouldExile = true;

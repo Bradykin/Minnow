@@ -9,7 +9,7 @@ public class ContentPhalanxCard : GameCardSpellBase
     public ContentPhalanxCard()
     {
         m_name = "Phalanx";
-        m_desc = "Target ally humanoid gets +1/+1 for each other ally humanoid within " + m_effectRange + " tiles.";
+        m_desc = "Target allied Humanoid unit gets +2/+2 for each allied Humanoid unit within " + m_effectRange + " tiles (including itself).";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -36,14 +36,14 @@ public class ContentPhalanxCard : GameCardSpellBase
         int amount = 0;
         if (tile != null)
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tile, m_effectRange);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tile, m_effectRange, 0);
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingEntity.m_isDead &&
                     surroundingTiles[i].m_occupyingEntity.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingEntity.GetTypeline() == Typeline.Humanoid)
                 {
-                    amount++;
+                    amount+=2;
                 }
             }
         }

@@ -11,7 +11,7 @@ public class ContentFossilizeCard : GameCardSpellBase
     public ContentFossilizeCard()
     {
         m_name = "Fossilize";
-        m_desc = "Target enemy loses " + m_powerAmount + " power, " + m_apDrainAmount + " AP, and gains Brittle " + m_brittleAmount + ".";
+        m_desc = "Target enemy unit gets -" + m_powerAmount + "/-0, " + m_apDrainAmount + " AP, and gains 'Brittle " + m_brittleAmount + "'.";
         m_targetType = Target.Enemy;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;

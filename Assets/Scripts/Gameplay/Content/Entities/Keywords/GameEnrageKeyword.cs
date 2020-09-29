@@ -11,7 +11,7 @@ public class GameEnrageKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Enrage";
-        m_focusInfoText = "Triggers when this entity takes damage.";
+        m_focusInfoText = "Triggers when this unit takes damage.";
         m_keywordParamType = KeywordParamType.ActionParam;
 
         if (action == null)

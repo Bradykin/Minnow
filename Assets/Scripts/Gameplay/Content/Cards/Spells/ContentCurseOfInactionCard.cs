@@ -9,7 +9,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Curse of Inaction";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
@@ -24,7 +24,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Give an entity Momentum: take " + m_spellEffect + spString + " damage.\n" + GetModifiedBySpellPowerString();
+        return "Give a unit 'Momentum: take " + m_spellEffect + spString + " damage.'\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

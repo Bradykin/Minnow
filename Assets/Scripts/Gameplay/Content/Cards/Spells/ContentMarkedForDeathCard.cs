@@ -22,7 +22,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target enemy gains Enrage: Gain Brittle " + GetSpellValue() + ".\n" + GetModifiedBySpellPowerString();
+        return "Target enemy unit gains 'Enrage: Gain Brittle " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

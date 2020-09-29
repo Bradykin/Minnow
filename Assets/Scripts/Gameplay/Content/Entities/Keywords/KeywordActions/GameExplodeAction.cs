@@ -14,7 +14,7 @@ public class GameExplodeAction : GameAction
         m_explodeRange = explodeRange;
 
         m_name = "Explode";
-        m_desc = "Explode for " + m_explodePower + " damage to all entities and buildings in range " + m_explodeRange;
+        m_desc = "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
         m_actionParamType = ActionParamType.EntityTwoIntParam;
     }
 

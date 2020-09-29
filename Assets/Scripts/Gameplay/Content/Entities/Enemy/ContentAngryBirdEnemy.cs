@@ -16,7 +16,7 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Angry Bird";
-        m_desc = "Bawkk!";
+        m_desc = "";
 
         m_minWave = 3;
         m_maxWave = 4;

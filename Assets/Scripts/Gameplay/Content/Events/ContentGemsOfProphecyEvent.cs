@@ -35,7 +35,7 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingEntity.m_name + " gains Victorious: gain " + m_powerGain + " power.";
+        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingEntity.m_name + " gains 'Victorious: gain +" + m_powerGain + "/+0.'";
     }
 
     public override void AcceptOption()
@@ -58,7 +58,7 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingEntity.m_name + " gains Enrage: heal for " + m_heal + " health.";
+        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingEntity.m_name + " gains 'Enrage: heal for " + m_heal + " health.'";
     }
 
     public override void AcceptOption()

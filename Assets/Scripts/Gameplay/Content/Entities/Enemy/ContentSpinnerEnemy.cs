@@ -21,7 +21,7 @@ public class ContentSpinnerEnemy : GameEnemyEntity
         m_maxWave = 4;
 
         m_name = "Spinner";
-        m_desc = "Why is he called a spinner?  He doesn't spin?";
+        m_desc = "";
 
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));

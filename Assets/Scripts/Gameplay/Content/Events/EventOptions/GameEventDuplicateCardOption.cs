@@ -13,11 +13,11 @@ public class GameEventDuplicateCardOption : GameEventOption
     {
         if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
         {
-            m_message = "Create a copy of an entity in your deck!";
+            m_message = "Create a copy of a unit card in your deck!";
         }
         else if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Spells)
         {
-            m_message = "Create a copy of a spell in your deck!";
+            m_message = "Create a copy of a spell card in your deck!";
         }
         else
         {

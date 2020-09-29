@@ -7,7 +7,7 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
     public ContentRoarOfVictoryCard()
     {
         m_name = "Roar of Victory";
-        m_desc = "Target ally monster gains Victorious: Trigger all Momentum and Enrage keywords on this entity.";
+        m_desc = "Target allied Monster unit gains 'Victorious: Trigger all Momentum and Enrage keywords on this unit'.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Rare;

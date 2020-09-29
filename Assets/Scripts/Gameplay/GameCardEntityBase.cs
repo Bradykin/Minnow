@@ -136,7 +136,7 @@ public class GameCardEntityBase : GameCard
 
     protected string GetTypeline()
     {
-        return "Summon - " + m_entity.GetTypeline();
+        return "Unit - " + m_entity.GetTypeline();
     }
 
     public override void ResetCard()

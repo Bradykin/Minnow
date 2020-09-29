@@ -15,7 +15,7 @@ public class GameGainAPRangeAction : GameAction
         m_range = range;
 
         m_name = "Gain AP";
-        m_desc = "+ " + m_toGain + " AP";
+        m_desc = "All friendly units within range " + m_range + " gain " + m_toGain + " AP";
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 

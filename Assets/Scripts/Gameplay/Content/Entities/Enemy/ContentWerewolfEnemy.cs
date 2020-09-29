@@ -18,7 +18,7 @@ public class ContentWerewolfEnemy : GameEnemyEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Werewolf";
-        m_desc = "This thing never stops healing!";
+        m_desc = "";
 
         m_minWave = 5;
         m_maxWave = 6;

@@ -26,7 +26,7 @@ public class ContentZombieEnemy : GameEnemyEntity
         m_maxWave = 6;
 
         m_name = "Zombie";
-        m_desc = "When this entity hits another entity, turn it into a zombie.";
+        m_desc = "On hit, turns the other unit into a zombie!";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

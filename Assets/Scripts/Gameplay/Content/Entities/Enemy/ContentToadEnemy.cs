@@ -17,7 +17,7 @@ public class ContentToadEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Toad";
-        m_desc = "Don't let this thing hit you; it'll drain your AP to 1!";
+        m_desc = "On hit, drains AP to 1!";
 
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
 

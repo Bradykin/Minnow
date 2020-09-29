@@ -7,8 +7,8 @@ public class ContentEnergizeCard : GameCardSpellBase
     public ContentEnergizeCard()
     {
         m_name = "Energize";
-        m_desc = "Maximize an entities AP.";
-        m_targetType = Target.Entity;
+        m_desc = "Maximize target units AP.";
+        m_targetType = Target.Unit;
         m_cost = 2;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;

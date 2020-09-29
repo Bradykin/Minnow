@@ -16,7 +16,7 @@ public class ContentZombie : GameEntity
         m_rarity = GameRarity.Event;
 
         m_name = "Zombie";
-        m_desc = "When this entity hits another entity, turn it into a zombie.";
+        m_desc = "On hit, turn them into a zombie.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

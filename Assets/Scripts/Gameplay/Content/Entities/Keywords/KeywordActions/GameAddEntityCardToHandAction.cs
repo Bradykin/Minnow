@@ -10,8 +10,8 @@ public class GameAddEntityCardToHandAction : GameAction
     {
         m_gameEntity = gameEntity;
 
-        m_name = "Add entity card to hand";
-        m_desc = "Add entity card to hand";
+        m_name = "Add unit card to hand";
+        m_desc = "Add unit card to hand";
         m_actionParamType = ActionParamType.EntityParam;
     }
 

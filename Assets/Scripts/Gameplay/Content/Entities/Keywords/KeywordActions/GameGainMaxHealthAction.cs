@@ -15,11 +15,11 @@ public class GameGainMaxHealthAction : GameAction
         m_name = "Gain Max Health";
         if (toGain >= 0)
         {
-            m_desc = "+" + m_toGain + " max health";
+            m_desc = "+0/+" + m_toGain + ".";
         }
         else
         {
-            m_desc = m_toGain + " max health";
+            m_desc = "-0/-"+ m_toGain + ".";
         }
         m_actionParamType = ActionParamType.EntityIntParam;
     }

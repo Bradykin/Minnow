@@ -13,7 +13,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         m_spellEffect = 12;
 
         m_name = "Necromantic Touch";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
@@ -25,7 +25,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "Heal all friendly entities within range " + m_range + " for the same amount.";
+        return GetDamageDescString() + "Heal all allied units within range " + m_range + " for the same amount.";
     }
 
     public override void PlayCard(GameEntity targetEntity)

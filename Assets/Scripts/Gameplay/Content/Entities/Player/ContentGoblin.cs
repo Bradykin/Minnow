@@ -18,7 +18,7 @@ public class ContentGoblin : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Goblin";
-        m_desc = "Gains +" + m_effectIncrease + " power per ally monster within " + m_effectRange + " range.";
+        m_desc = "Gains +" + m_effectIncrease + " power per allied Monster unit within " + m_effectRange + " range.";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 

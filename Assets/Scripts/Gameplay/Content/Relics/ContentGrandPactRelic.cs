@@ -7,7 +7,7 @@ public class ContentGrandPactRelic : GameRelic
     public ContentGrandPactRelic()
     {
         m_name = "Grand Pact";
-        m_desc = "If you have at least one unit of each type in play, all ally units get +1 ap regen.";
+        m_desc = "If you have at least 1 Creation unit, 1 Monster unit, and 1 Humanoid unit in play, all allied units get +1 AP regen.";
         m_rarity = GameRarity.Rare;
 
         LateInit();

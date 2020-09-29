@@ -17,7 +17,7 @@ public class ContentMobolaEnemy : GameEnemyEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Mobola";
-        m_desc = "It only grows in power as it fights.";
+        m_desc = "";
 
         m_minWave = 5;
         m_maxWave = 6;

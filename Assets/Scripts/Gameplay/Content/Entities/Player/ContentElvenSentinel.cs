@@ -18,7 +18,7 @@ public class ContentElvenSentinel : GameEntity
         m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)));
 
         m_name = "Elven Sentinel";
-        m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target.";
+        m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 

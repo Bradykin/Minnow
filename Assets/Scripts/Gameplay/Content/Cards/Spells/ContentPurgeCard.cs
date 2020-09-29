@@ -9,7 +9,7 @@ public class ContentPurgeCard : GameCardSpellBase
         m_spellEffect = 5;
         
         m_name = "Purge";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
 
@@ -21,7 +21,7 @@ public class ContentPurgeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target entity loses all keywords. If it was an ally that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+        return "Target unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

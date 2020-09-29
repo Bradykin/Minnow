@@ -25,7 +25,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Grant an ally " + m_spellEffect + spString + " power.\n" + GetModifiedBySpellPowerString();
+        return "Give an allied unit +" + m_spellEffect + spString + "/+0.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

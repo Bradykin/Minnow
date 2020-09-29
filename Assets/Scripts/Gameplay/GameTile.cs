@@ -39,7 +39,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         if (IsOccupied())
         {
-            Debug.LogWarning("Placing new entity " + newEntity.m_name + " over existing entity " + m_occupyingEntity.m_name + ".");
+            Debug.LogWarning("Placing new unit " + newEntity.m_name + " over existing unit " + m_occupyingEntity.m_name + ".");
         }
 
         m_occupyingEntity = newEntity;
@@ -80,7 +80,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         if (!IsOccupied())
         {
-            Debug.LogWarning("Clearing entity on a tile, but no entity currently exists on this tile.");
+            Debug.LogWarning("Clearing unit on a tile, but no entity currently exists on this tile.");
         }
 
         m_occupyingEntity = null;

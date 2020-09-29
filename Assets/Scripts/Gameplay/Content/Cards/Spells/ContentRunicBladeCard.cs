@@ -21,7 +21,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target ally gains Victorious: Trigger spellcraft.";
+        return "Target allied unit gains 'Victorious: Trigger Spellcraft.'";
     }
 
     public override void PlayCard(GameEntity targetEntity)

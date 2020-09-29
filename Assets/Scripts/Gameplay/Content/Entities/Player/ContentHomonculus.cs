@@ -18,7 +18,6 @@ public class ContentHomonculus : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Homonculus";
-        m_desc = "On Knowledgeable, give one action point to itself and allies within 1 range.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

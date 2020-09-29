@@ -9,7 +9,7 @@ public abstract class GameCard : GameElementBase
         Tile,
         Ally,
         Enemy,
-        Entity,
+        Unit,
         Building,
         None //This is used for spells like 'Draw 3'
     }
@@ -156,7 +156,7 @@ public abstract class GameCard : GameElementBase
             return true;
         }
 
-        if (m_targetType == Target.Entity)
+        if (m_targetType == Target.Unit)
         {
             return true;
         }

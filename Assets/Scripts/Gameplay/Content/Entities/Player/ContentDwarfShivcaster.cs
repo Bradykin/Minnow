@@ -15,7 +15,7 @@ public class ContentDwarfShivcaster : GameEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Shivcaster";
-        m_desc = "Shivs no longer trigger spellcraft.";
+        m_desc = "Shivs no longer trigger spellcraft.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 

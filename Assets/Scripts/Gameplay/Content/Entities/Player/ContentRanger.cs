@@ -20,7 +20,7 @@ public class ContentRanger : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
 
         m_name = "Ranger";
-        m_desc = "When in a forest, gains: " + m_powerBoost + " power and " + m_apRegenBoost + " ap regen.";
+        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_apRegenBoost + " AP regen.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 

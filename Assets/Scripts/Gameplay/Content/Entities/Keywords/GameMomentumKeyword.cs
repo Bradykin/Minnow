@@ -11,7 +11,7 @@ public class GameMomentumKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Momentum";
-        m_focusInfoText = "Triggers when this entity hits another entity.";
+        m_focusInfoText = "Triggers when this unit hits another unit.";
         m_keywordParamType = KeywordParamType.ActionParam;
 
         if (action == null)

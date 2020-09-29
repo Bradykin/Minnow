@@ -7,7 +7,7 @@ public class ContentBullheadedCard : GameCardSpellBase
     public ContentBullheadedCard()
     {
         m_name = "Bullheaded";
-        m_desc = "Target ally monster gains Enrage: +1 power.";
+        m_desc = "Target allied Monster unit gains 'Enrage: +1/+0.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Common;
