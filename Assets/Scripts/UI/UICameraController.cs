@@ -33,6 +33,11 @@ public class UICameraController : Singleton<UICameraController>, IReset
         //HandleScrolling();
     }
 
+    public void SmoothCameraTransitionToGameObject(GameObject obj)
+    {
+
+    }
+
     public void SnapToGameObject(GameObject obj)
     {
         if (obj == null)

@@ -35,8 +35,7 @@ public class AITestSpawnClass : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.H))
             {
-                GameFiles.ClearPlayerSaveData();
-                GameMetaProgression.GamePlayerSaveData = new GamePlayerSaveData();
+                UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().Castle.GetWorldTile().gameObject);
             }
 
             if (Input.GetKeyDown(KeyCode.O))
