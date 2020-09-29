@@ -25,7 +25,7 @@ public class ContentJoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Restore " + m_spellEffect + GetSpellPowerString() + " AP.\nDraw a card.\n" + GetModifiedBySpellPowerString();
+        return "Target allied unit gains +" + m_spellEffect + GetSpellPowerString() + " AP.\nDraw a card.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

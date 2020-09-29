@@ -45,7 +45,7 @@ public class GameEventAngelicWings : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Grant " + m_tile.m_occupyingEntity.m_name + " flying!.";
+        m_message = m_tile.m_occupyingEntity.m_name + " gains Flying!.";
 
         return base.GetMessage();
     }

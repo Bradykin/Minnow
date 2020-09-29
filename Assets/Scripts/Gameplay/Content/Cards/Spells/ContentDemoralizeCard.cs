@@ -7,8 +7,8 @@ public class ContentDemoralizeCard : GameCardSpellBase
     public ContentDemoralizeCard()
     {
         m_name = "Demoralize";
-        m_desc = "Set an entities AP to 2.";
-        m_targetType = Target.Entity;
+        m_desc = "Set a units AP to 2.";
+        m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 

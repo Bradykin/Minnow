@@ -7,7 +7,7 @@ public class ContentLegendaryFragmentRelic : GameRelic
     public ContentLegendaryFragmentRelic()
     {
         m_name = "Legendary Fragment";
-        m_desc = "-2 power, +1 AP regen to all friendly units";
+        m_desc = "All friendly units get -2/-0, but gain +1 AP regen.";
         m_rarity = GameRarity.Rare;
 
         LateInit();

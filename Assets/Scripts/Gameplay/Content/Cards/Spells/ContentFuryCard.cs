@@ -7,7 +7,7 @@ public class ContentFuryCard : GameCardSpellBase
     public ContentFuryCard()
     {
         m_name = "Fury";
-        m_desc = "Trigger all instances of Momentum, Enrage, and Victorious on target ally monster.";
+        m_desc = "Trigger all instances of Momentum, Enrage, and Victorious on target allied Monster.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;

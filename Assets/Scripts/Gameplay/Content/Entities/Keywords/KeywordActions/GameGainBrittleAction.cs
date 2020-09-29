@@ -13,7 +13,7 @@ public class GameGainBrittleAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Brittle";
-        m_desc = "Gain Brittle " + m_toGain + ".";
+        m_desc = "Gain 'Brittle " + m_toGain + "'.";
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 

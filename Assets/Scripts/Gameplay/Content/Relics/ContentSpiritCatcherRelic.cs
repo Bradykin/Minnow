@@ -7,7 +7,7 @@ public class ContentSpiritCatcherRelic : GameRelic
     public ContentSpiritCatcherRelic()
     {
         m_name = "Spirit Catcher";
-        m_desc = "When an enemy dies, draw a card.";
+        m_desc = "When an enemy unit dies, draw a card.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

@@ -18,7 +18,7 @@ public class ContentLizardmanEnemy : GameEnemyEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Lizardman";
-        m_desc = "It walks on land, it swims in water.  Is there anything it can't do?";
+        m_desc = "Swims instantly through all water tiles.";
 
         m_minWave = 5;
         m_maxWave = 6;

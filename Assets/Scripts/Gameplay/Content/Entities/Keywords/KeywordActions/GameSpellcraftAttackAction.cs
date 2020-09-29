@@ -22,7 +22,7 @@ public class GameSpellcraftAttackAction : GameAction
             return;
         }
 
-        player.TriggerSpellcraft(GameCard.Target.Entity, m_gameEntity.GetGameTile());
+        player.TriggerSpellcraft(GameCard.Target.Unit, m_gameEntity.GetGameTile());
     }
 
     public override string SaveToJson()

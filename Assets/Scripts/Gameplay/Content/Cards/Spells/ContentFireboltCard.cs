@@ -9,7 +9,7 @@ public class ContentFireboltCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Firebolt";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Starter;
 

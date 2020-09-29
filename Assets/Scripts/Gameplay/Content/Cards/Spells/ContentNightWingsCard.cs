@@ -7,7 +7,7 @@ public class ContentNightWingsCard : GameCardSpellBase
     public ContentNightWingsCard()
     {
         m_name = "Night Wings";
-        m_desc = "Give an entity flying, but it loses 1 AP regen.";
+        m_desc = "Give a friendly unit Flying, but it loses 1 AP regen.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Rare;

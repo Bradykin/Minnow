@@ -7,7 +7,7 @@ public class ContentLivingStoneRelic : GameRelic
     public ContentLivingStoneRelic()
     {
         m_name = "Living Stone";
-        m_desc = "All buildings main +1 max health per round.";
+        m_desc = "All buildings gain +1 max health per round.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

@@ -10,7 +10,7 @@ public class GameRoarOfVictoryAction : GameAction
         m_entity = entity;
 
         m_name = "Roar of Victory";
-        m_desc = "Trigger all Momentum and Enrage effects on this entity";
+        m_desc = "Trigger all Momentum and Enrage effects on this unit.";
         m_actionParamType = ActionParamType.EntityParam;
     }
 

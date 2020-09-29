@@ -9,7 +9,7 @@ public class ContentAegisCard : GameCardSpellBase
     public ContentAegisCard()
     {
         m_name = "Aegis";
-        m_desc = "Give target ally " + m_amount + " damage shield.";
+        m_desc = "Give target allied unit " + m_amount + " damage shield.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Starter;

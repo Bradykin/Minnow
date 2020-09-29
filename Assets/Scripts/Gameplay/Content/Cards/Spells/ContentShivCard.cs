@@ -9,7 +9,7 @@ public class ContentShivCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Shiv";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 0;
         m_rarity = GameRarity.Event;
         m_shouldExile = true;

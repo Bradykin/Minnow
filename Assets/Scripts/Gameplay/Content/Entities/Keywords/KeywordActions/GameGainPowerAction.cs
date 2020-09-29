@@ -16,11 +16,11 @@ public class GameGainPowerAction : GameAction
 
         if (toGain >= 0)
         {
-            m_desc = "+" + m_toGain + " power";
+            m_desc = "+" + m_toGain + "/+0.";
         }
         else
         {
-            m_desc = m_toGain + " power";
+            m_desc = "-" + m_toGain + "/-0.";
         }
         m_actionParamType = ActionParamType.EntityIntParam;
     }

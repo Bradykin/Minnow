@@ -7,7 +7,7 @@ public class ContentMorlemainsSkullRelic : GameRelic
     public ContentMorlemainsSkullRelic()
     {
         m_name = "Morlemains Skull";
-        m_desc = "Whenever an enemy is killed, gain 1 energy.";
+        m_desc = "Whenever an enemy unit is killed, gain 1 energy.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

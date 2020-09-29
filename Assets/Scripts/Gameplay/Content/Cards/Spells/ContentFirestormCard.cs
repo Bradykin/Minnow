@@ -11,7 +11,7 @@ public class ContentFirestormCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Firestorm";
-        m_targetType = Target.Entity;
+        m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Common;
 

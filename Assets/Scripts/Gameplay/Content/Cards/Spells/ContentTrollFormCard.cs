@@ -28,7 +28,7 @@ public class ContentTrollFormCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Grant an ally regen " + m_spellEffect + spString + ".\n" + GetModifiedBySpellPowerString();
+        return "Target allied unit gains 'Regen " + m_spellEffect + spString + "'.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

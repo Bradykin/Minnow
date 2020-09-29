@@ -7,7 +7,7 @@ public class ContentSummoningCard : GameCardSpellBase
     public ContentSummoningCard()
     {
         m_name = "Summoning";
-        m_desc = "Add a random entity card to your hand.";
+        m_desc = "Add a random unit card to your hand.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Rare;

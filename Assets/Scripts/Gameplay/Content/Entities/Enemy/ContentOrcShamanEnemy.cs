@@ -18,7 +18,7 @@ public class ContentOrcShamanEnemy : GameEnemyEntity
         m_maxWave = 4;
 
         m_name = "Orc Shaman";
-        m_desc = "Magical blasts away...";
+        m_desc = "";
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
 

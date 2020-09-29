@@ -11,7 +11,7 @@ public class GameDeathKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Death";
-        m_focusInfoText = "Triggers when this entity dies.";
+        m_focusInfoText = "Triggers when this unit dies.";
         m_keywordParamType = KeywordParamType.ActionParam;
 
         if (action == null)

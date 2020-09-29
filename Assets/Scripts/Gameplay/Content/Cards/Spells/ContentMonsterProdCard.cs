@@ -7,7 +7,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
     public ContentMonsterProdCard()
     {
         m_name = "Monster Prod";
-        m_desc = "Target ally monster gets Enrage: Gain 1 AP.";
+        m_desc = "Target allied Monster unit gains 'Enrage: Gain 1 AP.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
