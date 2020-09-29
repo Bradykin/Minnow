@@ -910,6 +910,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         int apSpent = 0;
         GameTile destinationTile = m_gameTile;
+
+        List<GameTile> path = new List<GameTile>();
         for (int i = 0; i < pathToTile.Count; i++)
         {
             if (pathToTile[i] == m_gameTile)
@@ -925,6 +927,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
             apSpent += pathToTile[i].GetCostToPass(this);
             destinationTile = pathToTile[i];
+            path.Add(destinationTile);
 
             if (apSpent >= apToUse)
                 break;
@@ -934,7 +937,18 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return;
 
         if (destinationTile.IsOccupied())
+        {
+            path.Remove(destinationTile);
+            for (int i = path.Count - 1; i >= 0; i--)
+            {
+                if (!path[i].IsOccupied())
+                {
+                    m_uiEntity.MoveTo(path[i]);
+                    return;
+                }
+            }
             return;
+        }
 
         if (m_uiEntity != null)
         {

@@ -327,6 +327,87 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return distance + Math.Abs(currentPosition.x - targetPosition.y);
     }
 
+    public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curAP)
+    {
+        Location current = null;
+        var start = new Location(startingGridTile, targetGridTile, 0, null);
+        var target = new Location(targetGridTile);
+        var openList = new List<Location>();
+        var closedList = new List<Location>();
+
+        var adjacentTiles = new List<GameTile>();
+        if (getAdjacentPosition)
+        {
+            adjacentTiles = targetGridTile.AdjacentTiles();
+        }
+
+        // start by adding the original position to the open list
+        openList.Add(start);
+
+        while (openList.Count > 0)
+        {
+            // get the tile with the lowest F score
+            current = GetNextTileFromOpenList(openList);
+
+            // add the current tile to the closed list
+            closedList.Add(current);
+
+            // remove it from the open list
+            openList.Remove(current);
+
+            // if the current position is the target position, we have a path
+            if (current.X == target.X && current.Y == target.Y
+                || (getAdjacentPosition && adjacentTiles.Find(t => t.m_gridPosition.x == current.X && t.m_gridPosition.y == current.Y) != null))
+            {
+                List<GameTile> path = new List<GameTile>();
+                while (current != null)
+                {
+                    path.Add(current.GameTile);
+                    current = current.Parent;
+                }
+                path.Reverse();
+                return path;
+            }
+
+            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
+
+            foreach (var adjacentTile in adjacentSquares)
+            {
+                // if this adjacent square is already in the closed list, ignore it
+                if (closedList.Find(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y) != null)
+                    continue;
+
+                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, current.F >= curAP))
+                    continue;
+
+                // if it's not in the open list...
+                var adjacent = openList.Find(l => l.X == adjacentTile.m_gridPosition.x
+                        && l.Y == adjacentTile.m_gridPosition.y);
+
+                int g;
+                if (ignoreTerrainDifferences)
+                    g = current.G + 1;
+                else
+                    g = current.G + adjacentTile.GetCostToPass(startingGridTile.m_occupyingEntity);
+
+                if (adjacent == null)
+                {
+                    Location adjacentLocation = new Location(adjacentTile, targetGridTile, g, current);
+                    openList.Insert(0, adjacentLocation);
+                }
+                else if (g < adjacent.G)
+                {
+                    adjacent.G = g;
+                    adjacent.F = adjacent.G + adjacent.H;
+                    adjacent.Parent = current;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies)
     {
         Location current = null;

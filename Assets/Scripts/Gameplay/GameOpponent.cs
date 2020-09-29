@@ -53,12 +53,12 @@ public class GameOpponent : ITurns
 
         while (entities.Count > 0)
         {
-            GameEnemyEntity entity = entities.OrderBy(e => WorldGridManager.Instance.GetPathLength(e.GetGameTile(), measureTo, true, false, true)).First();
+            GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
             if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
             {
                 UICameraController.Instance.SmoothCameraTransitionToGameObject(entity.GetWorldTile().gameObject);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.5f);
             }
 
             int curAP = entity.GetCurAP();
@@ -72,7 +72,7 @@ public class GameOpponent : ITurns
                 {
                     measureTo = entity.GetGameTile();
                 }
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
             }
         }
 
