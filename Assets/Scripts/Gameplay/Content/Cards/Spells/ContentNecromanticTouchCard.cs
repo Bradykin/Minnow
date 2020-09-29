@@ -10,12 +10,12 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
     {
         m_range = 2;
 
-        m_spellEffect = 12;
+        m_spellEffect = 14;
 
         m_name = "Necromantic Touch";
         m_targetType = Target.Unit;
-        m_cost = 1;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 2;
+        m_rarity = GameRarity.Common;
 
         SetupBasicData();
 

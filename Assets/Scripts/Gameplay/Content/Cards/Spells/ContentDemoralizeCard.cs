@@ -10,7 +10,7 @@ public class ContentDemoralizeCard : GameCardSpellBase
         m_desc = "Set a units AP to 2.";
         m_targetType = Target.Unit;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
 

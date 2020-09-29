@@ -13,7 +13,7 @@ public class ContentLootingsCard : GameCardSpellBase
         m_desc = "Loot your own castle, gaining +" + m_lootVal + " gold but dealing " + m_damageVal + " damage to the castle.";
         m_targetType = Target.None;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
         SetupBasicData();
