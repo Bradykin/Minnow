@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDesertRedHillsTerrain : GameTerrainBase
+public class ContentDesertYellowMesaTerrain : GameTerrainBase
 {
-    public ContentDesertRedHillsTerrain()
+    public ContentDesertYellowMesaTerrain()
     {
         m_rangeModifier = Constants.HillsRangeModifier;
         m_damageReduction = Constants.HillsDamageReduction;
         m_costToPass = Constants.HillsMovementCost;
 
-        m_name = "DesertRedHills";
+        m_name = "DesertYellowMesa";
         m_desc = GenerateDescription();
         m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDesertRedDirtPlainsRuinsTerrain : GameTerrainBase
+public class ContentDesertYellowDirtPlainsRuinsTerrain : GameTerrainBase
 {
-    public ContentDesertRedDirtPlainsRuinsTerrain()
+    public ContentDesertYellowDirtPlainsRuinsTerrain()
     {
         m_damageReduction = Mathf.Max(Constants.PlainsDamageReduction, Constants.RuinsDamageReduction);
         m_costToPass = Mathf.Max(Constants.PlainsMovementCost, Constants.RuinsMovementCost);
 
-        m_name = "DesertRedDirtPlainsRuins";
+        m_name = "DesertYellowDirtPlainsRuins";
         m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
@@ -20,8 +20,7 @@ public class ContentDesertRedDirtPlainsRuinsTerrain : GameTerrainBase
         m_isHot = true;
         m_isEventTerrain = true;
 
-        m_unburnedTerrainType = typeof(ContentDesertRedGrassPlainsRuinsTerrain);
-        m_completedEventType = typeof(ContentDesertRedDirtPlainsTerrain);
+        m_completedEventType = typeof(ContentDesertYellowDirtPlainsTerrain);
 
         LateInit();
     }
