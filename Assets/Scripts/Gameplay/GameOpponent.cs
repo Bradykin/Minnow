@@ -46,51 +46,35 @@ public class GameOpponent : ITurns
 
     private IEnumerator TakeEntityTurnsCoroutine()
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        List<GameEnemyEntity> entities = new List<GameEnemyEntity>();
+        entities.AddRange(m_controlledEntities);
+
+        GameTile measureTo = GameHelper.GetPlayer().Castle.GetGameTile();
+
+        while (entities.Count > 0)
         {
-            if (Constants.UseSteppedOutEnemyTurns && !m_controlledEntities[i].GetGameTile().m_isFog)
+            GameEnemyEntity entity = entities.OrderBy(e => WorldGridManager.Instance.GetPathLength(e.GetGameTile(), measureTo, true, false, true)).First();
+
+            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
             {
-                //UICameraController.Instance.SnapToGameObject(m_controlledEntities[i].GetWorldTile().gameObject);
-                int curAP = m_controlledEntities[i].GetCurAP();
+                UICameraController.Instance.SnapToGameObject(entity.GetWorldTile().gameObject);
                 yield return new WaitForSeconds(0.25f);
-                m_controlledEntities[i].TakeTurn();
-                yield return new WaitForSeconds(0.5f);
-
-                if (curAP == m_controlledEntities[i].GetCurAP())
-                {
-                    m_secondTryAIControlledEntities.Add(m_controlledEntities[i]);
-                }
             }
-            else
+
+            int curAP = entity.GetCurAP();
+            entity.TakeTurn();
+
+            entities.Remove(entity);
+
+            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
             {
-                int curAP = m_controlledEntities[i].GetCurAP();
-
-                m_controlledEntities[i].TakeTurn();
-
-                if (curAP == m_controlledEntities[i].GetCurAP())
+                if (!entity.m_isDead && entity.GetGameTile() != null)
                 {
-                    m_secondTryAIControlledEntities.Add(m_controlledEntities[i]);
+                    measureTo = entity.GetGameTile();
                 }
-            }
-        }
-
-        for (int i = 0; i < m_secondTryAIControlledEntities.Count; i++)
-        {
-            if (Constants.UseSteppedOutEnemyTurns && !m_secondTryAIControlledEntities[i].GetGameTile().m_isFog)
-            {
-                //UICameraController.Instance.SnapToGameObject(m_secondTryAIControlledEntities[i].GetWorldTile().gameObject);
-                yield return new WaitForSeconds(0.25f);
-                m_secondTryAIControlledEntities[i].TakeTurn();
-                //UICameraController.Instance.SnapToWorldElement(m_secondTryAIControlledEntities[i].GetWorldTile());
                 yield return new WaitForSeconds(0.5f);
             }
-            else
-            {
-                m_secondTryAIControlledEntities[i].TakeTurn();
-            }
         }
-
-        m_secondTryAIControlledEntities.Clear();
 
         WorldController.Instance.m_gameController.MoveToNextTurn();
     }
