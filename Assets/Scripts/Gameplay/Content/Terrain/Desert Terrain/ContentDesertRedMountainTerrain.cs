@@ -6,14 +6,14 @@ public class ContentDesertRedMountainTerrain : GameTerrainBase
 {
     public ContentDesertRedMountainTerrain()
     {
-        m_damageReduction = 4;
+        m_damageReduction = Constants.MountainsDamageReduction;
+        m_costToPass = Constants.MountainsMovementCost;
+        m_isPassable = false;
 
         m_name = "DesertRedMountain";
-        m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
-        m_terrainImageNumber = Random.Range(1, 5);
-
-        m_isPassable = false;
-        m_costToPass = 2;
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isMountain = true;
         m_isHot = true;
