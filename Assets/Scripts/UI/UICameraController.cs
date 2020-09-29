@@ -35,7 +35,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
     public void SmoothCameraTransitionToGameObject(GameObject obj)
     {
-
+        SnapToGameObject(obj);
     }
 
     public void SnapToGameObject(GameObject obj)

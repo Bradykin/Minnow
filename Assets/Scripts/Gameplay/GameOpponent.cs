@@ -57,7 +57,7 @@ public class GameOpponent : ITurns
 
             if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
             {
-                UICameraController.Instance.SnapToGameObject(entity.GetWorldTile().gameObject);
+                UICameraController.Instance.SmoothCameraTransitionToGameObject(entity.GetWorldTile().gameObject);
                 yield return new WaitForSeconds(0.25f);
             }
 
