@@ -51,6 +51,8 @@ public class UIEndTurnButton : UIElementBase
             return;
         }
 
+        UITooltipController.Instance.ClearTooltipStack();
+
         Globals.m_selectedCard = null;
         UIHelper.UnselectEntity();
         UIHelper.UnselectEnemy();
