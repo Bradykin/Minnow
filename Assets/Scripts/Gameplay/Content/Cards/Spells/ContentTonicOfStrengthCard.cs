@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentTonicOfStrengthCard : GameCardSpellBase
 {
-    private int m_powerToGain = 5;
+    private int m_powerToGain = 3;
     private int m_apGain = 2;
 
     public ContentTonicOfStrengthCard()
@@ -13,7 +13,7 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
         m_desc = "Target allied unit gain +" + m_powerToGain + "/+0 and +" + m_apGain + " AP.";
         m_targetType = Target.Ally;
         m_cost = 3;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
         m_shouldExile = true;
 
         SetupBasicData();

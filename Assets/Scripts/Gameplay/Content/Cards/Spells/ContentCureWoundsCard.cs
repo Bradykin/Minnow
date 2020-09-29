@@ -11,7 +11,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
         m_name = "Cure Wounds";
         m_targetType = Target.Ally;
         m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
 
