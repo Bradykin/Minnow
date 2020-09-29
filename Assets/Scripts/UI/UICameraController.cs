@@ -17,9 +17,13 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
     private Vector3 m_startingTransform;
 
+    private Vector3 m_smoothTarget;
+
     void Start()
     {
         m_startingTransform = transform.position;
+
+        m_smoothTarget = new Vector3(0,0,0);
     }
 
     void Update()
@@ -29,13 +33,23 @@ public class UICameraController : Singleton<UICameraController>, IReset
             return;
         }
 
+        if (transform.position == m_smoothTarget)
+        {
+            m_smoothTarget = new Vector3(0,0,0);
+        }
+        else if (m_smoothTarget != new Vector3(0,0,0))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, m_smoothTarget, m_cameraSpeed * Time.deltaTime * 3);
+        }
+
         HandleMovement();
         //HandleScrolling();
     }
 
     public void SmoothCameraTransitionToGameObject(GameObject obj)
     {
-        SnapToGameObject(obj);
+        Vector3 vec = new Vector3(obj.transform.position.x, obj.transform.position.y, -10.0f);
+        m_smoothTarget = vec;
     }
 
     public void SnapToGameObject(GameObject obj)
