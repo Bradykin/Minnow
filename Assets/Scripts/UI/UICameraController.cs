@@ -44,7 +44,10 @@ public class UICameraController : Singleton<UICameraController>, IReset
             transform.position = Vector3.MoveTowards(transform.position, m_smoothTarget, m_smoothSpeed * Time.deltaTime);
         }
 
-        HandleMovement();
+        if (!GameHelper.IsOpponentsTurn())
+        {
+            HandleMovement();
+        }
         //HandleScrolling();
     }
 
@@ -111,7 +114,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
 
-        return (edgeScrolling || keyPressed) && withinLimit;
+        return (keyPressed) && withinLimit;
     }
 
     private bool ScrollRight()
@@ -122,7 +125,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
 
-        return (edgeScrolling || keyPressed) && withinLimit;
+        return (keyPressed) && withinLimit;
     }
 
     private bool ScrollDown()
@@ -133,7 +136,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
 
-        return (edgeScrolling || keyPressed) && withinLimit;
+        return (keyPressed) && withinLimit;
     }
 
     private bool ScrollUp()
@@ -144,7 +147,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
 
-        return (edgeScrolling || keyPressed) && withinLimit;
+        return (keyPressed) && withinLimit;
     }
 
     private void HandleScrolling()
