@@ -293,12 +293,23 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
+        if (m_gameTile.HasAvailableEvent())
+        {
+            Globals.m_hoveredTile = this;
+        }
+        else
+        {
+            Globals.m_hoveredTile = null;
+        }
+
         m_isHovered = true;
     }
 
     void OnMouseExit()
     {
         m_isHovered = false;
+
+        Globals.m_hoveredTile = null;
     }
 
     public void ClearFog()

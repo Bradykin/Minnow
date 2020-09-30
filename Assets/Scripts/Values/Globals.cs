@@ -14,6 +14,9 @@ public static class Globals
     public static UIEntity m_selectedEntity;
     public static WorldTile m_selectedTile;
     public static UIEntity m_selectedEnemy;
+    public static WorldTile m_hoveredTile;
+    public static UICard m_hoveredCard;
+
     public static GameBuildingIntermission m_selectedIntermissionBuilding;
     public static bool m_canSelect = true;
     public static bool m_canScroll = true;

@@ -127,6 +127,8 @@ public class UICard : MonoBehaviour
             bool isValid = m_card.IsValidToPlay() || m_cardSelect != null;
             m_tintImage.color = UIHelper.GetValidTintColor(isValid);
         }
+
+        Globals.m_hoveredCard = this;
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
@@ -138,6 +140,8 @@ public class UICard : MonoBehaviour
         {
             m_tintImage.color = UIHelper.GetDefaultTintColor();
         }
+
+        Globals.m_hoveredCard = null;
     }
 
     public bool GetIsBig()
