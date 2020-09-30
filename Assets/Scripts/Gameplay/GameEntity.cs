@@ -279,7 +279,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             int numSoulTrap = GameHelper.RelicCount<ContentSoulTrapRelic>();
             if (numSoulTrap > 0)
             {
-                player.DrawCards(3 * numSoulTrap);
+                if (GameHelper.GetGameController().m_currentTurn == player)
+                {
+                    player.DrawCards(3 * numSoulTrap);
+                }
+                else
+                {
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameDrawCardAction(3 * numSoulTrap));
+                }
             }
 
             int numCursedAmulet = GameHelper.RelicCount<ContentCursedAmuletRelic>();
