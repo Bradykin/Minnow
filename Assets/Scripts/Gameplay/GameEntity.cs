@@ -1064,7 +1064,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             int medkitCount = GameHelper.RelicCount<ContentMedKitRelic>();
             if (medkitCount > 0 && GetTeam() == Team.Player)
             {
-                int healAmount = m_gameTile.GetTerrain().GetCostToPass(this) * medkitCount * 3;
+                int healAmount = m_gameTile.GetCostToPass(this) * medkitCount * 3;
                 Heal(healAmount);
             }
         }

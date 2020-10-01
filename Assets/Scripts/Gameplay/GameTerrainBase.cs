@@ -67,34 +67,9 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_isPassable;
     }
 
-    public int GetCostToPass(GameEntity checkerEntity)
+    public int GetCostToPass()
     {
-        int additiveValue = 0;
-        
-        if (checkerEntity != null)
-        {
-            if (IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
-            {
-                return 1 + additiveValue;
-            }
-
-            if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
-            {
-                return 0 + additiveValue;
-            }
-
-            if (IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
-            {
-                return 2 + additiveValue;
-            }
-
-            if (IsHill() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
-            {
-                return 1 + additiveValue;
-            }
-        }
-
-        return m_costToPass + additiveValue;
+        return m_costToPass;
     }
 
     public bool IsPlains()
