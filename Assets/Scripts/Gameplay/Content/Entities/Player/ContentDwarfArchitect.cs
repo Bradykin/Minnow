@@ -18,7 +18,7 @@ public class ContentDwarfArchitect : GameEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Architect";
-        m_desc = "When an allied Creation unit is summoned within " + m_effectRange + " range, give it +" + m_maxAPIncrease + " max AP and have it start at max.";
+        m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, give it +" + m_maxAPIncrease + " max AP and have it start at max.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
