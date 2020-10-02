@@ -25,6 +25,8 @@ namespace Game.Util
         private GameObject m_uiAPBubblePrefab = null;
         [SerializeField]
         private GameObject m_uiRelicPrefab = null;
+        [SerializeField]
+        private GameObject m_uiBorderUnit = null;
 
         //Tooltips
         [SerializeField]
@@ -32,6 +34,8 @@ namespace Game.Util
 
         [SerializeField]
         private GameObject m_uiPlayerHandParent = null;
+        [SerializeField]
+        private GameObject m_borderUnitParent = null;
 
         //============================================================================================================//;
 
@@ -78,6 +82,8 @@ namespace Game.Util
                     return new UIAPBubbleFactory(m_uiAPBubblePrefab) as T;
                 case bool _ when type == typeof(UIRelicFactory):
                     return new UIRelicFactory(m_uiRelicPrefab) as T;
+                case bool _ when type == typeof(UIBorderUnitFactory):
+                    return new UIBorderUnitFactory(m_uiBorderUnit, m_borderUnitParent) as T;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type.Name, null);
             }
