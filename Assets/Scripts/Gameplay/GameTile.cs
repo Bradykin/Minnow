@@ -213,14 +213,47 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             }
         }
 
-        if (HasBuilding())
+        int tileValue;
+        bool buildingOverrideValue = true;
+
+        if (checkerEntity != null)
         {
-            return 2;
+            if (GetTerrain().IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
+            {
+                tileValue = 1;
+                buildingOverrideValue = false;
+            }
+            else if (GetTerrain().IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
+            {
+                tileValue = 0;
+                buildingOverrideValue = false;
+            }
+            else if (GetTerrain().IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            {
+                tileValue =  2;
+                buildingOverrideValue = false;
+            }
+            else if (GetTerrain().IsHill() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            {
+                tileValue =  1;
+                buildingOverrideValue = false;
+            }
+            else
+            {
+                tileValue = GetTerrain().GetCostToPass();
+            }
         }
         else
         {
-            return m_terrain.GetCostToPass(checkerEntity);
+            tileValue = GetTerrain().GetCostToPass();
         }
+
+        if (HasBuilding() && buildingOverrideValue)
+        {
+            tileValue = Mathf.Max(tileValue, 2);
+        }
+
+        return tileValue;
     }
 
     public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)

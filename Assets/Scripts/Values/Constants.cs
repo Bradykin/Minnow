@@ -56,7 +56,7 @@ public static class Constants
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;
-    public static bool CheatsOn = false;
+    public static bool CheatsOn = true;
     public static bool UseSteppedOutEnemyTurns = !CheatsOn;
     public static bool UseLocationalSpellcraft = true;
 
