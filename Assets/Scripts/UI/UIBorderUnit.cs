@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class UIBorderUnit : MonoBehaviour
     , IPointerClickHandler
 {
+    RectTransform m_rectTransform;
+    
     public Image m_image;
     public GameObject m_holder;
 
@@ -16,6 +18,7 @@ public class UIBorderUnit : MonoBehaviour
     {
         m_entity = toTrack;
 
+        m_rectTransform = GetComponent<RectTransform>();
         m_image.sprite = toTrack.GetEntity().m_icon;
     }
 
@@ -27,7 +30,8 @@ public class UIBorderUnit : MonoBehaviour
     void Update()
     {
         //Hide this if the UIEntity is on screen.
-        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurAP() > 0);
+        //m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurAP() > 0);
+        m_holder.SetActive(false);
 
         UpdatePosition();
     }
@@ -47,7 +51,7 @@ public class UIBorderUnit : MonoBehaviour
         screenPointPos.z = 0;
         gameObject.transform.position = screenPointPos;*/
 
-        transform.position = Camera.main.ViewportToScreenPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        m_rectTransform.anchoredPosition = new Vector2(Screen.width / 4, Screen.height / 4);
 
         /*print("m_entiy World Pos: " + m_entity.transform.position);
         print("m_entiy Screen Pos: " + Camera.main.WorldToScreenPoint(m_entity.transform.position));

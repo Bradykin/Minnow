@@ -57,7 +57,7 @@ public class AIScanTargetsInRangeStep : AIStep
                 }
             }
 
-            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().m_buildingType != BuildingType.Defensive)
+            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().m_buildingType != BuildingType.Defensive && !tile.IsOccupied())
             {
                 possibleBuildingTargets.Add(tile.GetBuilding());
 
