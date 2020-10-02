@@ -27,7 +27,7 @@ public class UIBorderUnit : MonoBehaviour
     void Update()
     {
         //Hide this if the UIEntity is on screen.
-        m_holder.SetActive(!m_entity.m_renderer.isVisible);
+        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurAP() > 0);
 
         UpdatePosition();
     }

@@ -18,7 +18,7 @@ public class ContentGuardCaptain : GameEntity
         m_rarity = GameRarity.Common;
 
         m_name = "Guard Captain";
-        m_desc = "When summoned, all allied Humanoid units within range " + m_rallyRange + " gain +" + m_rallyValue + " AP";
+        m_desc = "When summoned, all allied <b>Humanoid</b> units within range " + m_rallyRange + " gain +" + m_rallyValue + " AP";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 

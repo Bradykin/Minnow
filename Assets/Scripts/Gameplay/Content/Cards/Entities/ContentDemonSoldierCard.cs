@@ -8,7 +8,7 @@ public class ContentDemonSoldierCard : GameCardEntityBase
     {
         m_entity = new ContentDemonSoldier();
 
-        m_cost = 2;
+        m_cost = 3;
 
         FillBasicData();
 
