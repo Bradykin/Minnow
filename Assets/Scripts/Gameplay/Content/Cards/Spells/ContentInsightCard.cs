@@ -13,6 +13,8 @@ public class ContentInsightCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
+        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(null));
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
@@ -28,7 +30,7 @@ public class ContentInsightCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Trigger spellcraft " + m_spellEffect + spString + " times (including the trigger from this card).\n" + GetModifiedBySpellPowerString();
+        return "Trigger <b>Spellcraft</b> " + m_spellEffect + spString + " times (including the trigger from this card).\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard()

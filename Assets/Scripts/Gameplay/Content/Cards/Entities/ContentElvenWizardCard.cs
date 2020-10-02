@@ -8,7 +8,7 @@ public class ContentElvenWizardCard : GameCardEntityBase
     {
         m_entity = new ContentElvenWizard();
 
-        m_cost = 1;
+        m_cost = 3;
 
         FillBasicData();
 

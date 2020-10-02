@@ -7,7 +7,7 @@ public class ContentEncouragementCard : GameCardSpellBase
     public ContentEncouragementCard()
     {
         m_name = "Encouragement";
-        m_desc = "Deal 1 damage to target allied Monster unit, then give them +0/+3.";
+        m_desc = "Deal 1 damage to target allied <b>Monster</b> unit, then give them +0/+3.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;

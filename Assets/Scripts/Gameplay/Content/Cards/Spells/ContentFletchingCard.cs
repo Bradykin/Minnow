@@ -9,7 +9,7 @@ public class ContentFletchingCard : GameCardSpellBase
     public ContentFletchingCard()
     {
         m_name = "Fletching";
-        m_desc = "Ally ranged units get +" + m_fletchlingCount + " power until end of turn.";
+        m_desc = "Allied ranged units get +" + m_fletchlingCount + "/+0 until end of turn.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;

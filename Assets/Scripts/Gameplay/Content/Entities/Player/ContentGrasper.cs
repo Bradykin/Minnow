@@ -15,7 +15,7 @@ public class ContentGrasper : GameEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Grasper";
-        m_desc = "When this hits an unit, it drains all AP from it.";
+        m_desc = "When this hits a unit, it drains all AP from it.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 

@@ -14,6 +14,8 @@ public class ContentTrollFormCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
+        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(-1));
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
@@ -28,7 +30,7 @@ public class ContentTrollFormCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Target allied unit gains 'Regen " + m_spellEffect + spString + "'.\n" + GetModifiedBySpellPowerString();
+        return "Target allied unit gains '<b>Regen</b: " + m_spellEffect + spString + "'.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

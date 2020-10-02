@@ -15,6 +15,8 @@ public class ContentAncientTextsCard : GameCardSpellBase
 
         SetupBasicData();
 
+        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(null));
+
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.Spellpower);
@@ -29,7 +31,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Trigger knowledgeable " + m_spellEffect + spString + " times.\n" + GetModifiedBySpellPowerString();
+        return "Trigger <b>Knowledgeable</b> " + m_spellEffect + spString + " times.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard()

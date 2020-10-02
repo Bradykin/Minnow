@@ -12,14 +12,8 @@ public class GameSpellcraftKeyword : GameKeywordBase
         m_action = action;
 
         m_name = "Spellcraft";
-        if (Constants.UseLocationalSpellcraft)
-        {
-            m_focusInfoText = "Triggers when the player casts a spell card that has no target, or is targeted within " + m_spellcraftRange + " tiles of this unit.";
-        }
-        else
-        {
-            m_focusInfoText = "Triggers when the player casts a spell card.";
-        }
+        m_focusInfoText = "Triggers when the player casts a spell card that has no target, or is targeted within " + m_spellcraftRange + " tiles of this unit.";
+        m_shortDesc = "On spell cast within 3 range.";
         m_keywordParamType = KeywordParamType.ActionParam;
 
         if (action == null)

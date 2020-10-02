@@ -11,8 +11,12 @@ public class GameBrittleKeyword : GameKeywordBase
         m_amount = amount;
 
         m_name = "Brittle";
-        m_desc = "" + m_amount;
+        if (m_amount > 0)
+        {
+            m_desc = "" + m_amount;
+        }
         m_focusInfoText = "Takes additional damage.";
+        m_shortDesc = "Takes more damage on hit";
         m_keywordParamType = KeywordParamType.IntParam;
     }
 

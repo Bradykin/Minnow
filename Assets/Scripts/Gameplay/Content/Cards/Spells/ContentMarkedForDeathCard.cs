@@ -14,6 +14,9 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
+        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
+        m_keywordHolder.m_keywords.Add(new GameBrittleKeyword(-1));
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
@@ -22,7 +25,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target enemy unit gains 'Enrage: Gain Brittle " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
+        return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

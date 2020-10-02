@@ -22,7 +22,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied Creation unit gains " + m_spellEffect + " (" + GetSpellValue() + ") max AP.\n" + GetModifiedBySpellPowerString();
+        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + " (" + GetSpellValue() + ") max AP.\n" + GetModifiedBySpellPowerString();
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)

@@ -11,7 +11,10 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_regenVal = regenVal;
 
         m_name = "Regen";
-        m_desc = "" + m_regenVal;
+        if (m_regenVal > 0)
+        {
+            m_desc = "" + m_regenVal;
+        }
         m_focusInfoText = "Regenerate health at the end of each turn.";
         m_keywordParamType = KeywordParamType.IntParam;
     }

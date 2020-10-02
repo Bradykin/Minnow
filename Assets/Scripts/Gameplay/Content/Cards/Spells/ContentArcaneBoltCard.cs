@@ -22,7 +22,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "x5 benefits from spell power.";
+        return GetDamageDescString() + "x5 benefits from Spell Power.";
     }
 
     public override void PlayCard(GameEntity targetEntity)

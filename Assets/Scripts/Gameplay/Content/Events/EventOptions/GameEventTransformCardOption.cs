@@ -13,11 +13,11 @@ public class GameEventTransformCardOption : GameEventOption
     {
         if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
         {
-            m_message = "Transform an entity in your deck into a random other entity";
+            m_message = "Transform a unit card in your deck into a random other unit.";
         }
         else if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Spells)
         {
-            m_message = "Transform a spell in your deck into a random other spell";
+            m_message = "Transform a spell card in your deck into a random other spell card.";
         }
         else
         {

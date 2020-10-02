@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameCardSpellBase : GameCard
 {
+    //This is for keywords on the card that we want to display info for.
+    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
+
     protected int m_spellEffect;
 
     protected void SetupBasicData()
@@ -89,7 +92,7 @@ public class GameCardSpellBase : GameCard
 
     protected string GetModifiedBySpellPowerString()
     {
-        return "(This is modified by spell power)";
+        return "<i>(Modified by spell power)</i>";
     }
 
     protected bool HasSpellPower()
@@ -142,5 +145,25 @@ public class GameCardSpellBase : GameCard
         }
 
         player.TriggerSpellcraft(m_targetType, tileCastAt);
+    }
+
+    public GameKeywordHolder GetKeywordHolderForRead()
+    {
+        return m_keywordHolder;
+    }
+
+    //TODO: nmartino - Go through the overrides and find a way to make them function w/ this.
+    public override string GetDesc()
+    {
+        string desc = m_desc;
+
+        /*if (GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
+        {
+            desc += "\n";
+        }
+
+        desc += GetKeywordHolderForRead().GetDesc();
+        */
+        return desc;
     }
 }

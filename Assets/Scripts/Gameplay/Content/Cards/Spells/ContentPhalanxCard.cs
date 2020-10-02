@@ -9,7 +9,7 @@ public class ContentPhalanxCard : GameCardSpellBase
     public ContentPhalanxCard()
     {
         m_name = "Phalanx";
-        m_desc = "Target allied Humanoid unit gets +1/+1 for each allied Humanoid unit within " + m_effectRange + " tiles (including itself).";
+        m_desc = "Target allied <b>Humanoid</b> unit gets +1/+1 for each allied <b>Humanoid</b> unit within " + m_effectRange + " tiles (including itself).";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;

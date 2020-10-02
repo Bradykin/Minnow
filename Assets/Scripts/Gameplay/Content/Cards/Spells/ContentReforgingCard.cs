@@ -7,7 +7,7 @@ public class ContentReforgingCard : GameCardSpellBase
     public ContentReforgingCard()
     {
         m_name = "Reforging";
-        m_desc = "Return a random allied Creation unit which has died this wave to your hand.";
+        m_desc = "Return a random allied <b>Creation</b> unit which has died this wave to your hand.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Rare;

@@ -12,6 +12,9 @@ public class ContentRunicBladeCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
+        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(null));
+        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(null));
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
@@ -21,7 +24,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains 'Victorious: Trigger Spellcraft.'";
+        return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b>.'";
     }
 
     public override void PlayCard(GameEntity targetEntity)

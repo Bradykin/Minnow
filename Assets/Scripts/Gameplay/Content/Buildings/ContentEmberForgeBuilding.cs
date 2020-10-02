@@ -7,7 +7,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
     public ContentEmberForgeBuilding()
     {
         m_name = "Ember Forge";
-        m_desc = "Instantly kills </b>1</b> random non-elite unit within range 3 every turn. (Allied or enemy).";
+        m_desc = "Instantly kills <b>1</b> random non-elite unit within range 3 every turn. (Allied or enemy).";
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 

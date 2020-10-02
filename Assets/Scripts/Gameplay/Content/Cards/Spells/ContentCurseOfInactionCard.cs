@@ -13,6 +13,8 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
+        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
+
         SetupBasicData();
     }
 
@@ -24,7 +26,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        return "Give a unit 'Momentum: take " + m_spellEffect + spString + " damage.'\n" + GetModifiedBySpellPowerString();
+        return "Give a unit '<b>Momentum</b>: take " + m_spellEffect + spString + " damage.'\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)

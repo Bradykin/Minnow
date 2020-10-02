@@ -7,7 +7,7 @@ public class ContentOverchargeCard : GameCardSpellBase
     public ContentOverchargeCard()
     {
         m_name = "Overcharge";
-        m_desc = "Maximize the AP of target allied Creation unit.";
+        m_desc = "Maximize the AP of target allied <b>Creation</b> unit.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Rare;
