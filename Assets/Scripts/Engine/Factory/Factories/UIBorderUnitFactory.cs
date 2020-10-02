@@ -6,15 +6,18 @@ using Object = UnityEngine.Object;
 
 namespace Game.Util
 {
-    public class UIEntityFactory : FactoryBase
+    public class UIBorderUnitFactory : FactoryBase
     {
+
+        private Transform m_HUDTransform;
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UIEntityFactory(GameObject uiEntityPrefab)
+        public UIBorderUnitFactory(GameObject uiBorderUnitPrefab, GameObject hudParent)
         {
-            m_prefab = uiEntityPrefab;
+            m_prefab = uiBorderUnitPrefab;
+            m_HUDTransform = hudParent.transform;
         }
 
         //============================================================================================================//
@@ -25,30 +28,12 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(WorldTile tile)
+        public T CreateObject<T>(UIEntity ownerEntity)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = tile.GetScreenPositionForEntity();
 
-            GameObject uiParent = GameObject.Find("UI");
-            if (uiParent != null)
-            {
-                obj.transform.parent = uiParent.transform;
-            }
-
-            UIEntity uiEntity = obj.GetComponent<UIEntity>();
-
-            if (tile.GetGameTile().m_isFog)
-            {
-                uiEntity.SetVisible(false);
-            }
-
-            uiEntity.Init(tile.GetGameTile().m_occupyingEntity);
-
-            if (uiEntity.GetEntity().GetTeam() == Team.Player)
-            {
-                FactoryManager.Instance.GetFactory<UIBorderUnitFactory>().CreateObject<UIBorderUnit>(uiEntity);
-            }
+            obj.transform.SetParent(m_HUDTransform);
+            obj.GetComponent<UIBorderUnit>().Init(ownerEntity);
 
             return obj.GetComponent<T>();
         }
@@ -68,4 +53,3 @@ namespace Game.Util
         //============================================================================================================//
     }
 }
-
