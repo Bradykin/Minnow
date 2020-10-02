@@ -45,9 +45,9 @@ public class ContentZombie : GameEntity
         if (!(other is ContentZombieEnemy))
         {
             GameEnemyEntity newZombie = new ContentZombieEnemy(GameHelper.GetOpponent());
-
+            other.m_uiEntity.Init(newZombie);
             GameHelper.GetOpponent().m_controlledEntities.Remove((GameEnemyEntity)other);
-            GameHelper.GetOpponent().m_controlledEntities.Add((GameEnemyEntity)newZombie);
+            GameHelper.GetOpponent().m_controlledEntities.Add(newZombie);
 
             other.GetGameTile().SwapEntity(newZombie);
 
