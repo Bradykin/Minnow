@@ -48,13 +48,9 @@ public class UIBorderUnit : MonoBehaviour
 
         Vector3 screenPointPos = Camera.main.ViewportToScreenPoint(new Vector3(Screen.width * normalizedDir.x, Screen.height * normalizedDir.y, normalizedDir.z));
         screenPointPos.z = 0;
-<<<<<<< HEAD
         gameObject.GetComponent<RectTransform>().position = screenPointPos;
-=======
-        gameObject.transform.position = screenPointPos;*/
 
         m_rectTransform.anchoredPosition = new Vector2(Screen.width / 4, Screen.height / 4);
->>>>>>> 55213dbb7bd8bfb2573ee76bb2f966ff2292a0d0
 
         /*print("m_entiy World Pos: " + m_entity.transform.position);
         print("m_entiy Screen Pos: " + Camera.main.WorldToScreenPoint(m_entity.transform.position));
