@@ -9,6 +9,6 @@ public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 
     public override void TakeStep()
     {
-        MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP(), true);
+        MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurStamina(), true);
     }
 }

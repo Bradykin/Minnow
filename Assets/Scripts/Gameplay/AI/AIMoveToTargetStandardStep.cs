@@ -9,14 +9,14 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 
     public override void TakeStep()
     {
-        MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen(), false);
+        MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen(), false);
     }
 
-    protected void MoveToTarget(int apUsageToMoveToCastle, bool letPassEnemies)
+    protected void MoveToTarget(int staminaUsageToMoveToCastle, bool letPassEnemies)
     {
         if (m_AIGameEnemyEntity.m_targetGameElement == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen());
             return;
         }
 
@@ -32,11 +32,11 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            MoveTowardsCastle(apUsageToMoveToCastle);
+            MoveTowardsCastle(staminaUsageToMoveToCastle);
             return;
         }
 
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithAPToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, letPassEnemies);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, letPassEnemies);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingTiles(targetTile, m_AIGameEnemyEntity.m_gameEnemyEntity.GetRange());
 
         List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile() || !t.IsOccupied() || t.m_occupyingEntity.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();

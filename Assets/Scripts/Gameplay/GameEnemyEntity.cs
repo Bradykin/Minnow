@@ -35,7 +35,7 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
         }
 
         m_curHealth = GetMaxHealth();
-        m_curAP = GetMaxAP(); //Enemy entities start at max AP.  This helps them get to the player base faster.
+        m_curStamina = GetMaxStamina(); //Enemy entities start at max Stamina.  This helps them get to the player base faster.
 
         m_typeline = Typeline.Monster;
     }

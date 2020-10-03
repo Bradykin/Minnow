@@ -5,13 +5,13 @@ using UnityEngine;
 public class ContentGroundskeeper : GameEntity
 {
     private int m_powerBoost = 5;
-    private int m_apRegenBoost = 2;
+    private int m_staminaRegenBoost = 2;
 
     public ContentGroundskeeper()
     {
         m_maxHealth = 75;
-        m_maxAP = 4;
-        m_apRegen = 1;
+        m_maxStamina = 4;
+        m_staminaRegen = 1;
         m_power = 5;
 
 
@@ -19,7 +19,7 @@ public class ContentGroundskeeper : GameEntity
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Groundskeeper";
-        m_desc = "Gains +5/+0 and +2 AP regen while in a forest.";
+        m_desc = "Gains +" + m_powerBoost + "/+0 and +" + m_staminaRegenBoost + " Stamina regen while in a forest.";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -45,20 +45,20 @@ public class ContentGroundskeeper : GameEntity
         return returnPower;
     }
 
-    public override int GetAPRegen()
+    public override int GetStaminaRegen()
     {
-        int returnAPRegen = base.GetAPRegen();
+        int returnStaminaRegen = base.GetStaminaRegen();
 
         if (m_gameTile == null)
         {
-            return returnAPRegen;
+            return returnStaminaRegen;
         }
 
         if (m_gameTile.GetTerrain().IsForest())
         {
-            returnAPRegen += m_apRegenBoost;
+            returnStaminaRegen += m_staminaRegenBoost;
         }
 
-        return returnAPRegen;
+        return returnStaminaRegen;
     }
 }

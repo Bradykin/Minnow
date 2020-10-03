@@ -7,7 +7,7 @@ public class GameMountainwalkKeyword : GameKeywordBase
     public GameMountainwalkKeyword()
     {
         m_name = "Mountainwalk";
-        m_focusInfoText = "Can move on mountain tiles.  Hills only cost 1 AP to move across.";
+        m_focusInfoText = "Can move on mountain tiles.  Hills only cost 1 Stamina to move across.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

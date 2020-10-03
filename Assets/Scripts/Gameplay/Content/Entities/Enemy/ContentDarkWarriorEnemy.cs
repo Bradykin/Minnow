@@ -7,8 +7,8 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
     public ContentDarkWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 10 + GetHealthModByWave();
-        m_maxAP = 10;
-        m_apRegen = 4 + GetAPRegenModByWave();
+        m_maxStamina = 8;
+        m_staminaRegen = 4 + GetStaminaRegenModByWave();
         m_power = 4 + GetPowerModByWave();
 
         m_team = Team.Enemy;
@@ -21,12 +21,10 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
 
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 5)));
-
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
 
         LateInit();
     }
@@ -58,7 +56,7 @@ public class ContentDarkWarriorEnemy : GameEnemyEntity
         return scalingValue * 10;
     }
 
-    private int GetAPRegenModByWave()
+    private int GetStaminaRegenModByWave()
     {
         int waveNum = GameHelper.GetGameController().m_waveNum;
 

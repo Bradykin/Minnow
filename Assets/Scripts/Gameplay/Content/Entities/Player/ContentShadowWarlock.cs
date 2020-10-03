@@ -7,8 +7,8 @@ public class ContentShadowWarlock : GameEntity
     public ContentShadowWarlock()
     {
         m_maxHealth = 12;
-        m_maxAP = 5;
-        m_apRegen = 2;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
         m_power = 2;
 
         m_team = Team.Player;

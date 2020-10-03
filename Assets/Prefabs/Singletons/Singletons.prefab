@@ -8804,7 +8804,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794789294297}
   m_powerText: {fileID: 4585388307067508872}
   m_healthText: {fileID: 4585388305985276466}
-  m_apContainer: {fileID: 4585388306932356235}
+  m_staminaContainer: {fileID: 4585388306932356235}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878793731065528
@@ -8944,7 +8944,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794830633907}
   m_powerText: {fileID: 4585388307023975394}
   m_healthText: {fileID: 4585388305958453592}
-  m_apContainer: {fileID: 4585388306890956769}
+  m_staminaContainer: {fileID: 4585388306890956769}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878793774665170
@@ -9539,7 +9539,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794954533694}
   m_powerText: {fileID: 4585388307165897583}
   m_healthText: {fileID: 4585388306083934677}
-  m_apContainer: {fileID: 4585388307299020652}
+  m_staminaContainer: {fileID: 4585388307299020652}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878793903402130
@@ -10752,7 +10752,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878793145425699}
   m_powerText: {fileID: 4585388305221588850}
   m_healthText: {fileID: 4585388306286511560}
-  m_apContainer: {fileID: 4585388305354677105}
+  m_staminaContainer: {fileID: 4585388305354677105}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878794227225789
@@ -12207,7 +12207,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878793520050862}
   m_powerText: {fileID: 4585388305647598335}
   m_healthText: {fileID: 4585388306729822277}
-  m_apContainer: {fileID: 4585388305512216316}
+  m_staminaContainer: {fileID: 4585388305512216316}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878794608947611
@@ -12581,7 +12581,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878793562626914}
   m_powerText: {fileID: 4585388305604973363}
   m_healthText: {fileID: 4585388306670682505}
-  m_apContainer: {fileID: 4585388305469890352}
+  m_staminaContainer: {fileID: 4585388305469890352}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878794647878946
@@ -13900,7 +13900,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878793862701794}
   m_powerText: {fileID: 4585388306114964147}
   m_healthText: {fileID: 4585388307196737545}
-  m_apContainer: {fileID: 4585388306248083120}
+  m_staminaContainer: {fileID: 4585388306248083120}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878794934808987
@@ -14118,7 +14118,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878793903402128}
   m_powerText: {fileID: 4585388306071774401}
   m_healthText: {fileID: 4585388307137295995}
-  m_apContainer: {fileID: 4585388306206861506}
+  m_staminaContainer: {fileID: 4585388306206861506}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878794973795762
@@ -14567,7 +14567,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794050945725}
   m_powerText: {fileID: 4585388306195270380}
   m_healthText: {fileID: 4585388307260201046}
-  m_apContainer: {fileID: 4585388306059757295}
+  m_staminaContainer: {fileID: 4585388306059757295}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &3829878795130525403
@@ -16056,7 +16056,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794153842069}
   m_powerText: {fileID: 4585388306356624836}
   m_healthText: {fileID: 4585388305274326910}
-  m_apContainer: {fileID: 4585388306489807303}
+  m_staminaContainer: {fileID: 4585388306489807303}
   m_displayType: 1
   m_isHovered: 0
 --- !u!1 &4329819801728392251
@@ -19970,7 +19970,7 @@ GameObject:
   - component: {fileID: 6004384567754304570}
   - component: {fileID: 4585388305354677105}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20007,7 +20007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388305463661039
 GameObject:
@@ -20093,7 +20093,7 @@ GameObject:
   - component: {fileID: 6004384568142145659}
   - component: {fileID: 4585388305469890352}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20130,7 +20130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388305512216317
 GameObject:
@@ -20143,7 +20143,7 @@ GameObject:
   - component: {fileID: 6004384568117379511}
   - component: {fileID: 4585388305512216316}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20180,7 +20180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388305569418078
 GameObject:
@@ -20995,7 +20995,7 @@ GameObject:
   - component: {fileID: 6004384567587008932}
   - component: {fileID: 4585388306059757295}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21032,7 +21032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306071774404
 GameObject:
@@ -21463,7 +21463,7 @@ GameObject:
   - component: {fileID: 6004384567396458377}
   - component: {fileID: 4585388306206861506}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21500,7 +21500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306248083121
 GameObject:
@@ -21513,7 +21513,7 @@ GameObject:
   - component: {fileID: 6004384567372665339}
   - component: {fileID: 4585388306248083120}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21550,7 +21550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306286511563
 GameObject:
@@ -21899,7 +21899,7 @@ GameObject:
   - component: {fileID: 6004384568759445132}
   - component: {fileID: 4585388306489807303}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21936,7 +21936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306541016187
 GameObject:
@@ -21949,7 +21949,7 @@ GameObject:
   - component: {fileID: 6004384569211159345}
   - component: {fileID: 4585388306541016186}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21986,7 +21986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306575848906
 GameObject:
@@ -21999,7 +21999,7 @@ GameObject:
   - component: {fileID: 6004384569176785536}
   - component: {fileID: 4585388306575848907}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22036,7 +22036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306629640007
 GameObject:
@@ -22657,7 +22657,7 @@ GameObject:
   - component: {fileID: 6004384568348993706}
   - component: {fileID: 4585388306890956769}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22694,7 +22694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306923741292
 GameObject:
@@ -22784,7 +22784,7 @@ GameObject:
   - component: {fileID: 6004384568325350336}
   - component: {fileID: 4585388306932356235}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22821,7 +22821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4585388306962258560
 GameObject:
@@ -23711,7 +23711,7 @@ GameObject:
   - component: {fileID: 6004384568494905383}
   - component: {fileID: 4585388307299020652}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23748,7 +23748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &4661604066578038638
 GameObject:
@@ -24052,7 +24052,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794638995496}
   m_powerText: {fileID: 4585388306674006137}
   m_healthText: {fileID: 4585388305592232643}
-  m_apContainer: {fileID: 4585388306541016186}
+  m_staminaContainer: {fileID: 4585388306541016186}
   m_displayType: 2
   m_isHovered: 0
 --- !u!1 &4917939617123857411
@@ -24115,7 +24115,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794635988941}
   m_powerText: {fileID: 3932337422033368683}
   m_healthText: {fileID: 3932337422107143783}
-  m_apContainer: {fileID: 7726887399411334438}
+  m_staminaContainer: {fileID: 7726887399411334438}
   m_displayType: 2
   m_isHovered: 0
 --- !u!1 &4917939617151257175
@@ -24178,7 +24178,7 @@ MonoBehaviour:
   m_descText: {fileID: 3829878794608947609}
   m_powerText: {fileID: 4585388306711001544}
   m_healthText: {fileID: 4585388305628769138}
-  m_apContainer: {fileID: 4585388306575848907}
+  m_staminaContainer: {fileID: 4585388306575848907}
   m_displayType: 2
   m_isHovered: 0
 --- !u!1 &5102754991236946758
@@ -26451,7 +26451,7 @@ GameObject:
   - component: {fileID: 561299086295878253}
   - component: {fileID: 7726887399411334438}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26488,7 +26488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &7755105643234318878
 GameObject:
@@ -27637,7 +27637,7 @@ MonoBehaviour:
     type: 3}
   m_uiWorldElementNotificationPrefab: {fileID: 3599552122858822999, guid: 9be644c790a93154cb9d6bd04a016df2,
     type: 3}
-  m_uiAPBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,
+  m_uiStaminaBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,
     type: 3}
   m_uiRelicPrefab: {fileID: 422705487106061522, guid: f1fa454c167b2d9479c6baa4a37e2b31,
     type: 3}

@@ -7,8 +7,8 @@ public class ContentCyclops : GameEntity
     public ContentCyclops()
     {
         m_maxHealth = 100;
-        m_maxAP = 3;
-        m_apRegen = 1;
+        m_maxStamina = 3;
+        m_staminaRegen = 1;
         m_power = 120;
         m_sightRange = 1;
 

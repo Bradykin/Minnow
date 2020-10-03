@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 7850136634304910908}
   - component: {fileID: 2016813431}
   m_Layer: 0
-  m_Name: APContainer
+  m_Name: StaminaContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b78fed2db698a04199fa40caf617fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_APBubbles: []
+  m_StaminaBubbles: []
   m_inWorld: 0
 --- !u!1 &757981489413617896
 GameObject:
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_descText: {fileID: 757981491177153829}
   m_powerText: {fileID: 1881533812}
   m_healthText: {fileID: 816021454}
-  m_apContainer: {fileID: 2016813431}
+  m_staminaContainer: {fileID: 2016813431}
   m_displayType: 0
   m_isHovered: 0
 --- !u!1 &757981490105081710

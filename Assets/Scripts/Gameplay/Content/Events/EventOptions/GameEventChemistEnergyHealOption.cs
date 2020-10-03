@@ -14,7 +14,7 @@ public class GameEventChemistEnergyHealOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Spend " + m_goldCost + " gold: Heal to full health and gain max AP.";
+        m_message = "Spend " + m_goldCost + " gold: Heal to full health and gain max Stamina.";
 
         return base.GetMessage();
     }
@@ -34,7 +34,7 @@ public class GameEventChemistEnergyHealOption : GameEventOption
         GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(m_goldCost));
 
         m_tile.m_occupyingEntity.Heal(m_tile.m_occupyingEntity.GetMaxHealth());
-        m_tile.m_occupyingEntity.GainAP(m_tile.m_occupyingEntity.GetMaxAP());
+        m_tile.m_occupyingEntity.GainStamina(m_tile.m_occupyingEntity.GetMaxStamina());
 
         EndEvent();
     }

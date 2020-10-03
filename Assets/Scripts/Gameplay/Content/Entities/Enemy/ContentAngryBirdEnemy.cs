@@ -8,8 +8,8 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
     public ContentAngryBirdEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 4;
-        m_maxAP = 6;
-        m_apRegen = 4;
+        m_maxStamina = 6;
+        m_staminaRegen = 4;
         m_power = 3;
 
         m_team = Team.Enemy;
@@ -26,7 +26,7 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
 
         LateInit();
     }

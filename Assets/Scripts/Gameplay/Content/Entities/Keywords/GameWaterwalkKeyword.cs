@@ -7,7 +7,7 @@ public class GameWaterwalkKeyword : GameKeywordBase
     public GameWaterwalkKeyword()
     {
         m_name = "Waterwalk";
-        m_focusInfoText = "Can move on water tiles, and moving on water tiles costs 0 ap.";
+        m_focusInfoText = "Can move on water tiles, and moving on water tiles costs 0 Stamina.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

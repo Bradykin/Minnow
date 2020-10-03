@@ -33,6 +33,6 @@ public class UIMainDeck : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Full Deck", "This is your full deck, including currently played entities and exile spells."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Full Deck", "This is your full deck, including currently played units and exile spells."));
     }
 }

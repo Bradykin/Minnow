@@ -7,7 +7,7 @@ public class ContentSecretSoupRelic : GameRelic
     public ContentSecretSoupRelic()
     {
         m_name = "Secret Soup";
-        m_desc = "Increase the AP regen of <b>all units</b> by 1.";
+        m_desc = "Increase the Stamina regen of <b>all units</b> by 1.\n<i>(Both enemy and allied)</i>";
         m_rarity = GameRarity.Rare;
 
         LateInit();

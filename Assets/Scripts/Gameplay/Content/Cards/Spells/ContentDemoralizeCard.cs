@@ -7,7 +7,7 @@ public class ContentDemoralizeCard : GameCardSpellBase
     public ContentDemoralizeCard()
     {
         m_name = "Demoralize";
-        m_desc = "Set a units AP to 2.";
+        m_desc = "Set a units Stamina to 2.";
         m_targetType = Target.Unit;
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
@@ -27,7 +27,7 @@ public class ContentDemoralizeCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.EmptyAP();
-        targetEntity.GainAP(2);
+        targetEntity.EmptyStamina();
+        targetEntity.GainStamina(2);
     }
 }

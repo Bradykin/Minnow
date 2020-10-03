@@ -10,7 +10,7 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
 
     public override void TakeStep()
     {
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithAPToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
 
         List<GameTile> tilesWithMaxAdjacent = new List<GameTile>();
         int maxAdjacent = 0;
@@ -53,7 +53,7 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
         if (tilesWithMaxAdjacent.Count == 0)
         {
             m_AIGameEnemyEntity.m_targetGameTile = null;
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen());
+            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen());
         }
         else if (tilesWithMaxAdjacent.Count == 1)
         {

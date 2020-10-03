@@ -13,7 +13,7 @@ public class AIAttackOnceStandardStep : AIStep
             return;
         }
 
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
         {
             switch (m_AIGameEnemyEntity.m_targetGameElement)
             {
@@ -21,7 +21,7 @@ public class AIAttackOnceStandardStep : AIStep
                     m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(gameEntity);
                     if (gameEntity.m_isDead || gameEntity == null)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }
@@ -32,7 +32,7 @@ public class AIAttackOnceStandardStep : AIStep
                     m_AIGameEnemyEntity.m_gameEnemyEntity.HitBuilding(gameBuildingBase);
                     if (gameBuildingBase.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }

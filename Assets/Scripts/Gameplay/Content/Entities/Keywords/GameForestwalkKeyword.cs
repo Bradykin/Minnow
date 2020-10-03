@@ -7,7 +7,7 @@ public class GameForestwalkKeyword : GameKeywordBase
     public GameForestwalkKeyword()
     {
         m_name = "Forestwalk";
-        m_focusInfoText = "Forests only cost 1 AP to move through.";
+        m_focusInfoText = "Forests only cost 1 Stamina to move through.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

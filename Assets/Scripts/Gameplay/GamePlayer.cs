@@ -362,11 +362,11 @@ public class GamePlayer : ITurns
         return toReturn;
     }
 
-    public bool HasEntitiesThatWillOvercapAP()
+    public bool HasEntitiesThatWillOvercapStamina()
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {
-            if (m_controlledEntities[i].GetCurAP() + m_controlledEntities[i].GetAPRegen() > m_controlledEntities[i].GetMaxAP())
+            if (m_controlledEntities[i].GetCurStamina() + m_controlledEntities[i].GetStaminaRegen() > m_controlledEntities[i].GetMaxStamina())
             {
                 return true;
             }

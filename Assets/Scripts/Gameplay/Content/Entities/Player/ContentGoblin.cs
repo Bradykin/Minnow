@@ -10,8 +10,8 @@ public class ContentGoblin : GameEntity
     public ContentGoblin()
     {
         m_maxHealth = 18;
-        m_maxAP = 4;
-        m_apRegen = 3;
+        m_maxStamina = 4;
+        m_staminaRegen = 3;
         m_power = 8;
 
         m_team = Team.Player;

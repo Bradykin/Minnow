@@ -7,8 +7,8 @@ public class ContentElvenRogue : GameEntity
     public ContentElvenRogue()
     {
         m_maxHealth = 5;
-        m_maxAP = 4;
-        m_apRegen = 4;
+        m_maxStamina = 4;
+        m_staminaRegen = 4;
         m_power = 1;
 
         m_team = Team.Player;

@@ -6,13 +6,13 @@
     //GameEntity data
     public int team;
     public int curHealth;
-    public int curAP;
+    public int curStamina;
     public int maxHealth;
-    public int apRegen;
-    public int maxAP;
+    public int staminaRegen;
+    public int maxStamina;
     public int power;
     public int typeline;
     public string keywordHolderJson;
-    public int apToAttack;
+    public int staminaToAttack;
     public int sightRange;
 }

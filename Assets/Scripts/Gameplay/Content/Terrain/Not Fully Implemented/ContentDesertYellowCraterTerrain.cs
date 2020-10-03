@@ -7,7 +7,7 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
     public ContentDesertYellowCraterTerrain()
     {
         m_name = "DesertYellowCrater";
-        m_desc = "2 AP movement.";
+        m_desc = "2 Stamina movement.";
         m_terrainImageNumber = 1;
 
         m_isPassable = true;

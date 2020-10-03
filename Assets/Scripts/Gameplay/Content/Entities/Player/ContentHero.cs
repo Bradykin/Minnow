@@ -7,8 +7,8 @@ public class ContentHero : GameEntity
     public ContentHero()
     {
         m_maxHealth = 50;
-        m_maxAP = 6;
-        m_apRegen = 4;
+        m_maxStamina = 6;
+        m_staminaRegen = 4;
         m_power = 6;
 
         m_team = Team.Player;

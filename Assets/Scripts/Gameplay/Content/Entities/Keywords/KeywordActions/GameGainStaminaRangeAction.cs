@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainAPRangeAction : GameAction
+public class GameGainStaminaRangeAction : GameAction
 {
     private GameEntity m_entity;
     private int m_toGain;
     private int m_range;
 
-    public GameGainAPRangeAction(GameEntity entity, int toGain, int range)
+    public GameGainStaminaRangeAction(GameEntity entity, int toGain, int range)
     {
         m_entity = entity;
         m_toGain = toGain;
         m_range = range;
 
-        m_name = "Gain AP";
-        m_desc = "All friendly units within range " + m_range + " gain " + m_toGain + " AP";
+        m_name = "Gain Stamina";
+        m_desc = "All friendly units within range " + m_range + " gain " + m_toGain + " Stamina";
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 
@@ -27,7 +27,7 @@ public class GameGainAPRangeAction : GameAction
         {
             if (tilesInRange[i].IsOccupied() && !tilesInRange[i].m_occupyingEntity.m_isDead && tilesInRange[i].m_occupyingEntity.GetTeam() == Team.Player)
             {
-                tilesInRange[i].m_occupyingEntity.GainAP(m_toGain);
+                tilesInRange[i].m_occupyingEntity.GainStamina(m_toGain);
             }
         }
     }

@@ -6,9 +6,9 @@ public class ContentStoneGolem : GameEntity
 {
     public ContentStoneGolem()
     {
-        m_maxHealth = 50;
-        m_maxAP = 2;
-        m_apRegen = 1;
+        m_maxHealth = 40;
+        m_maxStamina = 2;
+        m_staminaRegen = 1;
         m_power = 1;
 
 

@@ -13,8 +13,8 @@ public class ContentMiner : GameEntity
         m_miningVal = 5;
 
         m_maxHealth = 4;
-        m_maxAP = 4;
-        m_apRegen = 1;
+        m_maxStamina = 4;
+        m_staminaRegen = 1;
         m_power = 1;
 
         m_team = Team.Player;

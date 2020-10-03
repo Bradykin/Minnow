@@ -7,7 +7,7 @@ public class ContentPoisonedShivsRelic : GameRelic
     public ContentPoisonedShivsRelic()
     {
         m_name = "Poisoned Shivs";
-        m_desc = "Shivs drain 2 AP from the target.";
+        m_desc = "Shivs drain 2 Stamina from the target.";
         m_rarity = GameRarity.Rare;
 
         LateInit();

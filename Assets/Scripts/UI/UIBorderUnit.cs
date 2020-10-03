@@ -27,7 +27,7 @@ public class UIBorderUnit : MonoBehaviour
     void Update()
     {
         //Hide this if the UIEntity is on screen.
-        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurAP() > 0);
+        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurStamina() > 0);
 
         UpdatePosition();
     }
@@ -45,7 +45,7 @@ public class UIBorderUnit : MonoBehaviour
 
         Vector3 screenPointPos = Camera.main.ViewportToScreenPoint(new Vector3(Screen.width * normalizedDir.x, Screen.height * normalizedDir.y, normalizedDir.z));
         screenPointPos.z = 0;
-        gameObject.transform.position = screenPointPos;
+        gameObject.GetComponent<RectTransform>().position = screenPointPos;
 
         /*print("m_entiy World Pos: " + m_entity.transform.position);
         print("m_entiy Screen Pos: " + Camera.main.WorldToScreenPoint(m_entity.transform.position));

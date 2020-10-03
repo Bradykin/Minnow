@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AISiegebreakerAttackUntilOutOfAPStep : AIAttackUntilOutOfAPStandardStep
+public class AISiegebreakerAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStaminaStandardStep
 {
-    public AISiegebreakerAttackUntilOutOfAPStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerAttackUntilOutOfStaminaStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP() == m_AIGameEnemyEntity.m_gameEnemyEntity.GetMaxAP())
+        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurStamina() == m_AIGameEnemyEntity.m_gameEnemyEntity.GetMaxStamina())
         {
             base.TakeStep();
         }

@@ -6,15 +6,15 @@ using Object = UnityEngine.Object;
 
 namespace Game.Util
 {
-    public class UIAPBubbleFactory : FactoryBase
+    public class UIStaminaBubbleFactory : FactoryBase
     {
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UIAPBubbleFactory(GameObject uiAPBubblePrefab)
+        public UIStaminaBubbleFactory(GameObject staminaBubblePrefab)
         {
-            m_prefab = uiAPBubblePrefab;
+            m_prefab = staminaBubblePrefab;
         }
 
         //============================================================================================================//
@@ -25,10 +25,10 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(Transform apContainer, bool isActive, Team team, int index, bool inWorld)
+        public T CreateObject<T>(Transform staminaContainer, bool isActive, Team team, int index, bool inWorld)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.SetParent(apContainer);
+            obj.transform.SetParent(staminaContainer);
 
             if (index < 6)
             {
@@ -53,7 +53,7 @@ namespace Game.Util
                 }
             }
 
-            obj.GetComponent<UIAPBubble>().Init(isActive, team);
+            obj.GetComponent<UIStaminaBubble>().Init(isActive, team);
 
             return obj.GetComponent<T>();
         }

@@ -10,8 +10,8 @@ public class ContentHomonculus : GameEntity
     public ContentHomonculus()
     {
         m_maxHealth = 4;
-        m_maxAP = 6;
-        m_apRegen = 2;
+        m_maxStamina = 6;
+        m_staminaRegen = 2;
         m_power = 2;
 
         m_team = Team.Player;
@@ -21,7 +21,7 @@ public class ContentHomonculus : GameEntity
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
-        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainAPRangeAction(this, m_effectAmount, m_effectRange)));
+        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_effectRange)));
 
         LateInit();
     }

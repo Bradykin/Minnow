@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIAPBubble : MonoBehaviour
+public class UIStaminaBubble : MonoBehaviour
 {
     public Image m_image;
 

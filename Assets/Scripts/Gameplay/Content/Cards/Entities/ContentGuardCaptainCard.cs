@@ -12,6 +12,6 @@ public class ContentGuardCaptainCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 }

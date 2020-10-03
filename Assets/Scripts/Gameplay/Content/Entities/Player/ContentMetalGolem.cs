@@ -12,8 +12,8 @@ public class ContentMetalGolem : GameEntity
         m_eatingRange = 1;
 
         m_maxHealth = 25;
-        m_maxAP = 4;
-        m_apRegen = 4;
+        m_maxStamina = 4;
+        m_staminaRegen = 4;
         m_power = 5;
 
         m_team = Team.Player;

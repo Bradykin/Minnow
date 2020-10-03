@@ -61,7 +61,7 @@ public class GameOpponent : ITurns
                 yield return new WaitForSeconds(0.5f);
             }
 
-            int curAP = entity.GetCurAP();
+            int curStamina = entity.GetCurStamina();
             entity.TakeTurn();
 
             entities.Remove(entity);

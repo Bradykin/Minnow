@@ -26,7 +26,7 @@ public class UICard : MonoBehaviour
     public Text m_descText;
     public Text m_powerText;
     public Text m_healthText;
-    public UIAPContainer m_apContainer;
+    public UIStaminaContainer m_staminaContainer;
 
     public CardDisplayType m_displayType;
 
@@ -106,14 +106,14 @@ public class UICard : MonoBehaviour
             m_powerText.text = entityCard.m_entity.GetPower() + "";
             m_healthText.text = entityCard.m_entity.GetMaxHealth() + "";
 
-            m_apContainer.gameObject.SetActive(true);
-            m_apContainer.Init(entityCard.GetEntity().GetAPRegen(), entityCard.GetEntity().GetMaxAP(), Team.Player);
+            m_staminaContainer.gameObject.SetActive(true);
+            m_staminaContainer.Init(entityCard.GetEntity().GetStaminaRegen(), entityCard.GetEntity().GetMaxStamina(), Team.Player);
         }
         else
         {
             m_powerText.text = "";
             m_healthText.text = "";
-            m_apContainer.gameObject.SetActive(false);
+            m_staminaContainer.gameObject.SetActive(false);
         }
     }
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 //Prioritize units over buildings
 //Deprioritze targets with attack <= 0
-//Prioritize with high ap regen per attack cost
+//Prioritize with high Stamina regen per attack ratio
 public class ContentSnakeEnemy : GameEnemyEntity
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 2;
-        m_maxAP = 6;
-        m_apRegen = 3;
+        m_maxStamina = 6;
+        m_staminaRegen = 3;
         m_power = 2;
 
         m_team = Team.Enemy;
@@ -28,14 +28,14 @@ public class ContentSnakeEnemy : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
 
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other, bool spendAP = true)
+    public override int HitEntity(GameEntity other, bool spendStamina = true)
     {
-        int damageTaken = base.HitEntity(other, spendAP);
+        int damageTaken = base.HitEntity(other, spendStamina);
 
         other.AddPower(-2);
 

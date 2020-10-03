@@ -7,8 +7,8 @@ public class ContentFishOracle : GameEntity
     public ContentFishOracle()
     {
         m_maxHealth = 8;
-        m_maxAP = 4;
-        m_apRegen = 2;
+        m_maxStamina = 4;
+        m_staminaRegen = 2;
         m_power = 2;
 
         m_team = Team.Player;

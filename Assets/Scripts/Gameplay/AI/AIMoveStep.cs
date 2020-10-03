@@ -7,11 +7,11 @@ public abstract class AIMoveStep : AIStep
 {
     public AIMoveStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
-    protected void MoveTowardsCastle(int amountAPToSpend)
+    protected void MoveTowardsCastle(int amountStaminaToSpend)
     {
         if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().Castle != null)
         {
-            m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTowards(GameHelper.GetPlayer().Castle.GetGameTile(), amountAPToSpend);
+            m_AIGameEnemyEntity.m_gameEnemyEntity.MoveTowards(GameHelper.GetPlayer().Castle.GetGameTile(), amountStaminaToSpend);
         }
     }
 }

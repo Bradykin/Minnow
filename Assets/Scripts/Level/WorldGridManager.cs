@@ -327,7 +327,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return distance + Math.Abs(currentPosition.x - targetPosition.y);
     }
 
-    public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curAP)
+    public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
     {
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
@@ -378,7 +378,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, current.F >= curAP))
+                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.m_occupyingEntity, current.F >= curStamina))
                     continue;
 
                 // if it's not in the open list...
@@ -535,20 +535,20 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             Debug.Log("NO ENTITY ON TILE");
             return new List<GameTile>();
         }
-        return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurAP(), ignoreTerrainDifferences, letPassEnemies);
+        return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingEntity.GetCurStamina(), ignoreTerrainDifferences, letPassEnemies);
     }
 
-    public List<GameTile> GetTilesInMovementRangeWithAPToAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
+    public List<GameTile> GetTilesInMovementRangeWithStaminaToAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
         if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingEntity.m_isDead)
         {
             Debug.Log("NO ENTITY ON TILE");
             return null;
         }
-        int movementAP = startingGridTile.m_occupyingEntity.GetCurAP() - startingGridTile.m_occupyingEntity.GetAPToAttack();
+        int movementStamina = startingGridTile.m_occupyingEntity.GetCurStamina() - startingGridTile.m_occupyingEntity.GetStaminaToAttack();
 
-        List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRange(startingGridTile, movementAP, ignoreTerrainDifferences, letPassEnemies);
-        return tilesInMovementRangeWithAPToAttack;
+        List<GameTile> tilesInMovementRangeWithStaminaToAttack = GetTilesInMovementRange(startingGridTile, movementStamina, ignoreTerrainDifferences, letPassEnemies);
+        return tilesInMovementRangeWithStaminaToAttack;
     }
 
     public List<GameTile> GetTilesInRangeToMoveAndAttack(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
@@ -559,12 +559,12 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             return null;
         }
 
-        List<GameTile> tilesInMovementRangeWithAPToAttack = GetTilesInMovementRangeWithAPToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
-        for (int i = tilesInMovementRangeWithAPToAttack.Count - 1; i >= 0; i--)
+        List<GameTile> tilesInMovementRangeWithStaminaToAttack = GetTilesInMovementRangeWithStaminaToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
+        for (int i = tilesInMovementRangeWithStaminaToAttack.Count - 1; i >= 0; i--)
         {
-            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithAPToAttack[i] != startingGridTile)
+            if (tilesInMovementRangeWithStaminaToAttack[i].IsOccupied() && !tilesInMovementRangeWithStaminaToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithStaminaToAttack[i] != startingGridTile)
             {
-                tilesInMovementRangeWithAPToAttack.RemoveAt(i);
+                tilesInMovementRangeWithStaminaToAttack.RemoveAt(i);
             }
         }
 
@@ -572,14 +572,14 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         List<GameTile> tilesInRangeToMoveAndAttack = new List<GameTile>();
 
-        for (int i = 0; i < tilesInMovementRangeWithAPToAttack.Count; i++)
+        for (int i = 0; i < tilesInMovementRangeWithStaminaToAttack.Count; i++)
         {
-            if (tilesInMovementRangeWithAPToAttack[i].IsOccupied() && !tilesInMovementRangeWithAPToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithAPToAttack[i] != startingGridTile)
+            if (tilesInMovementRangeWithStaminaToAttack[i].IsOccupied() && !tilesInMovementRangeWithStaminaToAttack[i].m_occupyingEntity.m_isDead && tilesInMovementRangeWithStaminaToAttack[i] != startingGridTile)
             {
                 continue;
             }
             
-            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithAPToAttack[i].m_gridPosition), range);
+            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithStaminaToAttack[i].m_gridPosition), range);
             for (int k = 0; k < tiles.Count; k++)
             {
                 if (!tilesInRangeToMoveAndAttack.Contains(tiles[k].GetGameTile()))
@@ -592,7 +592,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return tilesInRangeToMoveAndAttack;
     }
 
-    private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentAP, bool ignoreTerrainDifferences, bool letPassEnemies)
+    private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentStamina, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
         Location current = null;
         var start = new Location(startingGridTile, 0);
@@ -614,8 +614,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             // remove it from the open list
             openList.Remove(current);
 
-            // if we have exceeded the allowed AP usage, end this branch of the loop
-            if (current.F >= currentAP)
+            // if we have exceeded the allowed Stamina usage, end this branch of the loop
+            if (current.F >= currentStamina)
                 continue;
 
             List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
@@ -640,7 +640,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 else
                     g = current.G + adjacentTile.GetCostToPass(startingGridTile.m_occupyingEntity);
 
-                if (g > currentAP)
+                if (g > currentStamina)
                     continue;
 
                 if (adjacent == null)
@@ -657,7 +657,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentAP);
+        List<Location> inRangeLocations = closedList.FindAll(l => l.G <= currentStamina);
         List<GameTile> inRangeGameTiles = new List<GameTile>();
 
         for (int i = 0; i < inRangeLocations.Count; i++)

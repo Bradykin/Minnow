@@ -7,15 +7,15 @@ public class ContentDwarfShivcaster : GameEntity
     public ContentDwarfShivcaster()
     {
         m_maxHealth = 30;
-        m_maxAP = 6;
-        m_apRegen = 3;
+        m_maxStamina = 6;
+        m_staminaRegen = 3;
         m_power = 2;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Shivcaster";
-        m_desc = "Shivs no longer trigger <b>Spellcraft</b>.\n";
+        m_desc = "Shivs no longer trigger <b>Spellcraft</b>.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 

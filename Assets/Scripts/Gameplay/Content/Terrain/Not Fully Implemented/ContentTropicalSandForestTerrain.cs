@@ -9,7 +9,7 @@ public class ContentTropicalSandForestTerrain : GameTerrainBase
         m_damageReduction = 2;
 
         m_name = "TropicalSandForest";
-        m_desc = "2 AP movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_desc = "2 Stamina movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 5);
 
         m_isPassable = true;

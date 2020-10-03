@@ -15,14 +15,14 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
         m_tags.AddTag(GameTag.TagType.Creation);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
     public override string GetDesc()
     {
-        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + " (" + GetSpellValue() + ") max AP.\n" + GetModifiedBySpellPowerString();
+        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + " (" + GetSpellValue() + ") max Stamina.\n" + GetModifiedBySpellPowerString();
     }
 
     public override bool IsValidToPlay(GameEntity targetEntity)
@@ -39,6 +39,6 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddMaxAP(GetSpellValue());
+        targetEntity.AddMaxStamina(GetSpellValue());
     }
 }

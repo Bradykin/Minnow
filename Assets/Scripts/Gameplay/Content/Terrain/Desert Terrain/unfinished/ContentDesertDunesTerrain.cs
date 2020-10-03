@@ -9,7 +9,7 @@ public class ContentDesertDunesTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_name = "DesertDunes";
-        m_desc = "2 AP movement.";
+        m_desc = "2 Stamina movement.";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

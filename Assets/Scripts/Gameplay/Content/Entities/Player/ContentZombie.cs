@@ -8,8 +8,8 @@ public class ContentZombie : GameEntity
     public ContentZombie()
     {
         m_maxHealth = 35;
-        m_maxAP = 6;
-        m_apRegen = 3;
+        m_maxStamina = 6;
+        m_staminaRegen = 3;
         m_power = 4;
 
         m_team = Team.Player;
@@ -38,7 +38,7 @@ public class ContentZombie : GameEntity
         return base.CanHitEntity(other, checkRange);
     }
 
-    public override int HitEntity(GameEntity other, bool spendAP = true)
+    public override int HitEntity(GameEntity other, bool spendStamina = true)
     {
         int damageTaken = 0;
 
@@ -51,11 +51,11 @@ public class ContentZombie : GameEntity
 
             other.GetGameTile().SwapEntity(newZombie);
 
-            damageTaken = base.HitEntity(newZombie, spendAP);
+            damageTaken = base.HitEntity(newZombie, spendStamina);
         }
         else
         {
-            damageTaken = base.HitEntity(other, spendAP);
+            damageTaken = base.HitEntity(other, spendStamina);
         }
 
         return damageTaken;
