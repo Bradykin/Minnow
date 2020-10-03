@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 2513313017907508869}
   - component: {fileID: 5267820902191216701}
   m_Layer: 0
-  m_Name: APBubble
+  m_Name: StaminaBubble
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
