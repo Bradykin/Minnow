@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //Priority order: adjacent units, castle, buildings, other units
-public class ContentMobolaEnemy : GameEnemyEntity
+public class ContentMobolaEnemy : GameEnemyUnit
 {
     public ContentMobolaEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

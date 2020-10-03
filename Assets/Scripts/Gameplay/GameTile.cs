@@ -336,6 +336,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
     }
 
+    public bool IsInFog()
+    {
+        return m_isFog || m_isSoftFog;
+    }
+
     //============================================================================================================//
 
     public string SaveToJsonAsString()

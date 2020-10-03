@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,17 +8,17 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 {
     public AIMoveToTargetStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
-        MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false);
+        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
     }
 
-    protected void MoveToTarget(int staminaUsageToMoveToCastle, bool letPassEnemies)
+    protected IEnumerator MoveToTarget(int staminaUsageToMoveToCastle, bool letPassEnemies)
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
-            return;
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            yield break;
         }
 
         GameTile targetTile = null;
@@ -25,15 +26,23 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         {
             case GameUnit gameUnit:
                 targetTile = gameUnit.GetGameTile();
+                if (m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfUnit(gameUnit))
+                {
+                    yield break;
+                }
                 break;
-            case GameBuildingBase gameBuildingBase:
-                targetTile = gameBuildingBase.GetGameTile();
+            case GameBuildingBase gameBuilding:
+                targetTile = gameBuilding.GetGameTile();
+                if (m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(gameBuilding))
+                {
+                    yield break;
+                }
                 break;
         }
         if (targetTile == null)
         {
-            MoveTowardsCastle(staminaUsageToMoveToCastle);
-            return;
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(staminaUsageToMoveToCastle));
+            yield break;
         }
 
         List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, letPassEnemies);
@@ -43,12 +52,45 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 
         if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile()))
         {
-            return;
+            yield break;
         }
 
         int closestTile = tilesToMoveTo.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t));
         GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t) == closestTile);
+        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
 
+        if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
+        {
+            yield break;
+        }
+
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+
+        if (useSteppedOutTurn)
+        {
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            while (UICameraController.Instance.IsCameraSmoothing())
+            {
+                yield return null;
+            }
+        }
+
+        int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
+
+        if (useSteppedOutTurn)
+        {
+            if (Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
+            {
+                UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                while (UICameraController.Instance.IsCameraSmoothing())
+                {
+                    yield return null;
+                }
+            }
+
+            UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

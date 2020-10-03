@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOrcEnemy : GameEnemyEntity
+public class ContentOrcEnemy : GameEnemyUnit
 {
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

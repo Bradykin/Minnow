@@ -361,7 +361,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             return false;
         }
 
-        if (checkRange && !IsInRangeOfEntity(other))
+        if (checkRange && !IsInRangeOfUnit(other))
         {
             return false;
         }
@@ -374,14 +374,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         switch(other)
         {
             case GameUnit gameEntity:
-                return IsInRangeOfEntity(gameEntity);
+                return IsInRangeOfUnit(gameEntity);
             case GameBuildingBase gameBuildingBase:
                 return IsInRangeOfBuilding(gameBuildingBase);
         }
         return false;
     }
 
-    public virtual bool IsInRangeOfEntity(GameUnit other)
+    public virtual bool IsInRangeOfUnit(GameUnit other)
     {
         List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
         
@@ -893,27 +893,24 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         SpendStamina(pathCost);
     }
 
-    public void MoveTowards(GameTile tile, int staminaToUse)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
     {
         if (this == Globals.m_focusedDebugEnemyEntity)
         {
             Debug.Log("IS FOCUSED ENEMY");
         }
 
-        if (tile == m_gameTile)
-            return;
-
-        if (staminaToUse <= 0)
-            return;
-
-        //TODO: ashulman rethink this. TEMP CODE TO REMOVE END OF TURN LAG WHEN BLOCKING CHOKEPOINT
-        //int absoluteDistance = WorldGridManager.Instance.GetPathLength(GetGameTile(), tile, true, true, true);
-        //bool letPassEnemies = absoluteDistance >= 8 && (!Constants.FogOfWar || GetGameTile().m_isFog || GetGameTile().m_isSoftFog);
+        if (tile == m_gameTile || staminaToUse <= 0)
+        {
+            return m_gameTile;
+        }
 
         List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
-            return;
+        {
+            return m_gameTile;
+        }
 
         int staminaSpent = 0;
         GameTile destinationTile = m_gameTile;
@@ -940,9 +937,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 break;
         }
 
-        if (destinationTile == m_gameTile)
-            return;
-
         if (destinationTile.IsOccupied())
         {
             path.Remove(destinationTile);
@@ -950,17 +944,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             {
                 if (!path[i].IsOccupied())
                 {
-                    m_worldUnit.MoveTo(path[i]);
-                    return;
+                    return path[i];
                 }
             }
-            return;
+        }
+        else
+        {
+            return destinationTile;
         }
 
-        if (m_worldUnit != null)
-        {
-            m_worldUnit.MoveTo(destinationTile);
-        }
+        return m_gameTile;
     }
 
     public void SpendStamina(int toSpend)

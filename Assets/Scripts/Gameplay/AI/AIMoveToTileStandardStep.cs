@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,16 +8,43 @@ public class AIMoveToTileStandardStep : AIMoveStep
 {
     public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
-        GameTile targetTile = m_AIGameEnemyUnit.m_targetGameTile;
+        GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
-        if (targetTile == null)
+        if (moveDestination == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
-            return;
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            yield break;
         }
 
-        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(targetTile);
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+
+        if (useSteppedOutTurn)
+        {
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            while (UICameraController.Instance.IsCameraSmoothing())
+            {
+                yield return null;
+            }
+        }
+
+        int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
+        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
+
+        if (useSteppedOutTurn)
+        {
+            if (Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
+            {
+                UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                while (UICameraController.Instance.IsCameraSmoothing())
+                {
+                    yield return null;
+                }
+            }
+
+            UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

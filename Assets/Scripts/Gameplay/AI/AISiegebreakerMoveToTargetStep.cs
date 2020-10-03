@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 {
     public AISiegebreakerMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
-        MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true);
+        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), true));
     }
 }

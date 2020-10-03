@@ -20,7 +20,7 @@ public class ContentZombieOutbreakEvent : GameEvent
 public class GameEventZombieOutbreakOption : GameEventOption
 {
     private GameTile m_tile;
-    private GameEnemyEntity m_zombieEntity;
+    private GameEnemyUnit m_zombieEntity;
 
     public GameEventZombieOutbreakOption(GameTile tile)
     {

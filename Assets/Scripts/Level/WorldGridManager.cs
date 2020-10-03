@@ -241,7 +241,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 {
                     gamePlayer.AddControlledEntity(curTile.m_occupyingUnit);
                 }
-                else if (curTile.m_occupyingUnit.GetTeam() == Team.Enemy && curTile.m_occupyingUnit is GameEnemyEntity gameEnemyEntity)
+                else if (curTile.m_occupyingUnit.GetTeam() == Team.Enemy && curTile.m_occupyingUnit is GameEnemyUnit gameEnemyEntity)
                 {
                     gameOpponent.AddControlledEntity(gameEnemyEntity);
                 }

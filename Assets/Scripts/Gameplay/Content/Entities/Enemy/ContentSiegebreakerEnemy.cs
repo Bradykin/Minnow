@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSiegebreakerEntity : GameEnemyEntity
+public class ContentSiegebreakerEntity : GameEnemyUnit
 {
     public ContentSiegebreakerEntity(GameOpponent gameOpponent) : base(gameOpponent)
     {

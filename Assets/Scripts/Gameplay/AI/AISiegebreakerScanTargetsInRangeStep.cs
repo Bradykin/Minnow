@@ -12,13 +12,13 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
     
     public AISiegebreakerScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
     
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
         List<GameTile> tilesInScanRange = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), m_scanRadius);
 
         if (tilesInScanRange == null)
         {
-            return;
+            yield break;
         }
 
         for (int i = 0; i < tilesInScanRange.Count; i++)

@@ -5,7 +5,7 @@ using UnityEngine;
 //For AI:
 //Charges at a spot
 //Attacks only once per turn, but hits all tiles around it
-public class ContentSpinnerEnemy : GameEnemyEntity
+public class ContentSpinnerEnemy : GameEnemyUnit
 {
     public ContentSpinnerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

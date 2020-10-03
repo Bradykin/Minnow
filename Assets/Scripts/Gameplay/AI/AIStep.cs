@@ -11,5 +11,5 @@ public abstract class AIStep
         m_AIGameEnemyUnit = AIGameEnemyUnit;
     }
 
-    public abstract void TakeStep();
+    public abstract IEnumerator TakeStep();
 }

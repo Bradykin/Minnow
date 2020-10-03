@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadeEnemy : GameEnemyEntity
+public class ContentShadeEnemy : GameEnemyUnit
 {
     public ContentShadeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

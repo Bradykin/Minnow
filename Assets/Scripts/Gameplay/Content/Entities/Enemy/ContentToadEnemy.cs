@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Prioritize units over buildings
 //Priotize targets with Stamina to drain
-public class ContentToadEnemy : GameEnemyEntity
+public class ContentToadEnemy : GameEnemyUnit
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

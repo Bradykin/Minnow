@@ -142,7 +142,7 @@ public class UIUnit : MonoBehaviour
         {
             if (Globals.m_selectedEntity != null)
             {
-                if (!Globals.m_selectedEntity.GetUnit().IsInRangeOfEntity(GetUnit()))
+                if (!Globals.m_selectedEntity.GetUnit().IsInRangeOfUnit(GetUnit()))
                 {
                     UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
                 }

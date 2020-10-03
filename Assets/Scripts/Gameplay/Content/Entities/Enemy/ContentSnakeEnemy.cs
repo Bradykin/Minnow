@@ -5,7 +5,7 @@ using UnityEngine;
 //Prioritize units over buildings
 //Deprioritze targets with attack <= 0
 //Prioritize with high Stamina regen per attack ratio
-public class ContentSnakeEnemy : GameEnemyEntity
+public class ContentSnakeEnemy : GameEnemyUnit
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

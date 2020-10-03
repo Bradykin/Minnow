@@ -156,9 +156,9 @@ public static class GameHelper
 
     public static bool IsBossOrElite(GameUnit toCheck)
     {
-        if (toCheck is GameEnemyEntity)
+        if (toCheck is GameEnemyUnit)
         {
-            if (((GameEnemyEntity)toCheck).m_isElite || ((GameEnemyEntity)toCheck).m_isBoss)
+            if (((GameEnemyUnit)toCheck).m_isElite || ((GameEnemyUnit)toCheck).m_isBoss)
             {
                 return true;
             }

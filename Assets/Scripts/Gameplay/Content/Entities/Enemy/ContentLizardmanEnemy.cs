@@ -5,7 +5,7 @@ using UnityEngine;
 //For AI:
 //Favours staying in or near water
 //Does a move-attack-move
-public class ContentLizardmanEnemy : GameEnemyEntity
+public class ContentLizardmanEnemy : GameEnemyUnit
 {
     public ContentLizardmanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

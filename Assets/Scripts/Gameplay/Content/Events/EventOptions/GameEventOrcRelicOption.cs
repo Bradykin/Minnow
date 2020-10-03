@@ -56,7 +56,7 @@ public class GameEventOrcRelicOption : GameEventOption
                 continue;
             }
 
-            GameEnemyEntity newOrc = GameEntityFactory.GetEnemyEntityClone(m_orcCheckerEntity, GameHelper.GetOpponent());
+            GameEnemyUnit newOrc = GameEntityFactory.GetEnemyEntityClone(m_orcCheckerEntity, GameHelper.GetOpponent());
             shuffledTiles[i].PlaceEntity(newOrc);
             GameHelper.GetOpponent().m_controlledEntities.Add(newOrc);
             orcsSpawned++;

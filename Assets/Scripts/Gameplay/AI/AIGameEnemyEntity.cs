@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGameEnemyUnit
+public class AIGameEnemyUnit : ITakeTurnAI
 {
     private List<AIStep> m_AISteps;
 
-    public GameEnemyEntity m_gameEnemyUnit { get; private set; }
+    public GameEnemyUnit m_gameEnemyUnit { get; private set; }
 
     public List<GameUnit> m_possibleUnitTargets = new List<GameUnit>();
     public List<GameBuildingBase> m_possibleBuildingTargets = new List<GameBuildingBase>();
@@ -23,9 +24,16 @@ public class AIGameEnemyUnit
 
     public AIDebugTurnLog m_newAIDebugLog = null;
 
-    public AIGameEnemyUnit(GameEnemyEntity gameEnemyEntity)
+    public bool UseSteppedOutTurn => 
+        Constants.UseSteppedOutEnemyTurns &&
+        (!m_gameEnemyUnit.GetGameTile().IsInFog()
+        || (m_targetGameTile != null && !m_targetGameTile.IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameEntityBase && !gameEntityBase.GetGameTile().IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().IsInFog()));
+
+    public AIGameEnemyUnit(GameEnemyUnit gameEnemyUnit)
     {
-        m_gameEnemyUnit = gameEnemyEntity;
+        m_gameEnemyUnit = gameEnemyUnit;
         m_AISteps = new List<AIStep>();
     }
 
@@ -35,7 +43,7 @@ public class AIGameEnemyUnit
         m_AISteps.Add(AIStep);
     }
 
-    public void TakeTurn()
+    public IEnumerator TakeTurn()
     {
         m_newAIDebugLog = new AIDebugTurnLog();
         
@@ -48,7 +56,7 @@ public class AIGameEnemyUnit
                 {
                     break;
                 }
-                m_AISteps[i].TakeStep();
+                yield return m_AISteps[i].TakeStep();
             }
         }
 

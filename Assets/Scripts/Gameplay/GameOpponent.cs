@@ -2,21 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameOpponent : ITurns
 {
-    public List<GameEnemyEntity> m_controlledEntities { get; private set; }
+    public List<GameEnemyUnit> m_controlledEntities { get; private set; }
 
-    private List<GameEnemyEntity> m_secondTryAIControlledEntities;
+    private List<GameEnemyUnit> m_secondTryAIControlledEntities;
 
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
-        m_controlledEntities = new List<GameEnemyEntity>();
-        m_secondTryAIControlledEntities = new List<GameEnemyEntity>();
+        m_controlledEntities = new List<GameEnemyUnit>();
+        m_secondTryAIControlledEntities = new List<GameEnemyUnit>();
         m_spawnPoints = new List<GameSpawnPoint>();
     }
 
@@ -27,12 +26,12 @@ public class GameOpponent : ITurns
         HandleSpawn();
     }
 
-    public void AddControlledEntity(GameEnemyEntity toAdd)
+    public void AddControlledEntity(GameEnemyUnit toAdd)
     {
         m_controlledEntities.Add(toAdd);
     }
 
-    public void RemoveControlledEntity(GameEnemyEntity toRemove)
+    public void RemoveControlledEntity(GameEnemyUnit toRemove)
     {
         m_controlledEntities.Remove(toRemove);
     }
@@ -46,33 +45,27 @@ public class GameOpponent : ITurns
 
     private IEnumerator TakeEntityTurnsCoroutine()
     {
-        List<GameEnemyEntity> entities = new List<GameEnemyEntity>();
+        List<GameEnemyUnit> entities = new List<GameEnemyUnit>();
         entities.AddRange(m_controlledEntities);
 
         GameTile measureTo = GameHelper.GetPlayer().Castle.GetGameTile();
 
         while (entities.Count > 0)
         {
-            GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
+            GameEnemyUnit entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
-            {
-                UICameraController.Instance.SmoothCameraTransitionToGameObject(entity.GetWorldTile().gameObject);
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            int curStamina = entity.GetCurStamina();
-            entity.TakeTurn();
+            int curAP = entity.GetCurStamina();
+            yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
 
             entities.Remove(entity);
 
-            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
+            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().IsInFog())
             {
                 if (!entity.m_isDead && entity.GetGameTile() != null)
                 {
                     measureTo = entity.GetGameTile();
                 }
-                yield return new WaitForSeconds(0.25f);
+                //yield return new WaitForSeconds(0.25f);
             }
         }
 
@@ -119,7 +112,7 @@ public class GameOpponent : ITurns
 
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
             {
-                GameEnemyEntity newEnemyEntity;
+                GameEnemyUnit newEnemyEntity;
                 if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
                 {
                     newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);

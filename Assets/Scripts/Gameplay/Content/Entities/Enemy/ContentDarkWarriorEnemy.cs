@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDarkWarriorEnemy : GameEnemyEntity
+public class ContentDarkWarriorEnemy : GameEnemyUnit
 {
     public ContentDarkWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

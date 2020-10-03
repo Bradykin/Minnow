@@ -52,7 +52,7 @@ public class AITestSpawnClass : MonoBehaviour
             {
                 if (Globals.m_selectedEnemy != null)
                 {
-                    GameEnemyEntity gameEnemyEntity = Globals.m_selectedEnemy.GetUnit() as GameEnemyEntity;
+                    GameEnemyUnit gameEnemyEntity = Globals.m_selectedEnemy.GetUnit() as GameEnemyUnit;
                     Globals.m_focusedDebugEnemyEntity = gameEnemyEntity;
                     AIGameEnemyUnit AIGameEnemyEntity = gameEnemyEntity.m_AIGameEnemyEntity;
                     for (int i = 0; i < AIGameEnemyEntity.m_AIDebugLogs.Count; i++)

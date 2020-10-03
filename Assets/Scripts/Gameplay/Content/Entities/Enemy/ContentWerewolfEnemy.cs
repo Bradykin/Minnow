@@ -5,7 +5,7 @@ using UnityEngine;
 //Alternative targeting priority system:
 //If there is a building in range, chart a path to it that allows passing player units. 
 //If there are no player units on the path, charge the building. If there are, attack the first unit on the path, and try to progress down the path.
-public class ContentWerewolfEnemy : GameEnemyEntity
+public class ContentWerewolfEnemy : GameEnemyUnit
 {
     public ContentWerewolfEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

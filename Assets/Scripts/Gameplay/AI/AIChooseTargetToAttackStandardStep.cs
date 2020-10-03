@@ -7,46 +7,47 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 {
     public AIChooseTargetToAttackStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
-        GameUnit closestVulnerableUnitInRage = FindClosestVulnerableUnitInRange();
-        if (closestVulnerableUnitInRage != null)
+        GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
+        if (closestVulnerableUnitInRange != null)
         {
-            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRage;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
+            yield break;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            return;
+            yield break;
         }
 
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null && m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(castleInRange))
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            return;
+            yield break;
         }
 
-        GameUnit closestUnitInRange = FindClosestEntityInRange();
+        GameUnit closestUnitInRange = FindClosestUnitInRange();
         if (closestUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
-            return;
+            yield break;
         }
 
         if (castleInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            return;
+            yield break;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            return;
+            yield break;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
@@ -59,7 +60,7 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         return castleInRange;
     }
 
-    protected GameUnit FindClosestEntityInRange()
+    protected GameUnit FindClosestUnitInRange()
     {
         if (m_AIGameEnemyUnit.m_possibleUnitTargets.Count == 1)
         {

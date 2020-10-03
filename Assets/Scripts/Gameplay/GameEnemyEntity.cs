@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEnemyEntity : GameUnit, ITakeTurnAI
+public class GameEnemyUnit : GameUnit, ITakeTurnAI
 {
     public AIGameEnemyUnit m_AIGameEnemyEntity;
     public GameOpponent m_gameOpponentController;
@@ -14,7 +14,7 @@ public class GameEnemyEntity : GameUnit, ITakeTurnAI
     public int m_minWave;
     public int m_maxWave;
 
-    public GameEnemyEntity(GameOpponent gameOpponent)
+    public GameEnemyUnit(GameOpponent gameOpponent)
     {
         m_AIGameEnemyEntity = new AIGameEnemyUnit(this);
         m_gameOpponentController = gameOpponent;
@@ -42,9 +42,9 @@ public class GameEnemyEntity : GameUnit, ITakeTurnAI
 
     //============================================================================================================//
 
-    public virtual void TakeTurn()
+    public IEnumerator TakeTurn()
     {
-        m_AIGameEnemyEntity.TakeTurn();
+        yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyEntity.TakeTurn());
     }
 
     public override void Die()

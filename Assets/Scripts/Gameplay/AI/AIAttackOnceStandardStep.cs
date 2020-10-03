@@ -6,37 +6,71 @@ public class AIAttackOnceStandardStep : AIStep
 {
     public AIAttackOnceStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
-            return;
+            yield break;
         }
+
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
         {
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
-                case GameUnit gameUnit:
-                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
-                    if (gameUnit.m_isDead || gameUnit == null)
+                case GameUnit gameEntity:
+                    if (useSteppedOutTurn)
+                    {
+                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                        while (UICameraController.Instance.IsCameraSmoothing())
+                        {
+                            yield return null;
+                        }
+                    }
+
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameEntity);
+
+                    if (useSteppedOutTurn)
+                    {
+                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
+                    if (gameEntity.m_isDead || gameEntity == null)
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        return;
+                        yield break;
                     }
                     break;
-                case GameBuildingBase gameBuildingBase:
-                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuildingBase);
-                    if (gameBuildingBase.m_isDestroyed)
+                case GameBuildingBase gameBuilding:
+                    if (useSteppedOutTurn)
+                    {
+                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                        while (UICameraController.Instance.IsCameraSmoothing())
+                        {
+                            yield return null;
+                        }
+                    }
+
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuilding);
+
+                    if (useSteppedOutTurn)
+                    {
+                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
+                    if (gameBuilding.m_isDestroyed)
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        return;
+                        yield break;
                     }
                     break;
             }

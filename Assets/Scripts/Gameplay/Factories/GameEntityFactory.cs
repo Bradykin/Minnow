@@ -8,18 +8,18 @@ public class GameEntityFactory
     private static List<GameUnit> m_playerEntities = new List<GameUnit>();
 
 
-    private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_eliteEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_bossEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyUnit> m_enemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_bossEnemies = new List<GameEnemyUnit>();
 
-    private static List<GameEnemyEntity> m_standardWaveOneEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveTwoEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveThreeEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveFourEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveFiveEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveSixEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveSevenEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyUnit> m_standardWaveOneEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveTwoEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveThreeEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveFourEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveFiveEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveSixEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveSevenEnemies = new List<GameEnemyUnit>();
 
     private static bool m_hasInit = false;
     
@@ -121,14 +121,14 @@ public class GameEntityFactory
         m_hasInit = true;
     }
 
-    public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent, int curWave)
+    public static GameEnemyUnit GetRandomEnemy(GameOpponent gameOpponent, int curWave)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        List<GameEnemyEntity> list = m_standardEnemies;
+        List<GameEnemyUnit> list = m_standardEnemies;
         if (curWave == 1)
         {
             list = m_standardWaveOneEnemies;
@@ -164,18 +164,18 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, list.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(list[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetEnemyEntityClone(GameEnemyEntity enemyEntity, GameOpponent gameOpponent)
+    public static GameEnemyUnit GetEnemyEntityClone(GameEnemyUnit enemyEntity, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();
 
-        return (GameEnemyEntity)Activator.CreateInstance(enemyEntity.GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(enemyEntity.GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetRandomEliteEnemy(GameOpponent gameOpponent)
+    public static GameEnemyUnit GetRandomEliteEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
         {
@@ -184,10 +184,10 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, m_eliteEnemies.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetRandomBossEnemy(GameOpponent gameOpponent)
+    public static GameEnemyUnit GetRandomBossEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
         {
@@ -196,7 +196,7 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, m_bossEnemies.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
     }
 
     public static GameUnit GetEntityFromJson(JsonGameUnitData jsonData)
@@ -212,14 +212,14 @@ public class GameEntityFactory
         return newPlayerEntity;
     }
 
-    public static GameEnemyEntity GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
+    public static GameEnemyUnit GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();
 
         int i = m_enemies.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
+        GameEnemyUnit newEnemy = (GameEnemyUnit)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
         newEnemy.LoadFromJson(jsonData);
 
         return newEnemy;

@@ -7,27 +7,27 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
 {
     public AISiegebreakerChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            return;
+            yield break;
         }
 
         GameBuildingBase closestDefensiveBuildingInRange = FindClosestDefensiveBuildingInRange();
         if (closestDefensiveBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestDefensiveBuildingInRange;
-            return;
+            yield break;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            return;
+            yield break;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;

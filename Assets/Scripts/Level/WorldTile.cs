@@ -88,7 +88,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingUnit == null)
                 {
-                    GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
+                    GameEnemyUnit newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
                     GetGameTile().PlaceEntity(newEnemyEntity);
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
                     Globals.m_testSpawnEnemyEntity = null;

@@ -7,11 +7,11 @@ public class AILizardmanFleeToWaterStep : AIStep
 {
     public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
         {
-            return;
+            yield break;
         }
 
         List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 2, 1);
@@ -26,7 +26,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 
                 if (pathLength > 0)
                 {
-                    return;
+                    yield break;
                 }
                 
                 tilesToFleeInWater.Add(tilesAtDistance[i]);
@@ -49,13 +49,31 @@ public class AILizardmanFleeToWaterStep : AIStep
             }
         }
 
+        GameTile moveDestination;
         if (tilesToFleeInOpenWater.Count > 0)
         {
-            m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(tilesToFleeInOpenWater[Random.Range(0, tilesToFleeInOpenWater.Count)]);
+            moveDestination = tilesToFleeInOpenWater[Random.Range(0, tilesToFleeInOpenWater.Count)];
         }
         else if (tilesToFleeInWater.Count > 0)
         {
-            m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(tilesToFleeInWater[Random.Range(0, tilesToFleeInWater.Count)]);
+            moveDestination = tilesToFleeInWater[Random.Range(0, tilesToFleeInWater.Count)];
+        }
+        else
+        {
+            yield break;
+        }
+
+        int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
+        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+
+        if (useSteppedOutTurn && Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
+        {
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            while (UICameraController.Instance.IsCameraSmoothing())
+            {
+                yield return null;
+            }
         }
     }
 }
