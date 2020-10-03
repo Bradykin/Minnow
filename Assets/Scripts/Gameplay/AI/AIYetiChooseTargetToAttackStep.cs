@@ -7,7 +7,7 @@ public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
     public AIYetiChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)

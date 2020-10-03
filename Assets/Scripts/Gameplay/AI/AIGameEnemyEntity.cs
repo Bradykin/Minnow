@@ -44,7 +44,7 @@ public class AIGameEnemyUnit : ITakeTurnAI
         m_AISteps.Add(AIStep);
     }
 
-    public IEnumerator TakeTurn()
+    public IEnumerator TakeTurn(bool yield)
     {
         m_newAIDebugLog = new AIDebugTurnLog();
 
@@ -55,13 +55,21 @@ public class AIGameEnemyUnit : ITakeTurnAI
             m_doSteps = false;
             for (int i = 0; i < m_AISteps.Count; i++)
             {
-                Debug.Log(m_gameEnemyUnit.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
-                Debug.Log(DateTime.Now + " -- " + DateTime.Now.Millisecond);
+                //Debug.Log(m_gameEnemyUnit.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
+                //Debug.Log(DateTime.Now + " -- " + DateTime.Now.Millisecond);
                 if (!Globals.m_levelActive)
                 {
                     break;
                 }
-                yield return m_AISteps[i].TakeStep();
+
+                if (yield)
+                {
+                    yield return FactoryManager.Instance.StartCoroutine(m_AISteps[i].TakeStep(yield));
+                }
+                else
+                {
+                    FactoryManager.Instance.StartCoroutine(m_AISteps[i].TakeStep(yield));
+                }
             }
         }
 

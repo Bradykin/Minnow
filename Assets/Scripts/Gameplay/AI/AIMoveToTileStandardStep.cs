@@ -8,17 +8,24 @@ public class AIMoveToTileStandardStep : AIMoveStep
 {
     public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            if (yield)
+            {
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            }
+            else
+            {
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            }
             yield break;
         }
 
-        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         if (useSteppedOutTurn)
         {

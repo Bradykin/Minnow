@@ -57,11 +57,11 @@ public class GameOpponent : ITurns
 
             if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().IsInFog())
             {
-                yield return FactoryManager.Instance.StartCoroutine(unit.TakeTurn());
+                yield return FactoryManager.Instance.StartCoroutine(unit.TakeTurn(true));
             }
             else
             {
-                yield return FactoryManager.Instance.StartCoroutine(unit.TakeTurn());
+                FactoryManager.Instance.StartCoroutine(unit.TakeTurn(false));
             }
 
             units.Remove(unit);
@@ -73,11 +73,6 @@ public class GameOpponent : ITurns
                     measureTo = unit.GetGameTile();
                 }
             }
-        }
-
-        if (!Constants.UseSteppedOutEnemyTurns)
-        {
-            yield return new WaitForSeconds(1.0f);
         }
 
         WorldController.Instance.m_gameController.MoveToNextTurn();
