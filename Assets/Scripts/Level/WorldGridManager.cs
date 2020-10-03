@@ -166,42 +166,54 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             currentTileCoordinates = currentTileCoordinates.UpRightCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
         for (int i = 0; i < range; i++)
         {
             currentTileCoordinates = currentTileCoordinates.RightCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
         for (int i = 0; i < range; i++)
         {
             currentTileCoordinates = currentTileCoordinates.DownRightCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
         for (int i = 0; i < range; i++)
         {
             currentTileCoordinates = currentTileCoordinates.DownLeftCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
         for (int i = 0; i < range; i++)
         {
             currentTileCoordinates = currentTileCoordinates.LeftCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
         for (int i = 0; i < range; i++)
         {
             currentTileCoordinates = currentTileCoordinates.UpLeftCoordinate();
             currentWorldTile = GetWorldGridTileAtPosition(currentTileCoordinates);
             if (currentWorldTile != null)
+            {
                 returnList.Add(currentWorldTile);
+            }
         }
 
         return returnList;

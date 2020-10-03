@@ -58,7 +58,7 @@ namespace Game.Util
         public static Vector2Int UpLeftCoordinate(this Vector2Int currentPosition)
         {
             currentPosition += Vector2Int.up;
-            if (currentPosition.y % 2 == 1)
+            if (currentPosition.y % 2 != 0)
                 currentPosition += Vector2Int.left;
 
             return currentPosition;
@@ -76,7 +76,7 @@ namespace Game.Util
         public static Vector2Int DownLeftCoordinate(this Vector2Int currentPosition)
         {
             currentPosition += Vector2Int.down;
-            if (currentPosition.y % 2 == 1)
+            if (currentPosition.y % 2 != 0)
                 currentPosition += Vector2Int.left;
 
             return currentPosition;
