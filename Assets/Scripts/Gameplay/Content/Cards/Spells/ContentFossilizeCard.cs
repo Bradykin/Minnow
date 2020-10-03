@@ -23,26 +23,26 @@ public class ContentFossilizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddPower(-m_powerAmount);
-        targetEntity.SpendStamina(m_staminaDrainAmount);
+        targetUnit.AddPower(-m_powerAmount);
+        targetUnit.SpendStamina(m_staminaDrainAmount);
 
-        GameBrittleKeyword brittleKeyword = targetEntity.GetKeyword<GameBrittleKeyword>();
+        GameBrittleKeyword brittleKeyword = targetUnit.GetKeyword<GameBrittleKeyword>();
         if (brittleKeyword != null)
         {
             brittleKeyword.IncreaseAmount(m_brittleAmount);
         }
         else
         {
-            targetEntity.AddKeyword(new GameBrittleKeyword(m_brittleAmount));
+            targetUnit.AddKeyword(new GameBrittleKeyword(m_brittleAmount));
         }
     }
 }

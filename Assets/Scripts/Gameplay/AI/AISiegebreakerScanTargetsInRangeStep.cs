@@ -26,7 +26,7 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
             m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInScanRange[i].m_gridPosition.ToString());
         }
 
-        List<GameUnit> possibleEntityTargets = new List<GameUnit>();
+        List<GameUnit> possibleUnitTargets = new List<GameUnit>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
         foreach (var tile in tilesInScanRange)
@@ -49,7 +49,7 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
             }
         }
 
-        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleEntityTargets;
+        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleUnitTargets;
         m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
     }
 }

@@ -36,7 +36,7 @@ namespace Game.Util
                 obj.transform.parent = uiParent.transform;
             }
 
-            UIUnit uiUnit = obj.GetComponent<UIUnit>();
+            WorldUnit uiUnit = obj.GetComponent<WorldUnit>();
 
             if (tile.GetGameTile().m_isFog)
             {

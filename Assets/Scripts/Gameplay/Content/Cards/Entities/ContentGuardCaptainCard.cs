@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGuardCaptainCard : GameCardEntityBase
+public class ContentGuardCaptainCard : GameUnitCardBase
 {
     public ContentGuardCaptainCard()
     {
-        m_entity = new ContentGuardCaptain();
+        m_unit = new ContentGuardCaptain();
 
         m_cost = 2;
 

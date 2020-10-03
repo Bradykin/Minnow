@@ -17,7 +17,7 @@ public class ContentDwarfShivcaster : GameUnit
         m_name = "Dwarf Shivcaster";
         m_desc = "Shivs no longer trigger <b>Spellcraft</b>.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
@@ -28,18 +28,18 @@ public class ContentDwarfShivcaster : GameUnit
 
 public class GameShivNearbyAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
     private GameCard m_shivCard;
     private int m_numShivsThrown = 2;
 
-    public GameShivNearbyAction(GameUnit entity)
+    public GameShivNearbyAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
 
         m_name = "Throw Shiv";
-        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemies within two tiles.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within two tiles.";
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
@@ -51,7 +51,7 @@ public class GameShivNearbyAction : GameAction
             return;
         }
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_entity.GetGameTile(), 2);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_unit.GetGameTile(), 2);
 
         List<GameUnit> nearbyEnemies = new List<GameUnit>();
 

@@ -116,14 +116,14 @@ public class GameCardSpellBase : GameCard
         TriggerSpellcraft(targetBuilding.GetGameTile());
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
         Globals.m_spellsPlayedThisTurn++;
         if (CanTriggerSpellPower())
         {
-            TriggerSpellcraft(targetEntity.GetGameTile());
+            TriggerSpellcraft(targetUnit.GetGameTile());
         }
     }
 

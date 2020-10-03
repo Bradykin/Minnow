@@ -9,9 +9,9 @@ public abstract class GameAction : GameElementBase
         NoParams,
         IntParam,
         TwoIntParam,
-        EntityParam,
-        EntityIntParam,
-        EntityTwoIntParam,
+        UnitParam,
+        UnitIntParam,
+        UnitTwoIntParam,
         GameWalletParam
     }
 

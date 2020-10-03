@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class UICardFrameController : MonoBehaviour
 {
     public UICard m_card;
-    public UICardSelectButton m_cardSelect;
 
     public Sprite m_spellCardFrame;
-    public Sprite m_entityCardFrame;
+    public Sprite m_unitCardFrame;
 
     private Image m_image;
 
@@ -28,9 +27,9 @@ public class UICardFrameController : MonoBehaviour
             card = m_card.m_card;
         }
 
-        if (card is GameCardEntityBase)
+        if (card is GameUnitCardBase)
         {
-            m_image.sprite = m_entityCardFrame;
+            m_image.sprite = m_unitCardFrame;
         }
         else
         {

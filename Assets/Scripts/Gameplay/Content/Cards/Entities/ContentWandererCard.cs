@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWandererCard : GameCardEntityBase
+public class ContentWandererCard : GameUnitCardBase
 {
     public ContentWandererCard()
     {
-        m_entity = new ContentWanderer();
+        m_unit = new ContentWanderer();
 
         m_cost = 2;
 

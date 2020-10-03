@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadeEnemyCard : GameCardEntityBase
+public class ContentShadeEnemyCard : GameUnitCardBase
 {
     public ContentShadeEnemyCard()
     {
-        m_entity = new ContentShadeEnemy(null);
+        m_unit = new ContentShadeEnemy(null);
 
         InitEnemyCard();
     }

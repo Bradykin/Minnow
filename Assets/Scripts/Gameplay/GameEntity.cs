@@ -20,7 +20,7 @@ public enum Typeline : int
 
 public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameUnitData>
 {
-    //General data.  This should be set for every entity
+    //General data.  This should be set for every unit
     protected Team m_team;
     protected int m_curHealth;
     protected int m_maxHealth;
@@ -39,7 +39,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     //Functionality
     protected GameTile m_gameTile;
     public bool m_isDead;
-    public UIUnit m_worldUnit;
+    public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
 
@@ -61,8 +61,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     protected virtual void LateInit()
     {
-        m_icon = UIHelper.GetIconEntity(m_name);
-        m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
+        m_icon = UIHelper.GetIconUnit(m_name);
+        m_iconWhite = UIHelper.GetIconUnit(m_name + "W");
     }
 
     public void SetHealthStaminaValues()
@@ -250,7 +250,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
         {
-            Debug.LogError("Cannot kill entity as player doesn't exist.");
+            Debug.LogError("Cannot kill unit as player doesn't exist.");
             return;
         }
 
@@ -304,20 +304,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
             {
-                GameCardEntityBase cardFromEntity = GameCardFactory.GetCardFromEntity(this);
-                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromEntity);
+                GameUnitCardBase cardFromUnit = GameCardFactory.GetCardFromUnit(this);
+                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
                 willSetDead = false;
             }
-            WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
+            WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
         }
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
 
-        if (m_worldUnit == Globals.m_selectedEntity)
+        if (m_worldUnit == Globals.m_selectedUnit)
         {
             WorldGridManager.Instance.ClearAllTilesMovementRange();
         }
-        m_gameTile.GetWorldTile().RecycleEntity();
+        m_gameTile.GetWorldTile().RecycleUnit();
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = willSetDead;
@@ -349,7 +349,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         return realHealVal;
     }
 
-    public virtual bool CanHitEntity(GameUnit other, bool checkRange = true)
+    public virtual bool CanHitUnit(GameUnit other, bool checkRange = true)
     {
         if (GetTeam() == other.GetTeam()) //Can't attack your own team
         {
@@ -373,8 +373,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     {
         switch(other)
         {
-            case GameUnit gameEntity:
-                return IsInRangeOfUnit(gameEntity);
+            case GameUnit gameUnit:
+                return IsInRangeOfUnit(gameUnit);
             case GameBuildingBase gameBuildingBase:
                 return IsInRangeOfBuilding(gameBuildingBase);
         }
@@ -644,7 +644,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             m_curStamina = m_maxStamina;
         }
 
-        UIHelper.ReselectEntity();
+        UIHelper.ReselectUnit();
     }
 
     public void Reset()
@@ -793,10 +793,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             if (numGrandPact > 0)
             {
                 Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
-                List<GameUnit> gameEntities = GameHelper.GetPlayer().m_controlledEntities;
-                for (int i = 0; i < gameEntities.Count; i++)
+                List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
+                for (int i = 0; i < gameUnits.Count; i++)
                 {
-                    int typelineInt = (int)gameEntities[i].GetTypeline();
+                    int typelineInt = (int)gameUnits[i].GetTypeline();
                     if (!numCreatureTypes.ContainsKey(typelineInt))
                     {
                         numCreatureTypes.Add(typelineInt, 1);
@@ -887,15 +887,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
 
-        m_gameTile.ClearEntity();
-        tile.PlaceEntity(this);
+        m_gameTile.ClearUnit();
+        tile.PlaceUnit(this);
 
         SpendStamina(pathCost);
     }
 
     public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
     {
-        if (this == Globals.m_focusedDebugEnemyEntity)
+        if (this == Globals.m_focusedDebugEnemyUnit)
         {
             Debug.Log("IS FOCUSED ENEMY");
         }
@@ -965,7 +965,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             m_curStamina = 0;
         }
 
-        UIHelper.ReselectEntity();
+        UIHelper.ReselectUnit();
     }
 
     public virtual string GetDesc()
@@ -1023,7 +1023,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             return;
         }
 
-        m_customName = GameNamesFactory.GetCustomEntityName(m_typeline);
+        m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
     }
 
     public string GetName()

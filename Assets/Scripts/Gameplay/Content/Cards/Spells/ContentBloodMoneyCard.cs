@@ -23,15 +23,15 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Healing);
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetEntity)));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit)));
     }
 }

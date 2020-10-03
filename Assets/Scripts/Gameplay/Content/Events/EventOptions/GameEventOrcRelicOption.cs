@@ -6,7 +6,7 @@ public class GameEventOrcRelicOption : GameEventOption
     private GameRelic m_relic;
     private GameTile m_tile;
     private int m_orcsToSpawn = 4;
-    private ContentOrcEnemy m_orcCheckerEntity = new ContentOrcEnemy(null);
+    private ContentOrcEnemy m_orcCheckerUnit = new ContentOrcEnemy(null);
 
     public GameEventOrcRelicOption(GameTile tile)
     {
@@ -51,14 +51,14 @@ public class GameEventOrcRelicOption : GameEventOption
                 continue;
             }
 
-            if (!shuffledTiles[i].IsPassable(m_orcCheckerEntity, false))
+            if (!shuffledTiles[i].IsPassable(m_orcCheckerUnit, false))
             {
                 continue;
             }
 
-            GameEnemyUnit newOrc = GameEntityFactory.GetEnemyEntityClone(m_orcCheckerEntity, GameHelper.GetOpponent());
-            shuffledTiles[i].PlaceEntity(newOrc);
-            GameHelper.GetOpponent().m_controlledEntities.Add(newOrc);
+            GameEnemyUnit newOrc = GameUnitFactory.GetEnemyUnitClone(m_orcCheckerUnit, GameHelper.GetOpponent());
+            shuffledTiles[i].PlaceUnit(newOrc);
+            GameHelper.GetOpponent().m_controlledUnits.Add(newOrc);
             orcsSpawned++;
             if (orcsSpawned >= m_orcsToSpawn)
             {

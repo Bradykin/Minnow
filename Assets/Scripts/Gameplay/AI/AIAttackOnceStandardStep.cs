@@ -19,7 +19,7 @@ public class AIAttackOnceStandardStep : AIStep
         {
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
-                case GameUnit gameEntity:
+                case GameUnit gameUnit:
                     if (useSteppedOutTurn)
                     {
                         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
@@ -29,7 +29,7 @@ public class AIAttackOnceStandardStep : AIStep
                         }
                     }
 
-                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameEntity);
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
 
                     if (useSteppedOutTurn)
                     {
@@ -37,7 +37,7 @@ public class AIAttackOnceStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameEntity.m_isDead || gameEntity == null)
+                    if (gameUnit.m_isDead || gameUnit == null)
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {

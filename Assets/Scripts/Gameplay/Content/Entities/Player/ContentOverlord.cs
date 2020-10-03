@@ -20,7 +20,7 @@ public class ContentOverlord : GameUnit
         m_name = "Overlord";
         m_desc = "Spends all Stamina to attack, deals damage equal to power times Stamina spent.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

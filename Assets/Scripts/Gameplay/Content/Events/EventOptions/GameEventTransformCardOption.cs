@@ -11,7 +11,7 @@ public class GameEventTransformCardOption : GameEventOption
 
     public override string GetMessage()
     {
-        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
+        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Units)
         {
             m_message = "Transform a unit card in your deck into a random other unit.";
         }
@@ -37,9 +37,9 @@ public class GameEventTransformCardOption : GameEventOption
         }
 
         List<GameCard> deck = new List<GameCard>();
-        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
+        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Units)
         {
-            deck = GameHelper.GetPlayerBaseDeckOfEntities();
+            deck = GameHelper.GetPlayerBaseDeckOfUnits();
         }
         else if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Spells)
         {

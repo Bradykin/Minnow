@@ -25,15 +25,15 @@ public class ContentCureWoundsCard : GameCardSpellBase
         return GetHealDescString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.Heal(GetSpellValue());
+        targetUnit.Heal(GetSpellValue());
     }
 }

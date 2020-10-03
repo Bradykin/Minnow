@@ -24,24 +24,24 @@ public class ContentPurgeCard : GameCardSpellBase
         return "Target unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        if (targetEntity.GetTeam() == Team.Player)
+        if (targetUnit.GetTeam() == Team.Player)
         {
-            if (targetEntity.GetKeywords().Count > 0)
+            if (targetUnit.GetKeywords().Count > 0)
             {
-                targetEntity.AddPower(GetSpellValue());
-                targetEntity.AddMaxHealth(GetSpellValue());
+                targetUnit.AddPower(GetSpellValue());
+                targetUnit.AddMaxHealth(GetSpellValue());
             }
         }
 
-        targetEntity.GetKeywordHolderForRead().RemoveAllKeywords();
+        targetUnit.GetKeywordHolderForRead().RemoveAllKeywords();
     }
 }

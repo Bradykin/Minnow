@@ -34,16 +34,16 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         return "Sacrifice an allied unit to draw " + m_spellEffect + spString + " card and gain " + m_spellEffect + spString + " energy.\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.Die();
+        targetUnit.Die();
 
         GamePlayer player = GameHelper.GetPlayer();
         player.AddEnergy(GetSpellValue());

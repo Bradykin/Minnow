@@ -20,7 +20,7 @@ public class ContentGoblin : GameUnit
         m_name = "Goblin";
         m_desc = "Gains +" + m_effectIncrease + " power per allied <b>Monster</b> unit within " + m_effectRange + " range.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

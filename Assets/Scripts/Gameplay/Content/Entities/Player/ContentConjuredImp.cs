@@ -19,7 +19,7 @@ public class ContentConjuredImp : GameUnit
         m_name = "Conjured Imp";
         m_desc = "When you play this, add a copy of this card to your hand without this ability.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -45,12 +45,12 @@ public class ContentConjuredImp : GameUnit
 
         if (!disableDuplicate)
         {
-            ContentConjuredImp copyImp = (ContentConjuredImp)GameEntityFactory.GetEntityFromJson(this.SaveToJsonAsJson());
-            ContentConjuredImpCard copyImpCard = (ContentConjuredImpCard)GameCardFactory.GetCardFromEntity(copyImp);
-            ((ContentConjuredImp)copyImpCard.m_entity).DisableDuplicate();
-            copyImpCard.SetDesc(copyImpCard.m_entity.GetDesc());
+            ContentConjuredImp copyImp = (ContentConjuredImp)GameUnitFactory.GetUnitFromJson(this.SaveToJsonAsJson());
+            ContentConjuredImpCard copyImpCard = (ContentConjuredImpCard)GameCardFactory.GetCardFromUnit(copyImp);
+            ((ContentConjuredImp)copyImpCard.m_unit).DisableDuplicate();
+            copyImpCard.SetDesc(copyImpCard.m_unit.GetDesc());
             GameHelper.GetPlayer().AddCardToHand(copyImpCard, false);
         }
-        //GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameAddEntityCardToHandAction(GameEntityFactory.GetEntityFromJson(this.SaveToJsonAsJson())));
+        //GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameAddUnitCardToHandAction(GameUnitFactory.GetUnitFromJson(this.SaveToJsonAsJson())));
     }
 }

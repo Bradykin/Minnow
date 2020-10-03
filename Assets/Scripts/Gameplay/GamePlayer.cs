@@ -17,7 +17,7 @@ public class GamePlayer : ITurns
 
     public List<GameCard> m_hand { get; private set; }
 
-    public List<GameUnit> m_controlledEntities { get; private set; }
+    public List<GameUnit> m_controlledUnits { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
     private int m_spellPower = 0;
@@ -36,7 +36,7 @@ public class GamePlayer : ITurns
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
-        m_controlledEntities = new List<GameUnit>();
+        m_controlledUnits = new List<GameUnit>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(25);
@@ -116,9 +116,9 @@ public class GamePlayer : ITurns
 
     public void TriggerKnowledgeable()
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].TriggerKnowledgeable();
+            m_controlledUnits[i].TriggerKnowledgeable();
         }
     }
 
@@ -230,9 +230,9 @@ public class GamePlayer : ITurns
         return toReturn;
     }
 
-    public void AddControlledEntity(GameUnit toAdd)
+    public void AddControlledUnit(GameUnit toAdd)
     {
-        m_controlledEntities.Add(toAdd);
+        m_controlledUnits.Add(toAdd);
     }
 
     public void AddControlledBuilding(GameBuildingBase toAdd)
@@ -240,9 +240,9 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Add(toAdd);
     }
 
-    public void RemoveControlledEntity(GameUnit toRemove)
+    public void RemoveControlledUnit(GameUnit toRemove)
     {
-        m_controlledEntities.Remove(toRemove);
+        m_controlledUnits.Remove(toRemove);
     }
 
     public void RemoveControlledBuilding(GameBuildingBase toRemove)
@@ -250,16 +250,16 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Remove(toRemove);
     }
 
-    public void InformWasSummoned(GameUnit summonedEntity)
+    public void InformWasSummoned(GameUnit summonedUnit)
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            if (m_controlledEntities[i] == summonedEntity)
+            if (m_controlledUnits[i] == summonedUnit)
             {
                 continue;
             }
 
-            m_controlledEntities[i].OnOtherSummon(summonedEntity);
+            m_controlledUnits[i].OnOtherSummon(summonedUnit);
         }
     }
 
@@ -362,11 +362,11 @@ public class GamePlayer : ITurns
         return toReturn;
     }
 
-    public bool HasEntitiesThatWillOvercapStamina()
+    public bool HasUnitsThatWillOvercapStamina()
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            if (m_controlledEntities[i].GetCurStamina() + m_controlledEntities[i].GetStaminaRegen() > m_controlledEntities[i].GetMaxStamina())
+            if (m_controlledUnits[i].GetCurStamina() + m_controlledUnits[i].GetStaminaRegen() > m_controlledUnits[i].GetMaxStamina())
             {
                 return true;
             }
@@ -448,9 +448,9 @@ public class GamePlayer : ITurns
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].SpellCast(targetType, targetTile);
+            m_controlledUnits[i].SpellCast(targetType, targetTile);
         }
     }
 
@@ -471,9 +471,9 @@ public class GamePlayer : ITurns
             AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].StartTurn();
+            m_controlledUnits[i].StartTurn();
         }
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
@@ -506,9 +506,9 @@ public class GamePlayer : ITurns
 
         m_cardsToDiscard = new List<GameCard>();
 
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].EndTurn();
+            m_controlledUnits[i].EndTurn();
         }
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)

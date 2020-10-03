@@ -5,7 +5,7 @@ using Game.Util;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIUnit : MonoBehaviour
+public class WorldUnit : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
@@ -26,14 +26,14 @@ public class UIUnit : MonoBehaviour
 
     public SpriteRenderer m_damageShieldIndicator;
 
-    private GameUnit m_entity;
+    private GameUnit m_unit;
 
-    public void Init(GameUnit entity)
+    public void Init(GameUnit unit)
     {
         m_moveTarget = gameObject.transform.position;
 
-        m_entity = entity;
-        entity.m_worldUnit = this;
+        m_unit = unit;
+        unit.m_worldUnit = this;
 
         m_renderer.sprite = GetUnit().m_icon;
         m_tintRenderer.sprite = GetUnit().m_iconWhite;
@@ -42,7 +42,7 @@ public class UIUnit : MonoBehaviour
 
         if (GetUnit().GetTeam() == Team.Player)
         {
-            UIHelper.SelectEntity(this);
+            UIHelper.SelectUnit(this);
         }
 
         m_collider = GetComponent<BoxCollider2D>();
@@ -62,7 +62,7 @@ public class UIUnit : MonoBehaviour
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed);
         }
 
-        if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetUnit().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetUnit().GetTeam() == Team.Player))
+        if (this == Globals.m_selectedUnit || this == Globals.m_selectedEnemy || (m_isHovered && GetUnit().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetUnit().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             m_collider.size = new Vector2(2.5f, 3.5f);
@@ -75,7 +75,7 @@ public class UIUnit : MonoBehaviour
 
         if (!m_isHovered)
         {
-            if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy)
+            if (this == Globals.m_selectedUnit || this == Globals.m_selectedEnemy)
             {
                 m_tintRenderer.color = UIHelper.GetSelectTintColor(true);
             }
@@ -87,9 +87,9 @@ public class UIUnit : MonoBehaviour
 
         m_titleBlock.SetActive(true);
 
-        if (GetUnit().GetCurStamina() == 0 && Globals.m_selectedEntity == this)
+        if (GetUnit().GetCurStamina() == 0 && Globals.m_selectedUnit == this)
         {
-            UIHelper.UnselectEntity();
+            UIHelper.UnselectUnit();
         }
 
         m_staminaContainer.DoUpdate(GetUnit().GetCurStamina(), GetUnit().GetMaxStamina(), GetUnit().GetTeam());
@@ -123,16 +123,16 @@ public class UIUnit : MonoBehaviour
                 WorldController.Instance.PostPlayCard();
             }
         }
-        else if (Globals.m_selectedEntity != null && Globals.m_selectedEntity.GetUnit().CanHitEntity(GetUnit()))
+        else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))
         {
-            Globals.m_selectedEntity.GetUnit().HitUnit(GetUnit());
-            Globals.m_selectedEntity.PlayHitAnim();
+            Globals.m_selectedUnit.GetUnit().HitUnit(GetUnit());
+            Globals.m_selectedUnit.PlayHitAnim();
         }
         else if (CanSelect())
         {
-            UIHelper.SelectEntity(this);
+            UIHelper.SelectUnit(this);
 
-            m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedEntity == this);
+            m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedUnit == this);
         }
         else if (GetUnit().GetTeam() == Team.Player) //This means that the target doesn't have enough Stamina to be selected (typically 0)
         {
@@ -140,13 +140,13 @@ public class UIUnit : MonoBehaviour
         }
         else if (GetUnit().GetTeam() == Team.Enemy)
         {
-            if (Globals.m_selectedEntity != null)
+            if (Globals.m_selectedUnit != null)
             {
-                if (!Globals.m_selectedEntity.GetUnit().IsInRangeOfUnit(GetUnit()))
+                if (!Globals.m_selectedUnit.GetUnit().IsInRangeOfUnit(GetUnit()))
                 {
                     UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
                 }
-                else if (!Globals.m_selectedEntity.GetUnit().HasStaminaToAttack())
+                else if (!Globals.m_selectedUnit.GetUnit().HasStaminaToAttack())
                 {
                     UIHelper.CreateWorldElementNotification("Requires " + GetUnit().GetStaminaToAttack() + " Stamina to attack.", false, GetUnit().m_worldUnit.gameObject);
                 }
@@ -165,8 +165,8 @@ public class UIUnit : MonoBehaviour
 
     public void MoveTo(GameTile targetTile)
     {
-        GetUnit().GetWorldTile().ClearEntity();
-        targetTile.GetWorldTile().PlaceEntity(this);
+        GetUnit().GetWorldTile().ClearUnit();
+        targetTile.GetWorldTile().PlaceUnit(this);
         GetUnit().MoveTo(targetTile);
 
         m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit();
@@ -192,9 +192,9 @@ public class UIUnit : MonoBehaviour
         }
 
         m_isHovered = true;
-        if (Globals.m_selectedEntity != null)
+        if (Globals.m_selectedUnit != null)
         {
-            bool canHit = Globals.m_selectedEntity.GetUnit().CanHitEntity(GetUnit());
+            bool canHit = Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit());
             if (GetUnit().GetTeam() == Team.Player && canHit)
             {
                 m_tintRenderer.color = UIHelper.GetValidTintColor(true);
@@ -205,7 +205,7 @@ public class UIUnit : MonoBehaviour
             }
             else if (GetUnit().GetTeam() == Team.Player && !canHit)
             {
-                if (Globals.m_selectedEntity == this)
+                if (Globals.m_selectedUnit == this)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectTintColor(CanSelect());
                 }
@@ -219,7 +219,7 @@ public class UIUnit : MonoBehaviour
         {
             m_tintRenderer.color = UIHelper.GetValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()));
         } 
-        else if (Globals.m_selectedEntity == null)
+        else if (Globals.m_selectedUnit == null)
         {
             m_tintRenderer.color = UIHelper.GetValidTintColor(CanSelect());
         }
@@ -232,7 +232,7 @@ public class UIUnit : MonoBehaviour
         m_isShowingTooltip = false;
 
         m_isHovered = false;
-        if (Globals.m_selectedEntity != this)
+        if (Globals.m_selectedUnit != this)
         {
             m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetUnit().GetTeam());
         }
@@ -240,7 +240,7 @@ public class UIUnit : MonoBehaviour
 
     public GameUnit GetUnit()
     {
-        return m_entity;
+        return m_unit;
     }
 
     public void PlayHitAnim()
@@ -272,7 +272,7 @@ public class UIUnit : MonoBehaviour
     {
         if (Globals.m_canSelect)
         {
-            UIHelper.CreateEntityTooltip(GetUnit());
+            UIHelper.CreateUnitTooltip(GetUnit());
         }
     }
 }

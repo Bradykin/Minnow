@@ -32,19 +32,19 @@ public class ContentFortressBuilding : GameBuildingBase
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
+            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
-            if (entity == null)
+            if (unit == null)
             {
                 continue;
             }
 
-            if (entity.GetTeam() == Team.Player)
+            if (unit.GetTeam() == Team.Player)
             {
                 continue;
             }
 
-            entity.GetHit(m_power);
+            unit.GetHit(m_power);
         }
     }
 

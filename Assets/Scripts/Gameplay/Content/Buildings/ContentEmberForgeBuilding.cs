@@ -30,25 +30,25 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         List<GameTile> surroundingTiles;
         surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 3);
 
-        List<GameUnit> entities = new List<GameUnit>();
+        List<GameUnit> units = new List<GameUnit>();
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
+            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
-            if (entity != null && !GameHelper.IsBossOrElite(entity))
+            if (unit != null && !GameHelper.IsBossOrElite(unit))
             {
-                entities.Add(entity);
+                units.Add(unit);
             }
         }
 
-        if (entities.Count == 0)
+        if (units.Count == 0)
         {
             return;
         }
 
-        GameUnit targetEntity = entities[Random.Range(0, entities.Count)];
+        GameUnit targetUnit = units[Random.Range(0, units.Count)];
 
-        targetEntity.Die();
+        targetUnit.Die();
     }
 
     protected override void Die()

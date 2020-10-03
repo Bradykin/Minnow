@@ -11,9 +11,9 @@ public static class Globals
     public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
-    public static UIUnit m_selectedEntity;
+    public static WorldUnit m_selectedUnit;
     public static WorldTile m_selectedTile;
-    public static UIUnit m_selectedEnemy;
+    public static WorldUnit m_selectedEnemy;
     public static WorldTile m_hoveredTile;
     public static UICard m_hoveredCard;
 
@@ -37,8 +37,8 @@ public static class Globals
     public static bool m_inDeckView = false;
 
     //Temp testing value
-    public static GameEnemyUnit m_testSpawnEnemyEntity = null;
-    public static GameEnemyUnit m_focusedDebugEnemyEntity = null;
+    public static GameEnemyUnit m_testSpawnEnemyUnit = null;
+    public static GameEnemyUnit m_focusedDebugEnemyUnit = null;
 
     //Values that will be moved into player save data
     public static int m_spellsPlayedPreviousTurn = 0;

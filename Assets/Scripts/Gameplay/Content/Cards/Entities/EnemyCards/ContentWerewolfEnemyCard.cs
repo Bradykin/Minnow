@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWerewolfEnemyCard : GameCardEntityBase
+public class ContentWerewolfEnemyCard : GameUnitCardBase
 {
     public ContentWerewolfEnemyCard()
     {
-        m_entity = new ContentWerewolfEnemy(null);
+        m_unit = new ContentWerewolfEnemy(null);
 
         InitEnemyCard();
     }

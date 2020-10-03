@@ -31,7 +31,7 @@ public class GameKeywordFactory
         m_hasInit = true;
     }
 
-    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameUnit gameEntity)
+    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameUnit gameUnit)
     {
         if (!m_hasInit)
             Init();
@@ -49,7 +49,7 @@ public class GameKeywordFactory
                 break;
             case GameKeywordBase.KeywordParamType.ActionParam:
                 JsonActionData jsonActionData = JsonUtility.FromJson<JsonActionData>(jsonData.actionJson);
-                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonActionData, gameEntity));
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonActionData, gameUnit));
                 break;
             default:
                 return null;
@@ -59,8 +59,8 @@ public class GameKeywordFactory
         return newKeyword;
     }
 
-    public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameUnit gameEntity)
+    public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameUnit gameUnit)
     {
-        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJsonAsString()), gameEntity);
+        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJsonAsString()), gameUnit);
     }
 }

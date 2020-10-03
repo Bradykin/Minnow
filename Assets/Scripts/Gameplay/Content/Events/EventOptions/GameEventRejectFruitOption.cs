@@ -23,14 +23,14 @@ public class GameEventRejectFruitOption : GameEventOption
 
     public override void AcceptOption()
     {
-        GameUnit entity = m_tile.m_occupyingUnit;
+        GameUnit unit = m_tile.m_occupyingUnit;
 
-        entity.AddPower(m_powerIncrease);
-        entity.AddMaxHealth(m_healthIncrease);
-        entity.GainStamina(m_staminaIncrease);
+        unit.AddPower(m_powerIncrease);
+        unit.AddMaxHealth(m_healthIncrease);
+        unit.GainStamina(m_staminaIncrease);
 
-        entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(entity, -m_knowledgeableDecrease)));
-        entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(entity, -m_knowledgeableDecrease)));
+        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(unit, -m_knowledgeableDecrease)));
+        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(unit, -m_knowledgeableDecrease)));
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, m_tileRange, 0);
 

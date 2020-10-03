@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracleCard : GameCardEntityBase
+public class ContentFishOracleCard : GameUnitCardBase
 {
     public ContentFishOracleCard()
     {
-        m_entity = new ContentFishOracle();
+        m_unit = new ContentFishOracle();
 
         m_cost = 1;
 

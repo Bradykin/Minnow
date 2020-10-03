@@ -2,15 +2,15 @@
 
 public class GameSpellcraftAttackAction : GameAction
 {
-    private GameUnit m_gameEntity;
+    private GameUnit m_gameUnit;
 
-    public GameSpellcraftAttackAction(GameUnit gameEntity)
+    public GameSpellcraftAttackAction(GameUnit gameUnit)
     {
-        m_gameEntity = gameEntity;
+        m_gameUnit = gameUnit;
 
         m_name = "Spellcraft";
         m_desc = "Spellcraft!";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
@@ -22,7 +22,7 @@ public class GameSpellcraftAttackAction : GameAction
             return;
         }
 
-        player.TriggerSpellcraft(GameCard.Target.Unit, m_gameEntity.GetGameTile());
+        player.TriggerSpellcraft(GameCard.Target.Unit, m_gameUnit.GetGameTile());
     }
 
     public override string SaveToJson()

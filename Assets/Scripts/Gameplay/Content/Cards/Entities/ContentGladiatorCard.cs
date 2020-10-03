@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGladiatorCard : GameCardEntityBase
+public class ContentGladiatorCard : GameUnitCardBase
 {
     public ContentGladiatorCard()
     {
-        m_entity = new ContentGladiator();
+        m_unit = new ContentGladiator();
 
         m_cost = 2;
 

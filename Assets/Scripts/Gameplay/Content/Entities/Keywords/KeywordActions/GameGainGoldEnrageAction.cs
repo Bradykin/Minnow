@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameGainGoldEnrageAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
 
-    public GameGainGoldEnrageAction(GameUnit entity)
+    public GameGainGoldEnrageAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
 
         m_name = "Gain Gold Enrage";
         m_desc = "Gain gold equal to the damage taken.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()

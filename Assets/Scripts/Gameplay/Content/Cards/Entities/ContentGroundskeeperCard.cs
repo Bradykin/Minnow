@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGroundskeeperCard : GameCardEntityBase
+public class ContentGroundskeeperCard : GameUnitCardBase
 {
     public ContentGroundskeeperCard()
     {
-        m_entity = new ContentGroundskeeper();
+        m_unit = new ContentGroundskeeper();
 
         m_cost = 1;
 

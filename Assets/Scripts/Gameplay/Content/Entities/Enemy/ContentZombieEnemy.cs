@@ -28,17 +28,17 @@ public class ContentZombieEnemy : GameEnemyUnit
         m_name = "Zombie";
         m_desc = "On hit, turns the other unit into a zombie!\nZombies can't attack zombies.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackOnceStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackOnceStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }
 
-    public override bool CanHitEntity(GameUnit other, bool checkRange = true)
+    public override bool CanHitUnit(GameUnit other, bool checkRange = true)
     {
         if (other is ContentZombie)
         {
@@ -50,7 +50,7 @@ public class ContentZombieEnemy : GameEnemyUnit
             return false;
         }
 
-        return base.CanHitEntity(other, checkRange);
+        return base.CanHitUnit(other, checkRange);
     }
 
     public override int HitUnit(GameUnit other, bool spendStamina = true)
@@ -60,10 +60,10 @@ public class ContentZombieEnemy : GameEnemyUnit
         {
             GameUnit newZombie = new ContentZombie();
             other.m_worldUnit.Init(newZombie);
-            GameHelper.GetPlayer().RemoveControlledEntity(other);
-            GameHelper.GetPlayer().AddControlledEntity(newZombie);
+            GameHelper.GetPlayer().RemoveControlledUnit(other);
+            GameHelper.GetPlayer().AddControlledUnit(newZombie);
 
-            other.GetGameTile().SwapEntity(newZombie);
+            other.GetGameTile().SwapUnit(newZombie);
 
             damageTaken = base.HitUnit(newZombie, spendStamina);
         }

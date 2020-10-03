@@ -18,16 +18,16 @@ public class ContentDemoralizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.EmptyStamina();
-        targetEntity.GainStamina(2);
+        targetUnit.EmptyStamina();
+        targetUnit.GainStamina(2);
     }
 }

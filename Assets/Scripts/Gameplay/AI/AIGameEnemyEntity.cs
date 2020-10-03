@@ -28,7 +28,7 @@ public class AIGameEnemyUnit : ITakeTurnAI
         Constants.UseSteppedOutEnemyTurns &&
         (!m_gameEnemyUnit.GetGameTile().IsInFog()
         || (m_targetGameTile != null && !m_targetGameTile.IsInFog())
-        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameEntityBase && !gameEntityBase.GetGameTile().IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameUnitBase && !gameUnitBase.GetGameTile().IsInFog())
         || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().IsInFog()));
 
     public AIGameEnemyUnit(GameEnemyUnit gameEnemyUnit)

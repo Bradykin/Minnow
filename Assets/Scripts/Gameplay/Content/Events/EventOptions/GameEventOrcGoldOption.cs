@@ -6,7 +6,7 @@ public class GameEventOrcGoldOption : GameEventOption
     private GameTile m_tile;
     private int m_goldAmount = 100;
     private int m_orcsToSpawn = 2;
-    private ContentOrcEnemy m_orcCheckerEntity = new ContentOrcEnemy(null);
+    private ContentOrcEnemy m_orcCheckerUnit = new ContentOrcEnemy(null);
 
     public GameEventOrcGoldOption(GameTile tile)
     {
@@ -51,14 +51,14 @@ public class GameEventOrcGoldOption : GameEventOption
                 continue;
             }
 
-            if (!shuffledTiles[i].IsPassable(m_orcCheckerEntity, false))
+            if (!shuffledTiles[i].IsPassable(m_orcCheckerUnit, false))
             {
                 continue;
             }
 
-            GameEnemyUnit newOrc = GameEntityFactory.GetEnemyEntityClone(m_orcCheckerEntity, GameHelper.GetOpponent());
-            shuffledTiles[i].PlaceEntity(newOrc);
-            GameHelper.GetOpponent().m_controlledEntities.Add(newOrc);
+            GameEnemyUnit newOrc = GameUnitFactory.GetEnemyUnitClone(m_orcCheckerUnit, GameHelper.GetOpponent());
+            shuffledTiles[i].PlaceUnit(newOrc);
+            GameHelper.GetOpponent().m_controlledUnits.Add(newOrc);
             orcsSpawned++;
             if (orcsSpawned >= m_orcsToSpawn)
             {
@@ -71,6 +71,6 @@ public class GameEventOrcGoldOption : GameEventOption
 
     public override void BuildTooltip()
     {
-        UIHelper.CreateEntityTooltip(m_orcCheckerEntity);
+        UIHelper.CreateUnitTooltip(m_orcCheckerUnit);
     }
 }

@@ -33,7 +33,7 @@ public class ContentReforgingCard : GameCardSpellBase
 
         for (int i = 0; i < player.m_cardsInExile.Count; i++)
         {
-            if (player.m_cardsInExile[i] is GameCardEntityBase entityCard && entityCard.m_entity.m_isDead && entityCard.m_entity.GetTypeline() == Typeline.Creation)
+            if (player.m_cardsInExile[i] is GameUnitCardBase unitCard && unitCard.m_unit.m_isDead && unitCard.m_unit.GetTypeline() == Typeline.Creation)
             {
                 deadCreations.Add(player.m_cardsInExile[i]);
             }
@@ -42,7 +42,7 @@ public class ContentReforgingCard : GameCardSpellBase
         if (deadCreations.Count > 0)
         {
             int index = Random.Range(0, deadCreations.Count);
-            ((GameCardEntityBase)deadCreations[index]).m_entity.m_isDead = false;
+            ((GameUnitCardBase)deadCreations[index]).m_unit.m_isDead = false;
             player.AddCardToHand(deadCreations[index], false);
             player.m_cardsInExile.Remove(deadCreations[index]);
         }

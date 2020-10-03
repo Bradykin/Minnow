@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOrcEnemyCard : GameCardEntityBase
+public class ContentOrcEnemyCard : GameUnitCardBase
 {
     public ContentOrcEnemyCard()
     {
-        m_entity = new ContentOrcEnemy(null);
+        m_unit = new ContentOrcEnemy(null);
 
         InitEnemyCard();
     }

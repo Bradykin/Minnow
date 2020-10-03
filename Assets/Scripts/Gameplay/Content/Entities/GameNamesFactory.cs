@@ -107,22 +107,22 @@ public class GameNamesFactory
         m_constructNames.Add("Aminiv");
     }
 
-    public static string GetCustomEntityName(Typeline entityType)
+    public static string GetCustomUnitName(Typeline unitType)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        if (entityType == Typeline.Humanoid)
+        if (unitType == Typeline.Humanoid)
         {
             return GetNameFromList(m_humanoidNames);
         }
-        else if (entityType == Typeline.Creation)
+        else if (unitType == Typeline.Creation)
         {
             return GetNameFromList(m_constructNames);
         }
-        else if (entityType == Typeline.Monster)
+        else if (unitType == Typeline.Monster)
         {
             return GetNameFromList(m_monsterNames);
         }

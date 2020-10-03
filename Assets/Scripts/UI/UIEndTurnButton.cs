@@ -54,7 +54,7 @@ public class UIEndTurnButton : UIElementBase
         UITooltipController.Instance.ClearTooltipStack();
 
         Globals.m_selectedCard = null;
-        UIHelper.UnselectEntity();
+        UIHelper.UnselectUnit();
         UIHelper.UnselectEnemy();
         Globals.m_selectedTile = null;
 
@@ -71,7 +71,7 @@ public class UIEndTurnButton : UIElementBase
             return false;
         }
 
-        return player.HasEntitiesThatWillOvercapStamina() || player.CanPlayAnythingInHand();
+        return player.HasUnitsThatWillOvercapStamina() || player.CanPlayAnythingInHand();
     }
 
     public override void HandleTooltip()

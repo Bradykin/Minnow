@@ -22,16 +22,16 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddMaxHealth(m_healthGain);
-        targetEntity.GainStamina(m_staminaGain);
+        targetUnit.AddMaxHealth(m_healthGain);
+        targetUnit.GainStamina(m_staminaGain);
     }
 }

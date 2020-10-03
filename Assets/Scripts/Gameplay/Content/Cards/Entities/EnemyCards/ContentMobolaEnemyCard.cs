@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMobolaEnemyCard : GameCardEntityBase
+public class ContentMobolaEnemyCard : GameUnitCardBase
 {
     public ContentMobolaEnemyCard()
     {
-        m_entity = new ContentMobolaEnemy(null);
+        m_unit = new ContentMobolaEnemy(null);
 
         InitEnemyCard();
     }

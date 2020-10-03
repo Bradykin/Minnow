@@ -62,6 +62,6 @@ public class GameEventTakeHorsesOption : GameEventOption
 
     public override void BuildTooltip()
     {
-         UIHelper.CreateEntityTooltip(m_tile.m_occupyingUnit);
+         UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit);
     }
 }

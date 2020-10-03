@@ -24,6 +24,6 @@ public class ContentSummoningCard : GameCardSpellBase
 
         base.PlayCard();
 
-        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetRandomStandardEntityCard(), false);
+        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetRandomStandardUnitCard(), false);
     }
 }

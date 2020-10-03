@@ -11,7 +11,7 @@ public class ContentRogueEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Entities);
+        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Units);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardCard());
         m_optionThree = new GameEventLeaveOption();
 

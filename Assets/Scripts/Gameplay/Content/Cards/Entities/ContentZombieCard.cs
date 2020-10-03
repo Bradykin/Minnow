@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentZombieCard : GameCardEntityBase
+public class ContentZombieCard : GameUnitCardBase
 {
     public ContentZombieCard()
     {
-        m_entity = new ContentZombie();
+        m_unit = new ContentZombie();
 
         m_cost = 1;
 

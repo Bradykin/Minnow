@@ -24,9 +24,9 @@ public class ContentShivCard : GameCardSpellBase
         return GetDamageDescString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
@@ -35,27 +35,27 @@ public class ContentShivCard : GameCardSpellBase
 
         if (staminaDrain > 0)
         {
-            targetEntity.SpendStamina(staminaDrain);
+            targetUnit.SpendStamina(staminaDrain);
         }
 
         if (GameHelper.RelicCount<ContentBurningShivsRelic>() > 0)
         {
             for (int i = 0; i < 3; i++)
             {
-                if (!targetEntity.m_isDead)
+                if (!targetUnit.m_isDead)
                 {
-                    base.PlayCard(targetEntity);
-                    targetEntity.GetHit(GetSpellValue());
+                    base.PlayCard(targetUnit);
+                    targetUnit.GetHit(GetSpellValue());
                 }
             }
         }
         else
         {
-            base.PlayCard(targetEntity);
-            targetEntity.GetHit(GetSpellValue());
+            base.PlayCard(targetUnit);
+            targetUnit.GetHit(GetSpellValue());
         }
 
-        if (targetEntity.m_isDead && Globals.m_goldPerShivKill > 0)
+        if (targetUnit.m_isDead && Globals.m_goldPerShivKill > 0)
         {
             GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(Globals.m_goldPerShivKill));
         }
@@ -64,9 +64,9 @@ public class ContentShivCard : GameCardSpellBase
     protected override bool CanTriggerSpellPower()
     {
         GamePlayer player = GameHelper.GetPlayer();
-        for (int i = 0; i < player.m_controlledEntities.Count; i++)
+        for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
-            if (player.m_controlledEntities[i] is ContentDwarfShivcaster)
+            if (player.m_controlledUnits[i] is ContentDwarfShivcaster)
             {
                 return false;
             }

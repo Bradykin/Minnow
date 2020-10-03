@@ -6,19 +6,19 @@ using UnityEngine;
 public static class GameCardFactory
 {
     private static List<GameCard> m_cards = new List<GameCard>();
-    private static List<GameCard> m_entityCards = new List<GameCard>();
+    private static List<GameCard> m_unitCards = new List<GameCard>();
     private static List<GameCard> m_enemyCards = new List<GameCard>();
     private static List<GameCard> m_standardCards = new List<GameCard>();
     private static List<GameCard> m_standardSpellCards = new List<GameCard>();
-    private static List<GameCard> m_standardEntityCards = new List<GameCard>();
+    private static List<GameCard> m_standardUnitCards = new List<GameCard>();
 
     private static List<GameCard> m_rareCards = new List<GameCard>();
     private static List<GameCard> m_uncommonCards = new List<GameCard>();
     private static List<GameCard> m_commonCards = new List<GameCard>();
 
-    private static List<GameCard> m_rareEntityCards = new List<GameCard>();
-    private static List<GameCard> m_uncommonEntityCards = new List<GameCard>();
-    private static List<GameCard> m_commonEntityCards = new List<GameCard>();
+    private static List<GameCard> m_rareUnitCards = new List<GameCard>();
+    private static List<GameCard> m_uncommonUnitCards = new List<GameCard>();
+    private static List<GameCard> m_commonUnitCards = new List<GameCard>();
 
     private static List<GameCard> m_rareSpellCards = new List<GameCard>();
     private static List<GameCard> m_uncommonSpellCards = new List<GameCard>();
@@ -28,7 +28,7 @@ public static class GameCardFactory
 
     public static void Init()
     {
-        //Entity Cards
+        //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
         m_cards.Add(new ContentDemonSoldierCard());
@@ -71,7 +71,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentMobolaEnemyCard());
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
-        m_enemyCards.Add(new ContentSiegebreakerEntityCard());
+        m_enemyCards.Add(new ContentSiegebreakerCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
@@ -130,10 +130,10 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
-            bool isEntity = m_cards[i] is GameCardEntityBase;
-            if (isEntity)
+            bool isUnit = m_cards[i] is GameUnitCardBase;
+            if (isUnit)
             {
-                m_entityCards.Add(m_cards[i]);
+                m_unitCards.Add(m_cards[i]);
             }
 
             if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common 
@@ -142,20 +142,20 @@ public static class GameCardFactory
             {
                 m_standardCards.Add(m_cards[i]);
 
-                if (isEntity)
+                if (isUnit)
                 {
-                    m_standardEntityCards.Add(m_cards[i]);
+                    m_standardUnitCards.Add(m_cards[i]);
                     if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common)
                     {
-                        m_commonEntityCards.Add(m_cards[i]);
+                        m_commonUnitCards.Add(m_cards[i]);
                     }
                     else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Uncommon)
                     {
-                        m_uncommonEntityCards.Add(m_cards[i]);
+                        m_uncommonUnitCards.Add(m_cards[i]);
                     }
                     else if (m_cards[i].m_rarity == GameElementBase.GameRarity.Rare)
                     {
-                        m_rareEntityCards.Add(m_cards[i]);
+                        m_rareUnitCards.Add(m_cards[i]);
                     }
                 }
                 else
@@ -210,14 +210,14 @@ public static class GameCardFactory
         return GetCardFromList(checkList, exclusionList);
     }
 
-    public static GameCard GetRandomStandardEntityCard(List<GameCard> exclusionList = null)
+    public static GameCard GetRandomStandardUnitCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        List<GameCard> checkList = GetCheckList(m_commonEntityCards, m_uncommonEntityCards, m_rareEntityCards);
+        List<GameCard> checkList = GetCheckList(m_commonUnitCards, m_uncommonUnitCards, m_rareUnitCards);
 
         return GetCardFromList(checkList, exclusionList);
     }
@@ -272,12 +272,12 @@ public static class GameCardFactory
     {
         GameCard clone = (GameCard)Activator.CreateInstance(toClone.GetType());
 
-        if (toClone is GameCardEntityBase && clone is GameCardEntityBase)
+        if (toClone is GameUnitCardBase && clone is GameUnitCardBase)
         {
-            GameUnit toCloneEntity = ((GameCardEntityBase)toClone).GetEntity();
-            GameUnit cloneEntity = ((GameCardEntityBase)clone).GetEntity();
+            GameUnit toCloneUnit = ((GameUnitCardBase)toClone).GetUnit();
+            GameUnit cloneUnit = ((GameUnitCardBase)clone).GetUnit();
 
-            cloneEntity.CopyOff(toCloneEntity);
+            cloneUnit.CopyOff(toCloneUnit);
         }
 
         return clone;
@@ -341,23 +341,23 @@ public static class GameCardFactory
         return null;
     }
 
-    public static GameCardEntityBase GetCardFromEntity(GameUnit entity)
+    public static GameUnitCardBase GetCardFromUnit(GameUnit unit)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        if (entity.GetTeam() == Team.Player)
+        if (unit.GetTeam() == Team.Player)
         {
-            for (int i = 0; i < m_entityCards.Count; i++)
+            for (int i = 0; i < m_unitCards.Count; i++)
             {
-                GameCardEntityBase entityCard = (GameCardEntityBase)m_entityCards[i];
+                GameUnitCardBase unitCard = (GameUnitCardBase)m_unitCards[i];
 
-                if (entityCard.GetEntity().m_name == entity.m_name)
+                if (unitCard.GetUnit().m_name == unit.m_name)
                 {
-                    GameCardEntityBase cardClone = (GameCardEntityBase)GetCardClone(m_entityCards[i]);
-                    cardClone.SetEntity(entity);
+                    GameUnitCardBase cardClone = (GameUnitCardBase)GetCardClone(m_unitCards[i]);
+                    cardClone.SetUnit(unit);
 
                     return cardClone;
                 }
@@ -367,12 +367,12 @@ public static class GameCardFactory
         {
             for (int i = 0; i < m_enemyCards.Count; i++)
             {
-                GameCardEntityBase entityCard = (GameCardEntityBase)m_enemyCards[i];
+                GameUnitCardBase unitCard = (GameUnitCardBase)m_enemyCards[i];
 
-                if (entityCard.GetEntity().m_name == entity.m_name)
+                if (unitCard.GetUnit().m_name == unit.m_name)
                 {
-                    GameCardEntityBase cardClone = (GameCardEntityBase)GetCardClone(m_enemyCards[i]);
-                    cardClone.SetEntity(entity);
+                    GameUnitCardBase cardClone = (GameUnitCardBase)GetCardClone(m_enemyCards[i]);
+                    cardClone.SetUnit(unit);
 
                     return cardClone;
                 }

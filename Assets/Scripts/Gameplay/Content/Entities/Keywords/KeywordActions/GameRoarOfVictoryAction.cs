@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class GameRoarOfVictoryAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
 
-    public GameRoarOfVictoryAction(GameUnit entity)
+    public GameRoarOfVictoryAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
 
         m_name = "Roar of Victory";
         m_desc = "Trigger all Momentum and Enrage effects on this unit.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
-        List<GameMomentumKeyword> momentumKeywords = m_entity.GetKeywords<GameMomentumKeyword>();
-        List<GameEnrageKeyword> enrageKeywords = m_entity.GetKeywords<GameEnrageKeyword>();
+        List<GameMomentumKeyword> momentumKeywords = m_unit.GetKeywords<GameMomentumKeyword>();
+        List<GameEnrageKeyword> enrageKeywords = m_unit.GetKeywords<GameEnrageKeyword>();
 
         int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 

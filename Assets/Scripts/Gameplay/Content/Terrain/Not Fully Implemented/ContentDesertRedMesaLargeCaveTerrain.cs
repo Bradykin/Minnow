@@ -9,7 +9,7 @@ public class ContentDesertRedMesaLargeCaveTerrain : GameTerrainBase
         m_damageReduction = 4;
 
         m_name = "DesertRedMesaLargeCave";
-        m_desc = "Impassable.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_desc = "Impassable.\nUnits on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = 1;
 
         m_isPassable = false;

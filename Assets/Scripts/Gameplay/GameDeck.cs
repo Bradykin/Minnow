@@ -46,7 +46,7 @@ public class GameDeck
             }
             for (int i = 0; i < 1; i++)
             {
-                m_cards.Add(GameCardFactory.GetRandomStandardEntityCard());
+                m_cards.Add(GameCardFactory.GetRandomStandardUnitCard());
             }
         }
     }
@@ -107,10 +107,10 @@ public class GameDeck
             m_cards[randomIndex] = temp;
         }
 
-        //After shuffle, put an entity on top of library
+        //After shuffle, put an unit on top of library
         for (int i = 0; i < m_cards.Count; i++)
         {
-            if (m_cards[i] is GameCardEntityBase)
+            if (m_cards[i] is GameUnitCardBase)
             {
                 GameCard tempCard = m_cards[0];
                 m_cards[0] = m_cards[i];

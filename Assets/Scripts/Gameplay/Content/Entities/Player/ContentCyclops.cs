@@ -18,7 +18,7 @@ public class ContentCyclops : GameUnit
         m_name = "Cyclops";
         m_desc = "Has a sight range of 1";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

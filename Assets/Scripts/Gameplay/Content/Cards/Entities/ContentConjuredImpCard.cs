@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentConjuredImpCard : GameCardEntityBase
+public class ContentConjuredImpCard : GameUnitCardBase
 {
     public ContentConjuredImpCard()
     {
-        m_entity = new ContentConjuredImp();
+        m_unit = new ContentConjuredImp();
 
         m_cost = 0;
 

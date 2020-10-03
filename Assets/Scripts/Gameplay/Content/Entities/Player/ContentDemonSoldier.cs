@@ -17,7 +17,7 @@ public class ContentDemonSoldier : GameUnit
 
         m_name = "Demon Soldier";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

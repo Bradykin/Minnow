@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOverlordCard : GameCardEntityBase
+public class ContentOverlordCard : GameUnitCardBase
 {
     public ContentOverlordCard()
     {
-        m_entity = new ContentOverlord();
+        m_unit = new ContentOverlord();
 
         m_cost = 2;
 

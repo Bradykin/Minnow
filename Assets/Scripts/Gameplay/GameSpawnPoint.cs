@@ -6,37 +6,37 @@ using UnityEngine;
 public enum SpawnPointType : int
 {
     Random,
-    EntityType
+    UnitType
 }
 
 public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointData>
 {
     public GameTile m_tile;
     public SpawnPointType m_gameSpawnPointType;
-    public string m_gameSpawnEntityName;
+    public string m_gameSpawnUnitName;
 
     public GameSpawnPoint()
     {
         m_gameSpawnPointType = SpawnPointType.Random;
-        m_gameSpawnEntityName = string.Empty;
+        m_gameSpawnUnitName = string.Empty;
     }
 
     public void SetSpawnPointRandom()
     {
         m_gameSpawnPointType = SpawnPointType.Random;
-        m_gameSpawnEntityName = string.Empty;
+        m_gameSpawnUnitName = string.Empty;
     }
 
-    public void SetSpawnPointEntity(string gameSpawnEntityName)
+    public void SetSpawnPointUnit(string gameSpawnUnitName)
     {
-        m_gameSpawnPointType = SpawnPointType.EntityType;
-        m_gameSpawnEntityName = gameSpawnEntityName;
+        m_gameSpawnPointType = SpawnPointType.UnitType;
+        m_gameSpawnUnitName = gameSpawnUnitName;
     }
 
-    public void SetSpawnPointEntity(GameUnit gameSpawnEntity)
+    public void SetSpawnPointUnit(GameUnit gameSpawnUnit)
     {
-        m_gameSpawnPointType = SpawnPointType.EntityType;
-        m_gameSpawnEntityName = gameSpawnEntity.m_name;
+        m_gameSpawnPointType = SpawnPointType.UnitType;
+        m_gameSpawnUnitName = gameSpawnUnit.m_name;
     }
 
     //============================================================================================================//
@@ -46,7 +46,7 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
         JsonGameSpawnPointData jsonData = new JsonGameSpawnPointData
         {
             gameSpawnPointType = (int)m_gameSpawnPointType,
-            gameSpawnUnitName = m_gameSpawnEntityName
+            gameSpawnUnitName = m_gameSpawnUnitName
         };
 
         var export = JsonUtility.ToJson(jsonData);
@@ -60,9 +60,9 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
         {
             SetSpawnPointRandom();
         }
-        else if (jsonData.gameSpawnPointType == (int)SpawnPointType.EntityType)
+        else if (jsonData.gameSpawnPointType == (int)SpawnPointType.UnitType)
         {
-            SetSpawnPointEntity(jsonData.gameSpawnUnitName);
+            SetSpawnPointUnit(jsonData.gameSpawnUnitName);
         }
     }
 }

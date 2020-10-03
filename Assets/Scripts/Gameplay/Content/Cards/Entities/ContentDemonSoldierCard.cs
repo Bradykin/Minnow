@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDemonSoldierCard : GameCardEntityBase
+public class ContentDemonSoldierCard : GameUnitCardBase
 {
     public ContentDemonSoldierCard()
     {
-        m_entity = new ContentDemonSoldier();
+        m_unit = new ContentDemonSoldier();
 
         m_cost = 3;
 

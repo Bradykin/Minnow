@@ -28,16 +28,16 @@ public class ContentJoltCard : GameCardSpellBase
         return "Target allied unit gains +" + m_spellEffect + GetSpellPowerString() + " Stamina.\nDraw a card.\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.GainStamina(GetSpellValue());
+        targetUnit.GainStamina(GetSpellValue());
 
         GameHelper.GetPlayer().DrawCard();
     }

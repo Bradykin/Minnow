@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
-    public AILizardmanChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AILizardmanChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {

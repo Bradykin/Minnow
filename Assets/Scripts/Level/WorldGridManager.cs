@@ -239,15 +239,15 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             {
                 if (curTile.m_occupyingUnit.GetTeam() == Team.Player)
                 {
-                    gamePlayer.AddControlledEntity(curTile.m_occupyingUnit);
+                    gamePlayer.AddControlledUnit(curTile.m_occupyingUnit);
                 }
-                else if (curTile.m_occupyingUnit.GetTeam() == Team.Enemy && curTile.m_occupyingUnit is GameEnemyUnit gameEnemyEntity)
+                else if (curTile.m_occupyingUnit.GetTeam() == Team.Enemy && curTile.m_occupyingUnit is GameEnemyUnit gameEnemyUnit)
                 {
-                    gameOpponent.AddControlledEntity(gameEnemyEntity);
+                    gameOpponent.AddControlledUnit(gameEnemyUnit);
                 }
                 else
                 {
-                    Debug.LogError("Problem loading entities from world grid - did not match previous criteria");
+                    Debug.LogError("Problem loading units from world grid - did not match previous criteria");
                 }
             }
             if (curTile.GetBuilding() != null)
@@ -486,22 +486,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             }
         }
 
-        /*string targetAt = "";
-        if (targetGridTile.m_occupyingEntity != null)
-        {
-            targetAt = targetGridTile.m_occupyingEntity.m_name;
-        }
-        else if (targetGridTile.GetBuilding() != null)
-        {
-            targetAt = targetGridTile.GetBuilding().m_name;
-        }
-        else
-        {
-            targetAt = "NoTarget";
-        }
-
-        print("NO VALID PATHS FOR " + startingGridTile.m_occupyingEntity + " AT " + startingGridTile.m_gridPosition + " TO " + targetAt + " AT " + targetGridTile.m_gridPosition);*/
-
         return null;
     }
 
@@ -532,7 +516,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     {
         if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingUnit.m_isDead)
         {
-            Debug.Log("NO ENTITY ON TILE");
+            Debug.Log("NO UNIT ON TILE");
             return new List<GameTile>();
         }
         return GetTilesInMovementRange(startingGridTile, startingGridTile.m_occupyingUnit.GetCurStamina(), ignoreTerrainDifferences, letPassEnemies);
@@ -542,7 +526,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     {
         if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingUnit.m_isDead)
         {
-            Debug.Log("NO ENTITY ON TILE");
+            Debug.Log("NO UNIT ON TILE");
             return null;
         }
         int movementStamina = startingGridTile.m_occupyingUnit.GetCurStamina() - startingGridTile.m_occupyingUnit.GetStaminaToAttack();
@@ -555,7 +539,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     {
         if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.m_occupyingUnit.m_isDead)
         {
-            Debug.Log("NO ENTITY ON TILE");
+            Debug.Log("NO UNIT ON TILE");
             return null;
         }
 

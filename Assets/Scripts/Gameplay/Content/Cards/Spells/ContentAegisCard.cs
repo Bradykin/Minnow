@@ -37,20 +37,20 @@ public class ContentAegisCard : GameCardSpellBase
         return description;
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        GameDamageShieldKeyword damageShieldKeyword = targetEntity.GetKeyword<GameDamageShieldKeyword>();
+        GameDamageShieldKeyword damageShieldKeyword = targetUnit.GetKeyword<GameDamageShieldKeyword>();
 
         if (damageShieldKeyword == null)
         {
-            targetEntity.AddKeyword(new GameDamageShieldKeyword(m_amount));
+            targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount));
         }
         else
         {

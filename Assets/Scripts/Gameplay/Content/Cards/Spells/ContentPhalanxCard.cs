@@ -17,21 +17,21 @@ public class ContentPhalanxCard : GameCardSpellBase
         SetupBasicData();
     }
 
-    public override bool IsValidToPlay(GameUnit targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Humanoid;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Humanoid;
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        GameTile tile = targetEntity.GetGameTile();
+        GameTile tile = targetUnit.GetGameTile();
 
         int amount = 0;
         if (tile != null)
@@ -48,7 +48,7 @@ public class ContentPhalanxCard : GameCardSpellBase
             }
         }
 
-        targetEntity.AddPower(amount);
-        targetEntity.AddMaxHealth(amount);
+        targetUnit.AddPower(amount);
+        targetUnit.AddMaxHealth(amount);
     }
 }

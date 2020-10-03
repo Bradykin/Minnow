@@ -20,7 +20,7 @@ public class ContentElvenSentinel : GameUnit
         m_name = "Elven Sentinel";
         m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -37,22 +37,22 @@ public class ContentElvenSentinel : GameUnit
 
 public class GameGainRangeAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainRangeAction(GameUnit entity, int toGain)
+    public GameGainRangeAction(GameUnit unit, int toGain)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_toGain = toGain;
 
         m_name = "Gain Range";
         m_desc = "+ " + m_toGain + " range";
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        GameRangeKeyword rangeKeyword = m_entity.GetKeyword<GameRangeKeyword>();
+        GameRangeKeyword rangeKeyword = m_unit.GetKeyword<GameRangeKeyword>();
 
         if (rangeKeyword != null)
         {

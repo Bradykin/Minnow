@@ -22,7 +22,7 @@ public class ContentSabobot : GameUnit
         m_name = "Sabobot";
         m_desc = "Starts at full Stamina.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -37,20 +37,20 @@ public class ContentSabobot : GameUnit
 
 public class GameDeathAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
 
-    public GameDeathAction(GameUnit entity)
+    public GameDeathAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
 
         m_name = "Die";
         m_desc = "Die.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
-        m_entity.Die();
+        m_unit.Die();
     }
 
     public override string SaveToJson()

@@ -26,20 +26,20 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
-    public override bool IsValidToPlay(GameUnit targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Monster;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameRoarOfVictoryAction(targetEntity)));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameRoarOfVictoryAction(targetUnit)));
     }
 }

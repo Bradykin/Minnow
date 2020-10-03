@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCardEntityBase : GameCard
+public class GameUnitCardBase : GameCard
 {
-    public GameUnit m_entity { get; protected set; }
+    public GameUnit m_unit { get; protected set; }
 
     public override string GetName()
     {
-        return m_entity.GetName();
+        return m_unit.GetName();
     }
 
-    public GameUnit GetEntity()
+    public GameUnit GetUnit()
     {
-        return m_entity;
+        return m_unit;
     }
 
-    public void SetEntity(GameUnit newEntity)
+    public void SetUnit(GameUnit newUnit)
     {
-        m_entity = newEntity;
+        m_unit = newUnit;
     }
 
     public void FillBasicData()
     {
-        m_name = m_entity.GetName();
-        m_desc = m_entity.GetDesc();
+        m_name = m_unit.GetName();
+        m_desc = m_unit.GetDesc();
         m_icon = UIHelper.GetIconCard(m_name);
-        m_rarity = m_entity.m_rarity;
+        m_rarity = m_unit.m_rarity;
         m_typeline = GetTypeline();
 
         m_shouldExile = true;
@@ -39,40 +39,40 @@ public class GameCardEntityBase : GameCard
 
     private void AddBasicTags()
     {
-        if (GetEntity().GetTypeline() == Typeline.Humanoid)
+        if (GetUnit().GetTypeline() == Typeline.Humanoid)
         {
             m_tags.AddTag(GameTag.TagType.Humanoid);
         }
-        if (GetEntity().GetTypeline() == Typeline.Monster)
+        if (GetUnit().GetTypeline() == Typeline.Monster)
         {
             m_tags.AddTag(GameTag.TagType.Monster);
         }
-        if (GetEntity().GetTypeline() == Typeline.Creation)
+        if (GetUnit().GetTypeline() == Typeline.Creation)
         {
             m_tags.AddTag(GameTag.TagType.Creation);
         }
 
-        if (GetEntity().GetKeyword<GameKnowledgeableKeyword>() != null)
+        if (GetUnit().GetKeyword<GameKnowledgeableKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Knowledgeable);
         }
-        if (GetEntity().GetKeyword<GameVictoriousKeyword>() != null)
+        if (GetUnit().GetKeyword<GameVictoriousKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Victorious);
         }
-        if (GetEntity().GetKeyword<GameEnrageKeyword>() != null)
+        if (GetUnit().GetKeyword<GameEnrageKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Enrage);
         }
-        if (GetEntity().GetKeyword<GameMomentumKeyword>() != null)
+        if (GetUnit().GetKeyword<GameMomentumKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Momentum);
         }
-        if (GetEntity().GetKeyword<GameRangeKeyword>() != null)
+        if (GetUnit().GetKeyword<GameRangeKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Range);
         }
-        if (GetEntity().GetKeyword<GameSpellcraftKeyword>() != null)
+        if (GetUnit().GetKeyword<GameSpellcraftKeyword>() != null)
         {
             m_tags.AddTag(GameTag.TagType.Spellcraft);
         }
@@ -104,9 +104,9 @@ public class GameCardEntityBase : GameCard
 
         base.PlayCard(targetTile);
 
-        GameHelper.MakePlayerEntity(targetTile, m_entity);
+        GameHelper.MakePlayerUnit(targetTile, m_unit);
 
-        m_entity.OnSummon();
+        m_unit.OnSummon();
     }
 
     public override bool IsValidToPlay(GameTile targetTile)
@@ -121,7 +121,7 @@ public class GameCardEntityBase : GameCard
             return false;
         }
 
-        if (!targetTile.IsPassable(GetEntity(), false))
+        if (!targetTile.IsPassable(GetUnit(), false))
         {
             return false;
         }
@@ -136,26 +136,26 @@ public class GameCardEntityBase : GameCard
 
     protected string GetTypeline()
     {
-        return "Unit - " + m_entity.GetTypeline();
+        return "Unit - " + m_unit.GetTypeline();
     }
 
     public override void ResetCard()
     {
         base.ResetCard();
 
-        m_entity.Reset();
+        m_unit.Reset();
     }
 
     public override string GetDesc()
     {
-        string desc = m_entity.GetDesc();
+        string desc = m_unit.GetDesc();
 
-        if (GetEntity().GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
+        if (GetUnit().GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
         {
             desc += "\n";
         }
 
-        desc += GetEntity().GetKeywordHolderForRead().GetDesc();
+        desc += GetUnit().GetKeywordHolderForRead().GetDesc();
 
         return desc;
     }

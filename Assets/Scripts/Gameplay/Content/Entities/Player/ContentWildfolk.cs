@@ -30,7 +30,7 @@ public class ContentWildfolk : GameUnit
         m_name = "Wildfolk";
         m_desc = "When summoned, gain a random keyword and +3/+10.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

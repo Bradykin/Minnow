@@ -35,7 +35,7 @@ public abstract class GameCard : GameElementBase
         {
             toReturn -= GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
         }
-        else if (this is GameCardEntityBase)
+        else if (this is GameUnitCardBase)
         {
             toReturn -= GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
         }
@@ -73,7 +73,7 @@ public abstract class GameCard : GameElementBase
         PayCost();
     }
 
-    public virtual void PlayCard(GameUnit targetEntity) 
+    public virtual void PlayCard(GameUnit targetUnit) 
     {
         PayCost();
     }
@@ -139,19 +139,19 @@ public abstract class GameCard : GameElementBase
         return false; 
     }
 
-    public virtual bool IsValidToPlay(GameUnit targetEntity) 
+    public virtual bool IsValidToPlay(GameUnit targetUnit) 
     {
         if (!IsValidToPlay())
         {
             return false;
         }
 
-        if (m_targetType == Target.Ally && targetEntity.GetTeam() == Team.Player)
+        if (m_targetType == Target.Ally && targetUnit.GetTeam() == Team.Player)
         {
             return true;
         }
 
-        if (m_targetType == Target.Enemy && targetEntity.GetTeam() == Team.Enemy)
+        if (m_targetType == Target.Enemy && targetUnit.GetTeam() == Team.Enemy)
         {
             return true;
         }

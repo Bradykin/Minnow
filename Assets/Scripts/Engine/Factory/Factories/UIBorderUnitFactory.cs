@@ -25,7 +25,7 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(UIUnit ownerUnit)
+        public T CreateObject<T>(WorldUnit ownerUnit)
         {
             GameObject obj = CreateGameObject();
 

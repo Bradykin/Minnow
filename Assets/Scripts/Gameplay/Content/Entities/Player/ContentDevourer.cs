@@ -18,7 +18,7 @@ public class ContentDevourer : GameUnit
 
         m_name = "Devourer";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -26,20 +26,20 @@ public class ContentDevourer : GameUnit
 
 public class GameFullHealAction : GameAction
 {
-    private GameUnit m_entity;
+    private GameUnit m_unit;
 
-    public GameFullHealAction(GameUnit entity)
+    public GameFullHealAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
 
         m_name = "Full Heal";
         m_desc = "Fully heal.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
-        m_entity.Heal(m_entity.GetMaxHealth());
+        m_unit.Heal(m_unit.GetMaxHealth());
     }
 
     public override string SaveToJson()

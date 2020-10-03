@@ -56,7 +56,7 @@ public class GameTag
             List<GameCard> playerBaseDeck = GameHelper.GetPlayer().m_deckBase.GetCardsForRead();
             for (int c = 0; c < playerBaseDeck.Count; c++)
             {
-                //Check entity typeline tags first
+                //Check unit typeline tags first
                 if (curTag == TagType.Creation)
                 {
                     if (playerBaseDeck[c].m_tags.HasTag(TagType.Monster) ||
@@ -115,7 +115,7 @@ public class GameTag
             {
                 if (playerRelics[c].m_tags.HasTag(curTag))
                 {
-                    //Check entity typeline tags first
+                    //Check unit typeline tags first
                     if (curTag == TagType.Creation)
                     {
                         if (playerRelics[c].m_tags.HasTag(TagType.Monster) ||

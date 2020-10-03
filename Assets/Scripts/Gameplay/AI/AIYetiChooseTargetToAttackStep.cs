@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
-    public AIYetiChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIYetiChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        GameUnit closestVulnerableEntityInRage = FindClosestVulnerableUnitInRange();
-        if (closestVulnerableEntityInRage != null)
+        GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
+        if (closestVulnerableUnitInRange != null)
         {
-            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableEntityInRage;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
             yield break;
         }
 
@@ -23,10 +23,10 @@ public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
             yield break;
         }
 
-        GameUnit closestEntityInRange = FindClosestUnitInRange();
-        if (closestEntityInRange != null)
+        GameUnit closestUnitInRange = FindClosestUnitInRange();
+        if (closestUnitInRange != null)
         {
-            m_AIGameEnemyUnit.m_targetGameElement = closestEntityInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
             yield break;
         }
 

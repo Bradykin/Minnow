@@ -19,7 +19,7 @@ public class ContentMage : GameUnit
 
         m_name = "Mage";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

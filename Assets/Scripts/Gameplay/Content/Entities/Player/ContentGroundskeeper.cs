@@ -21,7 +21,7 @@ public class ContentGroundskeeper : GameUnit
         m_name = "Groundskeeper";
         m_desc = "Gains +" + m_powerBoost + "/+0 and +" + m_staminaRegenBoost + " Stamina regen while in a forest.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         m_keywordHolder.m_keywords.Add(new GameForestwalkKeyword());
 

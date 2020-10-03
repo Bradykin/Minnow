@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWildfolkCard : GameCardEntityBase
+public class ContentWildfolkCard : GameUnitCardBase
 {
     public ContentWildfolkCard()
     {
-        m_entity = new ContentWildfolk();
+        m_unit = new ContentWildfolk();
 
         m_cost = 2;
 

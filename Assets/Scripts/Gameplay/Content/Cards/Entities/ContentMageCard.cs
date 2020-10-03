@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMageCard : GameCardEntityBase
+public class ContentMageCard : GameUnitCardBase
 {
     public ContentMageCard()
     {
-        m_entity = new ContentMage();
+        m_unit = new ContentMage();
 
         m_cost = 1;
 

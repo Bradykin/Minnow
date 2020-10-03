@@ -29,7 +29,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
     public GameEventHelpMillitiaOption(GameTile tile)
     {
         m_tile = tile;
-        m_card = GameCardFactory.GetRandomStandardEntityCard();
+        m_card = GameCardFactory.GetRandomStandardUnitCard();
 
         m_hasTooltip = true;
     }
@@ -64,12 +64,12 @@ public class GameEventHelpMillitiaOption : GameEventOption
             return;
         }
 
-        GameCardEntityBase toGainCard = (GameCardEntityBase)m_card;
+        GameUnitCardBase toGainCard = (GameUnitCardBase)m_card;
 
-        if (m_tile.m_occupyingUnit.m_name != toGainCard.GetEntity().m_name)
+        if (m_tile.m_occupyingUnit.m_name != toGainCard.GetUnit().m_name)
         {
-            UIHelper.CreateEntityTooltip(m_tile.m_occupyingUnit);
+            UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit);
         }
-        UIHelper.CreateEntityTooltip(toGainCard.GetEntity());
+        UIHelper.CreateUnitTooltip(toGainCard.GetUnit());
     }
 }

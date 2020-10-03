@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameEnemyUnit : GameUnit, ITakeTurnAI
 {
-    public AIGameEnemyUnit m_AIGameEnemyEntity;
+    public AIGameEnemyUnit m_AIGameEnemyUnit;
     public GameOpponent m_gameOpponentController;
 
     public bool m_isElite;
@@ -16,7 +16,7 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
 
     public GameEnemyUnit(GameOpponent gameOpponent)
     {
-        m_AIGameEnemyEntity = new AIGameEnemyUnit(this);
+        m_AIGameEnemyUnit = new AIGameEnemyUnit(this);
         m_gameOpponentController = gameOpponent;
     }
 
@@ -35,7 +35,7 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
         }
 
         m_curHealth = GetMaxHealth();
-        m_curStamina = GetMaxStamina(); //Enemy entities start at max Stamina.  This helps them get to the player base faster.
+        m_curStamina = GetMaxStamina(); //Enemy units start at max Stamina.  This helps them get to the player base faster.
 
         m_typeline = Typeline.Monster;
     }
@@ -44,12 +44,12 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
 
     public IEnumerator TakeTurn()
     {
-        yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyEntity.TakeTurn());
+        yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn());
     }
 
     public override void Die()
     {
         base.Die();
-        m_gameOpponentController.m_controlledEntities.Remove(this);
+        m_gameOpponentController.m_controlledUnits.Remove(this);
     }
 }

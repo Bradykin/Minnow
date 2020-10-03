@@ -17,7 +17,7 @@ public class ContentGrasper : GameUnit
         m_name = "Grasper";
         m_desc = "When this hits a unit, it drains all Stamina from it.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

@@ -18,7 +18,7 @@ public class ContentRaptor : GameUnit
         m_name = "Raptor";
         m_desc = "Only takes 1 Stamina to attack.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

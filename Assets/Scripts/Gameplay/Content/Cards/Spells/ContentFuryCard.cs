@@ -25,23 +25,23 @@ public class ContentFuryCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
-    public override bool IsValidToPlay(GameUnit targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Monster;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        List<GameMomentumKeyword> momentumKeywords = targetEntity.GetKeywords<GameMomentumKeyword>();
-        List<GameEnrageKeyword> enrageKeywords = targetEntity.GetKeywords<GameEnrageKeyword>();
-        List<GameVictoriousKeyword> victoriousKeywords = targetEntity.GetKeywords<GameVictoriousKeyword>();
+        List<GameMomentumKeyword> momentumKeywords = targetUnit.GetKeywords<GameMomentumKeyword>();
+        List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
+        List<GameVictoriousKeyword> victoriousKeywords = targetUnit.GetKeywords<GameVictoriousKeyword>();
 
         int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 

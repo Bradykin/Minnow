@@ -25,9 +25,9 @@ public class UIFocusInfoPanel : UIElementBase
         {
             UpdateFocusData(Globals.m_selectedEnemy);
         }
-        else if (Globals.m_selectedEntity != null)
+        else if (Globals.m_selectedUnit != null)
         {
-            UpdateFocusData(Globals.m_selectedEntity);
+            UpdateFocusData(Globals.m_selectedUnit);
         }
         else if (Globals.m_selectedTile != null)
         {
@@ -51,12 +51,12 @@ public class UIFocusInfoPanel : UIElementBase
 
     private void UpdateFocusData(UICard cardData)
     {
-        if (cardData.m_card is GameCardEntityBase)
+        if (cardData.m_card is GameUnitCardBase)
         {
-            GameCardEntityBase entityCard = (GameCardEntityBase)(cardData.m_card);
+            GameUnitCardBase unitCard = (GameUnitCardBase)(cardData.m_card);
 
             //Don't show this if there are no keywords.
-            if (entityCard.GetEntity().GetKeywordHolderForRead().m_keywords.Count == 0)
+            if (unitCard.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
             {
                 m_shouldShow = false;
                 return;
@@ -64,8 +64,8 @@ public class UIFocusInfoPanel : UIElementBase
 
             m_shouldShow = true;
 
-            m_titleText.text = entityCard.GetName();
-            List<GameKeywordBase> keywords = entityCard.GetEntity().GetKeywordHolderForRead().m_keywords;
+            m_titleText.text = unitCard.GetName();
+            List<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().m_keywords;
             for (int i = 0; i < keywords.Count; i++)
             {
                 m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
@@ -99,19 +99,19 @@ public class UIFocusInfoPanel : UIElementBase
         }
     }
 
-    private void UpdateFocusData(UIUnit entityData)
+    private void UpdateFocusData(WorldUnit unitData)
     {
         m_shouldShow = true;
 
         //Don't show this if there are no keywords.
-        if (entityData.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
+        if (unitData.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
         {
             m_shouldShow = false;
             return;
         }
 
-        m_titleText.text = entityData.GetUnit().GetName();
-        List<GameKeywordBase> keywords = entityData.GetUnit().GetKeywordHolderForRead().m_keywords;
+        m_titleText.text = unitData.GetUnit().GetName();
+        List<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().m_keywords;
         for (int i = 0; i < keywords.Count; i++)
         {
             m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";

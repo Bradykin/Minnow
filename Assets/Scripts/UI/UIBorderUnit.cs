@@ -12,11 +12,11 @@ public class UIBorderUnit : MonoBehaviour
     public Image m_image;
     public GameObject m_holder;
 
-    private UIUnit m_entity;
+    private WorldUnit m_unit;
 
-    public void Init(UIUnit toTrack)
+    public void Init(WorldUnit toTrack)
     {
-        m_entity = toTrack;
+        m_unit = toTrack;
 
         m_rectTransform = GetComponent<RectTransform>();
         m_image.sprite = toTrack.GetUnit().m_icon;
@@ -24,13 +24,13 @@ public class UIBorderUnit : MonoBehaviour
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_entity.gameObject);
+        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_unit.gameObject);
     }
 
     void Update()
     {
-        //Hide this if the UIEntity is on screen.
-        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetUnit().GetCurStamina() > 0);
+        //Hide this if the WorldUnit is on screen.
+        m_holder.SetActive(!m_unit.m_renderer.isVisible && m_unit.GetUnit().GetCurStamina() > 0);
 
         UpdatePosition();
     }
@@ -38,7 +38,7 @@ public class UIBorderUnit : MonoBehaviour
     private void UpdatePosition()
     {
         /*Vector3 pos = Camera.main.transform.position;
-        Vector3 dir = (m_entity.transform.position - Camera.main.transform.position);
+        Vector3 dir = (m_unit.transform.position - Camera.main.transform.position);
         Vector3 normalizedDir = new Vector3(dir.x, dir.y, transform.position.z).normalized;
 
         float leftBorder = 0.0f;
@@ -52,18 +52,18 @@ public class UIBorderUnit : MonoBehaviour
 
         m_rectTransform.anchoredPosition = new Vector2(Screen.width / 4, Screen.height / 4);
 
-        /*print("m_entiy World Pos: " + m_entity.transform.position);
-        print("m_entiy Screen Pos: " + Camera.main.WorldToScreenPoint(m_entity.transform.position));
-        print("m_entiy Viewport Pos: " + Camera.main.WorldToViewportPoint(m_entity.transform.position));
+        /*print("m_entiy World Pos: " + m_unit.transform.position);
+        print("m_entiy Screen Pos: " + Camera.main.WorldToScreenPoint(m_unit.transform.position));
+        print("m_entiy Viewport Pos: " + Camera.main.WorldToViewportPoint(m_unit.transform.position));
 
-        Vector3 entityScreenPos = Camera.main.WorldToScreenPoint(m_entity.transform.position);
-        float dist = (Camera.main.WorldToScreenPoint(m_entity.transform.position) - Camera.main.transform.position).z;
+        Vector3 unitScreenPos = Camera.main.WorldToScreenPoint(m_unit.transform.position);
+        float dist = (Camera.main.WorldToScreenPoint(m_unit.transform.position) - Camera.main.transform.position).z;
         float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
         float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
         float topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         float botBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, dist)).y;
 
-        gameObject.transform.position = new Vector3(Mathf.Clamp(entityScreenPos.x, leftBorder, rightBorder), Mathf.Clamp(entityScreenPos.y, topBorder, botBorder), entityScreenPos.z);*/
+        gameObject.transform.position = new Vector3(Mathf.Clamp(unitScreenPos.x, leftBorder, rightBorder), Mathf.Clamp(unitScreenPos.y, topBorder, botBorder), unitScreenPos.z);*/
     }
 }
 
@@ -75,8 +75,8 @@ public class UIBorderUnit : MonoBehaviour
         float topBorder = 0.0f;
         float botBorder = Screen.height;
 
-        Vector3 uiEntityScreenPos = Camera.main.WorldToScreenPoint(m_entity.gameObject.transform.position);
+        Vector3 worldUnitScreenPos = Camera.main.WorldToScreenPoint(m_unit.gameObject.transform.position);
 
-        gameObject.transform.position = new Vector3(Mathf.Clamp(uiEntityScreenPos.x, leftBorder, rightBorder), Mathf.Clamp(uiEntityScreenPos.y, topBorder, botBorder), gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(Mathf.Clamp(worldUnitScreenPos.x, leftBorder, rightBorder), Mathf.Clamp(worldUnitScreenPos.y, topBorder, botBorder), gameObject.transform.position.z);
     }
  */

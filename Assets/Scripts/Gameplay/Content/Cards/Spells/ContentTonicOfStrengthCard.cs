@@ -22,16 +22,16 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddPower(m_powerToGain);
-        targetEntity.GainStamina(m_staminaGain);
+        targetUnit.AddPower(m_powerToGain);
+        targetUnit.GainStamina(m_staminaGain);
     }
 }

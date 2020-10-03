@@ -20,7 +20,7 @@ public class ContentGuardCaptain : GameUnit
         m_name = "Guard Captain";
         m_desc = "When summoned, all allied <b>Humanoid</b> units within range " + m_rallyRange + " gain +" + m_rallyValue + " Stamina.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -33,24 +33,24 @@ public class ContentGuardCaptain : GameUnit
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
+            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
-            if (entity == null)
+            if (unit == null)
             {
                 continue;
             }
 
-            if (entity.GetTeam() != Team.Player)
+            if (unit.GetTeam() != Team.Player)
             {
                 continue;
             }
 
-            if (entity.GetTypeline() != Typeline.Humanoid)
+            if (unit.GetTypeline() != Typeline.Humanoid)
             {
                 continue;
             }
 
-            entity.GainStamina(m_rallyValue);
+            unit.GainStamina(m_rallyValue);
         }
     }
 }

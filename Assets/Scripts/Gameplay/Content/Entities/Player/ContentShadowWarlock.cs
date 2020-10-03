@@ -18,7 +18,7 @@ public class ContentShadowWarlock : GameUnit
 
         m_name = "Shadow Warlock";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

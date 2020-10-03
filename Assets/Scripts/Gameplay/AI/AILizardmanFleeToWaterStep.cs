@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AILizardmanFleeToWaterStep : AIStep
 {
-    public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {

@@ -17,7 +17,7 @@ public class ContentWanderer : GameUnit
         m_name = "Wanderer";
         m_desc = "At beginning of each turn, add a shiv to your hand.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfArchitectCard : GameCardEntityBase
+public class ContentDwarfArchitectCard : GameUnitCardBase
 {
     public ContentDwarfArchitectCard()
     {
-        m_entity = new ContentDwarfArchitect();
+        m_unit = new ContentDwarfArchitect();
 
         m_cost = 2;
 

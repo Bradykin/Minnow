@@ -7,7 +7,7 @@ public class AIScanTargetsInRangeStep : AIStep
 {
     protected bool ignoreTargetsCantDamage = true;
 
-    public AIScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
@@ -23,12 +23,12 @@ public class AIScanTargetsInRangeStep : AIStep
             m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInAttackRange[i].m_gridPosition.ToString());
         }
 
-        List<GameUnit> possibleEntityTargets = new List<GameUnit>();
+        List<GameUnit> possibleUnitTargets = new List<GameUnit>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
         foreach (var tile in tilesInAttackRange)
         {
-            if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitEntity(tile.m_occupyingUnit, false))
+            if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.m_occupyingUnit, false))
             {
                 int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower());
                 if (ignoreTargetsCantDamage)
@@ -39,7 +39,7 @@ public class AIScanTargetsInRangeStep : AIStep
                     }
                 }
 
-                possibleEntityTargets.Add(tile.m_occupyingUnit);
+                possibleUnitTargets.Add(tile.m_occupyingUnit);
 
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
                 int numHitsToRateVulnerable = 2;
@@ -77,7 +77,7 @@ public class AIScanTargetsInRangeStep : AIStep
             }
         }
 
-        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleEntityTargets;
+        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleUnitTargets;
         m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
     }
 }

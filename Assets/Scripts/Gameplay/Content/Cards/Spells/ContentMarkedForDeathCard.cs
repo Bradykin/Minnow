@@ -28,15 +28,15 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameUnit targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetEntity, GetSpellValue())));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetUnit, GetSpellValue())));
     }
 }
