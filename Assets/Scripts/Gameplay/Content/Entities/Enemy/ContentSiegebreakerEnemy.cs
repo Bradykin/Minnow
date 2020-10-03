@@ -20,7 +20,7 @@ public class ContentSiegebreakerEntity : GameEnemyEntity
         m_maxWave = 6;
 
         m_name = "Siegebreaker";
-        m_desc = "Can move through your units.  Will only attack at full Stamina, and only buildings.";
+        m_desc = "Can move through your units.  Will only attack at full Stamina, and only buildings.  Can hit buildings that have a unit on top of them.";
 
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyEntity));
