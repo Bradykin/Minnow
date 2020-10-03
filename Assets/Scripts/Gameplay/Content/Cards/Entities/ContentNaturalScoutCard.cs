@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentNaturalScoutCard : GameCardEntityBase
+public class ContentNaturalScoutCard : GameUnitCardBase
 {
     public ContentNaturalScoutCard()
     {
-        m_entity = new ContentNaturalScout();
+        m_unit = new ContentNaturalScout();
 
         m_cost = 1;
 

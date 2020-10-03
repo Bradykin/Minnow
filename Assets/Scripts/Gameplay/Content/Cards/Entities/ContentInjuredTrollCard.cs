@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInjuredTrollCard : GameCardEntityBase
+public class ContentInjuredTrollCard : GameUnitCardBase
 {
     public ContentInjuredTrollCard()
     {
-        m_entity = new ContentInjuredTroll();
+        m_unit = new ContentInjuredTroll();
 
         m_cost = 2;
 

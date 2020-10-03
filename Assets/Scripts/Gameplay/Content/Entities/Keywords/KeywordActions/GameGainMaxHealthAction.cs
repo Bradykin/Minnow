@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameGainMaxHealthAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainMaxHealthAction(GameEntity entity, int toGain)
+    public GameGainMaxHealthAction(GameUnit unit, int toGain)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_toGain = toGain;
 
         m_name = "Gain Max Health";
@@ -21,12 +21,12 @@ public class GameGainMaxHealthAction : GameAction
         {
             m_desc = "-0/-"+ m_toGain + ".";
         }
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        m_entity.AddMaxHealth(m_toGain);
+        m_unit.AddMaxHealth(m_toGain);
     }
 
     public override string SaveToJson()

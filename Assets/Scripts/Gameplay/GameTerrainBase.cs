@@ -49,16 +49,16 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public Sprite m_iconWhite;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
-    public bool IsPassable(GameEntity checkerEntity)
+    public bool IsPassable(GameUnit checkerUnit)
     {
-        if (checkerEntity != null)
+        if (checkerUnit != null)
         {
-            if (IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
+            if (IsWater() && checkerUnit.GetKeyword<GameWaterwalkKeyword>() != null)
             {
                 return true;
             }
 
-            if (IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            if (IsMountain() && checkerUnit.GetKeyword<GameMountainwalkKeyword>() != null)
             {
                 return true;
             }
@@ -198,12 +198,12 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
         if (m_damageReduction > 0)
         {
-            description += "\nEntities on this tile take " + m_damageReduction + " less damage.";
+            description += "\nUnits on this tile take " + m_damageReduction + " less damage.";
         }
 
         if (m_rangeModifier > 0)
         {
-            description += "\nRanged entities on this tile get +" + m_rangeModifier + " increased range.";
+            description += "\nRanged units on this tile get +" + m_rangeModifier + " increased range.";
         }
 
         return description;
@@ -215,7 +215,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
         if (m_rangeModifier > 0)
         {
-            description += "Ranged entities on this tile get +" + m_rangeModifier + " increased range.";
+            description += "Ranged units on this tile get +" + m_rangeModifier + " increased range.";
         }
 
         return description;

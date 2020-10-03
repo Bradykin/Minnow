@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Refuse to stay out of fog of war????
 //If no fog of war near player targets that are closish to them, head to the mountains?
-public class ContentYetiEnemy : GameEnemyEntity
+public class ContentYetiEnemy : GameEnemyUnit
 {
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -25,10 +25,10 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(4));
         m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
 
-        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIYetiChooseTargetToAttackStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIYetiChooseTargetToAttackStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }

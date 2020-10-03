@@ -29,15 +29,15 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
         return "Give a unit '<b>Momentum</b>: take " + m_spellEffect + spString + " damage.'\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetEntity, GetSpellValue())));
+        targetUnit.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetUnit, GetSpellValue())));
     }
 }

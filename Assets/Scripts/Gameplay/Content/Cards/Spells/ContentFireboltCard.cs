@@ -34,16 +34,16 @@ public class ContentFireboltCard : GameCardSpellBase
         return description;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.GetHit(GetSpellValue());
+        targetUnit.GetHit(GetSpellValue());
 
         int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
         for (int i = 0; i < numTraditionalMethods; i++)

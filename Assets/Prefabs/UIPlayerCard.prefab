@@ -808,9 +808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_card: {fileID: 757981490098818965}
-  m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
 --- !u!222 &5311203620359957419
 CanvasRenderer:
   m_ObjectHideFlags: 0

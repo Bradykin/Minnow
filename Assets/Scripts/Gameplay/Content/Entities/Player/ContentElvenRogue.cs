@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenRogue : GameEntity
+public class ContentElvenRogue : GameUnit
 {
     public ContentElvenRogue()
     {
@@ -19,7 +19,7 @@ public class ContentElvenRogue : GameEntity
 
         m_name = "Elven Rogue";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

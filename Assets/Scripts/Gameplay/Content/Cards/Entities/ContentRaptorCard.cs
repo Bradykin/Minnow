@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentRaptorCard : GameCardEntityBase
+public class ContentRaptorCard : GameUnitCardBase
 {
     public ContentRaptorCard()
     {
-        m_entity = new ContentRaptor();
+        m_unit = new ContentRaptor();
 
         m_cost = 1;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfArchitect : GameEntity
+public class ContentDwarfArchitect : GameUnit
 {
     private int m_maxStaminaIncrease = 1;
     private int m_effectRange = 2;
@@ -20,12 +20,12 @@ public class ContentDwarfArchitect : GameEntity
         m_name = "Dwarf Architect";
         m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
 
-    public override void OnOtherSummon(GameEntity other)
+    public override void OnOtherSummon(GameUnit other)
     {
         base.OnOtherSummon(other);
 

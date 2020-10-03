@@ -6376,7 +6376,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878795128760333}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736126069811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7001,7 +7001,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878794973333024}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736047137310
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7164,7 +7164,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878794932111442}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736054283372
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8200,7 +8200,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878794640699858}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736648181228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8330,7 +8330,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878794598373406}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736656989216
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9819,7 +9819,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878794223236499}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478736763130285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11185,7 +11185,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878793885368718}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478734954063280
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11501,7 +11501,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878793760698627}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735346652477
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11737,7 +11737,7 @@ MonoBehaviour:
   m_card: {fileID: 3829878793719364201}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735387958871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12750,7 +12750,7 @@ MonoBehaviour:
   m_card: {fileID: 4917939617123857409}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735574581571
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12840,7 +12840,7 @@ MonoBehaviour:
   m_card: {fileID: 4917939617118456804}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735580216998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13003,7 +13003,7 @@ MonoBehaviour:
   m_card: {fileID: 4917939617151257173}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735610265367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14470,7 +14470,7 @@ MonoBehaviour:
   m_card: {fileID: 4329819801249013911}
   m_cardSelect: {fileID: 0}
   m_spellCardFrame: {fileID: 21300000, guid: b382d7f1a0f020545bbb7500727167b1, type: 3}
-  m_entityCardFrame: {fileID: 21300000, guid: 9db418cadb1790842b32c60fcbf8f3d5, type: 3}
+  m_unitCardFrame: {fileID: 0}
 --- !u!222 &8509478735763397403
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27629,7 +27629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_worldTilePrefab: {fileID: 4995393579826288999, guid: 7202d2a57e1e06241bc0b70d07daeb7f,
     type: 3}
-  m_uiEntityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
+  m_uiUnitPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
     type: 3}
   m_uiCardPrefab: {fileID: 757981490098818967, guid: 7e83a66c522e72e42923a0ad883b8f21,
     type: 3}

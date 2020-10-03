@@ -3,63 +3,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEntityFactory
+public class GameUnitFactory
 {
-    private static List<GameEntity> m_playerEntities = new List<GameEntity>();
+    private static List<GameUnit> m_playerUnits = new List<GameUnit>();
 
 
-    private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_eliteEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_bossEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyUnit> m_enemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_bossEnemies = new List<GameEnemyUnit>();
 
-    private static List<GameEnemyEntity> m_standardWaveOneEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveTwoEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveThreeEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveFourEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveFiveEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveSixEnemies = new List<GameEnemyEntity>();
-    private static List<GameEnemyEntity> m_standardWaveSevenEnemies = new List<GameEnemyEntity>();
+    private static List<GameEnemyUnit> m_standardWaveOneEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveTwoEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveThreeEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveFourEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveFiveEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveSixEnemies = new List<GameEnemyUnit>();
+    private static List<GameEnemyUnit> m_standardWaveSevenEnemies = new List<GameEnemyUnit>();
 
     private static bool m_hasInit = false;
     
     public static void Init()
     {
-        //Player Entities
-        m_playerEntities.Add(new ContentConjuredImp());
-        m_playerEntities.Add(new ContentCyclops());
-        m_playerEntities.Add(new ContentDemonSoldier());
-        m_playerEntities.Add(new ContentDevourer());
-        m_playerEntities.Add(new ContentDwarfArchitect());
-        m_playerEntities.Add(new ContentDwarfShivcaster());
-        m_playerEntities.Add(new ContentDwarvenSoldier());
-        m_playerEntities.Add(new ContentElvenRogue());
-        m_playerEntities.Add(new ContentElvenSentinel());
-        m_playerEntities.Add(new ContentElvenWizard());
-        m_playerEntities.Add(new ContentFishOracle());
-        m_playerEntities.Add(new ContentGladiator());
-        m_playerEntities.Add(new ContentGoblin());
-        m_playerEntities.Add(new ContentGrasper());
-        m_playerEntities.Add(new ContentGroundskeeper());
-        m_playerEntities.Add(new ContentGuardCaptain());
-        m_playerEntities.Add(new ContentHero());
-        m_playerEntities.Add(new ContentHomonculus());
-        m_playerEntities.Add(new ContentInjuredTroll());
-        m_playerEntities.Add(new ContentMage());
-        m_playerEntities.Add(new ContentMetalGolem());
-        m_playerEntities.Add(new ContentMiner());
-        m_playerEntities.Add(new ContentNaturalScout());
-        m_playerEntities.Add(new ContentOverlord());
-        m_playerEntities.Add(new ContentRanger());
-        m_playerEntities.Add(new ContentRaptor());
-        m_playerEntities.Add(new ContentSabobot());
-        m_playerEntities.Add(new ContentShadowWarlock());
-        m_playerEntities.Add(new ContentSkeleton());
-        m_playerEntities.Add(new ContentStoneGolem());
-        m_playerEntities.Add(new ContentWanderer());
-        m_playerEntities.Add(new ContentWildfolk());
+        //Player Units
+        m_playerUnits.Add(new ContentConjuredImp());
+        m_playerUnits.Add(new ContentCyclops());
+        m_playerUnits.Add(new ContentDemonSoldier());
+        m_playerUnits.Add(new ContentDevourer());
+        m_playerUnits.Add(new ContentDwarfArchitect());
+        m_playerUnits.Add(new ContentDwarfShivcaster());
+        m_playerUnits.Add(new ContentDwarvenSoldier());
+        m_playerUnits.Add(new ContentElvenRogue());
+        m_playerUnits.Add(new ContentElvenSentinel());
+        m_playerUnits.Add(new ContentElvenWizard());
+        m_playerUnits.Add(new ContentFishOracle());
+        m_playerUnits.Add(new ContentGladiator());
+        m_playerUnits.Add(new ContentGoblin());
+        m_playerUnits.Add(new ContentGrasper());
+        m_playerUnits.Add(new ContentGroundskeeper());
+        m_playerUnits.Add(new ContentGuardCaptain());
+        m_playerUnits.Add(new ContentHero());
+        m_playerUnits.Add(new ContentHomonculus());
+        m_playerUnits.Add(new ContentInjuredTroll());
+        m_playerUnits.Add(new ContentMage());
+        m_playerUnits.Add(new ContentMetalGolem());
+        m_playerUnits.Add(new ContentMiner());
+        m_playerUnits.Add(new ContentNaturalScout());
+        m_playerUnits.Add(new ContentOverlord());
+        m_playerUnits.Add(new ContentRanger());
+        m_playerUnits.Add(new ContentRaptor());
+        m_playerUnits.Add(new ContentSabobot());
+        m_playerUnits.Add(new ContentShadowWarlock());
+        m_playerUnits.Add(new ContentSkeleton());
+        m_playerUnits.Add(new ContentStoneGolem());
+        m_playerUnits.Add(new ContentWanderer());
+        m_playerUnits.Add(new ContentWildfolk());
 
-        //Enemy Entities
+        //Enemy Units
         m_enemies.Add(new ContentAngryBirdEnemy(null));
         m_enemies.Add(new ContentDarkWarriorEnemy(null));
         m_enemies.Add(new ContentLichEnemy(null));
@@ -67,7 +67,7 @@ public class GameEntityFactory
         m_enemies.Add(new ContentMobolaEnemy(null));
         m_enemies.Add(new ContentOrcEnemy(null));
         m_enemies.Add(new ContentOrcShamanEnemy(null));
-        m_enemies.Add(new ContentSiegebreakerEntity(null));
+        m_enemies.Add(new ContentSiegebreakerUnit(null));
         m_enemies.Add(new ContentShadeEnemy(null));
         m_enemies.Add(new ContentSlimeEnemy(null));
         m_enemies.Add(new ContentSnakeEnemy(null));
@@ -121,14 +121,14 @@ public class GameEntityFactory
         m_hasInit = true;
     }
 
-    public static GameEnemyEntity GetRandomEnemy(GameOpponent gameOpponent, int curWave)
+    public static GameEnemyUnit GetRandomEnemy(GameOpponent gameOpponent, int curWave)
     {
         if (!m_hasInit)
         {
             Init();
         }
 
-        List<GameEnemyEntity> list = m_standardEnemies;
+        List<GameEnemyUnit> list = m_standardEnemies;
         if (curWave == 1)
         {
             list = m_standardWaveOneEnemies;
@@ -164,18 +164,18 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, list.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(list[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetEnemyEntityClone(GameEnemyEntity enemyEntity, GameOpponent gameOpponent)
+    public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit enemyUnit, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();
 
-        return (GameEnemyEntity)Activator.CreateInstance(enemyEntity.GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(enemyUnit.GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetRandomEliteEnemy(GameOpponent gameOpponent)
+    public static GameEnemyUnit GetRandomEliteEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
         {
@@ -184,10 +184,10 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, m_eliteEnemies.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
     }
 
-    public static GameEnemyEntity GetRandomBossEnemy(GameOpponent gameOpponent)
+    public static GameEnemyUnit GetRandomBossEnemy(GameOpponent gameOpponent)
     {
         if (!m_hasInit)
         {
@@ -196,30 +196,30 @@ public class GameEntityFactory
 
         int r = UnityEngine.Random.Range(0, m_bossEnemies.Count);
 
-        return (GameEnemyEntity)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
+        return (GameEnemyUnit)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
     }
 
-    public static GameEntity GetEntityFromJson(JsonGameEntityData jsonData)
+    public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
         if (!m_hasInit)
             Init();
 
-        int i = m_playerEntities.FindIndex(t => t.m_name == jsonData.name);
+        int i = m_playerUnits.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEntity newPlayerEntity = (GameEntity)Activator.CreateInstance(m_playerEntities[i].GetType());
-        newPlayerEntity.LoadFromJson(jsonData);
+        GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());
+        newPlayerUnit.LoadFromJson(jsonData);
 
-        return newPlayerEntity;
+        return newPlayerUnit;
     }
 
-    public static GameEnemyEntity GetEnemyFromJson(JsonGameEntityData jsonData, GameOpponent gameOpponent)
+    public static GameEnemyUnit GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();
 
         int i = m_enemies.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEnemyEntity newEnemy = (GameEnemyEntity)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
+        GameEnemyUnit newEnemy = (GameEnemyUnit)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
         newEnemy.LoadFromJson(jsonData);
 
         return newEnemy;

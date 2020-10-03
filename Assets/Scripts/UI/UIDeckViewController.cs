@@ -17,7 +17,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     public enum DeckViewFilter
     {
         All,
-        Entities,
+        Units,
         Spells
     }
 

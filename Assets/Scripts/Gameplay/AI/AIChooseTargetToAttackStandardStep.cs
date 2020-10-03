@@ -5,71 +5,71 @@ using UnityEngine;
 
 public class AIChooseTargetToAttackStandardStep : AIStep
 {
-    public AIChooseTargetToAttackStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIChooseTargetToAttackStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        GameEntity closestVulnerableEntityInRage = FindClosestVulnerableEntityInRange();
-        if (closestVulnerableEntityInRage != null)
+        GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
+        if (closestVulnerableUnitInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableEntityInRage;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
             yield break;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableBuildingInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
             yield break;
         }
 
         GameBuildingBase castleInRange = FindCastleInRange();
-        if (castleInRange != null && m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfBuilding(castleInRange))
+        if (castleInRange != null && m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(castleInRange))
         {
-            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
             yield break;
         }
 
-        GameEntity closestEntityInRange = FindClosestEntityInRange();
-        if (closestEntityInRange != null)
+        GameUnit closestUnitInRange = FindClosestUnitInRange();
+        if (closestUnitInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestEntityInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
             yield break;
         }
 
         if (castleInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = castleInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
             yield break;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestBuildingInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
             yield break;
         }
 
-        m_AIGameEnemyEntity.m_targetGameElement = null;
+        m_AIGameEnemyUnit.m_targetGameElement = null;
     }
 
     protected GameBuildingBase FindCastleInRange()
     {
-        GameBuildingBase castleInRange = m_AIGameEnemyEntity.m_possibleBuildingTargets.FirstOrDefault(b => b is ContentCastleBuilding);
+        GameBuildingBase castleInRange = m_AIGameEnemyUnit.m_possibleBuildingTargets.FirstOrDefault(b => b is ContentCastleBuilding);
 
         return castleInRange;
     }
 
-    protected GameEntity FindClosestEntityInRange()
+    protected GameUnit FindClosestUnitInRange()
     {
-        if (m_AIGameEnemyEntity.m_possibleEntityTargets.Count == 1)
+        if (m_AIGameEnemyUnit.m_possibleUnitTargets.Count == 1)
         {
-            return m_AIGameEnemyEntity.m_possibleEntityTargets[0];
+            return m_AIGameEnemyUnit.m_possibleUnitTargets[0];
         }
-        else if (m_AIGameEnemyEntity.m_possibleEntityTargets.Count > 1)
+        else if (m_AIGameEnemyUnit.m_possibleUnitTargets.Count > 1)
         {
-            int closestEnemyEntity = m_AIGameEnemyEntity.m_possibleEntityTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()));
-            return m_AIGameEnemyEntity.m_possibleEntityTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()) == closestEnemyEntity);
+            int closestEnemyUnit = m_AIGameEnemyUnit.m_possibleUnitTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()));
+            return m_AIGameEnemyUnit.m_possibleUnitTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()) == closestEnemyUnit);
         }
         else
         {
@@ -79,14 +79,14 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 
     protected GameBuildingBase FindClosestBuildingInRange()
     {
-        if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count == 1)
+        if (m_AIGameEnemyUnit.m_possibleBuildingTargets.Count == 1)
         {
-            return m_AIGameEnemyEntity.m_possibleBuildingTargets[0];
+            return m_AIGameEnemyUnit.m_possibleBuildingTargets[0];
         }
-        else if (m_AIGameEnemyEntity.m_possibleBuildingTargets.Count > 1)
+        else if (m_AIGameEnemyUnit.m_possibleBuildingTargets.Count > 1)
         {
-            int closestEnemyBuilding = m_AIGameEnemyEntity.m_possibleBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()));
-            return m_AIGameEnemyEntity.m_possibleBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
+            int closestEnemyBuilding = m_AIGameEnemyUnit.m_possibleBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()));
+            return m_AIGameEnemyUnit.m_possibleBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
         }
         else
         {
@@ -94,16 +94,16 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         }
     }
 
-    protected GameEntity FindClosestVulnerableEntityInRange()
+    protected GameUnit FindClosestVulnerableUnitInRange()
     {
-        if (m_AIGameEnemyEntity.m_vulnerableEntityTargets.Count == 1)
+        if (m_AIGameEnemyUnit.m_vulnerableUnitTargets.Count == 1)
         {
-            return m_AIGameEnemyEntity.m_vulnerableEntityTargets[0];
+            return m_AIGameEnemyUnit.m_vulnerableUnitTargets[0];
         }
-        else if (m_AIGameEnemyEntity.m_vulnerableEntityTargets.Count > 1)
+        else if (m_AIGameEnemyUnit.m_vulnerableUnitTargets.Count > 1)
         {
-            int closestEnemyEntity = m_AIGameEnemyEntity.m_vulnerableEntityTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()));
-            return m_AIGameEnemyEntity.m_vulnerableEntityTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), e.GetGameTile()) == closestEnemyEntity);
+            int closestEnemyUnit = m_AIGameEnemyUnit.m_vulnerableUnitTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()));
+            return m_AIGameEnemyUnit.m_vulnerableUnitTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()) == closestEnemyUnit);
         }
         else
         {
@@ -113,14 +113,14 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 
     protected GameBuildingBase FindClosestVulnerableBuildingInRange()
     {
-        if (m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Count == 1)
+        if (m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Count == 1)
         {
-            return m_AIGameEnemyEntity.m_vulnerableBuildingTargets[0];
+            return m_AIGameEnemyUnit.m_vulnerableBuildingTargets[0];
         }
-        else if (m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Count > 1)
+        else if (m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Count > 1)
         {
-            int closestEnemyBuilding = m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()));
-            return m_AIGameEnemyEntity.m_vulnerableBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
+            int closestEnemyBuilding = m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()));
+            return m_AIGameEnemyUnit.m_vulnerableBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
         }
         else
         {

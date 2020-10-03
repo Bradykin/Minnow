@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSkeleton : GameEntity
+public class ContentSkeleton : GameUnit
 {
     private int m_chance;
     private int m_healthBonus;
@@ -24,7 +24,7 @@ public class ContentSkeleton : GameEntity
         m_name = "Skeleton";
         m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

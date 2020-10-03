@@ -28,15 +28,15 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         return "Give an allied unit +" + m_spellEffect + spString + "/+0.\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddPower(GetSpellValue());
+        targetUnit.AddPower(GetSpellValue());
     }
 }

@@ -7,7 +7,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 {
     public Vector2Int m_gridPosition;
 
-    public GameEntity m_occupyingEntity { get; private set; } //Always set this with PlaceEntity() or ClearEntity() to ensure proper data setup
+    public GameUnit m_occupyingUnit { get; private set; } //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
     private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
     public bool m_event { get; set; }
@@ -28,26 +28,26 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
     }
 
-    public void SwapEntity(GameEntity newEntity)
+    public void SwapUnit(GameUnit newUnit)
     {
-        m_occupyingEntity = newEntity;
-        newEntity.SetGameTile(this);
-        newEntity.SetHealthStaminaValues();
+        m_occupyingUnit = newUnit;
+        newUnit.SetGameTile(this);
+        newUnit.SetHealthStaminaValues();
     }
 
-    public void PlaceEntity(GameEntity newEntity)
+    public void PlaceUnit(GameUnit newUnit)
     {
         if (IsOccupied())
         {
-            Debug.LogWarning("Placing new unit " + newEntity.m_name + " over existing unit " + m_occupyingEntity.m_name + ".");
+            Debug.LogWarning("Placing new unit " + newUnit.m_name + " over existing unit " + m_occupyingUnit.m_name + ".");
         }
 
-        m_occupyingEntity = newEntity;
-        newEntity.SetGameTile(this);
+        m_occupyingUnit = newUnit;
+        newUnit.SetGameTile(this);
 
-        if (m_occupyingEntity.GetTeam() == Team.Player)
+        if (m_occupyingUnit.GetTeam() == Team.Player)
         {
-            m_worldTile.ClearSurroundingFog(m_occupyingEntity.GetSightRange());
+            m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
 
             if (m_event)
             {
@@ -76,14 +76,14 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         newBuilding.SetGameTile(this)   ;
     }
 
-    public void ClearEntity()
+    public void ClearUnit()
     {
         if (!IsOccupied())
         {
-            Debug.LogWarning("Clearing unit on a tile, but no entity currently exists on this tile.");
+            Debug.LogWarning("Clearing unit on a tile, but no unit currently exists on this tile.");
         }
 
-        m_occupyingEntity = null;
+        m_occupyingUnit = null;
     }
 
     public void ClearBuilding()
@@ -113,7 +113,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool IsOccupied()
     {
-        return m_occupyingEntity != null;
+        return m_occupyingUnit != null;
     }
 
     public bool HasAvailableEvent()
@@ -201,11 +201,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return m_building;
     }
 
-    public int GetCostToPass(GameEntity checkerEntity)
+    public int GetCostToPass(GameUnit checkerUnit)
     {
-        if (checkerEntity != null)
+        if (checkerUnit != null)
         {
-            bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
+            bool canFly = checkerUnit.GetKeyword<GameFlyingKeyword>() != null;
 
             if (canFly)
             {
@@ -216,24 +216,24 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         int tileValue;
         bool buildingOverrideValue = true;
 
-        if (checkerEntity != null)
+        if (checkerUnit != null)
         {
-            if (GetTerrain().IsForest() && checkerEntity.GetKeyword<GameForestwalkKeyword>() != null)
+            if (GetTerrain().IsForest() && checkerUnit.GetKeyword<GameForestwalkKeyword>() != null)
             {
                 tileValue = 1;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsWater() && checkerEntity.GetKeyword<GameWaterwalkKeyword>() != null)
+            else if (GetTerrain().IsWater() && checkerUnit.GetKeyword<GameWaterwalkKeyword>() != null)
             {
                 tileValue = 0;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsMountain() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            else if (GetTerrain().IsMountain() && checkerUnit.GetKeyword<GameMountainwalkKeyword>() != null)
             {
                 tileValue =  2;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsHill() && checkerEntity.GetKeyword<GameMountainwalkKeyword>() != null)
+            else if (GetTerrain().IsHill() && checkerUnit.GetKeyword<GameMountainwalkKeyword>() != null)
             {
                 tileValue =  1;
                 buildingOverrideValue = false;
@@ -256,18 +256,18 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return tileValue;
     }
 
-    public bool IsPassable(GameEntity checkerEntity, bool letPassEnemies)
+    public bool IsPassable(GameUnit checkerUnit, bool letPassEnemies)
     {
-        if (checkerEntity != null && checkerEntity.m_shouldAlwaysPassEnemies)
+        if (checkerUnit != null && checkerUnit.m_shouldAlwaysPassEnemies)
         {
             letPassEnemies = true;
         }
         
-        bool terrainImpassable = !m_terrain.IsPassable(checkerEntity);
+        bool terrainImpassable = !m_terrain.IsPassable(checkerUnit);
 
-        if (checkerEntity != null)
+        if (checkerUnit != null)
         {
-            bool canFly = checkerEntity.GetKeyword<GameFlyingKeyword>() != null;
+            bool canFly = checkerUnit.GetKeyword<GameFlyingKeyword>() != null;
 
             if (canFly)
             {
@@ -277,7 +277,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             bool isOccupiedOpposingTeam = IsOccupied();
             if (isOccupiedOpposingTeam)
             {
-                isOccupiedOpposingTeam = checkerEntity.GetTeam() != m_occupyingEntity.GetTeam();
+                isOccupiedOpposingTeam = checkerUnit.GetTeam() != m_occupyingUnit.GetTeam();
             }
 
             bool hasNotDestroyedBuilding = HasBuilding();
@@ -309,11 +309,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return true;
     }
 
-    public int GetDamageReduction(GameEntity checkerEntity)
+    public int GetDamageReduction(GameUnit checkerUnit)
     {
-        if (checkerEntity != null)
+        if (checkerUnit != null)
         {
-            if (checkerEntity.GetKeyword<GameFlyingKeyword>() != null)
+            if (checkerUnit.GetKeyword<GameFlyingKeyword>() != null)
             {
                 return 0;
             }
@@ -327,7 +327,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             int damageReduction = m_terrain.m_damageReduction;
 
-            if (damageReduction > 0 && checkerEntity != null && checkerEntity.GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
             {
                 damageReduction += damageReduction * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
             }
@@ -350,9 +350,9 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             gridPosition = m_gridPosition,
         };
 
-        if (m_occupyingEntity != null)
+        if (m_occupyingUnit != null)
         {
-            jsonData.gameEntityData = m_occupyingEntity.SaveToJsonAsString();
+            jsonData.gameUnitData = m_occupyingUnit.SaveToJsonAsString();
         }
         if (m_building != null)
         {
@@ -380,13 +380,13 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         m_gridPosition = jsonData.gridPosition;
 
-        if (jsonData.gameEntityData != string.Empty)
+        if (jsonData.gameUnitData != string.Empty)
         {
-            JsonGameEntityData jsonGameEntityData = JsonUtility.FromJson<JsonGameEntityData>(jsonData.gameEntityData);
-            if (jsonGameEntityData.team == (int)Team.Player)
-                PlaceEntity(GameEntityFactory.GetEntityFromJson(jsonGameEntityData));
+            JsonGameUnitData jsonGameUnitData = JsonUtility.FromJson<JsonGameUnitData>(jsonData.gameUnitData);
+            if (jsonGameUnitData.team == (int)Team.Player)
+                PlaceUnit(GameUnitFactory.GetUnitFromJson(jsonGameUnitData));
             else
-                PlaceEntity(GameEntityFactory.GetEnemyFromJson(jsonGameEntityData, WorldController.Instance.m_gameController.m_gameOpponent));
+                PlaceUnit(GameUnitFactory.GetEnemyFromJson(jsonGameUnitData, WorldController.Instance.m_gameController.m_gameOpponent));
         }
 
         if (jsonData.gameBuildingData != string.Empty)
@@ -417,7 +417,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public void CustomRecycle(params object[] args)
     {
-        m_occupyingEntity = null;
+        m_occupyingUnit = null;
         m_gridPosition = Vector2Int.zero;
         m_terrain = null;
         m_event = false;

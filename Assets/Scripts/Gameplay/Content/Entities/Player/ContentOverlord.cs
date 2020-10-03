@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOverlord : GameEntity
+public class ContentOverlord : GameUnit
 {
     public ContentOverlord()
     {
@@ -20,12 +20,12 @@ public class ContentOverlord : GameEntity
         m_name = "Overlord";
         m_desc = "Spends all Stamina to attack, deals damage equal to power times Stamina spent.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
 
-    protected override int GetDamageToDealTo(GameEntity target)
+    protected override int GetDamageToDealTo(GameUnit target)
     {
         int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
         this.SpendStamina(GetCurStamina());

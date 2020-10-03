@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Prioritize units over buildings
 //Priotize targets with Stamina to drain
-public class ContentToadEnemy : GameEnemyEntity
+public class ContentToadEnemy : GameEnemyUnit
 {
     public ContentToadEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -24,17 +24,17 @@ public class ContentToadEnemy : GameEnemyEntity
         m_minWave = 2;
         m_maxWave = 2;
 
-        m_AIGameEnemyEntity.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
-        int damageTaken = base.HitEntity(other, spendStamina);
+        int damageTaken = base.HitUnit(other, spendStamina);
 
         other.SpendStamina(other.GetCurStamina() - 1);
 

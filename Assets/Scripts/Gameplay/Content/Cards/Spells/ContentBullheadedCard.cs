@@ -22,20 +22,20 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Healing);
     }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Monster;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(targetEntity, 1)));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(targetUnit, 1)));
     }
 }

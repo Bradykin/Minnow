@@ -28,34 +28,34 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         return GetDamageDescString() + "Heal all allied units within range " + m_range + " for the same amount.";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.GetHit(GetSpellValue());
+        targetUnit.GetHit(GetSpellValue());
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(targetEntity.GetGameTile(), m_range, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(targetUnit.GetGameTile(), m_range, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
-            if (entity == null)
+            if (unit == null)
             {
                 continue;
             }
 
-            if (entity.GetTeam() != Team.Player)
+            if (unit.GetTeam() != Team.Player)
             {
                 continue;
             }
 
-            entity.Heal(GetSpellValue());
+            unit.Heal(GetSpellValue());
         }
     }
 }

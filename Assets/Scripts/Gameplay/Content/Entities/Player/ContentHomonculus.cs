@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHomonculus : GameEntity
+public class ContentHomonculus : GameUnit
 {
     private int m_effectAmount = 1;
     private int m_effectRange = 1;
@@ -19,7 +19,7 @@ public class ContentHomonculus : GameEntity
 
         m_name = "Homonculus";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_effectRange)));
 

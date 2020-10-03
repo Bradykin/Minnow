@@ -5,38 +5,38 @@ using UnityEngine;
 
 public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
-    public AIYetiChooseTargetToAttackStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIYetiChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        GameEntity closestVulnerableEntityInRage = FindClosestVulnerableEntityInRange();
-        if (closestVulnerableEntityInRage != null)
+        GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
+        if (closestVulnerableUnitInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableEntityInRage;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
             yield break;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestVulnerableBuildingInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
             yield break;
         }
 
-        GameEntity closestEntityInRange = FindClosestEntityInRange();
-        if (closestEntityInRange != null)
+        GameUnit closestUnitInRange = FindClosestUnitInRange();
+        if (closestUnitInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestEntityInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
             yield break;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
-            m_AIGameEnemyEntity.m_targetGameElement = closestBuildingInRange;
+            m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
             yield break;
         }
 
-        m_AIGameEnemyEntity.m_targetGameElement = null;
+        m_AIGameEnemyUnit.m_targetGameElement = null;
     }
 }

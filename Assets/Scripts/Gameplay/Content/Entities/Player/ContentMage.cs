@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMage : GameEntity
+public class ContentMage : GameUnit
 {
     public ContentMage()
     {
@@ -19,7 +19,7 @@ public class ContentMage : GameEntity
 
         m_name = "Mage";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

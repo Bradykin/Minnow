@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class GameOpponent : ITurns
 {
-    public List<GameEnemyEntity> m_controlledEntities { get; private set; }
+    public List<GameEnemyUnit> m_controlledUnits { get; private set; }
 
-    private List<GameEnemyEntity> m_secondTryAIControlledEntities;
+    private List<GameEnemyUnit> m_secondTryAIControlledUnits;
 
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
-        m_controlledEntities = new List<GameEnemyEntity>();
-        m_secondTryAIControlledEntities = new List<GameEnemyEntity>();
+        m_controlledUnits = new List<GameEnemyUnit>();
+        m_secondTryAIControlledUnits = new List<GameEnemyUnit>();
         m_spawnPoints = new List<GameSpawnPoint>();
     }
 
@@ -27,33 +27,33 @@ public class GameOpponent : ITurns
         HandleSpawn();
     }
 
-    public void AddControlledEntity(GameEnemyEntity toAdd)
+    public void AddControlledUnit(GameEnemyUnit toAdd)
     {
-        m_controlledEntities.Add(toAdd);
+        m_controlledUnits.Add(toAdd);
     }
 
-    public void RemoveControlledEntity(GameEnemyEntity toRemove)
+    public void RemoveControlledUnit(GameEnemyUnit toRemove)
     {
-        m_controlledEntities.Remove(toRemove);
+        m_controlledUnits.Remove(toRemove);
     }
 
     //============================================================================================================//
 
-    private void TakeEntityTurns()
+    private void TakeUnitTurns()
     {
-        FactoryManager.Instance.StartCoroutine(TakeEntityTurnsCoroutine());
+        FactoryManager.Instance.StartCoroutine(TakeUnitTurnsCoroutine());
     }
 
-    private IEnumerator TakeEntityTurnsCoroutine()
+    private IEnumerator TakeUnitTurnsCoroutine()
     {
-        List<GameEnemyEntity> entities = new List<GameEnemyEntity>();
-        entities.AddRange(m_controlledEntities);
+        List<GameEnemyUnit> units = new List<GameEnemyUnit>();
+        units.AddRange(m_controlledUnits);
 
         GameTile measureTo = GameHelper.GetPlayer().Castle.GetGameTile();
 
-        while (entities.Count > 0)
+        while (units.Count > 0)
         {
-            GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
+            GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
             if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().IsInFog())
             {
@@ -64,13 +64,13 @@ public class GameOpponent : ITurns
                 yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
             }
 
-            entities.Remove(entity);
+            units.Remove(unit);
 
-            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().IsInFog())
+            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().IsInFog())
             {
-                if (!entity.m_isDead && entity.GetGameTile() != null)
+                if (!unit.m_isDead && unit.GetGameTile() != null)
                 {
-                    measureTo = entity.GetGameTile();
+                    measureTo = unit.GetGameTile();
                 }
             }
         }
@@ -85,18 +85,18 @@ public class GameOpponent : ITurns
 
     public void StartTurn()
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].StartTurn();
+            m_controlledUnits[i].StartTurn();
         }
-        TakeEntityTurns();
+        TakeUnitTurns();
     }
 
     public void EndTurn()
     {
-        for (int i = 0; i < m_controlledEntities.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledEntities[i].EndTurn();
+            m_controlledUnits[i].EndTurn();
         }
 
         if (GameHelper.GetGameController().m_currentWaveTurn >= GameHelper.GetGameController().GetEndWaveTurn())
@@ -111,7 +111,7 @@ public class GameOpponent : ITurns
     {
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
-            if (m_spawnPoints[i].m_tile.m_occupyingEntity != null)
+            if (m_spawnPoints[i].m_tile.m_occupyingUnit != null)
             {
                 continue;
             }
@@ -123,24 +123,24 @@ public class GameOpponent : ITurns
 
             if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
             {
-                GameEnemyEntity newEnemyEntity;
+                GameEnemyUnit newEnemyUnit;
                 if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
                 {
-                    newEnemyEntity = GameEntityFactory.GetRandomBossEnemy(this);
+                    newEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                     WorldController.Instance.SetHasSpawnedBoss(true);
                 }
                 else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetGameController().m_currentWaveTurn >= Constants.SpawnEliteWave && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
                 {
-                    newEnemyEntity = GameEntityFactory.GetRandomEliteEnemy(this);
+                    newEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                     WorldController.Instance.SetHasSpawnedEliteThisWave(true);
                 }
                 else
                 {
-                    newEnemyEntity = GameEntityFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+                    newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
                 }
 
-                m_spawnPoints[i].m_tile.PlaceEntity(newEnemyEntity);
-                m_controlledEntities.Add(newEnemyEntity);
+                m_spawnPoints[i].m_tile.PlaceUnit(newEnemyUnit);
+                m_controlledUnits.Add(newEnemyUnit);
             }
         }
     }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrasperCard : GameCardEntityBase
+public class ContentGrasperCard : GameUnitCardBase
 {
     public ContentGrasperCard()
     {
-        m_entity = new ContentGrasper();
+        m_unit = new ContentGrasper();
 
         m_cost = 1;
 

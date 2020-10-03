@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInjuredTroll : GameEntity
+public class ContentInjuredTroll : GameUnit
 {
     public ContentInjuredTroll()
     {
@@ -19,7 +19,7 @@ public class ContentInjuredTroll : GameEntity
         m_name = "Injured Troll";
         m_desc = "Starts at 1 health and 0 Stamina.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

@@ -20,18 +20,18 @@ public class ContentZombieOutbreakEvent : GameEvent
 public class GameEventZombieOutbreakOption : GameEventOption
 {
     private GameTile m_tile;
-    private GameEnemyEntity m_zombieEntity;
+    private GameEnemyUnit m_zombieUnit;
 
     public GameEventZombieOutbreakOption(GameTile tile)
     {
-        m_zombieEntity = new ContentZombieEnemy(GameHelper.GetOpponent());
+        m_zombieUnit = new ContentZombieEnemy(GameHelper.GetOpponent());
 
         m_tile = tile;
     }
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingEntity.m_name + " turns into a zombie.";
+        m_message = m_tile.m_occupyingUnit.m_name + " turns into a zombie.";
 
         return base.GetMessage();
     }
@@ -45,8 +45,8 @@ public class GameEventZombieOutbreakOption : GameEventOption
             return;
         }
 
-        m_tile.SwapEntity(m_zombieEntity);
-        WorldController.Instance.m_gameController.m_gameOpponent.m_controlledEntities.Add(m_zombieEntity);
+        m_tile.SwapUnit(m_zombieUnit);
+        WorldController.Instance.m_gameController.m_gameOpponent.m_controlledUnits.Add(m_zombieUnit);
 
         EndEvent();
     }

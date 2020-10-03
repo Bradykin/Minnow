@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMiner : GameEntity
+public class ContentMiner : GameUnit
 {
     private int m_miningRange;
     private int m_miningVal;
@@ -23,7 +23,7 @@ public class ContentMiner : GameEntity
         m_name = "Miner";
         m_desc = "At the end of each turn, gain " + m_miningVal + " gold for each mountain in range " + m_miningRange + ".";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using System;
+﻿using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Game.Util
@@ -28,12 +25,12 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public T CreateObject<T>(UIEntity ownerEntity)
+        public T CreateObject<T>(WorldUnit ownerUnit)
         {
             GameObject obj = CreateGameObject();
 
             obj.transform.SetParent(m_HUDTransform);
-            obj.GetComponent<UIBorderUnit>().Init(ownerEntity);
+            obj.GetComponent<UIBorderUnit>().Init(ownerUnit);
 
             return obj.GetComponent<T>();
         }

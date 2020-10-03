@@ -40,7 +40,7 @@ public class GameEventTakeHorsesOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingEntity.m_name + " gains " + m_maxStamina + " max Stamina and " + m_staminaRegen + " Stamina regen per turn.";
+        m_message = m_tile.m_occupyingUnit.m_name + " gains " + m_maxStamina + " max Stamina and " + m_staminaRegen + " Stamina regen per turn.";
 
         return base.GetMessage();
     }
@@ -54,14 +54,14 @@ public class GameEventTakeHorsesOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingEntity.AddStaminaRegen(m_staminaRegen);
-        m_tile.m_occupyingEntity.AddMaxStamina(m_maxStamina);
+        m_tile.m_occupyingUnit.AddStaminaRegen(m_staminaRegen);
+        m_tile.m_occupyingUnit.AddMaxStamina(m_maxStamina);
 
         EndEvent();
     }
 
     public override void BuildTooltip()
     {
-         UIHelper.CreateEntityTooltip(m_tile.m_occupyingEntity);
+         UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit);
     }
 }

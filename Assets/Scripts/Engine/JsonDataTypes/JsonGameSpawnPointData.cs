@@ -6,5 +6,5 @@ public struct JsonGameSpawnPointData
 {
     //GameSpawnPoint values
     public int gameSpawnPointType;
-    public string gameSpawnEntityName;
+    public string gameSpawnUnitName;
 }

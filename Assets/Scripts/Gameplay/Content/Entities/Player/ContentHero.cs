@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHero : GameEntity
+public class ContentHero : GameUnit
 {
     public ContentHero()
     {
@@ -20,7 +20,7 @@ public class ContentHero : GameEntity
 
         m_name = "Hero";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -28,22 +28,22 @@ public class ContentHero : GameEntity
 
 public class GameHealAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private int m_healVal;
 
-    public GameHealAction(GameEntity entity, int healVal)
+    public GameHealAction(GameUnit unit, int healVal)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_healVal = healVal;
 
         m_name = "Heal";
         m_desc = "Heal for " + healVal + ".";
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        m_entity.Heal(m_healVal);
+        m_unit.Heal(m_healVal);
     }
 
     public override string SaveToJson()

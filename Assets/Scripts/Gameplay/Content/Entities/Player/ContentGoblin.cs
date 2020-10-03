@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGoblin : GameEntity
+public class ContentGoblin : GameUnit
 {
     private int m_effectRange = 2;
     private int m_effectIncrease = 4;
@@ -20,7 +20,7 @@ public class ContentGoblin : GameEntity
         m_name = "Goblin";
         m_desc = "Gains +" + m_effectIncrease + " power per allied <b>Monster</b> unit within " + m_effectRange + " range.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -35,8 +35,8 @@ public class ContentGoblin : GameEntity
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingEntity.m_isDead &&
-                    surroundingTiles[i].m_occupyingEntity.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingEntity.GetTypeline() == Typeline.Monster)
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                    surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
                 {
                     basePower += m_effectIncrease;
                 }

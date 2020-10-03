@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenRogueCard : GameCardEntityBase
+public class ContentElvenRogueCard : GameUnitCardBase
 {
     public ContentElvenRogueCard()
     {
-        m_entity = new ContentElvenRogue();
+        m_unit = new ContentElvenRogue();
 
         m_cost = 1;
 

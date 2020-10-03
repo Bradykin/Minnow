@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGladiator : GameEntity
+public class ContentGladiator : GameUnit
 {
     public ContentGladiator()
     {
@@ -17,7 +17,7 @@ public class ContentGladiator : GameEntity
 
         m_name = "Gladiator";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

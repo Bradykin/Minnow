@@ -20,8 +20,8 @@ public class GameEventEatFruitOption : GameEventOption
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingEntity.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(m_tile.m_occupyingEntity, 1)));
-        m_tile.m_occupyingEntity.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(m_tile.m_occupyingEntity, 3)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(m_tile.m_occupyingUnit, 1)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(m_tile.m_occupyingUnit, 3)));
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, m_tileRange, 0);
 
@@ -29,7 +29,7 @@ public class GameEventEatFruitOption : GameEventOption
         {
             if (nearbyTiles[i].IsOccupied())
             {
-                nearbyTiles[i].m_occupyingEntity.GetHit(m_blastDamage);
+                nearbyTiles[i].m_occupyingUnit.GetHit(m_blastDamage);
             }
             
             if (nearbyTiles[i].GetTerrain().CanBurn())

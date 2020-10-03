@@ -5,7 +5,7 @@ using UnityEngine;
 //Prioritize units over buildings
 //Deprioritze targets with attack <= 0
 //Prioritize with high Stamina regen per attack ratio
-public class ContentSnakeEnemy : GameEnemyEntity
+public class ContentSnakeEnemy : GameEnemyUnit
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -25,17 +25,17 @@ public class ContentSnakeEnemy : GameEnemyEntity
 
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
 
-        m_AIGameEnemyEntity.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
-        int damageTaken = base.HitEntity(other, spendStamina);
+        int damageTaken = base.HitUnit(other, spendStamina);
 
         other.AddPower(-2);
 

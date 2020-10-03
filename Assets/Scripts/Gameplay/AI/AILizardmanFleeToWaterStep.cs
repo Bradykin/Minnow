@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class AILizardmanFleeToWaterStep : AIStep
 {
-    public AILizardmanFleeToWaterStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile().GetTerrain().IsWater())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
         {
             yield break;
         }
 
-        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), 2, 1);
+        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 2, 1);
 
         List<GameTile> tilesToFleeInWater = new List<GameTile>();
         List<GameTile> tilesToFleeInOpenWater = new List<GameTile>();
         for (int i = 0; i < tilesAtDistance.Count; i++)
         {
-            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingEntity.m_isDead))
+            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingUnit.m_isDead))
             {
-                int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), tilesAtDistance[i], false, false, false);
+                int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), tilesAtDistance[i], false, false, false);
 
                 if (pathLength > 0)
                 {
@@ -63,13 +63,13 @@ public class AILizardmanFleeToWaterStep : AIStep
             yield break;
         }
 
-        int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), moveDestination, true, false, true);
-        m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(moveDestination);
-        bool useSteppedOutTurn = m_AIGameEnemyEntity.UseSteppedOutTurn;
+        int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
+        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         if (useSteppedOutTurn && Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
         {
-            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyEntity.m_gameEnemyEntity.GetWorldTile().gameObject);
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())
             {
                 yield return null;

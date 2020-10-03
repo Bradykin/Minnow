@@ -7,7 +7,7 @@ using UnityEngine;
 //Can't attack other zombies, but can move through them regardless of team.
 //Highly prefers units to buildings.
 //Doesn't go for the castle, goes towards nearest player non-zombie unit instead (no matter sight)
-public class ContentZombieEnemy : GameEnemyEntity
+public class ContentZombieEnemy : GameEnemyUnit
 {
     public ContentZombieEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -28,17 +28,17 @@ public class ContentZombieEnemy : GameEnemyEntity
         m_name = "Zombie";
         m_desc = "On hit, turns the other unit into a zombie!\nZombies can't attack zombies.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackOnceStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackOnceStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }
 
-    public override bool CanHitEntity(GameEntity other, bool checkRange = true)
+    public override bool CanHitUnit(GameUnit other, bool checkRange = true)
     {
         if (other is ContentZombie)
         {
@@ -50,26 +50,26 @@ public class ContentZombieEnemy : GameEnemyEntity
             return false;
         }
 
-        return base.CanHitEntity(other, checkRange);
+        return base.CanHitUnit(other, checkRange);
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
         int damageTaken = 0;
         if (!(other is ContentZombie))
         {
-            GameEntity newZombie = new ContentZombie();
-            other.m_uiEntity.Init(newZombie);
-            GameHelper.GetPlayer().RemoveControlledEntity(other);
-            GameHelper.GetPlayer().AddControlledEntity(newZombie);
+            GameUnit newZombie = new ContentZombie();
+            other.m_worldUnit.Init(newZombie);
+            GameHelper.GetPlayer().RemoveControlledUnit(other);
+            GameHelper.GetPlayer().AddControlledUnit(newZombie);
 
-            other.GetGameTile().SwapEntity(newZombie);
+            other.GetGameTile().SwapUnit(newZombie);
 
-            damageTaken = base.HitEntity(newZombie, spendStamina);
+            damageTaken = base.HitUnit(newZombie, spendStamina);
         }
         else
         {
-            damageTaken = base.HitEntity(other, spendStamina);
+            damageTaken = base.HitUnit(other, spendStamina);
         }
 
         return damageTaken;

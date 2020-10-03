@@ -100,14 +100,14 @@ public class UICard : MonoBehaviour
 
         m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
 
-        if (m_card is GameCardEntityBase)
+        if (m_card is GameUnitCardBase)
         {
-            GameCardEntityBase entityCard = (GameCardEntityBase)m_card;
-            m_powerText.text = entityCard.m_entity.GetPower() + "";
-            m_healthText.text = entityCard.m_entity.GetMaxHealth() + "";
+            GameUnitCardBase unitCard = (GameUnitCardBase)m_card;
+            m_powerText.text = unitCard.m_unit.GetPower() + "";
+            m_healthText.text = unitCard.m_unit.GetMaxHealth() + "";
 
             m_staminaContainer.gameObject.SetActive(true);
-            m_staminaContainer.Init(entityCard.GetEntity().GetStaminaRegen(), entityCard.GetEntity().GetMaxStamina(), Team.Player);
+            m_staminaContainer.Init(unitCard.GetUnit().GetStaminaRegen(), unitCard.GetUnit().GetMaxStamina(), Team.Player);
         }
         else
         {

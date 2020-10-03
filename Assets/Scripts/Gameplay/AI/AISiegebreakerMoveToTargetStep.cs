@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 {
-    public AISiegebreakerMoveToTargetStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen(), true));
+        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), true));
     }
 }

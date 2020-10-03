@@ -32,11 +32,11 @@
 
     public override void BuildTooltip()
     {
-        if (m_card is GameCardEntityBase)
+        if (m_card is GameUnitCardBase)
         {
-            GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
+            GameUnit unit = ((GameUnitCardBase)m_card).GetUnit();
 
-            UIHelper.CreateEntityTooltip(entity);
+            UIHelper.CreateUnitTooltip(unit);
         }
         else
         {

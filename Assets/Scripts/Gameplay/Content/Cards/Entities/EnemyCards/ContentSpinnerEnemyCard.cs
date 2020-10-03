@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSpinnerEnemyCard : GameCardEntityBase
+public class ContentSpinnerEnemyCard : GameUnitCardBase
 {
     public ContentSpinnerEnemyCard()
     {
-        m_entity = new ContentSpinnerEnemy(null);
+        m_unit = new ContentSpinnerEnemy(null);
 
         InitEnemyCard();
     }

@@ -11,7 +11,7 @@ public class GameEventDuplicateCardOption : GameEventOption
 
     public override string GetMessage()
     {
-        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
+        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Units)
         {
             m_message = "Create a copy of a unit card in your deck!";
         }
@@ -37,9 +37,9 @@ public class GameEventDuplicateCardOption : GameEventOption
         }
 
         List<GameCard> deck = new List<GameCard>();
-        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Entities)
+        if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Units)
         {
-            deck = GameHelper.GetPlayerBaseDeckOfEntities();
+            deck = GameHelper.GetPlayerBaseDeckOfUnits();
         }
         else if (m_deckFilterType == UIDeckViewController.DeckViewFilter.Spells)
         {

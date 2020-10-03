@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfShivcasterCard : GameCardEntityBase
+public class ContentDwarfShivcasterCard : GameUnitCardBase
 {
     public ContentDwarfShivcasterCard()
     {
-        m_entity = new ContentDwarfShivcaster();
+        m_unit = new ContentDwarfShivcaster();
 
         m_cost = 2;
 

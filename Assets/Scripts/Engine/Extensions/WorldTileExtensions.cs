@@ -11,7 +11,7 @@ namespace Game.Util
             return new Vector3((worldTile.GetGameTile().m_gridPosition.x + worldTile.GetGameTile().m_gridPosition.y * 0.5f - worldTile.GetGameTile().m_gridPosition.y / 2) * Constants.HexagonInnerRadius * 2.0f, worldTile.GetGameTile().m_gridPosition.y * Constants.HexagonOuterRadius * 1.338f, 0.0f);
         }
 
-        public static Vector3 GetScreenPositionForEntity(this WorldTile worldTile)
+        public static Vector3 GetScreenPositionForUnit(this WorldTile worldTile)
         {
             Vector3 screenPos = GetScreenPosition(worldTile);
 

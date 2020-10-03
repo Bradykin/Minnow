@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarvenSoldier : GameEntity
+public class ContentDwarvenSoldier : GameUnit
 {
     public ContentDwarvenSoldier()
     {
@@ -16,7 +16,7 @@ public class ContentDwarvenSoldier : GameEntity
 
         m_name = "Dwarven Soldier";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

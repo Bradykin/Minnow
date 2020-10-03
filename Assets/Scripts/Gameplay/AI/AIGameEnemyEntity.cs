@@ -4,16 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGameEnemyEntity : ITakeTurnAI
+public class AIGameEnemyUnit : ITakeTurnAI
 {
     private List<AIStep> m_AISteps;
 
-    public GameEnemyEntity m_gameEnemyEntity { get; private set; }
+    public GameEnemyUnit m_gameEnemyUnit { get; private set; }
 
-    public List<GameEntity> m_possibleEntityTargets = new List<GameEntity>();
+    public List<GameUnit> m_possibleUnitTargets = new List<GameUnit>();
     public List<GameBuildingBase> m_possibleBuildingTargets = new List<GameBuildingBase>();
 
-    public List<GameEntity> m_vulnerableEntityTargets = new List<GameEntity>();
+    public List<GameUnit> m_vulnerableUnitTargets = new List<GameUnit>();
     public List<GameBuildingBase> m_vulnerableBuildingTargets = new List<GameBuildingBase>();
 
     public GameElementBase m_targetGameElement = null;
@@ -27,20 +27,20 @@ public class AIGameEnemyEntity : ITakeTurnAI
 
     public bool UseSteppedOutTurn => 
         Constants.UseSteppedOutEnemyTurns &&
-        (!m_gameEnemyEntity.GetGameTile().IsInFog()
+        (!m_gameEnemyUnit.GetGameTile().IsInFog()
         || (m_targetGameTile != null && !m_targetGameTile.IsInFog())
-        || (m_targetGameElement != null && m_targetGameElement is GameEntity gameEntityBase && !gameEntityBase.GetGameTile().IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameUnitBase && !gameUnitBase.GetGameTile().IsInFog())
         || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().IsInFog()));
 
-    public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
+    public AIGameEnemyUnit(GameEnemyUnit gameEnemyUnit)
     {
-        m_gameEnemyEntity = gameEnemyEntity;
+        m_gameEnemyUnit = gameEnemyUnit;
         m_AISteps = new List<AIStep>();
     }
 
     public void AddAIStep(AIStep AIStep)
     {
-        AIStep.m_AIGameEnemyEntity = this;
+        AIStep.m_AIGameEnemyUnit = this;
         m_AISteps.Add(AIStep);
     }
 
@@ -85,9 +85,9 @@ public class AIGameEnemyEntity : ITakeTurnAI
             m_newAIDebugLog.m_targetGameTileLocation = m_targetGameTile.m_gridPosition.ToString();
         }
 
-        for (int i = 0; i < m_possibleEntityTargets.Count; i++)
+        for (int i = 0; i < m_possibleUnitTargets.Count; i++)
         {
-            m_newAIDebugLog.m_possibleEntityTargets.Add(m_possibleEntityTargets[i].m_name);
+            m_newAIDebugLog.m_possibleUnitTargets.Add(m_possibleUnitTargets[i].m_name);
         }
 
         for (int i = 0; i < m_possibleBuildingTargets.Count; i++)
@@ -95,9 +95,9 @@ public class AIGameEnemyEntity : ITakeTurnAI
             m_newAIDebugLog.m_possibleBuildingTargets.Add(m_possibleBuildingTargets[i].m_name);
         }
 
-        for (int i = 0; i < m_vulnerableEntityTargets.Count; i++)
+        for (int i = 0; i < m_vulnerableUnitTargets.Count; i++)
         {
-            m_newAIDebugLog.m_vulnerableEntityTargets.Add(m_vulnerableEntityTargets[i].m_name);
+            m_newAIDebugLog.m_vulnerableUnitTargets.Add(m_vulnerableUnitTargets[i].m_name);
         }
 
         for (int i = 0; i < m_vulnerableBuildingTargets.Count; i++)
@@ -108,9 +108,9 @@ public class AIGameEnemyEntity : ITakeTurnAI
         m_AIDebugLogs.Add(JsonUtility.ToJson(m_newAIDebugLog));
         m_newAIDebugLog = null;
 
-        m_possibleEntityTargets.Clear();
+        m_possibleUnitTargets.Clear();
         m_possibleBuildingTargets.Clear();
-        m_vulnerableEntityTargets.Clear();
+        m_vulnerableUnitTargets.Clear();
         m_vulnerableBuildingTargets.Clear();
         m_targetGameElement = null;
         m_targetGameTile = null;

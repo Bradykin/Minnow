@@ -27,7 +27,7 @@ public class UIEventController : Singleton<UIEventController>
         gameEvent.Init();
 
         Globals.m_canSelect = false;
-        UIHelper.UnselectEntity();
+        UIHelper.UnselectUnit();
 
         m_event = gameEvent;
 

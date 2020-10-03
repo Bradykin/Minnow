@@ -183,9 +183,9 @@ public static class UIHelper
         return Resources.Load<Sprite>("Cards/" + cardName) as Sprite;
     }
 
-    public static Sprite GetIconEntity(string entityName)
+    public static Sprite GetIconUnit(string unitName)
     {
-        return Resources.Load<Sprite>("Entities/" + entityName) as Sprite;
+        return Resources.Load<Sprite>("Units/" + unitName) as Sprite;
     }
 
     public static Sprite GetIconEvent(string eventName)
@@ -221,9 +221,9 @@ public static class UIHelper
         return Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
     }
 
-    public static void SetMoveableTileForEntity(UIEntity entity)
+    public static void SetMoveableTileForUnit(WorldUnit unit)
     {
-        List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(entity.GetEntity().GetGameTile(), false, false);
+        List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(unit.GetUnit().GetGameTile(), false, false);
 
         if (tilesInMovementRange == null)
         {
@@ -238,7 +238,7 @@ public static class UIHelper
             }
         }
 
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(entity.GetEntity().GetGameTile(), false, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(unit.GetUnit().GetGameTile(), false, false);
 
         if (tilesInAttackRange == null)
         {
@@ -247,20 +247,20 @@ public static class UIHelper
 
         for (int i = 0; i < tilesInAttackRange.Count; i++)
         {
-            if (tilesInAttackRange[i].IsOccupied() && tilesInAttackRange[i].m_occupyingEntity.GetTeam() != entity.GetEntity().GetTeam())
+            if (tilesInAttackRange[i].IsOccupied() && tilesInAttackRange[i].m_occupyingUnit.GetTeam() != unit.GetUnit().GetTeam())
             {
                 tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
             }
         }
     }
 
-    public static void SelectEntity(UIEntity entity)
+    public static void SelectUnit(WorldUnit unit)
     {
-        bool entityAlreadySelected = Globals.m_selectedEntity == entity;
+        bool unitAlreadySelected = Globals.m_selectedUnit == unit;
 
-        if (Globals.m_selectedEntity != null)
+        if (Globals.m_selectedUnit != null)
         {
-            UnselectEntity();
+            UnselectUnit();
         }
 
         if (!Globals.m_canSelect)
@@ -268,18 +268,18 @@ public static class UIHelper
             return;
         }
 
-        if (!entityAlreadySelected)
+        if (!unitAlreadySelected)
         {
             UnselectAll();
-            Globals.m_selectedEntity = entity;
+            Globals.m_selectedUnit = unit;
 
-            SetMoveableTileForEntity(Globals.m_selectedEntity);
+            SetMoveableTileForUnit(Globals.m_selectedUnit);
         }
     }
 
-    public static void SelectEnemy(UIEntity entity)
+    public static void SelectEnemy(WorldUnit unit)
     {
-        bool enemyAlreadySelected = Globals.m_selectedEnemy == entity;
+        bool enemyAlreadySelected = Globals.m_selectedEnemy == unit;
 
         if (Globals.m_selectedEnemy != null)
         {
@@ -294,9 +294,9 @@ public static class UIHelper
         if (!enemyAlreadySelected)
         {
             UnselectAll();
-            Globals.m_selectedEnemy = entity;
+            Globals.m_selectedEnemy = unit;
 
-            SetMoveableTileForEntity(Globals.m_selectedEnemy);
+            SetMoveableTileForUnit(Globals.m_selectedEnemy);
         }
     }
 
@@ -312,16 +312,16 @@ public static class UIHelper
         Globals.m_selectedTile = tile;
     }
 
-    public static void ReselectEntity()
+    public static void ReselectUnit()
     {
-        if (Globals.m_selectedEntity == null)
+        if (Globals.m_selectedUnit == null)
         {
             return;
         }
 
         WorldGridManager.Instance.ClearAllTilesMovementRange();
 
-        SetMoveableTileForEntity(Globals.m_selectedEntity);
+        SetMoveableTileForUnit(Globals.m_selectedUnit);
     }
 
     public static void SelectCard(UICard card)
@@ -342,16 +342,16 @@ public static class UIHelper
         }
     }
 
-    public static void UnselectEntity()
+    public static void UnselectUnit()
     {
-        if (Globals.m_selectedEntity == null)
+        if (Globals.m_selectedUnit == null)
         {
             return;
         }
 
         WorldGridManager.Instance.ClearAllTilesMovementRange();
 
-        Globals.m_selectedEntity = null;
+        Globals.m_selectedUnit = null;
     }
 
     public static void UnselectEnemy()
@@ -371,7 +371,7 @@ public static class UIHelper
         UnselectEnemy();
         Globals.m_selectedTile = null;
         Globals.m_selectedCard = null;
-        UnselectEntity();
+        UnselectUnit();
     }
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, GameObject positionObj)
@@ -434,10 +434,10 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
     }
 
-    public static void CreateEntityTooltip(GameEntity entity, bool secondStack = false)
+    public static void CreateUnitTooltip(GameUnit unit, bool secondStack = false)
     {
-        GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entity);
-        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromEntity, UICard.CardDisplayType.Tooltip);
+        GameCard cardFromUnit = GameCardFactory.GetCardFromUnit(unit);
+        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromUnit, UICard.CardDisplayType.Tooltip);
 
         if (secondStack)
         {
@@ -481,7 +481,7 @@ public static class UIHelper
     {
         if (chaosVal == 1)
         {
-            return "Start with an extra 3 random spell cards and an extra 1 random entity card";
+            return "Start with an extra 3 random spell cards and an extra 1 random unit card";
         }
         if (chaosVal == 2)
         {

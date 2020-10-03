@@ -12,7 +12,7 @@ public static class GameHelper
         return (Random.Range(1, 101) <= percent);
     }
 
-    public static void MakePlayerEntity(GameTile targetTile, GameEntity entity)
+    public static void MakePlayerUnit(GameTile targetTile, GameUnit unit)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -21,9 +21,9 @@ public static class GameHelper
             return;
         }
 
-        targetTile.PlaceEntity(entity);
+        targetTile.PlaceUnit(unit);
 
-        player.AddControlledEntity(entity);
+        player.AddControlledUnit(unit);
     }
 
     public static void MakePlayerBuilding(GameTile targetTile, GameBuildingBase building)
@@ -108,19 +108,19 @@ public static class GameHelper
         return false;
     }
 
-    public static List<GameCard> GetPlayerBaseDeckOfEntities()
+    public static List<GameCard> GetPlayerBaseDeckOfUnits()
     {
-        List<GameCard> deckOfEntities = new List<GameCard>();
+        List<GameCard> deckOfUnits = new List<GameCard>();
 
         foreach (var card in GetPlayer().m_deckBase.GetCardsForRead())
         {
-            if (card is GameCardEntityBase)
+            if (card is GameUnitCardBase)
             {
-                deckOfEntities.Add(card);
+                deckOfUnits.Add(card);
             }
         }
 
-        return deckOfEntities;
+        return deckOfUnits;
     }
 
     public static List<GameCard> GetPlayerBaseDeckOfSpells()
@@ -154,11 +154,11 @@ public static class GameHelper
         return SceneLoader.CurrentScene == "LevelCreatorScene";
     }
 
-    public static bool IsBossOrElite(GameEntity toCheck)
+    public static bool IsBossOrElite(GameUnit toCheck)
     {
-        if (toCheck is GameEnemyEntity)
+        if (toCheck is GameEnemyUnit)
         {
-            if (((GameEnemyEntity)toCheck).m_isElite || ((GameEnemyEntity)toCheck).m_isBoss)
+            if (((GameEnemyUnit)toCheck).m_isElite || ((GameEnemyUnit)toCheck).m_isBoss)
             {
                 return true;
             }

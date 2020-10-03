@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLizardmanEnemyCard : GameCardEntityBase
+public class ContentLizardmanEnemyCard : GameUnitCardBase
 {
     public ContentLizardmanEnemyCard()
     {
-        m_entity = new ContentLizardmanEnemy(null);
+        m_unit = new ContentLizardmanEnemy(null);
 
         InitEnemyCard();
     }

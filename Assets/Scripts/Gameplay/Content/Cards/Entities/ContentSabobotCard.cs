@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSabobotCard : GameCardEntityBase
+public class ContentSabobotCard : GameUnitCardBase
 {
     public ContentSabobotCard()
     {
-        m_entity = new ContentSabobot();
+        m_unit = new ContentSabobot();
 
         m_cost = 1;
 

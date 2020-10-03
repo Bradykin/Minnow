@@ -25,16 +25,16 @@ public class ContentArcaneBoltCard : GameCardSpellBase
         return GetDamageDescString() + "x5 benefits from Spell Power.";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.GetHit(GetSpellValue());
+        targetUnit.GetHit(GetSpellValue());
     }
 
     protected override int GetSpellValue()

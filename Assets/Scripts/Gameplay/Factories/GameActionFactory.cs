@@ -11,7 +11,7 @@ public class GameActionFactory
 
     public static void Init()
     {
-        m_actions.Add(new GameAddEntityCardToHandAction(null));
+        m_actions.Add(new GameAddUnitCardToHandAction(null));
         m_actions.Add(new GameDrawCardAction(0));
         m_actions.Add(new GameDeathAction(null));
         m_actions.Add(new GameExplodeAction(null, 0, 0));
@@ -31,7 +31,7 @@ public class GameActionFactory
         m_hasInit = true;
     }
 
-    public static GameAction GetActionWithName(JsonActionData jsonData, GameEntity gameEntity)
+    public static GameAction GetActionWithName(JsonActionData jsonData, GameUnit gameUnit)
     {
         if (!m_hasInit)
             Init();
@@ -52,14 +52,14 @@ public class GameActionFactory
             case GameAction.ActionParamType.TwoIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), jsonData.intValue1, jsonData.intValue2);
                 break;
-            case GameAction.ActionParamType.EntityParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameEntity);
+            case GameAction.ActionParamType.UnitParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit);
                 break;
-            case GameAction.ActionParamType.EntityIntParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameEntity, jsonData.intValue1);
+            case GameAction.ActionParamType.UnitIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1);
                 break;
-            case GameAction.ActionParamType.EntityTwoIntParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameEntity, jsonData.intValue1, jsonData.intValue2);
+            case GameAction.ActionParamType.UnitTwoIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2);
                 break;
             case GameAction.ActionParamType.GameWalletParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonUtility.FromJson<GameWallet>(jsonData.gameWalletJsonValue));

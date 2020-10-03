@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentStoneGolem : GameEntity
+public class ContentStoneGolem : GameUnit
 {
     public ContentStoneGolem()
     {
@@ -17,7 +17,7 @@ public class ContentStoneGolem : GameEntity
 
         m_name = "Stone Golem";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

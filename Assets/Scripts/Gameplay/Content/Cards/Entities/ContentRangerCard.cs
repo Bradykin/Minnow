@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentRangerCard : GameCardEntityBase
+public class ContentRangerCard : GameUnitCardBase
 {
     public ContentRangerCard()
     {
-        m_entity = new ContentRanger();
+        m_unit = new ContentRanger();
 
         m_cost = 1;
 

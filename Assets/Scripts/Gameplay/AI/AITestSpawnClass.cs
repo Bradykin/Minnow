@@ -10,7 +10,7 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                Globals.m_testSpawnEnemyEntity = new ContentZombieEnemy(null);
+                Globals.m_testSpawnEnemyUnit = new ContentZombieEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.M))
@@ -52,12 +52,12 @@ public class AITestSpawnClass : MonoBehaviour
             {
                 if (Globals.m_selectedEnemy != null)
                 {
-                    GameEnemyEntity gameEnemyEntity = Globals.m_selectedEnemy.GetEntity() as GameEnemyEntity;
-                    Globals.m_focusedDebugEnemyEntity = gameEnemyEntity;
-                    AIGameEnemyEntity AIGameEnemyEntity = gameEnemyEntity.m_AIGameEnemyEntity;
-                    for (int i = 0; i < AIGameEnemyEntity.m_AIDebugLogs.Count; i++)
+                    GameEnemyUnit gameEnemyUnit = Globals.m_selectedEnemy.GetUnit() as GameEnemyUnit;
+                    Globals.m_focusedDebugEnemyUnit = gameEnemyUnit;
+                    AIGameEnemyUnit AIGameEnemyUnit = gameEnemyUnit.m_AIGameEnemyUnit;
+                    for (int i = 0; i < AIGameEnemyUnit.m_AIDebugLogs.Count; i++)
                     {
-                        Debug.Log(AIGameEnemyEntity.m_AIDebugLogs[i]);
+                        Debug.Log(AIGameEnemyUnit.m_AIDebugLogs[i]);
                     }
                 }
             }

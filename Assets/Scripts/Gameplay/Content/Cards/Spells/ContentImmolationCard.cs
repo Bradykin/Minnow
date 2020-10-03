@@ -31,23 +31,23 @@ public class ContentImmolationCard : GameCardSpellBase
         return startingDesc;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        if (targetEntity.GetGameTile().GetTerrain().IsForest() && targetEntity.GetGameTile().GetTerrain().CanBurn())
+        if (targetUnit.GetGameTile().GetTerrain().IsForest() && targetUnit.GetGameTile().GetTerrain().CanBurn())
         {
-            targetEntity.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(targetEntity.GetGameTile().GetTerrain()));
-            targetEntity.GetHit(GetSpellValue() * m_multiple);
+            targetUnit.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(targetUnit.GetGameTile().GetTerrain()));
+            targetUnit.GetHit(GetSpellValue() * m_multiple);
         }
         else
         {
-            targetEntity.GetHit(GetSpellValue());
+            targetUnit.GetHit(GetSpellValue());
         }
     }
 }

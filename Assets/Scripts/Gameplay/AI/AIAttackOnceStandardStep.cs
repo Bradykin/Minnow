@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class AIAttackOnceStandardStep : AIStep
 {
-    public AIAttackOnceStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIAttackOnceStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_targetGameElement == null || !m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfGameElement(m_AIGameEnemyEntity.m_targetGameElement))
+        if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
             yield break;
         }
 
-        bool useSteppedOutTurn = m_AIGameEnemyEntity.UseSteppedOutTurn;
+        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
 
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
         {
-            switch (m_AIGameEnemyEntity.m_targetGameElement)
+            switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
-                case GameEntity gameEntity:
+                case GameUnit gameUnit:
                     if (useSteppedOutTurn)
                     {
-                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyEntity.m_gameEnemyEntity.GetWorldTile().gameObject);
+                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         while (UICameraController.Instance.IsCameraSmoothing())
                         {
                             yield return null;
                         }
                     }
 
-                    m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(gameEntity);
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
 
                     if (useSteppedOutTurn)
                     {
-                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyEntity.m_gameEnemyEntity.GetWorldTile().gameObject);
+                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameEntity.m_isDead || gameEntity == null)
+                    if (gameUnit.m_isDead || gameUnit == null)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyEntity.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         yield break;
                     }
@@ -49,26 +49,26 @@ public class AIAttackOnceStandardStep : AIStep
                 case GameBuildingBase gameBuilding:
                     if (useSteppedOutTurn)
                     {
-                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyEntity.m_gameEnemyEntity.GetWorldTile().gameObject);
+                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         while (UICameraController.Instance.IsCameraSmoothing())
                         {
                             yield return null;
                         }
                     }
 
-                    m_AIGameEnemyEntity.m_gameEnemyEntity.HitBuilding(gameBuilding);
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuilding);
 
                     if (useSteppedOutTurn)
                     {
-                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyEntity.m_gameEnemyEntity.GetWorldTile().gameObject);
+                        UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);
                     }
 
                     if (gameBuilding.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyEntity.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         yield break;
                     }

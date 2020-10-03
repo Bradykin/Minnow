@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracle : GameEntity
+public class ContentFishOracle : GameUnit
 {
     public ContentFishOracle()
     {
@@ -17,7 +17,7 @@ public class ContentFishOracle : GameEntity
 
         m_name = "Fish Oracle";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

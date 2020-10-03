@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDarkWarriorEnemyCard : GameCardEntityBase
+public class ContentDarkWarriorEnemyCard : GameUnitCardBase
 {
     public ContentDarkWarriorEnemyCard()
     {
-        m_entity = new ContentDarkWarriorEnemy(null);
+        m_unit = new ContentDarkWarriorEnemy(null);
 
         InitEnemyCard();
     }

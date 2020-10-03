@@ -1,9 +1,9 @@
-﻿public struct JsonGameEntityData
+﻿public struct JsonGameUnitData
 {
     //GameElementBase values
     public string name;
 
-    //GameEntity data
+    //GameUnit data
     public int team;
     public int curHealth;
     public int curStamina;

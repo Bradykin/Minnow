@@ -9,7 +9,7 @@ public class ContentSnowForestTerrain : GameTerrainBase
         m_damageReduction = 2;
 
         m_name = "SnowForest";
-        m_desc = "2 Stamina movement.\nEntities on this tile take " + m_damageReduction + " less damage.";
+        m_desc = "2 Stamina movement.\nUnits on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 5);
 
         m_isPassable = true;

@@ -16,7 +16,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public GameObject m_spawnIndicator;
     public GameObject m_eventIndicator;
 
-    private UIEntity m_occupyingEntityObj;
+    private WorldUnit m_occupyingUnitObj;
 
     public GameObject m_titleHolder;
     public Text m_nameText;
@@ -67,9 +67,9 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             m_spawnIndicator.SetActive(false);
         }
 
-        if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null))
+        if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
         {
-            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
+            m_occupyingUnitObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<WorldUnit>(this);
         }
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
@@ -86,16 +86,16 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (m_isHovered)
             {
-                if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingEntity == null)
+                if (Globals.m_testSpawnEnemyUnit != null && GetGameTile().m_occupyingUnit == null)
                 {
-                    GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
-                    GetGameTile().PlaceEntity(newEnemyEntity);
-                    WorldController.Instance.m_gameController.m_gameOpponent.AddControlledEntity(newEnemyEntity);
-                    Globals.m_testSpawnEnemyEntity = null;
+                    GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(Globals.m_testSpawnEnemyUnit, WorldController.Instance.m_gameController.m_gameOpponent);
+                    GetGameTile().PlaceUnit(newEnemyUnit);
+                    WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
+                    Globals.m_testSpawnEnemyUnit = null;
                 }
-                else if (Globals.m_selectedEntity != null)
+                else if (Globals.m_selectedUnit != null)
                 {
-                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedEntity.CanMoveToWorldTileFromCurPosition(GetGameTile()));
+                    m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedUnit.CanMoveToWorldTileFromCurPosition(GetGameTile()));
                 } 
                 else if (Globals.m_selectedCard != null)
                 {
@@ -119,11 +119,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isMoveable)
+                else if ((Globals.m_selectedUnit != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if ((Globals.m_selectedEntity != null || Globals.m_selectedEnemy != null) && m_isAttackable)
+                else if ((Globals.m_selectedUnit != null || Globals.m_selectedEnemy != null) && m_isAttackable)
                 {
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }
@@ -152,11 +152,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 m_frameRenderer.color = UIHelper.GetValidColor(true);
             }
-            else if (Globals.m_selectedEntity != null && m_isMoveable)
+            else if (Globals.m_selectedUnit != null && m_isMoveable)
             {
                 m_frameRenderer.color = UIHelper.GetValidColor(true);
             }
-            else if (Globals.m_selectedEntity != null && m_isAttackable)
+            else if (Globals.m_selectedUnit != null && m_isAttackable)
             {
                 m_frameRenderer.color = UIHelper.GetAttackColor();
             }
@@ -236,29 +236,29 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
         }
 
-        UIEntity selectedEntity = Globals.m_selectedEntity;
-        if (selectedEntity != null && !Globals.m_inIntermission)
+        WorldUnit selectedUnit = Globals.m_selectedUnit;
+        if (selectedUnit != null && !Globals.m_inIntermission)
         {
-            if (selectedEntity.GetEntity().CanMoveTo(GetGameTile()))
+            if (selectedUnit.GetUnit().CanMoveTo(GetGameTile()))
             {
-                selectedEntity.MoveTo(GetGameTile());
+                selectedUnit.MoveTo(GetGameTile());
             }
             else
             {
-                if (GetGameTile().IsPassable(selectedEntity.GetEntity(), false))
+                if (GetGameTile().IsPassable(selectedUnit.GetUnit(), false))
                 {
-                    int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetEntity().GetGameTile(), GetGameTile(), true, false, true);
-                    if (pathLength == 1 && GetGameTile().m_occupyingEntity == null)
+                    int pathLength = WorldGridManager.Instance.GetPathLength(selectedUnit.GetUnit().GetGameTile(), GetGameTile(), true, false, true);
+                    if (pathLength == 1 && GetGameTile().m_occupyingUnit == null)
                     {
-                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " Stamina.", false, gameObject);
+                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedUnit.GetUnit()) + " Stamina.", false, gameObject);
                     }
                     else
                     {
-                        if (GetGameTile().m_occupyingEntity == Globals.m_selectedEntity.GetEntity())
+                        if (GetGameTile().m_occupyingUnit == Globals.m_selectedUnit.GetUnit())
                         {
                             UIHelper.CreateWorldElementNotification("Already here.", false, gameObject);
                         }
-                        else if (GetGameTile().m_occupyingEntity != null)
+                        else if (GetGameTile().m_occupyingUnit != null)
                         {
                             UIHelper.CreateWorldElementNotification("Already occupied.", false, gameObject);
                         }
@@ -288,7 +288,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
         }
 
-        if ((selectedEntity == null && selectedBuilding == null && selectedCard == null) || Globals.m_inIntermission)
+        if ((selectedUnit == null && selectedBuilding == null && selectedCard == null) || Globals.m_inIntermission)
         {
             UIHelper.SelectTile(this);
         }
@@ -361,9 +361,9 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {
-            if (m_occupyingEntityObj != null)
+            if (m_occupyingUnitObj != null)
             {
-                m_occupyingEntityObj.SetVisible(false);
+                m_occupyingUnitObj.SetVisible(false);
             }
             m_fogOfWar.SetActive(true);
 
@@ -378,32 +378,32 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
         else
         {
-            if (m_occupyingEntityObj != null)
+            if (m_occupyingUnitObj != null)
             {
-                m_occupyingEntityObj.SetVisible(true);
+                m_occupyingUnitObj.SetVisible(true);
             }
             m_fogOfWar.SetActive(false);
         }
     }
 
-    public void ClearEntity()
+    public void ClearUnit()
     {
-        m_occupyingEntityObj = null;
+        m_occupyingUnitObj = null;
     }
 
-    public void RecycleEntity()
+    public void RecycleUnit()
     {
-        if (m_occupyingEntityObj != null)
+        if (m_occupyingUnitObj != null)
         {
-            GetGameTile().ClearEntity();
-            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
-            m_occupyingEntityObj = null;
+            GetGameTile().ClearUnit();
+            Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
+            m_occupyingUnitObj = null;
         }
     }
 
-    public void PlaceEntity(UIEntity newEntity)
+    public void PlaceUnit(WorldUnit newUnit)
     {
-        m_occupyingEntityObj = newEntity;
+        m_occupyingUnitObj = newUnit;
     }
 
     public GameTile GetGameTile()
@@ -430,7 +430,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         m_fogOfWar.SetActive(true);
 
-        m_occupyingEntityObj = null;
+        m_occupyingUnitObj = null;
 
         m_isHovered = false;
         m_isMoveable = false;

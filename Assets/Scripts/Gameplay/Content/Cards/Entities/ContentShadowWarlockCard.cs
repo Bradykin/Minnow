@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadowWarlockCard : GameCardEntityBase
+public class ContentShadowWarlockCard : GameUnitCardBase
 {
     public ContentShadowWarlockCard()
     {
-        m_entity = new ContentShadowWarlock();
+        m_unit = new ContentShadowWarlock();
 
         m_cost = 2;
 

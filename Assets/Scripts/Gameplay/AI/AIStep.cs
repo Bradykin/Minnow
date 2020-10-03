@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class AIStep
 {
-    public AIGameEnemyEntity m_AIGameEnemyEntity;
+    public AIGameEnemyUnit m_AIGameEnemyUnit;
 
-    public AIStep(AIGameEnemyEntity AIGameEnemyEntity)
+    public AIStep(AIGameEnemyUnit AIGameEnemyUnit)
     {
-        m_AIGameEnemyEntity = AIGameEnemyEntity;
+        m_AIGameEnemyUnit = AIGameEnemyUnit;
     }
 
     public abstract IEnumerator TakeStep();

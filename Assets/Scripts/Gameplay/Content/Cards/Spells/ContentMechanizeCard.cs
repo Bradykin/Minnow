@@ -20,22 +20,22 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Creation;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Creation;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        int curStamina = targetEntity.GetCurStamina();
-        targetEntity.SpendStamina(curStamina);
-        targetEntity.AddPower(curStamina);
+        int curStamina = targetUnit.GetCurStamina();
+        targetUnit.SpendStamina(curStamina);
+        targetUnit.AddPower(curStamina);
     }
 }

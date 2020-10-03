@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadowWarlock : GameEntity
+public class ContentShadowWarlock : GameUnit
 {
     public ContentShadowWarlock()
     {
@@ -18,7 +18,7 @@ public class ContentShadowWarlock : GameEntity
 
         m_name = "Shadow Warlock";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

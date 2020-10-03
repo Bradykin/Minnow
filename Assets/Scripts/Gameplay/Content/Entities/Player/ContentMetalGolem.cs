@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class ContentMetalGolem : GameEntity
+public class ContentMetalGolem : GameUnit
 {
     private int m_eatingRange;
 
@@ -22,7 +22,7 @@ public class ContentMetalGolem : GameEntity
         m_name = "Metal Golem";
         m_desc = "At the end of the turn, gain 1 <b>Damage Shield</b> for each mountain in range " + m_eatingRange + ".";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

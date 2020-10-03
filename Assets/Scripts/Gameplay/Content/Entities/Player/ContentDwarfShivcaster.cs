@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfShivcaster : GameEntity
+public class ContentDwarfShivcaster : GameUnit
 {
     public ContentDwarfShivcaster()
     {
@@ -17,7 +17,7 @@ public class ContentDwarfShivcaster : GameEntity
         m_name = "Dwarf Shivcaster";
         m_desc = "Shivs no longer trigger <b>Spellcraft</b>.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
@@ -28,18 +28,18 @@ public class ContentDwarfShivcaster : GameEntity
 
 public class GameShivNearbyAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private GameCard m_shivCard;
     private int m_numShivsThrown = 2;
 
-    public GameShivNearbyAction(GameEntity entity)
+    public GameShivNearbyAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
 
         m_name = "Throw Shiv";
-        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemies within two tiles.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within two tiles.";
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
@@ -51,15 +51,15 @@ public class GameShivNearbyAction : GameAction
             return;
         }
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_entity.GetGameTile(), 2);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_unit.GetGameTile(), 2);
 
-        List<GameEntity> nearbyEnemies = new List<GameEntity>();
+        List<GameUnit> nearbyEnemies = new List<GameUnit>();
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingEntity.m_isDead && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy)
+            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingUnit.m_isDead && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy)
             {
-                nearbyEnemies.Add(nearbyTiles[i].m_occupyingEntity);
+                nearbyEnemies.Add(nearbyTiles[i].m_occupyingUnit);
             }
         }
 

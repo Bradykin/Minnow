@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Target buildings over units
-public class ContentAngryBirdEnemy : GameEnemyEntity
+public class ContentAngryBirdEnemy : GameEnemyUnit
 {
     public ContentAngryBirdEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -23,10 +23,10 @@ public class ContentAngryBirdEnemy : GameEnemyEntity
 
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
-        m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit));
 
         LateInit();
     }

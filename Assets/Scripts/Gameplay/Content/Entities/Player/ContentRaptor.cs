@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentRaptor : GameEntity
+public class ContentRaptor : GameUnit
 {
     public ContentRaptor()
     {
@@ -18,7 +18,7 @@ public class ContentRaptor : GameEntity
         m_name = "Raptor";
         m_desc = "Only takes 1 Stamina to attack.";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

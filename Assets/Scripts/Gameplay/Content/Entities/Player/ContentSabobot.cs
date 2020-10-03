@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSabobot : GameEntity
+public class ContentSabobot : GameUnit
 {
     private int m_explosionDamage = 25;
     private int m_explosionRange = 1;
@@ -22,7 +22,7 @@ public class ContentSabobot : GameEntity
         m_name = "Sabobot";
         m_desc = "Starts at full Stamina.";
         m_typeline = Typeline.Creation;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
@@ -37,20 +37,20 @@ public class ContentSabobot : GameEntity
 
 public class GameDeathAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
 
-    public GameDeathAction(GameEntity entity)
+    public GameDeathAction(GameUnit unit)
     {
-        m_entity = entity;
+        m_unit = unit;
 
         m_name = "Die";
         m_desc = "Die.";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
-        m_entity.Die();
+        m_unit.Die();
     }
 
     public override string SaveToJson()

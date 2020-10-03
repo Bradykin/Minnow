@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentRanger : GameEntity
+public class ContentRanger : GameUnit
 {
     private int m_powerBoost = 8;
     private int m_staminaRegenBoost = 2;
@@ -22,7 +22,7 @@ public class ContentRanger : GameEntity
         m_name = "Ranger";
         m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.";
         m_typeline = Typeline.Humanoid;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

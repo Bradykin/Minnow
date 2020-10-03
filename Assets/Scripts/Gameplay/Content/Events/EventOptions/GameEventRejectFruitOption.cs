@@ -23,22 +23,22 @@ public class GameEventRejectFruitOption : GameEventOption
 
     public override void AcceptOption()
     {
-        GameEntity entity = m_tile.m_occupyingEntity;
+        GameUnit unit = m_tile.m_occupyingUnit;
 
-        entity.AddPower(m_powerIncrease);
-        entity.AddMaxHealth(m_healthIncrease);
-        entity.GainStamina(m_staminaIncrease);
+        unit.AddPower(m_powerIncrease);
+        unit.AddMaxHealth(m_healthIncrease);
+        unit.GainStamina(m_staminaIncrease);
 
-        entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(entity, -m_knowledgeableDecrease)));
-        entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(entity, -m_knowledgeableDecrease)));
+        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(unit, -m_knowledgeableDecrease)));
+        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(unit, -m_knowledgeableDecrease)));
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, m_tileRange, 0);
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Player)
+            if (nearbyTiles[i].IsOccupied() && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
             {
-                nearbyTiles[i].m_occupyingEntity.Heal(m_healAmount);
+                nearbyTiles[i].m_occupyingUnit.Heal(m_healAmount);
             }
             
             //TODO: Modify this to check IsBurned(), and if so, restore tile to unburned form

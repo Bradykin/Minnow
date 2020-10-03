@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class GameGainStaminaAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainStaminaAction(GameEntity entity, int toGain)
+    public GameGainStaminaAction(GameUnit unit, int toGain)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_toGain = toGain;
 
         m_name = "Gain Stamina";
         m_desc = "Gain " + m_toGain + " Stamina";
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        m_entity.GainStamina(m_toGain);
+        m_unit.GainStamina(m_toGain);
     }
 
     public override string SaveToJson()

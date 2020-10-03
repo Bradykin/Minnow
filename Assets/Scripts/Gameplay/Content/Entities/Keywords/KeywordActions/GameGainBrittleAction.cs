@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class GameGainBrittleAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainBrittleAction(GameEntity entity, int toGain)
+    public GameGainBrittleAction(GameUnit unit, int toGain)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_toGain = toGain;
 
         m_name = "Gain Brittle";
         m_desc = "Gain 'Brittle " + m_toGain + "'.";
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        GameBrittleKeyword keyword = m_entity.GetKeyword<GameBrittleKeyword>();
+        GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
 
         if (keyword != null)
         {
@@ -27,7 +27,7 @@ public class GameGainBrittleAction : GameAction
         }
         else
         {
-            m_entity.AddKeyword(new GameBrittleKeyword(m_toGain));
+            m_unit.AddKeyword(new GameBrittleKeyword(m_toGain));
         }
     }
 

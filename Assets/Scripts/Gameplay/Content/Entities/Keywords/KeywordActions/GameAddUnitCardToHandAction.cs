@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameAddEntityCardToHandAction : GameAction
+public class GameAddUnitCardToHandAction : GameAction
 {
-    private GameEntity m_gameEntity;
+    private GameUnit m_gameUnit;
 
-    public GameAddEntityCardToHandAction(GameEntity gameEntity)
+    public GameAddUnitCardToHandAction(GameUnit gameUnit)
     {
-        m_gameEntity = gameEntity;
+        m_gameUnit = gameUnit;
 
         m_name = "Add unit card to hand";
         m_desc = "Add unit card to hand";
-        m_actionParamType = ActionParamType.EntityParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
@@ -24,12 +24,12 @@ public class GameAddEntityCardToHandAction : GameAction
             return;
         }
 
-        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardFromEntity(m_gameEntity), false);
+        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardFromUnit(m_gameUnit), false);
     }
 
     public override string SaveToJson()
     {
-        //TODO: ashulman: This should track the gameentity
+        //TODO: ashulman: This should track the game unit
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,

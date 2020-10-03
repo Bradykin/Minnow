@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMetalGolemCard : GameCardEntityBase
+public class ContentMetalGolemCard : GameUnitCardBase
 {
     public ContentMetalGolemCard()
     {
-        m_entity = new ContentMetalGolem();
+        m_unit = new ContentMetalGolem();
 
         m_cost = 3;
 

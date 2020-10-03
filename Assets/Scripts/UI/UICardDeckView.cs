@@ -53,9 +53,9 @@ public class UICardDeckView : MonoBehaviour
         {
             GameCard newCard;
 
-            if (m_uiCard.m_card is GameCardEntityBase)
+            if (m_uiCard.m_card is GameUnitCardBase)
             {
-                newCard = GameCardFactory.GetRandomStandardEntityCard();
+                newCard = GameCardFactory.GetRandomStandardUnitCard();
             }
             else if (m_uiCard.m_card is GameCardSpellBase)
             {

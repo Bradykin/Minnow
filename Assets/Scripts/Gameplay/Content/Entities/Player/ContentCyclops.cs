@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentCyclops : GameEntity
+public class ContentCyclops : GameUnit
 {
     public ContentCyclops()
     {
@@ -18,7 +18,7 @@ public class ContentCyclops : GameEntity
         m_name = "Cyclops";
         m_desc = "Has a sight range of 1";
         m_typeline = Typeline.Monster;
-        m_icon = UIHelper.GetIconEntity(m_name);
+        m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }

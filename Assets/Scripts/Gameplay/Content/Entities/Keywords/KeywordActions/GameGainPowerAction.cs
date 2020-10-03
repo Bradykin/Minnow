@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameGainPowerAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainPowerAction(GameEntity entity, int toGain)
+    public GameGainPowerAction(GameUnit unit, int toGain)
     {
-        m_entity = entity;
+        m_unit = unit;
         m_toGain = toGain;
 
         m_name = "Gain Power";
@@ -22,12 +22,12 @@ public class GameGainPowerAction : GameAction
         {
             m_desc = "-" + m_toGain + "/-0.";
         }
-        m_actionParamType = ActionParamType.EntityIntParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        m_entity.AddPower(m_toGain);
+        m_unit.AddPower(m_toGain);
     }
 
     public override string SaveToJson()

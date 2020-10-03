@@ -33,15 +33,15 @@ public class ContentTrollFormCard : GameCardSpellBase
         return "Target allied unit gains '<b>Regen</b>: " + m_spellEffect + spString + "'.\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameRegenerateKeyword(GetSpellValue()));
+        targetUnit.AddKeyword(new GameRegenerateKeyword(GetSpellValue()));
     }
 }

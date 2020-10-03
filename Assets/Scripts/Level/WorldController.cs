@@ -12,14 +12,14 @@ public class WorldController : Singleton<WorldController>
 
     private bool m_hasSpawnedEliteThisWave;
     private bool m_hasSpawnedBoss;
-    private int m_playerEntityFocusIndex;
+    private int m_playerUnitFocusIndex;
 
     void Start()
     {
         m_gameController = new GameController();
         m_playerHand = new List<UICard>();
 
-        m_playerEntityFocusIndex = 0;
+        m_playerUnitFocusIndex = 0;
     }
 
     void Update()
@@ -28,18 +28,18 @@ public class WorldController : Singleton<WorldController>
 
         if (Input.GetKeyUp(KeyCode.Q))
         {
-            FocusPrevPlayerEntity();
+            FocusPrevPlayerUnit();
 
-            for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledEntities.Count; i++)
+            for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledUnits.Count; i++)
             {
-                GameEntity entity = m_gameController.m_gameOpponent.m_controlledEntities[i];
-                print("Player Entity: " + entity.GetName());
+                GameUnit unit = m_gameController.m_gameOpponent.m_controlledUnits[i];
+                print("Player Unit: " + unit.GetName());
             }
         }
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            FocusNextPlayerEntity();
+            FocusNextPlayerUnit();
         }
     }
 
@@ -174,18 +174,18 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-    private void ClearAllEntities()
+    private void ClearAllUnits()
     {
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied())
             {
-                WorldGridManager.Instance.m_gridArray[i].RecycleEntity();
+                WorldGridManager.Instance.m_gridArray[i].RecycleUnit();
             }
         }
 
-        m_gameController.m_gameOpponent.m_controlledEntities.Clear();
-        m_gameController.m_player.m_controlledEntities.Clear();
+        m_gameController.m_gameOpponent.m_controlledUnits.Clear();
+        m_gameController.m_player.m_controlledUnits.Clear();
     }
 
     public void StartIntermission()
@@ -195,7 +195,7 @@ public class WorldController : Singleton<WorldController>
         Globals.m_spellsPlayedPreviousTurn = 0;
 
         UITooltipController.Instance.ClearTooltipStack();
-        ClearAllEntities();
+        ClearAllUnits();
 
         GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
         intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_waveNum * 10;
@@ -208,14 +208,14 @@ public class WorldController : Singleton<WorldController>
         Globals.m_inIntermission = true;
         Globals.m_selectedCard = null;
 
-        Globals.m_selectedEntity = null;
+        Globals.m_selectedUnit = null;
 
         List<GameCard> exclusionCards = new List<GameCard>();
-        GameCard cardOne = GameCardFactory.GetRandomStandardEntityCard();
+        GameCard cardOne = GameCardFactory.GetRandomStandardUnitCard();
         exclusionCards.Add(cardOne);
-        GameCard cardTwo = GameCardFactory.GetRandomStandardEntityCard(exclusionCards);
+        GameCard cardTwo = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
         exclusionCards.Add(cardTwo);
-        GameCard cardThree = GameCardFactory.GetRandomStandardEntityCard(exclusionCards);
+        GameCard cardThree = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
     }
@@ -244,86 +244,86 @@ public class WorldController : Singleton<WorldController>
         //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
-    public void FocusNextPlayerEntity()
+    public void FocusNextPlayerUnit()
     {
-        List<GameEntity> validEntities = GetValidFocusEntities();
-        if (validEntities.Count == 0)
+        List<GameUnit> validUnits = GetValidFocusUnits();
+        if (validUnits.Count == 0)
         {
             return;
         }
 
-        m_playerEntityFocusIndex++;
+        m_playerUnitFocusIndex++;
 
-        if (m_playerEntityFocusIndex >= validEntities.Count)
+        if (m_playerUnitFocusIndex >= validUnits.Count)
         {
-            m_playerEntityFocusIndex = 0;
+            m_playerUnitFocusIndex = 0;
         }
 
-        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+        WorldUnit thisUnit = validUnits[m_playerUnitFocusIndex].m_worldUnit;
 
-        if (Globals.m_selectedEntity != thisEntity)
+        if (Globals.m_selectedUnit != thisUnit)
         {
-            UIHelper.SelectEntity(thisEntity);
+            UIHelper.SelectUnit(thisUnit);
         }
 
-        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
+        UICameraController.Instance.SnapToGameObject(thisUnit.gameObject);
     }
 
-    public void FocusPrevPlayerEntity()
+    public void FocusPrevPlayerUnit()
     {
-        List<GameEntity> validEntities = GetValidFocusEntities();
-        if (validEntities.Count == 0)
+        List<GameUnit> validUnits = GetValidFocusUnits();
+        if (validUnits.Count == 0)
         {
             return;
         }
 
-        m_playerEntityFocusIndex--;
+        m_playerUnitFocusIndex--;
 
-        if (m_playerEntityFocusIndex < 0)
+        if (m_playerUnitFocusIndex < 0)
         {
-            m_playerEntityFocusIndex = validEntities.Count-1;
+            m_playerUnitFocusIndex = validUnits.Count-1;
         }
 
-        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+        WorldUnit thisUnit = validUnits[m_playerUnitFocusIndex].m_worldUnit;
 
-        if (Globals.m_selectedEntity != thisEntity)
+        if (Globals.m_selectedUnit != thisUnit)
         {
-            UIHelper.SelectEntity(thisEntity);
+            UIHelper.SelectUnit(thisUnit);
         }
 
-        UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
+        UICameraController.Instance.SnapToGameObject(thisUnit.gameObject);
     }
 
-    private List<GameEntity> GetValidFocusEntities()
+    private List<GameUnit> GetValidFocusUnits()
     {
-        List<GameEntity> validFocusEntities = new List<GameEntity>();
+        List<GameUnit> validFocusUnits = new List<GameUnit>();
 
         GamePlayer player = GameHelper.GetPlayer();
 
         //Early exit, empty list
         if (player == null)
         {
-            return validFocusEntities;
+            return validFocusUnits;
         }
 
-        List<GameEntity> playerEntities = player.m_controlledEntities;
+        List<GameUnit> playerUnits = player.m_controlledUnits;
 
         //Early exit, empty list
-        if (playerEntities.Count == 0)
+        if (playerUnits.Count == 0)
         {
-            return validFocusEntities;
+            return validFocusUnits;
         }
 
-        //Determine which entities in the player list are valid
-        for (int i = 0; i < playerEntities.Count; i++)
+        //Determine which units in the player list are valid
+        for (int i = 0; i < playerUnits.Count; i++)
         {
-            if (playerEntities[i].GetCurStamina() > 0)
+            if (playerUnits[i].GetCurStamina() > 0)
             {
-                validFocusEntities.Add(playerEntities[i]);
+                validFocusUnits.Add(playerUnits[i]);
             }
         }
 
-        return validFocusEntities;
+        return validFocusUnits;
     }
 
     public bool HasSpawnedEliteThisWave()

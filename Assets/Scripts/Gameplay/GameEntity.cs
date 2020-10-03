@@ -18,9 +18,9 @@ public enum Typeline : int
     Count // = 3
 }
 
-public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGameEntityData>
+public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameUnitData>
 {
-    //General data.  This should be set for every entity
+    //General data.  This should be set for every unit
     protected Team m_team;
     protected int m_curHealth;
     protected int m_maxHealth;
@@ -39,11 +39,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     //Functionality
     protected GameTile m_gameTile;
     public bool m_isDead;
-    public UIEntity m_uiEntity;
+    public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
 
-    public void CopyOff(GameEntity other)
+    public void CopyOff(GameUnit other)
     {
         m_maxHealth = other.m_maxHealth;
         m_staminaRegen = other.m_staminaRegen;
@@ -61,8 +61,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     protected virtual void LateInit()
     {
-        m_icon = UIHelper.GetIconEntity(m_name);
-        m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
+        m_icon = UIHelper.GetIconUnit(m_name);
+        m_iconWhite = UIHelper.GetIconUnit(m_name + "W");
     }
 
     public void SetHealthStaminaValues()
@@ -100,7 +100,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    public virtual void OnOtherSummon(GameEntity other)
+    public virtual void OnOtherSummon(GameUnit other)
     {
 
     }
@@ -148,12 +148,12 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 damageShieldKeyword.DecreaseShield(1);
                 if (damageShieldKeyword.m_numShields == 0)
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_uiEntity.gameObject);
+                    UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
                     m_keywordHolder.RemoveKeyword(damageShieldKeyword);
                 }
                 else
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_uiEntity.gameObject);
+                    UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_worldUnit.gameObject);
                 }
                 return 0;
             }
@@ -250,7 +250,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
         {
-            Debug.LogError("Cannot kill entity as player doesn't exist.");
+            Debug.LogError("Cannot kill unit as player doesn't exist.");
             return;
         }
 
@@ -295,29 +295,29 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 1);
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
-                    if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingEntity.m_isDead)
+                    if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
                     {
-                        adjacentTiles[i].m_occupyingEntity.SpendStamina(adjacentTiles[i].m_occupyingEntity.GetCurStamina());
+                        adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
                     }
                 }
             }
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
             {
-                GameCardEntityBase cardFromEntity = GameCardFactory.GetCardFromEntity(this);
-                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromEntity);
+                GameUnitCardBase cardFromUnit = GameCardFactory.GetCardFromUnit(this);
+                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
                 willSetDead = false;
             }
-            WorldController.Instance.m_gameController.m_player.m_controlledEntities.Remove(this);
+            WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
         }
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
 
-        if (m_uiEntity == Globals.m_selectedEntity)
+        if (m_worldUnit == Globals.m_selectedUnit)
         {
             WorldGridManager.Instance.ClearAllTilesMovementRange();
         }
-        m_gameTile.GetWorldTile().RecycleEntity();
+        m_gameTile.GetWorldTile().RecycleUnit();
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = willSetDead;
@@ -343,13 +343,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_uiEntity.gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_worldUnit.gameObject);
         }
 
         return realHealVal;
     }
 
-    public virtual bool CanHitEntity(GameEntity other, bool checkRange = true)
+    public virtual bool CanHitUnit(GameUnit other, bool checkRange = true)
     {
         if (GetTeam() == other.GetTeam()) //Can't attack your own team
         {
@@ -361,7 +361,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (checkRange && !IsInRangeOfEntity(other))
+        if (checkRange && !IsInRangeOfUnit(other))
         {
             return false;
         }
@@ -373,15 +373,15 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         switch(other)
         {
-            case GameEntity gameEntity:
-                return IsInRangeOfEntity(gameEntity);
+            case GameUnit gameUnit:
+                return IsInRangeOfUnit(gameUnit);
             case GameBuildingBase gameBuildingBase:
                 return IsInRangeOfBuilding(gameBuildingBase);
         }
         return false;
     }
 
-    public virtual bool IsInRangeOfEntity(GameEntity other)
+    public virtual bool IsInRangeOfUnit(GameUnit other)
     {
         List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
         
@@ -501,7 +501,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_sightRange;
     }
 
-    public virtual int HitEntity(GameEntity other, bool spendStamina = true)
+    public virtual int HitUnit(GameUnit other, bool spendStamina = true)
     {
         if (spendStamina)
         {
@@ -589,7 +589,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return 0;
     }
 
-    protected virtual int GetDamageToDealTo(GameEntity target)
+    protected virtual int GetDamageToDealTo(GameUnit target)
     {
         return GetPower();
     }
@@ -644,7 +644,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             m_curStamina = m_maxStamina;
         }
 
-        UIHelper.ReselectEntity();
+        UIHelper.ReselectUnit();
     }
 
     public void Reset()
@@ -793,10 +793,10 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             if (numGrandPact > 0)
             {
                 Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
-                List<GameEntity> gameEntities = GameHelper.GetPlayer().m_controlledEntities;
-                for (int i = 0; i < gameEntities.Count; i++)
+                List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
+                for (int i = 0; i < gameUnits.Count; i++)
                 {
-                    int typelineInt = (int)gameEntities[i].GetTypeline();
+                    int typelineInt = (int)gameUnits[i].GetTypeline();
                     if (!numCreatureTypes.ContainsKey(typelineInt))
                     {
                         numCreatureTypes.Add(typelineInt, 1);
@@ -887,15 +887,15 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
 
-        m_gameTile.ClearEntity();
-        tile.PlaceEntity(this);
+        m_gameTile.ClearUnit();
+        tile.PlaceUnit(this);
 
         SpendStamina(pathCost);
     }
 
     public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
     {
-        if (this == Globals.m_focusedDebugEnemyEntity)
+        if (this == Globals.m_focusedDebugEnemyUnit)
         {
             Debug.Log("IS FOCUSED ENEMY");
         }
@@ -965,7 +965,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             m_curStamina = 0;
         }
 
-        UIHelper.ReselectEntity();
+        UIHelper.ReselectUnit();
     }
 
     public virtual string GetDesc()
@@ -1023,7 +1023,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return;
         }
 
-        m_customName = GameNamesFactory.GetCustomEntityName(m_typeline);
+        m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
     }
 
     public string GetName()
@@ -1065,11 +1065,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     //============================================================================================================//
 
-    public JsonGameEntityData SaveToJsonAsJson()
+    public JsonGameUnitData SaveToJsonAsJson()
     {
         string keywordHolderJson = m_keywordHolder.SaveToJsonAsString();
 
-        JsonGameEntityData jsonData = new JsonGameEntityData
+        JsonGameUnitData jsonData = new JsonGameUnitData
         {
             name = m_name,
             team = (int)m_team,
@@ -1090,14 +1090,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public string SaveToJsonAsString()
     {
-        JsonGameEntityData jsonData = SaveToJsonAsJson();
+        JsonGameUnitData jsonData = SaveToJsonAsJson();
 
         var export = JsonUtility.ToJson(jsonData);
 
         return export;
     }
 
-    public void LoadFromJson(JsonGameEntityData jsonData)
+    public void LoadFromJson(JsonGameUnitData jsonData)
     {
         m_curHealth = jsonData.curHealth;
         m_team = (Team)jsonData.team;

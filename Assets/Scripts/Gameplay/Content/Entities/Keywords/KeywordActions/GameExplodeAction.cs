@@ -3,38 +3,38 @@ using UnityEngine;
 
 public class GameExplodeAction : GameAction
 {
-    private GameEntity m_explodingEntity;
+    private GameUnit m_explodingUnit;
     private int m_explodePower;
     private int m_explodeRange;
 
-    public GameExplodeAction(GameEntity explodingEntity, int explodePower, int explodeRange)
+    public GameExplodeAction(GameUnit explodingUnit, int explodePower, int explodeRange)
     {
-        m_explodingEntity = explodingEntity;
+        m_explodingUnit = explodingUnit;
         m_explodePower = explodePower;
         m_explodeRange = explodeRange;
 
         m_name = "Explode";
         m_desc = "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
-        m_actionParamType = ActionParamType.EntityTwoIntParam;
+        m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
     public override void DoAction()
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_explodingEntity.GetGameTile(), m_explodeRange, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_explodingUnit.GetGameTile(), m_explodeRange, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             GameBuildingBase building = surroundingTiles[i].GetBuilding();
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
             if (building != null)
             {
                 building.GetHit(m_explodePower);
             }
 
-            if (entity != null)
+            if (unit != null)
             {
-                entity.GetHit(m_explodePower);
+                unit.GetHit(m_explodePower);
             }
         }
     }

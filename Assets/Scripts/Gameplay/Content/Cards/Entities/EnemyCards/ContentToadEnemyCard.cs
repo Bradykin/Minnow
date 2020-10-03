@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentToadEnemyCard : GameCardEntityBase
+public class ContentToadEnemyCard : GameUnitCardBase
 {
     public ContentToadEnemyCard()
     {
-        m_entity = new ContentToadEnemy(null);
+        m_unit = new ContentToadEnemy(null);
 
         InitEnemyCard();
     }

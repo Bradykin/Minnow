@@ -25,15 +25,15 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Monster);
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetEntity, 2)));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, 2)));
     }
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHeroCard : GameCardEntityBase
+public class ContentHeroCard : GameUnitCardBase
 {
     public ContentHeroCard()
     {
-        m_entity = new ContentHero();
+        m_unit = new ContentHero();
 
         m_cost = 4;
 

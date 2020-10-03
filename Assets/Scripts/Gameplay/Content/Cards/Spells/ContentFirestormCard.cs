@@ -31,22 +31,22 @@ public class ContentFirestormCard : GameCardSpellBase
         return description;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
         for (int i = 0; i < m_numHits; i++)
         {
-            if (targetEntity.m_isDead)
+            if (targetUnit.m_isDead)
             {
                 break;
             }
-            targetEntity.GetHit(GetSpellValue());
+            targetUnit.GetHit(GetSpellValue());
         }
     }
 }

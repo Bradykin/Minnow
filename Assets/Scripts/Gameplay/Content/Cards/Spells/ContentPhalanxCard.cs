@@ -17,21 +17,21 @@ public class ContentPhalanxCard : GameCardSpellBase
         SetupBasicData();
     }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
+    public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Humanoid;
+        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Humanoid;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetUnit)
     {
-        if (!IsValidToPlay(targetEntity))
+        if (!IsValidToPlay(targetUnit))
         {
             return;
         }
 
-        base.PlayCard(targetEntity);
+        base.PlayCard(targetUnit);
 
-        GameTile tile = targetEntity.GetGameTile();
+        GameTile tile = targetUnit.GetGameTile();
 
         int amount = 0;
         if (tile != null)
@@ -40,15 +40,15 @@ public class ContentPhalanxCard : GameCardSpellBase
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingEntity.m_isDead &&
-                    surroundingTiles[i].m_occupyingEntity.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingEntity.GetTypeline() == Typeline.Humanoid)
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                    surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
                 {
                     amount+=1;
                 }
             }
         }
 
-        targetEntity.AddPower(amount);
-        targetEntity.AddMaxHealth(amount);
+        targetUnit.AddPower(amount);
+        targetUnit.AddMaxHealth(amount);
     }
 }
