@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentRanger : GameEntity
+public class ContentRanger : GameUnit
 {
     private int m_powerBoost = 8;
     private int m_staminaRegenBoost = 2;

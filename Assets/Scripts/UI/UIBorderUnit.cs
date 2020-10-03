@@ -12,14 +12,14 @@ public class UIBorderUnit : MonoBehaviour
     public Image m_image;
     public GameObject m_holder;
 
-    private UIEntity m_entity;
+    private UIUnit m_entity;
 
-    public void Init(UIEntity toTrack)
+    public void Init(UIUnit toTrack)
     {
         m_entity = toTrack;
 
         m_rectTransform = GetComponent<RectTransform>();
-        m_image.sprite = toTrack.GetEntity().m_icon;
+        m_image.sprite = toTrack.GetUnit().m_icon;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -30,7 +30,7 @@ public class UIBorderUnit : MonoBehaviour
     void Update()
     {
         //Hide this if the UIEntity is on screen.
-        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetEntity().GetCurStamina() > 0);
+        m_holder.SetActive(!m_entity.m_renderer.isVisible && m_entity.GetUnit().GetCurStamina() > 0);
 
         UpdatePosition();
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentStoneGolem : GameEntity
+public class ContentStoneGolem : GameUnit
 {
     public ContentStoneGolem()
     {

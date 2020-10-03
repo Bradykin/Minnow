@@ -10,11 +10,11 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
 {
     private int m_scanRadius = 4;
     
-    public AISiegebreakerScanTargetsInRangeStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
     
     public override void TakeStep()
     {
-        List<GameTile> tilesInScanRange = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), m_scanRadius);
+        List<GameTile> tilesInScanRange = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), m_scanRadius);
 
         if (tilesInScanRange == null)
         {
@@ -23,10 +23,10 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
 
         for (int i = 0; i < tilesInScanRange.Count; i++)
         {
-            m_AIGameEnemyEntity.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInScanRange[i].m_gridPosition.ToString());
+            m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInScanRange[i].m_gridPosition.ToString());
         }
 
-        List<GameEntity> possibleEntityTargets = new List<GameEntity>();
+        List<GameUnit> possibleEntityTargets = new List<GameUnit>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
         foreach (var tile in tilesInScanRange)
@@ -39,17 +39,17 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
                 {
-                    damageAmountInVulnerableRange += m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower();
+                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower();
                     numHitsToRateVulnerable--;
                 }
                 if (damageAmountInVulnerableRange >= tile.GetBuilding().GetCurHealth())
                 {
-                    m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
+                    m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
                 }
             }
         }
 
-        m_AIGameEnemyEntity.m_possibleEntityTargets = possibleEntityTargets;
-        m_AIGameEnemyEntity.m_possibleBuildingTargets = possibleBuildingTargets;
+        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleEntityTargets;
+        m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
     }
 }

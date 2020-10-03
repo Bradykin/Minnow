@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHero : GameEntity
+public class ContentHero : GameUnit
 {
     public ContentHero()
     {
@@ -28,10 +28,10 @@ public class ContentHero : GameEntity
 
 public class GameHealAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_healVal;
 
-    public GameHealAction(GameEntity entity, int healVal)
+    public GameHealAction(GameUnit entity, int healVal)
     {
         m_entity = entity;
         m_healVal = healVal;

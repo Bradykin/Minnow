@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDevourer : GameEntity
+public class ContentDevourer : GameUnit
 {
     public ContentDevourer()
     {
@@ -26,9 +26,9 @@ public class ContentDevourer : GameEntity
 
 public class GameFullHealAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
 
-    public GameFullHealAction(GameEntity entity)
+    public GameFullHealAction(GameUnit entity)
     {
         m_entity = entity;
 

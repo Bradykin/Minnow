@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDemonSoldier : GameEntity
+public class ContentDemonSoldier : GameUnit
 {
     public ContentDemonSoldier()
     {

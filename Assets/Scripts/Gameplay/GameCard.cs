@@ -73,7 +73,7 @@ public abstract class GameCard : GameElementBase
         PayCost();
     }
 
-    public virtual void PlayCard(GameEntity targetEntity) 
+    public virtual void PlayCard(GameUnit targetEntity) 
     {
         PayCost();
     }
@@ -139,7 +139,7 @@ public abstract class GameCard : GameElementBase
         return false; 
     }
 
-    public virtual bool IsValidToPlay(GameEntity targetEntity) 
+    public virtual bool IsValidToPlay(GameUnit targetEntity) 
     {
         if (!IsValidToPlay())
         {

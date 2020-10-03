@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameAddEntityCardToHandAction : GameAction
 {
-    private GameEntity m_gameEntity;
+    private GameUnit m_gameEntity;
 
-    public GameAddEntityCardToHandAction(GameEntity gameEntity)
+    public GameAddEntityCardToHandAction(GameUnit gameEntity)
     {
         m_gameEntity = gameEntity;
 

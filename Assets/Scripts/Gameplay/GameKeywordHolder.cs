@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity)>
+public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
 {
     public List<GameKeywordBase> m_keywords;
 
@@ -12,7 +12,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         m_keywords = new List<GameKeywordBase>();
     }
 
-    public GameKeywordHolder Clone(GameEntity gameEntity, GameEntity cloneTo)
+    public GameKeywordHolder Clone(GameUnit gameEntity, GameUnit cloneTo)
     {
         GameKeywordHolder newHolder = new GameKeywordHolder();
 
@@ -109,7 +109,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameEntity
         return export;
     }
 
-    public void LoadFromJson((JsonKeywordHolderData, GameEntity) tuple)
+    public void LoadFromJson((JsonKeywordHolderData, GameUnit) tuple)
     {
         foreach (string keywordJson in tuple.Item1.keywordJson)
         {

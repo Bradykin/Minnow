@@ -7,28 +7,28 @@ public class AIScanTargetsInRangeStep : AIStep
 {
     protected bool ignoreTargetsCantDamage = true;
 
-    public AIScanTargetsInRangeStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, false);
 
         if (tilesInAttackRange == null)
             return;
 
         for (int i = 0; i < tilesInAttackRange.Count; i++)
         {
-            m_AIGameEnemyEntity.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInAttackRange[i].m_gridPosition.ToString());
+            m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInAttackRange[i].m_gridPosition.ToString());
         }
 
-        List<GameEntity> possibleEntityTargets = new List<GameEntity>();
+        List<GameUnit> possibleEntityTargets = new List<GameUnit>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
         foreach (var tile in tilesInAttackRange)
         {
-            if (tile.IsOccupied() && !tile.m_occupyingEntity.m_isDead && m_AIGameEnemyEntity.m_gameEnemyEntity.CanHitEntity(tile.m_occupyingEntity, false))
+            if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitEntity(tile.m_occupyingUnit, false))
             {
-                int damageAmountPerHit = tile.m_occupyingEntity.CalculateDamageAmount(m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower());
+                int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower());
                 if (ignoreTargetsCantDamage)
                 {
                     if (damageAmountPerHit == 0)
@@ -37,13 +37,13 @@ public class AIScanTargetsInRangeStep : AIStep
                     }
                 }
 
-                possibleEntityTargets.Add(tile.m_occupyingEntity);
+                possibleEntityTargets.Add(tile.m_occupyingUnit);
 
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
                 int numHitsToRateVulnerable = 2;
-                if (tile.m_occupyingEntity.GetKeyword<GameDamageShieldKeyword>() != null)
+                if (tile.m_occupyingUnit.GetKeyword<GameDamageShieldKeyword>() != null)
                 {
-                    numHitsToRateVulnerable -= tile.m_occupyingEntity.GetKeyword<GameDamageShieldKeyword>().m_numShields;
+                    numHitsToRateVulnerable -= tile.m_occupyingUnit.GetKeyword<GameDamageShieldKeyword>().m_numShields;
                 }
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
@@ -51,9 +51,9 @@ public class AIScanTargetsInRangeStep : AIStep
                     damageAmountInVulnerableRange += damageAmountPerHit;
                     numHitsToRateVulnerable--;
                 }
-                if (damageAmountInVulnerableRange >= tile.m_occupyingEntity.GetCurHealth())
+                if (damageAmountInVulnerableRange >= tile.m_occupyingUnit.GetCurHealth())
                 {
-                    m_AIGameEnemyEntity.m_vulnerableEntityTargets.Add(tile.m_occupyingEntity);
+                    m_AIGameEnemyUnit.m_vulnerableUnitTargets.Add(tile.m_occupyingUnit);
                 }
             }
 
@@ -65,17 +65,17 @@ public class AIScanTargetsInRangeStep : AIStep
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
                 {
-                    damageAmountInVulnerableRange += m_AIGameEnemyEntity.m_gameEnemyEntity.GetPower();
+                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower();
                     numHitsToRateVulnerable--;
                 }
                 if (damageAmountInVulnerableRange >= tile.GetBuilding().GetCurHealth())
                 {
-                    m_AIGameEnemyEntity.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
+                    m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Add(tile.GetBuilding());
                 }
             }
         }
 
-        m_AIGameEnemyEntity.m_possibleEntityTargets = possibleEntityTargets;
-        m_AIGameEnemyEntity.m_possibleBuildingTargets = possibleBuildingTargets;
+        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleEntityTargets;
+        m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
     }
 }

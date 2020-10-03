@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSkeleton : GameEntity
+public class ContentSkeleton : GameUnit
 {
     private int m_chance;
     private int m_healthBonus;

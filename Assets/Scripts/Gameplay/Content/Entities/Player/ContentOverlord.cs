@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOverlord : GameEntity
+public class ContentOverlord : GameUnit
 {
     public ContentOverlord()
     {
@@ -25,7 +25,7 @@ public class ContentOverlord : GameEntity
         LateInit();
     }
 
-    protected override int GetDamageToDealTo(GameEntity target)
+    protected override int GetDamageToDealTo(GameUnit target)
     {
         int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
         this.SpendStamina(GetCurStamina());

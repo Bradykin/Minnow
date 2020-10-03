@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSabobot : GameEntity
+public class ContentSabobot : GameUnit
 {
     private int m_explosionDamage = 25;
     private int m_explosionRange = 1;
@@ -37,9 +37,9 @@ public class ContentSabobot : GameEntity
 
 public class GameDeathAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
 
-    public GameDeathAction(GameEntity entity)
+    public GameDeathAction(GameUnit entity)
     {
         m_entity = entity;
 

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class AIMoveToTileStandardStep : AIMoveStep
 {
-    public AIMoveToTileStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override void TakeStep()
     {
-        GameTile targetTile = m_AIGameEnemyEntity.m_targetGameTile;
+        GameTile targetTile = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (targetTile == null)
         {
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen());
+            MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
             return;
         }
 
-        m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(targetTile);
+        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(targetTile);
     }
 }

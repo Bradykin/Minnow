@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameGainGoldEnrageAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
 
-    public GameGainGoldEnrageAction(GameEntity entity)
+    public GameGainGoldEnrageAction(GameUnit entity)
     {
         m_entity = entity;
 

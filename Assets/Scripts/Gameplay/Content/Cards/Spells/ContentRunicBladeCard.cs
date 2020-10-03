@@ -27,7 +27,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
         return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b>.'";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

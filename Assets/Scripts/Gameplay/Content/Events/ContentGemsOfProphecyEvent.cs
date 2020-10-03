@@ -35,12 +35,12 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingEntity.m_name + " gains 'Victorious: gain +" + m_powerGain + "/+0.'";
+        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingUnit.m_name + " gains 'Victorious: gain +" + m_powerGain + "/+0.'";
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingEntity.AddKeyword(new GameVictoriousKeyword(new GameGainPowerAction(m_tile.m_occupyingEntity, m_powerGain)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainPowerAction(m_tile.m_occupyingUnit, m_powerGain)));
 
         EndEvent();
     }
@@ -58,12 +58,12 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingEntity.m_name + " gains 'Enrage: heal for " + m_heal + " health.'";
+        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingUnit.m_name + " gains 'Enrage: heal for " + m_heal + " health.'";
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingEntity.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingEntity, m_heal)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingUnit, m_heal)));
 
         EndEvent();
     }

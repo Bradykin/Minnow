@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenWizard : GameEntity
+public class ContentElvenWizard : GameUnit
 {
     public ContentElvenWizard()
     {

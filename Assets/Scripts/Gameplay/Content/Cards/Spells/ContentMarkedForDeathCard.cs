@@ -28,7 +28,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameGainMaxHealthAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
 
-    public GameGainMaxHealthAction(GameEntity entity, int toGain)
+    public GameGainMaxHealthAction(GameUnit entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;

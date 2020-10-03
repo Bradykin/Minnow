@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GameExplodeAction : GameAction
 {
-    private GameEntity m_explodingEntity;
+    private GameUnit m_explodingEntity;
     private int m_explodePower;
     private int m_explodeRange;
 
-    public GameExplodeAction(GameEntity explodingEntity, int explodePower, int explodeRange)
+    public GameExplodeAction(GameUnit explodingEntity, int explodePower, int explodeRange)
     {
         m_explodingEntity = explodingEntity;
         m_explodePower = explodePower;
@@ -25,7 +25,7 @@ public class GameExplodeAction : GameAction
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             GameBuildingBase building = surroundingTiles[i].GetBuilding();
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
 
             if (building != null)
             {

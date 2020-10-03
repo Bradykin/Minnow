@@ -32,7 +32,7 @@ public class WorldController : Singleton<WorldController>
 
             for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledEntities.Count; i++)
             {
-                GameEntity entity = m_gameController.m_gameOpponent.m_controlledEntities[i];
+                GameUnit entity = m_gameController.m_gameOpponent.m_controlledEntities[i];
                 print("Player Entity: " + entity.GetName());
             }
         }
@@ -246,7 +246,7 @@ public class WorldController : Singleton<WorldController>
 
     public void FocusNextPlayerEntity()
     {
-        List<GameEntity> validEntities = GetValidFocusEntities();
+        List<GameUnit> validEntities = GetValidFocusEntities();
         if (validEntities.Count == 0)
         {
             return;
@@ -259,7 +259,7 @@ public class WorldController : Singleton<WorldController>
             m_playerEntityFocusIndex = 0;
         }
 
-        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+        UIUnit thisEntity = validEntities[m_playerEntityFocusIndex].m_worldUnit;
 
         if (Globals.m_selectedEntity != thisEntity)
         {
@@ -271,7 +271,7 @@ public class WorldController : Singleton<WorldController>
 
     public void FocusPrevPlayerEntity()
     {
-        List<GameEntity> validEntities = GetValidFocusEntities();
+        List<GameUnit> validEntities = GetValidFocusEntities();
         if (validEntities.Count == 0)
         {
             return;
@@ -284,7 +284,7 @@ public class WorldController : Singleton<WorldController>
             m_playerEntityFocusIndex = validEntities.Count-1;
         }
 
-        UIEntity thisEntity = validEntities[m_playerEntityFocusIndex].m_uiEntity;
+        UIUnit thisEntity = validEntities[m_playerEntityFocusIndex].m_worldUnit;
 
         if (Globals.m_selectedEntity != thisEntity)
         {
@@ -294,9 +294,9 @@ public class WorldController : Singleton<WorldController>
         UICameraController.Instance.SnapToGameObject(thisEntity.gameObject);
     }
 
-    private List<GameEntity> GetValidFocusEntities()
+    private List<GameUnit> GetValidFocusEntities()
     {
-        List<GameEntity> validFocusEntities = new List<GameEntity>();
+        List<GameUnit> validFocusEntities = new List<GameUnit>();
 
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -306,7 +306,7 @@ public class WorldController : Singleton<WorldController>
             return validFocusEntities;
         }
 
-        List<GameEntity> playerEntities = player.m_controlledEntities;
+        List<GameUnit> playerEntities = player.m_controlledEntities;
 
         //Early exit, empty list
         if (playerEntities.Count == 0)

@@ -34,7 +34,7 @@
     {
         if (m_card is GameCardEntityBase)
         {
-            GameEntity entity = ((GameCardEntityBase)m_card).GetEntity();
+            GameUnit entity = ((GameCardEntityBase)m_card).GetEntity();
 
             UIHelper.CreateEntityTooltip(entity);
         }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 {
-    public AISiegebreakerMoveToTargetStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override void TakeStep()
     {
-        MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurStamina(), true);
+        MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true);
     }
 }

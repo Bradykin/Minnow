@@ -23,7 +23,7 @@ public class ContentAngelicGiftEvent : GameEvent
 
     public override bool IsValidToSpawn(GameTile tile)
     {
-        if (tile.IsOccupied() && !tile.m_occupyingEntity.m_isDead && tile.m_occupyingEntity.GetKeyword<GameFlyingKeyword>() != null)
+        if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && tile.m_occupyingUnit.GetKeyword<GameFlyingKeyword>() != null)
         {
             return false;
         }
@@ -45,7 +45,7 @@ public class GameEventAngelicWings : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingEntity.m_name + " gains Flying!.";
+        m_message = m_tile.m_occupyingUnit.m_name + " gains Flying!.";
 
         return base.GetMessage();
     }
@@ -59,7 +59,7 @@ public class GameEventAngelicWings : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingEntity.AddKeyword(new GameFlyingKeyword());
+        m_tile.m_occupyingUnit.AddKeyword(new GameFlyingKeyword());
 
         EndEvent();
     }
@@ -67,6 +67,6 @@ public class GameEventAngelicWings : GameEventOption
     public override void BuildTooltip()
     {
         GameFlyingKeyword keyword = new GameFlyingKeyword();
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.m_name, keyword.m_focusInfoText, m_tile.m_occupyingEntity.GetTeam()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.m_name, keyword.m_focusInfoText, m_tile.m_occupyingUnit.GetTeam()));
     }
 }

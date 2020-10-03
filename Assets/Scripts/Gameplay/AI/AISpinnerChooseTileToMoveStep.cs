@@ -6,17 +6,17 @@ using UnityEngine;
 
 public class AISpinnerChooseTileToMoveStep : AIMoveStep
 {
-    public AISpinnerChooseTileToMoveStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISpinnerChooseTileToMoveStep(AIGameEnemyUnit AIGameEnemyEnemy) : base(AIGameEnemyEnemy) { }
 
     public override void TakeStep()
     {
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, false);
 
         List<GameTile> tilesWithMaxAdjacent = new List<GameTile>();
         int maxAdjacent = 0;
         for (int i = 0; i < tilesInMoveAttackRange.Count; i++)
         {
-            if (tilesInMoveAttackRange[i].IsOccupied() && tilesInMoveAttackRange[i] != m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile())
+            if (tilesInMoveAttackRange[i].IsOccupied() && tilesInMoveAttackRange[i] != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
             {
                 continue;
             }
@@ -25,7 +25,7 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
             int numAdjacent = 0;
             for (int k = 0; k < adjacentTiles.Count; k++)
             {
-                if (adjacentTiles[k].IsOccupied() && adjacentTiles[k].m_occupyingEntity.GetTeam() == Team.Player)
+                if (adjacentTiles[k].IsOccupied() && adjacentTiles[k].m_occupyingUnit.GetTeam() == Team.Player)
                 {
                     numAdjacent++;
                 }
@@ -52,12 +52,12 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
 
         if (tilesWithMaxAdjacent.Count == 0)
         {
-            m_AIGameEnemyEntity.m_targetGameTile = null;
-            MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen());
+            m_AIGameEnemyUnit.m_targetGameTile = null;
+            MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
         }
         else if (tilesWithMaxAdjacent.Count == 1)
         {
-            m_AIGameEnemyEntity.m_targetGameTile = tilesWithMaxAdjacent[0];
+            m_AIGameEnemyUnit.m_targetGameTile = tilesWithMaxAdjacent[0];
         }
         else
         {
@@ -68,13 +68,13 @@ public class AISpinnerChooseTileToMoveStep : AIMoveStep
                 {
                     if (adjacentTiles[k].HasBuilding() && adjacentTiles[k].GetBuilding().m_name == "Castle")
                     {
-                        m_AIGameEnemyEntity.m_targetGameTile = tilesWithMaxAdjacent[i];
+                        m_AIGameEnemyUnit.m_targetGameTile = tilesWithMaxAdjacent[i];
                         return;
                     }
                 }
             }
 
-            m_AIGameEnemyEntity.m_targetGameTile = tilesWithMaxAdjacent[Random.Range(0, tilesWithMaxAdjacent.Count)];
+            m_AIGameEnemyUnit.m_targetGameTile = tilesWithMaxAdjacent[Random.Range(0, tilesWithMaxAdjacent.Count)];
         }
     }
 }

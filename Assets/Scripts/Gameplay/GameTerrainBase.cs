@@ -49,7 +49,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public Sprite m_iconWhite;
 
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
-    public bool IsPassable(GameEntity checkerEntity)
+    public bool IsPassable(GameUnit checkerEntity)
     {
         if (checkerEntity != null)
         {

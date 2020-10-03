@@ -274,8 +274,8 @@ public static class GameCardFactory
 
         if (toClone is GameCardEntityBase && clone is GameCardEntityBase)
         {
-            GameEntity toCloneEntity = ((GameCardEntityBase)toClone).GetEntity();
-            GameEntity cloneEntity = ((GameCardEntityBase)clone).GetEntity();
+            GameUnit toCloneEntity = ((GameCardEntityBase)toClone).GetEntity();
+            GameUnit cloneEntity = ((GameCardEntityBase)clone).GetEntity();
 
             cloneEntity.CopyOff(toCloneEntity);
         }
@@ -341,7 +341,7 @@ public static class GameCardFactory
         return null;
     }
 
-    public static GameCardEntityBase GetCardFromEntity(GameEntity entity)
+    public static GameCardEntityBase GetCardFromEntity(GameUnit entity)
     {
         if (!m_hasInit)
         {

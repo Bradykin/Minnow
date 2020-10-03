@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHomonculus : GameEntity
+public class ContentHomonculus : GameUnit
 {
     private int m_effectAmount = 1;
     private int m_effectRange = 1;

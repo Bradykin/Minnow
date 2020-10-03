@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGroundskeeper : GameEntity
+public class ContentGroundskeeper : GameUnit
 {
     private int m_powerBoost = 5;
     private int m_staminaRegenBoost = 2;

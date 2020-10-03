@@ -31,7 +31,7 @@ public class GameEventZombieOutbreakOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingEntity.m_name + " turns into a zombie.";
+        m_message = m_tile.m_occupyingUnit.m_name + " turns into a zombie.";
 
         return base.GetMessage();
     }

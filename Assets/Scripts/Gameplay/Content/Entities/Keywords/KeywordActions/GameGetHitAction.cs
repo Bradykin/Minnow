@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameGetHitAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_damage;
 
-    public GameGetHitAction(GameEntity entity, int damage)
+    public GameGetHitAction(GameUnit entity, int damage)
     {
         m_entity = entity;
         m_damage = damage;

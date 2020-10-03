@@ -5,7 +5,7 @@ using UnityEngine;
 public struct JsonGameTileData
 {
     public Vector2Int gridPosition;
-    public string gameEntityData;
+    public string gameUnitData;
     public string gameBuildingData;
     public string gameTerrainData;
     public string gameEventData;

@@ -116,7 +116,7 @@ public class GameCardSpellBase : GameCard
         TriggerSpellcraft(targetBuilding.GetGameTile());
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         base.PlayCard(targetEntity);
 

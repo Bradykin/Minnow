@@ -31,7 +31,7 @@ public class ContentImmolationCard : GameCardSpellBase
         return startingDesc;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

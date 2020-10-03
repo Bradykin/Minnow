@@ -221,9 +221,9 @@ public static class UIHelper
         return Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
     }
 
-    public static void SetMoveableTileForEntity(UIEntity entity)
+    public static void SetMoveableTileForEntity(UIUnit entity)
     {
-        List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(entity.GetEntity().GetGameTile(), false, false);
+        List<GameTile> tilesInMovementRange = WorldGridManager.Instance.GetTilesInMovementRange(entity.GetUnit().GetGameTile(), false, false);
 
         if (tilesInMovementRange == null)
         {
@@ -238,7 +238,7 @@ public static class UIHelper
             }
         }
 
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(entity.GetEntity().GetGameTile(), false, false);
+        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(entity.GetUnit().GetGameTile(), false, false);
 
         if (tilesInAttackRange == null)
         {
@@ -247,14 +247,14 @@ public static class UIHelper
 
         for (int i = 0; i < tilesInAttackRange.Count; i++)
         {
-            if (tilesInAttackRange[i].IsOccupied() && tilesInAttackRange[i].m_occupyingEntity.GetTeam() != entity.GetEntity().GetTeam())
+            if (tilesInAttackRange[i].IsOccupied() && tilesInAttackRange[i].m_occupyingUnit.GetTeam() != entity.GetUnit().GetTeam())
             {
                 tilesInAttackRange[i].GetWorldTile().SetAttackable(true);
             }
         }
     }
 
-    public static void SelectEntity(UIEntity entity)
+    public static void SelectEntity(UIUnit entity)
     {
         bool entityAlreadySelected = Globals.m_selectedEntity == entity;
 
@@ -277,7 +277,7 @@ public static class UIHelper
         }
     }
 
-    public static void SelectEnemy(UIEntity entity)
+    public static void SelectEnemy(UIUnit entity)
     {
         bool enemyAlreadySelected = Globals.m_selectedEnemy == entity;
 
@@ -434,7 +434,7 @@ public static class UIHelper
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc, isValid);
     }
 
-    public static void CreateEntityTooltip(GameEntity entity, bool secondStack = false)
+    public static void CreateEntityTooltip(GameUnit entity, bool secondStack = false)
     {
         GameCard cardFromEntity = GameCardFactory.GetCardFromEntity(entity);
         UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromEntity, UICard.CardDisplayType.Tooltip);

@@ -23,7 +23,7 @@ public class GameEventRejectFruitOption : GameEventOption
 
     public override void AcceptOption()
     {
-        GameEntity entity = m_tile.m_occupyingEntity;
+        GameUnit entity = m_tile.m_occupyingUnit;
 
         entity.AddPower(m_powerIncrease);
         entity.AddMaxHealth(m_healthIncrease);
@@ -36,9 +36,9 @@ public class GameEventRejectFruitOption : GameEventOption
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Player)
+            if (nearbyTiles[i].IsOccupied() && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
             {
-                nearbyTiles[i].m_occupyingEntity.Heal(m_healAmount);
+                nearbyTiles[i].m_occupyingUnit.Heal(m_healAmount);
             }
             
             //TODO: Modify this to check IsBurned(), and if so, restore tile to unburned form

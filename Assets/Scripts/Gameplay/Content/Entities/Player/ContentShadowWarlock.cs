@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadowWarlock : GameEntity
+public class ContentShadowWarlock : GameUnit
 {
     public ContentShadowWarlock()
     {

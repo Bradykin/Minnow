@@ -17,12 +17,12 @@ public class ContentPhalanxCard : GameCardSpellBase
         SetupBasicData();
     }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
+    public override bool IsValidToPlay(GameUnit targetEntity)
     {
         return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Humanoid;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {
@@ -40,8 +40,8 @@ public class ContentPhalanxCard : GameCardSpellBase
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingEntity.m_isDead &&
-                    surroundingTiles[i].m_occupyingEntity.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingEntity.GetTypeline() == Typeline.Humanoid)
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                    surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
                 {
                     amount+=1;
                 }

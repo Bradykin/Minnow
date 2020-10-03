@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGladiator : GameEntity
+public class ContentGladiator : GameUnit
 {
     public ContentGladiator()
     {

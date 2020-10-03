@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameGainBrittleAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
 
-    public GameGainBrittleAction(GameEntity entity, int toGain)
+    public GameGainBrittleAction(GameUnit entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;

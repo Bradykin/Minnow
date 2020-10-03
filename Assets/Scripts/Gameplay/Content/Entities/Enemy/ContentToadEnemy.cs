@@ -32,9 +32,9 @@ public class ContentToadEnemy : GameEnemyEntity
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
-        int damageTaken = base.HitEntity(other, spendStamina);
+        int damageTaken = base.HitUnit(other, spendStamina);
 
         other.SpendStamina(other.GetCurStamina() - 1);
 

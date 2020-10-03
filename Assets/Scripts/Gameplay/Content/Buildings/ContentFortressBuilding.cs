@@ -32,7 +32,7 @@ public class ContentFortressBuilding : GameBuildingBase
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
 
             if (entity == null)
             {

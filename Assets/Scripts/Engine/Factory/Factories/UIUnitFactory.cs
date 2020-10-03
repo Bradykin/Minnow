@@ -6,15 +6,15 @@ using Object = UnityEngine.Object;
 
 namespace Game.Util
 {
-    public class UIEntityFactory : FactoryBase
+    public class UIUnitFactory : FactoryBase
     {
         private readonly GameObject m_prefab;
 
         //============================================================================================================//
 
-        public UIEntityFactory(GameObject uiEntityPrefab)
+        public UIUnitFactory(GameObject uiUnitPrefab)
         {
-            m_prefab = uiEntityPrefab;
+            m_prefab = uiUnitPrefab;
         }
 
         //============================================================================================================//
@@ -28,7 +28,7 @@ namespace Game.Util
         public T CreateObject<T>(WorldTile tile)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = tile.GetScreenPositionForEntity();
+            obj.transform.position = tile.GetScreenPositionForUnit();
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)
@@ -36,18 +36,18 @@ namespace Game.Util
                 obj.transform.parent = uiParent.transform;
             }
 
-            UIEntity uiEntity = obj.GetComponent<UIEntity>();
+            UIUnit uiUnit = obj.GetComponent<UIUnit>();
 
             if (tile.GetGameTile().m_isFog)
             {
-                uiEntity.SetVisible(false);
+                uiUnit.SetVisible(false);
             }
 
-            uiEntity.Init(tile.GetGameTile().m_occupyingEntity);
+            uiUnit.Init(tile.GetGameTile().m_occupyingUnit);
 
-            if (uiEntity.GetEntity().GetTeam() == Team.Player)
+            if (uiUnit.GetUnit().GetTeam() == Team.Player)
             {
-                FactoryManager.Instance.GetFactory<UIBorderUnitFactory>().CreateObject<UIBorderUnit>(uiEntity);
+                FactoryManager.Instance.GetFactory<UIBorderUnitFactory>().CreateObject<UIBorderUnit>(uiUnit);
             }
 
             return obj.GetComponent<T>();

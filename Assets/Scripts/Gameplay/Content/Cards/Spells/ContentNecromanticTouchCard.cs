@@ -28,7 +28,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         return GetDamageDescString() + "Heal all allied units within range " + m_range + " for the same amount.";
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {
@@ -43,7 +43,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
 
             if (entity == null)
             {

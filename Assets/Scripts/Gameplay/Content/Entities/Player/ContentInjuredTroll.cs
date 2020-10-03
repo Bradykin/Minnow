@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInjuredTroll : GameEntity
+public class ContentInjuredTroll : GameUnit
 {
     public ContentInjuredTroll()
     {

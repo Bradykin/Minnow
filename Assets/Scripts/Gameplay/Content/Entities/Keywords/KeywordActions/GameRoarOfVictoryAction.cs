@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class GameRoarOfVictoryAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
 
-    public GameRoarOfVictoryAction(GameEntity entity)
+    public GameRoarOfVictoryAction(GameUnit entity)
     {
         m_entity = entity;
 

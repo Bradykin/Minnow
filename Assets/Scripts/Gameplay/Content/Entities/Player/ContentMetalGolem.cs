@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class ContentMetalGolem : GameEntity
+public class ContentMetalGolem : GameUnit
 {
     private int m_eatingRange;
 

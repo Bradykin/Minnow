@@ -24,7 +24,7 @@ public class ContentShivCard : GameCardSpellBase
         return GetDamageDescString();
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWildfolk : GameEntity
+public class ContentWildfolk : GameUnit
 {
     private List<GameKeywordBase> m_keywords;
 

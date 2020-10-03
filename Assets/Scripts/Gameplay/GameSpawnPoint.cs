@@ -33,7 +33,7 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
         m_gameSpawnEntityName = gameSpawnEntityName;
     }
 
-    public void SetSpawnPointEntity(GameEntity gameSpawnEntity)
+    public void SetSpawnPointEntity(GameUnit gameSpawnEntity)
     {
         m_gameSpawnPointType = SpawnPointType.EntityType;
         m_gameSpawnEntityName = gameSpawnEntity.m_name;
@@ -46,7 +46,7 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
         JsonGameSpawnPointData jsonData = new JsonGameSpawnPointData
         {
             gameSpawnPointType = (int)m_gameSpawnPointType,
-            gameSpawnEntityName = m_gameSpawnEntityName
+            gameSpawnUnitName = m_gameSpawnEntityName
         };
 
         var export = JsonUtility.ToJson(jsonData);
@@ -62,7 +62,7 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
         }
         else if (jsonData.gameSpawnPointType == (int)SpawnPointType.EntityType)
         {
-            SetSpawnPointEntity(jsonData.gameSpawnEntityName);
+            SetSpawnPointEntity(jsonData.gameSpawnUnitName);
         }
     }
 }

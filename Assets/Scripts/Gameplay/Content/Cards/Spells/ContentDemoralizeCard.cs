@@ -18,7 +18,7 @@ public class ContentDemoralizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

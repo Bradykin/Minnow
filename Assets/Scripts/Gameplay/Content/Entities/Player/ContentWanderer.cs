@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWanderer : GameEntity
+public class ContentWanderer : GameUnit
 {
     public ContentWanderer()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMiner : GameEntity
+public class ContentMiner : GameUnit
 {
     private int m_miningRange;
     private int m_miningVal;

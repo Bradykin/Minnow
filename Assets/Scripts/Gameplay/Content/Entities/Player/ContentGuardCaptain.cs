@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGuardCaptain : GameEntity
+public class ContentGuardCaptain : GameUnit
 {
     private int m_rallyRange = 2;
     private int m_rallyValue = 3;
@@ -33,7 +33,7 @@ public class ContentGuardCaptain : GameEntity
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
 
             if (entity == null)
             {

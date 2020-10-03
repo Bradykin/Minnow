@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenSentinel : GameEntity
+public class ContentElvenSentinel : GameUnit
 {
     public ContentElvenSentinel()
     {
@@ -25,7 +25,7 @@ public class ContentElvenSentinel : GameEntity
         LateInit();
     }
 
-    protected override int GetDamageToDealTo(GameEntity other)
+    protected override int GetDamageToDealTo(GameUnit other)
     {
         int toDeal = base.GetDamageToDealTo(other);
 
@@ -37,10 +37,10 @@ public class ContentElvenSentinel : GameEntity
 
 public class GameGainRangeAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
 
-    public GameGainRangeAction(GameEntity entity, int toGain)
+    public GameGainRangeAction(GameUnit entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;

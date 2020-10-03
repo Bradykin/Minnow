@@ -22,12 +22,12 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Healing);
     }
 
-    public override bool IsValidToPlay(GameEntity targetEntity)
+    public override bool IsValidToPlay(GameUnit targetEntity)
     {
         return base.IsValidToPlay() && targetEntity.GetTypeline() == Typeline.Monster;
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

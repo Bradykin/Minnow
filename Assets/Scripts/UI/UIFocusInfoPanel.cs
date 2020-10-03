@@ -99,19 +99,19 @@ public class UIFocusInfoPanel : UIElementBase
         }
     }
 
-    private void UpdateFocusData(UIEntity entityData)
+    private void UpdateFocusData(UIUnit entityData)
     {
         m_shouldShow = true;
 
         //Don't show this if there are no keywords.
-        if (entityData.GetEntity().GetKeywordHolderForRead().m_keywords.Count == 0)
+        if (entityData.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
         {
             m_shouldShow = false;
             return;
         }
 
-        m_titleText.text = entityData.GetEntity().GetName();
-        List<GameKeywordBase> keywords = entityData.GetEntity().GetKeywordHolderForRead().m_keywords;
+        m_titleText.text = entityData.GetUnit().GetName();
+        List<GameKeywordBase> keywords = entityData.GetUnit().GetKeywordHolderForRead().m_keywords;
         for (int i = 0; i < keywords.Count; i++)
         {
             m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";

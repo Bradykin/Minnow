@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentZombie : GameEntity
+public class ContentZombie : GameUnit
 {
     public ContentZombie()
     {
@@ -23,7 +23,7 @@ public class ContentZombie : GameEntity
         LateInit();
     }
 
-    public override bool CanHitEntity(GameEntity other, bool checkRange = true)
+    public override bool CanHitEntity(GameUnit other, bool checkRange = true)
     {
         if (other is ContentZombie)
         {
@@ -38,24 +38,24 @@ public class ContentZombie : GameEntity
         return base.CanHitEntity(other, checkRange);
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
         int damageTaken = 0;
 
         if (!(other is ContentZombieEnemy))
         {
             GameEnemyEntity newZombie = new ContentZombieEnemy(GameHelper.GetOpponent());
-            other.m_uiEntity.Init(newZombie);
+            other.m_worldUnit.Init(newZombie);
             GameHelper.GetOpponent().m_controlledEntities.Remove((GameEnemyEntity)other);
             GameHelper.GetOpponent().m_controlledEntities.Add(newZombie);
 
             other.GetGameTile().SwapEntity(newZombie);
 
-            damageTaken = base.HitEntity(newZombie, spendStamina);
+            damageTaken = base.HitUnit(newZombie, spendStamina);
         }
         else
         {
-            damageTaken = base.HitEntity(other, spendStamina);
+            damageTaken = base.HitUnit(other, spendStamina);
         }
 
         return damageTaken;

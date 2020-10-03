@@ -16,7 +16,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public GameObject m_spawnIndicator;
     public GameObject m_eventIndicator;
 
-    private UIEntity m_occupyingEntityObj;
+    private UIUnit m_occupyingEntityObj;
 
     public GameObject m_titleHolder;
     public Text m_nameText;
@@ -69,7 +69,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         if ((GetGameTile().IsOccupied() && m_occupyingEntityObj == null))
         {
-            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIEntityFactory>().CreateObject<UIEntity>(this);
+            m_occupyingEntityObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<UIUnit>(this);
         }
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
@@ -86,7 +86,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (m_isHovered)
             {
-                if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingEntity == null)
+                if (Globals.m_testSpawnEnemyEntity != null && GetGameTile().m_occupyingUnit == null)
                 {
                     GameEnemyEntity newEnemyEntity = GameEntityFactory.GetEnemyEntityClone(Globals.m_testSpawnEnemyEntity, WorldController.Instance.m_gameController.m_gameOpponent);
                     GetGameTile().PlaceEntity(newEnemyEntity);
@@ -236,29 +236,29 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
         }
 
-        UIEntity selectedEntity = Globals.m_selectedEntity;
+        UIUnit selectedEntity = Globals.m_selectedEntity;
         if (selectedEntity != null && !Globals.m_inIntermission)
         {
-            if (selectedEntity.GetEntity().CanMoveTo(GetGameTile()))
+            if (selectedEntity.GetUnit().CanMoveTo(GetGameTile()))
             {
                 selectedEntity.MoveTo(GetGameTile());
             }
             else
             {
-                if (GetGameTile().IsPassable(selectedEntity.GetEntity(), false))
+                if (GetGameTile().IsPassable(selectedEntity.GetUnit(), false))
                 {
-                    int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetEntity().GetGameTile(), GetGameTile(), true, false, true);
-                    if (pathLength == 1 && GetGameTile().m_occupyingEntity == null)
+                    int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetUnit().GetGameTile(), GetGameTile(), true, false, true);
+                    if (pathLength == 1 && GetGameTile().m_occupyingUnit == null)
                     {
-                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " Stamina.", false, gameObject);
+                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetUnit()) + " Stamina.", false, gameObject);
                     }
                     else
                     {
-                        if (GetGameTile().m_occupyingEntity == Globals.m_selectedEntity.GetEntity())
+                        if (GetGameTile().m_occupyingUnit == Globals.m_selectedEntity.GetUnit())
                         {
                             UIHelper.CreateWorldElementNotification("Already here.", false, gameObject);
                         }
-                        else if (GetGameTile().m_occupyingEntity != null)
+                        else if (GetGameTile().m_occupyingUnit != null)
                         {
                             UIHelper.CreateWorldElementNotification("Already occupied.", false, gameObject);
                         }
@@ -396,12 +396,12 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         if (m_occupyingEntityObj != null)
         {
             GetGameTile().ClearEntity();
-            Recycler.Recycle<UIEntity>(m_occupyingEntityObj);
+            Recycler.Recycle<UIUnit>(m_occupyingEntityObj);
             m_occupyingEntityObj = null;
         }
     }
 
-    public void PlaceEntity(UIEntity newEntity)
+    public void PlaceEntity(UIUnit newEntity)
     {
         m_occupyingEntityObj = newEntity;
     }

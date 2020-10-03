@@ -30,10 +30,10 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         List<GameTile> surroundingTiles;
         surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 3);
 
-        List<GameEntity> entities = new List<GameEntity>();
+        List<GameUnit> entities = new List<GameUnit>();
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameEntity entity = surroundingTiles[i].m_occupyingEntity;
+            GameUnit entity = surroundingTiles[i].m_occupyingUnit;
 
             if (entity != null && !GameHelper.IsBossOrElite(entity))
             {
@@ -46,7 +46,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
             return;
         }
 
-        GameEntity targetEntity = entities[Random.Range(0, entities.Count)];
+        GameUnit targetEntity = entities[Random.Range(0, entities.Count)];
 
         targetEntity.Die();
     }

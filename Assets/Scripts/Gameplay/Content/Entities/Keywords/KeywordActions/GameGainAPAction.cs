@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameGainStaminaAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
 
-    public GameGainStaminaAction(GameEntity entity, int toGain)
+    public GameGainStaminaAction(GameUnit entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;

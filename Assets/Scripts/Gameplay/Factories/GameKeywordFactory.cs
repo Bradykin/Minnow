@@ -31,7 +31,7 @@ public class GameKeywordFactory
         m_hasInit = true;
     }
 
-    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameEntity gameEntity)
+    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameUnit gameEntity)
     {
         if (!m_hasInit)
             Init();
@@ -59,7 +59,7 @@ public class GameKeywordFactory
         return newKeyword;
     }
 
-    public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameEntity gameEntity)
+    public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameUnit gameEntity)
     {
         return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJsonAsString()), gameEntity);
     }

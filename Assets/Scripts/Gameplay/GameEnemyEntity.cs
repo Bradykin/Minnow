@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEnemyEntity : GameEntity, ITakeTurnAI
+public class GameEnemyEntity : GameUnit, ITakeTurnAI
 {
-    public AIGameEnemyEntity m_AIGameEnemyEntity;
+    public AIGameEnemyUnit m_AIGameEnemyEntity;
     public GameOpponent m_gameOpponentController;
 
     public bool m_isElite;
@@ -16,7 +16,7 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
 
     public GameEnemyEntity(GameOpponent gameOpponent)
     {
-        m_AIGameEnemyEntity = new AIGameEnemyEntity(this);
+        m_AIGameEnemyEntity = new AIGameEnemyUnit(this);
         m_gameOpponentController = gameOpponent;
     }
 

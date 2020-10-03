@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AISiegebreakerAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStaminaStandardStep
 {
-    public AISiegebreakerAttackUntilOutOfStaminaStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AISiegebreakerAttackUntilOutOfStaminaStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurStamina() == m_AIGameEnemyEntity.m_gameEnemyEntity.GetMaxStamina())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() == m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
         {
             base.TakeStep();
         }

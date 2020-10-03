@@ -33,8 +33,8 @@ public class GameEventChemistEnergyHealOption : GameEventOption
 
         GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(m_goldCost));
 
-        m_tile.m_occupyingEntity.Heal(m_tile.m_occupyingEntity.GetMaxHealth());
-        m_tile.m_occupyingEntity.GainStamina(m_tile.m_occupyingEntity.GetMaxStamina());
+        m_tile.m_occupyingUnit.Heal(m_tile.m_occupyingUnit.GetMaxHealth());
+        m_tile.m_occupyingUnit.GainStamina(m_tile.m_occupyingUnit.GetMaxStamina());
 
         EndEvent();
     }

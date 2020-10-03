@@ -38,7 +38,7 @@ public class ContentZombieEnemy : GameEnemyEntity
         LateInit();
     }
 
-    public override bool CanHitEntity(GameEntity other, bool checkRange = true)
+    public override bool CanHitEntity(GameUnit other, bool checkRange = true)
     {
         if (other is ContentZombie)
         {
@@ -53,23 +53,23 @@ public class ContentZombieEnemy : GameEnemyEntity
         return base.CanHitEntity(other, checkRange);
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
         int damageTaken = 0;
         if (!(other is ContentZombie))
         {
-            GameEntity newZombie = new ContentZombie();
-            other.m_uiEntity.Init(newZombie);
+            GameUnit newZombie = new ContentZombie();
+            other.m_worldUnit.Init(newZombie);
             GameHelper.GetPlayer().RemoveControlledEntity(other);
             GameHelper.GetPlayer().AddControlledEntity(newZombie);
 
             other.GetGameTile().SwapEntity(newZombie);
 
-            damageTaken = base.HitEntity(newZombie, spendStamina);
+            damageTaken = base.HitUnit(newZombie, spendStamina);
         }
         else
         {
-            damageTaken = base.HitEntity(other, spendStamina);
+            damageTaken = base.HitUnit(other, spendStamina);
         }
 
         return damageTaken;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentConjuredImp : GameEntity
+public class ContentConjuredImp : GameUnit
 {
     private bool disableDuplicate = false;
     

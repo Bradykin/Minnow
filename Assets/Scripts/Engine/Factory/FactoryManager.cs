@@ -14,7 +14,7 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_worldTilePrefab = null;
         [SerializeField]
-        private GameObject m_uiEntityPrefab = null;
+        private GameObject m_uiUnitPrefab = null;
         [SerializeField]
         private GameObject m_uiCardPrefab = null;
         [SerializeField]
@@ -68,8 +68,8 @@ namespace Game.Util
             {
                 case bool _ when type == typeof(WorldTileFactory):
                     return new WorldTileFactory(m_worldTilePrefab) as T;
-                case bool _ when type == typeof(UIEntityFactory):
-                    return new UIEntityFactory(m_uiEntityPrefab) as T;
+                case bool _ when type == typeof(UIUnitFactory):
+                    return new UIUnitFactory(m_uiUnitPrefab) as T;
                 case bool _ when type == typeof(UICardFactory):
                     return new UICardFactory(m_uiCardPrefab, m_uiPlayerHandParent) as T;
                 case bool _ when type == typeof(UICardTooltipFactory):

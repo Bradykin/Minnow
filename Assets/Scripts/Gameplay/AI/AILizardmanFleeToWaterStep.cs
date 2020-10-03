@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class AILizardmanFleeToWaterStep : AIStep
 {
-    public AILizardmanFleeToWaterStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile().GetTerrain().IsWater())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
         {
             return;
         }
 
-        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), 2, 1);
+        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 2, 1);
 
         List<GameTile> tilesToFleeInWater = new List<GameTile>();
         List<GameTile> tilesToFleeInOpenWater = new List<GameTile>();
         for (int i = 0; i < tilesAtDistance.Count; i++)
         {
-            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingEntity.m_isDead))
+            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingUnit.m_isDead))
             {
-                int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), tilesAtDistance[i], false, false, false);
+                int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), tilesAtDistance[i], false, false, false);
 
                 if (pathLength > 0)
                 {
@@ -51,11 +51,11 @@ public class AILizardmanFleeToWaterStep : AIStep
 
         if (tilesToFleeInOpenWater.Count > 0)
         {
-            m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(tilesToFleeInOpenWater[Random.Range(0, tilesToFleeInOpenWater.Count)]);
+            m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(tilesToFleeInOpenWater[Random.Range(0, tilesToFleeInOpenWater.Count)]);
         }
         else if (tilesToFleeInWater.Count > 0)
         {
-            m_AIGameEnemyEntity.m_gameEnemyEntity.m_uiEntity.MoveTo(tilesToFleeInWater[Random.Range(0, tilesToFleeInWater.Count)]);
+            m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(tilesToFleeInWater[Random.Range(0, tilesToFleeInWater.Count)]);
         }
     }
 }

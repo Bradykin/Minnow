@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracle : GameEntity
+public class ContentFishOracle : GameUnit
 {
     public ContentFishOracle()
     {

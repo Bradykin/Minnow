@@ -11,9 +11,9 @@ public static class Globals
     public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
-    public static UIEntity m_selectedEntity;
+    public static UIUnit m_selectedEntity;
     public static WorldTile m_selectedTile;
-    public static UIEntity m_selectedEnemy;
+    public static UIUnit m_selectedEnemy;
     public static WorldTile m_hoveredTile;
     public static UICard m_hoveredCard;
 

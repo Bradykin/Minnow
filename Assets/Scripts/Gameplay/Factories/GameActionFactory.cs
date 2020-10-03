@@ -31,7 +31,7 @@ public class GameActionFactory
         m_hasInit = true;
     }
 
-    public static GameAction GetActionWithName(JsonActionData jsonData, GameEntity gameEntity)
+    public static GameAction GetActionWithName(JsonActionData jsonData, GameUnit gameEntity)
     {
         if (!m_hasInit)
             Init();

@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class GameCardEntityBase : GameCard
 {
-    public GameEntity m_entity { get; protected set; }
+    public GameUnit m_entity { get; protected set; }
 
     public override string GetName()
     {
         return m_entity.GetName();
     }
 
-    public GameEntity GetEntity()
+    public GameUnit GetEntity()
     {
         return m_entity;
     }
 
-    public void SetEntity(GameEntity newEntity)
+    public void SetEntity(GameUnit newEntity)
     {
         m_entity = newEntity;
     }

@@ -12,7 +12,7 @@ public static class GameHelper
         return (Random.Range(1, 101) <= percent);
     }
 
-    public static void MakePlayerEntity(GameTile targetTile, GameEntity entity)
+    public static void MakePlayerEntity(GameTile targetTile, GameUnit entity)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -154,7 +154,7 @@ public static class GameHelper
         return SceneLoader.CurrentScene == "LevelCreatorScene";
     }
 
-    public static bool IsBossOrElite(GameEntity toCheck)
+    public static bool IsBossOrElite(GameUnit toCheck)
     {
         if (toCheck is GameEnemyEntity)
         {

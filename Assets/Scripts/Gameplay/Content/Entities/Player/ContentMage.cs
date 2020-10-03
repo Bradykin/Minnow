@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMage : GameEntity
+public class ContentMage : GameUnit
 {
     public ContentMage()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentNaturalScout : GameEntity
+public class ContentNaturalScout : GameUnit
 {
     public ContentNaturalScout()
     {

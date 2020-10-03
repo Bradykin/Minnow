@@ -25,7 +25,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Monster);
     }
 
-    public override void PlayCard(GameEntity targetEntity)
+    public override void PlayCard(GameUnit targetEntity)
     {
         if (!IsValidToPlay(targetEntity))
         {

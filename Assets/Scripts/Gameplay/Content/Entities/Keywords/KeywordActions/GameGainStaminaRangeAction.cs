@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameGainStaminaRangeAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
     private int m_range;
 
-    public GameGainStaminaRangeAction(GameEntity entity, int toGain, int range)
+    public GameGainStaminaRangeAction(GameUnit entity, int toGain, int range)
     {
         m_entity = entity;
         m_toGain = toGain;
@@ -25,9 +25,9 @@ public class GameGainStaminaRangeAction : GameAction
         
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].m_occupyingEntity.m_isDead && tilesInRange[i].m_occupyingEntity.GetTeam() == Team.Player)
+            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].m_occupyingUnit.m_isDead && tilesInRange[i].m_occupyingUnit.GetTeam() == Team.Player)
             {
-                tilesInRange[i].m_occupyingEntity.GainStamina(m_toGain);
+                tilesInRange[i].m_occupyingUnit.GainStamina(m_toGain);
             }
         }
     }

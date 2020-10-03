@@ -2,9 +2,9 @@
 
 public class GameSpellcraftAttackAction : GameAction
 {
-    private GameEntity m_gameEntity;
+    private GameUnit m_gameEntity;
 
-    public GameSpellcraftAttackAction(GameEntity gameEntity)
+    public GameSpellcraftAttackAction(GameUnit gameEntity)
     {
         m_gameEntity = gameEntity;
 

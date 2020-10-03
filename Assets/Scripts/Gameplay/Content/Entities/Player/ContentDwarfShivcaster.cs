@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfShivcaster : GameEntity
+public class ContentDwarfShivcaster : GameUnit
 {
     public ContentDwarfShivcaster()
     {
@@ -28,11 +28,11 @@ public class ContentDwarfShivcaster : GameEntity
 
 public class GameShivNearbyAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private GameCard m_shivCard;
     private int m_numShivsThrown = 2;
 
-    public GameShivNearbyAction(GameEntity entity)
+    public GameShivNearbyAction(GameUnit entity)
     {
         m_entity = entity;
         m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
@@ -53,13 +53,13 @@ public class GameShivNearbyAction : GameAction
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_entity.GetGameTile(), 2);
 
-        List<GameEntity> nearbyEnemies = new List<GameEntity>();
+        List<GameUnit> nearbyEnemies = new List<GameUnit>();
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingEntity.m_isDead && nearbyTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy)
+            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingUnit.m_isDead && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy)
             {
-                nearbyEnemies.Add(nearbyTiles[i].m_occupyingEntity);
+                nearbyEnemies.Add(nearbyTiles[i].m_occupyingUnit);
             }
         }
 

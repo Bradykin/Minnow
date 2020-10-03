@@ -17,7 +17,7 @@ public class GamePlayer : ITurns
 
     public List<GameCard> m_hand { get; private set; }
 
-    public List<GameEntity> m_controlledEntities { get; private set; }
+    public List<GameUnit> m_controlledEntities { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
     private int m_spellPower = 0;
@@ -36,7 +36,7 @@ public class GamePlayer : ITurns
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
-        m_controlledEntities = new List<GameEntity>();
+        m_controlledEntities = new List<GameUnit>();
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(25);
@@ -230,7 +230,7 @@ public class GamePlayer : ITurns
         return toReturn;
     }
 
-    public void AddControlledEntity(GameEntity toAdd)
+    public void AddControlledEntity(GameUnit toAdd)
     {
         m_controlledEntities.Add(toAdd);
     }
@@ -240,7 +240,7 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Add(toAdd);
     }
 
-    public void RemoveControlledEntity(GameEntity toRemove)
+    public void RemoveControlledEntity(GameUnit toRemove)
     {
         m_controlledEntities.Remove(toRemove);
     }
@@ -250,7 +250,7 @@ public class GamePlayer : ITurns
         m_controlledBuildings.Remove(toRemove);
     }
 
-    public void InformWasSummoned(GameEntity summonedEntity)
+    public void InformWasSummoned(GameUnit summonedEntity)
     {
         for (int i = 0; i < m_controlledEntities.Count; i++)
         {

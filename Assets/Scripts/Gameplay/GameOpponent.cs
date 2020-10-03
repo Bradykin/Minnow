@@ -107,7 +107,7 @@ public class GameOpponent : ITurns
     {
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
-            if (m_spawnPoints[i].m_tile.m_occupyingEntity != null)
+            if (m_spawnPoints[i].m_tile.m_occupyingUnit != null)
             {
                 continue;
             }

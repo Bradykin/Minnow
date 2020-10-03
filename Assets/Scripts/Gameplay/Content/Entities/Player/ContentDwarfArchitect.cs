@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfArchitect : GameEntity
+public class ContentDwarfArchitect : GameUnit
 {
     private int m_maxStaminaIncrease = 1;
     private int m_effectRange = 2;
@@ -25,7 +25,7 @@ public class ContentDwarfArchitect : GameEntity
         LateInit();
     }
 
-    public override void OnOtherSummon(GameEntity other)
+    public override void OnOtherSummon(GameUnit other)
     {
         base.OnOtherSummon(other);
 

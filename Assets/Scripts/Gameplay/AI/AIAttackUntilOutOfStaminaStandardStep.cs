@@ -4,40 +4,40 @@ using UnityEngine;
 
 public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 {
-    public AIAttackUntilOutOfStaminaStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIAttackUntilOutOfStaminaStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override void TakeStep()
     {
-        if (m_AIGameEnemyEntity.m_targetGameElement == null || !m_AIGameEnemyEntity.m_gameEnemyEntity.IsInRangeOfGameElement(m_AIGameEnemyEntity.m_targetGameElement))
+        if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
             return;
         }
 
-        while(m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+        while(m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
         {
             bool didAttack = false;
-            switch (m_AIGameEnemyEntity.m_targetGameElement)
+            switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
-                case GameEntity gameEntity:
+                case GameUnit gameUnit:
                     didAttack = true;
-                    m_AIGameEnemyEntity.m_gameEnemyEntity.HitEntity(gameEntity);
-                    if (gameEntity.m_isDead || gameEntity == null)
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
+                    if (gameUnit.m_isDead || gameUnit == null)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyEntity.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         return;
                     }
                     break;
                 case GameBuildingBase gameBuildingBase:
                     didAttack = true;
-                    m_AIGameEnemyEntity.m_gameEnemyEntity.HitBuilding(gameBuildingBase);
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuildingBase);
                     if (gameBuildingBase.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyEntity.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         return;
                     }

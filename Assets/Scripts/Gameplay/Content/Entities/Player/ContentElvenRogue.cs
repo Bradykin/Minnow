@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenRogue : GameEntity
+public class ContentElvenRogue : GameUnit
 {
     public ContentElvenRogue()
     {

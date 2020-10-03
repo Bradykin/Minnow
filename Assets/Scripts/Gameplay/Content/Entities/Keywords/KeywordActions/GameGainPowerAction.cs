@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameGainPowerAction : GameAction
 {
-    private GameEntity m_entity;
+    private GameUnit m_entity;
     private int m_toGain;
 
-    public GameGainPowerAction(GameEntity entity, int toGain)
+    public GameGainPowerAction(GameUnit entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;

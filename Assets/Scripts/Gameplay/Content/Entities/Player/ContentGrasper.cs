@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrasper : GameEntity
+public class ContentGrasper : GameUnit
 {
     public ContentGrasper()
     {
@@ -22,9 +22,9 @@ public class ContentGrasper : GameEntity
         LateInit();
     }
 
-    public override int HitEntity(GameEntity other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
-        int damageTaken = base.HitEntity(other, spendStamina);
+        int damageTaken = base.HitUnit(other, spendStamina);
 
         this.GainStamina(other.GetCurStamina());
         other.EmptyStamina();

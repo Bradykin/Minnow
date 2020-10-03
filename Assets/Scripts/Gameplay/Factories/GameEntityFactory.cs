@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameEntityFactory
 {
-    private static List<GameEntity> m_playerEntities = new List<GameEntity>();
+    private static List<GameUnit> m_playerEntities = new List<GameUnit>();
 
 
     private static List<GameEnemyEntity> m_enemies = new List<GameEnemyEntity>();
@@ -199,20 +199,20 @@ public class GameEntityFactory
         return (GameEnemyEntity)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
     }
 
-    public static GameEntity GetEntityFromJson(JsonGameEntityData jsonData)
+    public static GameUnit GetEntityFromJson(JsonGameUnitData jsonData)
     {
         if (!m_hasInit)
             Init();
 
         int i = m_playerEntities.FindIndex(t => t.m_name == jsonData.name);
 
-        GameEntity newPlayerEntity = (GameEntity)Activator.CreateInstance(m_playerEntities[i].GetType());
+        GameUnit newPlayerEntity = (GameUnit)Activator.CreateInstance(m_playerEntities[i].GetType());
         newPlayerEntity.LoadFromJson(jsonData);
 
         return newPlayerEntity;
     }
 
-    public static GameEnemyEntity GetEnemyFromJson(JsonGameEntityData jsonData, GameOpponent gameOpponent)
+    public static GameEnemyEntity GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
         if (!m_hasInit)
             Init();

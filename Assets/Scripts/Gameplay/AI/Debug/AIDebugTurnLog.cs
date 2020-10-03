@@ -6,10 +6,10 @@ public class AIDebugTurnLog
 {
     public List<string> m_tilesScannedForTargets = new List<string>();
     
-    public List<string> m_possibleEntityTargets = new List<string>();
+    public List<string> m_possibleUnitTargets = new List<string>();
     public List<string> m_possibleBuildingTargets = new List<string>();
 
-    public List<string> m_vulnerableEntityTargets = new List<string>();
+    public List<string> m_vulnerableUnitTargets = new List<string>();
     public List<string> m_vulnerableBuildingTargets = new List<string>();
 
     public int m_waveNumber;
