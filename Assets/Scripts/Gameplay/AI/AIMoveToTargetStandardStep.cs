@@ -1,6 +1,7 @@
 ﻿using Game.Util;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using UnityEngine;
 
@@ -8,16 +9,30 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 {
     public AIMoveToTargetStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
-        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
+        if (yield)
+        {
+            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
+        }
+        else
+        {
+            FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
+        }
     }
 
-    protected IEnumerator MoveToTarget(int staminaUsageToMoveToCastle, bool letPassEnemies)
+    protected IEnumerator MoveToTarget(bool yield, int staminaUsageToMoveToCastle, bool letPassEnemies)
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+            if (yield)
+            {
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+            }
+            else
+            {
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+            }
             yield break;
         }
 
@@ -41,7 +56,14 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(staminaUsageToMoveToCastle));
+            if (yield)
+            {
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+            }
+            else
+            {
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+            }
             yield break;
         }
 
@@ -64,7 +86,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
             yield break;
         }
 
-        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         if (useSteppedOutTurn)
         {

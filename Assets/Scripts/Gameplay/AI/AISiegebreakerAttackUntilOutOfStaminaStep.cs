@@ -7,11 +7,18 @@ public class AISiegebreakerAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStami
 {
     public AISiegebreakerAttackUntilOutOfStaminaStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() == m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
         {
-            yield return FactoryManager.Instance.StartCoroutine(base.TakeStep());
+            if (yield)
+            {
+                yield return FactoryManager.Instance.StartCoroutine(base.TakeStep(yield));
+            }
+            else
+            {
+                FactoryManager.Instance.StartCoroutine(base.TakeStep(yield));
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 {
     public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
         {
@@ -65,7 +65,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 
         int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
-        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         if (useSteppedOutTurn && Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
         {

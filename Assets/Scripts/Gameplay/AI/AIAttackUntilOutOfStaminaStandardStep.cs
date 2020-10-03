@@ -6,14 +6,14 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 {
     public AIAttackUntilOutOfStaminaStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
             yield break;
         }
 
-        bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
         while(m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
         {

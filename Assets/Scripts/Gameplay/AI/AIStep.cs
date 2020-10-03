@@ -11,5 +11,5 @@ public abstract class AIStep
         m_AIGameEnemyUnit = AIGameEnemyUnit;
     }
 
-    public abstract IEnumerator TakeStep();
+    public abstract IEnumerator TakeStep(bool yield);
 }

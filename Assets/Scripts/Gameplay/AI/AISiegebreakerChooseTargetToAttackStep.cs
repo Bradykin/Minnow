@@ -7,7 +7,7 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
 {
     public AISiegebreakerChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)

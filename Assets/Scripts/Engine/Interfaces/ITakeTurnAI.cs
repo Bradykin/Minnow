@@ -6,6 +6,6 @@ namespace Game.Util
 {
     public interface ITakeTurnAI
     {
-        IEnumerator TakeTurn();
+        IEnumerator TakeTurn(bool yield);
     }
 }

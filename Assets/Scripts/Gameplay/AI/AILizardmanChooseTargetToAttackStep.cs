@@ -7,7 +7,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 {
     public AILizardmanChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep()
+    public override IEnumerator TakeStep(bool yield)
     {
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)

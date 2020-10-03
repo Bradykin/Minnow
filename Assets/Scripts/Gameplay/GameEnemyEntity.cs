@@ -42,9 +42,16 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
 
     //============================================================================================================//
 
-    public IEnumerator TakeTurn()
+    public IEnumerator TakeTurn(bool yield)
     {
-        yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn());
+        if (yield)
+        {
+            yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn(yield));
+        }
+        else
+        {
+            FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn(yield));
+        }
     }
 
     public override void Die()

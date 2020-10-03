@@ -7,7 +7,7 @@ public abstract class AIMoveStep : AIStep
 {
     public AIMoveStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    protected IEnumerator MoveTowardsCastle(int amountStaminaToSpend)
+    protected IEnumerator MoveTowardsCastle(bool yield, int amountStaminaToSpend)
     {
         if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().Castle != null)
         {
@@ -16,7 +16,7 @@ public abstract class AIMoveStep : AIStep
 
             if (moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
             {
-                bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
+                bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
                 if (useSteppedOutTurn)
                 {
