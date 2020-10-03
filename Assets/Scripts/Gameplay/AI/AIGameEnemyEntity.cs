@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,12 +47,16 @@ public class AIGameEnemyEntity : ITakeTurnAI
     public IEnumerator TakeTurn()
     {
         m_newAIDebugLog = new AIDebugTurnLog();
-        
+
+        int indentifier = UnityEngine.Random.Range(0, 1000000);
+
         while (m_doSteps)
         {
             m_doSteps = false;
             for (int i = 0; i < m_AISteps.Count; i++)
             {
+                Debug.Log(m_gameEnemyEntity.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
+                Debug.Log(DateTime.Now + " -- " + DateTime.Now.Millisecond);
                 if (!Globals.m_levelActive)
                 {
                     break;

@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +55,14 @@ public class GameOpponent : ITurns
         {
             GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            int curAP = entity.GetCurStamina();
-            yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
+            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().IsInFog())
+            {
+                yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
+            }
+            else
+            {
+                yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
+            }
 
             entities.Remove(entity);
 
@@ -65,8 +72,12 @@ public class GameOpponent : ITurns
                 {
                     measureTo = entity.GetGameTile();
                 }
-                //yield return new WaitForSeconds(0.25f);
             }
+        }
+
+        if (!Constants.UseSteppedOutEnemyTurns)
+        {
+            yield return new WaitForSeconds(1.0f);
         }
 
         WorldController.Instance.m_gameController.MoveToNextTurn();
