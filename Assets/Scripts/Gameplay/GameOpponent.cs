@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameOpponent : ITurns
@@ -55,24 +54,18 @@ public class GameOpponent : ITurns
         {
             GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
-            {
-                UICameraController.Instance.SmoothCameraTransitionToGameObject(entity.GetWorldTile().gameObject);
-                yield return new WaitForSeconds(0.5f);
-            }
-
             int curAP = entity.GetCurAP();
-            entity.TakeTurn();
+            yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
 
             entities.Remove(entity);
 
-            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().m_isFog)
+            if (Constants.UseSteppedOutEnemyTurns && !entity.GetGameTile().IsInFog())
             {
                 if (!entity.m_isDead && entity.GetGameTile() != null)
                 {
                     measureTo = entity.GetGameTile();
                 }
-                yield return new WaitForSeconds(0.25f);
+                //yield return new WaitForSeconds(0.25f);
             }
         }
 

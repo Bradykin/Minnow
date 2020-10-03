@@ -9,12 +9,14 @@ public class AIScanTargetsInRangeStep : AIStep
 
     public AIScanTargetsInRangeStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
-    public override void TakeStep()
+    public override IEnumerator TakeStep()
     {
         List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, false);
 
         if (tilesInAttackRange == null)
-            return;
+        {
+            yield break;
+        }
 
         for (int i = 0; i < tilesInAttackRange.Count; i++)
         {

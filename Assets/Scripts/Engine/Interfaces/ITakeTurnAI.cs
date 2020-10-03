@@ -6,6 +6,6 @@ namespace Game.Util
 {
     public interface ITakeTurnAI
     {
-        void TakeTurn();
+        IEnumerator TakeTurn();
     }
 }

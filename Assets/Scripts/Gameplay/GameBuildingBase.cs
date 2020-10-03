@@ -10,7 +10,7 @@ public enum BuildingType
     Defensive
 }
 
-public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, ISave, ILoad<JsonGameBuildingData>
+public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<JsonGameBuildingData>
 {
     protected GameTile m_gameTile;
 
@@ -137,10 +137,6 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ITakeTurnAI, I
         m_isDestroyed = false;
         m_curHealth = m_maxHealth;
     }
-
-    //============================================================================================================//
-
-    public virtual void TakeTurn() { }
 
     //============================================================================================================//
 

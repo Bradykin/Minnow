@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGameEnemyEntity
+public class AIGameEnemyEntity : ITakeTurnAI
 {
     private List<AIStep> m_AISteps;
 
@@ -23,6 +24,13 @@ public class AIGameEnemyEntity
 
     public AIDebugTurnLog m_newAIDebugLog = null;
 
+    public bool UseSteppedOutTurn => 
+        Constants.UseSteppedOutEnemyTurns &&
+        (!m_gameEnemyEntity.GetGameTile().IsInFog()
+        || (m_targetGameTile != null && !m_targetGameTile.IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameEntity gameEntityBase && !gameEntityBase.GetGameTile().IsInFog())
+        || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().IsInFog()));
+
     public AIGameEnemyEntity(GameEnemyEntity gameEnemyEntity)
     {
         m_gameEnemyEntity = gameEnemyEntity;
@@ -35,7 +43,7 @@ public class AIGameEnemyEntity
         m_AISteps.Add(AIStep);
     }
 
-    public void TakeTurn()
+    public IEnumerator TakeTurn()
     {
         m_newAIDebugLog = new AIDebugTurnLog();
         
@@ -48,7 +56,7 @@ public class AIGameEnemyEntity
                 {
                     break;
                 }
-                m_AISteps[i].TakeStep();
+                yield return m_AISteps[i].TakeStep();
             }
         }
 

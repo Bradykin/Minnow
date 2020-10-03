@@ -42,9 +42,9 @@ public class GameEnemyEntity : GameEntity, ITakeTurnAI
 
     //============================================================================================================//
 
-    public virtual void TakeTurn()
+    public IEnumerator TakeTurn()
     {
-        m_AIGameEnemyEntity.TakeTurn();
+        yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyEntity.TakeTurn());
     }
 
     public override void Die()

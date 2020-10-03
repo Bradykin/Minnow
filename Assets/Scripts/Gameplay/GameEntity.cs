@@ -893,27 +893,24 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         SpendAP(pathCost);
     }
 
-    public void MoveTowards(GameTile tile, int apToUse)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int apToUse)
     {
         if (this == Globals.m_focusedDebugEnemyEntity)
         {
             Debug.Log("IS FOCUSED ENEMY");
         }
 
-        if (tile == m_gameTile)
-            return;
-
-        if (apToUse <= 0)
-            return;
-
-        //TODO: ashulman rethink this. TEMP CODE TO REMOVE END OF TURN LAG WHEN BLOCKING CHOKEPOINT
-        //int absoluteDistance = WorldGridManager.Instance.GetPathLength(GetGameTile(), tile, true, true, true);
-        //bool letPassEnemies = absoluteDistance >= 8 && (!Constants.FogOfWar || GetGameTile().m_isFog || GetGameTile().m_isSoftFog);
+        if (tile == m_gameTile || apToUse <= 0)
+        {
+            return m_gameTile;
+        }
 
         List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
-            return;
+        {
+            return m_gameTile;
+        }
 
         int apSpent = 0;
         GameTile destinationTile = m_gameTile;
@@ -940,9 +937,6 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 break;
         }
 
-        if (destinationTile == m_gameTile)
-            return;
-
         if (destinationTile.IsOccupied())
         {
             path.Remove(destinationTile);
@@ -950,17 +944,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             {
                 if (!path[i].IsOccupied())
                 {
-                    m_uiEntity.MoveTo(path[i]);
-                    return;
+                    return path[i];
                 }
             }
-            return;
+        }
+        else
+        {
+            return destinationTile;
         }
 
-        if (m_uiEntity != null)
-        {
-            m_uiEntity.MoveTo(destinationTile);
-        }
+        return m_gameTile;
     }
 
     public void SpendAP(int toSpend)
