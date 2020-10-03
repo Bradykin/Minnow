@@ -6,15 +6,18 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
 {
     public ContentDesertYellowCraterTerrain()
     {
+        m_damageReduction = Constants.RuinsDamageReduction;
+        m_costToPass = Constants.RuinsMovementCost;
+
         m_name = "DesertYellowCrater";
-        m_desc = "2 Stamina movement.";
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 
         m_isPassable = true;
-        m_costToPass = 2;
-
-        m_isForest = true;
+        m_canBurn = false;
         m_isHot = true;
+        //m_isEventTerrain = true;
 
         LateInit();
     }

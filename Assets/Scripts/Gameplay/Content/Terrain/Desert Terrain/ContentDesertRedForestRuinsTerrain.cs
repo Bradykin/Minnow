@@ -6,8 +6,8 @@ public class ContentDesertRedForestRuinsTerrain : GameTerrainBase
 {
     public ContentDesertRedForestRuinsTerrain()
     {
-        m_damageReduction = Constants.ForestDamageReduction;
-        m_costToPass = Constants.ForestMovementCost;
+        m_damageReduction = Mathf.Max(Constants.ForestDamageReduction, Constants.RuinsDamageReduction);
+        m_costToPass = Mathf.Max(Constants.ForestMovementCost, Constants.RuinsMovementCost);
 
         m_name = "DesertRedForestRuins";
         m_desc = GenerateDescription();

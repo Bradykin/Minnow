@@ -9,7 +9,7 @@ public class ContentDesertRedGrassPlainsRuinsTerrain : GameTerrainBase
         m_costToPass = 2;
 
         m_name = "DesertRedGrassPlainsRuins";
-        m_desc = "2 Stamina movement.";
+        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
