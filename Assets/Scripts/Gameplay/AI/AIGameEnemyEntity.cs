@@ -55,7 +55,7 @@ public class AIGameEnemyUnit : ITakeTurnAI
             m_doSteps = false;
             for (int i = 0; i < m_AISteps.Count; i++)
             {
-                Debug.Log(m_gameEnemyEntity.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
+                Debug.Log(m_gameEnemyUnit.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
                 Debug.Log(DateTime.Now + " -- " + DateTime.Now.Millisecond);
                 if (!Globals.m_levelActive)
                 {
