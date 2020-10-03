@@ -25,13 +25,13 @@ public class ContentStablesEvent : GameEvent
 public class GameEventTakeHorsesOption : GameEventOption
 {
     private GameTile m_tile;
-    private int m_apRegen;
-    private int m_maxAP;
+    private int m_staminaRegen;
+    private int m_maxStamina;
 
     public GameEventTakeHorsesOption(GameTile tile)
     {
-        m_apRegen = 1;
-        m_maxAP = 1;
+        m_staminaRegen = 1;
+        m_maxStamina = 1;
 
         m_tile = tile;
 
@@ -40,7 +40,7 @@ public class GameEventTakeHorsesOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingEntity.m_name + " gains " + m_maxAP + " max AP and " + m_apRegen + " AP regen per turn.";
+        m_message = m_tile.m_occupyingEntity.m_name + " gains " + m_maxStamina + " max Stamina and " + m_staminaRegen + " Stamina regen per turn.";
 
         return base.GetMessage();
     }
@@ -54,8 +54,8 @@ public class GameEventTakeHorsesOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingEntity.AddAPRegen(m_apRegen);
-        m_tile.m_occupyingEntity.AddMaxAP(m_maxAP);
+        m_tile.m_occupyingEntity.AddStaminaRegen(m_staminaRegen);
+        m_tile.m_occupyingEntity.AddMaxStamina(m_maxStamina);
 
         EndEvent();
     }

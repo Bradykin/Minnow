@@ -9,7 +9,7 @@ public class UIEntity : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
-    public UIAPContainer m_apContainer;
+    public UIStaminaContainer m_staminaContainer;
     public Text m_healthText;
     public Text m_powerText;
     public Text m_titleText;
@@ -38,7 +38,7 @@ public class UIEntity : MonoBehaviour
         m_renderer.sprite = GetEntity().m_icon;
         m_tintRenderer.sprite = GetEntity().m_iconWhite;
 
-        m_apContainer.Init(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+        m_staminaContainer.Init(GetEntity().GetCurStamina(), GetEntity().GetMaxStamina(), GetEntity().GetTeam());
 
         if (GetEntity().GetTeam() == Team.Player)
         {
@@ -62,7 +62,7 @@ public class UIEntity : MonoBehaviour
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed);
         }
 
-        if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetEntity().GetCurAP() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
+        if (this == Globals.m_selectedEntity || this == Globals.m_selectedEnemy || (m_isHovered && GetEntity().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetEntity().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             m_collider.size = new Vector2(2.5f, 3.5f);
@@ -87,12 +87,12 @@ public class UIEntity : MonoBehaviour
 
         m_titleBlock.SetActive(true);
 
-        if (GetEntity().GetCurAP() == 0 && Globals.m_selectedEntity == this)
+        if (GetEntity().GetCurStamina() == 0 && Globals.m_selectedEntity == this)
         {
             UIHelper.UnselectEntity();
         }
 
-        m_apContainer.DoUpdate(GetEntity().GetCurAP(), GetEntity().GetMaxAP(), GetEntity().GetTeam());
+        m_staminaContainer.DoUpdate(GetEntity().GetCurStamina(), GetEntity().GetMaxStamina(), GetEntity().GetTeam());
         if (GetEntity().HasCustomName())
         {
             m_titleText.text = GetEntity().GetCustomName();
@@ -134,9 +134,9 @@ public class UIEntity : MonoBehaviour
 
             m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedEntity == this);
         }
-        else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough AP to be selected (typically 0)
+        else if (GetEntity().GetTeam() == Team.Player) //This means that the target doesn't have enough Stamina to be selected (typically 0)
         {
-            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no AP.", false, gameObject);
+            UIHelper.CreateWorldElementNotification(GetEntity().GetName() + " has no Stamina.", false, gameObject);
         }
         else if (GetEntity().GetTeam() == Team.Enemy)
         {
@@ -146,9 +146,9 @@ public class UIEntity : MonoBehaviour
                 {
                     UIHelper.CreateWorldElementNotification("Out of range.", false, GetEntity().m_uiEntity.gameObject);
                 }
-                else if (!Globals.m_selectedEntity.GetEntity().HasAPToAttack())
+                else if (!Globals.m_selectedEntity.GetEntity().HasStaminaToAttack())
                 {
-                    UIHelper.CreateWorldElementNotification("Requires " + GetEntity().GetAPToAttack() + " AP to attack.", false, GetEntity().m_uiEntity.gameObject);
+                    UIHelper.CreateWorldElementNotification("Requires " + GetEntity().GetStaminaToAttack() + " Stamina to attack.", false, GetEntity().m_uiEntity.gameObject);
                 }
             }
             else
@@ -255,7 +255,7 @@ public class UIEntity : MonoBehaviour
             return false;
         }
 
-        if (GetEntity().GetCurAP() <= 0)
+        if (GetEntity().GetCurStamina() <= 0)
         {
             return false;
         }

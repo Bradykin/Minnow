@@ -20,7 +20,7 @@ public static class UIHelper
     public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.b, 0.3f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
-    public static Color m_validAltPlayer = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
+    public static Color m_validAltPlayer = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
     public static Color m_validAltEnemy = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalid = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
     public static Color m_invalidAlt = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
@@ -232,7 +232,10 @@ public static class UIHelper
 
         for (int i = 0; i < tilesInMovementRange.Count; i++)
         {
-            tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
+            if (!tilesInMovementRange[i].IsOccupied())
+            {
+                tilesInMovementRange[i].GetWorldTile().SetMoveable(true);
+            }
         }
 
         List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(entity.GetEntity().GetGameTile(), false, false);
@@ -482,7 +485,7 @@ public static class UIHelper
         }
         if (chaosVal == 2)
         {
-            return "Enemies have +1 AP regen";
+            return "Enemies have +1 Stamina regen";
         }
         if (chaosVal == 3)
         {

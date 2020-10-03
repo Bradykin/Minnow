@@ -31,11 +31,11 @@ public class ContentShivCard : GameCardSpellBase
             return;
         }
 
-        int apDrain = 2 * GameHelper.RelicCount<ContentPoisonedShivsRelic>();
+        int staminaDrain = 2 * GameHelper.RelicCount<ContentPoisonedShivsRelic>();
 
-        if (apDrain > 0)
+        if (staminaDrain > 0)
         {
-            targetEntity.SpendAP(apDrain);
+            targetEntity.SpendStamina(staminaDrain);
         }
 
         if (GameHelper.RelicCount<ContentBurningShivsRelic>() > 0)

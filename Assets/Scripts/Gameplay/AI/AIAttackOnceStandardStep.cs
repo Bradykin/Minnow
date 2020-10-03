@@ -15,7 +15,7 @@ public class AIAttackOnceStandardStep : AIStep
 
         bool useSteppedOutTurn = m_AIGameEnemyEntity.UseSteppedOutTurn;
 
-        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
         {
             switch (m_AIGameEnemyEntity.m_targetGameElement)
             {
@@ -39,7 +39,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (gameEntity.m_isDead || gameEntity == null)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }
@@ -66,7 +66,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (gameBuilding.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }

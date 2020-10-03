@@ -9,7 +9,7 @@ public class ContentJoltCard : GameCardSpellBase
         m_spellEffect = 1;
 
         m_name = "Jolt";
-        m_desc = "Restore 1 AP.\nDraw a card.";
+        m_desc = "Restore 1 Stamina.\nDraw a card.";
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Uncommon;
@@ -17,7 +17,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.Spellpower);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
@@ -25,7 +25,7 @@ public class ContentJoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains +" + m_spellEffect + GetSpellPowerString() + " AP.\nDraw a card.\n" + GetModifiedBySpellPowerString();
+        return "Target allied unit gains +" + m_spellEffect + GetSpellPowerString() + " Stamina.\nDraw a card.\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -37,7 +37,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.GainAP(GetSpellValue());
+        targetEntity.GainStamina(GetSpellValue());
 
         GameHelper.GetPlayer().DrawCard();
     }

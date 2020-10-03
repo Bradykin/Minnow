@@ -10,6 +10,6 @@ public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 
     public override IEnumerator TakeStep()
     {
-        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetCurAP(), true));
+        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen(), true));
     }
 }

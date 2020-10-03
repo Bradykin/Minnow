@@ -22,7 +22,7 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_uiWorldElementNotificationPrefab = null;
         [SerializeField]
-        private GameObject m_uiAPBubblePrefab = null;
+        private GameObject m_uiStaminaBubblePrefab = null;
         [SerializeField]
         private GameObject m_uiRelicPrefab = null;
         [SerializeField]
@@ -78,8 +78,8 @@ namespace Game.Util
                     return new UIWorldElementNotificationFactory(m_uiWorldElementNotificationPrefab) as T;
                 case bool _ when type == typeof(UISimpleTooltipFactory):
                     return new UISimpleTooltipFactory(m_uiSimpleTooltipPrefab) as T;
-                case bool _ when type == typeof(UIAPBubbleFactory):
-                    return new UIAPBubbleFactory(m_uiAPBubblePrefab) as T;
+                case bool _ when type == typeof(UIStaminaBubbleFactory):
+                    return new UIStaminaBubbleFactory(m_uiStaminaBubblePrefab) as T;
                 case bool _ when type == typeof(UIRelicFactory):
                     return new UIRelicFactory(m_uiRelicPrefab) as T;
                 case bool _ when type == typeof(UIBorderUnitFactory):

@@ -7,7 +7,7 @@ public class ContentOverchargeCard : GameCardSpellBase
     public ContentOverchargeCard()
     {
         m_name = "Overcharge";
-        m_desc = "Maximize the AP of target allied <b>Creation</b> unit.";
+        m_desc = "Maximize the Stamina of target allied <b>Creation</b> unit.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Rare;
@@ -15,8 +15,8 @@ public class ContentOverchargeCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.MaxAP);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
@@ -34,6 +34,6 @@ public class ContentOverchargeCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.FillAP();
+        targetEntity.FillStamina();
     }
 }

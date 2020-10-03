@@ -14,7 +14,7 @@ public class AIMoveToTileStandardStep : AIMoveStep
 
         if (moveDestination == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen()));
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen()));
             yield break;
         }
 

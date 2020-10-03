@@ -14,6 +14,6 @@ public class ContentSabobotCard : GameCardEntityBase
 
         m_tags.AddTag(GameTag.TagType.Reanimate);
         m_tags.AddTag(GameTag.TagType.Explorer);
-        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
     }
 }

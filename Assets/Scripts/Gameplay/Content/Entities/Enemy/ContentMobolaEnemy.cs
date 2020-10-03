@@ -9,8 +9,8 @@ public class ContentMobolaEnemy : GameEnemyEntity
     public ContentMobolaEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 85;
-        m_maxAP = 8;
-        m_apRegen = 2;
+        m_maxStamina = 8;
+        m_staminaRegen = 2;
         m_power = 2;
 
         m_team = Team.Enemy;
@@ -28,7 +28,7 @@ public class ContentMobolaEnemy : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
 
         LateInit();
     }

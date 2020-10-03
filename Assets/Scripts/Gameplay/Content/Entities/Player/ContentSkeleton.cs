@@ -13,8 +13,8 @@ public class ContentSkeleton : GameEntity
         m_healthBonus = 15;
 
         m_maxHealth = 5;
-        m_maxAP = 4;
-        m_apRegen = 2;
+        m_maxStamina = 4;
+        m_staminaRegen = 2;
         m_power = 3;
 
         m_team = Team.Player;

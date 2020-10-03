@@ -5,13 +5,13 @@ using UnityEngine;
 public class ContentFossilizeCard : GameCardSpellBase
 {
     private int m_powerAmount = 2;
-    private int m_apDrainAmount = 1;
+    private int m_staminaDrainAmount = 1;
     private int m_brittleAmount = 3;
 
     public ContentFossilizeCard()
     {
         m_name = "Fossilize";
-        m_desc = "Target enemy unit gets -" + m_powerAmount + "/-0, -" + m_apDrainAmount + " AP, and gains '<b>Brittle</b>: " + m_brittleAmount + "'.";
+        m_desc = "Target enemy unit gets -" + m_powerAmount + "/-0, -" + m_staminaDrainAmount + " Stamina, and gains '<b>Brittle</b>: " + m_brittleAmount + "'.";
         m_targetType = Target.Enemy;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;
@@ -33,7 +33,7 @@ public class ContentFossilizeCard : GameCardSpellBase
         base.PlayCard(targetEntity);
 
         targetEntity.AddPower(-m_powerAmount);
-        targetEntity.SpendAP(m_apDrainAmount);
+        targetEntity.SpendStamina(m_staminaDrainAmount);
 
         GameBrittleKeyword brittleKeyword = targetEntity.GetKeyword<GameBrittleKeyword>();
         if (brittleKeyword != null)

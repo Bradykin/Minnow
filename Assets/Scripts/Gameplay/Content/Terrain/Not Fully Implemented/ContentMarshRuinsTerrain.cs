@@ -7,7 +7,7 @@ public class ContentMarshRuinsTerrain : GameTerrainBase
     public ContentMarshRuinsTerrain()
     {
         m_name = "MarshRuins";
-        m_desc = "2 AP movement.";
+        m_desc = "2 Stamina movement.";
         m_terrainImageNumber = 1;
 
         m_isPassable = true;

@@ -317,7 +317,7 @@ public class WorldController : Singleton<WorldController>
         //Determine which entities in the player list are valid
         for (int i = 0; i < playerEntities.Count; i++)
         {
-            if (playerEntities[i].GetCurAP() > 0)
+            if (playerEntities[i].GetCurStamina() > 0)
             {
                 validFocusEntities.Add(playerEntities[i]);
             }

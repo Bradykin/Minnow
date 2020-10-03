@@ -7,7 +7,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
     public ContentDemonicAspectCard()
     {
         m_name = "Demonic Aspect";
-        m_desc = "Give target unit '<b>Victorious</b>: Gain 2 AP.'";
+        m_desc = "Give target unit '<b>Victorious</b>: Gain 2 Stamina.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_shouldExile = true;
@@ -20,7 +20,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Scaler);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.Victorious);
         m_tags.AddTag(GameTag.TagType.Monster);
     }
@@ -34,6 +34,6 @@ public class ContentDemonicAspectCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainAPAction(targetEntity, 2)));
+        targetEntity.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetEntity, 2)));
     }
 }

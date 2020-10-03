@@ -7,7 +7,7 @@ public class ContentNightWingsCard : GameCardSpellBase
     public ContentNightWingsCard()
     {
         m_name = "Night Wings";
-        m_desc = "Give a friendly unit <b>Flying</b>, but it loses 1 AP regen.";
+        m_desc = "Give a friendly unit <b>Flying</b>, but it loses 1 Stamina regen.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Rare;
@@ -19,7 +19,7 @@ public class ContentNightWingsCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Explorer);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -32,6 +32,6 @@ public class ContentNightWingsCard : GameCardSpellBase
         base.PlayCard(targetEntity);
 
         targetEntity.AddKeyword(new GameFlyingKeyword());
-        targetEntity.AddAPRegen(-1);
+        targetEntity.AddStaminaRegen(-1);
     }
 }

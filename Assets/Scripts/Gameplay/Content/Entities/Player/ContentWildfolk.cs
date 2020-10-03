@@ -16,12 +16,12 @@ public class ContentWildfolk : GameEntity
         m_keywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
         m_keywords.Add(new GameRangeKeyword(2));
         m_keywords.Add(new GameRegenerateKeyword(10));
-        m_keywords.Add(new GameSpellcraftKeyword(new GameGainAPAction(this, 1)));
+        m_keywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
         m_keywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
 
         m_maxHealth = 3;
-        m_maxAP = 5;
-        m_apRegen = 3;
+        m_maxStamina = 5;
+        m_staminaRegen = 3;
         m_power = 1;
 
         m_team = Team.Player;

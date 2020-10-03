@@ -12,8 +12,8 @@ public class ContentGrasperCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.APRegen);
-        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Tank);
     }

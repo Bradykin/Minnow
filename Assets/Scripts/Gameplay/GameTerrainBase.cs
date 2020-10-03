@@ -189,7 +189,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
         if (m_isPassable)
         {
-            description += m_costToPass + " AP movement.";
+            description += m_costToPass + " Stamina movement.";
         }
         else
         {

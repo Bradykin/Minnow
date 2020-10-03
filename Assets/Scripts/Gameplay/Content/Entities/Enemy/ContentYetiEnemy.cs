@@ -9,8 +9,8 @@ public class ContentYetiEnemy : GameEnemyEntity
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 35;
-        m_maxAP = 4;
-        m_apRegen = 2;
+        m_maxStamina = 4;
+        m_staminaRegen = 2;
         m_power = 9;
 
         m_team = Team.Enemy;
@@ -28,7 +28,7 @@ public class ContentYetiEnemy : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIYetiChooseTargetToAttackStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
 
         LateInit();
     }

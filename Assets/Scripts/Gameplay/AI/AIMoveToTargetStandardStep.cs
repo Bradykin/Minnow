@@ -10,14 +10,14 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 
     public override IEnumerator TakeStep()
     {
-        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen(), false));
+        yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen(), false));
     }
 
-    protected IEnumerator MoveToTarget(int apUsageToMoveToCastle, bool letPassEnemies)
+    protected IEnumerator MoveToTarget(int staminaUsageToMoveToCastle, bool letPassEnemies)
     {
         if (m_AIGameEnemyEntity.m_targetGameElement == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetAPRegen()));
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(m_AIGameEnemyEntity.m_gameEnemyEntity.GetStaminaRegen()));
             yield break;
         }
 
@@ -41,11 +41,11 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(apUsageToMoveToCastle));
+            yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(staminaUsageToMoveToCastle));
             yield break;
         }
 
-        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithAPToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, letPassEnemies);
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile(), false, letPassEnemies);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingTiles(targetTile, m_AIGameEnemyEntity.m_gameEnemyEntity.GetRange());
 
         List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyEntity.m_gameEnemyEntity.GetGameTile() || !t.IsOccupied() || t.m_occupyingEntity.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();

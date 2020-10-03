@@ -248,13 +248,21 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 if (GetGameTile().IsPassable(selectedEntity.GetEntity(), false))
                 {
                     int pathLength = WorldGridManager.Instance.GetPathLength(selectedEntity.GetEntity().GetGameTile(), GetGameTile(), true, false, true);
-                    if (pathLength == 1)
+                    if (pathLength == 1 && GetGameTile().m_occupyingEntity == null)
                     {
-                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " AP.", false, gameObject);
+                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedEntity.GetEntity()) + " Stamina.", false, gameObject);
                     }
                     else
                     {
-                        if (GetGameTile().m_occupyingEntity != Globals.m_selectedEntity.GetEntity())
+                        if (GetGameTile().m_occupyingEntity == Globals.m_selectedEntity.GetEntity())
+                        {
+                            UIHelper.CreateWorldElementNotification("Already here.", false, gameObject);
+                        }
+                        else if (GetGameTile().m_occupyingEntity != null)
+                        {
+                            UIHelper.CreateWorldElementNotification("Already occupied.", false, gameObject);
+                        }
+                        else
                         {
                             UIHelper.CreateWorldElementNotification("Out of movement range.", false, gameObject);
                         }

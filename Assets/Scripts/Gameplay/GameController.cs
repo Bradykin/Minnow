@@ -48,7 +48,9 @@ public class GameController
     public void BeginTurnSequence()
     {
         if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+        {
             Globals.m_totemOfTheWolfTurn = Random.Range(0, GetEndWaveTurn() + 1);
+        }
         
         m_currentTurnIndex = 0;
         m_inTurns = true;

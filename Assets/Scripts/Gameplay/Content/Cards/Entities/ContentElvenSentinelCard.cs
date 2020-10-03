@@ -12,7 +12,7 @@ public class ContentElvenSentinelCard : GameCardEntityBase
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Scaler);
     }

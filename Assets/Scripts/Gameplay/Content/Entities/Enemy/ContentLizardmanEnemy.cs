@@ -10,8 +10,8 @@ public class ContentLizardmanEnemy : GameEnemyEntity
     public ContentLizardmanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 15;
-        m_maxAP = 6;
-        m_apRegen = 4;
+        m_maxStamina = 6;
+        m_staminaRegen = 4;
         m_power = 12;
 
         m_team = Team.Enemy;
@@ -29,7 +29,7 @@ public class ContentLizardmanEnemy : GameEnemyEntity
         m_AIGameEnemyEntity.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AILizardmanChooseTargetToAttackStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyEntity));
-        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfAPStandardStep(m_AIGameEnemyEntity));
+        m_AIGameEnemyEntity.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyEntity));
         m_AIGameEnemyEntity.AddAIStep(new AILizardmanFleeToWaterStep(m_AIGameEnemyEntity));
 
         LateInit();

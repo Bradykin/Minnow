@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventData>
 {
     public GameTile m_tile;
-    public int m_APCost;
+    public int m_staminaCost;
     public string m_eventDesc;
 
     public bool m_isComplete;
@@ -38,7 +38,7 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
 
     protected virtual void LateInit()
     {
-        m_APCost = 2;
+        m_staminaCost = 2;
     }
 
     public virtual bool IsValidToSpawn(GameTile tile)

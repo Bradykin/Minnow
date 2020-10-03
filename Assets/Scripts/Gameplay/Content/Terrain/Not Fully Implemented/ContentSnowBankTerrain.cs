@@ -9,7 +9,7 @@ public class ContentSnowBankTerrain : GameTerrainBase
         m_damageReduction = 2;
 
         m_name = "SnowBank";
-        m_desc = "2 AP movement.";
+        m_desc = "2 Stamina movement.";
         m_terrainImageNumber = Random.Range(1, 5);
 
         m_isPassable = true;

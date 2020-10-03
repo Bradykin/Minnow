@@ -10,8 +10,8 @@ public class ContentSabobot : GameEntity
     public ContentSabobot()
     {
         m_maxHealth = 1;
-        m_maxAP = 8;
-        m_apRegen = 2;
+        m_maxStamina = 8;
+        m_staminaRegen = 2;
         m_power = 1;
 
         m_team = Team.Player;
@@ -20,7 +20,7 @@ public class ContentSabobot : GameEntity
         m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)));
 
         m_name = "Sabobot";
-        m_desc = "Starts at max AP.";
+        m_desc = "Starts at full Stamina.";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -31,7 +31,7 @@ public class ContentSabobot : GameEntity
     {
         base.OnSummon();
 
-        m_curAP = m_maxAP;
+        m_curStamina = m_maxStamina;
     }
 }
 

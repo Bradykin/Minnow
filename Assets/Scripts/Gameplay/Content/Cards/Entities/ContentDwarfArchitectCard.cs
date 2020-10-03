@@ -13,7 +13,7 @@ public class ContentDwarfArchitectCard : GameCardEntityBase
         FillBasicData();
 
         m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.APRegen);
-        m_tags.AddTag(GameTag.TagType.MaxAP);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
     }
 }

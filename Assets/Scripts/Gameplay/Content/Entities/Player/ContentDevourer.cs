@@ -7,8 +7,8 @@ public class ContentDevourer : GameEntity
     public ContentDevourer()
     {
         m_maxHealth = 20;
-        m_maxAP = 6;
-        m_apRegen = 4;
+        m_maxStamina = 6;
+        m_staminaRegen = 4;
         m_power = 5;
 
         m_team = Team.Player;

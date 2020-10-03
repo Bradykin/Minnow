@@ -7,7 +7,7 @@ public class GameEventRejectFruitOption : GameEventOption
 
     private int m_powerIncrease = 3;
     private int m_healthIncrease = 10;
-    private int m_apIncrease = 2;
+    private int m_staminaIncrease = 2;
     private int m_knowledgeableDecrease = 2;
     private int m_tileRange = 2;
 
@@ -18,7 +18,7 @@ public class GameEventRejectFruitOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Heal all nearby ally units for " + m_healAmount +" health. Gain +" + m_powerIncrease + "/+" + m_healthIncrease + " and " + m_apIncrease + " current AP, but lose -" + m_knowledgeableDecrease + "/-" + m_knowledgeableDecrease + " on Knowledgeable.";
+        m_message = "Heal all nearby ally units for " + m_healAmount +" health. Gain +" + m_powerIncrease + "/+" + m_healthIncrease + " and " + m_staminaIncrease + " current Stamina, but lose -" + m_knowledgeableDecrease + "/-" + m_knowledgeableDecrease + " on Knowledgeable.";
     }
 
     public override void AcceptOption()
@@ -27,7 +27,7 @@ public class GameEventRejectFruitOption : GameEventOption
 
         entity.AddPower(m_powerIncrease);
         entity.AddMaxHealth(m_healthIncrease);
-        entity.GainAP(m_apIncrease);
+        entity.GainStamina(m_staminaIncrease);
 
         entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(entity, -m_knowledgeableDecrease)));
         entity.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(entity, -m_knowledgeableDecrease)));

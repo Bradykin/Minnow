@@ -14,7 +14,7 @@ public class ContentOverlordCard : GameCardEntityBase
 
         m_tags.AddTag(GameTag.TagType.Explorer);
         m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

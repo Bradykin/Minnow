@@ -15,8 +15,8 @@ public class ContentZombieEnemy : GameEnemyEntity
         zombieOrigin.SetTeam(Team.Enemy);
 
         m_maxHealth = zombieOrigin.GetMaxHealth();
-        m_maxAP = zombieOrigin.GetMaxAP();
-        m_apRegen = zombieOrigin.GetAPRegen();
+        m_maxStamina = zombieOrigin.GetMaxStamina();
+        m_staminaRegen = zombieOrigin.GetStaminaRegen();
         m_power = zombieOrigin.GetPower();
 
         m_team = Team.Enemy;
@@ -53,7 +53,7 @@ public class ContentZombieEnemy : GameEnemyEntity
         return base.CanHitEntity(other, checkRange);
     }
 
-    public override int HitEntity(GameEntity other, bool spendAP = true)
+    public override int HitEntity(GameEntity other, bool spendStamina = true)
     {
         int damageTaken = 0;
         if (!(other is ContentZombie))
@@ -65,11 +65,11 @@ public class ContentZombieEnemy : GameEnemyEntity
 
             other.GetGameTile().SwapEntity(newZombie);
 
-            damageTaken = base.HitEntity(newZombie, spendAP);
+            damageTaken = base.HitEntity(newZombie, spendStamina);
         }
         else
         {
-            damageTaken = base.HitEntity(other, spendAP);
+            damageTaken = base.HitEntity(other, spendStamina);
         }
 
         return damageTaken;

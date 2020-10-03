@@ -130,7 +130,7 @@ public class UIFocusInfoPanel : UIElementBase
         }
         else
         {
-            m_descText.text += "\n\nAP Cost: " + worldTile.GetGameTile().GetCostToPass(null) + "\n\n";
+            m_descText.text += "\n\nStamina Cost: " + worldTile.GetGameTile().GetCostToPass(null) + "\n\n";
         }
 
         m_descText.text += worldTile.GetGameTile().GetFocusPanelText() + "\n";

@@ -24,15 +24,15 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     protected Team m_team;
     protected int m_curHealth;
     protected int m_maxHealth;
-    protected int m_curAP;
-    protected int m_apRegen;
-    protected int m_maxAP;
+    protected int m_curStamina;
+    protected int m_staminaRegen;
+    protected int m_maxStamina;
     protected int m_power;
     protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
-    protected int m_apToAttack = 2;
+    protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
 
@@ -46,8 +46,8 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     public void CopyOff(GameEntity other)
     {
         m_maxHealth = other.m_maxHealth;
-        m_apRegen = other.m_apRegen;
-        m_maxAP = other.m_maxAP;
+        m_staminaRegen = other.m_staminaRegen;
+        m_maxStamina = other.m_maxStamina;
         m_power = other.m_power;
         m_typeline = other.m_typeline;
 
@@ -65,19 +65,19 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_iconWhite = UIHelper.GetIconEntity(m_name + "W");
     }
 
-    public void SetHealthAPValues()
+    public void SetHealthStaminaValues()
     {
         m_curHealth = GetMaxHealth();
-        m_curAP = GetAPRegen();
-        if (m_curAP > m_maxAP)
+        m_curStamina = GetStaminaRegen();
+        if (m_curStamina > m_maxStamina)
         {
-            m_curAP = m_maxAP;
+            m_curStamina = m_maxStamina;
         }
     }
 
     public virtual void OnSummon()
     {
-        SetHealthAPValues();
+        SetHealthStaminaValues();
         
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
@@ -297,7 +297,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
                 {
                     if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingEntity.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingEntity.m_isDead)
                     {
-                        adjacentTiles[i].m_occupyingEntity.SpendAP(adjacentTiles[i].m_occupyingEntity.GetCurAP());
+                        adjacentTiles[i].m_occupyingEntity.SpendStamina(adjacentTiles[i].m_occupyingEntity.GetCurStamina());
                     }
                 }
             }
@@ -356,7 +356,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (!HasAPToAttack())
+        if (!HasStaminaToAttack())
         {
             return false;
         }
@@ -461,9 +461,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    public virtual bool HasAPToAttack()
+    public virtual bool HasStaminaToAttack()
     {
-        if (m_curAP < GetAPToAttack())
+        if (m_curStamina < GetStaminaToAttack())
         {
             return false;
         }
@@ -471,9 +471,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return true;
     }
 
-    public void AddAPRegen(int toAdd)
+    public void AddStaminaRegen(int toAdd)
     {
-        m_apRegen += toAdd;
+        m_staminaRegen += toAdd;
 
         if (!HasCustomName())
         {
@@ -481,19 +481,19 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    public void AddMaxAP(int toAdd)
+    public void AddMaxStamina(int toAdd)
     {
         if (!HasCustomName())
         {
             SetCustomName();
         }
 
-        if (m_maxAP >= Constants.MaxTotalAP)
+        if (m_maxStamina >= Constants.MaxTotalStamina)
         {
             return;
         }
 
-        m_maxAP += toAdd;
+        m_maxStamina += toAdd;
     }
 
     public int GetSightRange()
@@ -501,11 +501,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_sightRange;
     }
 
-    public virtual int HitEntity(GameEntity other, bool spendAP = true)
+    public virtual int HitEntity(GameEntity other, bool spendStamina = true)
     {
-        if (spendAP)
+        if (spendStamina)
         {
-            SpendAP(GetAPToAttack());
+            SpendStamina(GetStaminaToAttack());
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -545,11 +545,11 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return damageTaken;
     }
 
-    public virtual int HitBuilding(GameBuildingBase other, bool spendAP = true)
+    public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true)
     {
-        if (spendAP)
+        if (spendStamina)
         {
-            SpendAP(GetAPToAttack());
+            SpendStamina(GetStaminaToAttack());
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -609,39 +609,39 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_team = newTeam;
     }
 
-    public int GetCurAP()
+    public int GetCurStamina()
     {
-        return m_curAP;
+        return m_curStamina;
     }
 
-    public virtual int GetAPToAttack()
+    public virtual int GetStaminaToAttack()
     {
-        int apToAttack = m_apToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+        int staminaToAttack = m_staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
         if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
-            apToAttack = Mathf.Max(1, apToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+            staminaToAttack = Mathf.Max(1, staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
 
-        return Mathf.Max(1, apToAttack);
+        return Mathf.Max(1, staminaToAttack);
     }
 
-    public void FillAP()
+    public void FillStamina()
     {
-        GainAP(GetMaxAP());
+        GainStamina(GetMaxStamina());
     }
 
-    public void EmptyAP()
+    public void EmptyStamina()
     {
-        SpendAP(GetMaxAP());
+        SpendStamina(GetMaxStamina());
     }
 
-    public void GainAP(int toGain)
+    public void GainStamina(int toGain)
     {
-        m_curAP += toGain;
+        m_curStamina += toGain;
 
-        if (m_curAP > m_maxAP)
+        if (m_curStamina > m_maxStamina)
         {
-            m_curAP = m_maxAP;
+            m_curStamina = m_maxStamina;
         }
 
         UIHelper.ReselectEntity();
@@ -767,9 +767,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         }
     }
 
-    public int GetMaxAP()
+    public int GetMaxStamina()
     {
-        int toReturn = m_maxAP;
+        int toReturn = m_maxStamina;
 
         if (GetTeam() == Team.Player)
         {
@@ -779,9 +779,9 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return toReturn;
     }
 
-    public virtual int GetAPRegen()
+    public virtual int GetStaminaRegen()
     {
-        int toReturn = m_apRegen;
+        int toReturn = m_staminaRegen;
 
         if (GetTeam() == Team.Player)
         {
@@ -872,7 +872,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return false;
         }
 
-        if (WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false) > m_curAP)
+        if (WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false) > m_curStamina)
         {
             return false;
         }
@@ -890,17 +890,17 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         m_gameTile.ClearEntity();
         tile.PlaceEntity(this);
 
-        SpendAP(pathCost);
+        SpendStamina(pathCost);
     }
 
-    public GameTile GetMoveTowardsDestination(GameTile tile, int apToUse)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
     {
         if (this == Globals.m_focusedDebugEnemyEntity)
         {
             Debug.Log("IS FOCUSED ENEMY");
         }
 
-        if (tile == m_gameTile || apToUse <= 0)
+        if (tile == m_gameTile || staminaToUse <= 0)
         {
             return m_gameTile;
         }
@@ -912,7 +912,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             return m_gameTile;
         }
 
-        int apSpent = 0;
+        int staminaSpent = 0;
         GameTile destinationTile = m_gameTile;
 
         List<GameTile> path = new List<GameTile>();
@@ -924,16 +924,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             if (!pathToTile[i].IsPassable(this, false))
                 break;
 
-            int projectedAPSpent = apSpent + pathToTile[i].GetCostToPass(this);
+            int projectedStaminaSpent = staminaSpent + pathToTile[i].GetCostToPass(this);
 
-            if (projectedAPSpent > GetCurAP())
+            if (projectedStaminaSpent > GetCurStamina())
                 break;
 
-            apSpent += pathToTile[i].GetCostToPass(this);
+            staminaSpent += pathToTile[i].GetCostToPass(this);
             destinationTile = pathToTile[i];
             path.Add(destinationTile);
 
-            if (apSpent >= apToUse)
+            if (staminaSpent >= staminaToUse)
                 break;
         }
 
@@ -956,13 +956,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return m_gameTile;
     }
 
-    public void SpendAP(int toSpend)
+    public void SpendStamina(int toSpend)
     {
-        m_curAP -= toSpend;
+        m_curStamina -= toSpend;
 
-        if (m_curAP < 0)
+        if (m_curStamina < 0)
         {
-            m_curAP = 0;
+            m_curStamina = 0;
         }
 
         UIHelper.ReselectEntity();
@@ -979,16 +979,16 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
         return descString;
     }
 
-    private void RegenAP()
+    private void RegenStamina()
     {
-        int apToRegen = GetAPRegen();
+        int staminaToRegen = GetStaminaRegen();
         //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
-        if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn)
+        if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
-            apToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+            staminaToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
         
-        GainAP(apToRegen);
+        GainStamina(staminaToRegen);
     }
 
     public void AddPower(int m_toAdd)
@@ -1044,7 +1044,7 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
 
     public virtual void EndTurn()
     {
-        RegenAP();
+        RegenStamina();
 
         List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
         for (int i = 0; i < regenKeywords.Count; i++)
@@ -1074,14 +1074,14 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
             name = m_name,
             team = (int)m_team,
             curHealth = m_curHealth,
-            curAP = m_curAP,
+            curStamina = m_curStamina,
             maxHealth = m_maxHealth,
-            apRegen = m_apRegen,
-            maxAP = m_maxAP,
+            staminaRegen = m_staminaRegen,
+            maxStamina = m_maxStamina,
             power = m_power,
             typeline = (int)m_typeline,
             keywordHolderJson = keywordHolderJson,
-            apToAttack = m_apToAttack,
+            staminaToAttack = m_staminaToAttack,
             sightRange = m_sightRange
         };
 
@@ -1101,13 +1101,13 @@ public abstract class GameEntity : GameElementBase, ITurns, ISave, ILoad<JsonGam
     {
         m_curHealth = jsonData.curHealth;
         m_team = (Team)jsonData.team;
-        m_curAP = jsonData.curAP;
+        m_curStamina = jsonData.curStamina;
         m_maxHealth = jsonData.maxHealth;
-        m_apRegen = jsonData.apRegen;
-        m_maxAP = jsonData.maxAP;
+        m_staminaRegen = jsonData.staminaRegen;
+        m_maxStamina = jsonData.maxStamina;
         m_power = jsonData.power;
         m_typeline = (Typeline)jsonData.typeline;
-        m_apToAttack = jsonData.apToAttack;
+        m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;
 
         JsonKeywordHolderData jsonKeywordHolderData = JsonUtility.FromJson<JsonKeywordHolderData>(jsonData.keywordHolderJson);

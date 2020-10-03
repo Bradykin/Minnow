@@ -7,7 +7,7 @@ public class ContentEnergizeCard : GameCardSpellBase
     public ContentEnergizeCard()
     {
         m_name = "Energize";
-        m_desc = "Maximize target units AP.";
+        m_desc = "Maximize target units Stamina.";
         m_targetType = Target.Unit;
         m_cost = 2;
         m_rarity = GameRarity.Rare;
@@ -15,7 +15,7 @@ public class ContentEnergizeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
@@ -28,6 +28,6 @@ public class ContentEnergizeCard : GameCardSpellBase
 
         base.PlayCard(targetEntity);
 
-        targetEntity.FillAP();
+        targetEntity.FillStamina();
     }
 }

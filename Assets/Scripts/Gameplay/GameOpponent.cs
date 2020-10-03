@@ -54,7 +54,7 @@ public class GameOpponent : ITurns
         {
             GameEnemyEntity entity = entities.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            int curAP = entity.GetCurAP();
+            int curAP = entity.GetCurStamina();
             yield return FactoryManager.Instance.StartCoroutine(entity.TakeTurn());
 
             entities.Remove(entity);

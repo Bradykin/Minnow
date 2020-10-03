@@ -5,13 +5,13 @@ using UnityEngine;
 public class ContentRanger : GameEntity
 {
     private int m_powerBoost = 8;
-    private int m_apRegenBoost = 2;
+    private int m_staminaRegenBoost = 2;
 
     public ContentRanger()
     {
         m_maxHealth = 15;
-        m_maxAP = 5;
-        m_apRegen = 2;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
         m_power = 9;
 
         m_team = Team.Player;
@@ -20,7 +20,7 @@ public class ContentRanger : GameEntity
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
 
         m_name = "Ranger";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_apRegenBoost + " AP regen.";
+        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -44,20 +44,20 @@ public class ContentRanger : GameEntity
         return returnPower;
     }
 
-    public override int GetAPRegen()
+    public override int GetStaminaRegen()
     {
-        int returnAPRegen = base.GetAPRegen();
+        int returnStaminaRegen = base.GetStaminaRegen();
 
         if (m_gameTile == null)
         {
-            return returnAPRegen;
+            return returnStaminaRegen;
         }
 
         if (m_gameTile.GetTerrain().IsForest())
         {
-            returnAPRegen += m_apRegenBoost;
+            returnStaminaRegen += m_staminaRegenBoost;
         }
 
-        return returnAPRegen;
+        return returnStaminaRegen;
     }
 }

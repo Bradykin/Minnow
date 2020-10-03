@@ -10,15 +10,15 @@ public class ContentGuardCaptain : GameEntity
     public ContentGuardCaptain()
     {
         m_maxHealth = 12;
-        m_maxAP = 5;
-        m_apRegen = 2;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
         m_power = 4;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
         m_name = "Guard Captain";
-        m_desc = "When summoned, all allied <b>Humanoid</b> units within range " + m_rallyRange + " gain +" + m_rallyValue + " AP";
+        m_desc = "When summoned, all allied <b>Humanoid</b> units within range " + m_rallyRange + " gain +" + m_rallyValue + " Stamina.";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconEntity(m_name);
 
@@ -50,7 +50,7 @@ public class ContentGuardCaptain : GameEntity
                 continue;
             }
 
-            entity.GainAP(m_rallyValue);
+            entity.GainStamina(m_rallyValue);
         }
     }
 }

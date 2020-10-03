@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainAPAction : GameAction
+public class GameGainStaminaAction : GameAction
 {
     private GameEntity m_entity;
     private int m_toGain;
 
-    public GameGainAPAction(GameEntity entity, int toGain)
+    public GameGainStaminaAction(GameEntity entity, int toGain)
     {
         m_entity = entity;
         m_toGain = toGain;
 
-        m_name = "Gain AP";
-        m_desc = "Gain " + m_toGain + " AP";
+        m_name = "Gain Stamina";
+        m_desc = "Gain " + m_toGain + " Stamina";
         m_actionParamType = ActionParamType.EntityIntParam;
     }
 
     public override void DoAction()
     {
-        m_entity.GainAP(m_toGain);
+        m_entity.GainStamina(m_toGain);
     }
 
     public override string SaveToJson()

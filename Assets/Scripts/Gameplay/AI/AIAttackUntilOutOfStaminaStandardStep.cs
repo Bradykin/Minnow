@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIAttackUntilOutOfAPStandardStep : AIStep
+public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 {
-    public AIAttackUntilOutOfAPStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
+    public AIAttackUntilOutOfStaminaStandardStep(AIGameEnemyEntity AIGameEnemyEntity) : base(AIGameEnemyEntity) { }
 
     public override IEnumerator TakeStep()
     {
@@ -15,7 +15,7 @@ public class AIAttackUntilOutOfAPStandardStep : AIStep
 
         bool useSteppedOutTurn = m_AIGameEnemyEntity.UseSteppedOutTurn;
 
-        while (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+        while(m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
         {
             bool didAttack = false;
             switch (m_AIGameEnemyEntity.m_targetGameElement)
@@ -41,7 +41,7 @@ public class AIAttackUntilOutOfAPStandardStep : AIStep
 
                     if (gameEntity.m_isDead || gameEntity == null)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }
@@ -69,7 +69,7 @@ public class AIAttackUntilOutOfAPStandardStep : AIStep
 
                     if (gameBuilding.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasAPToAttack())
+                        if (m_AIGameEnemyEntity.m_gameEnemyEntity.HasStaminaToAttack())
                         {
                             m_AIGameEnemyEntity.m_doSteps = true;
                         }

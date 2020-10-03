@@ -5,12 +5,12 @@ using UnityEngine;
 public class ContentTonicOfStrengthCard : GameCardSpellBase
 {
     private int m_powerToGain = 3;
-    private int m_apGain = 2;
+    private int m_staminaGain = 2;
 
     public ContentTonicOfStrengthCard()
     {
         m_name = "Tonic of Strength";
-        m_desc = "Target allied unit gain +" + m_powerToGain + "/+0 and +" + m_apGain + " AP.";
+        m_desc = "Target allied unit gain +" + m_powerToGain + "/+0 and +" + m_staminaGain + " Stamina.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Common;
@@ -19,7 +19,7 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 
     public override void PlayCard(GameEntity targetEntity)
@@ -32,6 +32,6 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
         base.PlayCard(targetEntity);
 
         targetEntity.AddPower(m_powerToGain);
-        targetEntity.GainAP(m_apGain);
+        targetEntity.GainStamina(m_staminaGain);
     }
 }

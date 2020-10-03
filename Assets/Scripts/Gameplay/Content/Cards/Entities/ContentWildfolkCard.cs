@@ -14,6 +14,6 @@ public class ContentWildfolkCard : GameCardEntityBase
 
         m_tags.AddTag(GameTag.TagType.Scaler);
         m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.APRegen);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 }
