@@ -24,6 +24,7 @@ public class UILevelSelectStartButton : UIElementBase
                 Globals.mapToLoad = mapList[i].dataPath;
                 UILevelSelectController.Instance.m_curMap = null;
                 SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
+                return;
             }
         }
     }
