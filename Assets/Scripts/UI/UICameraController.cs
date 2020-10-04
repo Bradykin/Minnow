@@ -30,9 +30,9 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
     void Update()
     {
-        if (GameHelper.IsInLevelSelect())
+        //if (GameHelper.IsInLevelSelect())
         {
-            return;
+            //return;
         }
 
         if (transform.position == m_smoothTarget)
@@ -48,7 +48,11 @@ public class UICameraController : Singleton<UICameraController>, IReset
         {
             HandleMovement();
         }
-        //HandleScrolling();
+
+        if (Constants.CheatsOn)
+        {
+            HandleScrolling();
+        }
     }
 
     public void SmoothCameraTransitionToGameObject(GameObject obj)
