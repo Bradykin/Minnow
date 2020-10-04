@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: either nmartino or ashulman: make rarer events spawn farther away from base
 public static class GameEventFactory
 {
     private static List<GameEvent> m_events = new List<GameEvent>();
@@ -11,37 +10,13 @@ public static class GameEventFactory
     private static List<GameEvent> m_recentEvents = new List<GameEvent>();
     private static int m_numTrackRecentEvents = 5;
 
-    private static bool m_hasInit = false;
-
-    public static void Init()
+    public static void Init(List<GameEvent> events)
     {
-        m_events.Add(new ContentWonderousGenieEvent(null)); // waves 1-6
-        m_events.Add(new ContentOverturnedCartEvent(null)); // waves 1-3 - potential early script
-        m_events.Add(new ContentMillitiaEvent(null)); // waves 2-4
-        m_events.Add(new ContentAngelicGiftEvent(null)); // waves 2-6
-        m_events.Add(new ContentClericEvent(null)); // waves 1-6 - potential early script
-        m_events.Add(new ContentRogueEvent(null)); // waves 1-6 - potential early script
-        m_events.Add(new ContentMysteryWanderer(null)); // waves 2-6
-        m_events.Add(new ContentStablesEvent(null)); // waves 2-5
-        m_events.Add(new ContentMagicianEvent(null)); // waves 1-6 - potential early script
-        m_events.Add(new ContentGemsOfProphecyEvent(null)); // waves 3-5
-        m_events.Add(new ContentOrcDenEvent(null)); // waves that orcs can spawn in - waves 3-4
-        m_events.Add(new ContentForbiddenFruitEvent(null)); // waves 3-4
-        m_events.Add(new ContentCreativeChemistEvent(null)); // waves 1-6 only if you have gold to spend
-        m_events.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-4
-
-        //m_events.Add(new ContentWorthySacrificeEvent(null)); // ashulman - I wasn't sure how to get this working, need to consult with nmartino to finish this
-
-        m_hasInit = true;
+        m_events = events;
     }
 
     public static GameEvent GetRandomEvent(GameTile tile)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         GameElementBase.GameRarity rarity = GetRandomRarity();
 
         return GetRandomEventAtRarity(tile, rarity);
@@ -67,11 +42,6 @@ public static class GameEventFactory
 
     public static GameEvent GetRandomEventAtRarity(GameTile tile, GameElementBase.GameRarity rarity)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         List<GameEvent> availableEvents = new List<GameEvent>();
 
         for (int i = 0; i < m_events.Count; i++)
@@ -136,11 +106,6 @@ public static class GameEventFactory
 
     public static GameEvent GetEventFromJson(JsonGameEventData jsonData, GameTile tile)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         int i = m_events.FindIndex(t => t.m_name == jsonData.name);
 
         GameEvent newEvent = (GameEvent)Activator.CreateInstance(m_events[i].GetType(), tile);

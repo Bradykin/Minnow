@@ -24,43 +24,11 @@ public static class GameCardFactory
     private static List<GameCard> m_uncommonSpellCards = new List<GameCard>();
     private static List<GameCard> m_commonSpellCards = new List<GameCard>();
 
-    private static bool m_hasInit = false;
-
-    public static void Init()
+    public static void Init(List<GameCard> cards)
     {
+        m_cards = cards;
+
         //Unit Cards
-        m_cards.Add(new ContentConjuredImpCard());
-        m_cards.Add(new ContentCyclopsCard());
-        m_cards.Add(new ContentDemonSoldierCard());
-        m_cards.Add(new ContentDevourerCard());
-        m_cards.Add(new ContentDwarfArchitectCard());
-        m_cards.Add(new ContentDwarfShivcasterCard());
-        m_cards.Add(new ContentDwarvenSoldierCard());
-        m_cards.Add(new ContentElvenRogueCard());
-        m_cards.Add(new ContentElvenSentinelCard());
-        m_cards.Add(new ContentElvenWizardCard());
-        m_cards.Add(new ContentFishOracleCard());
-        m_cards.Add(new ContentGladiatorCard());
-        m_cards.Add(new ContentGoblinCard());
-        m_cards.Add(new ContentGrasperCard());
-        m_cards.Add(new ContentGroundskeeperCard());
-        m_cards.Add(new ContentGuardCaptainCard());
-        m_cards.Add(new ContentHeroCard());
-        m_cards.Add(new ContentHomonculusCard());
-        m_cards.Add(new ContentInjuredTrollCard());
-        m_cards.Add(new ContentMageCard());
-        m_cards.Add(new ContentMetalGolemCard());
-        m_cards.Add(new ContentMinerCard());
-        m_cards.Add(new ContentNaturalScoutCard());
-        m_cards.Add(new ContentOverlordCard());
-        m_cards.Add(new ContentRangerCard());
-        m_cards.Add(new ContentRaptorCard());
-        m_cards.Add(new ContentSabobotCard());
-        m_cards.Add(new ContentShadowWarlockCard());
-        m_cards.Add(new ContentSkeletonCard());
-        m_cards.Add(new ContentStoneGolemCard());
-        m_cards.Add(new ContentWandererCard());
-        m_cards.Add(new ContentWildfolkCard());
         m_cards.Add(new ContentZombieCard());
 
         //Enemy Cards
@@ -80,52 +48,6 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentWerewolfEnemyCard());
         m_enemyCards.Add(new ContentYetiEnemyCard());
         m_enemyCards.Add(new ContentZombieEnemyCard());
-
-        //Spell Cards
-        m_cards.Add(new ContentAegisCard());
-        m_cards.Add(new ContentAncientTextsCard());
-        m_cards.Add(new ContentArcaneBoltCard());
-        m_cards.Add(new ContentAssassinationContractCard());
-        m_cards.Add(new ContentBatteryPackCard());
-        m_cards.Add(new ContentBloodMoneyCard());
-        m_cards.Add(new ContentBloodSacrificeCard());
-        m_cards.Add(new ContentBullheadedCard());
-        m_cards.Add(new ContentCosmicPactCard());
-        m_cards.Add(new ContentCureWoundsCard());
-        m_cards.Add(new ContentCurseOfInactionCard());
-        m_cards.Add(new ContentDemonicAspectCard());
-        m_cards.Add(new ContentDemoralizeCard());
-        m_cards.Add(new ContentDreamCard());
-        m_cards.Add(new ContentEncouragementCard());
-        m_cards.Add(new ContentEnergizeCard());
-        m_cards.Add(new ContentFireboltCard());
-        m_cards.Add(new ContentFirestormCard());
-        m_cards.Add(new ContentFletchingCard());
-        m_cards.Add(new ContentFossilizeCard());
-        m_cards.Add(new ContentFuryCard());
-        m_cards.Add(new ContentGrowTalonsCard());
-        m_cards.Add(new ContentImmolationCard());
-        m_cards.Add(new ContentInsightCard());
-        m_cards.Add(new ContentJoltCard());
-        m_cards.Add(new ContentLegionOfBladesCard());
-        m_cards.Add(new ContentLootingsCard());
-        m_cards.Add(new ContentMarkedForDeathCard());
-        m_cards.Add(new ContentMechanizeCard());
-        m_cards.Add(new ContentMonsterProdCard());
-        m_cards.Add(new ContentNecromanticTouchCard());
-        m_cards.Add(new ContentNightWingsCard());
-        m_cards.Add(new ContentOverchargeCard());
-        m_cards.Add(new ContentPhalanxCard());
-        m_cards.Add(new ContentPurgeCard());
-        m_cards.Add(new ContentReforgingCard());
-        m_cards.Add(new ContentRoarOfVictoryCard());
-        m_cards.Add(new ContentRunicBladeCard());
-        m_cards.Add(new ContentShivCard());
-        m_cards.Add(new ContentSummoningCard());
-        m_cards.Add(new ContentTonicOfFortitudeCard());
-        m_cards.Add(new ContentTonicOfStrengthCard());
-        m_cards.Add(new ContentTrollFormCard());
-        m_cards.Add(new ContentWisdomOfThePastCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
@@ -190,21 +112,10 @@ public static class GameCardFactory
                 m_rareCards.Add(m_cards[i]);
             }
         }
-
-        //Debug.Log("Common Cards: " + m_commonCards.Count);
-        //Debug.Log("Uncommon Cards: " + m_uncommonCards.Count);
-        //Debug.Log("Rare Cards: " + m_rareCards.Count);
-
-        m_hasInit = true;
     }
 
     public static GameCard GetRandomStandardCard(List<GameCard> exclusionList = null)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         List<GameCard> checkList = GetCheckList(m_commonCards, m_uncommonCards, m_rareCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -212,11 +123,6 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardUnitCard(List<GameCard> exclusionList = null)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         List<GameCard> checkList = GetCheckList(m_commonUnitCards, m_uncommonUnitCards, m_rareUnitCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -224,11 +130,6 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardSpellCard(List<GameCard> exclusionList = null)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         List<GameCard> checkList = GetCheckList(m_commonSpellCards, m_uncommonSpellCards, m_rareSpellCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -343,11 +244,6 @@ public static class GameCardFactory
 
     public static GameUnitCardBase GetCardFromUnit(GameUnit unit)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         if (unit.GetTeam() == Team.Player)
         {
             for (int i = 0; i < m_unitCards.Count; i++)

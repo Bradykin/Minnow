@@ -19,8 +19,9 @@ public class GameController
     public int m_currentWaveTurn;
     private int m_currentWaveEndTurn;
 
+    private GameMap m_map;
 
-    public GameController()
+    public GameController(GameMap map)
     {
         m_player = new GamePlayer();
         m_gameOpponent = new GameOpponent();
@@ -31,11 +32,13 @@ public class GameController
         m_waveNum = 1;
         m_currentWaveTurn = 1;
         m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
+
+        m_map = map;
     }
 
     public GameMap GetCurMap()
     {
-        return UILevelSelectController.Instance.m_curMap;
+        return m_map;
     }
 
     public void LateInit()

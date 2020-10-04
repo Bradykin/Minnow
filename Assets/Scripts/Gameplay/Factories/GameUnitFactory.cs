@@ -7,7 +7,6 @@ public class GameUnitFactory
 {
     private static List<GameUnit> m_playerUnits = new List<GameUnit>();
 
-
     private static List<GameEnemyUnit> m_enemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_standardEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
@@ -21,9 +20,7 @@ public class GameUnitFactory
     private static List<GameEnemyUnit> m_standardWaveSixEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_standardWaveSevenEnemies = new List<GameEnemyUnit>();
 
-    private static bool m_hasInit = false;
-    
-    public static void Init()
+    public static void Init(List<GameEnemyUnit> spawnPool)
     {
         //Player Units
         m_playerUnits.Add(new ContentConjuredImp());
@@ -60,22 +57,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentWildfolk());
 
         //Enemy Units
-        m_enemies.Add(new ContentAngryBirdEnemy(null));
-        m_enemies.Add(new ContentDarkWarriorEnemy(null));
-        m_enemies.Add(new ContentLichEnemy(null));
-        m_enemies.Add(new ContentLizardmanEnemy(null));
-        m_enemies.Add(new ContentMobolaEnemy(null));
-        m_enemies.Add(new ContentOrcEnemy(null));
-        m_enemies.Add(new ContentOrcShamanEnemy(null));
-        m_enemies.Add(new ContentSiegebreakerUnit(null));
-        m_enemies.Add(new ContentShadeEnemy(null));
-        m_enemies.Add(new ContentSlimeEnemy(null));
-        m_enemies.Add(new ContentSnakeEnemy(null));
-        m_enemies.Add(new ContentSpinnerEnemy(null));
-        m_enemies.Add(new ContentToadEnemy(null));
-        m_enemies.Add(new ContentWerewolfEnemy(null));
-        m_enemies.Add(new ContentYetiEnemy(null));
-        m_enemies.Add(new ContentZombieEnemy(null));
+        m_enemies = spawnPool;
 
         for (int i = 0; i < m_enemies.Count; i++)
         {
@@ -117,17 +99,10 @@ public class GameUnitFactory
                 }
             }
         }
-
-        m_hasInit = true;
     }
 
     public static GameEnemyUnit GetRandomEnemy(GameOpponent gameOpponent, int curWave)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         List<GameEnemyUnit> list = m_standardEnemies;
         if (curWave == 1)
         {
@@ -169,19 +144,11 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit enemyUnit, GameOpponent gameOpponent)
     {
-        if (!m_hasInit)
-            Init();
-
         return (GameEnemyUnit)Activator.CreateInstance(enemyUnit.GetType(), gameOpponent);
     }
 
     public static GameEnemyUnit GetRandomEliteEnemy(GameOpponent gameOpponent)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         int r = UnityEngine.Random.Range(0, m_eliteEnemies.Count);
 
         return (GameEnemyUnit)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
@@ -189,11 +156,6 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetRandomBossEnemy(GameOpponent gameOpponent)
     {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
         int r = UnityEngine.Random.Range(0, m_bossEnemies.Count);
 
         return (GameEnemyUnit)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
@@ -201,9 +163,6 @@ public class GameUnitFactory
 
     public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
-        if (!m_hasInit)
-            Init();
-
         int i = m_playerUnits.FindIndex(t => t.m_name == jsonData.name);
 
         GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());
@@ -214,9 +173,6 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
-        if (!m_hasInit)
-            Init();
-
         int i = m_enemies.FindIndex(t => t.m_name == jsonData.name);
 
         GameEnemyUnit newEnemy = (GameEnemyUnit)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);

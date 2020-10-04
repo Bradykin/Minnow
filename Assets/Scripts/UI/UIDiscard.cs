@@ -16,6 +16,11 @@ public class UIDiscard : UIElementBase
 
     void Update()
     {
+        if (!GameHelper.IsInGame())
+        {
+            return;
+        }
+
         m_countText.text = GameHelper.GetPlayer().m_curDeck.DiscardCount() + "";
     }
 

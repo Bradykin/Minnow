@@ -14,9 +14,14 @@ public class WorldController : Singleton<WorldController>
     private bool m_hasSpawnedBoss;
     private int m_playerUnitFocusIndex;
 
-    void Start()
+    public bool m_isInGame;
+
+    public void BeginLevel(GameMap map)
     {
-        m_gameController = new GameController();
+        m_isInGame = true;
+
+        m_gameController = new GameController(map);
+        map.TriggerStartMap();
         m_playerHand = new List<UICard>();
 
         m_playerUnitFocusIndex = 0;
@@ -68,6 +73,11 @@ public class WorldController : Singleton<WorldController>
 
     private void HandlePlayerHand()
     {
+        if (!GameHelper.IsInGame())
+        {
+            return;
+        }
+
         List<GameCard> playerHand = m_gameController.m_player.m_hand;
 
         for (int i = 0; i < playerHand.Count; i++)

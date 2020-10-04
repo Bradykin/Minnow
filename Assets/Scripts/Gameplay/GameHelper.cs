@@ -169,6 +169,16 @@ public static class GameHelper
 
     public static bool IsOpponentsTurn()
     {
+        if (!IsInGame())
+        {
+            return false;
+        }
+
         return WorldController.Instance.m_gameController.m_currentTurn == GameHelper.GetOpponent();
+    }
+
+    public static bool IsInGame()
+    {
+        return WorldController.Instance.m_isInGame;
     }
 }
