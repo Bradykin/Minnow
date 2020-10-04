@@ -144,7 +144,14 @@ public class WorldUnit : MonoBehaviour
             {
                 if (!Globals.m_selectedUnit.GetUnit().IsInRangeOfUnit(GetUnit()))
                 {
-                    UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
+                    if (GetUnit().GetWorldTile().IsAttackable())
+                    {
+                        UIHelper.CreateWorldElementNotification("Move into range to attack.", false, GetUnit().m_worldUnit.gameObject);
+                    }
+                    else
+                    {
+                        UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
+                    }
                 }
                 else if (!Globals.m_selectedUnit.GetUnit().HasStaminaToAttack())
                 {

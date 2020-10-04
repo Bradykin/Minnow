@@ -421,6 +421,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_isAttackable = isAttackable;
     }
 
+    public bool IsAttackable()
+    {
+        return m_isAttackable;
+    }
+
     public void CustomRecycle(params object[] args)
     {
         m_gameTile = null;
