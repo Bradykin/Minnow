@@ -6,8 +6,8 @@ public class ContentDesertRedGrassDunesTerrain : GameTerrainBase
 {
     public ContentDesertRedGrassDunesTerrain()
     {
-        m_damageReduction = Constants.DunesDamageReduction;
-        m_costToPass = Constants.DunesMovementCost;
+        m_damageReduction = Constants.HalfDunesDamageReduction;
+        m_costToPass = Constants.HalfDunesMovementCost;
 
         m_name = "DesertRedGrassDunes";
         m_desc = GenerateDescription();
@@ -16,9 +16,6 @@ public class ContentDesertRedGrassDunesTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isHot = true;
-
-        m_burnedTerrainType = typeof(ContentDesertRedDirtPlainsTerrain);
-        m_addedEventType = typeof(ContentDesertRedGrassPlainsRuinsTerrain);
 
         LateInit();
     }
