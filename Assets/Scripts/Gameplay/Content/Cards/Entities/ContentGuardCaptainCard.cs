@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGuardCaptainCard : GameUnitCardBase
+public class ContentGuardCaptainCard : GameUnitCard
 {
     public ContentGuardCaptainCard()
     {

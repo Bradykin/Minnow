@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentConjuredImpCard : GameUnitCardBase
+public class ContentConjuredImpCard : GameUnitCard
 {
     public ContentConjuredImpCard()
     {

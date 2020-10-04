@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameUnitCardBase : GameCard
+public class GameUnitCard : GameCard
 {
     public GameUnit m_unit { get; protected set; }
 
@@ -136,7 +136,21 @@ public class GameUnitCardBase : GameCard
 
     protected string GetTypeline()
     {
-        return "Unit - " + m_unit.GetTypeline();
+        string typeline = "Unit - " + m_unit.GetTypeline();
+
+        if (GetUnit() is GameEnemyUnit)
+        {
+            GameEnemyUnit enemyUnit = (GameEnemyUnit)GetUnit();
+            if (enemyUnit.m_isElite)
+            {
+                typeline = "Elite " + typeline;
+            }
+            else if (enemyUnit.m_isBoss)
+            {
+                typeline = "Boss " + typeline;
+            }
+        }
+        return typeline;
     }
 
     public override void ResetCard()

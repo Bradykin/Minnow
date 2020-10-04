@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWerewolfEnemyCard : GameUnitCardBase
+public class ContentWerewolfEnemyCard : GameUnitCard
 {
     public ContentWerewolfEnemyCard()
     {

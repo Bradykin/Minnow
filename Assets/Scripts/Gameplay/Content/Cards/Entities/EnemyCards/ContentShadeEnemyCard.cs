@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadeEnemyCard : GameUnitCardBase
+public class ContentShadeEnemyCard : GameUnitCard
 {
     public ContentShadeEnemyCard()
     {

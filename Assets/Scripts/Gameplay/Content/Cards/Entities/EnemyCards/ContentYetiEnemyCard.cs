@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentYetiEnemyCard : GameUnitCardBase
+public class ContentYetiEnemyCard : GameUnitCard
 {
     public ContentYetiEnemyCard()
     {

@@ -52,7 +52,7 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
-            bool isUnit = m_cards[i] is GameUnitCardBase;
+            bool isUnit = m_cards[i] is GameUnitCard;
             if (isUnit)
             {
                 m_unitCards.Add(m_cards[i]);
@@ -173,10 +173,10 @@ public static class GameCardFactory
     {
         GameCard clone = (GameCard)Activator.CreateInstance(toClone.GetType());
 
-        if (toClone is GameUnitCardBase && clone is GameUnitCardBase)
+        if (toClone is GameUnitCard && clone is GameUnitCard)
         {
-            GameUnit toCloneUnit = ((GameUnitCardBase)toClone).GetUnit();
-            GameUnit cloneUnit = ((GameUnitCardBase)clone).GetUnit();
+            GameUnit toCloneUnit = ((GameUnitCard)toClone).GetUnit();
+            GameUnit cloneUnit = ((GameUnitCard)clone).GetUnit();
 
             cloneUnit.CopyOff(toCloneUnit);
         }
@@ -242,17 +242,17 @@ public static class GameCardFactory
         return null;
     }
 
-    public static GameUnitCardBase GetCardFromUnit(GameUnit unit)
+    public static GameUnitCard GetCardFromUnit(GameUnit unit)
     {
         if (unit.GetTeam() == Team.Player)
         {
             for (int i = 0; i < m_unitCards.Count; i++)
             {
-                GameUnitCardBase unitCard = (GameUnitCardBase)m_unitCards[i];
+                GameUnitCard unitCard = (GameUnitCard)m_unitCards[i];
 
                 if (unitCard.GetUnit().m_name == unit.m_name)
                 {
-                    GameUnitCardBase cardClone = (GameUnitCardBase)GetCardClone(m_unitCards[i]);
+                    GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_unitCards[i]);
                     cardClone.SetUnit(unit);
 
                     return cardClone;
@@ -263,11 +263,11 @@ public static class GameCardFactory
         {
             for (int i = 0; i < m_enemyCards.Count; i++)
             {
-                GameUnitCardBase unitCard = (GameUnitCardBase)m_enemyCards[i];
+                GameUnitCard unitCard = (GameUnitCard)m_enemyCards[i];
 
                 if (unitCard.GetUnit().m_name == unit.m_name)
                 {
-                    GameUnitCardBase cardClone = (GameUnitCardBase)GetCardClone(m_enemyCards[i]);
+                    GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_enemyCards[i]);
                     cardClone.SetUnit(unit);
 
                     return cardClone;

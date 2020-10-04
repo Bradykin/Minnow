@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSiegebreakerCard : GameUnitCardBase
+public class ContentSiegebreakerCard : GameUnitCard
 {
     public ContentSiegebreakerCard()
     {

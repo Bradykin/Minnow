@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOrcShamanEnemyCard : GameUnitCardBase
+public class ContentOrcShamanEnemyCard : GameUnitCard
 {
     public ContentOrcShamanEnemyCard()
     {

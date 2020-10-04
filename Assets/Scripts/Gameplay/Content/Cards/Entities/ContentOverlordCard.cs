@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOverlordCard : GameUnitCardBase
+public class ContentOverlordCard : GameUnitCard
 {
     public ContentOverlordCard()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMageCard : GameUnitCardBase
+public class ContentMageCard : GameUnitCard
 {
     public ContentMageCard()
     {

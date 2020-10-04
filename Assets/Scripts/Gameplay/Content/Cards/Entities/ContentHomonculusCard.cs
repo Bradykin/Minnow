@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHomonculusCard : GameUnitCardBase
+public class ContentHomonculusCard : GameUnitCard
 {
     public ContentHomonculusCard()
     {

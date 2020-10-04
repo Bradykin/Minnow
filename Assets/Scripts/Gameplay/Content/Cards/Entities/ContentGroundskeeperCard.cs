@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGroundskeeperCard : GameUnitCardBase
+public class ContentGroundskeeperCard : GameUnitCard
 {
     public ContentGroundskeeperCard()
     {

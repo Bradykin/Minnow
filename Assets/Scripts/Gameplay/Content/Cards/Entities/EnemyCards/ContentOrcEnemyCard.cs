@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentOrcEnemyCard : GameUnitCardBase
+public class ContentOrcEnemyCard : GameUnitCard
 {
     public ContentOrcEnemyCard()
     {

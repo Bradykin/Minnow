@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentZombieCard : GameUnitCardBase
+public class ContentZombieCard : GameUnitCard
 {
     public ContentZombieCard()
     {

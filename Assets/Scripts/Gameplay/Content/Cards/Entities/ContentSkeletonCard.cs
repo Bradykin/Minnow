@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSkeletonCard : GameUnitCardBase
+public class ContentSkeletonCard : GameUnitCard
 {
     public ContentSkeletonCard()
     {

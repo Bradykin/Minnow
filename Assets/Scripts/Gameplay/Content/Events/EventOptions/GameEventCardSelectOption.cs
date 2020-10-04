@@ -32,9 +32,9 @@
 
     public override void BuildTooltip()
     {
-        if (m_card is GameUnitCardBase)
+        if (m_card is GameUnitCard)
         {
-            GameUnit unit = ((GameUnitCardBase)m_card).GetUnit();
+            GameUnit unit = ((GameUnitCard)m_card).GetUnit();
 
             UIHelper.CreateUnitTooltip(unit);
         }

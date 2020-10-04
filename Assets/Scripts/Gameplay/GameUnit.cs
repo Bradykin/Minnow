@@ -304,7 +304,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
             if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
             {
-                GameUnitCardBase cardFromUnit = GameCardFactory.GetCardFromUnit(this);
+                GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(this);
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
                 willSetDead = false;
             }

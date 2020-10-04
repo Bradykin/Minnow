@@ -35,7 +35,7 @@ public abstract class GameCard : GameElementBase
         {
             toReturn -= GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
         }
-        else if (this is GameUnitCardBase)
+        else if (this is GameUnitCard)
         {
             toReturn -= GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
         }

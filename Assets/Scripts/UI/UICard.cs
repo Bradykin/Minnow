@@ -100,9 +100,9 @@ public class UICard : MonoBehaviour
 
         m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
 
-        if (m_card is GameUnitCardBase)
+        if (m_card is GameUnitCard)
         {
-            GameUnitCardBase unitCard = (GameUnitCardBase)m_card;
+            GameUnitCard unitCard = (GameUnitCard)m_card;
             m_powerText.text = unitCard.m_unit.GetPower() + "";
             m_healthText.text = unitCard.m_unit.GetMaxHealth() + "";
 

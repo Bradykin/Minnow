@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentNaturalScoutCard : GameUnitCardBase
+public class ContentNaturalScoutCard : GameUnitCard
 {
     public ContentNaturalScoutCard()
     {

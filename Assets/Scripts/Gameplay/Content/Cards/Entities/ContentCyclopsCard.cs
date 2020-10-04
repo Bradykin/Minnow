@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentCyclopsCard : GameUnitCardBase
+public class ContentCyclopsCard : GameUnitCard
 {
     public ContentCyclopsCard()
     {

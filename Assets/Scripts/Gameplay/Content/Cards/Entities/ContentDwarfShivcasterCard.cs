@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarfShivcasterCard : GameUnitCardBase
+public class ContentDwarfShivcasterCard : GameUnitCard
 {
     public ContentDwarfShivcasterCard()
     {

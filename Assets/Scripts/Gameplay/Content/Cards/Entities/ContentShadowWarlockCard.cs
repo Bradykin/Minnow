@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentShadowWarlockCard : GameUnitCardBase
+public class ContentShadowWarlockCard : GameUnitCard
 {
     public ContentShadowWarlockCard()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDarkWarriorEnemyCard : GameUnitCardBase
+public class ContentDarkWarriorEnemyCard : GameUnitCard
 {
     public ContentDarkWarriorEnemyCard()
     {

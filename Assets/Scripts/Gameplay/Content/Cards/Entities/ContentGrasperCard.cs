@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrasperCard : GameUnitCardBase
+public class ContentGrasperCard : GameUnitCard
 {
     public ContentGrasperCard()
     {

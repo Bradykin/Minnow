@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDwarvenSoldierCard : GameUnitCardBase
+public class ContentDwarvenSoldierCard : GameUnitCard
 {
     public ContentDwarvenSoldierCard()
     {

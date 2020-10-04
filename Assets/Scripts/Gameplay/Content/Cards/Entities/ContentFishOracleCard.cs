@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracleCard : GameUnitCardBase
+public class ContentFishOracleCard : GameUnitCard
 {
     public ContentFishOracleCard()
     {

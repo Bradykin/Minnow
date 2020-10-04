@@ -114,7 +114,7 @@ public static class GameHelper
 
         foreach (var card in GetPlayer().m_deckBase.GetCardsForRead())
         {
-            if (card is GameUnitCardBase)
+            if (card is GameUnitCard)
             {
                 deckOfUnits.Add(card);
             }

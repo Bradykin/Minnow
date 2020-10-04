@@ -110,7 +110,7 @@ public class GameDeck
         //After shuffle, put an unit on top of library
         for (int i = 0; i < m_cards.Count; i++)
         {
-            if (m_cards[i] is GameUnitCardBase)
+            if (m_cards[i] is GameUnitCard)
             {
                 GameCard tempCard = m_cards[0];
                 m_cards[0] = m_cards[i];

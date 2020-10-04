@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentElvenSentinelCard : GameUnitCardBase
+public class ContentElvenSentinelCard : GameUnitCard
 {
     public ContentElvenSentinelCard()
     {

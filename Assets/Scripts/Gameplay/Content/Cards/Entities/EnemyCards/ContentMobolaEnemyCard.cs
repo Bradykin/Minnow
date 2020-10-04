@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMobolaEnemyCard : GameUnitCardBase
+public class ContentMobolaEnemyCard : GameUnitCard
 {
     public ContentMobolaEnemyCard()
     {

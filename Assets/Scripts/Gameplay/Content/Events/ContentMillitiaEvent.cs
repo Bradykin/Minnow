@@ -64,7 +64,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
             return;
         }
 
-        GameUnitCardBase toGainCard = (GameUnitCardBase)m_card;
+        GameUnitCard toGainCard = (GameUnitCard)m_card;
 
         if (m_tile.m_occupyingUnit.m_name != toGainCard.GetUnit().m_name)
         {

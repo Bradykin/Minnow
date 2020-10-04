@@ -51,9 +51,9 @@ public class UIFocusInfoPanel : UIElementBase
 
     private void UpdateFocusData(UICard cardData)
     {
-        if (cardData.m_card is GameUnitCardBase)
+        if (cardData.m_card is GameUnitCard)
         {
-            GameUnitCardBase unitCard = (GameUnitCardBase)(cardData.m_card);
+            GameUnitCard unitCard = (GameUnitCard)(cardData.m_card);
 
             //Don't show this if there are no keywords.
             if (unitCard.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)

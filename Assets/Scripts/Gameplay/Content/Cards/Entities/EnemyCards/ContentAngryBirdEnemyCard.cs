@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentAngryBirdEnemyCard : GameUnitCardBase
+public class ContentAngryBirdEnemyCard : GameUnitCard
 {
     public ContentAngryBirdEnemyCard()
     {

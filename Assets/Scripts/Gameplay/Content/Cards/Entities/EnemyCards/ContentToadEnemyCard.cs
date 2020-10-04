@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentToadEnemyCard : GameUnitCardBase
+public class ContentToadEnemyCard : GameUnitCard
 {
     public ContentToadEnemyCard()
     {

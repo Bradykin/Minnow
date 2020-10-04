@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentInjuredTrollCard : GameUnitCardBase
+public class ContentInjuredTrollCard : GameUnitCard
 {
     public ContentInjuredTrollCard()
     {
