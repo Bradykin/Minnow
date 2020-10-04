@@ -83,6 +83,8 @@ public static class Constants
     public static int WaterMovementCost = 2;
     public static int RuinsDamageReduction = 0;
     public static int RuinsMovementCost = 2;
+    public static int DunesDamageReduction = 0;
+    public static int DunesMovementCost = 2;
 
     public static int GetWaveLength (int waveNum)
     {
