@@ -22,7 +22,7 @@ public class WorldUnit : MonoBehaviour
     private bool m_isShowingTooltip;
 
     private Vector3 m_moveTarget = new Vector3();
-    private float m_movementSpeed = 0.5f;
+    private float m_movementSpeed = 25.0f;
 
     public SpriteRenderer m_damageShieldIndicator;
 
@@ -59,7 +59,7 @@ public class WorldUnit : MonoBehaviour
 
         if (m_moveTarget != gameObject.transform.position)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed * Time.deltaTime);
         }
 
         if (this == Globals.m_selectedUnit || this == Globals.m_selectedEnemy || (m_isHovered && GetUnit().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetUnit().GetTeam() == Team.Player))
