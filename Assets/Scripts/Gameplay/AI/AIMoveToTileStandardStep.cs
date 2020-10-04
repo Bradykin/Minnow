@@ -50,7 +50,7 @@ public class AIMoveToTileStandardStep : AIMoveStep
                 }
             }
 
-            UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             yield return new WaitForSeconds(0.5f);
         }
     }
