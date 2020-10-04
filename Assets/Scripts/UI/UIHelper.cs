@@ -203,6 +203,11 @@ public static class UIHelper
         return Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
     }
 
+    public static Sprite GetIconMap(string mapName)
+    {
+        return Resources.Load<Sprite>("Maps/" + mapName) as Sprite;
+    }
+
     //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
     /*public static Sprite GetRandomIconTerrain(string terrainName)
     {
@@ -592,5 +597,20 @@ public static class UIHelper
         }
 
         return isOverTaggedElement;
+    }
+
+    public static bool CanControlCamera()
+    {
+        if (GameHelper.IsOpponentsTurn())
+        {
+            return false;
+        }
+
+        if (UILevelSelectController.Instance.m_curMap != null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

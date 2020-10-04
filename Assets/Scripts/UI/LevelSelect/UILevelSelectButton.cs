@@ -1,72 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class UILevelSelectButton : UIElementBase
-    , IPointerClickHandler
+public class UILevelSelectButton : MonoBehaviour
 {
     public int m_id;
-    public Text m_titleText;
 
-    private JsonMapMetaData m_level;
+    private GameMap m_map;
+    private bool m_isHovered;
+
+    public SpriteRenderer m_iconRenderer;
+    public SpriteRenderer m_tintRenderer;
 
     void Start()
     {
-        List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
-        for (int i = 0; i < mapList.Count; i++)
-        {
-            if (mapList[i].mapID == m_id)
-            {
-                m_level = mapList[i];
-                break;
-            }
-        }
+        m_map = GameMapFactory.GetMapById(m_id);
+
+        m_iconRenderer.sprite = m_map.m_icon;
     }
 
     void Update()
     {
-        if (m_level == null)
+        if (UILevelSelectController.Instance.m_curMap != null &&
+            UILevelSelectController.Instance.m_curMap.m_id == m_map.m_id)
         {
-            return;
+            m_tintRenderer.color = UIHelper.GetSelectTintColor(true);
         }
-
-        m_titleText.text = m_level.mapName;
+        else if (m_isHovered)
+        {
+            m_tintRenderer.color = UIHelper.GetValidTintColor(true);
+        }
+        else
+        {
+            m_tintRenderer.color = UIHelper.GetDefaultTintColor();
+        }
     }
 
     private void SelectLevel()
     {
-        if (m_id == -1)
+        if (UILevelSelectController.Instance.m_curMap == m_map)
         {
-            UILevelSelectController.Instance.m_levelBuilderSelected = true;
             UILevelSelectController.Instance.SetSelectedLevel(null);
-            return;
         }
         else
         {
-            UILevelSelectController.Instance.m_levelBuilderSelected = false;
-            UILevelSelectController.Instance.SetSelectedLevel(m_level);
+            UILevelSelectController.Instance.SetSelectedLevel(m_map);
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(gameObject);
         }
     }
 
-    public override void HandleTooltip()
-    {
-        if (m_id == -1)
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Level Builder", "Construct a level"));
-        }
-        else
-        {
-            if (m_level != null)
-            {
-                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(m_level.mapName, UIHelper.GetDifficultyText(((MapDifficulty)m_level.mapDifficulty))));
-            }
-        }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
+    void OnMouseDown()
     {
         SelectLevel();
+    }
+    void OnMouseOver()
+    {
+        m_isHovered = true;
+    }
+
+    void OnMouseExit()
+    {
+        m_isHovered = false;
     }
 }

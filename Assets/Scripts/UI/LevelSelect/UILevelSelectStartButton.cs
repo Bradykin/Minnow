@@ -11,15 +11,21 @@ public class UILevelSelectStartButton : UIElementBase
 {
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (UILevelSelectController.Instance.m_levelBuilderSelected)
+        if (UILevelSelectController.Instance.m_curMap == null)
         {
-            SceneLoader.ActivateScene("LevelCreatorScene", "LevelSelectScene");
+            return;
         }
-        else
+
+        List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
+        for (int i = 0; i < mapList.Count; i++)
         {
-            JsonMapMetaData m_curLevel = UILevelSelectController.Instance.m_curLevel;
-            Globals.mapToLoad = m_curLevel.dataPath;
-            SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
+            if (mapList[i].mapID == UILevelSelectController.Instance.m_curMap.m_id)
+            {
+                Globals.mapToLoad = mapList[i].dataPath;
+                UILevelSelectController.Instance.m_curMap = null;
+                SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
+                return;
+            }
         }
     }
 

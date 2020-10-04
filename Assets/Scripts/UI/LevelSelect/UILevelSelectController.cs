@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class UILevelSelectController : Singleton<UILevelSelectController>
 {
-    public JsonMapMetaData m_curLevel;
-    public bool m_levelBuilderSelected;
+    public GameMap m_curMap;
 
     public Text m_nameText;
+    public Text m_descText;
+    public GameObject m_infoObj;
     public Text m_difficultyText;
     public Text m_chaosVal;
     public Text m_chaosText;
@@ -19,23 +20,28 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
 
     void Update()
     {
-        if (m_levelBuilderSelected)
+        if (m_curMap == null)
         {
+            m_infoObj.SetActive(false);
+
             m_chaosVal.text = "";
             m_chaosText.text = "";
             m_chaosTitleText.text = "";
 
-            m_nameText.text = "Level Builder";
+            m_nameText.text = "Select a Level";
             m_difficultyText.text = "";
 
-            m_startGameButton.SetActive(true);
-        } 
-        else if (m_curLevel != null)
+            m_startGameButton.SetActive(false);
+        }
+        else
         {
+            m_infoObj.SetActive(true);
+
             m_chaosTitleText.text = "Chaos";
-            m_nameText.text = m_curLevel.mapName;
-            m_difficultyText.text = UIHelper.GetDifficultyText((MapDifficulty)(m_curLevel.mapDifficulty));
-            m_difficultyText.color = UIHelper.GetDifficultyTextColor((MapDifficulty)(m_curLevel.mapDifficulty));
+            m_nameText.text = m_curMap.m_name;
+            m_descText.text = m_curMap.m_desc;
+            m_difficultyText.text = UIHelper.GetDifficultyText(m_curMap.m_difficulty);
+            m_difficultyText.color = UIHelper.GetDifficultyTextColor(m_curMap.m_difficulty);
 
             m_chaosVal.text = "" + Globals.m_curChaos;
             m_chaosText.text = ""; //Reset the text
@@ -46,26 +52,15 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
 
             m_startGameButton.SetActive(true);
         }
-        else if (m_curLevel == null)
-        {
-            m_chaosVal.text = "";
-            m_chaosText.text = "";
-            m_chaosTitleText.text = "";
-
-            m_nameText.text = "Select a Level";
-            m_difficultyText.text = "";
-
-            m_startGameButton.SetActive(false);
-        }
     }
 
     public bool HasLevelSelected()
     {
-        return m_curLevel != null;
+        return m_curMap != null;
     }
 
-    public void SetSelectedLevel(JsonMapMetaData newLevel)
+    public void SetSelectedLevel(GameMap newMap)
     {
-        m_curLevel = newLevel;
+        m_curMap = newMap;
     }
 }

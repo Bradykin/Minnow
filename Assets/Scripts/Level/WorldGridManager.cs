@@ -18,11 +18,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
     private Transform m_gridRoot;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
     void Update()
     {
         if (!m_setup)
