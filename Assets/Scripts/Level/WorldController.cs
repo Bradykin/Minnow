@@ -218,6 +218,8 @@ public class WorldController : Singleton<WorldController>
         GameCard cardThree = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
+
+        m_gameController.GetCurMap().TriggerStartIntermissionForWave(m_gameController.m_waveNum);
     }
 
     public void EndIntermission()

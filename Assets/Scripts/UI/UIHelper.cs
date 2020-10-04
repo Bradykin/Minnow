@@ -606,7 +606,7 @@ public static class UIHelper
             return false;
         }
 
-        if (UILevelSelectController.Instance.m_curMap != null)
+        if (UILevelSelectController.Instance.m_curMap != null && GameHelper.IsInLevelSelect())
         {
             return false;
         }

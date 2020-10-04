@@ -33,6 +33,11 @@ public class GameController
         m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
     }
 
+    public GameMap GetCurMap()
+    {
+        return UILevelSelectController.Instance.m_curMap;
+    }
+
     public void LateInit()
     {
         WorldGridManager.Instance.SetupWorldGridTeams(m_player, m_gameOpponent);

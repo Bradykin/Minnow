@@ -48,6 +48,15 @@ public class UICameraController : Singleton<UICameraController>, IReset
         {
             HandleScrolling();
         }
+
+        if (GameHelper.IsInLevelSelect())
+        {
+            Camera.main.backgroundColor = Color.black;
+        }
+        else
+        {
+            Camera.main.backgroundColor = Color.gray;
+        }
     }
 
     public void SmoothCameraTransitionToGameObject(GameObject obj)

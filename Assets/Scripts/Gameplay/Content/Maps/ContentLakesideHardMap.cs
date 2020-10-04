@@ -11,6 +11,8 @@ public class ContentLakesideHardMap : GameMap
 
         m_difficulty = MapDifficulty.Hard;
 
+        AddMapEvent(new ContentDrySeasonMapEvent(), 2);
+
         m_id = 1;
 
         Init();

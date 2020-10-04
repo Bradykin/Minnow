@@ -93,6 +93,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             Debug.LogWarning("Clearing building on a tile, but no building currently exists on this tile.");
         }
 
+        if (GameHelper.GetPlayer() != null)
+        {
+            GameHelper.GetPlayer().RemoveControlledBuilding(m_building);
+        }
+
         m_building = null;
     }
 
@@ -185,8 +190,13 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return m_terrain;
     }
 
-    public void SetTerrain(GameTerrainBase newTerrain)
+    public void SetTerrain(GameTerrainBase newTerrain, bool clearBuilding = false)
     {
+        if (HasBuilding() && clearBuilding)
+        {
+            ClearBuilding();
+        }
+
         m_terrain = newTerrain;
     }
 

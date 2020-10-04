@@ -18,10 +18,4 @@ public class GameElementBase
     public Sprite m_icon { get; protected set; }
     public GameRarity m_rarity { get; protected set; } = GameRarity.Common;
     public GameTag m_tags = new GameTag();
-
-    public virtual void ClearTooltip()
-    {
-        UITooltipController tooltipController = UITooltipController.Instance;
-        tooltipController.gameObject.SetActive(false);
-    }
 }
