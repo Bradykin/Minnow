@@ -30,11 +30,6 @@ public class UICameraController : Singleton<UICameraController>, IReset
 
     void Update()
     {
-        //if (GameHelper.IsInLevelSelect())
-        {
-            //return;
-        }
-
         if (transform.position == m_smoothTarget)
         {
             m_smoothTarget = Vector3.zero;
@@ -44,7 +39,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
             transform.position = Vector3.MoveTowards(transform.position, m_smoothTarget, m_smoothSpeed * Time.deltaTime);
         }
 
-        if (!GameHelper.IsOpponentsTurn())
+        if (UIHelper.CanControlCamera())
         {
             HandleMovement();
         }

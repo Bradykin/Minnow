@@ -45,6 +45,7 @@ public class UILevelSelectButton : MonoBehaviour
         else
         {
             UILevelSelectController.Instance.SetSelectedLevel(m_map);
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(gameObject);
         }
     }
 
