@@ -107,7 +107,7 @@ public class UICard : MonoBehaviour
             m_healthText.text = unitCard.m_unit.GetMaxHealth() + "";
 
             m_staminaContainer.gameObject.SetActive(true);
-            m_staminaContainer.Init(unitCard.GetUnit().GetStaminaRegen(), unitCard.GetUnit().GetMaxStamina(), Team.Player);
+            m_staminaContainer.Init(unitCard.GetUnit().GetStaminaRegen(), unitCard.GetUnit().GetMaxStamina(), unitCard.GetUnit().GetTeam());
         }
         else
         {
