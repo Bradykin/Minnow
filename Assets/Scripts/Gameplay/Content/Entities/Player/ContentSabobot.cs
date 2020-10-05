@@ -18,6 +18,7 @@ public class ContentSabobot : GameUnit
         m_rarity = GameRarity.Uncommon;
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameDeathAction(this)));
         m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)));
+        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
         m_name = "Sabobot";
         m_desc = "Starts at full Stamina.";
