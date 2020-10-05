@@ -78,7 +78,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public virtual void OnSummon()
     {
         SetHealthStaminaValues();
-        
+
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
@@ -371,7 +371,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public virtual bool IsInRangeOfGameElement(GameElementBase other)
     {
-        switch(other)
+        switch (other)
         {
             case GameUnit gameUnit:
                 return IsInRangeOfUnit(gameUnit);
@@ -383,13 +383,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public virtual bool IsInRangeOfUnit(GameUnit other)
     {
-        List <GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
-        
+        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
+
         if (tiles == null)
         {
             return false;
         }
-        
+
         int distance = tiles.Count;
 
         if ((distance - 1) > GetRange())
@@ -572,7 +572,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         if (other.m_isDestroyed)
         {
             List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
-            
+
             for (int i = 0; i < victoriousKeywords.Count; i++)
             {
                 victoriousKeywords[i].DoAction();
@@ -635,13 +635,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         SpendStamina(GetMaxStamina());
     }
 
-    public void GainStamina(int toGain)
+    public void GainStamina(int toGain, bool isRegen = false)
     {
+        int staminaGained = toGain;
+
         m_curStamina += toGain;
 
         if (m_curStamina > m_maxStamina)
         {
+            staminaGained = staminaGained - (m_curStamina - m_maxStamina);
+
             m_curStamina = m_maxStamina;
+        }
+
+        if (GetTeam() == Team.Player && staminaGained > 0 && !isRegen)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gains " + staminaGained + " Stamina.", true, m_gameTile.GetWorldTile().gameObject);
         }
 
         UIHelper.ReselectUnit();
@@ -654,6 +663,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public void AddKeyword(GameKeywordBase newKeyword)
     {
+        UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+
         m_keywordHolder.m_keywords.Add(newKeyword);
 
         if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword))
@@ -752,11 +763,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         return toReturn;
     }
 
-    public void AddMaxHealth(int toAdd, bool shouldIncreaseCurrent = true)
+    public void AddMaxHealth(int toAdd)
     {
+        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", true, m_gameTile.GetWorldTile().gameObject);
+
         m_maxHealth += toAdd;
 
-        if (toAdd > 0 && shouldIncreaseCurrent)
+        if (toAdd > 0)
         {
             m_curHealth += toAdd;
         }
@@ -988,17 +1001,26 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             staminaToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
         
-        GainStamina(staminaToRegen);
+        GainStamina(staminaToRegen, true);
     }
 
-    public void AddPower(int m_toAdd)
+    public void AddPower(int toAdd)
     {
-        m_power += m_toAdd;
+        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Power.", true, m_gameTile.GetWorldTile().gameObject);
+
+        m_power += toAdd;
 
         if (!HasCustomName())
         {
             SetCustomName();
         }
+    }
+
+    public void RemovePower(int toRemove)
+    {
+        UIHelper.CreateWorldElementNotification(GetName() + " lower " + toRemove + " Power.", true, m_gameTile.GetWorldTile().gameObject);
+
+        m_power -= toRemove;
     }
 
     public bool HasCustomName()

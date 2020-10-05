@@ -36,7 +36,10 @@ public class ContentToadEnemy : GameEnemyUnit
     {
         int damageTaken = base.HitUnit(other, spendStamina);
 
-        other.SpendStamina(other.GetCurStamina() - 1);
+        if (damageTaken > 0)
+        {
+            other.SpendStamina(other.GetCurStamina() - 1);
+        }
 
         return damageTaken;
     }

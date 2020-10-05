@@ -274,6 +274,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     {
                         UIHelper.CreateWorldElementNotification(GetGameTile().GetName() + " is impassable.", false, gameObject);
                     }
+                    else
+                    {
+                        UIHelper.CreateWorldElementNotification("Can't move to tile with enemy unit.", false, gameObject);
+                    }
                 }
             }
         }
