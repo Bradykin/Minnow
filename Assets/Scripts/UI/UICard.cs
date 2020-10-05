@@ -41,6 +41,8 @@ public class UICard : MonoBehaviour
 
     private bool m_hasSetDisplayType;
 
+    private GameUnitCard m_unitCard;
+
     void Start()
     {
         m_tintImage.color = UIHelper.GetDefaultTintColor();
@@ -50,6 +52,11 @@ public class UICard : MonoBehaviour
     {
         m_card = card;
         m_displayType = displayType;
+
+        if (m_card is GameUnitCard)
+        {
+            m_unitCard = (GameUnitCard)m_card;
+        }
 
         SetCardData();
 
@@ -76,13 +83,15 @@ public class UICard : MonoBehaviour
         }
     }
 
-    void Update() 
+    void Update()
     {
         if (!m_isHovered)
         {
             bool isSelected = Globals.m_selectedCard == this;
             m_tintImage.color = UIHelper.GetSelectTintColor(Globals.m_selectedCard == this);
         }
+
+        SetCardData();
     }
 
     public void SetCardData()
@@ -100,14 +109,13 @@ public class UICard : MonoBehaviour
 
         m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
 
-        if (m_card is GameUnitCard)
+        if (m_unitCard != null)
         {
-            GameUnitCard unitCard = (GameUnitCard)m_card;
-            m_powerText.text = unitCard.m_unit.GetPower() + "";
-            m_healthText.text = unitCard.m_unit.GetMaxHealth() + "";
+            m_powerText.text = m_unitCard.m_unit.GetPower() + "";
+            m_healthText.text = m_unitCard.m_unit.GetMaxHealth() + "";
 
             m_staminaContainer.gameObject.SetActive(true);
-            m_staminaContainer.Init(unitCard.GetUnit().GetStaminaRegen(), unitCard.GetUnit().GetMaxStamina(), unitCard.GetUnit().GetTeam());
+            m_staminaContainer.Init(m_unitCard.GetUnit().GetStaminaRegen(), m_unitCard.GetUnit().GetMaxStamina(), m_unitCard.GetUnit().GetTeam());
         }
         else
         {
