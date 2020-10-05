@@ -26,8 +26,11 @@ public class ContentGrasper : GameUnit
     {
         int damageTaken = base.HitUnit(other, spendStamina);
 
-        this.GainStamina(other.GetCurStamina());
-        other.EmptyStamina();
+        if (damageTaken > 0)
+        {
+            this.GainStamina(other.GetCurStamina());
+            other.EmptyStamina();
+        }
 
         return damageTaken;
     }

@@ -32,7 +32,7 @@ public class ContentFossilizeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddPower(-m_powerAmount);
+        targetUnit.RemovePower(m_powerAmount);
         targetUnit.SpendStamina(m_staminaDrainAmount);
 
         GameBrittleKeyword brittleKeyword = targetUnit.GetKeyword<GameBrittleKeyword>();

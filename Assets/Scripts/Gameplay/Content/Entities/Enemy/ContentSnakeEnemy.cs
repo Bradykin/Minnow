@@ -37,7 +37,10 @@ public class ContentSnakeEnemy : GameEnemyUnit
     {
         int damageTaken = base.HitUnit(other, spendStamina);
 
-        other.AddPower(-2);
+        if (damageTaken > 0)
+        {
+            other.RemovePower(2);
+        }
 
         return damageTaken;
     }

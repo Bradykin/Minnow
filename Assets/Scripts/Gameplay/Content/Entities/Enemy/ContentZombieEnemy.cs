@@ -55,8 +55,9 @@ public class ContentZombieEnemy : GameEnemyUnit
 
     public override int HitUnit(GameUnit other, bool spendStamina = true)
     {
-        int damageTaken = 0;
-        if (!(other is ContentZombie))
+        int damageTaken = base.HitUnit(other, spendStamina);
+
+        if (damageTaken > 0 && !other.m_isDead)
         {
             GameUnit newZombie = new ContentZombie();
             other.m_worldUnit.Init(newZombie);
@@ -64,12 +65,6 @@ public class ContentZombieEnemy : GameEnemyUnit
             GameHelper.GetPlayer().AddControlledUnit(newZombie);
 
             other.GetGameTile().SwapUnit(newZombie);
-
-            damageTaken = base.HitUnit(newZombie, spendStamina);
-        }
-        else
-        {
-            damageTaken = base.HitUnit(other, spendStamina);
         }
 
         return damageTaken;
