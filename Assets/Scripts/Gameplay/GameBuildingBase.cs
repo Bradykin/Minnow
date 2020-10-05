@@ -20,6 +20,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
     public BuildingType m_buildingType;
 
     public int m_sightRange = 3;
+    public int m_range = 3;
 
     public bool m_isDestroyed;
     public bool m_expandsPlaceRange = false;
@@ -122,6 +123,9 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
         m_isDestroyed = true;
 
         UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile().gameObject);
+
+        UIHelper.ClearDefensiveBuildingTiles();
+        UIHelper.SetDefensiveBuildingTiles();
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);

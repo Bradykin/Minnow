@@ -6,8 +6,10 @@ public class ContentEmberForgeBuilding : GameBuildingBase
 {
     public ContentEmberForgeBuilding()
     {
+        m_range = 3;
+
         m_name = "Ember Forge";
-        m_desc = "Instantly kills <b>1</b> random non-elite unit within range 3 every turn. (Allied or enemy).";
+        m_desc = "Instantly kills <b>1</b> random non-elite unit within range " + m_range + " every turn. (Allied or enemy).";
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 
@@ -28,7 +30,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         base.EndTurn();
 
         List<GameTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 3);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_range, 0);
 
         List<GameUnit> units = new List<GameUnit>();
         for (int i = 0; i < surroundingTiles.Count; i++)

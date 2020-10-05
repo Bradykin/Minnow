@@ -39,6 +39,9 @@ public static class GameHelper
 
         targetTile.PlaceBuilding(toPlace);
         player.AddControlledBuilding(toPlace);
+
+        UIHelper.ClearDefensiveBuildingTiles();
+        UIHelper.SetDefensiveBuildingTiles();
     }
 
     public static GamePlayer GetPlayer()
