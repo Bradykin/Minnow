@@ -161,9 +161,9 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeTerrain());
         //m_redDesertTerrain.Add(new ContentDesertRedMountainCaveTerrain());
         //m_redDesertTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
-        //m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
-        //m_redDesertTerrain.Add(new ContentDesertRedForestPondTerrain());
-        //m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedForestPondTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedGrassDunesTerrain());
         m_redDesertTerrain.Add(new ContentDesertDunesTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
@@ -183,8 +183,8 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowSaltFlatsTerrain());
         //m_yellowDesertTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
         //m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
-        //m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
-        //m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowDirtPlainsRuinsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowForestRuinsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertDunesTerrain());
