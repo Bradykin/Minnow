@@ -25,6 +25,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private bool m_isHovered;
     private bool m_isMoveable;
     private bool m_isAttackable;
+    private int m_inSpellcraftRange;
 
     private GameTile m_gameTile;
 
@@ -118,6 +119,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && !Globals.m_inIntermission)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
+                }
+                else if (Globals.m_selectedCard != null && !Globals.m_inIntermission && m_inSpellcraftRange > 0)
+                {
+                    m_tintRenderer.color = UIHelper.GetSpellcraftTint(m_inSpellcraftRange);
                 }
                 else if ((Globals.m_selectedUnit != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
@@ -428,6 +433,16 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public bool IsAttackable()
     {
         return m_isAttackable;
+    }
+
+    public void AddInSpellcraftRangeCount()
+    {
+        m_inSpellcraftRange++;
+    }
+
+    public void ClearSpellcraftRangeCount()
+    {
+        m_inSpellcraftRange = 0;
     }
 
     public void CustomRecycle(params object[] args)

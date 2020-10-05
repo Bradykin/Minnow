@@ -18,6 +18,7 @@ public static class UIHelper
     public static Color m_validTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.3f);
     public static Color m_invalidTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
     public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.b, 0.3f);
+    public static Color m_spellcraftTint = new Color(128.0f, 0.0f, 128.0f, 0.3f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_validAltPlayer = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
@@ -106,6 +107,14 @@ public static class UIHelper
         {
             return m_invalidTint;
         }
+    }
+
+    public static Color GetSpellcraftTint(int numSpellcraft)
+    {
+        Color returnColor = m_spellcraftTint;
+        returnColor.a = returnColor.a + (0.4f * (numSpellcraft-1));
+
+        return returnColor;
     }
 
     public static Color GetAttackTintColor()
@@ -259,6 +268,39 @@ public static class UIHelper
         }
     }
 
+    public static void SetSpellcraftTiles()
+    {
+        List<GameUnit> m_playerUnitsWithSpellcraft = new List<GameUnit>();
+        GamePlayer player = GameHelper.GetPlayer();
+        for (int i = 0; i < player.m_controlledUnits.Count; i++)
+        {
+            if (player.m_controlledUnits[i].GetKeyword<GameSpellcraftKeyword>() != null)
+            {
+                m_playerUnitsWithSpellcraft.Add(player.m_controlledUnits[i]);
+            }
+        }
+
+        for (int i = 0; i < m_playerUnitsWithSpellcraft.Count; i++)
+        {
+            List<GameTile> tilesInSpellcraftRange = WorldGridManager.Instance.GetSurroundingTiles(m_playerUnitsWithSpellcraft[i].GetGameTile(), 3, 0);
+
+            if (tilesInSpellcraftRange == null)
+            {
+                continue;
+            }
+
+            for (int c = 0; c < tilesInSpellcraftRange.Count; c++)
+            {
+                tilesInSpellcraftRange[c].GetWorldTile().AddInSpellcraftRangeCount();
+            }
+        }
+    }
+
+    public static void ClearSpellcraftTiles()
+    {
+        WorldGridManager.Instance.ClearAllTilesSpellcraftRange();
+    }
+
     public static void SelectUnit(WorldUnit unit)
     {
         bool unitAlreadySelected = Globals.m_selectedUnit == unit;
@@ -336,6 +378,8 @@ public static class UIHelper
             return;
         }
 
+        ClearSpellcraftTiles();
+
         if (Globals.m_selectedCard == card)
         {
             Globals.m_selectedCard = null;
@@ -344,6 +388,11 @@ public static class UIHelper
         {
             UnselectAll();
             Globals.m_selectedCard = card;
+
+            if (Globals.m_selectedCard.m_card.m_targetType != GameCard.Target.None && Globals.m_selectedCard.m_card is GameCardSpellBase)
+            {
+                SetSpellcraftTiles();
+            }
         }
     }
 
