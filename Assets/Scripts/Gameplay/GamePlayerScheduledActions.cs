@@ -6,7 +6,8 @@ public enum ScheduledActionTime : int
 {
     EndOfTurn,
     StartOfTurn,
-    EndOfWave
+    EndOfWave,
+    StartOfWave
 }
 
 public struct GamePlayerScheduledActions

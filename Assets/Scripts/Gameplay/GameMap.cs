@@ -41,11 +41,11 @@ public abstract class GameMap : GameElementBase
         m_mapEventTriggerWaves.Add(triggerWave);
     }
 
-    public void TriggerStartIntermissionForWave(int waveNum)
+    public void TriggerMapEvents(int waveNum, ScheduledActionTime triggerType)
     {
         for (int i = 0; i < m_mapEvents.Count; i++)
         {
-            if (m_mapEventTriggerWaves[i] == waveNum)
+            if (m_mapEventTriggerWaves[i] == waveNum && m_mapEvents[i].m_triggerType == triggerType)
             {
                 m_mapEvents[i].TriggerEvent();
             }
@@ -53,7 +53,7 @@ public abstract class GameMap : GameElementBase
 
         for (int i = 0; i < m_mapEvents.Count; i++)
         {
-            if (m_mapEventTriggerWaves[i] == waveNum-1)
+            if (m_mapEventTriggerWaves[i] == waveNum- 1 && m_mapEvents[i].m_triggerType == triggerType)
             {
                 m_mapEvents[i].EndEvent();
             }

@@ -229,7 +229,7 @@ public class WorldController : Singleton<WorldController>
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
 
-        m_gameController.GetCurMap().TriggerStartIntermissionForWave(m_gameController.m_waveNum);
+        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_waveNum, ScheduledActionTime.StartOfWave);
     }
 
     public void EndIntermission()
@@ -248,6 +248,9 @@ public class WorldController : Singleton<WorldController>
 
         m_gameController.m_player.ResetCurDeck();
         m_gameController.BeginTurnSequence();
+
+        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_waveNum, ScheduledActionTime.EndOfWave);
+
     }
 
     public void WinGame()
