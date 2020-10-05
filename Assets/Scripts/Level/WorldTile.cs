@@ -25,6 +25,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private bool m_isHovered;
     private bool m_isMoveable;
     private bool m_isAttackable;
+    private int m_inSpellcraftRange;
+    private int m_inDefensiveBuildingRange;
 
     private GameTile m_gameTile;
 
@@ -119,6 +121,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
+                else if (Globals.m_selectedCard != null && !Globals.m_inIntermission && m_inSpellcraftRange > 0)
+                {
+                    m_tintRenderer.color = UIHelper.GetSpellcraftTint(m_inSpellcraftRange);
+                }
                 else if ((Globals.m_selectedUnit != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
@@ -127,12 +133,19 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }
-                else if (Globals.m_selectedIntermissionBuilding != null && 
-                    Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain()) && 
+                else if (Globals.m_selectedIntermissionBuilding != null &&
+                    Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain()) &&
                     !GetGameTile().HasAvailableEvent() &&
                     !GetGameTile().m_isFog)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
+                }
+                else if (Globals.m_selectedTile != null && 
+                    Globals.m_selectedTile.m_gameTile.HasBuilding() && 
+                    Globals.m_selectedTile.m_gameTile.GetBuilding().m_buildingType == BuildingType.Defensive &&
+                    m_inDefensiveBuildingRange > 0)
+                {
+                    m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
                 }
                 else
                 {
@@ -428,6 +441,26 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public bool IsAttackable()
     {
         return m_isAttackable;
+    }
+
+    public void AddInSpellcraftRangeCount()
+    {
+        m_inSpellcraftRange++;
+    }
+
+    public void ClearSpellcraftRangeCount()
+    {
+        m_inSpellcraftRange = 0;
+    }
+
+    public void AddInDefensiveBuildingRangeCount()
+    {
+        m_inDefensiveBuildingRange++;
+    }
+
+    public void ClearInDefensiveBuildingRangeCount()
+    {
+        m_inDefensiveBuildingRange = 0;
     }
 
     public void CustomRecycle(params object[] args)

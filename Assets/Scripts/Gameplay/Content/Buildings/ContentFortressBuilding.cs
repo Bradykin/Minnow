@@ -6,10 +6,11 @@ using Game.Util;
 public class ContentFortressBuilding : GameBuildingBase
 {
     public int m_power = 6;
-    public int m_range = 3;
 
     public ContentFortressBuilding()
     {
+        m_range = 3;
+
         m_name = "Fortress";
         m_desc = "Damage enemy units on tiles in a range of " + m_range + " for " + m_power + " at the start of your turn.";
         m_buildingType = BuildingType.Defensive;
@@ -29,7 +30,7 @@ public class ContentFortressBuilding : GameBuildingBase
 
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_range);
+        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_range, 0);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

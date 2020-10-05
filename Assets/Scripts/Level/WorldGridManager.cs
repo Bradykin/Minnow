@@ -668,6 +668,22 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
     }
 
+    public void ClearAllTilesSpellcraftRange()
+    {
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            m_gridArray[i].ClearSpellcraftRangeCount();
+        }
+    }
+
+    public void ClearAllTilesDefensiveBuildingRange()
+    {
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            m_gridArray[i].ClearInDefensiveBuildingRangeCount();
+        }
+    }
+
     public void EndIntermissionFogUpdate()
     {
         for (int i = 0; i < m_gridArray.Length; i++)

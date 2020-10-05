@@ -57,6 +57,10 @@ public class UICard : MonoBehaviour
         {
             m_unitCard = (GameUnitCard)m_card;
         }
+        else
+        {
+            m_unitCard = null;
+        }
 
         SetCardData();
 

@@ -73,7 +73,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         }
 
         m_building = newBuilding;
-        newBuilding.SetGameTile(this)   ;
+        newBuilding.SetGameTile(this);
     }
 
     public void ClearUnit()
