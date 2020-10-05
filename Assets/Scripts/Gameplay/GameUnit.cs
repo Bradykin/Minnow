@@ -540,6 +540,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                     }
                 }
             }
+
+            UIHelper.ReselectUnit();
         }
 
         return damageTaken;
