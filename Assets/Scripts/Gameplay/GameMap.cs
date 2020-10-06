@@ -147,6 +147,10 @@ public abstract class GameMap : GameElementBase
         m_cardPool.Add(new ContentTonicOfStrengthCard());
         m_cardPool.Add(new ContentTrollFormCard());
         m_cardPool.Add(new ContentWisdomOfThePastCard());
+        m_cardPool.Add(new ContentDrainingBoltCard());
+        m_cardPool.Add(new ContentWeakeningBoltCard());
+        m_cardPool.Add(new ContentStaminaTrainingCard());
+        m_cardPool.Add(new ContentOptimizeCard());
     }
 
     protected void FillBasicEventPool()
