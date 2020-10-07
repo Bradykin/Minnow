@@ -44,10 +44,23 @@ public class ContentPortBuilding : GameBuildingBase
         m_isDestroyed = true;
     }
 
-    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsWater())
         {
+            if (tile != null)
+            {
+                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tile, 1);
+                for (int i = 0; i < surroundingTiles.Count; i++)
+                {
+                    if (!surroundingTiles[i].GetTerrain().IsWater())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
             return true;
         }
 

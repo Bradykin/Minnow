@@ -32,7 +32,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
         m_gameTile.GetWorldTile().ReducePlaceRange(m_sightRange-1);
     }
 
-    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsForest())
         {

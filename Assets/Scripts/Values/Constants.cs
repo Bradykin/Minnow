@@ -58,7 +58,7 @@ public static class Constants
     public static bool DebugEventsVisibleInFog = true;
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
-    public static bool UseSteppedOutEnemyTurns = !CheatsOn;
+    public static bool UseSteppedOutEnemyTurns = true;
 #else
     public static bool CheatsOn = false;
     public static bool UseSteppedOutEnemyTurns = true;

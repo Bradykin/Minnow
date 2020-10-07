@@ -35,6 +35,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected bool m_isEventTerrain;
     protected bool m_isCave;
     protected bool m_isVolcano;
+    protected bool m_isWaterSource;
 
     protected bool m_isHot;
     protected bool m_isCold;
@@ -95,6 +96,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public bool IsWater()
     {
         return m_isWater;
+    }
+
+    public bool IsWaterSource()
+    {
+        return m_isWater || m_isWaterSource;
     }
 
     public bool IsFlatTerrain()

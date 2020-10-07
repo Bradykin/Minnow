@@ -9,14 +9,11 @@ public class GameOpponent : ITurns
 {
     public List<GameEnemyUnit> m_controlledUnits { get; private set; }
 
-    private List<GameEnemyUnit> m_secondTryAIControlledUnits;
-
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
         m_controlledUnits = new List<GameEnemyUnit>();
-        m_secondTryAIControlledUnits = new List<GameEnemyUnit>();
         m_spawnPoints = new List<GameSpawnPoint>();
     }
 
@@ -72,6 +69,15 @@ public class GameOpponent : ITurns
                 {
                     measureTo = unit.GetGameTile();
                 }
+            }
+        }
+
+        if (Constants.UseSteppedOutEnemyTurns && GameHelper.GetPlayer().Castle != null)
+        {
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().Castle.GetWorldTile().gameObject);
+            while (UICameraController.Instance.IsCameraSmoothing())
+            {
+                yield return null;
             }
         }
 

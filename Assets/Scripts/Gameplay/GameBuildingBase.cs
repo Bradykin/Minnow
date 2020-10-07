@@ -128,7 +128,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
         UIHelper.SetDefensiveBuildingTiles();
     }
 
-    public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain);
+    public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile);
 
     public virtual void TriggerEndOfWave()
     {

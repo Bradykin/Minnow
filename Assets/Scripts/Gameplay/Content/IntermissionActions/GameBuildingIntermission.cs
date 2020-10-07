@@ -42,7 +42,7 @@ public class GameBuildingIntermission
             return false;
         }
 
-        if (!m_building.IsValidTerrainToPlace(gameTile.GetTerrain()))
+        if (!m_building.IsValidTerrainToPlace(gameTile.GetTerrain(), gameTile))
         {
             return false;
         }
