@@ -45,17 +45,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_worldTilePrefab: {fileID: 4995393579826288999, guid: 7202d2a57e1e06241bc0b70d07daeb7f,
     type: 3}
-  m_uiEntityPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
-    type: 3}
-  m_uiEventPrefab: {fileID: 3514070705531117766, guid: b4bbb8e94a14c1b449d9738aaf23efa0,
+  m_uiUnitPrefab: {fileID: 929266444150017754, guid: 2e556476ce24698438601ff53b2afca9,
     type: 3}
   m_uiCardPrefab: {fileID: 757981490098818967, guid: 7e83a66c522e72e42923a0ad883b8f21,
     type: 3}
+  m_uiCardTooltipPrefab: {fileID: 0}
   m_uiWorldElementNotificationPrefab: {fileID: 3599552122858822999, guid: 9be644c790a93154cb9d6bd04a016df2,
     type: 3}
-  m_uiAPBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,
+  m_uiStaminaBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,
     type: 3}
-  m_uiBuildingPrefab: {fileID: 3093712704905668287, guid: 9254476220ccf7049af53ae121593cd9,
+  m_uiRelicPrefab: {fileID: 422705487106061522, guid: f1fa454c167b2d9479c6baa4a37e2b31,
+    type: 3}
+  m_uiBorderUnit: {fileID: 1119457693261174274, guid: 2b035c6ace82793449ebce6ba015a0bc,
     type: 3}
   m_uiSimpleTooltipPrefab: {fileID: 9079615657806812307, guid: be135c587f2994147b3fb954b8068cba,
     type: 3}
+  m_uiPlayerHandParent: {fileID: 0}
+  m_borderUnitParent: {fileID: 0}

@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class GamePlayer : ITurns
 {
+    public static GameCard StarterSimpleUnit = new ContentDwarvenSoldierCard();
+    public static GameCard StarterAdvancedUnit = new ContentStoneGolemCard();
+    public static GameCard StarterDamageSpell = new ContentFireboltCard();
+    public static GameCard StarterDefensiveSpell = new ContentAegisCard();
+    public static GameCard StarterExileSpell = new ContentGrowTalonsCard();
+
     public int m_curEnergy;
     private int m_maxEnergy;
 

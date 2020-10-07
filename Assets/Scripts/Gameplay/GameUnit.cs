@@ -658,6 +658,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         UIHelper.ReselectUnit();
     }
 
+    public void DrainStamina(int toDrain)
+    {
+        int staminaToDrain = toDrain;
+
+        if (staminaToDrain > m_curStamina)
+        {
+            staminaToDrain = m_curStamina;
+        }
+
+        m_curStamina -= staminaToDrain;
+
+        UIHelper.CreateWorldElementNotification(GetName() + " loses " + staminaToDrain + " Stamina.", true, m_gameTile.GetWorldTile().gameObject);
+    }
+
     public void Reset()
     {
         m_isDead = false;

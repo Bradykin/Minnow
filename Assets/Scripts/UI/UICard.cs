@@ -13,7 +13,9 @@ public class UICard : MonoBehaviour
         Hand,
         Deck,
         Select,
-        Tooltip
+        Tooltip,
+        StarterSelect,
+        StarterTypeSelect
     }
 
     public Image m_tintImage;
@@ -38,6 +40,7 @@ public class UICard : MonoBehaviour
     private UICardSelectButton m_cardSelect;
     private UICardDeckView m_cardDeck;
     private UITooltipCard m_cardTooltip;
+    private UICardStarterSelect m_cardStarterSelect;
 
     private bool m_hasSetDisplayType;
 
@@ -81,6 +84,10 @@ public class UICard : MonoBehaviour
             else if (m_displayType == CardDisplayType.Tooltip)
             {
                 m_cardTooltip = gameObject.AddComponent<UITooltipCard>();
+            }
+            else if (m_displayType == CardDisplayType.StarterSelect)
+            {
+                m_cardStarterSelect = gameObject.AddComponent<UICardStarterSelect>();
             }
 
             m_hasSetDisplayType = true;
@@ -174,5 +181,10 @@ public class UICard : MonoBehaviour
     public UITooltipCard GetCardTooltip()
     {
         return m_cardTooltip;
+    }  
+    
+    public UICardStarterSelect GetCardStarterSelect()
+    {
+        return m_cardStarterSelect;
     }
 }

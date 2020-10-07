@@ -40,8 +40,15 @@ public class GameCardSpellBase : GameCard
     }
 
     protected virtual int GetSpellValue()
-    {
-        int toReturn = m_spellEffect + GameHelper.GetPlayer().GetSpellPower();
+   {
+        int toReturn = m_spellEffect;
+
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player != null)
+        {
+            toReturn += player.GetSpellPower();
+        }
 
         if (toReturn < 0)
         {
