@@ -15,27 +15,27 @@ public class GameDeck
     {
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(new ContentDwarvenSoldierCard());
+            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterSimpleUnit));
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentStoneGolemCard());
+            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterAdvancedUnit));
         }
 
         for (int i = 0; i < 2; i++)
         {
-            m_cards.Add(new ContentAegisCard());
+            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterDamageSpell));
         }
 
         for (int i = 0; i < 2; i++)
         {
-            m_cards.Add(new ContentFireboltCard());
+            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterDefensiveSpell));
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(new ContentGrowTalonsCard());
+            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterExileSpell));
         }
 
         if (GameHelper.IsValidChaosLevel(1))

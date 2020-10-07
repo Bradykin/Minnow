@@ -13,7 +13,6 @@ public class ContentJoltCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Starter;
-        m_shouldExile = true;
 
         SetupBasicData();
     }

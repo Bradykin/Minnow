@@ -51,10 +51,20 @@ public class UILevelSelectButton : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (UIHelper.UIShouldBlockClick())
+        {
+            return;
+        }
+
         SelectLevel();
     }
     void OnMouseOver()
     {
+        if (UIHelper.UIShouldBlockClick())
+        {
+            return;
+        }
+
         m_isHovered = true;
     }
 
