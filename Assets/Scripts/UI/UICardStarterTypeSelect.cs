@@ -21,13 +21,13 @@ public class UICardStarterTypeSelect : MonoBehaviour
     {
         if (m_cardType == UIStarterCardSelectionController.Instance.m_curSelectedType)
         {
-            UIStarterCardSelectionController.Instance.m_curSelectedType = UIStarterCardSelectionController.StarterCardType.None;
+            UIStarterCardSelectionController.Instance.SetCurSelectedType(UIStarterCardSelectionController.StarterCardType.None);
             Globals.m_selectedCard = null;
             return;
         }
         else
         {
-            UIStarterCardSelectionController.Instance.m_curSelectedType = m_cardType;
+            UIStarterCardSelectionController.Instance.SetCurSelectedType(m_cardType);
             Globals.m_selectedCard = m_uiCard;
         }
     }

@@ -25,6 +25,7 @@ public class WorldController : Singleton<WorldController>
         m_playerHand = new List<UICard>();
 
         m_playerUnitFocusIndex = 0;
+        Globals.m_selectedCard = null;
     }
 
     void Update()

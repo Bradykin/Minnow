@@ -96,10 +96,16 @@ public class UICard : MonoBehaviour
 
     void Update()
     {
-        if (!m_isHovered)
+        if (ShouldShowSelectedTint())
         {
-            bool isSelected = Globals.m_selectedCard == this;
-            m_tintImage.color = UIHelper.GetSelectTintColor(Globals.m_selectedCard == this);
+            m_tintImage.color = UIHelper.GetSelectTintColor(true);
+        }
+        else
+        {
+            if (!m_isHovered)
+            {
+                m_tintImage.color = UIHelper.GetSelectTintColor(false);
+            }
         }
 
         SetCardData();
@@ -141,10 +147,16 @@ public class UICard : MonoBehaviour
         Globals.m_canScroll = false;
         m_isHovered = true;
 
-        if (Globals.m_selectedCard != this)
+        if (!ShouldShowSelectedTint())
         {
-            bool isValid = m_card.IsValidToPlay() || m_cardSelect != null;
-            m_tintImage.color = UIHelper.GetValidTintColor(isValid);
+            if (m_displayType == CardDisplayType.Hand)
+            {
+                m_tintImage.color = UIHelper.GetValidTintColor(m_card.IsValidToPlay());
+            }
+            else
+            {
+                m_tintImage.color = UIHelper.GetValidTintColor(true);
+            }
         }
 
         Globals.m_hoveredCard = this;
@@ -155,7 +167,7 @@ public class UICard : MonoBehaviour
         Globals.m_canScroll = true;
         m_isHovered = false;
 
-        if (Globals.m_selectedCard != this)
+        if (!ShouldShowSelectedTint())
         {
             m_tintImage.color = UIHelper.GetDefaultTintColor();
         }
@@ -186,5 +198,17 @@ public class UICard : MonoBehaviour
     public UICardStarterSelect GetCardStarterSelect()
     {
         return m_cardStarterSelect;
+    }
+
+    private bool ShouldShowSelectedTint()
+    {
+        bool isSelected = Globals.m_selectedCard == this;
+
+        if (m_displayType == CardDisplayType.StarterSelect)
+        {
+            isSelected = m_cardStarterSelect.IsSelected();
+        }
+
+        return isSelected;
     }
 }

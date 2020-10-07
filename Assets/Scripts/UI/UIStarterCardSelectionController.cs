@@ -29,20 +29,26 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
 
     void Start()
     {
+        m_basicUnit.Init(GamePlayer.StarterSimpleUnit, UICard.CardDisplayType.StarterTypeSelect);
+        m_advancedUnit.Init(GamePlayer.StarterAdvancedUnit, UICard.CardDisplayType.StarterTypeSelect);
+        m_damageSpell.Init(GamePlayer.StarterDamageSpell, UICard.CardDisplayType.StarterTypeSelect);
+        m_defensiveSpell.Init(GamePlayer.StarterDefensiveSpell, UICard.CardDisplayType.StarterTypeSelect);
+        m_exileSpell.Init(GamePlayer.StarterExileSpell, UICard.CardDisplayType.StarterTypeSelect);
+
         m_basicUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.BasicUnit);
         m_advancedUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.AdvancedUnit);
         m_damageSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.DamageSpell);
         m_defensiveSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.DefensiveSpell);
         m_exileSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.ExileSpell);
+
+        m_optionOne.gameObject.SetActive(false);
+        m_optionTwo.gameObject.SetActive(false);
+        m_optionThree.gameObject.SetActive(false);
     }
 
-    void Update()
+    public void SetCurSelectedType(StarterCardType type)
     {
-        m_basicUnit.Init(GamePlayer.StarterSimpleUnit, UICard.CardDisplayType.StarterSelect);
-        m_advancedUnit.Init(GamePlayer.StarterAdvancedUnit, UICard.CardDisplayType.StarterSelect);
-        m_damageSpell.Init(GamePlayer.StarterDamageSpell, UICard.CardDisplayType.StarterSelect);
-        m_defensiveSpell.Init(GamePlayer.StarterDefensiveSpell, UICard.CardDisplayType.StarterSelect);
-        m_exileSpell.Init(GamePlayer.StarterExileSpell, UICard.CardDisplayType.StarterSelect);
+        m_curSelectedType = type;
 
         if (m_curSelectedType == StarterCardType.None)
         {
@@ -90,6 +96,35 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
             m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
             m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
             m_optionThree.GetCardStarterSelect().Init(m_curSelectedType);
+        }
+    }
+
+    public void SetStarterCard(StarterCardType type, GameCard card)
+    {
+        if (type == StarterCardType.BasicUnit)
+        {
+            GamePlayer.StarterSimpleUnit = card;
+            m_basicUnit.Init(GamePlayer.StarterSimpleUnit, UICard.CardDisplayType.StarterTypeSelect);
+        }
+        else if (type == StarterCardType.AdvancedUnit)
+        {
+            GamePlayer.StarterAdvancedUnit = card;
+            m_advancedUnit.Init(GamePlayer.StarterAdvancedUnit, UICard.CardDisplayType.StarterTypeSelect);
+        }
+        else if (type == StarterCardType.DamageSpell)
+        {
+            GamePlayer.StarterDamageSpell = card;
+            m_damageSpell.Init(GamePlayer.StarterDamageSpell, UICard.CardDisplayType.StarterTypeSelect);
+        }
+        else if (type == StarterCardType.DefensiveSpell)
+        {
+            GamePlayer.StarterDefensiveSpell = card;
+            m_defensiveSpell.Init(GamePlayer.StarterDefensiveSpell, UICard.CardDisplayType.StarterTypeSelect);
+        }
+        else if (type == StarterCardType.ExileSpell)
+        {
+            GamePlayer.StarterExileSpell = card;
+            m_exileSpell.Init(GamePlayer.StarterExileSpell, UICard.CardDisplayType.StarterTypeSelect);
         }
     }
 }

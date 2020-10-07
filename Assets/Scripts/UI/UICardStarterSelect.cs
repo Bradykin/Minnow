@@ -19,25 +19,34 @@ public class UICardStarterSelect : MonoBehaviour
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        UIStarterCardSelectionController.Instance.SetStarterCard(m_cardType, m_uiCard.m_card);
+    }
+
+    public bool IsSelected()
+    {
+        bool isSelected = false;
+
         if (m_cardType == UIStarterCardSelectionController.StarterCardType.BasicUnit)
         {
-            GamePlayer.StarterSimpleUnit = m_uiCard.m_card;
+            isSelected = GamePlayer.StarterSimpleUnit.m_name == m_uiCard.m_card.m_name;
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.AdvancedUnit)
         {
-            GamePlayer.StarterAdvancedUnit = m_uiCard.m_card;
+            isSelected = GamePlayer.StarterAdvancedUnit.m_name == m_uiCard.m_card.m_name;
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.DamageSpell)
         {
-            GamePlayer.StarterDamageSpell = m_uiCard.m_card;
+            isSelected = GamePlayer.StarterDamageSpell.m_name == m_uiCard.m_card.m_name;
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.DefensiveSpell)
         {
-            GamePlayer.StarterDefensiveSpell = m_uiCard.m_card;
+            isSelected = GamePlayer.StarterDefensiveSpell.m_name == m_uiCard.m_card.m_name;
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.ExileSpell)
         {
-            GamePlayer.StarterExileSpell = m_uiCard.m_card;
+            isSelected = GamePlayer.StarterExileSpell.m_name == m_uiCard.m_card.m_name;
         }
+
+        return isSelected;
     }
 }
