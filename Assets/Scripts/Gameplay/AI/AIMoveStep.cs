@@ -16,7 +16,7 @@ public abstract class AIMoveStep : AIStep
 
             if (moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
             {
-                bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
+                bool useSteppedOutTurn = m_AIGameEnemyUnit.UseSteppedOutTurn;
 
                 if (useSteppedOutTurn)
                 {

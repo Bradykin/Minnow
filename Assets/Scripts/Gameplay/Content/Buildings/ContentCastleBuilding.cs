@@ -26,7 +26,7 @@ public class ContentCastleBuilding : GameBuildingBase
         GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
-    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsFlatTerrain())
         {

@@ -134,7 +134,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     m_tintRenderer.color = UIHelper.GetAttackTintColor();
                 }
                 else if (Globals.m_selectedIntermissionBuilding != null &&
-                    Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain()) &&
+                    Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain(), GetGameTile()) &&
                     !GetGameTile().HasAvailableEvent() &&
                     !GetGameTile().m_isFog)
                 {

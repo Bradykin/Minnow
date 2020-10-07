@@ -50,7 +50,7 @@ public class ContentFortressBuilding : GameBuildingBase
         }
     }
 
-    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsMountain())
         {

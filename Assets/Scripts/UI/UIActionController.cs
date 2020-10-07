@@ -89,19 +89,19 @@ public class UIActionController : MonoBehaviour
             ContentDirtPlainsTerrain dirtTest = new ContentDirtPlainsTerrain();
             ContentWaterTerrain waterTest = new ContentWaterTerrain();
 
-            if (building.IsValidTerrainToPlace(forestTest))
+            if (building.IsValidTerrainToPlace(forestTest, null))
             {
                 m_terrainImage.sprite = forestTest.m_icon;
             }
-            else if (building.IsValidTerrainToPlace(mountainTest))
+            else if (building.IsValidTerrainToPlace(mountainTest, null))
             {
                 m_terrainImage.sprite = mountainTest.m_icon;
             }
-            else if (building.IsValidTerrainToPlace(dirtTest))
+            else if (building.IsValidTerrainToPlace(dirtTest, null))
             {
                 m_terrainImage.sprite = dirtTest.m_icon;
             }
-            else if (building.IsValidTerrainToPlace(waterTest))
+            else if (building.IsValidTerrainToPlace(waterTest, null))
             {
                 m_terrainImage.sprite = waterTest.m_icon;
             }

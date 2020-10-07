@@ -58,7 +58,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         m_isDestroyed = true;
     }
 
-    public override bool IsValidTerrainToPlace(GameTerrainBase terrain)
+    public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsMountain())
         {
