@@ -20,7 +20,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string description = GetDamageDescString() + "Drain 1 Power.\n";
+        string description = GetDamageDescString() + "Drain " + m_powerToDrain + " Power.\n";
 
         int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
 
