@@ -44,7 +44,7 @@ public class GameDeck
             {
                 m_cards.Add(GameCardFactory.GetRandomStandardSpellCard());
             }
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 1; i++)
             {
                 m_cards.Add(GameCardFactory.GetRandomStandardUnitCard());
             }
