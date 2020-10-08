@@ -21,6 +21,7 @@ public abstract class GameCard : GameElementBase
     public bool m_shouldExile;
     public int m_unlockLevel;
     public int m_storedTagWeight;
+    public int m_cardLevel;
 
     public virtual string GetName()
     {
