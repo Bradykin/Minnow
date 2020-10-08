@@ -976,13 +976,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                     return path[i];
                 }
             }
+            return m_gameTile;
         }
         else
         {
             return destinationTile;
         }
-
-        return m_gameTile;
     }
 
     public void SpendStamina(int toSpend)

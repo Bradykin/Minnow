@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDesertYellowMesaTerrain : GameTerrainBase
+public class ContentDesertYellowMesaCaveTerrain : GameTerrainBase
 {
-    public ContentDesertYellowMesaTerrain()
+    public ContentDesertYellowMesaCaveTerrain()
     {
         m_rangeModifier = Constants.HillsRangeModifier;
         m_damageReduction = Constants.HillsDamageReduction;
         m_costToPass = Constants.HillsMovementCost;
 
-        m_name = "DesertYellowMesa";
+        m_name = "DesertYellowMesaCave";
         m_desc = GenerateDescription();
         m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;
@@ -19,6 +19,7 @@ public class ContentDesertYellowMesaTerrain : GameTerrainBase
         m_isPassable = true;
         m_isHot = true;
         m_isHill = true;
+        m_isCave = true;
 
         LateInit();
     }
