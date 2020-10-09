@@ -40,13 +40,12 @@ public class GameEventRejectFruitOption : GameEventOption
             {
                 nearbyTiles[i].m_occupyingUnit.Heal(m_healAmount);
             }
-            
-            //TODO: Modify this to check IsBurned(), and if so, restore tile to unburned form
-            /*if (nearbyTiles[i].GetTerrain().CanBurn())
+
+            if (nearbyTiles[i].GetTerrain().CanUnburn())
             {
-                nearbyTiles[i].SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(nearbyTiles[i].GetTerrain()));
+                nearbyTiles[i].SetTerrain(GameTerrainFactory.GetUnburnedTerrainClone(nearbyTiles[i].GetTerrain()));
                 continue;
-            }*/
+            }
         }
 
         EndEvent();

@@ -21,7 +21,12 @@ public class ContentPurgeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+        return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+    }
+
+    public override bool IsValidToPlay(GameUnit targetUnit)
+    {
+        return base.IsValidToPlay(targetUnit) && !GameHelper.IsBossOrElite(targetUnit);
     }
 
     public override void PlayCard(GameUnit targetUnit)

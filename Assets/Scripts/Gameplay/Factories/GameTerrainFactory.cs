@@ -287,11 +287,25 @@ public class GameTerrainFactory
         return toReturn;
     }
 
+    public static GameTerrainBase GetUnburnedTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetUnburnedTerrainType() == null)
+        {
+            Debug.LogError("Missing unburned terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetBurnedTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
     public static GameTerrainBase GetBurnedTerrainClone(GameTerrainBase currentTerrain)
     {
         if (currentTerrain.GetBurnedTerrainType() == null)
         {
-            Debug.LogError("Missing completed event type for " + currentTerrain.m_name);
+            Debug.LogError("Missing burned terrain type for " + currentTerrain.m_name);
             return GetTerrainClone(currentTerrain);
         }
 

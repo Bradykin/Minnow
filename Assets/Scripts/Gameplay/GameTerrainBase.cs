@@ -143,9 +143,19 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         return m_canBurn && !m_isBurned && m_burnedTerrainType != null;
     }
 
+    public bool CanUnburn()
+    {
+        return m_isBurned && m_unburnedTerrainType != null;
+    }
+
     public Type GetBurnedTerrainType()
     {
         return m_burnedTerrainType;
+    }
+
+    public Type GetUnburnedTerrainType()
+    {
+        return m_unburnedTerrainType;
     }
 
     public Type GetCompletedEventTerrainType()
