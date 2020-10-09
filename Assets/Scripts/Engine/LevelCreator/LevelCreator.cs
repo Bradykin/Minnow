@@ -206,9 +206,9 @@ public class LevelCreator : MonoBehaviour
 
         if (containsMapData)
         {
-            int indexOf = jsonMapMetaData.IndexOf(jsonMapMetaData.First(m => m.dataPath == dataPaths[pathIndex]));
+            //int indexOf = jsonMapMetaData.IndexOf(jsonMapMetaData.First(m => m.dataPath == dataPaths[pathIndex]));
 
-            jsonMapMetaData[indexOf] = newJsonData;
+            //jsonMapMetaData[indexOf] = newJsonData;
         }
         else
         {
