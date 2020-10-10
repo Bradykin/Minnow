@@ -13,7 +13,7 @@ public class ContentColdHillsCaveTerrain : GameTerrainBase
         m_name = "ColdHillsCave";
         m_desc = GenerateDescription();
         m_focusPanelText = GenerateFocusText();
-        m_maxTerrainImageNumber = 4;
+        m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
