@@ -32,5 +32,10 @@ public class ContentWerewolfEnemy : GameEnemyUnit
 
         //Needs to happen after LateInit because it does math based on maxHealth
         m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(m_maxHealth));
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 5)));
+        }
     }
 }

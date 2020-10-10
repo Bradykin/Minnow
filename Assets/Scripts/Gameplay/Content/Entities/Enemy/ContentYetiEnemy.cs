@@ -25,6 +25,11 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(4));
         m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
 
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 3)));
+        }
+
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIYetiChooseTargetToAttackStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));

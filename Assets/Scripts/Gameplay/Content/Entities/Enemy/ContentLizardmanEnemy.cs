@@ -25,6 +25,10 @@ public class ContentLizardmanEnemy : GameEnemyUnit
 
         m_keywordHolder.m_keywords.Add(new GameWaterwalkKeyword());
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 2)));
+        }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AILizardmanChooseTargetToAttackStep(m_AIGameEnemyUnit));

@@ -6,10 +6,20 @@ public class ContentLichEnemy : GameEnemyUnit
 {
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 350;
-        m_maxStamina = 8;
-        m_staminaRegen = 6;
-        m_power = 15;
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BuffBoss))
+        {
+            m_maxHealth = 700;
+            m_maxStamina = 8;
+            m_staminaRegen = 8;
+            m_power = 30;
+        }
+        else
+        {
+            m_maxHealth = 350;
+            m_maxStamina = 8;
+            m_staminaRegen = 6;
+            m_power = 15;
+        }
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;
@@ -22,7 +32,6 @@ public class ContentLichEnemy : GameEnemyUnit
         m_desc = "The final boss.  Kill it, and win.";
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(20));
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));

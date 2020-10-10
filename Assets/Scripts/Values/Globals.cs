@@ -7,6 +7,20 @@ using UnityEngine;
 
 public static class Globals
 {
+    public enum ChaosLevels : int
+    {
+        AddCards = 1,
+        EnemyPower = 2,
+        BuffElites = 3,
+        ModifySpawnPool = 4,
+        AddMapEvents = 5,
+        AddEnemyAbility = 6,
+        ModifyTerrain = 7,
+        ChaosObelisks = 8,
+        EnemyHealth = 9,
+        BuffBoss = 10
+    }
+
     //TODO: THis is temp.
     public static string mapToLoad = string.Empty;
 

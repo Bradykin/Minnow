@@ -44,14 +44,6 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding(), new GameWallet(80)));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding(), new GameWallet(250)));
 
-        if (GameHelper.IsValidChaosLevel(6))
-        {
-            for (int i  = 0; i < m_intermissionBuildings.Count; i++)
-            {
-                m_intermissionBuildings[i].m_cost.m_gold = m_intermissionBuildings[i].m_cost.m_gold * 2;
-            }
-        }
-
         UpdateActions();
     }
 

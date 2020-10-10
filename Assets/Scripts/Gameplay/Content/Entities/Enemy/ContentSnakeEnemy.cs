@@ -23,7 +23,12 @@ public class ContentSnakeEnemy : GameEnemyUnit
         m_minWave = 4;
         m_maxWave = 4;
 
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
+        int damageShield = 2;
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            damageShield = 4;
+        }
+        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(damageShield));
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));

@@ -44,11 +44,7 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
             m_difficultyText.color = UIHelper.GetDifficultyTextColor(m_curMap.m_difficulty);
 
             m_chaosVal.text = "" + Globals.m_curChaos;
-            m_chaosText.text = ""; //Reset the text
-            for (int i = 1; i <= Globals.m_curChaos; i++)
-            {
-                m_chaosText.text += UIHelper.GetChaosDesc(i) + "\n";
-            }
+            m_chaosText.text = UIHelper.GetChaosDesc(Globals.m_curChaos);            
 
             m_startGameButton.SetActive(true);
         }

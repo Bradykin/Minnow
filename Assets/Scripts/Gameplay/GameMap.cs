@@ -33,7 +33,11 @@ public abstract class GameMap : GameElementBase
 
         FillEventPool();
         GameEventFactory.Init(m_eventPool);
+
+        FillMapEvents();
     }
+
+    protected abstract void FillMapEvents();
 
     protected void AddMapEvent(GameMapEvent toAdd, int triggerWave)
     {

@@ -38,7 +38,7 @@ public class GameDeck
             m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterExileSpell));
         }
 
-        if (GameHelper.IsValidChaosLevel(1))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddCards))
         {
             for (int i = 0; i < 3; i++)
             {

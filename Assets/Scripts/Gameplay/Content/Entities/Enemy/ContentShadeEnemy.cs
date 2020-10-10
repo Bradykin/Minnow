@@ -23,6 +23,11 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
 
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, 15, 2)));
+        }
+
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit));

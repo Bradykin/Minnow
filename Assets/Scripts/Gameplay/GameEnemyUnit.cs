@@ -24,14 +24,14 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
     {
         base.LateInit();
 
-        if (GameHelper.IsValidChaosLevel(7))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyHealth))
         {
-            m_maxHealth = m_maxHealth * 2;
+            m_maxHealth = Mathf.FloorToInt(m_maxHealth * 1.5f);
         }
 
-        if (GameHelper.IsValidChaosLevel(8))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyPower))
         {
-            m_power = m_power * 2;
+            m_power = Mathf.FloorToInt(m_power * 1.5f);
         }
 
         m_curHealth = GetMaxHealth();

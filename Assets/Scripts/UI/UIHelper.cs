@@ -581,39 +581,39 @@ public static class UIHelper
         }
         if (chaosVal == 2)
         {
-            return "Enemies have +1 Stamina regen";
+            return "Increase enemy power by 50%.";
         }
         if (chaosVal == 3)
         {
-            return "Half chance for uncommmon cards";
+            return "Elites are tougher!";
         }
         if (chaosVal == 4)
         {
-            return "Half chance for rare cards";
+            return "Some new enemies will spawn during the waves.";
         }
         if (chaosVal == 5)
         {
-            return "Draw 1 less each turn";
+            return "Map events will shake up the area.";
         }
         if (chaosVal == 6)
         {
-            return "Double cost buildings";
+            return "Enemies have new or improved abilities.";
         }
         if (chaosVal == 7)
         {
-            return "Double health enemies";
+            return "<b>Not Yet Implemented</b> - The terrain is different.";
         }
         if (chaosVal == 8)
         {
-            return "Double power enemies";
+            return "<b>Not Yet Implemented</b> - 3 Chaos Obelisks spawn at the start of the map.";
         }
         if (chaosVal == 9)
         {
-            return "1 less action each intermission phase";
+            return "Enemies have 50% more health.";
         }
         if (chaosVal == 10)
         {
-            return "1 less energy";
+            return "The final boss is tougher.";
         }
 
         return "";

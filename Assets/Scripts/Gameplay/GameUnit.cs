@@ -643,11 +643,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
         m_curStamina += toGain;
 
-        if (m_curStamina > m_maxStamina)
+        if (m_curStamina > GetMaxStamina())
         {
-            staminaGained = staminaGained - (m_curStamina - m_maxStamina);
+            staminaGained = staminaGained - (m_curStamina - GetMaxStamina());
 
-            m_curStamina = m_maxStamina;
+            m_curStamina = GetMaxStamina();
         }
 
         if (GetTeam() == Team.Player && staminaGained > 0 && !isRegen)
@@ -862,14 +862,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 toReturn += GameHelper.RelicCount<ContentLegacyOfMonstersRelic>();
             }
         }
-        
-        if (GetTeam() == Team.Enemy)
-        {
-            if (GameHelper.IsValidChaosLevel(2))
-            {
-                toReturn += 1;
-            }
-        }
+
         toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
 
         return toReturn;

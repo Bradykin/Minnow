@@ -11,11 +11,17 @@ public class ContentLakesideHardMap : GameMap
 
         m_difficulty = MapDifficulty.Hard;
 
-        AddMapEvent(new ContentDrySeasonMapEvent(), 2);
-
         m_id = 1;
 
         Init();
+    }
+
+    protected override void FillMapEvents()
+    {
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
+        {
+            AddMapEvent(new ContentDrySeasonMapEvent(), 2);
+        }
     }
 
     protected override void FillCardPool()
@@ -43,13 +49,17 @@ public class ContentLakesideHardMap : GameMap
         m_spawnPool.Add(new ContentOrcEnemy(null));
         m_spawnPool.Add(new ContentOrcShamanEnemy(null));
         m_spawnPool.Add(new ContentSiegebreakerUnit(null));
-        m_spawnPool.Add(new ContentShadeEnemy(null));
         m_spawnPool.Add(new ContentSlimeEnemy(null));
         m_spawnPool.Add(new ContentSnakeEnemy(null));
         m_spawnPool.Add(new ContentSpinnerEnemy(null));
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentYetiEnemy(null));
-        m_spawnPool.Add(new ContentZombieEnemy(null));
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
+        {
+            m_spawnPool.Add(new ContentShadeEnemy(null));
+            m_spawnPool.Add(new ContentZombieEnemy(null));
+        }
     }
 }

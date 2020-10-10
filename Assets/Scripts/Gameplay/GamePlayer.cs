@@ -48,10 +48,6 @@ public class GamePlayer : ITurns
         m_wallet = new GameWallet(25);
 
         m_maxActions = Constants.StartingActions;
-        if (GameHelper.IsValidChaosLevel(9))
-        {
-            m_maxActions -= 1;
-        }
 
         m_deckBase = new GameDeck();
         m_curDeck = new GameDeck();
@@ -63,11 +59,6 @@ public class GamePlayer : ITurns
         m_deckBase.FillStartingDeck();
 
         m_maxEnergy = Constants.StartingEnergy;
-        if (GameHelper.IsValidChaosLevel(10))
-        {
-            m_maxEnergy -= 1;
-        }
-
         m_curEnergy = GetMaxEnergy();
 
         ResetCurDeck();
@@ -340,11 +331,6 @@ public class GamePlayer : ITurns
     private int GetDrawHandSize()
     {
         int toReturn = Constants.InitialHandSize;
-
-        if (GameHelper.IsValidChaosLevel(5))
-        {
-            toReturn -= 1;
-        }
 
         if (GameHelper.GetGameController().m_currentWaveTurn == 0)
         {

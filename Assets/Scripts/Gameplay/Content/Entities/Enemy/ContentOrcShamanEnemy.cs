@@ -20,7 +20,12 @@ public class ContentOrcShamanEnemy : GameEnemyUnit
         m_name = "Orc Shaman";
         m_desc = "";
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+        int range = 2;
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            range = 3;
+        }
+        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(range));
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));

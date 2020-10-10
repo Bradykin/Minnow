@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//For AI:
-//Charges at a spot
-//Attacks only once per turn, but hits all tiles around it
 public class ContentSpinnerEnemy : GameEnemyUnit
 {
     public ContentSpinnerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -22,6 +19,11 @@ public class ContentSpinnerEnemy : GameEnemyUnit
 
         m_name = "Spinner";
         m_desc = "";
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+        }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit));
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit));

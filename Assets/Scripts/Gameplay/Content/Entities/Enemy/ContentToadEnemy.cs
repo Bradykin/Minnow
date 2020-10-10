@@ -21,6 +21,11 @@ public class ContentToadEnemy : GameEnemyUnit
 
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
 
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameFullHealAction(this)));
+        }
+
         m_minWave = 2;
         m_maxWave = 2;
 

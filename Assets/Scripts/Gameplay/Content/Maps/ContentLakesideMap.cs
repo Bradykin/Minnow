@@ -16,6 +16,11 @@ public class ContentLakesideMap : GameMap
         Init();
     }
 
+    protected override void FillMapEvents()
+    {
+        //No events, left blank by default.  No Chaos on this map.
+    }
+
     protected override void FillCardPool()
     {
         FillBasicCardPool();
@@ -41,13 +46,17 @@ public class ContentLakesideMap : GameMap
         m_spawnPool.Add(new ContentOrcEnemy(null));
         m_spawnPool.Add(new ContentOrcShamanEnemy(null));
         m_spawnPool.Add(new ContentSiegebreakerUnit(null));
-        m_spawnPool.Add(new ContentShadeEnemy(null));
         m_spawnPool.Add(new ContentSlimeEnemy(null));
         m_spawnPool.Add(new ContentSnakeEnemy(null));
         m_spawnPool.Add(new ContentSpinnerEnemy(null));
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentYetiEnemy(null));
-        m_spawnPool.Add(new ContentZombieEnemy(null));
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
+        {
+            m_spawnPool.Add(new ContentShadeEnemy(null));
+            m_spawnPool.Add(new ContentZombieEnemy(null));
+        }
     }
 }

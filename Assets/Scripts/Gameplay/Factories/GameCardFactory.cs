@@ -140,15 +140,6 @@ public static class GameCardFactory
         int chanceForUncommon = Constants.PercentChanceForUncommonCard;
         int chanceForRare = Constants.PercentChanceForRareCard;
 
-        if (GameHelper.IsValidChaosLevel(3))
-        {
-            chanceForUncommon = chanceForUncommon / 2;
-        }
-        if (GameHelper.IsValidChaosLevel(4))
-        {
-            chanceForRare = chanceForRare / 2;
-        }
-
         if (GameHelper.PercentChanceRoll(chanceForUncommon))
         {
             return uncommonCards;
