@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDirtPlainsRuinsTerrain : GameTerrainBase
+public class ContentColdPlainsRuinsTerrain : GameTerrainBase
 {
-    public ContentDirtPlainsRuinsTerrain()
+    public ContentColdPlainsRuinsTerrain()
     {
         m_damageReduction = Mathf.Max(Constants.PlainsDamageReduction, Constants.RuinsDamageReduction);
         m_costToPass = Mathf.Max(Constants.PlainsMovementCost, Constants.RuinsMovementCost);
 
-        m_name = "DirtPlainsRuins";
+        m_name = "ColdPlainsRuins";
         m_desc = GenerateDescription();
-        m_maxTerrainImageNumber = 3;
+        m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
         m_isPlains = true;
+        m_isCold = true;
         m_isEventTerrain = true;
 
-        m_unburnedTerrainType = typeof(ContentGrassPlainsRuinsTerrain);
-        m_completedEventTerrainType = typeof(ContentDirtPlainsTerrain);
+        m_completedEventTerrainType = typeof(ContentColdPlainsTerrain);
 
         LateInit();
     }

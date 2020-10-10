@@ -6,19 +6,22 @@ public class ContentPineForestRuinsTerrain : GameTerrainBase
 {
     public ContentPineForestRuinsTerrain()
     {
-        m_damageReduction = 2;
+        m_damageReduction = Mathf.Max(Constants.ForestDamageReduction, Constants.RuinsDamageReduction);
+        m_costToPass = Mathf.Max(Constants.ForestMovementCost, Constants.RuinsMovementCost);
 
         m_name = "PineForestRuins";
-        m_desc = "2 Stamina movement.\nUnits on this tile take " + m_damageReduction + " less damage.";
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 
         m_isPassable = true;
-        m_costToPass = 2;
-
         m_isForest = true;
+        m_isCold = true;
+        m_canBurn = true;
         m_isEventTerrain = true;
 
-        m_completedEventType = typeof(ContentPineForestTerrain);
+        m_burnedTerrainType = typeof(ContentForestBurnedRuinsTerrain);
+        m_completedEventTerrainType = typeof(ContentPineForestTerrain);
 
         LateInit();
     }

@@ -83,12 +83,21 @@ public static class Constants
     public static int WaterMovementCost = 2;
     public static int RuinsDamageReduction = 0;
     public static int RuinsMovementCost = 2;
+
+    //Desert unique tiles
     public static int HalfDunesDamageReduction = 0;
     public static int HalfDunesMovementCost = 1;
     public static int HalfDunesDamageTaken = 1;
     public static int DunesDamageReduction = 0;
     public static int DunesMovementCost = 2;
     public static int DunesDamageTaken = 2;
+
+    //Snow unique tiles
+    public static int SnowBankDamageReduction = 0;
+    public static int SnowBankMovementCost = 2;
+    public static int SnowBankRangeModifier = 0;
+    public static int IceDamageReduction = 0;
+    public static int IceMovementCost = 1;
 
     public static int GetWaveLength (int waveNum)
     {

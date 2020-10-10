@@ -6,12 +6,14 @@ public class ContentIceWaterTerrain : GameTerrainBase
 {
     public ContentIceWaterTerrain()
     {
-        m_name = "IceWater";
-        m_desc = "Impassable.";
-        m_terrainImageNumber = Random.Range(1, 5);
-
+        m_damageReduction = Constants.WaterDamageReduction;
+        m_costToPass = Constants.WaterMovementCost;
         m_isPassable = false;
-        m_costToPass = 1;
+
+        m_name = "IceWater";
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isWater = true;
         m_isCold = true;

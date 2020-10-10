@@ -19,7 +19,7 @@ public class ContentScrublandPlainsTerrain : GameTerrainBase
         m_canBurn = true;
 
         m_burnedTerrainType = typeof(ContentDirtPlainsTerrain);
-        m_addedEventType = typeof(ContentScrublandPlainsRuinsTerrain);
+        m_addedEventTerrainType = typeof(ContentScrublandPlainsRuinsTerrain);
 
         LateInit();
     }

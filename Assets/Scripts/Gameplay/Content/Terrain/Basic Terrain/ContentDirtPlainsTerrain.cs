@@ -15,9 +15,9 @@ public class ContentDirtPlainsTerrain : GameTerrainBase
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
+        m_isPlains = true;
 
-        m_unburnedTerrainType = typeof(ContentGrassPlainsTerrain);
-        m_addedEventType = typeof(ContentDirtPlainsRuinsTerrain);
+        m_addedEventTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
 
         LateInit();
     }

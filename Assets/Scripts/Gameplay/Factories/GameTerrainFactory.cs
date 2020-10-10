@@ -129,27 +129,35 @@ public class GameTerrainFactory
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Tropical Terrain", m_tropicalTerrain));
 
         //Snow Terrain
-        m_snowTerrain.Add(new ContentSnowPlainsTerrain());
-        m_snowTerrain.Add(new ContentSnowForestTerrain());
-        m_snowTerrain.Add(new ContentSnowHillsTerrain());
-        m_snowTerrain.Add(new ContentSnowMountainTerrain());
-        m_snowTerrain.Add(new ContentSnowBankTerrain());
-        m_snowTerrain.Add(new ContentSnowHillsCaveTerrain());
-        m_snowTerrain.Add(new ContentSnowMountainCaveTerrain());
-        m_snowTerrain.Add(new ContentSnowPlainsPondTerrain());
-        m_snowTerrain.Add(new ContentTundraPlainsTerrain());
-        m_snowTerrain.Add(new ContentTundraForestTerrain());
-        m_snowTerrain.Add(new ContentTundraHillsTerrain());
-        m_snowTerrain.Add(new ContentTundraHillsCaveTerrain());
-        m_snowTerrain.Add(new ContentTundraPlainsPondTerrain());
         m_snowTerrain.Add(new ContentColdPlainsTerrain());
         m_snowTerrain.Add(new ContentColdDirtPlainsTerrain());
-        m_snowTerrain.Add(new ContentColdHillsTerrain());
-        m_snowTerrain.Add(new ContentColdHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowPlainsTerrain());
+        m_snowTerrain.Add(new ContentTundraPlainsTerrain());
         m_snowTerrain.Add(new ContentColdPlainsPondTerrain());
-        m_snowTerrain.Add(new ContentSnowRuinsTerrain());
+        m_snowTerrain.Add(new ContentTundraPlainsPondTerrain());
+        m_snowTerrain.Add(new ContentSnowPlainsPondTerrain());
+        m_snowTerrain.Add(new ContentPineForestTerrain());
+        m_snowTerrain.Add(new ContentTundraForestTerrain());
+        m_snowTerrain.Add(new ContentSnowForestTerrain());
+        m_snowTerrain.Add(new ContentColdHillsTerrain());
+        m_snowTerrain.Add(new ContentTundraHillsTerrain());
+        m_snowTerrain.Add(new ContentSnowHillsTerrain());
+        m_snowTerrain.Add(new ContentColdHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentTundraHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowHillsCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowMountainTerrain());
+        m_snowTerrain.Add(new ContentSnowMountainCaveTerrain());
+        m_snowTerrain.Add(new ContentSnowBankTerrain());
+        m_snowTerrain.Add(new ContentColdPlainsRuinsTerrain());
+        m_snowTerrain.Add(new ContentColdDirtPlainsRuinsTerrain());
+        m_snowTerrain.Add(new ContentTundraPlainsRuinsTerrain());
+        m_snowTerrain.Add(new ContentSnowPlainsRuinsTerrain());
+        m_snowTerrain.Add(new ContentPineForestRuinsTerrain());
+        m_snowTerrain.Add(new ContentTundraForestRuinsTerrain());
         m_snowTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_snowTerrain.Add(new ContentIceWaterTerrain());
+        m_snowTerrain.Add(new ContentIceCrackedTerrain());
+        m_snowTerrain.Add(new ContentIceTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Snow Terrain", m_snowTerrain));
 
         //Desert Red Terrain
@@ -213,7 +221,7 @@ public class GameTerrainFactory
         m_ruinsTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_ruinsTerrain.Add(new ContentMarshRuinsTerrain());
         m_ruinsTerrain.Add(new ContentDesertDunesRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentSnowRuinsTerrain());
+        m_ruinsTerrain.Add(new ContentSnowPlainsRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Ruins Terrain", m_ruinsTerrain));
 
         m_currentTerrainIndex = 0;

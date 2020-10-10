@@ -16,7 +16,7 @@ public class ContentMarshRuinsTerrain : GameTerrainBase
         m_isWater = true;
         m_isEventTerrain = true;
 
-        m_completedEventType = typeof(ContentMarshTerrain);
+        m_completedEventTerrainType = typeof(ContentMarshTerrain);
 
         LateInit();
     }

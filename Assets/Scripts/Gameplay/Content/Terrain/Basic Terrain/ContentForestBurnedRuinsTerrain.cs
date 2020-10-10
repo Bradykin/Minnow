@@ -21,7 +21,7 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
         m_isEventTerrain = true;
 
         m_unburnedTerrainType = typeof(ContentForestRuinsTerrain);
-        m_completedEventType = typeof(ContentForestBurnedTerrain);
+        m_completedEventTerrainType = typeof(ContentForestBurnedTerrain);
 
         LateInit();
     }

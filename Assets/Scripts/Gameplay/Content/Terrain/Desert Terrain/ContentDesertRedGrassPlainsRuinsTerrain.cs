@@ -20,7 +20,7 @@ public class ContentDesertRedGrassPlainsRuinsTerrain : GameTerrainBase
         m_isEventTerrain = true;
 
         m_burnedTerrainType = typeof(ContentDesertRedDirtPlainsRuinsTerrain);
-        m_completedEventType = typeof(ContentDesertRedGrassPlainsTerrain);
+        m_completedEventTerrainType = typeof(ContentDesertRedGrassPlainsTerrain);
 
         LateInit();
     }

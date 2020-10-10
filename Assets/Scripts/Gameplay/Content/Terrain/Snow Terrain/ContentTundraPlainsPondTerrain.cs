@@ -6,15 +6,18 @@ public class ContentTundraPlainsPondTerrain : GameTerrainBase
 {
     public ContentTundraPlainsPondTerrain()
     {
+        m_damageReduction = Constants.PlainsDamageReduction;
+        m_costToPass = Constants.PlainsMovementCost;
+
         m_name = "TundraPlainsPond";
-        m_desc = "Simple, no changes.";
-        m_terrainImageNumber = 1;
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
-        m_costToPass = 1;
-
+        m_isPlains = true;
         m_isCold = true;
-        m_isWater = true;
+        m_isWaterSource = true;
 
         LateInit();
     }

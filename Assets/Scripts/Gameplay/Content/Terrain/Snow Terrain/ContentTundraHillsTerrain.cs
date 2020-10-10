@@ -6,15 +6,17 @@ public class ContentTundraHillsTerrain : GameTerrainBase
 {
     public ContentTundraHillsTerrain()
     {
-        m_rangeModifier = 1;
+        m_rangeModifier = Constants.HillsRangeModifier;
+        m_damageReduction = Constants.HillsDamageReduction;
+        m_costToPass = Constants.HillsMovementCost;
 
         m_name = "TundraHills";
-        m_desc = "3 Stamina movement.\nRanged units on this tile get +" + m_rangeModifier + " increased range.";
-        m_terrainImageNumber = Random.Range(1, 5);
+        m_desc = GenerateDescription();
+        m_focusPanelText = GenerateFocusText();
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
-        m_costToPass = 3;
-
         m_isHill = true;
         m_isCold = true;
 
