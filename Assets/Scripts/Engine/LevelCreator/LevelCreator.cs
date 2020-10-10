@@ -27,7 +27,7 @@ public class LevelCreator : MonoBehaviour
     {
         dataPath = "JsonGridData";
         dataPaths = new List<string>();
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 10; i++)
         {
             dataPaths.Add(dataPath + i + ".txt");
         }
@@ -135,6 +135,22 @@ public class LevelCreator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             ProcessSaveFileKey(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ProcessSaveFileKey(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ProcessSaveFileKey(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ProcessSaveFileKey(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            ProcessSaveFileKey(9);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

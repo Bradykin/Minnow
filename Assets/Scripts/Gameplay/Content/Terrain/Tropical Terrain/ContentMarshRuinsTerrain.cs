@@ -12,10 +12,11 @@ public class ContentMarshRuinsTerrain : GameTerrainBase
 
         m_name = "MarshRuins";
         m_desc = GenerateDescription();
-        m_maxTerrainImageNumber = 4;
+        m_maxTerrainImageNumber = 2;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
+        m_isWaterSource = true;
         m_isEventTerrain = true;
 
         m_completedEventTerrainType = typeof(ContentMarshTerrain);
