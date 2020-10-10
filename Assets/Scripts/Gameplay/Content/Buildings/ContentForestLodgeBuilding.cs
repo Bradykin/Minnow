@@ -34,7 +34,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
-        if (terrain.IsForest())
+        if (terrain.IsForest() && !terrain.IsBurned())
         {
             return true;
         }

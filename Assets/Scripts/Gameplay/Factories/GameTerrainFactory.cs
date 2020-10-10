@@ -91,7 +91,7 @@ public class GameTerrainFactory
         m_hillTerrain.Add(new ContentSnowHillsTerrain());
         m_hillTerrain.Add(new ContentDesertRedHillsTerrain());
         m_hillTerrain.Add(new ContentDesertYellowHillsTerrain());
-        m_hillTerrain.Add(new ContentDesertYellowMesaTerrain());
+        m_hillTerrain.Add(new ContentDesertYellowMountainTerrain());
         m_hillTerrain.Add(new ContentColdHillsCaveTerrain());
         m_hillTerrain.Add(new ContentTundraHillsCaveTerrain());
         m_hillTerrain.Add(new ContentSnowHillsCaveTerrain());
@@ -159,8 +159,8 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedHillsTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMountainTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeTerrain());
-        //m_redDesertTerrain.Add(new ContentDesertRedMountainCaveTerrain());
-        //m_redDesertTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedMountainCaveTerrain());
+        m_redDesertTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedForestPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
@@ -176,13 +176,13 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowDirtPlainsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowForestTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowHillsTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowMesaTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertYellowMountainTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowDirtDunesTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowCraterTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowSaltFlatsTerrain());
-        //m_yellowDesertTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
-        //m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
+        m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowDirtPlainsRuinsTerrain());
@@ -287,11 +287,25 @@ public class GameTerrainFactory
         return toReturn;
     }
 
+    public static GameTerrainBase GetUnburnedTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetUnburnedTerrainType() == null)
+        {
+            Debug.LogError("Missing unburned terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetBurnedTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
     public static GameTerrainBase GetBurnedTerrainClone(GameTerrainBase currentTerrain)
     {
         if (currentTerrain.GetBurnedTerrainType() == null)
         {
-            Debug.LogError("Missing completed event type for " + currentTerrain.m_name);
+            Debug.LogError("Missing burned terrain type for " + currentTerrain.m_name);
             return GetTerrainClone(currentTerrain);
         }
 
