@@ -117,15 +117,25 @@ public class GameTerrainFactory
 
         //Tropical Terrain
         m_tropicalTerrain.Add(new ContentTropicalPlainsTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalSandPlainsTerrain());
         m_tropicalTerrain.Add(new ContentTropicalGrassSandPlainsTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalSandPlainsTerrain());
+        m_tropicalTerrain.Add(new ContentWetlandsPlainsTerrain());
         m_tropicalTerrain.Add(new ContentTropicalSandForestTerrain());
         m_tropicalTerrain.Add(new ContentTropicalGrassSandForestTerrain());
-        m_tropicalTerrain.Add(new ContentWetlandsPlainsTerrain());
+        m_tropicalTerrain.Add(new ContentJungleForestTerrain());
         m_tropicalTerrain.Add(new ContentSwampForestTerrain());
-        m_tropicalTerrain.Add(new ContentBogTerrain());
         m_tropicalTerrain.Add(new ContentMarshTerrain());
+        m_tropicalTerrain.Add(new ContentBogTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalPlainsRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalGrassSandPlainsRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalSandPlainsRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentWetlandsPlainsRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalSandForestRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentTropicalGrassSandForestRuinsTerrain());
+        //m_tropicalTerrain.Add(new ContentJungleForestRuinsTerrain());
+        //m_tropicalTerrain.Add(new ContentSwampForestRuinsTerrain());
         m_tropicalTerrain.Add(new ContentMarshRuinsTerrain());
+        m_tropicalTerrain.Add(new ContentBogRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Tropical Terrain", m_tropicalTerrain));
 
         //Snow Terrain

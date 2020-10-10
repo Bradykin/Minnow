@@ -19,6 +19,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 {
     public int m_damageReduction { get; protected set; }
     public int m_rangeModifier { get; protected set; }
+    public int m_staminaRegenLoss { get; protected set; }
 
     protected int m_costToPass;
     protected int m_terrainImageNumber;

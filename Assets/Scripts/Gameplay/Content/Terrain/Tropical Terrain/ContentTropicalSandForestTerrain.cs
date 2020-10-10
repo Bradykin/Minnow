@@ -6,16 +6,20 @@ public class ContentTropicalSandForestTerrain : GameTerrainBase
 {
     public ContentTropicalSandForestTerrain()
     {
-        m_damageReduction = 2;
+        m_damageReduction = Constants.ForestDamageReduction;
+        m_costToPass = Constants.ForestMovementCost;
 
         m_name = "TropicalSandForest";
-        m_desc = "2 Stamina movement.\nUnits on this tile take " + m_damageReduction + " less damage.";
-        m_terrainImageNumber = Random.Range(1, 5);
+        m_desc = GenerateDescription();
+        m_maxTerrainImageNumber = 4;
+        m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
-        m_costToPass = 2;
-
         m_isForest = true;
+        m_canBurn = true;
+
+        m_burnedTerrainType = typeof(ContentTropicalSandPlainsTerrain);
+        m_addedEventTerrainType = typeof(ContentTropicalSandForestRuinsTerrain);
 
         LateInit();
     }

@@ -99,6 +99,14 @@ public static class Constants
     public static int IceDamageReduction = 0;
     public static int IceMovementCost = 1;
 
+    //Tropical unique tiles
+    public static int MarshDamageReduction = 0;
+    public static int MarshMovementCost = 2;
+    public static int MarshStaminaRegenLoss = 0;
+    public static int BogDamageReduction = 0;
+    public static int BogMovementCost = 2;
+    public static int BogStaminaRegenLoss = 2;
+
     public static int GetWaveLength (int waveNum)
     {
         return WaveLength[waveNum - 1];
