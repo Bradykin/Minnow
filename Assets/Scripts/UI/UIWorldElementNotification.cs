@@ -26,6 +26,11 @@ public class UIWorldElementNotification : MonoBehaviour
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + m_floatingSpeed, transform.localPosition.z);
     }
 
+    private void OnDisable()
+    {
+        Recycler.Recycle<UIWorldElementNotification>(this);
+    }
+
     public void Init(string message, Color color)
     {
         m_notificationText.text = message;

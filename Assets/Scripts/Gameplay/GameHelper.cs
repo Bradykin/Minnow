@@ -143,7 +143,12 @@ public static class GameHelper
 
     public static void ReturnToLevelSelectFromLevelScene()
     {
+        FactoryManager.Instance.StopAllCoroutines();
         Globals.m_levelActive = false;
+
+        WorldController.Instance.EndLevel();
+        WorldGridManager.Instance.RecycleGrid();
+
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 

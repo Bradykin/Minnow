@@ -28,6 +28,21 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedCard = null;
     }
 
+    public void EndLevel()
+    {
+        m_isInGame = false;
+
+        m_gameController = null;
+        for(int i = 0; i < m_playerHand.Count; i++)
+        {
+            Recycler.Recycle<UICard>(m_playerHand[i]);
+        }
+        m_playerHand = null;
+
+        m_playerUnitFocusIndex = 0;
+        Globals.m_selectedCard = null;
+    }
+
     void Update()
     {
         HandlePlayerHand();

@@ -494,7 +494,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         m_fogOfWar.SetActive(true);
 
-        m_occupyingUnitObj = null;
+        if (m_occupyingUnitObj != null)
+        {
+            Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
+            m_occupyingUnitObj = null;
+        }
 
         m_isHovered = false;
         m_isMoveable = false;
