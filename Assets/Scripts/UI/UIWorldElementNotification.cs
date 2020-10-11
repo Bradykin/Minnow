@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Game.Util;
 
-public class UIWorldElementNotification : MonoBehaviour
+public class UIWorldElementNotification : MonoBehaviour, IReset
 {
     public Text m_notificationText;
 
@@ -26,7 +26,12 @@ public class UIWorldElementNotification : MonoBehaviour
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + m_floatingSpeed, transform.localPosition.z);
     }
 
-    private void OnDisable()
+    public void Activate()
+    {
+
+    }
+
+    public void Reset()
     {
         Recycler.Recycle<UIWorldElementNotification>(this);
     }

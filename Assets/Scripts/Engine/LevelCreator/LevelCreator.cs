@@ -155,7 +155,6 @@ public class LevelCreator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UICameraController.Instance.Reset();
             SceneLoader.ActivateScene("LevelSelectScene", "LevelCreatorScene");
         }
     }

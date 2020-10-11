@@ -4,7 +4,7 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
 
-public class UILevelSelectController : Singleton<UILevelSelectController>
+public class UILevelSelectController : Singleton<UILevelSelectController>, IReset
 {
     public GameMap m_curMap;
 
@@ -58,5 +58,15 @@ public class UILevelSelectController : Singleton<UILevelSelectController>
     public void SetSelectedLevel(GameMap newMap)
     {
         m_curMap = newMap;
+    }
+
+    public void Activate()
+    {
+        UICameraController.Instance.transform.position = UICameraController.Instance.m_startingTransform;
+    }
+
+    public void Reset()
+    {
+        
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICameraController : Singleton<UICameraController>, IReset
+public class UICameraController : Singleton<UICameraController>
 {
     private float m_cameraSpeed = 15.0f;
     private float m_cameraBound = 40f;
@@ -15,7 +15,7 @@ public class UICameraController : Singleton<UICameraController>, IReset
     private float m_cameraLimitLeft = 10.0f;
     private float m_cameraLimitRight = 3.0f * (Globals.GridSizeX - 3);
 
-    private Vector3 m_startingTransform;
+    public Vector3 m_startingTransform { get; private set; }
 
     private Vector3 m_smoothTarget;
     private float m_smoothSpeed;
@@ -178,15 +178,5 @@ public class UICameraController : Singleton<UICameraController>, IReset
         }
 
         GetComponent<Camera>().orthographicSize = size;
-    }
-
-    public  void Activate()
-    {
-
-    }
-
-    public void Reset()
-    {
-        transform.position = m_startingTransform;
     }
 }
