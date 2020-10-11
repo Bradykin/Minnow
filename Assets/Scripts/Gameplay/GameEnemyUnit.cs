@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEnemyUnit : GameUnit, ITakeTurnAI
+public class GameEnemyUnit : GameUnit
 {
     public AIGameEnemyUnit m_AIGameEnemyUnit;
     public GameOpponent m_gameOpponentController;
@@ -41,18 +41,6 @@ public class GameEnemyUnit : GameUnit, ITakeTurnAI
     }
 
     //============================================================================================================//
-
-    public IEnumerator TakeTurn(bool yield)
-    {
-        if (yield)
-        {
-            yield return FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn(yield));
-        }
-        else
-        {
-            FactoryManager.Instance.StartCoroutine(m_AIGameEnemyUnit.TakeTurn(yield));
-        }
-    }
 
     public override void Die()
     {

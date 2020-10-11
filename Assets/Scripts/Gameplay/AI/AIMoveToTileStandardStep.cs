@@ -8,26 +8,24 @@ public class AIMoveToTileStandardStep : AIMoveStep
 {
     public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination == null)
         {
-            if (yield)
+            if (shouldYield)
             {
-                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
             }
             else
             {
-                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
             }
             yield break;
         }
 
-        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
-
-        if (useSteppedOutTurn)
+        if (shouldYield)
         {
             UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())
@@ -39,7 +37,7 @@ public class AIMoveToTileStandardStep : AIMoveStep
         int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
 
-        if (useSteppedOutTurn)
+        if (shouldYield)
         {
             if (Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
             {
@@ -50,7 +48,6 @@ public class AIMoveToTileStandardStep : AIMoveStep
                 }
             }
 
-            //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             yield return new WaitForSeconds(0.5f);
         }
     }

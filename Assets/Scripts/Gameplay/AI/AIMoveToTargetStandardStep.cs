@@ -8,29 +8,29 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 {
     public AIMoveToTargetStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
-        if (yield)
+        if (shouldYield)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
+            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()), false));
         }
         else
         {
-            FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), false));
+            FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()), false));
         }
     }
 
-    protected IEnumerator MoveToTarget(bool yield, int staminaUsageToMoveToCastle, bool letPassEnemies)
+    protected IEnumerator MoveToTarget(bool shouldYield, int staminaUsageToMoveToCastle, bool letPassEnemies)
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null)
         {
-            if (yield)
+            if (shouldYield)
             {
-                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, staminaUsageToMoveToCastle));
             }
             else
             {
-                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, staminaUsageToMoveToCastle));
             }
             yield break;
         }
@@ -55,13 +55,13 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         }
         if (targetTile == null)
         {
-            if (yield)
+            if (shouldYield)
             {
-                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+                yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, staminaUsageToMoveToCastle));
             }
             else
             {
-                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(yield, staminaUsageToMoveToCastle));
+                FactoryManager.Instance.StartCoroutine(MoveTowardsCastle(shouldYield, staminaUsageToMoveToCastle));
             }
             yield break;
         }
@@ -85,9 +85,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
             yield break;
         }
 
-        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
-
-        if (useSteppedOutTurn)
+        if (shouldYield)
         {
             UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())
@@ -99,7 +97,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
 
-        if (useSteppedOutTurn)
+        if (shouldYield)
         {
             if (Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
             {
@@ -110,7 +108,6 @@ public class AIMoveToTargetStandardStep : AIMoveStep
                 }
             }
 
-            //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             yield return new WaitForSeconds(0.5f);
         }
     }

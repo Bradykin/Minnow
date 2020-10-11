@@ -7,7 +7,7 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
 {
     public AISiegebreakerChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
@@ -31,6 +31,10 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
+
+
+        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().Castle.GetGameTile(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
+        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 
     protected GameBuildingBase FindClosestDefensiveBuildingInRange()
