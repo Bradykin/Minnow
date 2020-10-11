@@ -54,11 +54,35 @@ public static class GameRelicFactory
             }
         }
 
-        int r = UnityEngine.Random.Range(0, relicList.Count);
+        //Use the tag weights + randomization to get the correct card here.
+        int totalWeight = 0;
+        for (int i = 0; i < relicList.Count; i++)
+        {
+            int tagWeight = GameTag.GetTagValueFor(relicList[i]);
+            if (tagWeight > 0)
+            {
+                relicList[i].m_storedTagWeight = tagWeight + totalWeight;
+                totalWeight += tagWeight;
+            }
+            else
+            {
+                relicList.RemoveAt(i);
+                i--;
+            }
+        }
 
-        GameRelic newRelic = (GameRelic)Activator.CreateInstance(relicList[r].GetType());
+        int r = UnityEngine.Random.Range(0, totalWeight);
 
-        return newRelic;
+        for (int i = 0; i < relicList.Count; i++)
+        {
+            if (r <= relicList[i].m_storedTagWeight)
+            {
+                return (GameRelic)Activator.CreateInstance(relicList[i].GetType());
+            }
+        }
+
+        Debug.LogError("Failed to find any relic when trying get one (likely caused by tag weighting issues).");
+        return null;
     }
 
     private static List<GameRelic> GetListWithoutPlayerRelics()

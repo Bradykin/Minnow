@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class GameRelic : GameElementBase
 {
+    public int m_storedTagWeight;
+
     protected void LateInit()
     {
         m_icon = UIHelper.GetIconRelic(m_name);

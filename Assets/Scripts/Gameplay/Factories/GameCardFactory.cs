@@ -177,6 +177,7 @@ public static class GameCardFactory
 
     private static GameCard GetCardFromList(List<GameCard> list, List<GameCard> exclusionList)
     {
+        //Fill the list by removing anything that was excluded.
         List<GameCard> finalList = new List<GameCard>();
         if (exclusionList == null)
         {

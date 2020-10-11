@@ -39,7 +39,6 @@ public class WorldController : Singleton<WorldController>
             for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledUnits.Count; i++)
             {
                 GameUnit unit = m_gameController.m_gameOpponent.m_controlledUnits[i];
-                print("Player Unit: " + unit.GetName());
             }
         }
 

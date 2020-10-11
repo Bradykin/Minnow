@@ -44,7 +44,7 @@ public class UICard : MonoBehaviour
 
     private bool m_hasSetDisplayType;
 
-    private GameUnitCard m_unitCard;
+    public GameUnitCard m_unitCard;
 
     void Start()
     {
