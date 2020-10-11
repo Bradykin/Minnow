@@ -7,7 +7,7 @@ public class ContentSnowmeltMap : GameMap
     public ContentSnowmeltMap()
     {
         m_name = "Snowmelt";
-        m_desc = "The snow is melting (and freezing)!";
+        m_desc = "Enemies swarm; but an abundance of ruins should help to hold this frozen wasteland.";
 
         m_difficulty = MapDifficulty.Medium;
 

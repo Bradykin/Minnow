@@ -247,6 +247,28 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 WorldController.Instance.PostPlayCard();
                 return;
             }
+            else
+            {
+                if (selectedCard.m_unitCard != null)
+                {
+                    if (!GetGameTile().m_canPlace)
+                    {
+                        UIHelper.CreateWorldElementNotification("Out of placement range.", false, gameObject);
+                    }
+                    else if (GetGameTile().IsOccupied())
+                    {
+                        UIHelper.CreateWorldElementNotification("Tile already occupied.", false, gameObject);
+                    }
+                    else if (!GetGameTile().IsPassable(selectedCard.m_unitCard.GetUnit(), false))
+                    {
+                        UIHelper.CreateWorldElementNotification("Unit cannot stand on tile.", false, gameObject);
+                    }
+                }
+                else
+                {
+                    UIHelper.CreateWorldElementNotification("Invalid target.", false, gameObject);
+                }
+            }
         }
 
         WorldUnit selectedUnit = Globals.m_selectedUnit;
