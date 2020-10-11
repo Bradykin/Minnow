@@ -6,11 +6,6 @@ public class ContentDwarvenSoldier : GameUnit
 {
     public ContentDwarvenSoldier()
     {
-        m_maxHealth = 8;
-        m_maxStamina = 4;
-        m_staminaRegen = 3;
-        m_power = 4;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
@@ -19,5 +14,25 @@ public class ContentDwarvenSoldier : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
+    }
+
+    public override void SetUnitLevel(int level)
+    {
+        base.SetUnitLevel(level);
+
+        m_maxHealth = 8;
+        m_maxStamina = 4;
+        m_staminaRegen = 3;
+        m_power = 4;
+
+        if (m_unitLevel >= 1)
+        {
+            m_power = 7;
+        }
+
+        if (m_unitLevel >= 2)
+        {
+            m_maxHealth = 15;
+        }
     }
 }

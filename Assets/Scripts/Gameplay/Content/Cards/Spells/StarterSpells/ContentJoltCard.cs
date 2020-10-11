@@ -6,13 +6,11 @@ public class ContentJoltCard : GameCardSpellBase
 {
     public ContentJoltCard()
     {
-        m_spellEffect = 1;
-
         m_name = "Jolt";
-        m_desc = "Restore 1 Stamina.";
         m_targetType = Target.Ally;
-        m_cost = 1;
         m_rarity = GameRarity.Starter;
+
+        SetCardLevel(GamePlayer.JoltLevel);
 
         SetupBasicData();
     }
@@ -50,6 +48,24 @@ public class ContentJoltCard : GameCardSpellBase
         for (int i = 0; i < numTraditionalMethods; i++)
         {
             GameHelper.GetPlayer().DrawCard();
+        }
+    }
+
+    public override void SetCardLevel(int level)
+    {
+        base.SetCardLevel(level);
+
+        m_cost = 1;
+        m_spellEffect = 2;
+
+        if (m_cardLevel >= 1)
+        {
+            m_spellEffect = 2;
+        }
+
+        if (m_cardLevel >= 2)
+        {
+            m_cost = 0;
         }
     }
 }

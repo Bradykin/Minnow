@@ -8,12 +8,11 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public ContentWeakeningBoltCard()
     {
-        m_spellEffect = 2;
-
         m_name = "Weakening Bolt";
         m_targetType = Target.Unit;
-        m_cost = 1;
         m_rarity = GameRarity.Starter;
+
+        SetCardLevel(GamePlayer.WeakeningLevel);
 
         SetupBasicData();
     }
@@ -54,5 +53,23 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
         }
 
         targetUnit.RemovePower(m_powerToDrain);
+    }
+
+    public override void SetCardLevel(int level)
+    {
+        base.SetCardLevel(level);
+
+        m_cost = 1;
+        m_spellEffect = 2;
+
+        if (m_cardLevel >= 1)
+        {
+            m_spellEffect = 4;
+        }
+
+        if (m_cardLevel >= 2)
+        {
+            m_powerToDrain = 5;
+        }
     }
 }

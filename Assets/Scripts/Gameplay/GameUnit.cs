@@ -42,6 +42,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
+    protected int m_unitLevel;
 
     public void CopyOff(GameUnit other)
     {
@@ -1091,6 +1092,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 Heal(healAmount);
             }
         }
+    }
+
+    public virtual void SetUnitLevel(int level)
+    {
+        m_unitLevel = level;
     }
 
     //============================================================================================================//

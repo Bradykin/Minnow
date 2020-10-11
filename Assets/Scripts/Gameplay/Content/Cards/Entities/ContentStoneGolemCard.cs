@@ -6,7 +6,11 @@ public class ContentStoneGolemCard : GameUnitCard
 {
     public ContentStoneGolemCard()
     {
+        SetCardLevel(GamePlayer.DwarvenLevel);
+
         m_unit = new ContentStoneGolem();
+
+        m_unit.SetUnitLevel(m_cardLevel);
 
         m_cost = 2;
 

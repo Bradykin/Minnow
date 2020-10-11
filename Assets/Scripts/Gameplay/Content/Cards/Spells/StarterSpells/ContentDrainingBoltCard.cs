@@ -8,19 +8,18 @@ public class ContentDrainingBoltCard : GameCardSpellBase
 
     public ContentDrainingBoltCard()
     {
-        m_spellEffect = 2;
-
         m_name = "Draining Bolt";
         m_targetType = Target.Unit;
-        m_cost = 1;
         m_rarity = GameRarity.Starter;
+
+        SetCardLevel(GamePlayer.DrainingLevel);
 
         SetupBasicData();
     }
 
     public override string GetDesc()
     {
-        string description = GetDamageDescString() + "Drain 1 Stamina.\n";
+        string description = GetDamageDescString() + "Drain " + m_staminaToDrain + " Stamina.\n";
 
         int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
 
@@ -54,5 +53,23 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         }
 
         targetUnit.DrainStamina(m_staminaToDrain);
+    }
+
+    public override void SetCardLevel(int level)
+    {
+        base.SetCardLevel(level);
+
+        m_cost = 1;
+        m_spellEffect = 2;
+
+        if (m_cardLevel >= 1)
+        {
+            m_spellEffect = 4;
+        }
+
+        if (m_cardLevel >= 2)
+        {
+            m_staminaToDrain = 3;
+        }
     }
 }
