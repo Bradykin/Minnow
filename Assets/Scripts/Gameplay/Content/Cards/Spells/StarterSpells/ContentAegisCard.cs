@@ -9,12 +9,12 @@ public class ContentAegisCard : GameCardSpellBase
     public ContentAegisCard()
     {
         m_name = "Aegis";
-        m_desc = "Give target allied unit " + m_amount + " <b>Damage Shield</b>.";
         m_targetType = Target.Ally;
-        m_cost = 1;
         m_rarity = GameRarity.Starter;
 
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(-1));
+
+        SetCardLevel(GamePlayer.AegisLevel);
 
         SetupBasicData();
     }
@@ -62,5 +62,24 @@ public class ContentAegisCard : GameCardSpellBase
         {
             GameHelper.GetPlayer().DrawCard();
         }
+    }
+
+    public override void SetCardLevel(int level)
+    {
+        base.SetCardLevel(level);
+
+        m_cost = 1;
+
+        if (m_cardLevel >= 1)
+        {
+            m_amount = 2;
+        }
+
+        if (m_cardLevel >= 2)
+        {
+            m_cost = 0;
+        }
+
+        m_desc = "Give target allied unit " + m_amount + " <b>Damage Shield</b>.";
     }
 }
