@@ -6,21 +6,19 @@ public class AIAttackOnceStandardStep : AIStep
 {
     public AIAttackOnceStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
             yield break;
         }
 
-        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
-
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
         {
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
                 case GameUnit gameUnit:
-                    if (useSteppedOutTurn)
+                    if (shouldYield)
                     {
                         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         while (UICameraController.Instance.IsCameraSmoothing())
@@ -31,7 +29,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
 
-                    if (useSteppedOutTurn)
+                    if (shouldYield)
                     {
                         //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);
@@ -47,7 +45,7 @@ public class AIAttackOnceStandardStep : AIStep
                     }
                     break;
                 case GameBuildingBase gameBuilding:
-                    if (useSteppedOutTurn)
+                    if (shouldYield)
                     {
                         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         while (UICameraController.Instance.IsCameraSmoothing())
@@ -58,7 +56,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuilding);
 
-                    if (useSteppedOutTurn)
+                    if (shouldYield)
                     {
                         //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);

@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace Game.Util
 {
-    public interface ITakeTurnAI
+    public interface ITakeTurnInCoroutineAI
     {
+        void SetupTurn();
+
+        void CleanupTurn();
+        
         IEnumerator TakeTurn(bool yield);
     }
 }

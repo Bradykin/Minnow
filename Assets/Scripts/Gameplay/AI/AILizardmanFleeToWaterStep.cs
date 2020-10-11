@@ -7,7 +7,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 {
     public AILizardmanFleeToWaterStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
         {
@@ -65,9 +65,8 @@ public class AILizardmanFleeToWaterStep : AIStep
 
         int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
-        bool useSteppedOutTurn = yield && m_AIGameEnemyUnit.UseSteppedOutTurn;
 
-        if (useSteppedOutTurn && Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
+        if (shouldYield && Constants.SteppedOutEnemyTurnsCameraFollowMovement && moveDistance >= Constants.SteppedOutEnemyTurnsCameraFollowThreshold)
         {
             UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())
@@ -76,7 +75,7 @@ public class AILizardmanFleeToWaterStep : AIStep
             }
         }
 
-        if (useSteppedOutTurn)
+        if (shouldYield)
         {
             yield return new WaitForSeconds(0.5f);
         }

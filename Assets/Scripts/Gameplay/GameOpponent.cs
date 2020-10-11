@@ -52,13 +52,15 @@ public class GameOpponent : ITurns
         {
             GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().m_isFog)
+            unit.m_AIGameEnemyUnit.SetupTurn();
+
+            if (unit.m_AIGameEnemyUnit.UseSteppedOutTurn)
             {
-                yield return FactoryManager.Instance.StartCoroutine(unit.TakeTurn(true));
+                yield return FactoryManager.Instance.StartCoroutine(unit.m_AIGameEnemyUnit.TakeTurn(true));
             }
             else
             {
-                FactoryManager.Instance.StartCoroutine(unit.TakeTurn(false));
+                FactoryManager.Instance.StartCoroutine(unit.m_AIGameEnemyUnit.TakeTurn(false));
             }
 
             units.Remove(unit);

@@ -4,9 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGameEnemyUnit : ITakeTurnAI
+public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 {
-    private List<AIStep> m_AISteps;
+    private List<AIStep> m_setupAISteps;
+    private List<AIStep> m_activeAISteps;
+    
+    //private List<AIStep> m_AISteps;
 
     public GameEnemyUnit m_gameEnemyUnit { get; private set; }
 
@@ -35,42 +38,74 @@ public class AIGameEnemyUnit : ITakeTurnAI
     public AIGameEnemyUnit(GameEnemyUnit gameEnemyUnit)
     {
         m_gameEnemyUnit = gameEnemyUnit;
-        m_AISteps = new List<AIStep>();
+        m_setupAISteps = new List<AIStep>();
+        m_activeAISteps = new List<AIStep>();
     }
 
-    public void AddAIStep(AIStep AIStep)
+    public void AddAIStep(AIStep AIStep, bool isSetup)
     {
         AIStep.m_AIGameEnemyUnit = this;
-        m_AISteps.Add(AIStep);
+        if (isSetup)
+        {
+            m_setupAISteps.Add(AIStep);
+        }
+        else
+        {
+            m_activeAISteps.Add(AIStep);
+        }
     }
 
-    public IEnumerator TakeTurn(bool yield)
+    //============================================================================================================//
+
+    public void SetupTurn()
     {
         m_newAIDebugLog = new AIDebugTurnLog();
 
-        //int indentifier = UnityEngine.Random.Range(0, 1000000);
+        for (int i = 0; i < m_activeAISteps.Count; i++)
+        {
+            if (!Globals.m_levelActive)
+            {
+                break;
+            }
 
+            FactoryManager.Instance.StartCoroutine(m_setupAISteps[i].TakeStep(false));
+        }
+    }
+
+    public IEnumerator TakeTurn(bool shouldYield)
+    {
         while (m_doSteps)
         {
             m_doSteps = false;
-            for (int i = 0; i < m_AISteps.Count; i++)
+            for (int i = 0; i < m_activeAISteps.Count; i++)
             {
                 if (!Globals.m_levelActive)
                 {
                     break;
                 }
 
-                if (yield)
+                if (shouldYield)
                 {
-                    yield return FactoryManager.Instance.StartCoroutine(m_AISteps[i].TakeStep(yield));
+                    yield return FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStep(shouldYield));
                 }
                 else
                 {
-                    FactoryManager.Instance.StartCoroutine(m_AISteps[i].TakeStep(yield));
+                    FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStep(shouldYield));
                 }
+            }
+
+            if (m_doSteps)
+            {
+                CleanupTurn();
+                SetupTurn();
             }
         }
 
+        CleanupTurn();
+    }
+
+    public void CleanupTurn()
+    {
         m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_waveNum;
         m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentWaveTurn;
         if (m_targetGameElement == null)

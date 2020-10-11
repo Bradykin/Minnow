@@ -8,15 +8,15 @@ public class AISiegebreakerMoveToTargetStep : AIMoveToTargetStandardStep
 {
     public AISiegebreakerMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
-        if (yield)
+        if (shouldYield)
         {
-            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), true));
+            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true));
         }
         else
         {
-            FactoryManager.Instance.StartCoroutine(MoveToTarget(yield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen(), true));
+            FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true));
         }
     }
 }

@@ -27,10 +27,10 @@ public class ContentSiegebreakerUnit : GameEnemyUnit
             m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
         }
 
-        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerScanTargetsInRangeStep(m_AIGameEnemyUnit));
-        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyUnit));
-        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerMoveToTargetStep(m_AIGameEnemyUnit));
-        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerAttackUntilOutOfStaminaStep(m_AIGameEnemyUnit));
+        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerChooseTargetToAttackStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerMoveToTargetStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerAttackUntilOutOfStaminaStep(m_AIGameEnemyUnit), false);
 
         LateInit();
     }

@@ -7,7 +7,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 {
     public AILizardmanChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool yield)
+    public override IEnumerator TakeStep(bool shouldYield)
     {
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)
@@ -45,6 +45,10 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
+
+
+        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().Castle.GetGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 
     protected GameUnit FindClosestUnitInRangeToWater()
