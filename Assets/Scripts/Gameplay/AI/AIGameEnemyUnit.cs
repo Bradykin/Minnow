@@ -27,10 +27,10 @@ public class AIGameEnemyUnit : ITakeTurnAI
 
     public bool UseSteppedOutTurn => 
         Constants.UseSteppedOutEnemyTurns &&
-        (!m_gameEnemyUnit.GetGameTile().IsInFog()
-        || (m_targetGameTile != null && !m_targetGameTile.IsInFog())
-        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameUnitBase && !gameUnitBase.GetGameTile().IsInFog())
-        || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().IsInFog()));
+        (!m_gameEnemyUnit.GetGameTile().m_isFog
+        || (m_targetGameTile != null && !m_targetGameTile.m_isFog)
+        || (m_targetGameElement != null && m_targetGameElement is GameUnit gameUnitBase && !gameUnitBase.GetGameTile().m_isFog)
+        || (m_targetGameElement != null && m_targetGameElement is GameBuildingBase gameBuildingBase && !gameBuildingBase.GetGameTile().m_isFog));
 
     public AIGameEnemyUnit(GameEnemyUnit gameEnemyUnit)
     {
@@ -48,15 +48,13 @@ public class AIGameEnemyUnit : ITakeTurnAI
     {
         m_newAIDebugLog = new AIDebugTurnLog();
 
-        int indentifier = UnityEngine.Random.Range(0, 1000000);
+        //int indentifier = UnityEngine.Random.Range(0, 1000000);
 
         while (m_doSteps)
         {
             m_doSteps = false;
             for (int i = 0; i < m_AISteps.Count; i++)
             {
-                //Debug.Log(m_gameEnemyUnit.m_name + " IDENTIFIER " + indentifier + " DOING " + m_AISteps[i].GetType());
-                //Debug.Log(DateTime.Now + " -- " + DateTime.Now.Millisecond);
                 if (!Globals.m_levelActive)
                 {
                     break;

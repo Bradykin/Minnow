@@ -75,5 +75,10 @@ public class AILizardmanFleeToWaterStep : AIStep
                 yield return null;
             }
         }
+
+        if (useSteppedOutTurn)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

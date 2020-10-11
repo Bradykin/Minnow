@@ -52,7 +52,7 @@ public class GameOpponent : ITurns
         {
             GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
-            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().IsInFog())
+            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().m_isFog)
             {
                 yield return FactoryManager.Instance.StartCoroutine(unit.TakeTurn(true));
             }
@@ -63,7 +63,7 @@ public class GameOpponent : ITurns
 
             units.Remove(unit);
 
-            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().IsInFog())
+            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().m_isFog)
             {
                 if (!unit.m_isDead && unit.GetGameTile() != null)
                 {
