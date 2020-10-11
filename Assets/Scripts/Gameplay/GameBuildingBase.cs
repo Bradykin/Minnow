@@ -81,11 +81,13 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
     {
         m_curHealth -= damage;
 
-        UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile().gameObject);
-
         if (m_curHealth <= 0)
         {
             Die();
+        }
+        else
+        {
+            UIHelper.CreateWorldElementNotification(m_name + " takes " + damage + " damage!", false, m_gameTile.GetWorldTile().gameObject);
         }
 
         return damage;
@@ -107,7 +109,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", false, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(m_name + " heals " + realHealVal + "!", true, m_gameTile.GetWorldTile().gameObject);
         }
 
         if (m_curHealth > 0)
