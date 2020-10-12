@@ -1358,6 +1358,18 @@ MonoBehaviour:
   m_tintImage: {fileID: 977805945}
   m_holder: {fileID: 977805946}
   m_isIncrease: 0
+--- !u!114 &1055366728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5978177528008677633, guid: 4259ab68733489a428afec1426801dd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5978177528331695392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1069410537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,6 +3086,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832328872}
   m_CullTransparentMesh: 0
+--- !u!114 &1867722049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5978177528008677633, guid: 4259ab68733489a428afec1426801dd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1970212741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1883573762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,6 +3531,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1970212741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2102646213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5978177528008677633, guid: 4259ab68733489a428afec1426801dd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 585774952}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e53ea3d87e0dd94b8a54ec4a44c932e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &157501796002271917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
@@ -3522,6 +3558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4596074658487241327}
+  - component: {fileID: 4596074658487241328}
   m_Layer: 0
   m_Name: WorldMap
   m_TagString: Untagged
@@ -3544,6 +3581,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4596074658487241328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596074658487241326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ea31c415eac5d44a87ee47465dbb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_levelSelectButtons:
+  - {fileID: 1055366728}
+  - {fileID: 2102646213}
+  - {fileID: 1867722049}
 --- !u!1001 &5978177528331695392
 PrefabInstance:
   m_ObjectHideFlags: 0
