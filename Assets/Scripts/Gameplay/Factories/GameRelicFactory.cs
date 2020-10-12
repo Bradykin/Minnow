@@ -74,7 +74,7 @@ public static class GameRelicFactory
 
         for (int i = relicList.Count - 1; i >= 0; i--)
         {
-            if (relicList[i].GetPlayerUnlockLevel() > curLevel)
+            if (!Constants.CheatsOn && relicList[i].GetPlayerUnlockLevel() > curLevel)
             {
                 relicList.RemoveAt(i);
                 continue;

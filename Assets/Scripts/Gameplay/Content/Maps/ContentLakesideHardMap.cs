@@ -13,6 +13,8 @@ public class ContentLakesideHardMap : GameMap
 
         m_id = 1;
 
+        m_playerUnlockLevel = 1;
+
         Init();
     }
 

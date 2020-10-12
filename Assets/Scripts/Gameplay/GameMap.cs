@@ -15,6 +15,8 @@ public abstract class GameMap : GameElementBase
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
+    protected int m_playerUnlockLevel;
+
     protected void Init()
     {
         m_icon = UIHelper.GetIconMap(m_name);
@@ -86,5 +88,10 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentForbiddenFruitEvent(null)); // waves 3-4
         m_eventPool.Add(new ContentCreativeChemistEvent(null)); // waves 1-6 only if you have gold to spend
         m_eventPool.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-4
+    }
+
+    public int GetPlayerUnlockLevel()
+    {
+        return m_playerUnlockLevel;
     }
 }

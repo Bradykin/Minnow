@@ -265,7 +265,7 @@ public static class GameCardFactory
         {
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetPlayerUnlockLevel() > currentLevel)
+                if (!Constants.CheatsOn && list[i].GetPlayerUnlockLevel() > currentLevel)
                 {
                     continue;
                 }
@@ -277,7 +277,7 @@ public static class GameCardFactory
         {
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetPlayerUnlockLevel() > currentLevel)
+                if (!Constants.CheatsOn && list[i].GetPlayerUnlockLevel() > currentLevel)
                 {
                     continue;
                 }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UILevelSelectButton : MonoBehaviour
+public class UILevelSelectButton : MonoBehaviour, IReset
 {
     public int m_id;
 
@@ -17,6 +18,24 @@ public class UILevelSelectButton : MonoBehaviour
         m_map = GameMapFactory.GetMapById(m_id);
 
         m_iconRenderer.sprite = m_map.m_icon;
+
+        if (!Constants.CheatsOn && GameMetaProgression.GetCurLevel() < m_map.GetPlayerUnlockLevel())
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Activate()
+    {
+        if (!Constants.CheatsOn && GameMetaProgression.GetCurLevel() < m_map.GetPlayerUnlockLevel())
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Reset()
+    {
+        
     }
 
     void Update()
