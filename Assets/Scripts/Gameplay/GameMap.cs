@@ -13,7 +13,7 @@ public abstract class GameMap : GameElementBase
     protected List<GameEnemyUnit> m_spawnPool = new List<GameEnemyUnit>();
     protected List<GameCard> m_exclusionCardPool = new List<GameCard>();
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
-    protected List<GameRelic> m_relicPool = new List<GameRelic>();
+    protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
     protected void Init()
     {
@@ -25,11 +25,11 @@ public abstract class GameMap : GameElementBase
         FillSpawnPool();
         GameUnitFactory.Init(m_spawnPool);
 
-        FillCardPool();
+        FillExclusionCardPool();
         GameCardFactory.Init();
 
-        FillRelicPool();
-        GameRelicFactory.Init(m_relicPool);
+        FillExclusionRelicPool();
+        GameRelicFactory.Init();
 
         FillEventPool();
         GameEventFactory.Init(m_eventPool);
@@ -66,14 +66,9 @@ public abstract class GameMap : GameElementBase
     }
 
     protected abstract void FillSpawnPool();
-    protected abstract void FillCardPool();
+    protected abstract void FillExclusionCardPool();
     protected abstract void FillEventPool();
-    protected abstract void FillRelicPool();
-
-    protected void FillExclusionCardPool()
-    {
-
-    }
+    protected abstract void FillExclusionRelicPool();
 
     protected void FillBasicEventPool()
     {
@@ -91,41 +86,5 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentForbiddenFruitEvent(null)); // waves 3-4
         m_eventPool.Add(new ContentCreativeChemistEvent(null)); // waves 1-6 only if you have gold to spend
         m_eventPool.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-4
-    }
-
-    protected void FillBasicRelicPool()
-    {
-        m_relicPool.Add(new ContentBestialWrathRelic());
-        m_relicPool.Add(new ContentDominerickRefrainRelic());
-        m_relicPool.Add(new ContentHourglassOfSpeedRelic());
-        m_relicPool.Add(new ContentMaskOfAgesRelic());
-        m_relicPool.Add(new ContentMorlemainsSkullRelic());
-        m_relicPool.Add(new ContentMysticRuneRelic());
-        m_relicPool.Add(new ContentOrbOfEnergyRelic());
-        m_relicPool.Add(new ContentOrbOfHealthRelic());
-        m_relicPool.Add(new ContentSecretSoupRelic());
-        m_relicPool.Add(new ContentSoulTrapRelic());
-        m_relicPool.Add(new ContentSpiritCatcherRelic());
-        m_relicPool.Add(new ContentWolvenFangRelic());
-        m_relicPool.Add(new ContentSackOfManyShapesRelic());
-        m_relicPool.Add(new ContentHoovesOfProductionRelic());
-        m_relicPool.Add(new ContentDestinyRelic());
-        m_relicPool.Add(new ContentUrbanTacticsRelic());
-        m_relicPool.Add(new ContentPinnacleOfFearRelic());
-        m_relicPool.Add(new ContentNaturalProtectionRelic());
-        m_relicPool.Add(new ContentLoadedChestRelic());
-        m_relicPool.Add(new ContentLegendaryFragmentRelic());
-        m_relicPool.Add(new ContentTomeOfDuluhainRelic());
-        m_relicPool.Add(new ContentLivingStoneRelic());
-        m_relicPool.Add(new ContentCursedAmuletRelic());
-        m_relicPool.Add(new ContentDesignSchematicsRelic());
-        m_relicPool.Add(new ContentMedKitRelic());
-        m_relicPool.Add(new ContentLegacyOfMonstersRelic());
-        m_relicPool.Add(new ContentGrandPactRelic());
-        m_relicPool.Add(new ContentTotemOfTheWolfRelic());
-        m_relicPool.Add(new ContentBurningShivsRelic());
-        m_relicPool.Add(new ContentPoisonedShivsRelic());
-        m_relicPool.Add(new ContentTraditionalMethodsRelic());
-        m_relicPool.Add(new ContentNewInvestmentsRelic());
     }
 }

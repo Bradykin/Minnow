@@ -25,9 +25,9 @@ public class ContentSnowmeltMap : GameMap
         }
     }
 
-    protected override void FillCardPool()
+    protected override void FillExclusionCardPool()
     {
-        FillExclusionCardPool();
+        
     }
 
     protected override void FillEventPool()
@@ -35,9 +35,9 @@ public class ContentSnowmeltMap : GameMap
         FillBasicEventPool();
     }
 
-    protected override void FillRelicPool()
+    protected override void FillExclusionRelicPool()
     {
-        FillBasicRelicPool();
+        
     }
 
     protected override void FillSpawnPool()

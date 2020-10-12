@@ -6,6 +6,8 @@ public abstract class GameRelic : GameElementBase
 {
     public int m_storedTagWeight;
 
+    protected int m_playerUnlockLevel;
+
     protected void LateInit()
     {
         m_icon = UIHelper.GetIconRelic(m_name);
@@ -14,5 +16,10 @@ public abstract class GameRelic : GameElementBase
     public virtual string GetDesc()
     {
         return m_desc;
+    }
+
+    public int GetPlayerUnlockLevel()
+    {
+        return m_playerUnlockLevel;
     }
 }

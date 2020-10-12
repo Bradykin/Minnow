@@ -21,9 +21,9 @@ public class ContentLakesideMap : GameMap
         //No events, left blank by default.  No Chaos on this map.
     }
 
-    protected override void FillCardPool()
+    protected override void FillExclusionCardPool()
     {
-        FillExclusionCardPool();
+        
     }
 
     protected override void FillEventPool()
@@ -31,9 +31,9 @@ public class ContentLakesideMap : GameMap
         FillBasicEventPool();
     }
 
-    protected override void FillRelicPool()
+    protected override void FillExclusionRelicPool()
     {
-        FillBasicRelicPool();
+        
     }
 
     protected override void FillSpawnPool()
