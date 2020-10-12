@@ -62,7 +62,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
     {
         m_newAIDebugLog = new AIDebugTurnLog();
 
-        for (int i = 0; i < m_activeAISteps.Count; i++)
+        for (int i = 0; i < m_setupAISteps.Count; i++)
         {
             if (!Globals.m_levelActive)
             {
