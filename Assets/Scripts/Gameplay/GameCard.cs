@@ -23,6 +23,8 @@ public abstract class GameCard : GameElementBase
     public int m_storedTagWeight;
     protected int m_cardLevel;
 
+    protected int m_playerUnlockLevel;
+
     public virtual string GetName()
     {
         return m_name;
@@ -62,6 +64,11 @@ public abstract class GameCard : GameElementBase
     public void SetDesc(string desc)
     {
         m_desc = desc;
+    }
+
+    public int GetPlayerUnlockLevel()
+    {
+        return m_playerUnlockLevel;
     }
 
     public virtual void PlayCard() 

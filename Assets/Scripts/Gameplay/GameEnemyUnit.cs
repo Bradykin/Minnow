@@ -14,6 +14,8 @@ public class GameEnemyUnit : GameUnit
     public int m_minWave;
     public int m_maxWave;
 
+    public int m_experienceAmount = 5;
+
     public GameEnemyUnit(GameOpponent gameOpponent)
     {
         m_AIGameEnemyUnit = new AIGameEnemyUnit(this);
@@ -44,6 +46,8 @@ public class GameEnemyUnit : GameUnit
 
     public override void Die()
     {
+        GameHelper.GetGameController().AddPlaythroughExperience(m_experienceAmount);
+
         base.Die();
         m_gameOpponentController.m_controlledUnits.Remove(this);
     }

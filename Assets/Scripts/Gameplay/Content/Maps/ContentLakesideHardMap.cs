@@ -26,7 +26,7 @@ public class ContentLakesideHardMap : GameMap
 
     protected override void FillCardPool()
     {
-        FillBasicCardPool();
+        FillExclusionCardPool();
     }
 
     protected override void FillEventPool()

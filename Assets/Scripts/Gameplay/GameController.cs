@@ -123,7 +123,6 @@ public class GameController
         if (endType != PlaythroughEndType.Quit)
         {
             GameMetaProgression.UpdatePlayerSaveDataOnEndPlaythrough(endType, Mathf.Max(50, m_playthroughExperienceAmount), m_map.m_id, Globals.m_curChaos);
-            GameMetaProgression.GamePlayerSaveData.m_numPlaySessions++;
             GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
         }
     }

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class GameMetaProgression
@@ -82,6 +84,8 @@ public static class GameMetaProgression
 
     public static void UpdatePlayerSaveDataOnEndPlaythrough(PlaythroughEndType endType, int experienceAmount, int mapID, int curChaos)
     {
+        int previousLevel = GetCurLevel();
+
         GamePlayerSaveData.m_playerExperience += experienceAmount;
         GamePlayerSaveData.m_numPlaySessions++;
 
@@ -94,6 +98,18 @@ public static class GameMetaProgression
             else if (GamePlayerSaveData.m_mapChaosLevels[mapID] < curChaos)
             {
                 GamePlayerSaveData.m_mapChaosLevels[mapID] = curChaos;
+            }
+        }
+
+        int curLevel = GetCurLevel();
+
+        if (curLevel > previousLevel)
+        {
+            for (int i = previousLevel + 1; i <= curLevel; i++)
+            {
+                //Do levelup things
+
+                List<GameCard> newCardUnlocks = GameCardFactory.GetTotalCardList().Where(c => c.GetPlayerUnlockLevel() == i).ToList();
             }
         }
     }

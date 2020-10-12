@@ -11,7 +11,7 @@ public abstract class GameMap : GameElementBase
     private List<int> m_mapEventTriggerWaves = new List<int>();
 
     protected List<GameEnemyUnit> m_spawnPool = new List<GameEnemyUnit>();
-    protected List<GameCard> m_cardPool = new List<GameCard>();
+    protected List<GameCard> m_exclusionCardPool = new List<GameCard>();
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_relicPool = new List<GameRelic>();
 
@@ -26,7 +26,7 @@ public abstract class GameMap : GameElementBase
         GameUnitFactory.Init(m_spawnPool);
 
         FillCardPool();
-        GameCardFactory.Init(m_cardPool);
+        GameCardFactory.Init();
 
         FillRelicPool();
         GameRelicFactory.Init(m_relicPool);
@@ -70,91 +70,9 @@ public abstract class GameMap : GameElementBase
     protected abstract void FillEventPool();
     protected abstract void FillRelicPool();
 
-    protected void FillBasicCardPool()
+    protected void FillExclusionCardPool()
     {
-        //Unit Cards
-        m_cardPool.Add(new ContentConjuredImpCard());
-        m_cardPool.Add(new ContentCyclopsCard());
-        m_cardPool.Add(new ContentDemonSoldierCard());
-        m_cardPool.Add(new ContentDevourerCard());
-        m_cardPool.Add(new ContentDwarfArchitectCard());
-        m_cardPool.Add(new ContentDwarfShivcasterCard());
-        m_cardPool.Add(new ContentDwarvenSoldierCard());
-        m_cardPool.Add(new ContentElvenRogueCard());
-        m_cardPool.Add(new ContentElvenSentinelCard());
-        m_cardPool.Add(new ContentElvenWizardCard());
-        m_cardPool.Add(new ContentFishOracleCard());
-        m_cardPool.Add(new ContentGladiatorCard());
-        m_cardPool.Add(new ContentGoblinCard());
-        m_cardPool.Add(new ContentGrasperCard());
-        m_cardPool.Add(new ContentGroundskeeperCard());
-        m_cardPool.Add(new ContentGuardCaptainCard());
-        m_cardPool.Add(new ContentHeroCard());
-        m_cardPool.Add(new ContentHomonculusCard());
-        m_cardPool.Add(new ContentInjuredTrollCard());
-        m_cardPool.Add(new ContentMageCard());
-        m_cardPool.Add(new ContentMetalGolemCard());
-        m_cardPool.Add(new ContentMinerCard());
-        m_cardPool.Add(new ContentNaturalScoutCard());
-        m_cardPool.Add(new ContentOverlordCard());
-        m_cardPool.Add(new ContentRangerCard());
-        m_cardPool.Add(new ContentRaptorCard());
-        m_cardPool.Add(new ContentSabobotCard());
-        m_cardPool.Add(new ContentShadowWarlockCard());
-        m_cardPool.Add(new ContentSkeletonCard());
-        m_cardPool.Add(new ContentStoneGolemCard());
-        m_cardPool.Add(new ContentWandererCard());
-        m_cardPool.Add(new ContentWildfolkCard());
 
-        //Spell Cards
-        m_cardPool.Add(new ContentAegisCard());
-        m_cardPool.Add(new ContentAncientTextsCard());
-        m_cardPool.Add(new ContentArcaneBoltCard());
-        m_cardPool.Add(new ContentAssassinationContractCard());
-        m_cardPool.Add(new ContentBatteryPackCard());
-        m_cardPool.Add(new ContentBloodMoneyCard());
-        m_cardPool.Add(new ContentBloodSacrificeCard());
-        m_cardPool.Add(new ContentBullheadedCard());
-        m_cardPool.Add(new ContentCosmicPactCard());
-        m_cardPool.Add(new ContentCureWoundsCard());
-        m_cardPool.Add(new ContentCurseOfInactionCard());
-        m_cardPool.Add(new ContentDemonicAspectCard());
-        m_cardPool.Add(new ContentDemoralizeCard());
-        m_cardPool.Add(new ContentDreamCard());
-        m_cardPool.Add(new ContentEncouragementCard());
-        m_cardPool.Add(new ContentEnergizeCard());
-        m_cardPool.Add(new ContentFireboltCard());
-        m_cardPool.Add(new ContentFirestormCard());
-        m_cardPool.Add(new ContentFletchingCard());
-        m_cardPool.Add(new ContentFossilizeCard());
-        m_cardPool.Add(new ContentFuryCard());
-        m_cardPool.Add(new ContentGrowTalonsCard());
-        m_cardPool.Add(new ContentImmolationCard());
-        m_cardPool.Add(new ContentInsightCard());
-        m_cardPool.Add(new ContentJoltCard());
-        m_cardPool.Add(new ContentLegionOfBladesCard());
-        m_cardPool.Add(new ContentLootingsCard());
-        m_cardPool.Add(new ContentMarkedForDeathCard());
-        m_cardPool.Add(new ContentMechanizeCard());
-        m_cardPool.Add(new ContentMonsterProdCard());
-        m_cardPool.Add(new ContentNecromanticTouchCard());
-        m_cardPool.Add(new ContentNightWingsCard());
-        m_cardPool.Add(new ContentOverchargeCard());
-        m_cardPool.Add(new ContentPhalanxCard());
-        m_cardPool.Add(new ContentPurgeCard());
-        m_cardPool.Add(new ContentReforgingCard());
-        m_cardPool.Add(new ContentRoarOfVictoryCard());
-        m_cardPool.Add(new ContentRunicBladeCard());
-        m_cardPool.Add(new ContentShivCard());
-        m_cardPool.Add(new ContentSummoningCard());
-        m_cardPool.Add(new ContentTonicOfFortitudeCard());
-        m_cardPool.Add(new ContentTonicOfStrengthCard());
-        m_cardPool.Add(new ContentTrollFormCard());
-        m_cardPool.Add(new ContentWisdomOfThePastCard());
-        m_cardPool.Add(new ContentDrainingBoltCard());
-        m_cardPool.Add(new ContentWeakeningBoltCard());
-        m_cardPool.Add(new ContentStaminaTrainingCard());
-        m_cardPool.Add(new ContentOptimizeCard());
     }
 
     protected void FillBasicEventPool()

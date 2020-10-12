@@ -27,7 +27,7 @@ public class ContentSnowmeltMap : GameMap
 
     protected override void FillCardPool()
     {
-        FillBasicCardPool();
+        FillExclusionCardPool();
     }
 
     protected override void FillEventPool()
