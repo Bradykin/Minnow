@@ -93,6 +93,15 @@ public static class GameRelicFactory
             }
         }
 
+        if (relicList.Count == 0)
+        {
+            Debug.LogError("No viable cards found");
+            return null;
+        }
+
+        List<GameRelic> relicListBeforeTagWeights = new List<GameRelic>();
+        relicListBeforeTagWeights.AddRange(relicList);
+
         //Use the tag weights + randomization to get the correct card here.
         int totalWeight = 0;
         for (int i = 0; i < relicList.Count; i++)
@@ -121,7 +130,7 @@ public static class GameRelicFactory
         }
 
         Debug.LogError("Failed to find any relic when trying get one (likely caused by tag weighting issues).");
-        return null;
+        return relicListBeforeTagWeights[UnityEngine.Random.Range(0, relicListBeforeTagWeights.Count)];
     }
 
     private static List<GameRelic> GetListWithoutPlayerRelics()

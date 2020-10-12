@@ -9,6 +9,7 @@ public class ContentElvenWizardCard : GameUnitCard
         m_unit = new ContentElvenWizard();
 
         m_cost = 3;
+        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

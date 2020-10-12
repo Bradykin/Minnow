@@ -12,6 +12,8 @@ public class ContentOverchargeCard : GameCardSpellBase
         m_cost = 3;
         m_rarity = GameRarity.Rare;
 
+        m_playerUnlockLevel = 3;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Creation);

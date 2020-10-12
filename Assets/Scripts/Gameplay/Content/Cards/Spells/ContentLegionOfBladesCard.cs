@@ -14,6 +14,8 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Rare;
 
+        m_playerUnlockLevel = 4;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Shiv);

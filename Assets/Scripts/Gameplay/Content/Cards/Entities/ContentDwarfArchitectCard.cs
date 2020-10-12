@@ -9,6 +9,7 @@ public class ContentDwarfArchitectCard : GameUnitCard
         m_unit = new ContentDwarfArchitect();
 
         m_cost = 2;
+        m_playerUnlockLevel = 3;
 
         FillBasicData();
 

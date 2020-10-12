@@ -12,6 +12,8 @@ public class ContentDemoralizeCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
+        m_playerUnlockLevel = 1;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.UtilitySpell);

@@ -9,6 +9,7 @@ public class ContentShadowWarlockCard : GameUnitCard
         m_unit = new ContentShadowWarlock();
 
         m_cost = 2;
+        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

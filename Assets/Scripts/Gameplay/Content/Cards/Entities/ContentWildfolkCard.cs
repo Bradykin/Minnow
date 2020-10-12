@@ -9,6 +9,7 @@ public class ContentWildfolkCard : GameUnitCard
         m_unit = new ContentWildfolk();
 
         m_cost = 2;
+        m_playerUnlockLevel = 4;
 
         FillBasicData();
 

@@ -12,6 +12,8 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Common;
 
+        m_playerUnlockLevel = 2;
+
         m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
 
         SetupBasicData();

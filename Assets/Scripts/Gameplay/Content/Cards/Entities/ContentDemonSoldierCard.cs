@@ -9,6 +9,7 @@ public class ContentDemonSoldierCard : GameUnitCard
         m_unit = new ContentDemonSoldier();
 
         m_cost = 3;
+        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

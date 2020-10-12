@@ -13,6 +13,8 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
+        m_playerUnlockLevel = 4;
+
         m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(null));
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
         m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));

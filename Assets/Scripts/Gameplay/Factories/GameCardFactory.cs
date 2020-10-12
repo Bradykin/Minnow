@@ -299,6 +299,15 @@ public static class GameCardFactory
             }
         }
 
+        if (finalList.Count == 0)
+        {
+            Debug.LogError("No viable cards found");
+            return null;
+        }
+
+        List<GameCard> finalListBeforeTagWeights = new List<GameCard>();
+        finalListBeforeTagWeights.AddRange(finalList);
+
         //Use the tag weights + randomization to get the correct card here.
         int totalWeight = 0;
         for (int i = 0; i < finalList.Count; i++)
@@ -327,7 +336,7 @@ public static class GameCardFactory
         }
 
         Debug.LogError("Failed to find any card when trying get one (likely caused by tag weighting issues).");
-        return null;
+        return finalListBeforeTagWeights[UnityEngine.Random.Range(0, finalListBeforeTagWeights.Count)];
     }
 
     public static GameUnitCard GetCardFromUnit(GameUnit unit)

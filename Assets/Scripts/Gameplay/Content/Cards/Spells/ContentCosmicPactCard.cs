@@ -13,6 +13,8 @@ public class ContentCosmicPactCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
+        m_playerUnlockLevel = 1;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.UtilitySpell);

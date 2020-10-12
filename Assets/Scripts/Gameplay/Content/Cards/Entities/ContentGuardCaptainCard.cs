@@ -9,6 +9,7 @@ public class ContentGuardCaptainCard : GameUnitCard
         m_unit = new ContentGuardCaptain();
 
         m_cost = 2;
+        m_playerUnlockLevel = 3;
 
         FillBasicData();
 

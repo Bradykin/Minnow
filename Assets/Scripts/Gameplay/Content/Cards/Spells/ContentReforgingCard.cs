@@ -12,6 +12,8 @@ public class ContentReforgingCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
+        m_playerUnlockLevel = 1;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Creation);

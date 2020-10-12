@@ -16,6 +16,8 @@ public class ContentLootingsCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
+        m_playerUnlockLevel = 2;
+
         SetupBasicData();
     }
 

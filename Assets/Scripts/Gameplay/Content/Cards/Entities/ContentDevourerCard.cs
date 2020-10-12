@@ -9,6 +9,7 @@ public class ContentDevourerCard : GameUnitCard
         m_unit = new ContentDevourer();
 
         m_cost = 2;
+        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

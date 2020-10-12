@@ -13,6 +13,8 @@ public class ContentPurgeCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
 
+        m_playerUnlockLevel = 4;
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);

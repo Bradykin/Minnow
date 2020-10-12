@@ -9,6 +9,7 @@ public class ContentDwarfShivcasterCard : GameUnitCard
         m_unit = new ContentDwarfShivcaster();
 
         m_cost = 2;
+        m_playerUnlockLevel = 4;
 
         FillBasicData();
 

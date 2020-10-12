@@ -13,6 +13,8 @@ public class ContentMonsterProdCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
+        m_playerUnlockLevel = 2;
+
         m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
 
         SetupBasicData();

@@ -13,6 +13,8 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
+        m_playerUnlockLevel = 3;
+
         m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
 
         SetupBasicData();

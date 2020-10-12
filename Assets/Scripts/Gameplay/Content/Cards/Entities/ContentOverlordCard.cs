@@ -9,6 +9,7 @@ public class ContentOverlordCard : GameUnitCard
         m_unit = new ContentOverlord();
 
         m_cost = 2;
+        m_playerUnlockLevel = 4;
 
         FillBasicData();
 
