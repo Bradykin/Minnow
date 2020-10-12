@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -146,7 +147,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
             m_newAIDebugLog.m_vulnerableBuildingTargets.Add(m_vulnerableBuildingTargets[i].m_name);
         }
 
-        m_AIDebugLogs.Add(JsonUtility.ToJson(m_newAIDebugLog));
+        m_AIDebugLogs.Add(JsonConvert.SerializeObject(m_newAIDebugLog));
         m_newAIDebugLog = null;
 
         m_possibleUnitTargets.Clear();

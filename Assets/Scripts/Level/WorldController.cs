@@ -28,10 +28,11 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedCard = null;
     }
 
-    public void EndLevel()
+    public void EndLevel(PlaythroughEndType endType)
     {
         m_isInGame = false;
 
+        m_gameController.OnEndPlaythrough(endType);
         m_gameController = null;
         for(int i = 0; i < m_playerHand.Count; i++)
         {
@@ -378,9 +379,6 @@ public class WorldController : Singleton<WorldController>
 
     public void OnApplicationQuit()
     {
-        if (m_gameController != null)
-        {
-            GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
-        }
+        GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
     }
 }

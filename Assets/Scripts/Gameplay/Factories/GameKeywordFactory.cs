@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -48,7 +49,7 @@ public class GameKeywordFactory
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue);
                 break;
             case GameKeywordBase.KeywordParamType.ActionParam:
-                JsonActionData jsonActionData = JsonUtility.FromJson<JsonActionData>(jsonData.actionJson);
+                JsonActionData jsonActionData = JsonConvert.DeserializeObject<JsonActionData>(jsonData.actionJson);
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonActionData, gameUnit));
                 break;
             default:
@@ -61,6 +62,6 @@ public class GameKeywordFactory
 
     public static GameKeywordBase GetKeywordClone(GameKeywordBase other, GameUnit gameUnit)
     {
-        return GetKeywordsFromJson(JsonUtility.FromJson<JsonKeywordData>(other.SaveToJsonAsString()), gameUnit);
+        return GetKeywordsFromJson(JsonConvert.DeserializeObject<JsonKeywordData>(other.SaveToJsonAsString()), gameUnit);
     }
 }

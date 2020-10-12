@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public static class GameFiles
 {
@@ -31,13 +32,13 @@ public static class GameFiles
             return data;
         }
 
-        var loaded = JsonUtility.FromJson<GamePlayerSaveData>(File.ReadAllText(path));
+        var loaded = JsonConvert.DeserializeObject<GamePlayerSaveData>(File.ReadAllText(path));
         return loaded;
     }
 
     public static string ExportPlayerSaveData(GamePlayerSaveData playerSaveData)
     {
-        var export = JsonUtility.ToJson(playerSaveData);
+        var export = JsonConvert.SerializeObject(playerSaveData);
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(GameFiles.EDITOR_PATH, PLAYER_SAVE_DATA_PATH), export);
 #else

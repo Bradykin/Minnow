@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class GameFlyingKeyword : GameKeywordBase
             name = m_name
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

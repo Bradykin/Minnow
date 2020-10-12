@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameRoarOfVictoryAction : GameAction
@@ -47,7 +48,7 @@ public class GameRoarOfVictoryAction : GameAction
             name = m_name
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

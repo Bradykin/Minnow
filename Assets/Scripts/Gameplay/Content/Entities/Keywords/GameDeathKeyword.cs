@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ public class GameDeathKeyword : GameKeywordBase
             actionJson = m_action.SaveToJson()
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

@@ -25,9 +25,6 @@ public static class GameMetaProgression
 
     public static void Init()
     {
-        m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
-        m_gamePlayerSaveData.m_numPlaySessions++;
-
         m_hasInit = true;
     }
 
@@ -83,5 +80,21 @@ public static class GameMetaProgression
         return false;
     }
 
-    //Design -- Gain exp during a run, add it after the run to the metaprogression
+    public static void UpdatePlayerSaveDataOnEndPlaythrough(PlaythroughEndType endType, int experienceAmount, int mapID, int curChaos)
+    {
+        GamePlayerSaveData.m_playerExperience += experienceAmount;
+        GamePlayerSaveData.m_numPlaySessions++;
+
+        if (endType == PlaythroughEndType.Win)
+        {
+            if (!GamePlayerSaveData.m_mapChaosLevels.ContainsKey(mapID))
+            {
+                GamePlayerSaveData.m_mapChaosLevels.Add(mapID, curChaos);
+            }
+            else if (GamePlayerSaveData.m_mapChaosLevels[mapID] < curChaos)
+            {
+                GamePlayerSaveData.m_mapChaosLevels[mapID] = curChaos;
+            }
+        }
+    }
 }

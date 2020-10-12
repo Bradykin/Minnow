@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Util;
+using Newtonsoft.Json;
 
 public class LevelCreator : MonoBehaviour
 {
@@ -192,7 +193,7 @@ public class LevelCreator : MonoBehaviour
             return;
         }
 
-        JsonGridData jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(path));
+        JsonGridData jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(path));
 
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(m_worldGridLevelCreatorRoot.transform);

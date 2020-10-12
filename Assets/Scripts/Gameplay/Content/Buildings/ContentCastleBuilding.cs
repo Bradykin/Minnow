@@ -23,7 +23,7 @@ public class ContentCastleBuilding : GameBuildingBase
     {
         m_isDestroyed = true;
 
-        GameHelper.ReturnToLevelSelectFromLevelScene();
+        GameHelper.ReturnToLevelSelectFromLevelScene(true);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

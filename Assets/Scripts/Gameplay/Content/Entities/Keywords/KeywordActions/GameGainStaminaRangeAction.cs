@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ public class GameGainStaminaRangeAction : GameAction
             intValue1 = m_toGain
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameExplodeAction : GameAction
@@ -48,7 +49,7 @@ public class GameExplodeAction : GameAction
             intValue2 = m_explodeRange
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

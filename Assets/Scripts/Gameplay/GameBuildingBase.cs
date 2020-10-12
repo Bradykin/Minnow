@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -172,7 +173,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
             isDestroyed = m_isDestroyed,
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

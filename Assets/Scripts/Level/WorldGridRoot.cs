@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +16,9 @@ public class WorldGridRoot : MonoBehaviour, IReset
         }
 
 #if UNITY_EDITOR
-        jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.EDITOR_PATH, Globals.mapToLoad)));
+        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.EDITOR_PATH, Globals.mapToLoad)));
 #else
-        jsonData = JsonUtility.FromJson<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
+        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
 #endif
         Globals.mapToLoad = string.Empty;
         WorldGridManager.Instance.LoadFromJson(jsonData);

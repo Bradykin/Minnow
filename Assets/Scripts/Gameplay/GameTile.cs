@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -376,7 +377,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             jsonData.gameSpawnPointData = m_spawnPoint.SaveToJsonAsString();
         }
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }
@@ -387,7 +388,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (jsonData.gameUnitData != string.Empty)
         {
-            JsonGameUnitData jsonGameUnitData = JsonUtility.FromJson<JsonGameUnitData>(jsonData.gameUnitData);
+            JsonGameUnitData jsonGameUnitData = JsonConvert.DeserializeObject<JsonGameUnitData>(jsonData.gameUnitData);
             if (jsonGameUnitData.team == (int)Team.Player)
                 PlaceUnit(GameUnitFactory.GetUnitFromJson(jsonGameUnitData));
             else
@@ -396,26 +397,26 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
         if (jsonData.gameBuildingData != string.Empty)
         {
-            JsonGameBuildingData jsonGameBuildingData = JsonUtility.FromJson<JsonGameBuildingData>(jsonData.gameBuildingData);
+            JsonGameBuildingData jsonGameBuildingData = JsonConvert.DeserializeObject<JsonGameBuildingData>(jsonData.gameBuildingData);
             PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
         }
 
         if (jsonData.gameTerrainData != string.Empty)
         {
-            JsonGameTerrainData jsonGameTerrainData = JsonUtility.FromJson<JsonGameTerrainData>(jsonData.gameTerrainData);
+            JsonGameTerrainData jsonGameTerrainData = JsonConvert.DeserializeObject<JsonGameTerrainData>(jsonData.gameTerrainData);
             SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
         }
 
         if (jsonData.gameEventData != string.Empty)
         {
-            //JsonGameEventData jsonGameEventData = JsonUtility.FromJson<JsonGameEventData>(jsonData.gameEventData);
+            //JsonGameEventData jsonGameEventData = JsonConvert.DeserializeObject<JsonGameEventData>(jsonData.gameEventData);
             m_event = true;
         }
 
         if (jsonData.gameSpawnPointData != string.Empty)
         {
             GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-            gameSpawnPoint.LoadFromJson(JsonUtility.FromJson<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
+            gameSpawnPoint.LoadFromJson(JsonConvert.DeserializeObject<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
             SetSpawnPoint(gameSpawnPoint);
         }
     }

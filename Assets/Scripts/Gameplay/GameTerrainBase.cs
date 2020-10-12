@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System;
 using UnityEngine;
 
@@ -255,7 +256,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
             terrainImageNumber = m_terrainImageNumber
         };
         
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlaythroughEndType : int
+{
+    Win,
+    Loss,
+    Quit
+}
+
 public class GameController
 {
     public List<ITurns> m_teamTurns;
@@ -20,6 +27,8 @@ public class GameController
     private int m_currentWaveEndTurn;
 
     private GameMap m_map;
+
+    private int m_playthroughExperienceAmount;
 
     public GameController(GameMap map)
     {
@@ -104,16 +113,18 @@ public class GameController
         return toReturn;
     }
 
-    public void OnEndPlaythrough()
+    public void AddPlaythroughExperience(int experienceAmount)
     {
-        m_player = new GamePlayer();
-        m_gameOpponent = new GameOpponent();
-        m_teamTurns = new List<ITurns>();
-        m_teamTurns.Add(m_player);
-        m_teamTurns.Add(m_gameOpponent);
+        m_playthroughExperienceAmount = experienceAmount;
+    }
 
-        m_waveNum = 1;
-        m_currentWaveTurn = 1;
-        m_currentWaveTurn = Constants.GetWaveLength(m_waveNum);
+    public void OnEndPlaythrough(PlaythroughEndType endType)
+    {
+        if (endType != PlaythroughEndType.Quit)
+        {
+            GameMetaProgression.UpdatePlayerSaveDataOnEndPlaythrough(endType, Mathf.Max(50, m_playthroughExperienceAmount), m_map.m_id, Globals.m_curChaos);
+            GameMetaProgression.GamePlayerSaveData.m_numPlaySessions++;
+            GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -1128,7 +1129,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     {
         JsonGameUnitData jsonData = SaveToJsonAsJson();
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }
@@ -1146,7 +1147,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;
 
-        JsonKeywordHolderData jsonKeywordHolderData = JsonUtility.FromJson<JsonKeywordHolderData>(jsonData.keywordHolderJson);
+        JsonKeywordHolderData jsonKeywordHolderData = JsonConvert.DeserializeObject<JsonKeywordHolderData>(jsonData.keywordHolderJson);
         m_keywordHolder.LoadFromJson((jsonKeywordHolderData, this));
     }
 }

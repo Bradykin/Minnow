@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,10 +38,10 @@ public class GameGainResourceAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            gameWalletJsonValue = JsonUtility.ToJson(m_toGain)
+            gameWalletJsonValue = JsonConvert.SerializeObject(m_toGain)
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

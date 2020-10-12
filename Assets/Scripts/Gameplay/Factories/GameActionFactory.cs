@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,7 +63,7 @@ public class GameActionFactory
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2);
                 break;
             case GameAction.ActionParamType.GameWalletParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonUtility.FromJson<GameWallet>(jsonData.gameWalletJsonValue));
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));
                 break;
             default:
                 return null;

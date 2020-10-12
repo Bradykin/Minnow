@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -87,12 +88,12 @@ public static class Globals
         {
             return new List<JsonMapMetaData>();
         }
-        JsonMapFilesMetaData jsonMapFilesMetaData = JsonUtility.FromJson<JsonMapFilesMetaData>(File.ReadAllText(path));
+        JsonMapFilesMetaData jsonMapFilesMetaData = JsonConvert.DeserializeObject<JsonMapFilesMetaData>(File.ReadAllText(path));
 
         List<JsonMapMetaData> jsonMapMetaDatas = new List<JsonMapMetaData>();
         for (int i = 0; i < jsonMapFilesMetaData.mapFiles.Count; i++)
         {
-            jsonMapMetaDatas.Add(JsonUtility.FromJson<JsonMapMetaData>(jsonMapFilesMetaData.mapFiles[i]));
+            jsonMapMetaDatas.Add(JsonConvert.DeserializeObject<JsonMapMetaData>(jsonMapFilesMetaData.mapFiles[i]));
         }
 
         return jsonMapMetaDatas;
@@ -118,10 +119,10 @@ public static class Globals
 
         for (int i = 0; i < jsonMapMetaData.Count; i++)
         {
-            jsonMapFilesMetaData.mapFiles.Add(JsonUtility.ToJson(jsonMapMetaData[i]));
+            jsonMapFilesMetaData.mapFiles.Add(JsonConvert.SerializeObject(jsonMapMetaData[i]));
         }
 
-        string jsonData = JsonUtility.ToJson(jsonMapFilesMetaData);
+        string jsonData = JsonConvert.SerializeObject(jsonMapFilesMetaData);
         File.WriteAllText(path, jsonData);
     }
 }

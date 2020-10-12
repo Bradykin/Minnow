@@ -37,19 +37,29 @@ public class UILevelSelectChaosButton : UIElementBase
 
     private bool IsActive()
     {
-        bool hasLevelSelected = UILevelSelectController.Instance.HasLevelSelected();
-        bool isValidChaosChange = true;
+        if (!UILevelSelectController.Instance.HasLevelSelected())
+        {
+            return false;
+        }
+
         if (m_isIncrease && Globals.m_curChaos == Constants.MaxChaos)
         {
-            isValidChaosChange = false;
+            return false;
         }
 
         if (!m_isIncrease && Globals.m_curChaos == 0)
         {
-            isValidChaosChange = false;
+            return false;
         }
 
-        return hasLevelSelected && isValidChaosChange;
+        if (!Constants.CheatsOn && m_isIncrease && 
+            (!GameMetaProgression.GamePlayerSaveData.m_mapChaosLevels.ContainsKey(UILevelSelectController.Instance.m_curMap.m_id) || 
+            GameMetaProgression.GamePlayerSaveData.m_mapChaosLevels[UILevelSelectController.Instance.m_curMap.m_id] < Globals.m_curChaos))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public override void HandleTooltip()

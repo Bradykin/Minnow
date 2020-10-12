@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json;
+using UnityEngine;
 
 public class GameSpellcraftAttackAction : GameAction
 {
@@ -32,7 +33,7 @@ public class GameSpellcraftAttackAction : GameAction
             name = m_name
         };
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

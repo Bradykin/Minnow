@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -99,7 +100,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     {
         for (int i = 0; i < jsonGridData.jsonTileData.Count; i++)
         {
-            JsonGameTileData jsonGameTileData = JsonUtility.FromJson<JsonGameTileData>(jsonGridData.jsonTileData[i]);
+            JsonGameTileData jsonGameTileData = JsonConvert.DeserializeObject<JsonGameTileData>(jsonGridData.jsonTileData[i]);
             GetWorldGridTileAtPosition(jsonGameTileData.gridPosition).GetGameTile().LoadFromJson(jsonGameTileData);
         }
     }
@@ -719,7 +720,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             jsonData.jsonTileData.Add(m_gridArray[i].GetGameTile().SaveToJsonAsString());
         }
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }

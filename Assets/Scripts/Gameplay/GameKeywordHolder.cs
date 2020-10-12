@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -104,7 +105,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
             jsonData.keywordJson.Add(keyword.SaveToJsonAsString());
         }
 
-        var export = JsonUtility.ToJson(jsonData);
+        var export = JsonConvert.SerializeObject(jsonData);
 
         return export;
     }
@@ -113,7 +114,7 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
     {
         foreach (string keywordJson in tuple.Item1.keywordJson)
         {
-            JsonKeywordData keywordData = JsonUtility.FromJson<JsonKeywordData>(keywordJson);
+            JsonKeywordData keywordData = JsonConvert.DeserializeObject<JsonKeywordData>(keywordJson);
             m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordData, tuple.Item2));
         }
     }
