@@ -40,6 +40,21 @@ public static class GameMetaProgression
         return Mathf.FloorToInt((float)(GamePlayerSaveData.m_playerExperience)/1000.0f);
     }
 
+    public static bool IsChaosLevelAchieved(int mapId, int chaosLevel)
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        if (!GamePlayerSaveData.m_mapChaosLevels.ContainsKey(mapId))
+        {
+            return false;
+        }
+
+        return GamePlayerSaveData.m_mapChaosLevels[mapId] >= chaosLevel;
+    }
+
     public static bool IsMapUnlocked(int mapId)
     {
         if (!m_hasInit)
@@ -74,7 +89,7 @@ public static class GameMetaProgression
             Init();
         }
 
-        if (card.m_unlockLevel <= GetCurLevel())
+        if (card.PlayerHasUnlockedCard())
         {
             return true;
         }

@@ -222,7 +222,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         {
             for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
             {
-                shouldRevive = GameHelper.PercentChanceRoll(33);
+                shouldRevive = shouldRevive || GameHelper.PercentChanceRoll(33);
             }
         }
 

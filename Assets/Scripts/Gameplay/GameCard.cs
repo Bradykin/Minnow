@@ -66,6 +66,11 @@ public abstract class GameCard : GameElementBase
         m_desc = desc;
     }
 
+    public virtual bool PlayerHasUnlockedCard()
+    {
+        return Constants.CheatsOn || (GameMetaProgression.GetCurLevel() >= GetPlayerUnlockLevel());
+    }
+
     public int GetPlayerUnlockLevel()
     {
         return m_playerUnlockLevel;

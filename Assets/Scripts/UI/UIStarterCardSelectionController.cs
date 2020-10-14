@@ -58,44 +58,69 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
         }
         else
         {
-            m_optionOne.gameObject.SetActive(true);
-            m_optionTwo.gameObject.SetActive(true);
-            m_optionThree.gameObject.SetActive(true);
+            GameCard cardOne;
+            GameCard cardTwo;
+            GameCard cardThree;
 
             if (m_curSelectedType == StarterCardType.BasicUnit)
             {
-                m_optionOne.Init(new ContentDwarvenSoldierCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.Init(new ContentDwarvenSoldierCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionThree.Init(new ContentDwarvenSoldierCard(), UICard.CardDisplayType.StarterSelect);
+                cardOne = new ContentDwarvenSoldierCard();
+                cardTwo = new ContentDwarvenSoldierCard();
+                cardThree = new ContentDwarvenSoldierCard();
             }
             else if (m_curSelectedType == StarterCardType.AdvancedUnit)
             {
-                m_optionOne.Init(new ContentStoneGolemCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.Init(new ContentStoneGolemCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionThree.Init(new ContentStoneGolemCard(), UICard.CardDisplayType.StarterSelect);
+                cardOne = new ContentStoneGolemCard();
+                cardTwo = new ContentStoneGolemCard();
+                cardThree = new ContentStoneGolemCard();
             }
             else if (m_curSelectedType == StarterCardType.DamageSpell)
             {
-                m_optionOne.Init(new ContentFireboltCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.Init(new ContentDrainingBoltCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionThree.Init(new ContentWeakeningBoltCard(), UICard.CardDisplayType.StarterSelect);
+                cardOne = new ContentFireboltCard();
+                cardTwo = new ContentDrainingBoltCard();
+                cardThree = new ContentWeakeningBoltCard();
             }
             else if (m_curSelectedType == StarterCardType.DefensiveSpell)
             {
-                m_optionOne.Init(new ContentAegisCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.Init(new ContentCureWoundsCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionThree.Init(new ContentJoltCard(), UICard.CardDisplayType.StarterSelect);
+                cardOne = new ContentAegisCard();
+                cardTwo = new ContentCureWoundsCard();
+                cardThree = new ContentJoltCard();
             }
             else if (m_curSelectedType == StarterCardType.ExileSpell)
             {
-                m_optionOne.Init(new ContentGrowTalonsCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.Init(new ContentStaminaTrainingCard(), UICard.CardDisplayType.StarterSelect);
-                m_optionThree.Init(new ContentOptimizeCard(), UICard.CardDisplayType.StarterSelect);
+                cardOne = new ContentGrowTalonsCard();
+                cardTwo = new ContentStaminaTrainingCard();
+                cardThree = new ContentOptimizeCard();
+            }
+            else
+            {
+                Debug.LogError("Received unknown StarterCardType in UIStarterCardSelectionController");
+                return;
             }
 
-            m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
-            m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
-            m_optionThree.GetCardStarterSelect().Init(m_curSelectedType);
+            bool optionOneActive = GameMetaProgression.IsCardUnlocked(cardOne);
+            m_optionOne.gameObject.SetActive(optionOneActive);
+            if (optionOneActive)
+            {
+                m_optionOne.Init(cardOne, UICard.CardDisplayType.StarterSelect);
+                m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
+            }
+
+            bool optionTwoActive = GameMetaProgression.IsCardUnlocked(cardTwo);
+            m_optionTwo.gameObject.SetActive(optionTwoActive);
+            if (optionTwoActive)
+            {
+                m_optionTwo.Init(cardTwo, UICard.CardDisplayType.StarterSelect);
+                m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
+            }
+
+            bool optionThreeActive = GameMetaProgression.IsCardUnlocked(cardThree);
+            m_optionThree.gameObject.SetActive(optionThreeActive);
+            if (optionThreeActive)
+            {
+                m_optionThree.Init(cardThree, UICard.CardDisplayType.StarterSelect);
+                m_optionThree.GetCardStarterSelect().Init(m_curSelectedType);
+            }
         }
     }
 

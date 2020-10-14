@@ -13,5 +13,7 @@ public class GamePlayerSaveData
     public GamePlayerSaveData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
+
+        m_mapChaosLevels.Add(1, 5);
     }
 }

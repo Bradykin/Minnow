@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ContentDrainingBoltCard : GameCardSpellBase
 {
+    private int m_mapUnlockID = 1;
+    private int m_rankZeroChaosLevel = 1;
+    private int m_rankOneChaosLevel = 4;
+    private int m_rankTwoChaosLevel = 7;
+    private int m_rankThreeChaosLevel = 10;
+
     private int m_staminaToDrain = 1;
 
     public ContentDrainingBoltCard()
@@ -12,7 +18,7 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         m_targetType = Target.Unit;
         m_rarity = GameRarity.Starter;
 
-        SetCardLevel(GamePlayer.DrainingLevel);
+        SetCardLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -33,6 +39,37 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         }
 
         return description;
+    }
+
+
+    public override bool PlayerHasUnlockedCard()
+    {
+        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankZeroChaosLevel));
+    }
+
+    public int GetCardLevel()
+    {
+        if (!GameMetaProgression.IsMapUnlocked(m_mapUnlockID))
+        {
+            return 0;
+        }
+
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankThreeChaosLevel))
+        {
+            return 3;
+        }
+
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankTwoChaosLevel))
+        {
+            return 2;
+        }
+
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankOneChaosLevel))
+        {
+            return 1;
+        }
+
+        return 0;
     }
 
     public override void PlayCard(GameUnit targetUnit)
