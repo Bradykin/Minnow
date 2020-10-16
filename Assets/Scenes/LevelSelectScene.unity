@@ -2750,6 +2750,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451313501}
   m_CullTransparentMesh: 0
+--- !u!1001 &1510228434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1607021141}
+    m_Modifications:
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_Name
+      value: DesertPassButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 26.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978177528008677633, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_id
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4259ab68733489a428afec1426801dd4, type: 3}
+--- !u!4 &1510228435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1510228434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1579662692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2849,6 +2929,7 @@ Transform:
   - {fileID: 157501796002271917}
   - {fileID: 585774953}
   - {fileID: 1970212742}
+  - {fileID: 1510228435}
   m_Father: {fileID: 4596074658487241327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
