@@ -66,7 +66,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
             {
                 cardOne = new ContentDwarvenSoldierCard();
                 cardTwo = new ContentWingedSerpentCard();
-                cardThree = new ContentDwarvenSoldierCard();
+                cardThree = new ContentMechanizedBeastCard();
             }
             else if (m_curSelectedType == StarterCardType.AdvancedUnit)
             {
