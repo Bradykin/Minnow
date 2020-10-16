@@ -15,7 +15,7 @@ public class ContentElvenWizard : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 2)));
+        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
 
         m_name = "Elven Wizard";
         m_typeline = Typeline.Humanoid;

@@ -60,6 +60,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
         m_cards.Add(new ContentZombieCard());
+        m_cards.Add(new ContentLizardSoldierCard());
 
         //Spell Cards
         m_cards.Add(new ContentAegisCard());

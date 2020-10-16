@@ -71,7 +71,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
             else if (m_curSelectedType == StarterCardType.AdvancedUnit)
             {
                 cardOne = new ContentStoneGolemCard();
-                cardTwo = new ContentStoneGolemCard();
+                cardTwo = new ContentLizardSoldierCard();
                 cardThree = new ContentStoneGolemCard();
             }
             else if (m_curSelectedType == StarterCardType.DamageSpell)
