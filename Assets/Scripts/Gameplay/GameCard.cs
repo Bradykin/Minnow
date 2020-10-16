@@ -27,8 +27,6 @@ public abstract class GameCard : GameElementBase
 
     //Starter Card Data
     protected int m_mapUnlockID = 0;
-    protected int m_rankOneChaosLevel = 5;
-    protected int m_rankTwoChaosLevel = 10;
 
     public virtual string GetName()
     {
@@ -209,12 +207,12 @@ public abstract class GameCard : GameElementBase
             return 0;
         }
 
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankTwoChaosLevel))
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
         {
             return 2;
         }
 
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankOneChaosLevel))
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
         {
             return 1;
         }
