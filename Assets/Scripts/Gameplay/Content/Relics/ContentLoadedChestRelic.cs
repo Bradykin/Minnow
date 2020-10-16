@@ -10,6 +10,8 @@ public class ContentLoadedChestRelic : GameRelic
         m_desc = "On pickup, gain 200 gold.";
         m_rarity = GameRarity.Starter;
 
+        SetRelicLevel(GetRelicLevel());
+
         LateInit();
     }
 }

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ContentAegisCard : GameCardSpellBase
 {
-    private int m_mapUnlockID = 0;
-    private int m_rankOneChaosLevel = 4;
-    private int m_rankTwoChaosLevel = 7;
-    private int m_rankThreeChaosLevel = 10;
-
     private int m_amount = 1;
     
     public ContentAegisCard()
@@ -40,31 +35,6 @@ public class ContentAegisCard : GameCardSpellBase
         }
 
         return description;
-    }
-
-    public int GetCardLevel()
-    {
-        if (!GameMetaProgression.IsMapUnlocked(m_mapUnlockID))
-        {
-            return 0;
-        }
-
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankThreeChaosLevel))
-        {
-            return 3;
-        }
-
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankTwoChaosLevel))
-        {
-            return 2;
-        }
-
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, m_rankOneChaosLevel))
-        {
-            return 1;
-        }
-
-        return 0;
     }
 
     public override void PlayCard(GameUnit targetUnit)

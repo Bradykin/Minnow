@@ -10,6 +10,8 @@ public class ContentLivingStoneRelic : GameRelic
         m_desc = "All buildings gain +1 max health per round.";
         m_rarity = GameRarity.Starter;
 
+        SetRelicLevel(GetRelicLevel());
+
         LateInit();
     }
 }

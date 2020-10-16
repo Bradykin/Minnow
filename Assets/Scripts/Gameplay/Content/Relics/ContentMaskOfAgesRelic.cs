@@ -10,6 +10,8 @@ public class ContentMaskOfAgesRelic : GameRelic
         m_desc = "At the start of each turn, draw an additional card.";
         m_rarity = GameRarity.Starter;
 
+        SetRelicLevel(GetRelicLevel());
+
         LateInit();
     }
 }
