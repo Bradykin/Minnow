@@ -5,27 +5,49 @@ using Newtonsoft.Json;
 
 public class ContentUndeadMammoth : GameUnit
 {
-    private int m_powerBuff = 3;
-    private int m_healthBuff = 10;
+    private int m_powerBuff;
+    private int m_healthBuff;
 
     public ContentUndeadMammoth()
     {
-        m_maxHealth = 12;
-        m_maxStamina = 5;
-        m_staminaRegen = 4;
-        m_power = 4;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)));
         m_neverSetIsDead = true;
 
         m_name = "Undead Mammoth";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        SetUnitLevel(GetUnitLevel());
+
+        m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)));
+
         LateInit();
+    }
+
+    public override void SetUnitLevel(int level)
+    {
+        base.SetUnitLevel(level);
+
+        m_powerBuff = 3;
+        m_healthBuff = 10;
+
+        m_maxHealth = 12;
+        m_maxStamina = 5;
+        m_staminaRegen = 4;
+        m_power = 4;
+
+        if (m_unitLevel >= 1)
+        {
+            m_powerBuff = 8;
+        }
+
+        if (m_unitLevel >= 2)
+        {
+            m_maxStamina = 6;
+            m_staminaRegen = 6;
+        }
     }
 }
 
