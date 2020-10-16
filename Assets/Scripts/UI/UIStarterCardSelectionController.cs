@@ -72,7 +72,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
             {
                 cardOne = new ContentStoneGolemCard();
                 cardTwo = new ContentLizardSoldierCard();
-                cardThree = new ContentStoneGolemCard();
+                cardThree = new ContentUndeadMammothCard();
             }
             else if (m_curSelectedType == StarterCardType.DamageSpell)
             {

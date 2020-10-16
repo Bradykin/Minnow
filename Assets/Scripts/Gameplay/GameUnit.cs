@@ -45,6 +45,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     protected string m_customName;
     protected int m_unitLevel;
 
+    //Special functionality
+    protected bool m_neverSetIsDead;
+
     public void CopyOff(GameUnit other)
     {
         m_maxHealth = other.m_maxHealth;
@@ -322,7 +325,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_gameTile.GetWorldTile().RecycleUnit();
         UITooltipController.Instance.ClearTooltipStack();
 
-        m_isDead = willSetDead;
+        if (m_neverSetIsDead)
+        {
+            m_isDead = false;
+        }
+        else
+        {
+            m_isDead = willSetDead;
+        }
     }
 
     //Returns the amount actually healed
