@@ -10,7 +10,8 @@ public class UIRelic : UIElementBase
     public enum RelicSelectionType
     {
         View,
-        Select
+        Select,
+        SelectStarter
     }
 
     private GameRelic m_relic;
@@ -18,6 +19,21 @@ public class UIRelic : UIElementBase
 
     public Image m_image;
     public Image m_rarityTint;
+
+    void Update()
+    {
+        if (m_selectionType == RelicSelectionType.SelectStarter)
+        {
+            if (GamePlayer.StarterRelic.m_name == m_relic.m_name)
+            {
+                m_tintImage.color = UIHelper.GetValidTintColor(true);
+            }
+            else
+            {
+                m_tintImage.color = UIHelper.GetDefaultTintColor();
+            }
+        }
+    }
 
     public void Init(GameRelic newRelic, RelicSelectionType selectionType)
     {
@@ -32,7 +48,7 @@ public class UIRelic : UIElementBase
 
     public override void HandleTooltip()
     {
-        if (m_selectionType == RelicSelectionType.View)
+        if (m_selectionType == RelicSelectionType.View || m_selectionType == RelicSelectionType.SelectStarter)
         {
             UIHelper.CreateRelicTooltip(m_relic);
         }
@@ -49,6 +65,11 @@ public class UIRelic : UIElementBase
         {
             UIRelicSelectController.Instance.AcceptRelic(m_relic);
             UITooltipController.Instance.ClearTooltipStack();
+        }
+
+        if (m_selectionType == RelicSelectionType.SelectStarter)
+        {
+            GamePlayer.StarterRelic = m_relic;
         }
     }
 }

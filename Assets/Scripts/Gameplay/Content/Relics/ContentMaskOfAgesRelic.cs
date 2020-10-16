@@ -8,7 +8,7 @@ public class ContentMaskOfAgesRelic : GameRelic
     {
         m_name = "Mask of Ages";
         m_desc = "At the start of each turn, draw an additional card.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
 
         LateInit();
     }

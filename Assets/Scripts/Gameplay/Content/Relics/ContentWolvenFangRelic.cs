@@ -8,7 +8,7 @@ public class ContentWolvenFangRelic : GameRelic
     {
         m_name = "Wolven Fang";
         m_desc = "Give all friendly units +2/+0.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Starter;
 
         LateInit();
     }

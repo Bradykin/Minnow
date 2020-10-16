@@ -12,6 +12,7 @@ public class GamePlayer : ITurns
     public static GameCard StarterDamageSpell = new ContentFireboltCard();
     public static GameCard StarterDefensiveSpell = new ContentAegisCard();
     public static GameCard StarterExileSpell = new ContentGrowTalonsCard();
+    public static GameRelic StarterRelic = new ContentLivingStoneRelic();
 
     /*public static int AegisLevel = 0;
     public static int CureLevel = 0;
@@ -82,6 +83,8 @@ public class GamePlayer : ITurns
         ResetCurDeck();
 
         m_curDeck.Shuffle();
+
+        AddRelic(GameRelicFactory.GetGameRelicClone(StarterRelic));
     }
 
     public void DrawHand()
