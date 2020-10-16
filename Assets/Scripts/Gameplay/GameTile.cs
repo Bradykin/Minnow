@@ -386,7 +386,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         m_gridPosition = jsonData.gridPosition;
 
-        if (jsonData.gameUnitData != string.Empty)
+        if (jsonData.gameUnitData != string.Empty && jsonData.gameUnitData != null)
         {
             JsonGameUnitData jsonGameUnitData = JsonConvert.DeserializeObject<JsonGameUnitData>(jsonData.gameUnitData);
             if (jsonGameUnitData.team == (int)Team.Player)
@@ -395,25 +395,25 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
                 PlaceUnit(GameUnitFactory.GetEnemyFromJson(jsonGameUnitData, WorldController.Instance.m_gameController.m_gameOpponent));
         }
 
-        if (jsonData.gameBuildingData != string.Empty)
+        if (jsonData.gameBuildingData != string.Empty && jsonData.gameBuildingData != null)
         {
             JsonGameBuildingData jsonGameBuildingData = JsonConvert.DeserializeObject<JsonGameBuildingData>(jsonData.gameBuildingData);
             PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
         }
 
-        if (jsonData.gameTerrainData != string.Empty)
+        if (jsonData.gameTerrainData != string.Empty && jsonData.gameTerrainData != null)
         {
             JsonGameTerrainData jsonGameTerrainData = JsonConvert.DeserializeObject<JsonGameTerrainData>(jsonData.gameTerrainData);
             SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
         }
 
-        if (jsonData.gameEventData != string.Empty)
+        if (jsonData.gameEventData != string.Empty && jsonData.gameEventData != null)
         {
             //JsonGameEventData jsonGameEventData = JsonConvert.DeserializeObject<JsonGameEventData>(jsonData.gameEventData);
             m_event = true;
         }
 
-        if (jsonData.gameSpawnPointData != string.Empty)
+        if (jsonData.gameSpawnPointData != string.Empty && jsonData.gameSpawnPointData != null)
         {
             GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
             gameSpawnPoint.LoadFromJson(JsonConvert.DeserializeObject<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
