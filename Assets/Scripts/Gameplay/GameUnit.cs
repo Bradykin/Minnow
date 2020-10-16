@@ -43,6 +43,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
+    protected int m_mapUnlockID;
     protected int m_unitLevel;
 
     //Special functionality
@@ -1080,6 +1081,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         }
     }
 
+    public virtual int GetUnitLevel()
+    {
+        if (!GameMetaProgression.IsMapUnlocked(m_mapUnlockID))
+        {
+            return 0;
+        }
+
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
+        {
+            return 2;
+        }
+
+        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
+        {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    public virtual void SetUnitLevel(int level)
+    {
+        m_unitLevel = level;
+    }
+
     //============================================================================================================//
 
     public virtual void StartTurn() { }
@@ -1103,11 +1129,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 Heal(healAmount);
             }
         }
-    }
-
-    public virtual void SetUnitLevel(int level)
-    {
-        m_unitLevel = level;
     }
 
     //============================================================================================================//
