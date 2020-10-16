@@ -61,7 +61,7 @@ public class ContentJoltCard : GameCardSpellBase
         base.SetCardLevel(level);
 
         m_cost = 1;
-        m_spellEffect = 2;
+        m_spellEffect = 1;
 
         if (m_cardLevel >= 1)
         {
