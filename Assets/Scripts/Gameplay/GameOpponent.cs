@@ -9,12 +9,14 @@ public class GameOpponent : ITurns
 {
     public List<GameEnemyUnit> m_controlledUnits { get; private set; }
 
+    public List<GameMonsterDenSpawnPoint> m_monsterDenSpawnPoints { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
         m_controlledUnits = new List<GameEnemyUnit>();
         m_spawnPoints = new List<GameSpawnPoint>();
+        m_monsterDenSpawnPoints = new List<GameMonsterDenSpawnPoint>();
     }
 
     public void LateInit()
@@ -112,39 +114,87 @@ public class GameOpponent : ITurns
 
     private void HandleSpawn()
     {
-        for (int i = 0; i < m_spawnPoints.Count; i++)
+        //Generate number of enemies to spawn
+        int numEnemiesToSpawn = 10;
+
+        //handle spawning of bosses and elites
+        if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
         {
-            if (m_spawnPoints[i].m_tile.m_occupyingUnit != null)
+            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
+            SpawnAtEdgeOfFog(gameEnemyUnit);
+            WorldController.Instance.HasSpawnedBoss();
+        }
+
+        //Try spawning at any monster dens
+        m_monsterDenSpawnPoints.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
+        for (int i = 0; i < m_monsterDenSpawnPoints.Count; i++)
+        {
+            if (!m_monsterDenSpawnPoints[i].IsMonsterDenActive)
             {
                 continue;
             }
 
-            if (!m_spawnPoints[i].m_tile.m_isFog && Constants.FogOfWar)
+            if (TrySpawnAtSpawnPoint(m_monsterDenSpawnPoints[i]))
             {
-                continue;
-            }
+                numEnemiesToSpawn--;
 
-            if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
-            {
-                GameEnemyUnit newEnemyUnit;
-                if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+                if (numEnemiesToSpawn == 0)
                 {
-                    newEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-                    WorldController.Instance.SetHasSpawnedBoss(true);
+                    return;
                 }
-                else if (!WorldController.Instance.HasSpawnedEliteThisWave() && GameHelper.GetGameController().m_currentWaveTurn >= Constants.SpawnEliteWave && GameHelper.PercentChanceRoll(Constants.PercentChanceForEliteToSpawn))
-                {
-                    newEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
-                    WorldController.Instance.SetHasSpawnedEliteThisWave(true);
-                }
-                else
-                {
-                    newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
-                }
-
-                m_spawnPoints[i].m_tile.PlaceUnit(newEnemyUnit);
-                m_controlledUnits.Add(newEnemyUnit);
             }
         }
+
+        m_spawnPoints.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
+        for (int i = 0; i < m_spawnPoints.Count; i++)
+        {
+            if (TrySpawnAtSpawnPoint(m_spawnPoints[i]))
+            {
+                numEnemiesToSpawn--;
+
+                if (numEnemiesToSpawn == 0)
+                {
+                    return;
+                }
+            }
+        }
+
+        //Try spawning at edge of fog
+        for (int i = 0; i < numEnemiesToSpawn; i++)
+        {
+            //Spawn enemy in edge of fog
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+            SpawnAtEdgeOfFog(newEnemyUnit);
+        }
+    }
+
+    private bool TrySpawnAtSpawnPoint(GameSpawnPoint spawnPoint)
+    {
+        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        {
+            return false;
+        }
+
+        if (!spawnPoint.m_tile.m_isFog && Constants.FogOfWar)
+        {
+            return false;
+        }
+
+        if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
+        {
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+
+            spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
+            m_controlledUnits.Add(newEnemyUnit);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void SpawnAtEdgeOfFog(GameEnemyUnit gameEnemyUnit)
+    {
+
     }
 }
