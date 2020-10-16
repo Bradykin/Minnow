@@ -29,7 +29,6 @@ public class ContentUndeadMammoth : GameUnit
     }
 }
 
-
 public class GameReturnToDeckBuffedAction : GameAction
 {
     private GameUnit m_retuningUnit;

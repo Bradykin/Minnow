@@ -58,6 +58,7 @@ public class GameUnitFactory
 
         m_playerUnits.Add(new ContentLizardSoldier());
         m_playerUnits.Add(new ContentUndeadMammoth());
+        m_playerUnits.Add(new ContentWingedSerpent());
 
         //Enemy Units
         m_enemies = spawnPool;
