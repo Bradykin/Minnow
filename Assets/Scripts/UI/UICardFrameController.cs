@@ -27,7 +27,7 @@ public class UICardFrameController : MonoBehaviour
             card = m_card.m_card;
         }
 
-        if (card is GameUnitCard)
+        if (m_card.m_unitCard != null)
         {
             m_image.sprite = m_unitCardFrame;
         }

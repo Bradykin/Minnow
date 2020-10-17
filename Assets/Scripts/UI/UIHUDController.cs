@@ -7,15 +7,29 @@ public class UIHUDController : MonoBehaviour
     public GameObject m_waveHUD;
     public GameObject m_intermissionHUD;
     public GameObject m_globalHUD;
+    public GameObject m_levelSelectHUD;
 
     void Update()
     {
-        if (GameHelper.IsInLevelSelect() || GameHelper.IsInLevelBuilder())
+        if (GameHelper.IsInLevelBuilder())
         {
             m_intermissionHUD.SetActive(false);
             m_waveHUD.SetActive(false);
             m_globalHUD.SetActive(false);
+            m_levelSelectHUD.SetActive(false);
             return;
+        }
+        if (GameHelper.IsInLevelSelect())
+        {
+            m_intermissionHUD.SetActive(false);
+            m_waveHUD.SetActive(false);
+            m_globalHUD.SetActive(false);
+            m_levelSelectHUD.SetActive(true);
+            return;
+        }
+        else
+        {
+            m_levelSelectHUD.SetActive(false);
         }
 
         if (Globals.m_inDeckView)
@@ -23,6 +37,7 @@ public class UIHUDController : MonoBehaviour
             m_intermissionHUD.SetActive(false);
             m_waveHUD.SetActive(false);
             m_globalHUD.SetActive(false);
+            m_levelSelectHUD.SetActive(false);
         }
         else
         {
