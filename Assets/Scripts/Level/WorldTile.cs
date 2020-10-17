@@ -223,7 +223,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
                 {
                     GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-                    gameSpawnPoint.SetSpawnPointRandom();
                     GetGameTile().SetSpawnPoint(gameSpawnPoint);
                 }
             }

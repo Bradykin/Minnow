@@ -15,7 +15,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     private WorldTile m_worldTile;
 
     public List<int> m_spawnPointMarkers = new List<int>();
-    public List<int> m_mapEventMarkers = new List<int>();
+    public List<int> m_gameEventMarkers = new List<int>();
 
     public bool m_isFog;
     public bool m_isSoftFog;
@@ -376,6 +376,10 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             jsonData.gameSpawnPointData = m_spawnPoint.SaveToJsonAsString();
         }
+        if (m_gameEventMarkers != null)
+        {
+            jsonData.gameEventMarkers = m_gameEventMarkers;
+        }
 
         var export = JsonConvert.SerializeObject(jsonData);
 
@@ -412,6 +416,15 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
             gameSpawnPoint.LoadFromJson(JsonConvert.DeserializeObject<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
             SetSpawnPoint(gameSpawnPoint);
+        }
+
+        if (jsonData.gameEventMarkers != null)
+        {
+            m_gameEventMarkers = jsonData.gameEventMarkers;
+        }
+        else
+        {
+            m_gameEventMarkers = new List<int>();
         }
     }
 

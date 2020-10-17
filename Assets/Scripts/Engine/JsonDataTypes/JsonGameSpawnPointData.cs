@@ -5,6 +5,5 @@ using UnityEngine;
 public struct JsonGameSpawnPointData
 {
     //GameSpawnPoint values
-    public int gameSpawnPointType;
-    public string gameSpawnUnitName;
+    public List<int> gameSpawnPointMarkers;
 }
