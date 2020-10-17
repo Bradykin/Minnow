@@ -13,8 +13,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public SpriteRenderer m_frameRenderer;
     public SpriteRenderer m_fogRenderer;
     public GameObject m_fogOfWar;
+
     public GameObject m_spawnIndicator;
-    public GameObject m_eventIndicator;
+    public GameObject m_specialTileIndicator;
+    public Text m_spawnText;
+    public Text m_specialTileText;
 
     private WorldUnit m_occupyingUnitObj;
 
@@ -58,15 +61,54 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_renderer.sprite = GetGameTile().GetIcon();
         m_tintRenderer.sprite = GetGameTile().GetIconWhite();
         m_fogRenderer.sprite = GetGameTile().GetIcon();
-        m_eventIndicator.GetComponent<SpriteRenderer>().sprite = GetGameTile().GetIcon();
 
         if (GameHelper.IsInLevelBuilder())
         {
-            m_spawnIndicator.SetActive(GetGameTile().m_spawnPoint != null);
+            bool hasSpawnPoint = GetGameTile().m_spawnPoint != null;
+            int numEventMarkers = GetGameTile().m_gameEventMarkers.Count;
+            bool hasEventMarker = numEventMarkers > 0;
+
+            m_spawnIndicator.SetActive(hasSpawnPoint);
+            m_spawnText.gameObject.SetActive(hasSpawnPoint);
+            m_specialTileIndicator.SetActive(hasEventMarker);
+            m_specialTileText.gameObject.SetActive(hasEventMarker);
+
+            if (hasSpawnPoint)
+            {
+                int numSpawnPoints = GetGameTile().m_spawnPoint.m_spawnPointMarkers.Count;
+                string desc = "";
+                for (int i = 0; i < numSpawnPoints; i++)
+                {
+                    desc += GetGameTile().m_spawnPoint.m_spawnPointMarkers[i];
+                    if (i < numSpawnPoints - 1)
+                    {
+                        desc += ",";
+                    }
+                }
+
+                m_spawnText.text = desc;
+            }
+
+            if (hasEventMarker)
+            {
+                string desc = "";
+                for (int i = 0; i < numEventMarkers; i++)
+                {
+                    desc += GetGameTile().m_gameEventMarkers[i];
+                    if (i < numEventMarkers - 1)
+                    {
+                        desc += ",";
+                    }
+                    m_specialTileText.text = desc;
+                }
+            }
         }
         else
         {
             m_spawnIndicator.SetActive(false);
+            m_specialTileIndicator.SetActive(false);
+            m_specialTileText.gameObject.SetActive(false);
+            m_spawnText.gameObject.SetActive(false);
         }
 
         if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
@@ -416,8 +458,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void HandleFogUpdate()
     {
-        m_eventIndicator.SetActive(GetGameTile().GetTerrain().IsEventTerrain() && GetGameTile().m_isFog && Constants.DebugEventsVisibleInFog);
-
         if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {
             if (m_occupyingUnitObj != null)
