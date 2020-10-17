@@ -17,6 +17,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     public bool m_isFog;
     public bool m_isSoftFog;
+    public bool m_isFogBorder;
     public bool m_canPlace;
 
     public GameTile(WorldTile worldTile)

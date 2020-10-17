@@ -117,7 +117,8 @@ public class GameOpponent : ITurns
         //Generate number of enemies to spawn
         int numEnemiesToSpawn = GameHelper.GetGameController().GetCurMap().GetNumEnemiesToSpawn();
 
-        List<GameTile> tilesAtFogEdge = new List<GameTile>();
+        List<GameTile> tilesAtFogEdge = WorldGridManager.Instance.GetFogBorderGameTiles();
+        tilesAtFogEdge.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
 
         //handle spawning of bosses and elites
         if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
@@ -161,7 +162,7 @@ public class GameOpponent : ITurns
         int numEnemiesSpawned = 0;
         int numEnemiesToTryAndSpawn = 3;
 
-        List<GameTile> tiles = WorldGridManager.Instance.GetSurroundingTiles(gameBuilding.GetGameTile(), 1, 0);
+        List<GameTile> tiles = WorldGridManager.Instance.GetSurroundingGameTiles(gameBuilding.GetGameTile(), 1, 0);
         tiles.Sort((a, b) => -1 + UnityEngine.Random.Range(0, 2));
 
         for (int i = 0; i < tiles.Count; i++)
@@ -220,6 +221,7 @@ public class GameOpponent : ITurns
             {
                 tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
                 m_controlledUnits.Add(newEnemyUnit);
+                Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
                 return;
             }
         }

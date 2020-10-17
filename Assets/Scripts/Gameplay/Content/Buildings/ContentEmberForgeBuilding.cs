@@ -30,7 +30,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         base.EndTurn();
 
         List<GameTile> surroundingTiles;
-        surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, m_range, 0);
+        surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_range, 0);
 
         List<GameUnit> units = new List<GameUnit>();
         for (int i = 0; i < surroundingTiles.Count; i++)

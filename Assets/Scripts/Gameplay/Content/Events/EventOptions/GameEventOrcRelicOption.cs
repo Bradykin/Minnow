@@ -32,7 +32,7 @@ public class GameEventOrcRelicOption : GameEventOption
 
         player.AddRelic(m_relic);
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, 2);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_tile, 2);
 
         List<GameTile> shuffledTiles = new List<GameTile>();
         while (nearbyTiles.Count > 0)

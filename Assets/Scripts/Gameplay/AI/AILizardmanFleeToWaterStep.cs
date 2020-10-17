@@ -14,7 +14,7 @@ public class AILizardmanFleeToWaterStep : AIStep
             yield break;
         }
 
-        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 2, 1);
+        List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 2, 1);
 
         List<GameTile> tilesToFleeInWater = new List<GameTile>();
         List<GameTile> tilesToFleeInOpenWater = new List<GameTile>();
@@ -31,7 +31,7 @@ public class AILizardmanFleeToWaterStep : AIStep
                 
                 tilesToFleeInWater.Add(tilesAtDistance[i]);
 
-                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tilesAtDistance[i], 1, 1);
+                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tilesAtDistance[i], 1, 1);
                 bool isOpenWater = true;
                 for (int k = 0; k < surroundingTiles.Count; k++)
                 {

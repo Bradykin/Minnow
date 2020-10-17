@@ -156,7 +156,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 
         for (int i = 1; i < 5; i++)
         {
-            List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingTiles(gameTile, i, i);
+            List<GameTile> tilesAtDistance = WorldGridManager.Instance.GetSurroundingGameTiles(gameTile, i, i);
             for (int k = 0; k < tilesAtDistance.Count; k++)
             {
                 if (tilesAtDistance[k].GetTerrain().IsWater())
