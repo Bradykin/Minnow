@@ -21,7 +21,14 @@ public class ContentOptimizeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Gain " + m_energyGain + " Energy and draw " + m_cardDraw + " cards.";
+        if (m_cardDraw == 1)
+        {
+            return "Gain " + m_energyGain + " energy and draw " + m_cardDraw + " card.";
+        }
+        else
+        {
+            return "Gain " + m_energyGain + " energy and draw " + m_cardDraw + " cards.";
+        }
     }
 
     public override bool PlayerHasUnlockedCard()

@@ -16,6 +16,8 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
 
         m_playerUnlockLevel = 4;
 
+        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
+
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Shiv);

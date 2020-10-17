@@ -164,7 +164,24 @@ public class GameUnitCard : GameCard
     {
         string desc = m_unit.GetDesc();
 
-        if (GetUnit().GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
+        List<GameKeywordBase> keywords = GetUnit().GetKeywordHolderForRead().m_keywords;
+
+        bool hasAnyVisibleKeywords = keywords.Count > 0;
+        if (hasAnyVisibleKeywords)
+        {
+            for (int i = 0; i < keywords.Count; i++)
+            {
+                if (keywords[i].m_isVisible)
+                {
+                    hasAnyVisibleKeywords = true;
+                    break;
+                }
+            }
+
+            hasAnyVisibleKeywords = false;
+        }
+
+        if (hasAnyVisibleKeywords && (desc != ""))
         {
             desc += "\n";
         }

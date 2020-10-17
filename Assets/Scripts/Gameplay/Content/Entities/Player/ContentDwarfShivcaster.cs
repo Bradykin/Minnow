@@ -22,6 +22,7 @@ public class ContentDwarfShivcaster : GameUnit
 
         m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
         m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
 
         LateInit();
     }
