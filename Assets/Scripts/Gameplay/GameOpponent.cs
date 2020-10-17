@@ -12,6 +12,8 @@ public class GameOpponent : ITurns
     public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
+    public int EliteSpawnWaveModifier;
+
     public GameOpponent()
     {
         m_controlledUnits = new List<GameEnemyUnit>();
@@ -121,11 +123,19 @@ public class GameOpponent : ITurns
         tilesAtFogEdge.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
 
         //handle spawning of bosses and elites
-        if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+        if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
         {
             GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
             SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-            WorldController.Instance.HasSpawnedBoss();
+            WorldController.Instance.SetHasSpawnedBoss(true);
+        }
+
+        if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+        {
+            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
+            SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
+            WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+            Debug.Log("SPAWN ELITE");
         }
 
         //Try spawning at any monster dens
@@ -204,7 +214,7 @@ public class GameOpponent : ITurns
 
             spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);
-            Debug.Log("SPAWN " + newEnemyUnit + " AT SPAWN POINT");
+            //Debug.Log("SPAWN " + newEnemyUnit + " AT SPAWN POINT");
             return true;
         }
 
@@ -221,7 +231,7 @@ public class GameOpponent : ITurns
             {
                 tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
                 m_controlledUnits.Add(newEnemyUnit);
-                Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
+                //Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
                 return;
             }
         }

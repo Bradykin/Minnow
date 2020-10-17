@@ -10,7 +10,8 @@ public static class Constants
     public static int StartingActions = 4;
     public static int MaxHandSize = 10;
     public static int MaxTotalStamina = 12;
-    public static int SpawnEliteWave = 2;
+    public static int SpawnEliteTurn = 2;
+    public static int SpawnBossTurn = 2;
 
     public static int PercentChanceForUncommonCard = 38;
     public static int PercentChanceForRareCard = 18;
@@ -21,7 +22,6 @@ public static class Constants
     public static int PercentChanceForUncommonEvent = 30;
     public static int PercentChanceForRareEvent = 15;
 
-    public static int PercentChanceForEliteToSpawn = 20;
     public static int PercentChanceForMobToSpawn = 40;
 
     public static int MaxChaos = 10;

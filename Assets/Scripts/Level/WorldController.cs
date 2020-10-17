@@ -272,6 +272,10 @@ public class WorldController : Singleton<WorldController>
     public void WinGame()
     {
         Debug.Log("The player has won!");
+
+        //Do Cleanup
+        m_hasSpawnedBoss = false;
+
         //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
