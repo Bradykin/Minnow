@@ -9,14 +9,14 @@ public class GameOpponent : ITurns
 {
     public List<GameEnemyUnit> m_controlledUnits { get; private set; }
 
-    public List<GameMonsterDenSpawnPoint> m_monsterDenSpawnPoints { get; private set; }
+    public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public GameOpponent()
     {
         m_controlledUnits = new List<GameEnemyUnit>();
         m_spawnPoints = new List<GameSpawnPoint>();
-        m_monsterDenSpawnPoints = new List<GameMonsterDenSpawnPoint>();
+        m_monsterDens = new List<GameBuildingBase>();
     }
 
     public void LateInit()
@@ -117,32 +117,20 @@ public class GameOpponent : ITurns
         //Generate number of enemies to spawn
         int numEnemiesToSpawn = GameHelper.GetGameController().GetCurMap().GetNumEnemiesToSpawn();
 
+        List<GameTile> tilesAtFogEdge = new List<GameTile>();
+
         //handle spawning of bosses and elites
         if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
         {
             GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-            SpawnAtEdgeOfFog(gameEnemyUnit);
+            SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
             WorldController.Instance.HasSpawnedBoss();
         }
 
         //Try spawning at any monster dens
-        m_monsterDenSpawnPoints.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
-        for (int i = 0; i < m_monsterDenSpawnPoints.Count; i++)
+        for (int i = 0; i < m_monsterDens.Count; i++)
         {
-            if (!m_monsterDenSpawnPoints[i].IsMonsterDenActive)
-            {
-                continue;
-            }
-
-            if (TrySpawnAtSpawnPoint(m_monsterDenSpawnPoints[i]))
-            {
-                numEnemiesToSpawn--;
-
-                if (numEnemiesToSpawn == 0)
-                {
-                    return;
-                }
-            }
+            numEnemiesToSpawn -= SpawnEnemiesAtMonsterDen(m_monsterDens[i]);
         }
 
         m_spawnPoints.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
@@ -152,7 +140,7 @@ public class GameOpponent : ITurns
             {
                 numEnemiesToSpawn--;
 
-                if (numEnemiesToSpawn == 0)
+                if (numEnemiesToSpawn <= 0)
                 {
                     return;
                 }
@@ -164,8 +152,37 @@ public class GameOpponent : ITurns
         {
             //Spawn enemy in edge of fog
             GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
-            SpawnAtEdgeOfFog(newEnemyUnit);
+            SpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
         }
+    }
+
+    private int SpawnEnemiesAtMonsterDen(GameBuildingBase gameBuilding)
+    {
+        int numEnemiesSpawned = 0;
+        int numEnemiesToTryAndSpawn = 3;
+
+        List<GameTile> tiles = WorldGridManager.Instance.GetSurroundingTiles(gameBuilding.GetGameTile(), 1, 0);
+        tiles.Sort((a, b) => -1 + UnityEngine.Random.Range(0, 2));
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+            if (!tiles[i].IsPassable(newEnemyUnit, false))
+            {
+                continue;
+            }
+
+            tiles[i].PlaceUnit(newEnemyUnit);
+            m_controlledUnits.Add(newEnemyUnit);
+            numEnemiesSpawned++;
+
+            if (numEnemiesSpawned >= numEnemiesToTryAndSpawn)
+            {
+                break;
+            }
+        }
+
+        return numEnemiesSpawned;
     }
 
     private bool TrySpawnAtSpawnPoint(GameSpawnPoint spawnPoint)
@@ -193,8 +210,20 @@ public class GameOpponent : ITurns
         return false;
     }
 
-    private void SpawnAtEdgeOfFog(GameEnemyUnit gameEnemyUnit)
+    private void SpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
     {
+        while (tilesAtFogEdge.Count > 0)
+        {
+            int curTileIndex = UnityEngine.Random.Range(0, tilesAtFogEdge.Count);
 
+            if (!tilesAtFogEdge[curTileIndex].IsOccupied() && tilesAtFogEdge[curTileIndex].GetTerrain().IsPassable(newEnemyUnit))
+            {
+                tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
+                m_controlledUnits.Add(newEnemyUnit);
+                return;
+            }
+        }
+
+        Debug.Log("Spawn at Edge of fog failed to find any position to spawn in");
     }
 }
