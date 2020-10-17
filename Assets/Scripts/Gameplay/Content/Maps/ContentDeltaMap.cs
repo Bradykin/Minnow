@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLakesideMap : GameMap
+public class ContentDeltaMap : GameMap
 {
-    public ContentLakesideMap()
+    public ContentDeltaMap()
     {
-        m_name = "Lakeside";
-        m_desc = "A strong chokepoint makes this an excellent learning experience!";
+        m_name = "Delta";
+        m_desc = "An old region; many civilizations have left their remains behind along well trodden roads and in buried dunes.  Will you be different?";
 
-        m_difficulty = MapDifficulty.Introduction;
+        m_difficulty = MapDifficulty.Easy;
 
-        m_id = 0;
+        m_id = 5;
+
+        m_playerUnlockLevel = 3;
 
         Init();
     }
 
     protected override void FillMapEvents()
     {
-        //No events, left blank by default.  No Chaos on this map.
+        //Need to fill
     }
 
     protected override void FillExclusionCardPool()
     {
-        
+
     }
 
     protected override void FillEventPool()
@@ -33,7 +35,7 @@ public class ContentLakesideMap : GameMap
 
     protected override void FillExclusionRelicPool()
     {
-        
+
     }
 
     protected override void FillSpawnPool()
@@ -47,16 +49,16 @@ public class ContentLakesideMap : GameMap
         m_spawnPool.Add(new ContentOrcShamanEnemy(null));
         m_spawnPool.Add(new ContentSiegebreakerUnit(null));
         m_spawnPool.Add(new ContentSlimeEnemy(null));
+        m_spawnPool.Add(new ContentShadeEnemy(null));
         m_spawnPool.Add(new ContentSnakeEnemy(null));
         m_spawnPool.Add(new ContentSpinnerEnemy(null));
-        m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
-        m_spawnPool.Add(new ContentYetiEnemy(null));
+        m_spawnPool.Add(new ContentZombieEnemy(null));
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
         {
-            m_spawnPool.Add(new ContentShadeEnemy(null));
-            m_spawnPool.Add(new ContentZombieEnemy(null));
+            m_spawnPool.Add(new ContentToadEnemy(null));
+            m_spawnPool.Add(new ContentYetiEnemy(null));
         }
     }
 }

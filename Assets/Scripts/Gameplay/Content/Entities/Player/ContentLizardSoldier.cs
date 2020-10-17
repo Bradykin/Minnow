@@ -24,20 +24,20 @@ public class ContentLizardSoldier : GameUnit
     {
         base.SetUnitLevel(level);
 
-        m_maxHealth = 4;
+        m_maxHealth = 9;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 2;
+        m_staminaRegen = 5;
+        m_power = 7;
 
         if (m_unitLevel >= 1)
         {
-            m_maxHealth = 15;
-            m_staminaRegen = 4;
+            m_staminaRegen = 6;
+            m_maxStamina = 6;
         }
 
         if (m_unitLevel >= 2)
         {
-            m_power = 10;
+            m_power = 22;
         }
     }
 }

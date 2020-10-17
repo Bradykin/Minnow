@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum MapDifficulty : int
 {
+    Introduction,
     Easy,
     Medium,
     Hard

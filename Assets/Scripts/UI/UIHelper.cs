@@ -626,7 +626,11 @@ public static class UIHelper
 
     public static string GetDifficultyText(MapDifficulty difficulty)
     {
-        if (difficulty == MapDifficulty.Easy)
+        if (difficulty == MapDifficulty.Introduction)
+        {
+            return "Difficulty: Introduction";
+        }
+        else if (difficulty == MapDifficulty.Easy)
         {
             return "Difficulty: Normal";
         }
@@ -644,7 +648,11 @@ public static class UIHelper
 
     public static Color GetDifficultyTextColor(MapDifficulty difficulty)
     {
-        if (difficulty == MapDifficulty.Easy)
+        if (difficulty == MapDifficulty.Introduction)
+        {
+            return m_difficultyNormal;
+        }
+        else if (difficulty == MapDifficulty.Easy)
         {
             return m_difficultyNormal;
         }
