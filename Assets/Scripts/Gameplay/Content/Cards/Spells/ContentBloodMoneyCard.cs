@@ -9,8 +9,8 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_name = "Blood Money";
         m_desc = "Target allied unit gains <b>Enrage</b>: Gain gold equal to the damage taken.";
         m_targetType = Target.Ally;
-        m_cost = 2;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 5;
+        m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
         m_playerUnlockLevel = 2;
