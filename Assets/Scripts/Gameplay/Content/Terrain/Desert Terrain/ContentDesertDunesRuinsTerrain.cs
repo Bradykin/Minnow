@@ -19,6 +19,8 @@ public class ContentDesertDunesRuinsTerrain : GameTerrainBase
         m_isHot = true;
         m_isEventTerrain = true;
 
+        m_completedEventTerrainType = typeof(ContentDesertDunesTerrain);
+
         LateInit();
     }
 }
