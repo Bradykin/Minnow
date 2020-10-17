@@ -115,7 +115,7 @@ public class GameOpponent : ITurns
     private void HandleSpawn()
     {
         //Generate number of enemies to spawn
-        int numEnemiesToSpawn = 10;
+        int numEnemiesToSpawn = GameHelper.GetGameController().GetCurMap().GetNumEnemiesToSpawn();
 
         //handle spawning of bosses and elites
         if (GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())

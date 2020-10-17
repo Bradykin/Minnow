@@ -39,6 +39,12 @@ public abstract class GameMap : GameElementBase
         FillMapEvents();
     }
 
+
+    public virtual int GetNumEnemiesToSpawn()
+    {
+        return 10 + GameHelper.GetGameController().m_waveNum;
+    }
+
     protected abstract void FillMapEvents();
 
     protected void AddMapEvent(GameMapEvent toAdd, int triggerWave)
