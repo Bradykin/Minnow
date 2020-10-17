@@ -239,7 +239,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     if (!GetGameTile().m_gameEventMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
                     {
                         GetGameTile().m_gameEventMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
-                        Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
+                        Debug.Log("Add Event Tile index" + Globals.m_currentlyPaintingNumberIndex);
                     }
                 }
             }

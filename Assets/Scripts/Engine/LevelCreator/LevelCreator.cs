@@ -111,7 +111,7 @@ public class LevelCreator : MonoBehaviour
                 m_selectedImage.sprite = null;
                 m_selectedListNotifier.text = "Event Marker";
                 Globals.m_currentlyPaintingNumberIndex = 0;
-                m_selectedListNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
             }
             else if (Globals.m_currentlyPaintingType == typeof(int))
             {
