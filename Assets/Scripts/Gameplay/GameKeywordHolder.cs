@@ -74,6 +74,11 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
 
         for (int i = 0; i < m_keywords.Count; i++)
         {
+            if (!m_keywords[i].m_isVisible)
+            {
+                continue;
+            }
+
             descString += "<b>" + m_keywords[i].m_name + "</b>";
             if (m_keywords[i].m_shortDesc != string.Empty)
             {
