@@ -26,7 +26,7 @@ public class UIRelic : UIElementBase
         {
             if (GamePlayer.StarterRelic.m_name == m_relic.m_name)
             {
-                m_tintImage.color = UIHelper.GetValidTintColor(true);
+                m_tintImage.color = UIHelper.GetSelectTintColor(true);
             }
             else
             {

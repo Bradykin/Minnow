@@ -5,12 +5,7 @@ using Game.Util;
 
 public class UIRelicController : Singleton<UIRelicController>
 {
-    private List<UIRelic> m_relics;
-
-    void Start()
-    {
-        m_relics = new List<UIRelic>();    
-    }
+    private List<UIRelic> m_relics = new List<UIRelic>();
 
     public void AddRelic(GameRelic relic)
     {
