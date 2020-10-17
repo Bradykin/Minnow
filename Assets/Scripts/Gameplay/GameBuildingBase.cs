@@ -156,8 +156,9 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
             int livingStoneCount = GameHelper.RelicCount<ContentLivingStoneRelic>();
             if (livingStoneCount > 0)
             {
-                m_maxHealth += livingStoneCount;
-                GetHealed(livingStoneCount);
+                int toIncrease = livingStoneCount * (new ContentLivingStoneRelic().GetRelicLevel() + 1);
+                m_maxHealth += toIncrease;
+                GetHealed(toIncrease);
             }
         }
     }

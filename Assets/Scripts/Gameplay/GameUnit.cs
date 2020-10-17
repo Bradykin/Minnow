@@ -745,7 +745,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 2 * GameHelper.RelicCount<ContentWolvenFangRelic>();
+            toReturn += (2 * (1 + new ContentWolvenFangRelic().GetRelicLevel())) * GameHelper.RelicCount<ContentWolvenFangRelic>();
             toReturn -= 2 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
 
             if (GetRange() > 1)

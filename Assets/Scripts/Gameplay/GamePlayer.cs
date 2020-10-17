@@ -317,7 +317,7 @@ public class GamePlayer : ITurns
     {
         if (toAdd is ContentLoadedChestRelic)
         {
-            m_wallet.AddResources(new GameWallet(200));
+            m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
         if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inTurns && 
@@ -344,7 +344,7 @@ public class GamePlayer : ITurns
             }
         }
 
-        toReturn += 1 * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
+        toReturn += (new ContentOrbOfEnergyRelic().GetRelicLevel() + 1) * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
 
         return toReturn;
     }
@@ -358,7 +358,7 @@ public class GamePlayer : ITurns
             toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
         }
 
-        toReturn += 1 * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
+        toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1) * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
 
         toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
 
