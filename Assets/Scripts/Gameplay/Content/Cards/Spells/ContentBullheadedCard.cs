@@ -9,7 +9,7 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_name = "Bullheaded";
         m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: +1/+0.'";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 3;
         m_rarity = GameRarity.Common;
 
         m_playerUnlockLevel = 2;
