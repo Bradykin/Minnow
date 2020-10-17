@@ -48,6 +48,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     //Special functionality
     protected bool m_neverSetIsDead;
+    public bool m_instantWaterMovement;
 
     public void CopyOff(GameUnit other)
     {
@@ -89,15 +90,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         for (int i = 0; i < summonKeywords.Count; i++)
         {
             summonKeywords[i].DoAction();
-        }
-
-        if (GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
-        {
-            int numTideOfMonsters = GameHelper.RelicCount<ContentLegacyOfMonstersRelic>();
-            if (numTideOfMonsters > 0)
-            {
-                AddPower(numTideOfMonsters);
-            }
         }
 
         if (GetTeam() == Team.Player)
