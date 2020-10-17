@@ -71,6 +71,7 @@ public class GameController
         
         m_currentTurnIndex = 0;
         m_inTurns = true;
+        m_gameOpponent.EliteSpawnWaveModifier = Random.Range(0, 3);
         m_currentTurn.StartTurn();
     }
 
