@@ -160,12 +160,19 @@ public class GameUnitFactory
         List<GameEnemyUnit> list = new List<GameEnemyUnit>();
         for (int i = 0; i < m_spawnPoint.m_spawnPointMarkers.Count; i++)
         {
-            if (m_spawnPoint.m_spawnPointMarkers[i] < 0 || m_specificSpawnPoolEnemies.Count <= m_spawnPoint.m_spawnPointMarkers[i])
+            if (m_spawnPoint.m_spawnPointMarkers[i] == 0)
             {
-                Debug.LogError("GameUnitFactory received Spawn Point Marker " + m_spawnPoint.m_spawnPointMarkers[i] + " That does not exist");
+                continue;
             }
 
-            List<GameEnemyUnit> specificSpawnPool = m_specificSpawnPoolEnemies[i];
+            int spawnPoolIndex = m_spawnPoint.m_spawnPointMarkers[i] - 1;
+
+            if (spawnPoolIndex < 0 || m_specificSpawnPoolEnemies.Count <= spawnPoolIndex)
+            {
+                Debug.LogError("GameUnitFactory received Spawn Point Marker " + spawnPoolIndex + " That does not exist");
+            }
+
+            List<GameEnemyUnit> specificSpawnPool = m_specificSpawnPoolEnemies[spawnPoolIndex];
 
             for (int k = 0; k < specificSpawnPool.Count; k++)
             {
@@ -211,6 +218,11 @@ public class GameUnitFactory
         }
 
         list = list.Where(u => waveList.Any(l => l.GetType() == u.GetType())).ToList();
+
+        if (list.Count == 0)
+        {
+            return null;
+        }
 
         int r = UnityEngine.Random.Range(0, list.Count);
 

@@ -69,7 +69,6 @@ public class ContentLakesideMap : GameMap
         List<GameEnemyUnit> specificSpawnPool3 = new List<GameEnemyUnit>();
         specificSpawnPool3.Add(new ContentSpinnerEnemy(null));
 
-        m_specificSpawnPools.Add(m_spawnPool);
         m_specificSpawnPools.Add(specificSpawnPool1);
         m_specificSpawnPools.Add(specificSpawnPool2);
         m_specificSpawnPools.Add(specificSpawnPool3);
