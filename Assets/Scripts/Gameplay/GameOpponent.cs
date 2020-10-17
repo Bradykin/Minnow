@@ -204,7 +204,7 @@ public class GameOpponent : ITurns
 
             spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);
-
+            Debug.Log("SPAWN " + newEnemyUnit + " AT SPAWN POINT");
             return true;
         }
 
@@ -226,6 +226,6 @@ public class GameOpponent : ITurns
             }
         }
 
-        Debug.Log("Spawn at Edge of fog failed to find any position to spawn in");
+        Debug.LogError("Spawn at Edge of fog failed to find any position to spawn in");
     }
 }
