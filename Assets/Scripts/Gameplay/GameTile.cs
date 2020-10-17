@@ -14,7 +14,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public GameSpawnPoint m_spawnPoint { get; private set; }
     private WorldTile m_worldTile;
 
-    public List<int> m_spawnPointMarkers = new List<int>();
     public List<int> m_gameEventMarkers = new List<int>();
 
     public bool m_isFog;

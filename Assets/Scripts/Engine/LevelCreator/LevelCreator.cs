@@ -35,7 +35,6 @@ public class LevelCreator : MonoBehaviour
         Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
         Globals.m_currentlyPaintingBuilding = new ContentCastleBuilding();
         Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
-        Globals.m_currentlyPaintingEvent = new ContentAngelicGiftEvent(null);
 
         m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
         m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
@@ -53,17 +52,6 @@ public class LevelCreator : MonoBehaviour
                 m_selectedListNotifier.text = GameTerrainFactory.GetCurrentTerrainListName();
                 m_selectedTileNotifier.text = GameTerrainFactory.GetCurrentTerrainName();
             }
-
-            /*else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
-            {
-                Globals.m_currentlyPaintingType = typeof(GameEvent);
-                m_selectedImage.sprite = Globals.m_currentlyPaintingEvent.m_icon;
-            }
-            else if (Globals.m_currentlyPaintingType == typeof(GameEvent))
-            {
-                Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
-                m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-            }*/
         }
         
         if (Input.GetKeyDown(KeyCode.R))
@@ -79,6 +67,24 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetNextBuilding(Globals.m_currentlyPaintingBuilding);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
                 m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+            {
+                Globals.m_currentlyPaintingNumberIndex++;
+                if (Globals.m_currentlyPaintingNumberIndex > 5)
+                {
+                    Globals.m_currentlyPaintingNumberIndex = 0;
+                }
+                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(int))
+            {
+                Globals.m_currentlyPaintingNumberIndex++;
+                if (Globals.m_currentlyPaintingNumberIndex > 5)
+                {
+                    Globals.m_currentlyPaintingNumberIndex = 0;
+                }
+                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
             }
         }
 
@@ -96,9 +102,18 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingType = typeof(GameSpawnPoint);
                 m_selectedImage.sprite = null;
                 m_selectedListNotifier.text = "Spawn point";
-                m_selectedTileNotifier.text = "Random spawn point";
+                Globals.m_currentlyPaintingNumberIndex = 0;
+                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+            {
+                Globals.m_currentlyPaintingType = typeof(int);
+                m_selectedImage.sprite = null;
+                m_selectedListNotifier.text = "Event Marker";
+                Globals.m_currentlyPaintingNumberIndex = 0;
+                m_selectedListNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(int))
             {
                 Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();

@@ -222,8 +222,25 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
                 {
-                    GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-                    GetGameTile().SetSpawnPoint(gameSpawnPoint);
+                    if (GetGameTile().m_spawnPoint == null)
+                    {
+                        GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+                        GetGameTile().SetSpawnPoint(gameSpawnPoint);
+                    }
+
+                    if (!GetGameTile().m_spawnPoint.m_spawnPointMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
+                    {
+                        GetGameTile().m_spawnPoint.m_spawnPointMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
+                        Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
+                    }
+                }
+                else if (Globals.m_currentlyPaintingType == typeof(int))
+                {
+                    if (!GetGameTile().m_gameEventMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
+                    {
+                        GetGameTile().m_gameEventMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
+                        Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
+                    }
                 }
             }
 

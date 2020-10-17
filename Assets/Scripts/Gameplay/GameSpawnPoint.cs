@@ -30,6 +30,13 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
 
     public void LoadFromJson(JsonGameSpawnPointData jsonData)
     {
-
+        if (jsonData.gameSpawnPointMarkers != null)
+        {
+            m_spawnPointMarkers = jsonData.gameSpawnPointMarkers;
+        }
+        else
+        {
+            m_spawnPointMarkers = new List<int>();
+        }
     }
 }

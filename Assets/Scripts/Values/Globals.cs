@@ -46,7 +46,7 @@ public static class Globals
     public static Type m_currentlyPaintingType;
     public static GameBuildingBase m_currentlyPaintingBuilding;
     public static GameTerrainBase m_currentlyPaintingTerrain;
-    public static ContentAngelicGiftEvent m_currentlyPaintingEvent;
+    public static int m_currentlyPaintingNumberIndex;
 
     //Moved some some UI thing? IDK.
     public static bool m_inDeckView = false;
