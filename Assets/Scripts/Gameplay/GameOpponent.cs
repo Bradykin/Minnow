@@ -229,7 +229,7 @@ public class GameOpponent : ITurns
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetGameController().m_waveNum, spawnPoint);
 
             if (newEnemyUnit == null)
             {

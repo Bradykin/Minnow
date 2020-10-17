@@ -58,5 +58,20 @@ public class ContentLakesideMap : GameMap
             m_spawnPool.Add(new ContentShadeEnemy(null));
             m_spawnPool.Add(new ContentZombieEnemy(null));
         }
+
+
+        List<GameEnemyUnit> specificSpawnPool1 = new List<GameEnemyUnit>();
+        specificSpawnPool1.Add(new ContentOrcEnemy(null));
+
+        List<GameEnemyUnit> specificSpawnPool2 = new List<GameEnemyUnit>();
+        specificSpawnPool2.Add(new ContentToadEnemy(null));
+
+        List<GameEnemyUnit> specificSpawnPool3 = new List<GameEnemyUnit>();
+        specificSpawnPool3.Add(new ContentSpinnerEnemy(null));
+
+        m_specificSpawnPools.Add(m_spawnPool);
+        m_specificSpawnPools.Add(specificSpawnPool1);
+        m_specificSpawnPools.Add(specificSpawnPool2);
+        m_specificSpawnPools.Add(specificSpawnPool3);
     }
 }
