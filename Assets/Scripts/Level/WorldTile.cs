@@ -362,11 +362,21 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public void ClearFog()
     {
         GetGameTile().m_isFog = false;
+        GetGameTile().m_isFogBorder = false;
+
+        List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+        for (int i = 0; i < adjacentTiles.Count; i++)
+        {
+            if (adjacentTiles[i].m_isFog)
+            {
+                adjacentTiles[i].m_isFogBorder = true;
+            }
+        }
     }
 
     public void ClearSurroundingFog(int distance)
     {
-        List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+        List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingWorldTiles(this, distance, 0);
 
         for (int i = 0; i < toReveal.Count; i++)
         {
@@ -376,7 +386,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void ExpandPlaceRange(int distance)
     {
-        List<WorldTile> toExpand = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+        List<WorldTile> toExpand = WorldGridManager.Instance.GetSurroundingWorldTiles(this, distance, 0);
 
         for (int i = 0; i < toExpand.Count; i++)
         {
@@ -386,7 +396,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void ReducePlaceRange(int distance)
     {
-        List<WorldTile> toReduce = WorldGridManager.Instance.GetSurroundingTiles(this, distance, 0);
+        List<WorldTile> toReduce = WorldGridManager.Instance.GetSurroundingWorldTiles(this, distance, 0);
 
         for (int i = 0; i < toReduce.Count; i++)
         {

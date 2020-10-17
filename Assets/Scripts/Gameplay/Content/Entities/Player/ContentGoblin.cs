@@ -31,7 +31,7 @@ public class ContentGoblin : GameUnit
 
         if (GetGameTile() != null)
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(GetGameTile(), m_effectRange);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange);
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {

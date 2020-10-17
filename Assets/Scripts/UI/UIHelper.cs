@@ -291,7 +291,7 @@ public static class UIHelper
 
         for (int i = 0; i < m_playerUnitsWithSpellcraft.Count; i++)
         {
-            List<GameTile> tilesInSpellcraftRange = WorldGridManager.Instance.GetSurroundingTiles(m_playerUnitsWithSpellcraft[i].GetGameTile(), 3, 0);
+            List<GameTile> tilesInSpellcraftRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_playerUnitsWithSpellcraft[i].GetGameTile(), 3, 0);
 
             if (tilesInSpellcraftRange == null)
             {
@@ -319,7 +319,7 @@ public static class UIHelper
 
         for (int i = 0; i < m_playerDefensiveBuildings.Count; i++)
         {
-            List<GameTile> tilesInDefensiveBuildingRange = WorldGridManager.Instance.GetSurroundingTiles(m_playerDefensiveBuildings[i].GetGameTile(), m_playerDefensiveBuildings[i].m_range, 0);
+            List<GameTile> tilesInDefensiveBuildingRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_playerDefensiveBuildings[i].GetGameTile(), m_playerDefensiveBuildings[i].m_range, 0);
 
             if (tilesInDefensiveBuildingRange == null)
             {

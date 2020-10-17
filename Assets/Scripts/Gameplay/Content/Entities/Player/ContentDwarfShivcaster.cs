@@ -52,7 +52,7 @@ public class GameShivNearbyAction : GameAction
             return;
         }
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_unit.GetGameTile(), 2);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), 2);
 
         List<GameUnit> nearbyEnemies = new List<GameUnit>();
 

@@ -22,7 +22,7 @@ public class GameGainStaminaRangeAction : GameAction
 
     public override void DoAction()
     {
-        List<GameTile> tilesInRange = WorldGridManager.Instance.GetSurroundingTiles(m_unit.GetGameTile(), m_range, 0);
+        List<GameTile> tilesInRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), m_range, 0);
         
         for (int i = 0; i < tilesInRange.Count; i++)
         {

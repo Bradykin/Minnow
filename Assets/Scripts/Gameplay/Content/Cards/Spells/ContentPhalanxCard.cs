@@ -38,7 +38,7 @@ public class ContentPhalanxCard : GameCardSpellBase
         int amount = 0;
         if (tile != null)
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tile, m_effectRange, 0);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, m_effectRange, 0);
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {

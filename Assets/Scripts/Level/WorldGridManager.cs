@@ -105,9 +105,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         }
     }
 
-    public List<GameTile> GetSurroundingTiles(GameTile centerPoint, int outerRange, int innerRange = 1)
+    public List<GameTile> GetSurroundingGameTiles(GameTile centerPoint, int outerRange, int innerRange = 1)
     {
-        List<WorldTile> worldTiles = GetSurroundingTiles(centerPoint.GetWorldTile(), outerRange, innerRange);
+        List<WorldTile> worldTiles = GetSurroundingWorldTiles(centerPoint.GetWorldTile(), outerRange, innerRange);
 
         List<GameTile> returnList = new List<GameTile>();
         
@@ -120,7 +120,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     }
 
     //Range 1 = surrounding tiles (but not middle tiles)
-    public List<WorldTile> GetSurroundingTiles(WorldTile centerPoint, int outerRange, int innerRange = 1)
+    public List<WorldTile> GetSurroundingWorldTiles(WorldTile centerPoint, int outerRange, int innerRange = 1)
     {
         List<WorldTile> returnList = new List<WorldTile>();
 
@@ -132,6 +132,35 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         for (int i = innerRange; i <= outerRange; i++)
             returnList.AddRange(GetTilesAtRange(centerPoint, i));
+
+        return returnList;
+    }
+
+    public List<GameTile> GetFogBorderGameTiles()
+    {
+        List<WorldTile> worldTiles = GetFogBorderWorldTiles();
+
+        List<GameTile> returnList = new List<GameTile>();
+
+        for (int i = 0; i < worldTiles.Count; i++)
+        {
+            returnList.Add(worldTiles[i].GetGameTile());
+        }
+
+        return returnList;
+    }
+
+    public List<WorldTile> GetFogBorderWorldTiles()
+    {
+        List<WorldTile> returnList = new List<WorldTile>();
+
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            if (m_gridArray[i].GetGameTile().m_isFogBorder)
+            {
+                returnList.Add(m_gridArray[i]);
+            }
+        }
 
         return returnList;
     }
@@ -571,7 +600,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 continue;
             }
             
-            List<WorldTile> tiles = GetSurroundingTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithStaminaToAttack[i].m_gridPosition), range);
+            List<WorldTile> tiles = GetSurroundingWorldTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithStaminaToAttack[i].m_gridPosition), range);
             for (int k = 0; k < tiles.Count; k++)
             {
                 if (!tilesInRangeToMoveAndAttack.Contains(tiles[k].GetGameTile()))
@@ -694,6 +723,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 m_gridArray[i].GetGameTile().m_isSoftFog = true;
                 m_gridArray[i].GetGameTile().m_isFog = true;
             }
+            m_gridArray[i].GetGameTile().m_isFogBorder = false;
         }
 
         GamePlayer player = GameHelper.GetPlayer();

@@ -23,7 +23,7 @@ public class GameEventEatFruitOption : GameEventOption
         m_tile.m_occupyingUnit.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(m_tile.m_occupyingUnit, 1)));
         m_tile.m_occupyingUnit.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(m_tile.m_occupyingUnit, 3)));
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingTiles(m_tile, m_tileRange, 0);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_tile, m_tileRange, 0);
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {

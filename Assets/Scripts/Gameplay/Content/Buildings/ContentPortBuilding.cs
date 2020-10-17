@@ -50,7 +50,7 @@ public class ContentPortBuilding : GameBuildingBase
         {
             if (tile != null)
             {
-                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingTiles(tile, 1);
+                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, 1);
                 for (int i = 0; i < surroundingTiles.Count; i++)
                 {
                     if (!surroundingTiles[i].GetTerrain().IsWater())

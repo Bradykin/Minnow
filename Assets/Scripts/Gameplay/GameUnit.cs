@@ -290,7 +290,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             int numCursedAmulet = GameHelper.RelicCount<ContentCursedAmuletRelic>();
             if (numCursedAmulet > 0 && m_gameTile != null)
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingTiles(m_gameTile, 1);
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
                     if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
