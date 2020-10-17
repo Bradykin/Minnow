@@ -18,12 +18,13 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Lizardman";
-        m_desc = "Swims instantly through all water tiles.";
+        m_desc = "Moving on water tiles costs 0 Stamina.";
 
         m_minWave = 5;
         m_maxWave = 6;
 
         m_keywordHolder.m_keywords.Add(new GameWaterwalkKeyword());
+        m_instantWaterMovement = true;
         m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
