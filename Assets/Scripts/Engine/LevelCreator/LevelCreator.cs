@@ -75,7 +75,15 @@ public class LevelCreator : MonoBehaviour
                 {
                     Globals.m_currentlyPaintingNumberIndex = 0;
                 }
-                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
             }
             else if (Globals.m_currentlyPaintingType == typeof(int))
             {
@@ -84,7 +92,15 @@ public class LevelCreator : MonoBehaviour
                 {
                     Globals.m_currentlyPaintingNumberIndex = 0;
                 }
-                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
             }
         }
 
@@ -103,7 +119,16 @@ public class LevelCreator : MonoBehaviour
                 m_selectedImage.sprite = null;
                 m_selectedListNotifier.text = "Spawn point";
                 Globals.m_currentlyPaintingNumberIndex = 0;
-                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
             {
@@ -111,7 +136,16 @@ public class LevelCreator : MonoBehaviour
                 m_selectedImage.sprite = null;
                 m_selectedListNotifier.text = "Event Marker";
                 Globals.m_currentlyPaintingNumberIndex = 0;
-                m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
             }
             else if (Globals.m_currentlyPaintingType == typeof(int))
             {
