@@ -17,6 +17,7 @@ public static class GameMapFactory
         m_maps.Add(new ContentSnowmeltMap());
         m_maps.Add(new ContentDesertPassMap());
         m_maps.Add(new ContentCrimsonIslandsMap());
+        m_maps.Add(new ContentDeltaMap());
     }
 
     public static GameMap GetMapById(int id)

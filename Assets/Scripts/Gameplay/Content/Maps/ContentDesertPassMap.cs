@@ -7,7 +7,7 @@ public class ContentDesertPassMap : GameMap
     public ContentDesertPassMap()
     {
         m_name = "Desert Pass";
-        m_desc = "Can you protect the pass?";
+        m_desc = "Can you protect the passes?";
 
         m_difficulty = MapDifficulty.Medium;
 
