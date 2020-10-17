@@ -11,7 +11,7 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
 
     public GameSpawnPoint()
     {
-
+        m_spawnPointMarkers = new List<int>();
     }
 
     //============================================================================================================//
