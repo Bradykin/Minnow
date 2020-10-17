@@ -11,6 +11,7 @@ public abstract class GameMap : GameElementBase
     private List<int> m_mapEventTriggerWaves = new List<int>();
 
     protected List<GameEnemyUnit> m_spawnPool = new List<GameEnemyUnit>();
+    protected List<List<GameEnemyUnit>> m_specificSpawnPools = new List<List<GameEnemyUnit>>();
     protected List<GameCard> m_exclusionCardPool = new List<GameCard>();
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
@@ -25,7 +26,7 @@ public abstract class GameMap : GameElementBase
     public void TriggerStartMap()
     {
         FillSpawnPool();
-        GameUnitFactory.Init(m_spawnPool);
+        GameUnitFactory.Init(m_spawnPool, m_specificSpawnPools);
 
         FillExclusionCardPool();
         GameCardFactory.Init();

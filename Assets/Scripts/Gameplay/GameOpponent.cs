@@ -120,7 +120,13 @@ public class GameOpponent : ITurns
         int numEnemiesToSpawn = GameHelper.GetGameController().GetCurMap().GetNumEnemiesToSpawn();
 
         List<GameTile> tilesAtFogEdge = WorldGridManager.Instance.GetFogBorderGameTiles();
-        tilesAtFogEdge.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
+        for (int i = 0; i < tilesAtFogEdge.Count; i++)
+        {
+            GameTile temp = tilesAtFogEdge[i];
+            int randomIndex = UnityEngine.Random.Range(i, tilesAtFogEdge.Count);
+            tilesAtFogEdge[i] = tilesAtFogEdge[randomIndex];
+            tilesAtFogEdge[randomIndex] = temp;
+        }
 
         //handle spawning of bosses and elites
         if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
@@ -144,7 +150,14 @@ public class GameOpponent : ITurns
             numEnemiesToSpawn -= SpawnEnemiesAtMonsterDen(m_monsterDens[i]);
         }
 
-        m_spawnPoints.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 2));
+        for (int i = 0; i < m_spawnPoints.Count; i++)
+        {
+            GameSpawnPoint temp = m_spawnPoints[i];
+            int randomIndex = UnityEngine.Random.Range(i, m_spawnPoints.Count);
+            m_spawnPoints[i] = m_spawnPoints[randomIndex];
+            m_spawnPoints[randomIndex] = temp;
+        }
+
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
             if (TrySpawnAtSpawnPoint(m_spawnPoints[i]))
@@ -173,7 +186,13 @@ public class GameOpponent : ITurns
         int numEnemiesToTryAndSpawn = 3;
 
         List<GameTile> tiles = WorldGridManager.Instance.GetSurroundingGameTiles(gameBuilding.GetGameTile(), 1, 0);
-        tiles.Sort((a, b) => -1 + UnityEngine.Random.Range(0, 2));
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            GameTile temp = tiles[i];
+            int randomIndex = UnityEngine.Random.Range(i, tiles.Count);
+            tiles[i] = tiles[randomIndex];
+            tiles[randomIndex] = temp;
+        }
 
         for (int i = 0; i < tiles.Count; i++)
         {
@@ -211,6 +230,11 @@ public class GameOpponent : ITurns
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
             GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+
+            if (newEnemyUnit == null)
+            {
+                return false;
+            }
 
             spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);

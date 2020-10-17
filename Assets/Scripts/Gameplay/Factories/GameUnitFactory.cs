@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameUnitFactory
@@ -8,6 +9,7 @@ public class GameUnitFactory
     private static List<GameUnit> m_playerUnits = new List<GameUnit>();
 
     private static List<GameEnemyUnit> m_enemies = new List<GameEnemyUnit>();
+    private static List<List<GameEnemyUnit>> m_specificSpawnPoolEnemies = new List<List<GameEnemyUnit>>();
     private static List<GameEnemyUnit> m_standardEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_bossEnemies = new List<GameEnemyUnit>();
@@ -20,7 +22,7 @@ public class GameUnitFactory
     private static List<GameEnemyUnit> m_standardWaveSixEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_standardWaveSevenEnemies = new List<GameEnemyUnit>();
 
-    public static void Init(List<GameEnemyUnit> spawnPool)
+    public static void Init(List<GameEnemyUnit> spawnPool, List<List<GameEnemyUnit>> specificSpawnPoolEnemies)
     {
         //Player Units
         m_playerUnits.Add(new ContentConjuredImp());
@@ -63,6 +65,7 @@ public class GameUnitFactory
 
         //Enemy Units
         m_enemies = spawnPool;
+        m_specificSpawnPoolEnemies = specificSpawnPoolEnemies;
 
         for (int i = 0; i < m_enemies.Count; i++)
         {
@@ -141,6 +144,73 @@ public class GameUnitFactory
         {
             Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
         }
+
+        int r = UnityEngine.Random.Range(0, list.Count);
+
+        return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
+    }
+
+    public static GameEnemyUnit GetRandomEnemyFromSpawnPoint(GameOpponent gameOpponent, int curWave, GameSpawnPoint m_spawnPoint)
+    {
+        if (m_spawnPoint.m_spawnPointMarkers.Count == 0 || (m_spawnPoint.m_spawnPointMarkers.Count == 1 && m_spawnPoint.m_spawnPointMarkers[0] == 0))
+        {
+            return GetRandomEnemy(gameOpponent, curWave);
+        }
+
+        List<GameEnemyUnit> list = new List<GameEnemyUnit>();
+        for (int i = 0; i < m_spawnPoint.m_spawnPointMarkers.Count; i++)
+        {
+            if (m_spawnPoint.m_spawnPointMarkers[i] < 0 || m_specificSpawnPoolEnemies.Count <= m_spawnPoint.m_spawnPointMarkers[i])
+            {
+                Debug.LogError("GameUnitFactory received Spawn Point Marker " + m_spawnPoint.m_spawnPointMarkers[i] + " That does not exist");
+            }
+
+            List<GameEnemyUnit> specificSpawnPool = m_specificSpawnPoolEnemies[i];
+
+            for (int k = 0; k < specificSpawnPool.Count; k++)
+            {
+                if (!list.Any(u => u.GetType() == specificSpawnPool[k].GetType()))
+                {
+                    list.Add(specificSpawnPool[k]);
+                }
+            }
+        }
+
+        List<GameEnemyUnit> waveList = m_standardEnemies;
+        if (curWave == 1)
+        {
+            waveList = m_standardWaveOneEnemies;
+        }
+        else if (curWave == 2)
+        {
+            waveList = m_standardWaveTwoEnemies;
+        }
+        else if (curWave == 3)
+        {
+            waveList = m_standardWaveThreeEnemies;
+        }
+        else if (curWave == 4)
+        {
+            waveList = m_standardWaveFourEnemies;
+        }
+        else if (curWave == 5)
+        {
+            waveList = m_standardWaveFiveEnemies;
+        }
+        else if (curWave == 6)
+        {
+            waveList = m_standardWaveSixEnemies;
+        }
+        else if (curWave == 7)
+        {
+            waveList = m_standardWaveSevenEnemies;
+        }
+        else
+        {
+            Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
+        }
+
+        list = list.Where(u => waveList.Any(l => l.GetType() == u.GetType())).ToList();
 
         int r = UnityEngine.Random.Range(0, list.Count);
 
