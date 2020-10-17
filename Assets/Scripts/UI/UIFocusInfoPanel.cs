@@ -135,7 +135,7 @@ public class UIFocusInfoPanel : UIElementBase
 
         m_descText.text += worldTile.GetGameTile().GetFocusPanelText() + "\n";
 
-        if (worldTile.GetGameTile().HasAvailableEvent())
+        if (worldTile.GetGameTile().GetTerrain().IsEventTerrain())
         {
             m_descText.text += "An unknown event! Moving a unit here may do something good...\n";
         }

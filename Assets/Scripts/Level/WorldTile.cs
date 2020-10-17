@@ -135,7 +135,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else if (Globals.m_selectedIntermissionBuilding != null &&
                     Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain(), GetGameTile()) &&
-                    !GetGameTile().HasAvailableEvent() &&
+                    !GetGameTile().GetTerrain().IsEventTerrain() &&
                     !GetGameTile().m_isFog)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
@@ -207,8 +207,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     gameTile.ClearTerrain();
                 if (gameTile.GetBuilding() != null)
                     gameTile.ClearBuilding();
-                if (gameTile.m_event)
-                    gameTile.m_event = false;
                 if (gameTile.m_spawnPoint != null)
                     gameTile.ClearSpawnPoint();
             }
@@ -217,10 +215,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
                 {
                     GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
-                    if (Globals.m_currentlyPaintingTerrain.IsEventTerrain())
-                    {
-                        GetGameTile().m_event = true;
-                    }
                 }
                 else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
                 {
@@ -340,7 +334,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
-        if (m_gameTile.HasAvailableEvent())
+        if (m_gameTile.GetTerrain().IsEventTerrain())
         {
             Globals.m_hoveredTile = this;
         }
@@ -406,7 +400,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void HandleFogUpdate()
     {
-        m_eventIndicator.SetActive(GetGameTile().HasAvailableEvent() && GetGameTile().m_isFog && Constants.DebugEventsVisibleInFog);
+        m_eventIndicator.SetActive(GetGameTile().GetTerrain().IsEventTerrain() && GetGameTile().m_isFog && Constants.DebugEventsVisibleInFog);
 
         if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
         {

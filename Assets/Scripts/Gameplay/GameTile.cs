@@ -11,9 +11,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public GameUnit m_occupyingUnit { get; private set; } //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
     private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
-    public bool m_event { get; set; }
     public GameSpawnPoint m_spawnPoint { get; private set; }
     private WorldTile m_worldTile;
+
+    public List<int> m_spawnPointMarkers = new List<int>();
+    public List<int> m_mapEventMarkers = new List<int>();
 
     public bool m_isFog;
     public bool m_isSoftFog;
@@ -51,11 +53,10 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
 
-            if (m_event)
+            if (GetTerrain().IsEventTerrain())
             {
                 UIEventController.Instance.Init(GameEventFactory.GetRandomEvent(this));
                 SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
-                m_event = false;
             }
         }
     }
@@ -121,11 +122,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public bool IsOccupied()
     {
         return m_occupyingUnit != null;
-    }
-
-    public bool HasAvailableEvent()
-    {
-        return m_event;
     }
 
     public bool HasBuilding()
@@ -376,10 +372,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             jsonData.gameTerrainData = m_terrain.SaveToJsonAsString();
         }
-        if (m_event)
-        {
-            jsonData.gameEventData = "True";
-        }
         if (m_spawnPoint != null)
         {
             jsonData.gameSpawnPointData = m_spawnPoint.SaveToJsonAsString();
@@ -415,12 +407,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
         }
 
-        if (jsonData.gameEventData != string.Empty && jsonData.gameEventData != null)
-        {
-            //JsonGameEventData jsonGameEventData = JsonConvert.DeserializeObject<JsonGameEventData>(jsonData.gameEventData);
-            m_event = true;
-        }
-
         if (jsonData.gameSpawnPointData != string.Empty && jsonData.gameSpawnPointData != null)
         {
             GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
@@ -434,7 +420,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         m_occupyingUnit = null;
         m_gridPosition = Vector2Int.zero;
         m_terrain = null;
-        m_event = false;
         m_spawnPoint = null;
         m_building = null;
         m_worldTile = null;
