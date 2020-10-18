@@ -20,7 +20,13 @@ public class ContentDeltaMap : GameMap
 
     protected override void FillMapEvents()
     {
-        //Need to fill
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
+        {
+            AddMapEvent(new ContentFloodingMapEvent(0), 2);
+            AddMapEvent(new ContentFloodReceedingMapEvent(0), 4);
+
+            AddMapEvent(new ContentFloodingMapEvent(0), 6);
+        }
     }
 
     protected override void FillExclusionCardPool()
