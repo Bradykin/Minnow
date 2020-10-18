@@ -7,7 +7,7 @@ public class ContentTraditionalMethodsRelic : GameRelic
     public ContentTraditionalMethodsRelic()
     {
         m_name = "Traditional Methods";
-        m_desc = "Aegis and Firebolt gain 'Draw a card', and Dwarven Soldiers gain +1 Stamina regen.";
+        m_desc = "Starter spells gain 'Draw a card', and Starter units gain +1 Stamina regen.";
         m_rarity = GameRarity.Event;
 
         LateInit();
