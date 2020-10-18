@@ -17,7 +17,6 @@ public class GameLoseStatsAction : GameAction
 
         m_name = "Lose Stats";
 
-        m_desc = "-" + m_powerToLose + "/-" + m_healthToLose + ".";
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
@@ -33,6 +32,11 @@ public class GameLoseStatsAction : GameAction
 
         m_powerToLose += tempAction.m_powerToLose;
         m_healthToLose += tempAction.m_healthToLose;
+    }
+
+    public override string GetDesc()
+    {
+        return "-" + m_powerToLose + "/-" + m_healthToLose + ".";
     }
 
     public override string SaveToJson()

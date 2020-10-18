@@ -15,7 +15,6 @@ public class GameExplodeAction : GameAction
         m_explodeRange = explodeRange;
 
         m_name = "Explode";
-        m_desc = "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
@@ -51,6 +50,11 @@ public class GameExplodeAction : GameAction
         }
 
         m_explodePower += tempAction.m_explodePower;
+    }
+
+    public override string GetDesc()
+    {
+        return "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
     }
 
     public override string SaveToJson()

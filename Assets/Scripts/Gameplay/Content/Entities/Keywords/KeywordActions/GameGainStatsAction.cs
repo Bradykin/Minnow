@@ -17,7 +17,6 @@ public class GameGainStatsAction : GameAction
 
         m_name = "Gain Stats";
 
-        m_desc = "+" + m_powerToGain + "/+" + m_healthToGain + ".";
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
@@ -33,6 +32,11 @@ public class GameGainStatsAction : GameAction
 
         m_powerToGain += tempAction.m_powerToGain;
         m_healthToGain += tempAction.m_healthToGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "+" + m_powerToGain + "/+" + m_healthToGain + ".";
     }
 
     public override string SaveToJson()

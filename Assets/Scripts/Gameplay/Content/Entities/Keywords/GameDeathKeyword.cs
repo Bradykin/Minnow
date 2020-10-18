@@ -11,12 +11,5 @@ public class GameDeathKeyword : GameActionKeywordBase
         m_name = "Death";
         m_focusInfoText = "Triggers when this unit dies.";
         m_keywordParamType = KeywordParamType.ActionParam;
-
-        if (action == null)
-        {
-            return;
-        }
-
-        m_desc = action.m_desc;
     }
 }

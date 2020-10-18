@@ -14,7 +14,6 @@ public class GameGainBrittleAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Brittle";
-        m_desc = "Gain 'Brittle " + m_toGain + "'.";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -28,6 +27,11 @@ public class GameGainBrittleAction : GameAction
         GameGainBrittleAction tempAction = (GameGainBrittleAction)toAdd;
 
         m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "Gain <b>Brittle</b> " + m_toGain + ".";
     }
 
     public override string SaveToJson()

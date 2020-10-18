@@ -14,7 +14,6 @@ public class GameGainStaminaAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Stamina";
-        m_desc = "Gain " + m_toGain + " Stamina";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -28,6 +27,11 @@ public class GameGainStaminaAction : GameAction
         GameGainStaminaAction tempAction = (GameGainStaminaAction)toAdd;
 
         m_toGain += tempAction.m_toGain;
+    }
+    
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain + " Stamina";
     }
 
     public override string SaveToJson()

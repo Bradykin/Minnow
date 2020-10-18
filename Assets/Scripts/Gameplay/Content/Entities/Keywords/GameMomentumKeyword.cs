@@ -12,12 +12,5 @@ public class GameMomentumKeyword : GameActionKeywordBase
         m_focusInfoText = "Triggers when this unit hits another unit.";
         m_shortDesc = "On hit";
         m_keywordParamType = KeywordParamType.ActionParam;
-
-        if (action == null)
-        {
-            return;
-        }
-
-        m_desc = action.m_desc;
     }
 }

@@ -23,6 +23,11 @@ public abstract class GameMap : GameElementBase
         m_icon = UIHelper.GetIconMap(m_name);
     }
 
+    public string GetDesc()
+    {
+        return m_desc;
+    }
+
     public void TriggerStartMap()
     {
         FillSpawnPool();

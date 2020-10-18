@@ -12,7 +12,6 @@ public class GameGainEnergyAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Energy";
-        m_desc = "Gain " + m_toGain + " energy.";
         m_actionParamType = ActionParamType.IntParam;
     }
 
@@ -33,6 +32,11 @@ public class GameGainEnergyAction : GameAction
         GameGainEnergyAction tempAction = (GameGainEnergyAction)toAdd;
 
         m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain + " energy.";
     }
 
     public override string SaveToJson()

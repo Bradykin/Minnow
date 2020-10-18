@@ -63,6 +63,18 @@ public class GameDeathAction : GameAction
         m_numDeaths += tempAction.m_numDeaths;
     }
 
+    public override string GetDesc()
+    {
+        if (m_numDeaths == 1)
+        {
+            return "Die.";
+        }
+        else
+        {
+            return "Die multiple times. It's the same as just once. Die.";
+        }
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

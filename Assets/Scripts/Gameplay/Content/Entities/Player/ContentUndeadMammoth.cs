@@ -64,7 +64,6 @@ public class GameReturnToDeckBuffedAction : GameAction
         m_healthBuff = healthBuff;
         
         m_name = "Return to Deck Buffed";
-        m_desc = "Return to your deck, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
@@ -83,6 +82,11 @@ public class GameReturnToDeckBuffedAction : GameAction
 
         m_powerBuff += tempAction.m_powerBuff;
         m_healthBuff += tempAction.m_healthBuff;
+    }
+
+    public override string GetDesc()
+    {
+        return "Return " + m_retuningUnit.m_name + " to your deck, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
     }
 
     public override string SaveToJson()

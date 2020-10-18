@@ -12,7 +12,6 @@ public class GameRoarOfVictoryAction : GameAction
         m_unit = unit;
 
         m_name = "Roar of Victory";
-        m_desc = "Trigger all Momentum and Enrage effects on this unit.";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
@@ -50,6 +49,18 @@ public class GameRoarOfVictoryAction : GameAction
         GameRoarOfVictoryAction tempAction = (GameRoarOfVictoryAction)toAdd;
 
         m_numToTrigger += tempAction.m_numToTrigger;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numToTrigger == 1)
+        {
+            return "Trigger all <b>Momentum</b> and <b>Enrage</b> effects on this Unit.";
+        }
+        else
+        {
+            return "Trigger all <b>Momentum</b> and <b>Enrage</b> effects on this Unit " + m_numToTrigger + " times.";
+        }
     }
 
     public override string SaveToJson()

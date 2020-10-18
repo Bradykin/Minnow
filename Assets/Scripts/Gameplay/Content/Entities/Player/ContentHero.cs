@@ -38,7 +38,6 @@ public class GameHealAction : GameAction
         m_healVal = healVal;
 
         m_name = "Heal";
-        m_desc = "Heal for " + healVal + ".";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -52,6 +51,11 @@ public class GameHealAction : GameAction
         GameHealAction tempAction = (GameHealAction)toAdd;
 
         m_healVal += tempAction.m_healVal;
+    }
+
+    public override string GetDesc()
+    {
+        return "Heal for " + m_healVal + ".";
     }
 
     public override string SaveToJson()

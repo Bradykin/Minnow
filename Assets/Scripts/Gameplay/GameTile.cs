@@ -144,7 +144,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         if (HasBuilding())
         {
-            return m_building.m_desc;
+            return m_building.GetDesc();
         }
         else
         {

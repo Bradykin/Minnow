@@ -12,13 +12,6 @@ public class GameEnrageKeyword : GameActionKeywordBase
         m_focusInfoText = "Triggers when this unit takes damage.";
         m_shortDesc = "On get hit";
         m_keywordParamType = KeywordParamType.ActionParam;
-
-        if (action == null)
-        {
-            return;
-        }
-
-        m_desc = action.m_desc;
     }
 
     public void DoAction(int damageAmount)

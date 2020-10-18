@@ -17,6 +17,11 @@ public class GameForestwalkKeyword : GameKeywordBase
         //Stacking this keyword does nothing.
     }
 
+    public override string GetDesc()
+    {
+        return "";
+    }
+
     public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData

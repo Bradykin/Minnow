@@ -12,12 +12,5 @@ public class GameKnowledgeableKeyword : GameActionKeywordBase
         m_focusInfoText = "Triggers when the player draws an extra card.";
         m_shortDesc = "On draw an extra card.";
         m_keywordParamType = KeywordParamType.ActionParam;
-
-        if (action == null)
-        {
-            return;
-        }
-
-        m_desc = action.m_desc;
     }
 }

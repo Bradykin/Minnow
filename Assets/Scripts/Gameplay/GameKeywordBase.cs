@@ -28,4 +28,6 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     {
         return m_focusInfoText;
     }
+
+    public abstract string GetDesc();
 }

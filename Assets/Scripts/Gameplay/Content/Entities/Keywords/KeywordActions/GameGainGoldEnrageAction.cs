@@ -13,13 +13,12 @@ public class GameGainGoldEnrageAction : GameAction
         m_unit = unit;
 
         m_name = "Gain Gold Enrage";
-        m_desc = "Gain gold equal to the damage taken.";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
-
+        //Left as stub (instead uses DoAction(int))
     }
 
     public void DoAction(int damageAmount)
@@ -35,6 +34,18 @@ public class GameGainGoldEnrageAction : GameAction
         GameGainGoldEnrageAction tempAction = (GameGainGoldEnrageAction)toAdd;
 
         m_numTimesToGain += tempAction.m_numTimesToGain;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numTimesToGain == 1)
+        {
+            return "Gain gold equal to the damage taken.";
+        }
+        else
+        {
+            return "Gain gold equal to " + m_numTimesToGain + " times the damage taken.";
+        }
     }
 
     public override string SaveToJson()

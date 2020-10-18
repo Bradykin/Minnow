@@ -19,6 +19,11 @@ public abstract class GameActionIntermission : GameElementBase
         player.SpendActions(m_actionCost);
     }
 
+    public string GetDesc()
+    {
+        return m_desc;
+    }
+
     public virtual bool CanAfford()
     {
         GamePlayer player = GameHelper.GetPlayer();

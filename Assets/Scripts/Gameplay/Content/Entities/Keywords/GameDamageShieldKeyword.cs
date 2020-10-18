@@ -12,10 +12,6 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_numShields = numShields;
 
         m_name = "Damage Shield";
-        if (numShields > 0)
-        {
-            m_desc = "" + m_numShields;
-        }
         m_focusInfoText = "Prevent all damage from this many attacks. <i>(Stacks)</i>";
         m_keywordParamType = KeywordParamType.IntParam;
     }
@@ -25,15 +21,16 @@ public class GameDamageShieldKeyword : GameKeywordBase
         GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toAdd;
 
         m_numShields += tempKeyword.m_numShields;
-        m_desc = "" + m_numShields;
+    }
+
+    public override string GetDesc()
+    {
+        return "" + m_numShields;
     }
 
     public void DecreaseShield(int decrease)
     {
         m_numShields -= decrease;
-
-        m_name = "Damage Shield";
-        m_desc = "" + m_numShields;
     }
 
     public override string SaveToJsonAsString()

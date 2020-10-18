@@ -11,12 +11,5 @@ public class GameSummonKeyword : GameActionKeywordBase
         m_name = "Summon";
         m_focusInfoText = "Triggers when this unit is summoned.";
         m_keywordParamType = KeywordParamType.ActionParam;
-
-        if (action == null)
-        {
-            return;
-        }
-
-        m_desc = action.m_desc;
     }
 }

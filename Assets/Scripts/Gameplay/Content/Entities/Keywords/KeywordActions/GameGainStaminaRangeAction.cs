@@ -16,7 +16,6 @@ public class GameGainStaminaRangeAction : GameAction
         m_range = range;
 
         m_name = "Gain Stamina";
-        m_desc = "All friendly units within range " + m_range + " gain " + m_toGain + " Stamina";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -44,6 +43,11 @@ public class GameGainStaminaRangeAction : GameAction
         }
 
         m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "All friendly units within range " + m_range + " gain " + m_toGain + " Stamina";
     }
 
     public override string SaveToJson()

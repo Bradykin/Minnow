@@ -11,7 +11,6 @@ public class GameSpellcraftAttackAction : GameAction
         m_gameUnit = gameUnit;
 
         m_name = "Spellcraft";
-        m_desc = "Spellcraft!";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
@@ -35,6 +34,18 @@ public class GameSpellcraftAttackAction : GameAction
         GameSpellcraftAttackAction tempAction = (GameSpellcraftAttackAction)toAdd;
 
         m_numSpellcraft += tempAction.m_numSpellcraft;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numSpellcraft == 1)
+        {
+            return "Trigger <b>Spellcraft</b>.";
+        }
+        else
+        {
+            return "Trigger <b>Spellcraft</b> " + m_numSpellcraft + " times.";
+        }
     }
 
     public override string SaveToJson()

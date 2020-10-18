@@ -99,9 +99,9 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
             {
                 descString += " <i>(" + m_keywords[i].m_shortDesc + ")</i>";
             }
-            if (m_keywords[i].m_desc != string.Empty)
+            if (m_keywords[i].GetDesc() != string.Empty)
             {
-                descString += ": " + m_keywords[i].m_desc;
+                descString += ": " + m_keywords[i].GetDesc();
             }
 
             if (i != m_keywords.Count-1)

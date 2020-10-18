@@ -39,7 +39,7 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
 
             m_chaosTitleText.text = "Chaos";
             m_nameText.text = m_curMap.m_name;
-            m_descText.text = m_curMap.m_desc;
+            m_descText.text = m_curMap.GetDesc();
             m_difficultyText.text = UIHelper.GetDifficultyText(m_curMap.m_difficulty);
             m_difficultyText.color = UIHelper.GetDifficultyTextColor(m_curMap.m_difficulty);
 

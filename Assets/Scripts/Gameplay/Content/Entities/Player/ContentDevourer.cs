@@ -34,7 +34,6 @@ public class GameFullHealAction : GameAction
         m_unit = unit;
 
         m_name = "Full Heal";
-        m_desc = "Fully heal.";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
@@ -46,6 +45,11 @@ public class GameFullHealAction : GameAction
     public override void AddAction(GameAction toAdd)
     {
         //This doesn't do anything when stacked.  Left empty on purpose.
+    }
+
+    public override string GetDesc()
+    {
+        return "Fully heal.";
     }
 
     public override string SaveToJson()

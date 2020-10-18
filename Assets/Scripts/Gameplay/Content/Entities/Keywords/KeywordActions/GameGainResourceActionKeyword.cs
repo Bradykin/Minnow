@@ -13,24 +13,11 @@ public class GameGainResourceAction : GameAction
 
         m_name = "Gain Resources";
         m_actionParamType = ActionParamType.GameWalletParam;
-
-        if (toGain == null)
-        {
-            return;
-        }
-
-        m_desc = "Gain " + m_toGain.ToString();
     }
 
     public override void DoAction()
     {
-        GamePlayer player = GameHelper.GetPlayer();
-        if (player == null)
-        {
-            return;
-        }
-
-        player.m_wallet.AddResources(m_toGain);
+        GameHelper.GetPlayer().m_wallet.AddResources(m_toGain);
     }
 
     public override void AddAction(GameAction toAdd)
@@ -38,6 +25,11 @@ public class GameGainResourceAction : GameAction
         GameGainResourceAction tempAction = (GameGainResourceAction)toAdd;
 
         m_toGain.AddResources(tempAction.m_toGain);
+    }
+
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain.ToString() + ".";
     }
 
     public override string SaveToJson()

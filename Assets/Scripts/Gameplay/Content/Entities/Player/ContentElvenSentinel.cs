@@ -47,7 +47,6 @@ public class GameGainRangeAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Range";
-        m_desc = "+ " + m_toGain + " range";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -61,6 +60,11 @@ public class GameGainRangeAction : GameAction
         GameGainRangeAction tempAction = (GameGainRangeAction)toAdd;
 
         m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "+ " + m_toGain + " range";
     }
 
     public override string SaveToJson()

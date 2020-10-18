@@ -35,11 +35,11 @@ public class GameIntermissionActionController
     {
         if (HasBuilding())
         {
-            return m_building.m_building.m_desc;
+            return m_building.m_building.GetDesc();
         }
         else if (HasAction())
         {
-            return m_action.m_desc;
+            return m_action.GetDesc();
         }
 
         return "Invalid";

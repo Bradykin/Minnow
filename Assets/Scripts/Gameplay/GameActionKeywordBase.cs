@@ -9,7 +9,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameSpellcraftKeyword tempKeyword = (GameSpellcraftKeyword)toAdd;
+        GameActionKeywordBase tempKeyword = (GameActionKeywordBase)toAdd;
 
         for (int i = 0; i < tempKeyword.m_actions.Count; i++)
         {
@@ -37,6 +37,23 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         {
             m_actions[i].DoAction();
         }
+    }
+
+    public override string GetDesc()
+    {
+        string toReturn = "";
+
+        for (int i = 0; i < m_actions.Count; i++)
+        {
+            toReturn += m_actions[i].GetDesc();
+
+            if (i != m_actions.Count -1)
+            {
+                toReturn += ", ";
+            }
+        }
+
+        return toReturn;
     }
 
     public override string SaveToJsonAsString()

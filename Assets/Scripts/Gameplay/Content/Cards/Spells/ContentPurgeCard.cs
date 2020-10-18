@@ -23,7 +23,14 @@ public class ContentPurgeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+        if (m_spellEffect != GetSpellValue())
+        {
+            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+        }
+        else
+        {
+            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + ".\n" + GetModifiedBySpellPowerString();
+        }
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)
