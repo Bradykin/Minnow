@@ -22,7 +22,8 @@ public class ContentLakesideHardMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
         {
-            AddMapEvent(new ContentDrySeasonMapEvent(), 2);
+            AddMapEvent(new ContentDrySeasonMapEvent(0), 2);
+            AddMapEvent(new ContentRainRefillMapEvent(0), 3);
         }
     }
 

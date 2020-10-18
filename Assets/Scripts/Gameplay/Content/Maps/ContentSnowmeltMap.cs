@@ -22,8 +22,11 @@ public class ContentSnowmeltMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
         {
-            AddMapEvent(new ContentDrySeasonMapEvent(), 3);
-            AddMapEvent(new ContentDrySeasonMapEvent(), 5);
+            AddMapEvent(new ContentSnapFreezeMapEvent(0), 3);
+            AddMapEvent(new ContentSnapThawMapEvent(0), 4);
+
+            AddMapEvent(new ContentSnapFreezeMapEvent(0), 5);
+            AddMapEvent(new ContentSnapThawMapEvent(0), 6);
         }
     }
 

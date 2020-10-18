@@ -7,5 +7,4 @@ public abstract class GameMapEvent : GameElementBase
     public ScheduledActionTime m_triggerType = ScheduledActionTime.StartOfWave;
 
     public abstract void TriggerEvent();
-    public abstract void EndEvent();
 }

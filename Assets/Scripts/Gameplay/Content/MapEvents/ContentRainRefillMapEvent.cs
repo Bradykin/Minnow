@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDrySeasonMapEvent : GameMapEvent
+public class ContentRainRefillMapEvent : GameMapEvent
 {
     private int m_markerToCheck;
 
-    public ContentDrySeasonMapEvent(int markerToCheck)
+    public ContentRainRefillMapEvent(int markerToCheck)
     {
-        m_name = "Dry Season";
-        m_desc = "The waters have all dried up!";
+        m_name = "Rain Refill";
+        m_desc = "The waters have returned to their natural state.";
 
         m_markerToCheck = markerToCheck;
     }
@@ -21,7 +21,7 @@ public class ContentDrySeasonMapEvent : GameMapEvent
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
             if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
             {
-                gameTile.SetTerrain(new ContentScrublandPlainsTerrain(), true); //Should be muddy dirt or something
+                gameTile.SetTerrain(new ContentWaterTerrain(), true);
             }
         }
     }

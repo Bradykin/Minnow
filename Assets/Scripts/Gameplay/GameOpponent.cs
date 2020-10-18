@@ -141,7 +141,6 @@ public class GameOpponent : ITurns
             GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
             SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
             WorldController.Instance.SetHasSpawnedEliteThisWave(true);
-            Debug.Log("SPAWN ELITE");
         }
 
         //Try spawning at any monster dens

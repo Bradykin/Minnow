@@ -64,14 +64,6 @@ public abstract class GameMap : GameElementBase
                 UIMapEventController.Instance.AddEvent(m_mapEvents[i]);
             }
         }
-
-        for (int i = 0; i < m_mapEvents.Count; i++)
-        {
-            if (m_mapEventTriggerWaves[i] == waveNum- 1 && m_mapEvents[i].m_triggerType == triggerType)
-            {
-                m_mapEvents[i].EndEvent();
-            }
-        }
     }
 
     protected abstract void FillSpawnPool();

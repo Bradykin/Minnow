@@ -7,9 +7,9 @@ public class ContentDwarfShivcaster : GameUnit
 {
     public ContentDwarfShivcaster()
     {
-        m_maxHealth = 30;
-        m_maxStamina = 6;
-        m_staminaRegen = 3;
+        m_maxHealth = 16;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
         m_power = 2;
 
         m_team = Team.Player;
