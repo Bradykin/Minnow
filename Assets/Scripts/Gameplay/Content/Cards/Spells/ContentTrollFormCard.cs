@@ -14,7 +14,7 @@ public class ContentTrollFormCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameRegenerateKeyword(-1));
 
         SetupBasicData();
 

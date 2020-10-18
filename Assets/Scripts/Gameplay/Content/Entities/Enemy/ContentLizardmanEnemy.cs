@@ -18,17 +18,17 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Lizardman";
-        m_desc = "Moving on water tiles costs 0 Stamina.";
+        m_desc = "Lizardmen move on water tiles without spending Stamina.";
 
         m_minWave = 5;
         m_maxWave = 6;
 
-        m_keywordHolder.m_keywords.Add(new GameWaterwalkKeyword());
+        AddKeyword(new GameWaterwalkKeyword(), false);
         m_instantWaterMovement = true;
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
+        AddKeyword(new GameDamageShieldKeyword(2), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 2)));
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

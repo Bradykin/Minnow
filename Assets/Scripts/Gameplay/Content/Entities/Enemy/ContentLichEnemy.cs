@@ -31,8 +31,8 @@ public class ContentLichEnemy : GameEnemyUnit
         m_name = "Lich";
         m_desc = "The final boss.  Kill it, and win.";
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameFlyingKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

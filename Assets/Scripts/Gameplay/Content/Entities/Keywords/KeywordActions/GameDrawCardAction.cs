@@ -12,7 +12,6 @@ public class GameDrawCardAction : GameAction
         m_toDraw = toDraw;
 
         m_name = "Draw Card";
-        m_desc = "Draw " + m_toDraw + ".";
         m_actionParamType = ActionParamType.IntParam;
     }
 
@@ -26,6 +25,18 @@ public class GameDrawCardAction : GameAction
         }
 
         player.DrawCards(m_toDraw);
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameDrawCardAction tempAction = (GameDrawCardAction)toAdd;
+
+        m_toDraw += tempAction.m_toDraw;
+    }
+
+    public override string GetDesc()
+    {
+        return "Draw " + m_toDraw + ".";
     }
 
     public override string SaveToJson()

@@ -12,21 +12,21 @@ public class GameBrittleKeyword : GameKeywordBase
         m_amount = amount;
 
         m_name = "Brittle";
-        if (m_amount > 0)
-        {
-            m_desc = "" + m_amount;
-        }
         m_focusInfoText = "Takes additional damage.";
         m_shortDesc = "Takes more damage on hit";
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public void IncreaseAmount(int increase)
+    public override void AddKeyword(GameKeywordBase toAdd)
     {
-        m_amount += increase;
+        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
 
-        m_name = "Brittle";
-        m_desc = "" + m_amount;
+        m_amount += tempKeyword.m_amount;
+    }
+
+    public override string GetDesc()
+    {
+        return "" + m_amount;
     }
 
     public override string SaveToJsonAsString()

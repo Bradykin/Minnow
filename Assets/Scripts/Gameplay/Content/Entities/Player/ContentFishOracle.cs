@@ -13,7 +13,7 @@ public class ContentFishOracle : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameDrawCardAction(1)));
+        AddKeyword(new GameSpellcraftKeyword(new GameDrawCardAction(1)), false);
 
         m_name = "Fish Oracle";
         m_typeline = Typeline.Monster;

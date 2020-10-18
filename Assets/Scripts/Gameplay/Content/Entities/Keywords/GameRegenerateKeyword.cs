@@ -12,12 +12,20 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_regenVal = regenVal;
 
         m_name = "Regen";
-        if (m_regenVal > 0)
-        {
-            m_desc = "" + m_regenVal;
-        }
         m_focusInfoText = "Regenerate health at the end of each turn.";
         m_keywordParamType = KeywordParamType.IntParam;
+    }
+
+    public override void AddKeyword(GameKeywordBase toAdd)
+    {
+        GameRegenerateKeyword tempKeyword = (GameRegenerateKeyword)toAdd;
+
+        m_regenVal += tempKeyword.m_regenVal;
+    }
+
+    public override string GetDesc()
+    {
+        return "" + m_regenVal;
     }
 
     public override string SaveToJsonAsString()

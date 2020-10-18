@@ -49,15 +49,6 @@ public class ContentMetalGolem : GameUnit
             return;
         }
 
-        GameDamageShieldKeyword damageShieldKeyword = GetKeyword<GameDamageShieldKeyword>();
-
-        if (damageShieldKeyword == null)
-        {
-            AddKeyword(new GameDamageShieldKeyword(numMountains));
-        }
-        else
-        {
-            damageShieldKeyword.IncreaseShield(numMountains);
-        }
+        AddKeyword(new GameDamageShieldKeyword(numMountains), false);
     }
 }

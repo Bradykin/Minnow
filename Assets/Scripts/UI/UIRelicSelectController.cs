@@ -34,12 +34,12 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
         m_firstButton.gameObject.SetActive(true);
         m_firstButton.Init(relicOne, UIRelic.RelicSelectionType.Select);
         m_firstRelicText.text = relicOne.m_name;
-        m_firstRelicDescText.text = relicOne.m_desc;
+        m_firstRelicDescText.text = relicOne.GetDesc();
 
         m_secondButton.gameObject.SetActive(true);
         m_secondButton.Init(relicTwo, UIRelic.RelicSelectionType.Select);
         m_secondRelicText.text = relicTwo.m_name;
-        m_secondRelicDescText.text = relicTwo.m_desc;
+        m_secondRelicDescText.text = relicTwo.GetDesc();
 
         m_skipText.text = "Skip: +" + m_skipWallet.m_gold + " gold.";
 

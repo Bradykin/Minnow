@@ -13,7 +13,7 @@ public class ContentGladiator : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)));
+        AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), false);
 
         m_name = "Gladiator";
         m_typeline = Typeline.Humanoid;

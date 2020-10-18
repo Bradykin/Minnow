@@ -50,7 +50,7 @@ public class ContentWildfolk : GameUnit
         int r = Random.Range(0, m_keywords.Count);
 
         GameKeywordBase newKeyword = m_keywords[r];
-        m_keywordHolder.m_keywords.Add(newKeyword);
+        AddKeyword(newKeyword);
         m_keywords.RemoveAt(r);
     }
 }

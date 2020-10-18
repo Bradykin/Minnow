@@ -15,8 +15,8 @@ public class ContentElvenSentinel : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)));
+        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)), false);
 
         m_name = "Elven Sentinel";
         m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.";
@@ -47,18 +47,24 @@ public class GameGainRangeAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Range";
-        m_desc = "+ " + m_toGain + " range";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        GameRangeKeyword rangeKeyword = m_unit.GetKeyword<GameRangeKeyword>();
+        m_unit.AddKeyword(new GameRangeKeyword(m_toGain));
+    }
 
-        if (rangeKeyword != null)
-        {
-            rangeKeyword.IncreaseRange(m_toGain);
-        }
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainRangeAction tempAction = (GameGainRangeAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "+ " + m_toGain + " range";
     }
 
     public override string SaveToJson()

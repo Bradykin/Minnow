@@ -51,6 +51,5 @@ public class ContentConjuredImp : GameUnit
             copyImpCard.SetDesc(copyImpCard.m_unit.GetDesc());
             GameHelper.GetPlayer().AddCardToHand(copyImpCard, false);
         }
-        //GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameAddUnitCardToHandAction(GameUnitFactory.GetUnitFromJson(this.SaveToJsonAsJson())));
     }
 }

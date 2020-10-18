@@ -68,6 +68,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
         }
     }
 
+    public string GetDesc()
+    {
+        return m_desc;
+    }
+
     public virtual Sprite GetIconWhite()
     {
         return m_iconWhite;

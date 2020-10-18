@@ -20,9 +20,9 @@ public class ContentDwarfShivcaster : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
-        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this)), false);
+        AddKeyword(new GameRangeKeyword(2), false);
+        AddKeyword(new GameShivKeyword(), false);
 
         LateInit();
     }
@@ -33,6 +33,7 @@ public class GameShivNearbyAction : GameAction
     private GameUnit m_unit;
     private GameCard m_shivCard;
     private int m_numShivsThrown = 2;
+    private int m_shivRange = 2;
 
     public GameShivNearbyAction(GameUnit unit)
     {
@@ -40,7 +41,6 @@ public class GameShivNearbyAction : GameAction
         m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
 
         m_name = "Throw Shiv";
-        m_desc = "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within two tiles.";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
@@ -53,7 +53,7 @@ public class GameShivNearbyAction : GameAction
             return;
         }
 
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), 2);
+        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), m_shivRange);
 
         List<GameUnit> nearbyEnemies = new List<GameUnit>();
 
@@ -84,6 +84,24 @@ public class GameShivNearbyAction : GameAction
                 }
             }
         }
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameShivNearbyAction tempAction = (GameShivNearbyAction)toAdd;
+
+        //Use the larger of the two shiv ranges instead of adding them.
+        if (tempAction.m_shivRange > m_shivRange)
+        {
+            m_shivRange = tempAction.m_shivRange;
+        }
+
+        m_numShivsThrown += tempAction.m_numShivsThrown;
+    }
+
+    public override string GetDesc()
+    {
+        return "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within " + m_shivRange + " tiles.";
     }
 
     public override string SaveToJson()

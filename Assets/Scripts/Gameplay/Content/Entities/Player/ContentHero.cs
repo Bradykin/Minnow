@@ -15,9 +15,9 @@ public class ContentHero : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 1)));
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 5)));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))));
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), false);
+        AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 5)), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))), false);
 
         m_name = "Hero";
         m_typeline = Typeline.Humanoid;
@@ -38,13 +38,24 @@ public class GameHealAction : GameAction
         m_healVal = healVal;
 
         m_name = "Heal";
-        m_desc = "Heal for " + healVal + ".";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
         m_unit.Heal(m_healVal);
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameHealAction tempAction = (GameHealAction)toAdd;
+
+        m_healVal += tempAction.m_healVal;
+    }
+
+    public override string GetDesc()
+    {
+        return "Heal for " + m_healVal + ".";
     }
 
     public override string SaveToJson()

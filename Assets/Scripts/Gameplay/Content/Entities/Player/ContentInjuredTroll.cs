@@ -11,7 +11,7 @@ public class ContentInjuredTroll : GameUnit
         m_staminaRegen = 4;
         m_power = 12;
 
-        m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(20));
+        AddKeyword(new GameRegenerateKeyword(20), false);
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;

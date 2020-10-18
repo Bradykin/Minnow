@@ -29,8 +29,7 @@ public class GameEventRejectFruitOption : GameEventOption
         unit.AddMaxHealth(m_healthIncrease);
         unit.GainStamina(m_staminaIncrease);
 
-        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(unit, -m_knowledgeableDecrease)));
-        unit.AddKeyword(new GameKnowledgeableKeyword(new GameGainMaxHealthAction(unit, -m_knowledgeableDecrease)));
+        unit.AddKeyword(new GameKnowledgeableKeyword(new GameLoseStatsAction(unit, m_knowledgeableDecrease, m_knowledgeableDecrease)));
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_tile, m_tileRange, 0);
 

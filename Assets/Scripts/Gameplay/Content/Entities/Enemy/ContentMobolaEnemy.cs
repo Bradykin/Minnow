@@ -22,11 +22,11 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_minWave = 5;
         m_maxWave = 6;
 
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 3)));
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 3)));
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameRegenerateKeyword(15));
+            AddKeyword(new GameRegenerateKeyword(15), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

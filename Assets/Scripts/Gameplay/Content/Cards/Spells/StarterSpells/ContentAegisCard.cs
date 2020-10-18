@@ -12,7 +12,7 @@ public class ContentAegisCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
 
         SetCardLevel(GetCardLevel());
 
@@ -46,16 +46,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        GameDamageShieldKeyword damageShieldKeyword = targetUnit.GetKeyword<GameDamageShieldKeyword>();
-
-        if (damageShieldKeyword == null)
-        {
-            targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount));
-        }
-        else
-        {
-            damageShieldKeyword.IncreaseShield(m_amount);
-        }
+        targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false);
 
         int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
         for (int i = 0; i < numTraditionalMethods; i++)

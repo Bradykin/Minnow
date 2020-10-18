@@ -12,17 +12,20 @@ public class GameRangeKeyword : GameKeywordBase
         m_range = range;
 
         m_name = "Ranged";
-        m_desc = "" + m_range;
         m_focusInfoText = "Can attack at range.";
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public void IncreaseRange(int increase)
+    public override void AddKeyword(GameKeywordBase toAdd)
     {
-        m_range += increase;
+        GameRangeKeyword tempKeyword = (GameRangeKeyword)toAdd;
 
-        m_name = "Ranged";
-        m_desc = "" + m_range;
+        m_range += tempKeyword.m_range;
+    }
+
+    public override string GetDesc()
+    {
+        return "" + m_range;
     }
 
     public override string SaveToJsonAsString()

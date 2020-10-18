@@ -22,7 +22,7 @@ public class ContentSpinnerEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
+            AddKeyword(new GameRangeKeyword(2), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

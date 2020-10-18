@@ -14,7 +14,7 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         m_playerUnlockLevel = 2;
 
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
+        m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
         SetupBasicData();
 
@@ -38,6 +38,6 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(targetUnit, 1)));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)));
     }
 }

@@ -13,7 +13,7 @@ public class ContentDemonSoldier : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        AddKeyword(new GameFlyingKeyword(), false);
 
         m_name = "Demon Soldier";
         m_typeline = Typeline.Monster;

@@ -32,7 +32,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
-    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
+    private GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
@@ -682,13 +682,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_isDead = false;
     }
 
-    public void AddKeyword(GameKeywordBase newKeyword)
+    public void AddKeyword(GameKeywordBase newKeyword, bool canChangeName = true)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+        if (canChangeName)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+        }
 
-        m_keywordHolder.m_keywords.Add(newKeyword);
+        m_keywordHolder.AddKeyword(newKeyword);
 
-        if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword))
+        if (!HasCustomName() && canChangeName)
         {
             SetCustomName();
         }
@@ -702,11 +705,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public List<T> GetKeywords<T>()
     {
         return m_keywordHolder.GetKeywords<T>();
-    }
-
-    public List<GameKeywordBase> GetKeywords()
-    {
-        return m_keywordHolder.GetKeywords();
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()
@@ -786,13 +784,36 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public void AddMaxHealth(int toAdd)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", true, m_gameTile.GetWorldTile().gameObject);
+        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
 
         m_maxHealth += toAdd;
 
         if (toAdd > 0)
         {
             m_curHealth += toAdd;
+        }
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
+    }
+
+    public void RemoveMaxHealth(int toLose)
+    {
+        UIHelper.CreateWorldElementNotification(GetName() + " loses " + toLose + " Health.", GetTeam() == Team.Enemy, m_gameTile.GetWorldTile().gameObject);
+
+        m_maxHealth -= toLose;
+
+        if (m_maxHealth < 1)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
+            m_maxHealth = 1;
+        }
+
+        if (m_curHealth > m_maxHealth)
+        {
+            m_curHealth = m_maxHealth;
         }
 
         if (!HasCustomName())

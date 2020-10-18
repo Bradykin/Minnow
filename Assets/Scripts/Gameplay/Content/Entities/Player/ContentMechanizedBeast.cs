@@ -42,7 +42,7 @@ public class ContentMechanizedBeast : GameUnit
 
         if (m_unitLevel >= 2)
         {
-            m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
+            AddKeyword(new GameMountainwalkKeyword(), false);
         }
     }
 }

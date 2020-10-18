@@ -18,6 +18,8 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     public string m_shortDesc = string.Empty;
     public bool m_isVisible = true;
 
+    public abstract void AddKeyword(GameKeywordBase toAdd);
+
     public abstract string SaveToJsonAsString();
 
     public abstract void LoadFromJson(JsonKeywordData jsonData);
@@ -26,4 +28,6 @@ public abstract class GameKeywordBase : GameElementBase, ISave, ILoad<JsonKeywor
     {
         return m_focusInfoText;
     }
+
+    public abstract string GetDesc();
 }

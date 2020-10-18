@@ -22,12 +22,12 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_minWave = 5;
         m_maxWave = 6;
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(4));
-        m_keywordHolder.m_keywords.Add(new GameMountainwalkKeyword());
+        AddKeyword(new GameRangeKeyword(4), false);
+        AddKeyword(new GameMountainwalkKeyword(), false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameGainPowerAction(this, 3)));
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

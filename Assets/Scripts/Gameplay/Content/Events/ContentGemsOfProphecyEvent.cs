@@ -40,7 +40,7 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainPowerAction(m_tile.m_occupyingUnit, m_powerGain)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, m_powerGain, 0)));
 
         EndEvent();
     }

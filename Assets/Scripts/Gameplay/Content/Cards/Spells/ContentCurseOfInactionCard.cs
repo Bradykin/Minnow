@@ -15,7 +15,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
 
         m_playerUnlockLevel = 3;
 
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
+        m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
 
         SetupBasicData();
     }

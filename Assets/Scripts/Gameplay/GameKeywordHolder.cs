@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
 {
-    public List<GameKeywordBase> m_keywords;
+    private List<GameKeywordBase> m_keywords;
 
     public GameKeywordHolder()
     {
@@ -53,9 +53,24 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
         return listOfKeyword;
     }
 
-    public List<GameKeywordBase> GetKeywords()
+    public List<GameKeywordBase> GetKeywordsForRead()
     {
         return m_keywords;
+    }
+
+    public void AddKeyword(GameKeywordBase newKeyword)
+    {
+        //If there are any keywords that are the same as the one being added; instead of adding a new one, add this one to that keyword
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i].m_name == newKeyword.m_name)
+            {
+                m_keywords[i].AddKeyword(newKeyword);
+                return;
+            }
+        }
+
+        m_keywords.Add(newKeyword);
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)
@@ -84,9 +99,9 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
             {
                 descString += " <i>(" + m_keywords[i].m_shortDesc + ")</i>";
             }
-            if (m_keywords[i].m_desc != string.Empty)
+            if (m_keywords[i].GetDesc() != string.Empty)
             {
-                descString += ": " + m_keywords[i].m_desc;
+                descString += ": " + m_keywords[i].GetDesc();
             }
 
             if (i != m_keywords.Count-1)
@@ -96,6 +111,11 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
         }
 
         return descString;
+    }
+
+    public int GetNumKeywords()
+    {
+        return m_keywords.Count;
     }
 
     public string SaveToJsonAsString()

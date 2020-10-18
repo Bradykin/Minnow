@@ -17,6 +17,10 @@ public abstract class GameAction : GameElementBase
 
     public ActionParamType m_actionParamType;
 
+    public abstract string GetDesc();
+
+    public abstract void AddAction(GameAction toAdd);
+
     public abstract void DoAction();
 
     public abstract string SaveToJson();

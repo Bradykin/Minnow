@@ -9,7 +9,7 @@ public class ContentWingedSerpent : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        AddKeyword(new GameFlyingKeyword(), false);
 
         m_name = "Winged Serpent";
         m_typeline = Typeline.Monster;

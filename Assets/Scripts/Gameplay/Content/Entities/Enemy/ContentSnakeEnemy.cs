@@ -28,7 +28,7 @@ public class ContentSnakeEnemy : GameEnemyUnit
         {
             damageShield = 4;
         }
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(damageShield));
+        AddKeyword(new GameDamageShieldKeyword(damageShield), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

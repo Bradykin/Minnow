@@ -17,9 +17,9 @@ public class ContentSabobot : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameDeathAction(this)));
-        m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)));
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), false);
+        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
+        AddKeyword(new GameFlyingKeyword(), false);
 
         m_name = "Sabobot";
         m_desc = "Starts at full Stamina.";
@@ -40,6 +40,7 @@ public class ContentSabobot : GameUnit
 public class GameDeathAction : GameAction
 {
     private GameUnit m_unit;
+    private int m_numDeaths = 1;
 
     public GameDeathAction(GameUnit unit)
     {
@@ -53,6 +54,25 @@ public class GameDeathAction : GameAction
     public override void DoAction()
     {
         m_unit.Die();
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameDeathAction tempAction = (GameDeathAction)toAdd;
+
+        m_numDeaths += tempAction.m_numDeaths;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numDeaths == 1)
+        {
+            return "Die.";
+        }
+        else
+        {
+            return "Die multiple times. It's the same as just once. Die.";
+        }
     }
 
     public override string SaveToJson()

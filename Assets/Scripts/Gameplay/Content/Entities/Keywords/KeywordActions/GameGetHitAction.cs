@@ -14,7 +14,6 @@ public class GameGetHitAction : GameAction
         m_damage = damage;
 
         m_name = "Get hit";
-        m_desc = "Get hit for " + m_damage + ".";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
@@ -23,6 +22,18 @@ public class GameGetHitAction : GameAction
         GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
 
         m_unit.GetHit(m_damage);
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGetHitAction tempAction = (GameGetHitAction)toAdd;
+
+        m_damage += tempAction.m_damage;
+    }
+
+    public override string GetDesc()
+    {
+        return "Get hit for " + m_damage + ".";
     }
 
     public override string SaveToJson()

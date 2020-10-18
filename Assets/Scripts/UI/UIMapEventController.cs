@@ -24,7 +24,7 @@ public class UIMapEventController : Singleton<UIMapEventController>
         if (m_mapEventQueue.Count > 0)
         {
             m_titleText.text = m_mapEventQueue[0].m_name;
-            m_descText.text = m_mapEventQueue[0].m_desc;
+            m_descText.text = m_mapEventQueue[0].GetDesc();
         }
     }
 

@@ -12,6 +12,16 @@ public class GameWaterwalkKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    public override void AddKeyword(GameKeywordBase toAdd)
+    {
+        //Stacking this keyword does nothing.
+    }
+
+    public override string GetDesc()
+    {
+        return "";
+    }
+
     public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData

@@ -14,8 +14,8 @@ public class ContentDevourer : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 1)));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 1)), false);
+        AddKeyword(new GameVictoriousKeyword(new GameFullHealAction(this)), false);
 
         m_name = "Devourer";
         m_typeline = Typeline.Monster;
@@ -34,13 +34,22 @@ public class GameFullHealAction : GameAction
         m_unit = unit;
 
         m_name = "Full Heal";
-        m_desc = "Fully heal.";
         m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override void DoAction()
     {
         m_unit.Heal(m_unit.GetMaxHealth());
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        //This doesn't do anything when stacked.  Left empty on purpose.
+    }
+
+    public override string GetDesc()
+    {
+        return "Fully heal.";
     }
 
     public override string SaveToJson()

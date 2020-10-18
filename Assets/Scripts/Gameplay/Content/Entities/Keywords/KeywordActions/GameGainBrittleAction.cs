@@ -14,22 +14,24 @@ public class GameGainBrittleAction : GameAction
         m_toGain = toGain;
 
         m_name = "Gain Brittle";
-        m_desc = "Gain 'Brittle " + m_toGain + "'.";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
     {
-        GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
+        m_unit.AddKeyword(new GameBrittleKeyword(m_toGain), false);
+    }
 
-        if (keyword != null)
-        {
-            keyword.IncreaseAmount(m_toGain);
-        }
-        else
-        {
-            m_unit.AddKeyword(new GameBrittleKeyword(m_toGain));
-        }
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainBrittleAction tempAction = (GameGainBrittleAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
+    }
+
+    public override string GetDesc()
+    {
+        return "Gain <b>Brittle</b> " + m_toGain + ".";
     }
 
     public override string SaveToJson()

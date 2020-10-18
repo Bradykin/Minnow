@@ -14,6 +14,16 @@ public class GameShivKeyword : GameKeywordBase
         m_isVisible = false;
     }
 
+    public override void AddKeyword(GameKeywordBase toAdd)
+    {
+        //Stacking this keyword does nothing.
+    }
+
+    public override string GetDesc()
+    {
+        return "";
+    }
+
     public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData

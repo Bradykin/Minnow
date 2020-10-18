@@ -17,7 +17,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_keywordHolder.m_keywords.Add(new GameKnowledgeableKeyword(null));
+        m_keywordHolder.AddKeyword(new GameKnowledgeableKeyword(null));
 
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.Spellcraft);

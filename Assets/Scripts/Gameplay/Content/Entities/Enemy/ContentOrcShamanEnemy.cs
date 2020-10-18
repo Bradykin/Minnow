@@ -25,7 +25,7 @@ public class ContentOrcShamanEnemy : GameEnemyUnit
         {
             range = 3;
         }
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(range));
+        AddKeyword(new GameRangeKeyword(range), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

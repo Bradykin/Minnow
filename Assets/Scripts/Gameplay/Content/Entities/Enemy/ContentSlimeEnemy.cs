@@ -22,7 +22,7 @@ public class ContentSlimeEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameHealAction(this, 2)));
+            AddKeyword(new GameEnrageKeyword(new GameHealAction(this, 2)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

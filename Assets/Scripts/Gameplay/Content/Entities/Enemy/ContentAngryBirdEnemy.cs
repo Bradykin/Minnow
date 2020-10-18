@@ -21,10 +21,10 @@ public class ContentAngryBirdEnemy : GameEnemyUnit
         m_minWave = 3;
         m_maxWave = 4;
 
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
+            AddKeyword(new GameDamageShieldKeyword(1), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
