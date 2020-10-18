@@ -56,7 +56,7 @@ public class UIFocusInfoPanel : UIElementBase
             GameUnitCard unitCard = (GameUnitCard)(cardData.m_card);
 
             //Don't show this if there are no keywords.
-            if (unitCard.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
+            if (unitCard.GetUnit().GetKeywordHolderForRead().GetNumKeywords() == 0)
             {
                 m_shouldShow = false;
                 return;
@@ -65,7 +65,7 @@ public class UIFocusInfoPanel : UIElementBase
             m_shouldShow = true;
 
             m_titleText.text = unitCard.GetName();
-            List<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().m_keywords;
+            List<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
                 m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
@@ -76,7 +76,7 @@ public class UIFocusInfoPanel : UIElementBase
             GameCardSpellBase spellCard = (GameCardSpellBase)(cardData.m_card);
 
             //Don't show this if there are no keywords.
-            if (spellCard.GetKeywordHolderForRead().m_keywords.Count == 0)
+            if (spellCard.GetKeywordHolderForRead().GetNumKeywords() == 0)
             {
                 m_shouldShow = false;
                 return;
@@ -89,7 +89,7 @@ public class UIFocusInfoPanel : UIElementBase
                 m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.\n\n";
             }
 
-            List<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().m_keywords;
+            List<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
                 m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
@@ -104,14 +104,14 @@ public class UIFocusInfoPanel : UIElementBase
         m_shouldShow = true;
 
         //Don't show this if there are no keywords.
-        if (unitData.GetUnit().GetKeywordHolderForRead().m_keywords.Count == 0)
+        if (unitData.GetUnit().GetKeywordHolderForRead().GetNumKeywords() == 0)
         {
             m_shouldShow = false;
             return;
         }
 
         m_titleText.text = unitData.GetUnit().GetName();
-        List<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().m_keywords;
+        List<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
         for (int i = 0; i < keywords.Count; i++)
         {
             m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";

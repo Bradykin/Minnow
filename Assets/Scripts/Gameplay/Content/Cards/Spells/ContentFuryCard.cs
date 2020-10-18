@@ -14,9 +14,9 @@ public class ContentFuryCard : GameCardSpellBase
 
         m_playerUnlockLevel = 2;
 
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(null));
+        m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
+        m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
+        m_keywordHolder.AddKeyword(new GameVictoriousKeyword(null));
 
         SetupBasicData();
 

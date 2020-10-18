@@ -20,12 +20,12 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_minWave = 4;
         m_maxWave = 4;
 
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(2));
+        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameDamageShieldKeyword(2), false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameExplodeAction(this, 15, 2)));
+            AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, 15, 2)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

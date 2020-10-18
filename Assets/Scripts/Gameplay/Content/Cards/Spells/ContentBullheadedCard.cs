@@ -14,7 +14,7 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         m_playerUnlockLevel = 2;
 
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
+        m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
         SetupBasicData();
 

@@ -13,7 +13,7 @@ public class ContentNightWingsCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+        m_keywordHolder.AddKeyword(new GameFlyingKeyword());
 
         SetupBasicData();
 

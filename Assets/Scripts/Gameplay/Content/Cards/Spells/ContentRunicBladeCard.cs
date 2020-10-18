@@ -14,8 +14,8 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
         m_playerUnlockLevel = 1;
 
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(null));
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(null));
+        m_keywordHolder.AddKeyword(new GameVictoriousKeyword(null));
+        m_keywordHolder.AddKeyword(new GameSpellcraftKeyword(null));
 
         SetupBasicData();
 

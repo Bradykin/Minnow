@@ -32,7 +32,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
-    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
+    private GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
@@ -682,13 +682,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_isDead = false;
     }
 
-    public void AddKeyword(GameKeywordBase newKeyword)
+    public void AddKeyword(GameKeywordBase newKeyword, bool shouldChangeName = true)
     {
         UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
 
-        m_keywordHolder.m_keywords.Add(newKeyword);
+        m_keywordHolder.AddKeyword(newKeyword);
 
-        if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword))
+        if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword) && shouldChangeName)
         {
             SetCustomName();
         }
@@ -702,11 +702,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public List<T> GetKeywords<T>()
     {
         return m_keywordHolder.GetKeywords<T>();
-    }
-
-    public List<GameKeywordBase> GetKeywords()
-    {
-        return m_keywordHolder.GetKeywords();
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()

@@ -24,7 +24,7 @@ public class ContentSiegebreakerUnit : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
+            AddKeyword(new GameFlyingKeyword(), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AISiegebreakerScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

@@ -20,9 +20,9 @@ public class ContentDwarfShivcaster : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_keywordHolder.m_keywords.Add(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(2));
-        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
+        AddKeyword(new GameRangeKeyword(2));
+        AddKeyword(new GameShivKeyword());
 
         LateInit();
     }

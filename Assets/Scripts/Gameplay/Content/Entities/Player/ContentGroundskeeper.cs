@@ -23,7 +23,7 @@ public class ContentGroundskeeper : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_keywordHolder.m_keywords.Add(new GameForestwalkKeyword());
+        AddKeyword(new GameForestwalkKeyword(), false);
 
         LateInit();
     }

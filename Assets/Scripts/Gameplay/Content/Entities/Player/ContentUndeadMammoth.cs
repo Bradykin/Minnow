@@ -21,7 +21,7 @@ public class ContentUndeadMammoth : GameUnit
 
         SetUnitLevel(GetUnitLevel());
 
-        m_keywordHolder.m_keywords.Add(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)));
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), false);
 
         LateInit();
     }

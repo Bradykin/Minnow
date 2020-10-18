@@ -14,7 +14,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Common;
 
-        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
+        m_keywordHolder.AddKeyword(new GameShivKeyword());
 
         SetupBasicData();
 

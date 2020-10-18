@@ -15,9 +15,9 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
 
         m_playerUnlockLevel = 4;
 
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(null));
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(null));
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(null));
+        m_keywordHolder.AddKeyword(new GameVictoriousKeyword(null));
+        m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
+        m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
         SetupBasicData();
 

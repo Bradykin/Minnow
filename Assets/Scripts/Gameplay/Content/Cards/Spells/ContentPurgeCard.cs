@@ -42,7 +42,7 @@ public class ContentPurgeCard : GameCardSpellBase
 
         if (targetUnit.GetTeam() == Team.Player)
         {
-            if (targetUnit.GetKeywords().Count > 0)
+            if (targetUnit.GetKeywordHolderForRead().GetNumKeywords() > 0)
             {
                 targetUnit.AddPower(GetSpellValue());
                 targetUnit.AddMaxHealth(GetSpellValue());

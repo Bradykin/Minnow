@@ -14,8 +14,8 @@ public class ContentDevourer : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 1)));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
+        AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(this, 1)), false);
+        AddKeyword(new GameVictoriousKeyword(new GameFullHealAction(this)), false);
 
         m_name = "Devourer";
         m_typeline = Typeline.Monster;

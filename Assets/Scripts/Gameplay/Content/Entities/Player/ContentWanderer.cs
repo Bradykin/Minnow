@@ -19,7 +19,7 @@ public class ContentWanderer : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_keywordHolder.m_keywords.Add(new GameShivKeyword());
+        AddKeyword(new GameShivKeyword(), false);
 
         LateInit();
     }

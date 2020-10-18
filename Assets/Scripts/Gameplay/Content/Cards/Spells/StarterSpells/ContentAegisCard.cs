@@ -12,7 +12,7 @@ public class ContentAegisCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
 
         SetCardLevel(GetCardLevel());
 

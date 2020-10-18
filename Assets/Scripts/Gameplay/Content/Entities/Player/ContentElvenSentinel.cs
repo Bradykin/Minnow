@@ -15,8 +15,8 @@ public class ContentElvenSentinel : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)));
+        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)), false);
 
         m_name = "Elven Sentinel";
         m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.";

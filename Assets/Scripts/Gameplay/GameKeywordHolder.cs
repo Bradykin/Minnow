@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
 {
-    public List<GameKeywordBase> m_keywords;
+    private List<GameKeywordBase> m_keywords;
 
     public GameKeywordHolder()
     {
@@ -53,9 +53,14 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
         return listOfKeyword;
     }
 
-    public List<GameKeywordBase> GetKeywords()
+    public List<GameKeywordBase> GetKeywordsForRead()
     {
         return m_keywords;
+    }
+
+    public void AddKeyword(GameKeywordBase newKeyword)
+    {
+        m_keywords.Add(newKeyword);
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)
@@ -96,6 +101,11 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
         }
 
         return descString;
+    }
+
+    public int GetNumKeywords()
+    {
+        return m_keywords.Count;
     }
 
     public string SaveToJsonAsString()

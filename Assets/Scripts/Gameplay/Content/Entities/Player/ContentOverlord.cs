@@ -14,8 +14,8 @@ public class ContentOverlord : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        m_keywordHolder.m_keywords.Add(new GameFlyingKeyword());
-        m_keywordHolder.m_keywords.Add(new GameRangeKeyword(3));
+        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameRangeKeyword(3), false);
 
         m_name = "Overlord";
         m_desc = "Spends all Stamina to attack, deals damage equal to power times Stamina spent.";

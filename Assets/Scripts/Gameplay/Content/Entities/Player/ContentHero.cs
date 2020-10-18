@@ -15,9 +15,9 @@ public class ContentHero : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        m_keywordHolder.m_keywords.Add(new GameEnrageKeyword(new GameGainPowerAction(this, 1)));
-        m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameHealAction(this, 5)));
-        m_keywordHolder.m_keywords.Add(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))));
+        AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(this, 1)), false);
+        AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 5)), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))), false);
 
         m_name = "Hero";
         m_typeline = Typeline.Humanoid;

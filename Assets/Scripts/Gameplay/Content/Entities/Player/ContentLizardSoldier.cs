@@ -9,7 +9,7 @@ public class ContentLizardSoldier : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.m_keywords.Add(new GameWaterwalkKeyword());
+        AddKeyword(new GameWaterwalkKeyword(), false);
 
         m_name = "Lizard Soldier";
         m_typeline = Typeline.Humanoid;

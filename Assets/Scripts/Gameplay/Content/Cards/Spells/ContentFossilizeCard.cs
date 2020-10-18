@@ -18,7 +18,7 @@ public class ContentFossilizeCard : GameCardSpellBase
 
         m_playerUnlockLevel = 3;
 
-        m_keywordHolder.m_keywords.Add(new GameBrittleKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameBrittleKeyword(-1));
 
         SetupBasicData();
 

@@ -19,11 +19,11 @@ public class ContentToadEnemy : GameEnemyUnit
         m_name = "Toad";
         m_desc = "On hit, drains Stamina to 1!";
 
-        m_keywordHolder.m_keywords.Add(new GameDamageShieldKeyword(1));
+        AddKeyword(new GameDamageShieldKeyword(1), false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_keywordHolder.m_keywords.Add(new GameMomentumKeyword(new GameFullHealAction(this)));
+            AddKeyword(new GameMomentumKeyword(new GameFullHealAction(this)), false);
         }
 
         m_minWave = 2;
