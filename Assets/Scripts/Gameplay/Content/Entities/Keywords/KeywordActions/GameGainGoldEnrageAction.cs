@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameGainGoldEnrageAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_numTimesToGain;
+    private int m_numTimesToGain = 1;
 
     public GameGainGoldEnrageAction(GameUnit unit)
     {
