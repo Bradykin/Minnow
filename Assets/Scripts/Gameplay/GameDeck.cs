@@ -16,7 +16,6 @@ public class GameDeck
         for (int i = 0; i < 3; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterSimpleUnit));
-            m_cards.Add(new ContentBullheadedCard());
         }
 
         for (int i = 0; i < 1; i++)
