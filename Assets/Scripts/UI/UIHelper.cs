@@ -472,7 +472,7 @@ public static class UIHelper
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, GameObject positionObj)
     {
-        FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, positionObj);
+        UIWorldElementNotificationController.Instance.AddWorldElementNotification(message, color, positionObj);
     }
 
     public static void CreateWalletWorldElementNotification(int goldToAdd)
