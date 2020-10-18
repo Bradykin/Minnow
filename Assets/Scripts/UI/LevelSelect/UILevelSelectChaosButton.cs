@@ -64,20 +64,6 @@ public class UILevelSelectChaosButton : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.ClearTooltipStack();
-
-        if (!IsActive())
-        {
-            return;
-        }
-
-        if (m_isIncrease)
-        {
-            UIHelper.CreateChaosTooltip(Globals.m_curChaos + 1);
-        }
-        else
-        {
-            UIHelper.CreateChaosTooltip(Globals.m_curChaos - 1);
-        }
+        //Left as stub
     }
 }
