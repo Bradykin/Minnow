@@ -857,7 +857,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 }
             }
 
-            if (this is ContentDwarvenSoldier)
+            if (m_rarity == GameRarity.Starter)
             {
                 toReturn += GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
             }

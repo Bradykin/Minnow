@@ -36,13 +36,9 @@ public class UITurnCounter : UIElementBase
             else
             {
                 int turnNum = gameController.m_currentWaveTurn - 1;
-                if (WorldController.Instance.m_gameController.m_currentTurn == GameHelper.GetOpponent())
-                {
-                    turnNum--;
-                }
 
                 m_titleText.text = "Wave " + gameController.m_waveNum;
-                if (turnNum < gameController.GetEndWaveTurn())
+                if (turnNum < gameController.GetEndWaveTurn()-1)
                 {
                     m_countText.text = gameController.GetEndWaveTurn() - turnNum + " turns remain.";
                 }
