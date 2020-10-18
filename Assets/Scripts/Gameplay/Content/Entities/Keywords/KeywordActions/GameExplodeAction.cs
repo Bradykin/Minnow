@@ -40,6 +40,19 @@ public class GameExplodeAction : GameAction
         }
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameExplodeAction tempAction = (GameExplodeAction)toAdd;
+
+        //Use the greater of the two ranges; don't add them.
+        if (tempAction.m_explodeRange > m_explodeRange)
+        {
+            m_explodeRange = tempAction.m_explodeRange;
+        }
+
+        m_explodePower += tempAction.m_explodePower;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

@@ -33,6 +33,19 @@ public class GameGainStaminaRangeAction : GameAction
         }
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainStaminaRangeAction tempAction = (GameGainStaminaRangeAction)toAdd;
+
+        //Use the greater of the two ranges; don't add them.
+        if (tempAction.m_range > m_range)
+        {
+            m_range = tempAction.m_range;
+        }
+
+        m_toGain += tempAction.m_toGain;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

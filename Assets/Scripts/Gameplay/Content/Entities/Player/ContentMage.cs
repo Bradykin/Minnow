@@ -15,7 +15,7 @@ public class ContentMage : GameUnit
         m_rarity = GameRarity.Common;
 
         AddKeyword(new GameRangeKeyword(3), false);
-        AddKeyword(new GameKnowledgeableKeyword(new GameGainPowerAction(this, 3)), false);
+        AddKeyword(new GameKnowledgeableKeyword(new GameGainStatsAction(this, 3, 0)), false);
 
         m_name = "Mage";
         m_typeline = Typeline.Humanoid;

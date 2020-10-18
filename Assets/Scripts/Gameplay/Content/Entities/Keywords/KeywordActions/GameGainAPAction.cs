@@ -23,6 +23,13 @@ public class GameGainStaminaAction : GameAction
         m_unit.GainStamina(m_toGain);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainStaminaAction tempAction = (GameGainStaminaAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

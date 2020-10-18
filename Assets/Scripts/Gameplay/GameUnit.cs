@@ -682,13 +682,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_isDead = false;
     }
 
-    public void AddKeyword(GameKeywordBase newKeyword, bool shouldChangeName = true)
+    public void AddKeyword(GameKeywordBase newKeyword, bool canChangeName = true)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+        if (canChangeName)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+        }
 
         m_keywordHolder.AddKeyword(newKeyword);
 
-        if (!HasCustomName() && !(newKeyword is GameDamageShieldKeyword) && shouldChangeName)
+        if (!HasCustomName() && canChangeName)
         {
             SetCustomName();
         }
@@ -781,13 +784,36 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public void AddMaxHealth(int toAdd)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", true, m_gameTile.GetWorldTile().gameObject);
+        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
 
         m_maxHealth += toAdd;
 
         if (toAdd > 0)
         {
             m_curHealth += toAdd;
+        }
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
+    }
+
+    public void RemoveMaxHealth(int toLose)
+    {
+        UIHelper.CreateWorldElementNotification(GetName() + " loses " + toLose + " Health.", GetTeam() == Team.Enemy, m_gameTile.GetWorldTile().gameObject);
+
+        m_maxHealth -= toLose;
+
+        if (m_maxHealth < 1)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
+            m_maxHealth = 1;
+        }
+
+        if (m_curHealth > m_maxHealth)
+        {
+            m_curHealth = m_maxHealth;
         }
 
         if (!HasCustomName())

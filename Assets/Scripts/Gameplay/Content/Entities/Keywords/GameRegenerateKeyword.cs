@@ -20,6 +20,14 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override void AddKeyword(GameKeywordBase toAdd)
+    {
+        GameRegenerateKeyword tempKeyword = (GameRegenerateKeyword)toAdd;
+
+        m_regenVal += tempKeyword.m_regenVal;
+        m_desc = "" + m_regenVal;
+    }
+
     public override string SaveToJsonAsString()
     {
         JsonKeywordData jsonData = new JsonKeywordData

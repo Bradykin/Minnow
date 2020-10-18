@@ -12,7 +12,6 @@ public class GameActionFactory
 
     public static void Init()
     {
-        m_actions.Add(new GameAddUnitCardToHandAction(null));
         m_actions.Add(new GameDrawCardAction(0));
         m_actions.Add(new GameDeathAction(null));
         m_actions.Add(new GameExplodeAction(null, 0, 0));
@@ -21,8 +20,6 @@ public class GameActionFactory
         m_actions.Add(new GameGainStaminaAction(null, 0));
         m_actions.Add(new GameGainBrittleAction(null, 0));
         m_actions.Add(new GameGainEnergyAction(0));
-        m_actions.Add(new GameGainMaxHealthAction(null, 0));
-        m_actions.Add(new GameGainPowerAction(null, 0));
         m_actions.Add(new GameGainRangeAction(null, 0));
         m_actions.Add(new GameGainResourceAction(null));
         m_actions.Add(new GameGetHitAction(null, 0));

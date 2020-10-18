@@ -27,7 +27,7 @@ public class ContentYetiEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainPowerAction(this, 3)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

@@ -14,7 +14,7 @@ public class ContentDevourer : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(this, 1)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 1)), false);
         AddKeyword(new GameVictoriousKeyword(new GameFullHealAction(this)), false);
 
         m_name = "Devourer";
@@ -41,6 +41,11 @@ public class GameFullHealAction : GameAction
     public override void DoAction()
     {
         m_unit.Heal(m_unit.GetMaxHealth());
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        //This doesn't do anything when stacked.  Left empty on purpose.
     }
 
     public override string SaveToJson()

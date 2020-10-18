@@ -35,7 +35,7 @@ public class ContentWerewolfEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainPowerAction(this, 5)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 5, 0)), false);
         }
     }
 }

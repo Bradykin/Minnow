@@ -22,8 +22,8 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_minWave = 5;
         m_maxWave = 6;
 
-        AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(this, 3)), false);
-        AddKeyword(new GameMomentumKeyword(new GameGainPowerAction(this, 3)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameRegenerateKeyword(15), false);

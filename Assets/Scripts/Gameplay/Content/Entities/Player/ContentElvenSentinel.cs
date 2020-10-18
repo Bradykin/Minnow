@@ -53,12 +53,14 @@ public class GameGainRangeAction : GameAction
 
     public override void DoAction()
     {
-        GameRangeKeyword rangeKeyword = m_unit.GetKeyword<GameRangeKeyword>();
+        m_unit.AddKeyword(new GameRangeKeyword(m_toGain));
+    }
 
-        if (rangeKeyword != null)
-        {
-            rangeKeyword.IncreaseRange(m_toGain);
-        }
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainRangeAction tempAction = (GameGainRangeAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
     }
 
     public override string SaveToJson()

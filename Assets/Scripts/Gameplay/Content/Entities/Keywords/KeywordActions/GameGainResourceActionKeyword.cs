@@ -33,6 +33,13 @@ public class GameGainResourceAction : GameAction
         player.m_wallet.AddResources(m_toGain);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainResourceAction tempAction = (GameGainResourceAction)toAdd;
+
+        m_toGain.AddResources(tempAction.m_toGain);
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

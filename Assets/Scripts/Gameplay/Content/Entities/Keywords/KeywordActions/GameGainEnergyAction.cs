@@ -28,6 +28,13 @@ public class GameGainEnergyAction : GameAction
         player.AddEnergy(m_toGain);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainEnergyAction tempAction = (GameGainEnergyAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

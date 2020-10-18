@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDeathKeyword : GameKeywordBase
+public class GameDeathKeyword : GameActionKeywordBase
 {
-    private GameAction m_action;
-
     public GameDeathKeyword(GameAction action)
     {
-        m_action = action;
+        m_actions.Add(action);
 
         m_name = "Death";
         m_focusInfoText = "Triggers when this unit dies.";
@@ -21,28 +18,5 @@ public class GameDeathKeyword : GameKeywordBase
         }
 
         m_desc = action.m_desc;
-    }
-
-    public void DoAction()
-    {
-        m_action.DoAction();
-    }
-
-    public override string SaveToJsonAsString()
-    {
-        JsonKeywordData jsonData = new JsonKeywordData
-        {
-            name = m_name,
-            actionJson = m_action.SaveToJson()
-        };
-
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
-    }
-
-    public override void LoadFromJson(JsonKeywordData jsonData)
-    {
-        //Currently nothing needs to be done here
     }
 }

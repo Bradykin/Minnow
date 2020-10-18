@@ -38,6 +38,6 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(targetUnit, 1)));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)));
     }
 }

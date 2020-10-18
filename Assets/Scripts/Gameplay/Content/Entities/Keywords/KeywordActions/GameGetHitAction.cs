@@ -25,6 +25,13 @@ public class GameGetHitAction : GameAction
         m_unit.GetHit(m_damage);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGetHitAction tempAction = (GameGetHitAction)toAdd;
+
+        m_damage += tempAction.m_damage;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

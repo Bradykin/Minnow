@@ -60,6 +60,16 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
 
     public void AddKeyword(GameKeywordBase newKeyword)
     {
+        //If there are any keywords that are the same as the one being added; instead of adding a new one, add this one to that keyword
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i].m_name == newKeyword.m_name)
+            {
+                m_keywords[i].AddKeyword(newKeyword);
+                return;
+            }
+        }
+
         m_keywords.Add(newKeyword);
     }
 

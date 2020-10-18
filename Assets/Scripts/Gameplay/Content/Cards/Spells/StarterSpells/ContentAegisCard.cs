@@ -46,16 +46,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        GameDamageShieldKeyword damageShieldKeyword = targetUnit.GetKeyword<GameDamageShieldKeyword>();
-
-        if (damageShieldKeyword == null)
-        {
-            targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount));
-        }
-        else
-        {
-            damageShieldKeyword.IncreaseShield(m_amount);
-        }
+        targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false);
 
         int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
         for (int i = 0; i < numTraditionalMethods; i++)

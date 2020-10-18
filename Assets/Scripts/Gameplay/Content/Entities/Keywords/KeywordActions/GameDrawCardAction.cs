@@ -28,6 +28,13 @@ public class GameDrawCardAction : GameAction
         player.DrawCards(m_toDraw);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameDrawCardAction tempAction = (GameDrawCardAction)toAdd;
+
+        m_toDraw += tempAction.m_toDraw;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

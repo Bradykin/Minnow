@@ -20,11 +20,11 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public void IncreaseShield(int increase)
+    public override void AddKeyword(GameKeywordBase toAdd)
     {
-        m_numShields += increase;
+        GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toAdd;
 
-        m_name = "Damage Shield";
+        m_numShields += tempKeyword.m_numShields;
         m_desc = "" + m_numShields;
     }
 

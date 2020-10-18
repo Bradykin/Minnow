@@ -77,6 +77,14 @@ public class GameReturnToDeckBuffedAction : GameAction
         GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameReturnToDeckBuffedAction tempAction = (GameReturnToDeckBuffedAction)toAdd;
+
+        m_powerBuff += tempAction.m_powerBuff;
+        m_healthBuff += tempAction.m_healthBuff;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

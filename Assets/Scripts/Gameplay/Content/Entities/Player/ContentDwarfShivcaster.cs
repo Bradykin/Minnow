@@ -20,9 +20,9 @@ public class ContentDwarfShivcaster : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this)));
-        AddKeyword(new GameRangeKeyword(2));
-        AddKeyword(new GameShivKeyword());
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this)), false);
+        AddKeyword(new GameRangeKeyword(2), false);
+        AddKeyword(new GameShivKeyword(), false);
 
         LateInit();
     }
@@ -84,6 +84,13 @@ public class GameShivNearbyAction : GameAction
                 }
             }
         }
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameShivNearbyAction tempAction = (GameShivNearbyAction)toAdd;
+
+        m_numShivsThrown += tempAction.m_numShivsThrown;
     }
 
     public override string SaveToJson()

@@ -15,7 +15,7 @@ public class ContentHero : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        AddKeyword(new GameEnrageKeyword(new GameGainPowerAction(this, 1)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), false);
         AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 5)), false);
         AddKeyword(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))), false);
 
@@ -45,6 +45,13 @@ public class GameHealAction : GameAction
     public override void DoAction()
     {
         m_unit.Heal(m_healVal);
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameHealAction tempAction = (GameHealAction)toAdd;
+
+        m_healVal += tempAction.m_healVal;
     }
 
     public override string SaveToJson()

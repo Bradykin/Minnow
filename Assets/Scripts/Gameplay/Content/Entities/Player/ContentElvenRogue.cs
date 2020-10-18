@@ -15,7 +15,7 @@ public class ContentElvenRogue : GameUnit
         m_rarity = GameRarity.Common;
 
         AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameMomentumKeyword(new GameGainPowerAction(this, 1)), false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 1, 0 )), false);
 
         m_name = "Elven Rogue";
         m_typeline = Typeline.Humanoid;

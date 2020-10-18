@@ -21,6 +21,13 @@ public class GameGainTempSpellpowerAction : GameAction
         Globals.m_tempSpellpower += m_toGain;
     }
 
+    public override void AddAction(GameAction toAdd)
+    {
+        GameGainTempSpellpowerAction tempAction = (GameGainTempSpellpowerAction)toAdd;
+
+        m_toGain += tempAction.m_toGain;
+    }
+
     public override string SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

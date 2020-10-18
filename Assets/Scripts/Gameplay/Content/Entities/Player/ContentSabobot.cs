@@ -40,6 +40,7 @@ public class ContentSabobot : GameUnit
 public class GameDeathAction : GameAction
 {
     private GameUnit m_unit;
+    private int m_numDeaths = 1;
 
     public GameDeathAction(GameUnit unit)
     {
@@ -53,6 +54,13 @@ public class GameDeathAction : GameAction
     public override void DoAction()
     {
         m_unit.Die();
+    }
+
+    public override void AddAction(GameAction toAdd)
+    {
+        GameDeathAction tempAction = (GameDeathAction)toAdd;
+
+        m_numDeaths += tempAction.m_numDeaths;
     }
 
     public override string SaveToJson()

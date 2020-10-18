@@ -21,11 +21,11 @@ public class GameBrittleKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public void IncreaseAmount(int increase)
+    public override void AddKeyword(GameKeywordBase toAdd)
     {
-        m_amount += increase;
+        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
 
-        m_name = "Brittle";
+        m_amount += tempKeyword.m_amount;
         m_desc = "" + m_amount;
     }
 

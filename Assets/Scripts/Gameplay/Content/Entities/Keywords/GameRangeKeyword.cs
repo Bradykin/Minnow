@@ -17,11 +17,11 @@ public class GameRangeKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
-    public void IncreaseRange(int increase)
+    public override void AddKeyword(GameKeywordBase toAdd)
     {
-        m_range += increase;
+        GameRangeKeyword tempKeyword = (GameRangeKeyword)toAdd;
 
-        m_name = "Ranged";
+        m_range += tempKeyword.m_range;
         m_desc = "" + m_range;
     }
 
