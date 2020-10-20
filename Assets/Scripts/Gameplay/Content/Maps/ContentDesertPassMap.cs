@@ -54,11 +54,7 @@ public class ContentDesertPassMap : GameMap
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentZombieEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentOrcShamanEnemy(null));
-            m_spawnPool.Add(new ContentYetiEnemy(null));
-        }
+        m_spawnPool.Add(new ContentOrcShamanEnemy(null));
+        m_spawnPool.Add(new ContentYetiEnemy(null));
     }
 }

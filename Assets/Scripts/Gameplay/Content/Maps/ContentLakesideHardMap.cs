@@ -20,7 +20,7 @@ public class ContentLakesideHardMap : GameMap
 
     protected override void FillMapEvents()
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
             AddMapEvent(new ContentDrySeasonMapEvent(0), 2);
             AddMapEvent(new ContentRainRefillMapEvent(0), 3);
@@ -58,11 +58,7 @@ public class ContentLakesideHardMap : GameMap
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentYetiEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentShadeEnemy(null));
-            m_spawnPool.Add(new ContentZombieEnemy(null));
-        }
+        m_spawnPool.Add(new ContentShadeEnemy(null));
+        m_spawnPool.Add(new ContentZombieEnemy(null));
     }
 }

@@ -8,6 +8,7 @@ public class ContentMechanizedBeast : GameUnit
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
+        m_startWithMaxStamina = true;
 
         m_name = "Mechanized Beast";
         m_desc = "Starts at full Stamina.";
@@ -17,13 +18,6 @@ public class ContentMechanizedBeast : GameUnit
         SetUnitLevel(GetUnitLevel());
 
         LateInit();
-    }
-
-    public override void OnSummon()
-    {
-        base.OnSummon();
-
-        m_curStamina = m_maxStamina;
     }
 
     public override void SetUnitLevel(int level)

@@ -52,12 +52,8 @@ public class ContentLakesideMap : GameMap
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentYetiEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentShadeEnemy(null));
-            m_spawnPool.Add(new ContentZombieEnemy(null));
-        }
+        m_spawnPool.Add(new ContentShadeEnemy(null));
+        m_spawnPool.Add(new ContentZombieEnemy(null));
 
 
         List<GameEnemyUnit> specificSpawnPool1 = new List<GameEnemyUnit>();

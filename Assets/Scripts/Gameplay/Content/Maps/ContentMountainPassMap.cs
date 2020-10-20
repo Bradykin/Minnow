@@ -49,10 +49,6 @@ public class ContentMountainPassMap : GameMap
         m_spawnPool.Add(new ContentSpinnerEnemy(null));
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentYetiEnemy(null));
-        }
+        m_spawnPool.Add(new ContentYetiEnemy(null));
     }
 }

@@ -49,6 +49,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     //Special functionality
     protected bool m_neverSetIsDead;
     public bool m_instantWaterMovement;
+    public bool m_startWithMaxStamina;
 
     public void CopyOff(GameUnit other)
     {
@@ -75,10 +76,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public void SetHealthStaminaValues()
     {
         m_curHealth = GetMaxHealth();
-        m_curStamina = GetStaminaRegen();
-        if (m_curStamina > m_maxStamina)
+
+        if (m_startWithMaxStamina)
         {
-            m_curStamina = m_maxStamina;
+            m_curStamina = GetMaxStamina();
+        }
+        else
+        {
+            m_curStamina = GetStaminaRegen();
+        }
+
+        if (m_curStamina > GetMaxStamina())
+        {
+            m_curStamina = GetMaxStamina();
         }
     }
 

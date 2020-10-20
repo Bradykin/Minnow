@@ -467,7 +467,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             m_fogOfWar.SetActive(true);
 
-            if (GetGameTile().m_isSoftFog)
+            if (GetGameTile().m_isSoftFog || GetGameTile().GetTerrain().IsEventTerrain())
             {
                 m_fogRenderer.color = new Color(m_fogRenderer.color.r, m_fogRenderer.color.g, m_fogRenderer.color.b, 0.35f);
             }
