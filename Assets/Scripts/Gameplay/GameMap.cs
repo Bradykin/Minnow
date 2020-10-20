@@ -48,7 +48,7 @@ public abstract class GameMap : GameElementBase
 
     public virtual int GetNumEnemiesToSpawn()
     {
-        return 6;
+        return 8;
     }
 
     protected abstract void FillMapEvents();
