@@ -19,7 +19,7 @@ public class ContentElvenSentinel : GameUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)), false);
 
         m_name = "Elven Sentinel";
-        m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.";
+        m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
