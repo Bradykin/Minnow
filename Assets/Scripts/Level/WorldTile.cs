@@ -393,7 +393,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
-        if (m_gameTile.GetTerrain().IsEventTerrain())
+        if (m_gameTile.GetTerrain() != null && m_gameTile.GetTerrain().IsEventTerrain())
         {
             Globals.m_hoveredTile = this;
         }
