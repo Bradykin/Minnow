@@ -21,7 +21,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         m_name = "Dark Warrior";
         m_desc = "An elite foe.  Defeat it and gain a relic!";
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BuffElites))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = Mathf.FloorToInt(m_maxHealth * 2f);
             m_power = Mathf.FloorToInt(m_power * 1.5f);

@@ -581,39 +581,19 @@ public static class UIHelper
         }
         if (chaosVal == 2)
         {
-            return "Increase enemy power by 50%.";
+            return "Normal enemies are much stronger.";
         }
         if (chaosVal == 3)
         {
-            return "Elites are tougher!";
+            return "Map events will shake up the area.";
         }
         if (chaosVal == 4)
         {
-            return "Some new enemies will spawn during the waves.";
+            return "Normal enemies have new abilities.";
         }
         if (chaosVal == 5)
         {
-            return "Map events will shake up the area.";
-        }
-        if (chaosVal == 6)
-        {
-            return "Enemies have new or improved abilities.";
-        }
-        if (chaosVal == 7)
-        {
-            return "<b>Not Yet Implemented</b> - The terrain is different.";
-        }
-        if (chaosVal == 8)
-        {
-            return "<b>Not Yet Implemented</b> - 3 Chaos Obelisks spawn at the start of the map.";
-        }
-        if (chaosVal == 9)
-        {
-            return "Enemies have 50% more health.";
-        }
-        if (chaosVal == 10)
-        {
-            return "The final boss is tougher.";
+            return "Face the true version of bosses and elites.";
         }
 
         return "";

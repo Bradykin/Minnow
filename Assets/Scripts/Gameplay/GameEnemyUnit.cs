@@ -26,12 +26,12 @@ public class GameEnemyUnit : GameUnit
     {
         base.LateInit();
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyHealth))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyStrength))
         {
             m_maxHealth = Mathf.FloorToInt(m_maxHealth * 1.5f);
         }
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyPower))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyStrength))
         {
             m_power = Mathf.FloorToInt(m_power * 1.5f);
         }

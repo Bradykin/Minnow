@@ -6,7 +6,7 @@ public class ContentLichEnemy : GameEnemyUnit
 {
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BuffBoss))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = 700;
             m_maxStamina = 8;

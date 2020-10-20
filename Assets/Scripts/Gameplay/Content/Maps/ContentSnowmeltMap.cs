@@ -20,7 +20,7 @@ public class ContentSnowmeltMap : GameMap
 
     protected override void FillMapEvents()
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
             AddMapEvent(new ContentSnapFreezeMapEvent(0), 3);
             AddMapEvent(new ContentSnapThawMapEvent(0), 4);
@@ -61,11 +61,7 @@ public class ContentSnowmeltMap : GameMap
         m_spawnPool.Add(new ContentToadEnemy(null));
         m_spawnPool.Add(new ContentWerewolfEnemy(null));
         m_spawnPool.Add(new ContentZombieEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentShadeEnemy(null));
-            m_spawnPool.Add(new ContentYetiEnemy(null));
-        }
+        m_spawnPool.Add(new ContentShadeEnemy(null));
+        m_spawnPool.Add(new ContentYetiEnemy(null));
     }
 }

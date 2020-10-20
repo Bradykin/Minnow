@@ -20,7 +20,7 @@ public class ContentCrimsonIslandsMap : GameMap
 
     protected override void FillMapEvents()
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddMapEvents))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
             //AddMapEvent(new ContentDrySeasonMapEvent(), 2); //nmartino - Needs High/Low tide map events.
         }
@@ -53,10 +53,6 @@ public class ContentCrimsonIslandsMap : GameMap
         m_spawnPool.Add(new ContentSpinnerEnemy(null));
         m_spawnPool.Add(new ContentYetiEnemy(null));
         m_spawnPool.Add(new ContentShadeEnemy(null));
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.ModifySpawnPool))
-        {
-            m_spawnPool.Add(new ContentZombieEnemy(null));
-        }
+        m_spawnPool.Add(new ContentZombieEnemy(null));
     }
 }
