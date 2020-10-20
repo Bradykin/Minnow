@@ -17,6 +17,7 @@ public abstract class GameMap : GameElementBase
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
     protected int m_playerUnlockLevel;
+    protected bool m_fogSpawningActive = true;
 
     protected void Init()
     {
@@ -26,6 +27,11 @@ public abstract class GameMap : GameElementBase
     public string GetDesc()
     {
         return m_desc;
+    }
+
+    public bool GetFogSpawningActive()
+    {
+        return m_fogSpawningActive;
     }
 
     public void TriggerStartMap()

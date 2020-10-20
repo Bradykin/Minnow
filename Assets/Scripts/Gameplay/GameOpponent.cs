@@ -117,7 +117,9 @@ public class GameOpponent : ITurns
     private void HandleSpawn()
     {
         //Generate number of enemies to spawn
-        int numEnemiesToSpawn = GameHelper.GetGameController().GetCurMap().GetNumEnemiesToSpawn();
+        GameMap curMap = GameHelper.GetGameController().GetCurMap();
+        int numEnemiesToSpawn = curMap.GetNumEnemiesToSpawn();
+        bool fogSpawningActive = curMap.GetFogSpawningActive();
 
         List<GameTile> tilesAtFogEdge = WorldGridManager.Instance.GetFogBorderGameTiles();
         for (int i = 0; i < tilesAtFogEdge.Count; i++)
@@ -129,18 +131,57 @@ public class GameOpponent : ITurns
         }
 
         //handle spawning of bosses and elites
-        if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+        if (fogSpawningActive)
         {
-            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-            SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-            WorldController.Instance.SetHasSpawnedBoss(true);
-        }
+            if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            {
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
+                SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
+                WorldController.Instance.SetHasSpawnedBoss(true);
+            }
 
-        if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            {
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
+                SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
+                WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+            }
+        }
+        else
         {
-            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
-            SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-            WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+            for (int i = 0; i < m_spawnPoints.Count; i++)
+            {
+                GameSpawnPoint temp = m_spawnPoints[i];
+                int randomIndex = UnityEngine.Random.Range(i, m_spawnPoints.Count);
+                m_spawnPoints[i] = m_spawnPoints[randomIndex];
+                m_spawnPoints[randomIndex] = temp;
+            }
+
+            if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            {
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
+                for (int i = 0; i < m_spawnPoints.Count; i++)
+                {
+                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
+                    {
+                        break;
+                    }
+                }
+                WorldController.Instance.SetHasSpawnedBoss(true);
+            }
+
+            if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            {
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
+                for (int i = 0; i < m_spawnPoints.Count; i++)
+                {
+                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
+                    {
+                        break;
+                    }
+                }
+                WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+            }
         }
 
         //Try spawning at any monster dens
@@ -170,12 +211,15 @@ public class GameOpponent : ITurns
             }
         }
 
-        //Try spawning at edge of fog
-        for (int i = 0; i < numEnemiesToSpawn; i++)
+        if (fogSpawningActive)
         {
-            //Spawn enemy in edge of fog
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
-            SpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
+            //Try spawning at edge of fog
+            for (int i = 0; i < numEnemiesToSpawn; i++)
+            {
+                //Spawn enemy in edge of fog
+                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+                SpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
+            }
         }
     }
 
@@ -242,6 +286,29 @@ public class GameOpponent : ITurns
         }
 
         return false;
+    }
+
+    private bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
+    {
+        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        {
+            return false;
+        }
+
+        if (!spawnPoint.m_tile.m_isFog && Constants.FogOfWar)
+        {
+            return false;
+        }
+
+        if (newEnemyUnit == null)
+        {
+            return false;
+        }
+
+        spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
+        m_controlledUnits.Add(newEnemyUnit);
+
+        return true;
     }
 
     private void SpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)

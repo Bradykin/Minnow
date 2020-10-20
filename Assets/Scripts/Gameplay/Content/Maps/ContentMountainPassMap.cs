@@ -12,6 +12,7 @@ public class ContentMountainPassMap : GameMap
         m_difficulty = MapDifficulty.Easy;
 
         m_id = 6;
+        m_fogSpawningActive = false;
 
         Init();
     }
