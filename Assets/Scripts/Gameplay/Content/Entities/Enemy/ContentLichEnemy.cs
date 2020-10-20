@@ -29,7 +29,7 @@ public class ContentLichEnemy : GameEnemyUnit
         m_maxWave = Constants.FinalWaveNum;
 
         m_name = "Lich";
-        m_desc = "The final boss.  Kill it, and win.";
+        m_desc = "The final boss.  Kill it, and win.\n";
 
         AddKeyword(new GameRangeKeyword(3), false);
         AddKeyword(new GameFlyingKeyword(), false);

@@ -70,7 +70,7 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
 
         if (m_cardLevel >= 2)
         {
-            //Also fill curAP
+            //Also fill curStamina
         }
     }
 }

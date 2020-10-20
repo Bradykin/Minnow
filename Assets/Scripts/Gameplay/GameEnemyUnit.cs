@@ -36,8 +36,7 @@ public class GameEnemyUnit : GameUnit
             m_power = Mathf.FloorToInt(m_power * 1.5f);
         }
 
-        m_curHealth = GetMaxHealth();
-        m_curStamina = GetMaxStamina(); //Enemy units start at max Stamina.  This helps them get to the player base faster.
+        SetHealthStaminaValues();
 
         m_typeline = Typeline.Monster;
     }

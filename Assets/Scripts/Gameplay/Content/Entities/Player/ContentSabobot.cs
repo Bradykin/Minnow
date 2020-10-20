@@ -14,6 +14,7 @@ public class ContentSabobot : GameUnit
         m_maxStamina = 8;
         m_staminaRegen = 2;
         m_power = 1;
+        m_startWithMaxStamina = true;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
@@ -27,13 +28,6 @@ public class ContentSabobot : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
-    }
-
-    public override void OnSummon()
-    {
-        base.OnSummon();
-
-        m_curStamina = m_maxStamina;
     }
 }
 

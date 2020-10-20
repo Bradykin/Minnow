@@ -18,7 +18,7 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Lizardman";
-        m_desc = "Lizardmen move on water tiles without spending Stamina.";
+        m_desc = "Lizardmen move on water tiles without spending Stamina.\n";
 
         m_minWave = 5;
         m_maxWave = 6;

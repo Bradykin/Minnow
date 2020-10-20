@@ -17,7 +17,7 @@ public class ContentToadEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Toad";
-        m_desc = "On hit, drains Stamina to 1!";
+        m_desc = "On hit, drains Stamina to 1!\n";
 
         AddKeyword(new GameDamageShieldKeyword(1), false);
 

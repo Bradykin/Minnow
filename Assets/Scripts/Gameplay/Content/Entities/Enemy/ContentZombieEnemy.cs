@@ -26,7 +26,7 @@ public class ContentZombieEnemy : GameEnemyUnit
         m_maxWave = 6;
 
         m_name = "Zombie";
-        m_desc = "On hit, turns the other unit into a zombie!\nZombies can't attack zombies.";
+        m_desc = "On hit, turns the other unit into a zombie!\nZombies can't attack zombies.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

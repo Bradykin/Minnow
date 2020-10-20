@@ -48,7 +48,7 @@ public abstract class GameMap : GameElementBase
 
     public virtual int GetNumEnemiesToSpawn()
     {
-        return 10 + GameHelper.GetGameController().m_waveNum;
+        return 6;
     }
 
     protected abstract void FillMapEvents();

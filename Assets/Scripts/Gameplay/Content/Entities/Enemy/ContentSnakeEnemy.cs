@@ -18,7 +18,7 @@ public class ContentSnakeEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Snake";
-        m_desc = "On hit, permanently give -2/-0.";
+        m_desc = "On hit, permanently give -2/-0.\n";
 
         m_minWave = 4;
         m_maxWave = 4;
