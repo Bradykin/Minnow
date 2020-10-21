@@ -102,6 +102,7 @@ public class GameController
 
     private void OnEndWave()
     {
+        GetCurMap().TriggerMapEvents(m_waveNum, ScheduledActionTime.EndOfWave);
         m_waveNum++;
         m_currentWaveTurn = 1;
         m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);

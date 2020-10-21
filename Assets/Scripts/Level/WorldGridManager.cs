@@ -732,6 +732,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         {
             player.m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
         }
+
+        for (int i = 0; i < player.m_controlledUnits.Count; i++)
+        {
+            player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
+        }
     }
 
     //============================================================================================================//

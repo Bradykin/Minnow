@@ -230,6 +230,11 @@ public class GameUnitFactory
         return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
+    public static GameUnit GetEnemyUnitClone(GameUnit unit)
+    {
+        return (GameUnit)Activator.CreateInstance(unit.GetType());
+    }
+
     public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit enemyUnit, GameOpponent gameOpponent)
     {
         return (GameEnemyUnit)Activator.CreateInstance(enemyUnit.GetType(), gameOpponent);

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentIcequake : GameMapEvent
+public class ContentIcequakeEvent : GameMapEvent
 {
     private int m_markerToCheck;
 
-    public ContentIcequake(int markerToCheck)
+    public ContentIcequakeEvent(int markerToCheck)
     {
         m_name = "Icequake";
         m_desc = "An earthquake has shook the land, breaking some of the ice around you!";
