@@ -56,6 +56,12 @@ public class GameOpponent : ITurns
         {
             GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
+            if (unit.m_isDead)
+            {
+                units.Remove(unit);
+                continue;
+            }
+
             unit.m_AIGameEnemyUnit.SetupTurn();
 
             if (unit.m_AIGameEnemyUnit.UseSteppedOutTurn)
