@@ -18,7 +18,14 @@ public class ContentFrozenLakeMap : GameMap
 
     protected override void FillMapEvents()
     {
-        //No events, left blank by default.  No Chaos on this map.
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
+            AddMapEvent(new ContentIcequake(0), 1);
+            AddMapEvent(new ContentIcequake(0), 2);
+            AddMapEvent(new ContentIcequake(0), 3);
+            AddMapEvent(new ContentIcequake(0), 4);
+            AddMapEvent(new ContentIcequake(0), 5);
+        }
     }
 
     protected override void FillExclusionCardPool()
