@@ -47,7 +47,12 @@ public class UILevelSelectChaosButton : UIElementBase
             return false;
         }
 
-        if (!m_isIncrease && Globals.m_curChaos == 0)
+        if (!m_isIncrease && Globals.m_curChaos == 1)
+        {
+            return false;
+        }
+
+        if (UILevelSelectController.Instance.m_curMap.m_difficulty == MapDifficulty.Introduction)
         {
             return false;
         }
