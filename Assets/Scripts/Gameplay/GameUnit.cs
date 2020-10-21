@@ -633,10 +633,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public virtual int GetStaminaToAttack()
     {
-        int staminaToAttack = m_staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
+        int staminaToAttack = m_staminaToAttack;
+        if (GetTeam() == Team.Player)
         {
-            staminaToAttack = Mathf.Max(1, staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+            staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+
+            if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+            {
+                staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>();
+            }
         }
 
         return Mathf.Max(1, staminaToAttack);
@@ -790,46 +795,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         }
 
         return toReturn;
-    }
-
-    public void AddMaxHealth(int toAdd)
-    {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
-
-        m_maxHealth += toAdd;
-
-        if (toAdd > 0)
-        {
-            m_curHealth += toAdd;
-        }
-
-        if (!HasCustomName())
-        {
-            SetCustomName();
-        }
-    }
-
-    public void RemoveMaxHealth(int toLose)
-    {
-        UIHelper.CreateWorldElementNotification(GetName() + " loses " + toLose + " Health.", GetTeam() == Team.Enemy, m_gameTile.GetWorldTile().gameObject);
-
-        m_maxHealth -= toLose;
-
-        if (m_maxHealth < 1)
-        {
-            UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
-            m_maxHealth = 1;
-        }
-
-        if (m_curHealth > m_maxHealth)
-        {
-            m_curHealth = m_maxHealth;
-        }
-
-        if (!HasCustomName())
-        {
-            SetCustomName();
-        }
     }
 
     public int GetMaxStamina()
@@ -1048,11 +1013,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         GainStamina(staminaToRegen, true);
     }
 
-    public void AddPower(int toAdd)
+    public void AddStats(int powerToAdd, int healthToAdd)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gains " + toAdd + " Power.", true, m_gameTile.GetWorldTile().gameObject);
+        UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
 
-        m_power += toAdd;
+        m_power += powerToAdd;
+        m_maxHealth += healthToAdd;
+
+        if (healthToAdd > 0)
+        {
+            m_curHealth += healthToAdd;
+        }
 
         if (!HasCustomName())
         {
@@ -1060,11 +1031,23 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         }
     }
 
-    public void RemovePower(int toRemove)
+    public void RemoveStats(int powerToRemove, int healthToRemove)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " lower " + toRemove + " Power.", true, m_gameTile.GetWorldTile().gameObject);
+        UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", true, m_gameTile.GetWorldTile().gameObject);
 
-        m_power -= toRemove;
+        m_power += powerToRemove;
+        m_maxHealth -= healthToRemove;
+
+        if (m_maxHealth < 1)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
+            m_maxHealth = 1;
+        }
+
+        if (m_curHealth > m_maxHealth)
+        {
+            m_curHealth = m_maxHealth;
+        }
     }
 
     public bool HasCustomName()

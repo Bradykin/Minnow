@@ -51,8 +51,7 @@ public class ContentPurgeCard : GameCardSpellBase
         {
             if (targetUnit.GetKeywordHolderForRead().GetNumKeywords() > 0)
             {
-                targetUnit.AddPower(GetSpellValue());
-                targetUnit.AddMaxHealth(GetSpellValue());
+                targetUnit.AddStats(GetSpellValue(), GetSpellValue());
             }
         }
 

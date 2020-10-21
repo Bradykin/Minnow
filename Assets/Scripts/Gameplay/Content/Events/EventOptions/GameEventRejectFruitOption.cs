@@ -25,8 +25,7 @@ public class GameEventRejectFruitOption : GameEventOption
     {
         GameUnit unit = m_tile.m_occupyingUnit;
 
-        unit.AddPower(m_powerIncrease);
-        unit.AddMaxHealth(m_healthIncrease);
+        unit.AddStats(m_powerIncrease, m_healthIncrease);
         unit.GainStamina(m_staminaIncrease);
 
         unit.AddKeyword(new GameKnowledgeableKeyword(new GameLoseStatsAction(unit, m_knowledgeableDecrease, m_knowledgeableDecrease)));

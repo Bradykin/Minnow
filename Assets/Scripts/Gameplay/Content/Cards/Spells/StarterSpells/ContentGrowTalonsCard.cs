@@ -43,11 +43,13 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddPower(GetSpellValue());
+        int powerToAdd = GetSpellValue();
+        int healthToAdd = 0;
         if (m_cardLevel >= 2)
         {
-            targetUnit.AddMaxHealth(GetSpellValue());
+            healthToAdd = GetSpellValue();
         }
+        targetUnit.AddStats(powerToAdd, healthToAdd);
     }
 
     public override void SetCardLevel(int level)

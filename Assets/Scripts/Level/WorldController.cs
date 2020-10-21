@@ -276,7 +276,7 @@ public class WorldController : Singleton<WorldController>
         //Do Cleanup
         m_hasSpawnedBoss = false;
 
-        //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
+        SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
     public void FocusNextPlayerUnit()
