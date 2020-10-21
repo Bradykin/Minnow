@@ -11,8 +11,8 @@ public static class Globals
     public enum ChaosLevels : int
     {
         AddCards = 1,
-        EnemyStrength = 2,
-        MapEvents = 3,
+        MapEvents = 2,
+        EnemyStrength = 3,
         AddEnemyAbility = 4,
         BossStrength = 5
     }
