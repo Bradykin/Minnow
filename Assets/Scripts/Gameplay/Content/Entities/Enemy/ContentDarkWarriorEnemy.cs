@@ -35,7 +35,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override void Die()
+    public override void Die(bool canRevive = true)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -46,7 +46,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
 
         UIRelicSelectController.Instance.Init(relicOne, relicTwo);
 
-        base.Die();
+        base.Die(canRevive);
     }
 
     private int GetHealthModByWave()

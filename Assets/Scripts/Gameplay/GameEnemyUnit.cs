@@ -45,11 +45,11 @@ public class GameEnemyUnit : GameUnit
 
     //============================================================================================================//
 
-    public override void Die()
+    public override void Die(bool canRevive = true)
     {
         GameHelper.GetGameController().AddPlaythroughExperience(m_experienceAmount);
 
-        base.Die();
+        base.Die(canRevive);
         m_gameOpponentController.m_controlledUnits.Remove(this);
     }
 }

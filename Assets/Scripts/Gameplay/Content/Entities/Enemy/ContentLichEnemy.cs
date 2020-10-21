@@ -42,10 +42,10 @@ public class ContentLichEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override void Die()
+    public override void Die(bool canRevive = true)
     {
         WorldController.Instance.WinGame();
 
-        base.Die();
+        base.Die(canRevive);
     }
 }

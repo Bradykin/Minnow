@@ -335,6 +335,20 @@ public class GameTerrainFactory
         return toReturn;
     }
 
+    public static GameTerrainBase GetIceCrackedTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetIceCrackedTerrainType() == null)
+        {
+            Debug.LogError("Missing ice cracked terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetIceCrackedTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
 
     public static GameTerrainBase GetNextTerrainList()
     {

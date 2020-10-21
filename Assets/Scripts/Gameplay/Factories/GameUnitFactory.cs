@@ -217,7 +217,7 @@ public class GameUnitFactory
             Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
         }
 
-        list = list.Where(u => waveList.Any(l => l.GetType() == u.GetType())).ToList();
+        list = list.Where(u => waveList.Any(l => l.GetType() == u.GetType() && m_spawnPoint.m_tile.IsPassable(l, false))).ToList();
 
         if (list.Count == 0)
         {

@@ -17,8 +17,9 @@ public class ContentIceCrackedTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isIce = true;
+        m_isIceCracked = true;
 
-        m_crackingIceTerrainType = typeof(ContentIceWaterTerrain);
+        m_iceCrackedTerrainType = typeof(ContentIceWaterTerrain);
 
         LateInit();
     }

@@ -245,13 +245,22 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             if (Globals.m_levelCreatorEraserMode)
             {
                 GameTile gameTile = GetGameTile();
-                if (gameTile.GetTerrain() != null)
-                    gameTile.ClearTerrain();
-                if (gameTile.GetBuilding() != null)
-                    gameTile.ClearBuilding();
-                if (gameTile.m_spawnPoint != null)
+                if (gameTile.m_gameEventMarkers.Count > 0)
+                {
+                    gameTile.m_gameEventMarkers.Clear();
+                }
+                else if (gameTile.m_spawnPoint != null)
+                {
                     gameTile.ClearSpawnPoint();
-                gameTile.m_gameEventMarkers.Clear();
+                }
+                else if (gameTile.GetBuilding() != null)
+                {
+                    gameTile.ClearBuilding();
+                }
+                else if (gameTile.GetTerrain() != null)
+                {
+                    gameTile.ClearTerrain();
+                }
             }
             else
             {
