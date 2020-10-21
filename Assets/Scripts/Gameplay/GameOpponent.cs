@@ -162,6 +162,11 @@ public class GameOpponent : ITurns
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
                 {
+                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
+                    {
+                        continue;
+                    }
+                    
                     if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;
@@ -175,6 +180,11 @@ public class GameOpponent : ITurns
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
                 {
+                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
+                    {
+                        continue;
+                    }
+
                     if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;

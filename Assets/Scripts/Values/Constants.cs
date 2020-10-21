@@ -92,8 +92,8 @@ public static class Constants
     public static int HalfDunesMovementCost = 1;
     public static int HalfDunesDamageTaken = 1;
     public static int DunesDamageReduction = 0;
-    public static int DunesMovementCost = 2;
-    public static int DunesDamageTaken = 2;
+    public static int DunesMovementCost = 3;
+    public static int DunesDamageTaken = 0;
 
     //Snow unique tiles
     public static int SnowBankDamageReduction = 0;
