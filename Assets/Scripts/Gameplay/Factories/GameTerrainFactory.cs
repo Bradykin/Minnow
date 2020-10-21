@@ -349,6 +349,20 @@ public class GameTerrainFactory
         return toReturn;
     }
 
+    public static GameTerrainBase GetPreviousTerrainList()
+    {
+        if (!m_hasInit)
+            Init();
+
+        if (m_currentTerrainListIndex == 0)
+            m_currentTerrainListIndex = m_terrain.Count - 1;
+        else
+            m_currentTerrainListIndex--;
+
+        m_currentTerrainIndex = 0;
+
+        return m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex];
+    }
 
     public static GameTerrainBase GetNextTerrainList()
     {
@@ -363,6 +377,20 @@ public class GameTerrainFactory
         m_currentTerrainIndex = 0;
 
         return m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex];
+    }
+
+    public static GameTerrainBase GetPreviousTerrain()
+    {
+        if (!m_hasInit)
+            Init();
+
+        if (m_currentTerrainIndex == 0)
+            m_currentTerrainIndex = m_terrain[m_currentTerrainListIndex].Value.Count - 1;
+        else
+            m_currentTerrainIndex--;
+
+
+        return (GameTerrainBase)Activator.CreateInstance(m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex].GetType());
     }
 
     public static GameTerrainBase GetNextTerrain()

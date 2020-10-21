@@ -48,6 +48,11 @@ public class WorldController : Singleton<WorldController>
 
     void Update()
     {
+        if (!m_isInGame)
+        {
+            return;
+        }
+        
         HandlePlayerHand();
 
         if (Input.GetKeyUp(KeyCode.Q))
