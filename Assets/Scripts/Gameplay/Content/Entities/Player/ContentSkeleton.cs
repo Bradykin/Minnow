@@ -38,7 +38,7 @@ public class ContentSkeleton : GameUnit
 
         if (isReviving)
         {
-            this.AddMaxHealth(m_healthBonus);
+            this.AddStats(0, m_healthBonus);
         }
 
         return isReviving;

@@ -39,8 +39,7 @@ public class ContentWildfolk : GameUnit
     {
         base.OnSummon();
 
-        AddPower(3);
-        AddMaxHealth(10);
+        AddStats(3, 10);
 
         if (m_keywords.Count == 0)
         {

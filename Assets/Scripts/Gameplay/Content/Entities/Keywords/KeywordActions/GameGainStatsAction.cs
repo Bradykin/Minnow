@@ -22,8 +22,7 @@ public class GameGainStatsAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddPower(m_powerToGain);
-        m_unit.AddMaxHealth(m_healthToGain);
+        m_unit.AddStats(m_powerToGain, m_healthToGain);
     }
 
     public override void AddAction(GameAction toAdd)

@@ -40,14 +40,13 @@ public class GameDeck
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddCards))
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
-                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard());
+                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Common));
             }
-            for (int i = 0; i < 1; i++)
-            {
-                m_cards.Add(GameCardFactory.GetRandomStandardUnitCard());
-            }
+
+            m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon));
+            m_cards.Add(GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon));
         }
     }
 

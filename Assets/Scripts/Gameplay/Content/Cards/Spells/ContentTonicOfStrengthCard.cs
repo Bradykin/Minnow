@@ -31,7 +31,7 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddPower(m_powerToGain);
+        targetUnit.AddStats(m_powerToGain, 0);
         targetUnit.GainStamina(m_staminaGain);
     }
 }

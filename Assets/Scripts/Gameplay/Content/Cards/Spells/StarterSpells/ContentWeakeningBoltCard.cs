@@ -57,7 +57,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
             GameHelper.GetPlayer().DrawCard();
         }
 
-        targetUnit.RemovePower(m_powerToDrain);
+        targetUnit.RemoveStats(m_powerToDrain, 0);
     }
 
     public override void SetCardLevel(int level)

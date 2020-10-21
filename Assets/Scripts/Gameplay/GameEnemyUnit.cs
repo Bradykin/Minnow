@@ -26,6 +26,8 @@ public class GameEnemyUnit : GameUnit
     {
         base.LateInit();
 
+        m_startWithMaxStamina = true;
+
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyStrength))
         {
             m_maxHealth = Mathf.FloorToInt(m_maxHealth * 1.5f);

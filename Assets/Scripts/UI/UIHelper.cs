@@ -581,11 +581,11 @@ public static class UIHelper
         }
         if (chaosVal == 2)
         {
-            return "Normal enemies are much stronger.";
+            return "Map events will shake up the area.";
         }
         if (chaosVal == 3)
         {
-            return "Map events will shake up the area.";
+            return "Normal enemies are much stronger.";
         }
         if (chaosVal == 4)
         {

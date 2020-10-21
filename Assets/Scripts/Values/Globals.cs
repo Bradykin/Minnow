@@ -11,8 +11,8 @@ public static class Globals
     public enum ChaosLevels : int
     {
         AddCards = 1,
-        EnemyStrength = 2,
-        MapEvents = 3,
+        MapEvents = 2,
+        EnemyStrength = 3,
         AddEnemyAbility = 4,
         BossStrength = 5
     }
@@ -56,7 +56,7 @@ public static class Globals
     public static int m_fletchingCount = 0;
     public static int m_totemOfTheWolfTurn = -1;
     public static int m_goldPerShivKill = 0;
-    public static int m_curChaos = 0;
+    public static int m_curChaos = 1;
     public static int m_tempSpellpower = 0;
     public static bool m_worthySacrificeEvent = false;
 

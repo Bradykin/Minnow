@@ -103,6 +103,16 @@ public static class GameHelper
 
     public static bool IsValidChaosLevel(Globals.ChaosLevels toCheck)
     {
+        if (WorldController.Instance.m_gameController == null)
+        {
+            return false;
+        }
+
+        if (WorldController.Instance.m_gameController.m_map.m_difficulty == MapDifficulty.Introduction)
+        {
+            return false;
+        }
+
         if (Globals.m_curChaos >= (int)toCheck)
         {
             return true;

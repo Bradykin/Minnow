@@ -42,6 +42,6 @@ public class ContentEncouragementCard : GameCardSpellBase
             return;
         }
 
-        targetUnit.AddMaxHealth(3);
+        targetUnit.AddStats(0, 3);
     }
 }

@@ -31,7 +31,7 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddMaxHealth(m_healthGain);
+        targetUnit.AddStats(0, m_healthGain);
         targetUnit.GainStamina(m_staminaGain);
     }
 }

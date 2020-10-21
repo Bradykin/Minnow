@@ -26,7 +26,7 @@ public class GameController
     public int m_currentWaveTurn;
     private int m_currentWaveEndTurn;
 
-    private GameMap m_map;
+    public GameMap m_map;
 
     private int m_playthroughExperienceAmount;
 

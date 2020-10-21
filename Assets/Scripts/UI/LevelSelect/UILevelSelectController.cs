@@ -37,14 +37,27 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
         {
             m_infoObj.SetActive(true);
 
-            m_chaosTitleText.text = "Chaos";
             m_nameText.text = m_curMap.m_name;
             m_descText.text = m_curMap.GetDesc();
             m_difficultyText.text = UIHelper.GetDifficultyText(m_curMap.m_difficulty);
             m_difficultyText.color = UIHelper.GetDifficultyTextColor(m_curMap.m_difficulty);
 
-            m_chaosVal.text = "" + Globals.m_curChaos;
-            m_chaosText.text = UIHelper.GetChaosDesc(Globals.m_curChaos);            
+            if (m_curMap.m_difficulty == MapDifficulty.Introduction)
+            {
+                m_chaosTitleText.gameObject.SetActive(false);
+                m_chaosVal.gameObject.SetActive(false);
+                m_chaosText.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_chaosTitleText.gameObject.SetActive(true);
+                m_chaosVal.gameObject.SetActive(true);
+                m_chaosText.gameObject.SetActive(true);
+
+                m_chaosTitleText.text = "Chaos";
+                m_chaosVal.text = "" + Globals.m_curChaos;
+                m_chaosText.text = UIHelper.GetChaosDesc(Globals.m_curChaos);
+            }          
 
             m_startGameButton.SetActive(true);
         }

@@ -212,11 +212,49 @@ public static class GameCardFactory
         return GetCardFromList(checkList, exclusionList);
     }
 
+    public static GameCard GetRandomStandardUnitCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
+    {
+        if (rarity == GameElementBase.GameRarity.Common)
+        {
+            return GetCardFromList(m_commonUnitCards, exclusionList);
+        }
+        else if (rarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return GetCardFromList(m_uncommonUnitCards, exclusionList);
+        }
+        else if (rarity == GameElementBase.GameRarity.Rare)
+        {
+            return GetCardFromList(m_rareUnitCards, exclusionList);
+        }
+
+        Debug.LogError("Invalid rarity selected for getting a random card.");
+        return null;
+    }
+
     public static GameCard GetRandomStandardSpellCard(List<GameCard> exclusionList = null)
     {
         List<GameCard> checkList = GetCheckList(m_commonSpellCards, m_uncommonSpellCards, m_rareSpellCards);
 
         return GetCardFromList(checkList, exclusionList);
+    }
+
+    public static GameCard GetRandomStandardSpellCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
+    {
+        if (rarity == GameElementBase.GameRarity.Common)
+        {
+            return GetCardFromList(m_commonSpellCards, exclusionList);
+        }
+        else if (rarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return GetCardFromList(m_uncommonSpellCards, exclusionList);
+        }
+        else if (rarity == GameElementBase.GameRarity.Rare)
+        {
+            return GetCardFromList(m_rareSpellCards, exclusionList);
+        }
+
+        Debug.LogError("Invalid rarity selected for getting a random card.");
+        return null;
     }
 
     private static List<GameCard> GetCheckList(List<GameCard> commonCards, List<GameCard> uncommonCards, List<GameCard> rareCards)

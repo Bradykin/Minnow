@@ -22,8 +22,7 @@ public class GameLoseStatsAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.RemovePower(m_powerToLose);
-        m_unit.RemoveMaxHealth(m_healthToLose);
+        m_unit.RemoveStats(m_powerToLose, m_healthToLose);
     }
 
     public override void AddAction(GameAction toAdd)

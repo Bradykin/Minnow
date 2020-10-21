@@ -26,8 +26,7 @@ public class GameEventChemistSmallStatsOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingUnit.AddPower(m_powerIncrease);
-        m_tile.m_occupyingUnit.AddMaxHealth(m_maxHealthIncrease);
+        m_tile.m_occupyingUnit.AddStats(m_powerIncrease, m_maxHealthIncrease);
 
         EndEvent();
     }

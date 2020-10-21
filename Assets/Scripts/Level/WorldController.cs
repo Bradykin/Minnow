@@ -26,6 +26,8 @@ public class WorldController : Singleton<WorldController>
 
         m_playerUnitFocusIndex = 0;
         Globals.m_selectedCard = null;
+
+        AudioBackgroundController.Instance.StartBackgroundMusic(map);
     }
 
     public void EndLevel(PlaythroughEndType endType)
@@ -276,7 +278,7 @@ public class WorldController : Singleton<WorldController>
         //Do Cleanup
         m_hasSpawnedBoss = false;
 
-        //SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
+        SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
 
     public void FocusNextPlayerUnit()

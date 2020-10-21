@@ -44,7 +44,7 @@ public class ContentSnakeEnemy : GameEnemyUnit
 
         if (damageTaken > 0)
         {
-            other.RemovePower(2);
+            other.RemoveStats(2, 0);
         }
 
         return damageTaken;

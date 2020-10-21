@@ -69,8 +69,7 @@ public class GameReturnToDeckBuffedAction : GameAction
 
     public override void DoAction()
     {
-        m_retuningUnit.AddPower(m_powerBuff);
-        m_retuningUnit.AddMaxHealth(m_healthBuff);
+        m_retuningUnit.AddStats(m_powerBuff, m_healthBuff);
 
         GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(m_retuningUnit);
         GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);

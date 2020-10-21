@@ -19,9 +19,12 @@ public abstract class GameMap : GameElementBase
     protected int m_playerUnlockLevel;
     protected bool m_fogSpawningActive = true;
 
+    public AudioClip m_backgroundMusic;
+
     protected void Init()
     {
         m_icon = UIHelper.GetIconMap(m_name);
+        m_backgroundMusic = AudioHelper.GetBackgroundMusic(m_name);
     }
 
     public string GetDesc()
