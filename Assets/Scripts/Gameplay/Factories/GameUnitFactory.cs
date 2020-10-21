@@ -51,6 +51,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentOverlord());
         m_playerUnits.Add(new ContentRanger());
         m_playerUnits.Add(new ContentRaptor());
+        m_playerUnits.Add(new ContentRoyalCaravan());
         m_playerUnits.Add(new ContentSabobot());
         m_playerUnits.Add(new ContentShadowWarlock());
         m_playerUnits.Add(new ContentSkeleton());

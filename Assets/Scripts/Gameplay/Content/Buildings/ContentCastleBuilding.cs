@@ -8,7 +8,7 @@ public class ContentCastleBuilding : GameBuildingBase
     public ContentCastleBuilding()
     {
         m_name = "Castle";
-        m_desc = "This is your home base.  Lose this, and it's game over!";
+        m_desc = "This is your home base. Lose this, and it's game over!";
         m_rarity = GameRarity.Starter;
         m_buildingType = BuildingType.Critical;
 
@@ -21,7 +21,7 @@ public class ContentCastleBuilding : GameBuildingBase
 
     protected override void Die()
     {
-        m_isDestroyed = true;
+        base.Die();
 
         GameHelper.ReturnToLevelSelectFromLevelScene(true);
     }
