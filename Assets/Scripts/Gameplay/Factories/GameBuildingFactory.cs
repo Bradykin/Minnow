@@ -28,6 +28,21 @@ public static class GameBuildingFactory
         m_hasInit = true;
     }
 
+    public static GameBuildingBase GetPreviousBuilding(GameBuildingBase currentBuilding)
+    {
+        if (!m_hasInit)
+            Init();
+
+        int r = m_buildings.FindIndex(t => t.GetType() == currentBuilding.GetType());
+
+        if (r == 0)
+            r = m_buildings.Count - 1;
+        else
+            r--;
+
+        return (GameBuildingBase)Activator.CreateInstance(m_buildings[r].GetType());
+    }
+
     public static GameBuildingBase GetNextBuilding(GameBuildingBase currentBuilding)
     {
         if (!m_hasInit)
@@ -36,7 +51,7 @@ public static class GameBuildingFactory
         int r = m_buildings.FindIndex(t => t.GetType() == currentBuilding.GetType());
 
         if (r == m_buildings.Count - 1)
-            r = 1;
+            r = 0;
         else
             r++;
 

@@ -241,7 +241,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         return shouldRevive;
     }
 
-    public virtual void Die()
+    public virtual void Die(bool canRevive = true)
     {
         if (m_isDead)
         {
@@ -250,7 +250,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
         bool willSetDead = true;
 
-        bool shouldRevive = ShouldRevive();
+        bool shouldRevive = canRevive && ShouldRevive();
 
         if (shouldRevive)
         {
@@ -322,10 +322,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
                 willSetDead = false;
             }
+
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
         }
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
+
+        if (GetGameTile().GetTerrain().IsIceCracked())
+        {
+            GetGameTile().SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(GetGameTile().GetTerrain()));
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
+                    surroundingTiles[i].m_occupyingUnit.GetKeyword<GameFlyingKeyword>() == null && 
+                    surroundingTiles[i].m_occupyingUnit.GetKeyword<GameWaterwalkKeyword>() == null)
+                {
+                    surroundingTiles[i].m_occupyingUnit.Die();
+                }
+                else if (surroundingTiles[i].GetTerrain().IsIce())
+                {                    
+                    surroundingTiles[i].SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(surroundingTiles[i].GetTerrain()));
+                }
+            }
+        }
 
         if (m_worldUnit == Globals.m_selectedUnit)
         {
@@ -566,7 +586,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             }
         }
 
-        if (other.m_isDead)
+        if (other.m_isDead && !m_isDead)
         {
             List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
 

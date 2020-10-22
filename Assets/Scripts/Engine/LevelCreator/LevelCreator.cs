@@ -104,6 +104,56 @@ public class LevelCreator : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))
+            {
+                Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetPreviousTerrain();
+                m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.m_name;
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
+            {
+                Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetPreviousBuilding(Globals.m_currentlyPaintingBuilding);
+                m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+            {
+                Globals.m_currentlyPaintingNumberIndex--;
+                if (Globals.m_currentlyPaintingNumberIndex < 0)
+                {
+                    Globals.m_currentlyPaintingNumberIndex = 5;
+                }
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(int))
+            {
+                Globals.m_currentlyPaintingNumberIndex--;
+                if (Globals.m_currentlyPaintingNumberIndex < 0)
+                {
+                    Globals.m_currentlyPaintingNumberIndex = 5;
+                }
+
+                if (Globals.m_currentlyPaintingNumberIndex == 0)
+                {
+                    m_selectedTileNotifier.text = "Default";
+                }
+                else
+                {
+                    m_selectedTileNotifier.text = "" + Globals.m_currentlyPaintingNumberIndex;
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Y))
         {
             if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase))

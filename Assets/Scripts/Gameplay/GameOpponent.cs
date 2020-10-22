@@ -56,6 +56,12 @@ public class GameOpponent : ITurns
         {
             GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
 
+            if (unit.m_isDead)
+            {
+                units.Remove(unit);
+                continue;
+            }
+
             unit.m_AIGameEnemyUnit.SetupTurn();
 
             if (unit.m_AIGameEnemyUnit.UseSteppedOutTurn)
@@ -162,6 +168,11 @@ public class GameOpponent : ITurns
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
                 {
+                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
+                    {
+                        continue;
+                    }
+                    
                     if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;
@@ -175,6 +186,11 @@ public class GameOpponent : ITurns
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
                 {
+                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
+                    {
+                        continue;
+                    }
+
                     if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;
