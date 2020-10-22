@@ -28,12 +28,21 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
 
     private Sprite m_iconWhite;
 
+    protected Team m_team;
+
     public void LateInit()
     {
         m_icon = UIHelper.GetIconBuilding(m_name);
         m_iconWhite = UIHelper.GetIconBuilding(m_name + "W");
         m_destroyedIcon = UIHelper.GetIconBuilding(m_name + "D");
         m_curHealth = m_maxHealth;
+
+        m_team = Team.Player;
+    }
+
+    public Team GetTeam()
+    {
+        return m_team;
     }
 
     public GameTile GetGameTile()

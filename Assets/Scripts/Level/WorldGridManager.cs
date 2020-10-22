@@ -51,6 +51,29 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         m_setup = true;
     }
 
+    private void PlaceCrystals()
+    {
+        List<WorldTile> validTiles = new List<WorldTile>();
+
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            if (m_gridArray[i].GetGameTile().IsPassable(null, false) && !m_gridArray[i].GetGameTile().GetTerrain().IsEventTerrain())
+            {
+                if (CalculateAbsoluteDistanceBetweenPositions(GameHelper.GetPlayer().Castle.GetGameTile(), m_gridArray[i].GetGameTile()) >= 12)
+                {
+                    validTiles.Add(m_gridArray[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < WorldController.Instance.m_gameController.m_map.GetNumCrystals(); i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().PlaceBuilding(new ContentPowerCrystalBuilding());
+            validTiles.RemoveAt(r);
+        }
+    }
+
     public void SetupEmptyGrid(Transform parent, int gridSizeX, int gridSizeY)
     {
         if (m_setup)
@@ -296,6 +319,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
                 gameOpponent.m_spawnPoints.Add(curTile.m_spawnPoint);
             }
         }
+
+        PlaceCrystals();
 
         UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.Castle.GetWorldTile().gameObject);
     }

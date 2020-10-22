@@ -67,7 +67,10 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
             Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_building.m_name + ".");
         }
 
-        m_worldTile.ClearSurroundingFog(newBuilding.m_sightRange);
+        if (newBuilding.GetTeam() == Team.Player)
+        {
+            m_worldTile.ClearSurroundingFog(newBuilding.m_sightRange);
+        }
 
         if (newBuilding.m_expandsPlaceRange)
         {
@@ -185,6 +188,11 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     public GameTerrainBase GetTerrain()
     {
         return m_terrain;
+    }
+
+    public bool IsSpecialSoftFogTile()
+    {
+        return GetTerrain().IsEventTerrain() || (HasBuilding() && GetBuilding().m_name == new ContentPowerCrystalBuilding().m_name);
     }
 
     public void SetTerrain(GameTerrainBase newTerrain, bool clearBuilding = false)

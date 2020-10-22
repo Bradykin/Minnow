@@ -336,7 +336,14 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         WorldUnit selectedUnit = Globals.m_selectedUnit;
         if (selectedUnit != null && !Globals.m_inIntermission)
         {
-            if (selectedUnit.GetUnit().CanMoveTo(GetGameTile()))
+            if (GetGameTile().HasBuilding() && 
+                GetGameTile().GetBuilding().GetTeam() == Team.Enemy && 
+                !GetGameTile().GetBuilding().m_isDestroyed &&
+                selectedUnit.GetUnit().CanHitBuilding(GetGameTile().GetBuilding()))
+            {
+                selectedUnit.GetUnit().HitBuilding(GetGameTile().GetBuilding());
+            }
+            else if (selectedUnit.GetUnit().CanMoveTo(GetGameTile()))
             {
                 selectedUnit.MoveTo(GetGameTile());
             }
@@ -476,7 +483,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             m_fogOfWar.SetActive(true);
 
-            if (GetGameTile().m_isSoftFog || GetGameTile().GetTerrain().IsEventTerrain())
+            if (GetGameTile().m_isSoftFog || GetGameTile().IsSpecialSoftFogTile())
             {
                 m_fogRenderer.color = new Color(m_fogRenderer.color.r, m_fogRenderer.color.g, m_fogRenderer.color.b, 0.35f);
             }
