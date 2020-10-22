@@ -140,6 +140,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             return 0;
         }
 
+        if (IsInvulnerable())
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " is invulnerable and takes no damage!", false, m_gameTile.GetWorldTile().gameObject);
+            return 0;
+        }
+
         damage = CalculateDamageAmount(damage);
 
         if (damage <= 0)
@@ -377,6 +383,26 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         }
 
         if (checkRange && !IsInRangeOfUnit(other))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool CanHitBuilding(GameBuildingBase building, bool checkRange = true)
+    {
+        if (GetTeam() == building.GetTeam()) //Can't attack your own team
+        {
+            return false;
+        }
+
+        if (!HasStaminaToAttack())
+        {
+            return false;
+        }
+
+        if (checkRange && !IsInRangeOfBuilding(building))
         {
             return false;
         }
@@ -1110,6 +1136,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public virtual void SetUnitLevel(int level)
     {
         m_unitLevel = level;
+    }
+
+    public virtual bool IsInvulnerable()
+    {
+        return false;
     }
 
     //============================================================================================================//

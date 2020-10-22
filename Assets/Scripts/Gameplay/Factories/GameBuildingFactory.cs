@@ -21,6 +21,10 @@ public static class GameBuildingFactory
         m_buildings.Add(new ContentMineBuilding());
         m_buildings.Add(new ContentSmithyBuilding());
         m_buildings.Add(new ContentTempleBuilding());
+
+        //Enemy Buildings
+        m_buildings.Add(new ContentPowerCrystalBuilding());
+
         m_hasInit = true;
     }
 

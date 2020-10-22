@@ -42,10 +42,24 @@ public class ContentLichEnemy : GameEnemyUnit
         LateInit();
     }
 
+    public override string GetDesc()
+    {
+        string descString = base.GetDesc();
+
+        descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
+
+        return descString;
+    }
+
     public override void Die()
     {
         WorldController.Instance.WinGame();
 
         base.Die();
+    }
+
+    public override bool IsInvulnerable()
+    {
+        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 }

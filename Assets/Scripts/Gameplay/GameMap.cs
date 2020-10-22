@@ -19,6 +19,8 @@ public abstract class GameMap : GameElementBase
     protected int m_playerUnlockLevel;
     protected bool m_fogSpawningActive = true;
 
+    protected int m_destroyedCrystals;
+
     public AudioClip m_backgroundMusic;
 
     protected void Init()
@@ -58,6 +60,21 @@ public abstract class GameMap : GameElementBase
     public virtual int GetNumEnemiesToSpawn()
     {
         return 8;
+    }
+
+    public virtual void DestroyCrystal()
+    {
+        m_destroyedCrystals++;
+    }
+
+    public virtual bool AllCrystalsDestroyed()
+    {
+        if (m_destroyedCrystals == GetNumCrystals())
+        {
+            return true;
+        }
+
+        return false;
     }
 
     protected abstract void FillMapEvents();
@@ -106,5 +123,15 @@ public abstract class GameMap : GameElementBase
     public int GetPlayerUnlockLevel()
     {
         return m_playerUnlockLevel;
+    }
+
+    public virtual int GetNumCrystals()
+    {
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
+        {
+            return 2;
+        }
+
+        return 1;
     }
 }
