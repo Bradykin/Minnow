@@ -1,4 +1,5 @@
-﻿using Game.Util;
+﻿
+using Game.Util;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,24 +14,6 @@ public class GamePlayer : ITurns
     public static GameCard StarterDefensiveSpell = new ContentAegisCard();
     public static GameCard StarterExileSpell = new ContentGrowTalonsCard();
     public static GameRelic StarterRelic = new ContentLivingStoneRelic();
-
-    /*public static int AegisLevel = 0;
-    public static int CureLevel = 0;
-    public static int DrainingLevel = 0;
-    public static int FireboltLevel = 0;
-    public static int GrowTalonsLevel = 0;
-    public static int JoltLevel = 0;
-    public static int OptimizeLevel = 0;
-    public static int StaminaLevel = 0;
-    public static int WeakeningLevel = 0;
-
-    public static int DwarvenLevel = 0;
-    public static int DwarvenLevel2 = 0;
-    public static int DwarvenLevel3 = 0;
-
-    public static int StoneGolemLevel = 0;
-    public static int StoneGolemLevel2 = 0;
-    public static int StoneGolemLevel3 = 0;*/
 
     public int m_curEnergy;
     private int m_maxEnergy;

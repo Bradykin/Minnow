@@ -11,7 +11,7 @@ public class ContentPowerCrystalBuilding : GameBuildingBase
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Defensive;
 
-        m_maxHealth = 40;
+        m_maxHealth = 75;
 
         m_expandsPlaceRange = false;
 
