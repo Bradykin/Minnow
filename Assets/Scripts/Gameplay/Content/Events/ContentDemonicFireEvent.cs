@@ -78,7 +78,7 @@ public class GameEventConsumeFireOption : GameEventOption
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingUnit.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingUnit, m_heal)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, m_toGrow, 0)));
 
         EndEvent();
     }
