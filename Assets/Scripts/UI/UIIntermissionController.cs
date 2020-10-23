@@ -34,15 +34,15 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_intermissionActions.Add(new ContentCardIntermissionAction());
         m_intermissionActions.Add(new ContentRelicIntermissionAction());
 
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding(), new GameWallet(60)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentPortBuilding(), new GameWallet(50)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentInnBuilding(), new GameWallet(60)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentSmithyBuilding(), new GameWallet(130)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding(), new GameWallet(75)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding(), new GameWallet(95)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentTempleBuilding(), new GameWallet(130)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding(), new GameWallet(80)));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding(), new GameWallet(250)));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentPortBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentInnBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentSmithyBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentTempleBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding()));
 
         UpdateActions();
     }

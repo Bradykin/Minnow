@@ -9,10 +9,10 @@ public class ContentRogueEvent : GameEvent
         m_name = "Wandering Rogue";
         m_eventDesc = "A wandering rogue stops your troops on the side of the road, and offers you a trade.";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
-        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Units);
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardCard());
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
         m_optionThree = new GameEventLeaveOption();
 
         m_minWaveToSpawn = 1;

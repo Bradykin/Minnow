@@ -12,6 +12,7 @@ public class ContentSmithyBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 25;
+        m_cost = new GameWallet(130);
 
         m_expandsPlaceRange = false;
 

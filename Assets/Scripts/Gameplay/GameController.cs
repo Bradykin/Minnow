@@ -89,15 +89,26 @@ public class GameController
             m_currentTurnIndex++;
         }
 
+        bool didStartIntermission = CheckStartIntermission();
+        if (didStartIntermission)
+        {
+            return;
+        }
+
+        m_currentTurn.StartTurn();
+    }
+
+    public bool CheckStartIntermission()
+    {
         if (ShouldStartIntermission)
         {
             m_inTurns = false;
             OnEndWave();
             WorldController.Instance.StartIntermission();
-            return;
+            return true;
         }
 
-        m_currentTurn.StartTurn();
+        return false;
     }
 
     private void OnEndWave()

@@ -29,6 +29,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
     private Sprite m_iconWhite;
 
     protected Team m_team;
+    protected GameWallet m_cost;
 
     public void LateInit()
     {
@@ -80,6 +81,20 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
     public string GetDesc()
     {
         return m_desc;
+    }
+
+    public GameWallet GetCost()
+    {
+        int returnCost = m_cost.m_gold;
+
+        int numRestoritiveBricks = GameHelper.RelicCount<ContentRestorationBrickRelic>();
+
+        for (int i = 0; i < numRestoritiveBricks; i++)
+        {
+            returnCost -= 15;
+        }
+
+        return new GameWallet(returnCost);
     }
 
     public virtual Sprite GetIconWhite()

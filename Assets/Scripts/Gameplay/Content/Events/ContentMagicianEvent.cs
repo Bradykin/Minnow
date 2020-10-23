@@ -9,11 +9,10 @@ public class ContentMagicianEvent : GameEvent
         m_name = "Wandering Magician";
         m_eventDesc = "A wandering magician stops your troops on the side of the road, and offers an interesting service in the name of stability in the land.";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
-        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.Spells);
-        m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
-        m_optionThree = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
+        m_optionOne = new GameEventStatsBuffOption(m_tile, 10, 25);
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         LateInit();
 

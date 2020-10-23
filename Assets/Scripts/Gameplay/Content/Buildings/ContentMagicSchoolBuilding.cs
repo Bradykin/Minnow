@@ -16,6 +16,7 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 12;
+        m_cost = new GameWallet(95);
 
         m_expandsPlaceRange = false;
 

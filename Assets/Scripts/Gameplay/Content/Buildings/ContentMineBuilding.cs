@@ -12,6 +12,7 @@ public class ContentMineBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 15;
+        m_cost = new GameWallet(75);
 
         m_expandsPlaceRange = false;
 

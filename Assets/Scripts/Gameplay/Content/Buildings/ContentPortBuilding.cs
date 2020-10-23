@@ -16,6 +16,7 @@ public class ContentPortBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 8;
+        m_cost = new GameWallet(50);
 
         m_expandsPlaceRange = false;
 
