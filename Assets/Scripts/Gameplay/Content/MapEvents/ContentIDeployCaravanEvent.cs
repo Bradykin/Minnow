@@ -21,5 +21,7 @@ public class ContentDeployCaravanEvent : GameMapEvent
         GameHelper.MakePlayerUnit(castleBuilding.GetGameTile(), new ContentRoyalCaravan());
 
         castleBuilding.GetGameTile().ClearBuilding();
+
+        GameHelper.GetPlayer().IsUnitCastle = true;
     }
 }

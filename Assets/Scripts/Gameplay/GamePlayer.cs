@@ -1,7 +1,4 @@
-﻿
-using Game.Util;
-using JetBrains.Annotations;
-using System.Collections;
+﻿using Game.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,6 +27,7 @@ public class GamePlayer : ITurns
 
     private int m_spellPower = 0;
 
+    public bool IsUnitCastle = false;
     public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
     private GameRelicHolder m_relics;
@@ -55,6 +53,25 @@ public class GamePlayer : ITurns
         m_deckBase = new GameDeck();
         m_curDeck = new GameDeck();
         m_cardsInExile = new List<GameCard>();
+    }
+
+    public GameTile GetCastleTile()
+    {
+        GameBuildingBase CastleBuilding = m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
+
+        if (CastleBuilding != null)
+        {
+            return CastleBuilding.GetGameTile();
+        }
+
+        GameUnit CastleUnit = m_controlledUnits.FirstOrDefault(u => u is ContentRoyalCaravan);
+
+        if (CastleUnit != null)
+        {
+            return CastleUnit.GetGameTile();
+        }
+
+        return null;
     }
 
     public void LateInit()
