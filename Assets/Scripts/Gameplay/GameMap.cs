@@ -114,10 +114,12 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentClericEvent(null)); // waves 4-6
 
         //Uncommon
+        m_eventPool.Add(new ContentStablesEvent(null)); // waves 1-6
+        m_eventPool.Add(new ContentGoldenFruitEvent(null)); // waves 1-6
         m_eventPool.Add(new ContentMillitiaEvent(null)); // waves 2-4
-        m_eventPool.Add(new ContentStablesEvent(null)); // waves 2-5
         m_eventPool.Add(new ContentDemonicFireEvent(null)); // waves 2-6
         m_eventPool.Add(new ContentWonderousGenieEvent(null)); // waves 2-6
+        m_eventPool.Add(new ContentCombatTrainingEvent(null)); // waves 3-6
         m_eventPool.Add(new ContentGemsOfProphecyEvent(null)); // waves 3-6
 
         //Rare

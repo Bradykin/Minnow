@@ -17,8 +17,8 @@ public class ContentStablesEvent : GameEvent
 
         LateInit();
 
-        m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 5;
+        m_minWaveToSpawn = 1;
+        m_maxWaveToSpawn = 6;
     }
 }
 
