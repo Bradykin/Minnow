@@ -15,7 +15,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentSoulTrapRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDesignSchematicsRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.K))

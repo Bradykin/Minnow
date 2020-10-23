@@ -67,6 +67,12 @@ public class GameReturnToDeckBuffedAction : GameAction
 
     public override void DoAction()
     {
+        if (m_retuningUnit.m_returnedToDeckDeath)
+        {
+            return;
+        }
+        m_retuningUnit.m_returnedToDeckDeath = true;
+
         m_retuningUnit.AddStats(m_powerBuff, m_healthBuff);
 
         GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(m_retuningUnit);

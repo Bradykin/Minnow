@@ -40,6 +40,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     //Functionality
     protected GameTile m_gameTile;
     public bool m_isDead;
+    public bool m_returnedToDeckDeath;
     public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
@@ -94,6 +95,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public virtual void OnSummon()
     {
         m_isDead = false;
+        m_returnedToDeckDeath = false;
         SetHealthStaminaValues();
 
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
@@ -326,8 +328,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 }
             }
 
-            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation)
+            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation && !m_returnedToDeckDeath)
             {
+                m_returnedToDeckDeath = true;
                 GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(this);
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
             }
