@@ -14,6 +14,7 @@ public class ContentPowerCrystalBuilding : GameBuildingBase
         m_maxHealth = 75;
 
         m_expandsPlaceRange = false;
+        m_cost = new GameWallet(0);
 
         LateInit();
 

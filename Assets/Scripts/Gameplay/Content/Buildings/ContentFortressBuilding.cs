@@ -16,6 +16,7 @@ public class ContentFortressBuilding : GameBuildingBase
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;
+        m_cost = new GameWallet(70);
         m_rarity = GameRarity.Common;
 
         LateInit();

@@ -19,8 +19,8 @@ public static class Constants
     public static int PercentChanceForUncommonRelic = 30;
     public static int PercentChanceForRareRelic = 15;
 
-    public static int PercentChanceForUncommonEvent = 30;
-    public static int PercentChanceForRareEvent = 15;
+    public static int PercentChanceForUncommonEvent = 55;
+    public static int PercentChanceForRareEvent = 22;
 
     public static int PercentChanceForMobToSpawn = 40;
 

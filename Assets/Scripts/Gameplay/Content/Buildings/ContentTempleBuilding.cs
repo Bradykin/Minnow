@@ -12,31 +12,12 @@ public class ContentTempleBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 10;
+        m_cost = new GameWallet(130);
 
         m_expandsPlaceRange = false;
 
         LateInit();
     }
-
-    //Not currently needed since temples add 1 max energy, and startturn sets cur energy to max
-    /*public override void StartTurn()
-    {
-        if (m_isDestroyed)
-        {
-            return;
-        }
-
-        base.StartTurn();
-
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        player.AddEnergy(1);
-    }*/
 
     protected override void Die()
     {

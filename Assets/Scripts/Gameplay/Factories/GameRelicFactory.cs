@@ -46,6 +46,7 @@ public static class GameRelicFactory
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
+        m_relics.Add(new ContentRestorationBrickRelic());
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)

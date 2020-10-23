@@ -14,6 +14,7 @@ public class ContentEmberForgeBuilding : GameBuildingBase
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 90;
+        m_cost = new GameWallet(250);
 
         m_expandsPlaceRange = false;
 

@@ -9,11 +9,10 @@ public class ContentMysteryWanderer : GameEvent
         m_name = "Mystery Wanderer";
         m_eventDesc = "A stranger acosts your troops by the side of the road, and refuses to let them leave without taking one of his services.";
         m_tile = tile;
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
-        m_optionOne = new GameEventTransformCardOption(UIDeckViewController.DeckViewFilter.All);
+        m_optionOne = new GameEventRemoveCardOption();
         m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
-        m_optionThree = new GameEventRemoveCardOption();
 
         LateInit();
 

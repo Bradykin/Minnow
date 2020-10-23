@@ -13,6 +13,7 @@ public class ContentCastleBuilding : GameBuildingBase
         m_buildingType = BuildingType.Critical;
 
         m_maxHealth = 100;
+        m_cost = new GameWallet(0);
 
         m_expandsPlaceRange = true;
 

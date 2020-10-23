@@ -12,6 +12,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 30;
+        m_cost = new GameWallet(60);
 
         m_expandsPlaceRange = true;
 

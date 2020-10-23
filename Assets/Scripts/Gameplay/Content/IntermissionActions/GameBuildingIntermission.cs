@@ -9,11 +9,11 @@ public class GameBuildingIntermission
 
     public GameBuildingBase m_building;
 
-    public GameBuildingIntermission(GameBuildingBase building, GameWallet cost)
+    public GameBuildingIntermission(GameBuildingBase building)
     {
         m_building = building;
 
-        m_cost = cost;
+        m_cost = building.GetCost();
     }
 
     public void Place()
