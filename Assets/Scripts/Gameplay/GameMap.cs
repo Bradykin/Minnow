@@ -119,6 +119,7 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentGoblinBarricadeEvent(null)); // waves 2-5
         m_eventPool.Add(new ContentTimeTempleEvent(null)); // waves 3-5
         m_eventPool.Add(new ContentRestorationBrickEvent(null)); // waves 3-5
+        m_eventPool.Add(new ContentDemonicFireEvent(null)); // waves 2-5
     }
 
     public int GetPlayerUnlockLevel()
