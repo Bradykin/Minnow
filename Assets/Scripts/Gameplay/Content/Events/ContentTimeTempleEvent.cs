@@ -23,7 +23,7 @@ public class ContentTimeTempleEvent : GameEvent
 
 public class GameEventSpeedTimeOption : GameEventOption
 {
-    private int m_timeIncrease = 2;
+    private int m_timeIncrease = 1;
 
     public override string GetMessage()
     {
@@ -50,7 +50,7 @@ public class GameEventSpeedTimeOption : GameEventOption
 
 public class GameEventSlowTimeOption : GameEventOption
 {
-    private int m_timeDecrease = 2;
+    private int m_timeDecrease = 1;
 
     public override string GetMessage()
     {

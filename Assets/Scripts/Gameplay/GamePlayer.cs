@@ -477,11 +477,6 @@ public class GamePlayer : ITurns
             m_controlledBuildings[i].StartTurn();
         }
 
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
-        {
-            Debug.Log("TOTEM OF THE WOLF TURN");
-        }
-
         for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
         {
             if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.StartOfTurn)
