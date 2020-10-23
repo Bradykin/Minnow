@@ -121,6 +121,7 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentWonderousGenieEvent(null)); // waves 2-6
         m_eventPool.Add(new ContentCombatTrainingEvent(null)); // waves 3-6
         m_eventPool.Add(new ContentGemsOfProphecyEvent(null)); // waves 3-6
+        m_eventPool.Add(new ContentBurrowOrSwimEvent(null)); // waves 2-6
 
         //Rare
         m_eventPool.Add(new ContentLibraryOfDenumianEvent(null)); // waves 1-2
