@@ -10,7 +10,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
         m_name = "Gems of Prophecy";
         m_eventDesc = "You find a set of prophetic gems. Which one shall tell your fate?";
         m_tile = tile;
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         m_optionOne = new GameEventProphecyOfAdventureOption(m_tile);
         m_optionTwo = new GameEventDamageReductionOption(m_tile);
@@ -19,7 +19,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
         LateInit();
 
         m_minWaveToSpawn = 3;
-        m_maxWaveToSpawn = 5;
+        m_maxWaveToSpawn = 6;
     }
 }
 

@@ -11,12 +11,12 @@ public class ContentMagicianEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Common;
 
-        m_optionOne = new GameEventStatsBuffOption(m_tile, 10, 25);
+        m_optionOne = new GameEventStatsBuffOption(m_tile, 7, 15);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         LateInit();
 
         m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_maxWaveToSpawn = 6;
     }
 }

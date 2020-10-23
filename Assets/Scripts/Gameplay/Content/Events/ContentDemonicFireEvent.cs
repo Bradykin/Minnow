@@ -18,7 +18,7 @@ public class ContentDemonicFireEvent : GameEvent
         LateInit();
 
         m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 5;
+        m_maxWaveToSpawn = 6;
     }
 }
 
@@ -40,19 +40,27 @@ public class GameEventFirestormOption : GameEventOption
 
     public override void AcceptOption()
     {
-        for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
+        List<GameUnit> playerUnits = GameHelper.GetPlayer().m_controlledUnits;
+        for (int i = playerUnits.Count-1; i >= 0; i--)
         {
             for (int c = 0; c < m_numTimes; c++)
             {
-                GameHelper.GetPlayer().m_controlledUnits[i].GetHit(m_damage);
+                if (!playerUnits[i].m_isDead)
+                {
+                    playerUnits[i].GetHit(m_damage);
+                }
             }
         }
 
-        for (int i = 0; i < WorldController.Instance.m_gameController.m_gameOpponent.m_controlledUnits.Count; i++)
+        List<GameEnemyUnit> enemyUnits = WorldController.Instance.m_gameController.m_gameOpponent.m_controlledUnits;
+        for (int i = enemyUnits.Count-1; i >= 0; i--)
         {
             for (int c = 0; c < m_numTimes; c++)
             {
-                WorldController.Instance.m_gameController.m_gameOpponent.m_controlledUnits[i].GetHit(m_damage);
+                if (enemyUnits[i].m_isDead)
+                {
+                    enemyUnits[i].GetHit(m_damage);
+                }
             }
         }
 

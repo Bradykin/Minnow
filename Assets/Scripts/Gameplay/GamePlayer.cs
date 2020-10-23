@@ -242,7 +242,7 @@ public class GamePlayer : ITurns
             }
         }
 
-        toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
+        toReturn += 3 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
         toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
         toReturn += Globals.m_tempSpellpower;
 
@@ -493,11 +493,6 @@ public class GamePlayer : ITurns
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].StartTurn();
-        }
-
-        if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
-        {
-            Debug.Log("TOTEM OF THE WOLF TURN");
         }
 
         for (int i = m_scheduledActions.Count - 1; i >= 0; i--)

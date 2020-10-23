@@ -1079,7 +1079,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public void RemoveStats(int powerToRemove, int healthToRemove)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", true, m_gameTile.GetWorldTile().gameObject);
+        UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
 
         m_power += powerToRemove;
         m_maxHealth -= healthToRemove;

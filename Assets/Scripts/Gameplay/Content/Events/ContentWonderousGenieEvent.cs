@@ -16,7 +16,7 @@ public class ContentWonderousGenieEvent : GameEvent
         m_optionOne = new GameEventTakeRandomRelicChoiceOption(rarity);
 
         m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_maxWaveToSpawn = 6;
 
         LateInit();
     }

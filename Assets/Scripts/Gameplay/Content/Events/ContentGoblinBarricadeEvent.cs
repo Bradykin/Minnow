@@ -14,7 +14,7 @@ public class ContentGoblinBarricadeEvent : GameEvent
         m_optionOne = new GameEventBreakBarricadeOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
 
-        m_minWaveToSpawn = 2;
+        m_minWaveToSpawn = 3;
         m_maxWaveToSpawn = 5;
 
         LateInit();
