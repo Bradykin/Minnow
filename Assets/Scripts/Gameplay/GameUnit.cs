@@ -47,7 +47,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     protected int m_unitLevel;
 
     //Special functionality
-    protected bool m_neverSetIsDead;
     public bool m_instantWaterMovement;
     public bool m_startWithMaxStamina;
 
@@ -94,6 +93,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public virtual void OnSummon()
     {
+        m_isDead = false;
         SetHealthStaminaValues();
 
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
@@ -330,7 +330,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             {
                 GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(this);
                 GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
-                willSetDead = false;
             }
 
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
@@ -364,14 +363,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_gameTile.GetWorldTile().RecycleUnit();
         UITooltipController.Instance.ClearTooltipStack();
 
-        if (m_neverSetIsDead)
-        {
-            m_isDead = false;
-        }
-        else
-        {
-            m_isDead = willSetDead;
-        }
+        m_isDead = willSetDead;
     }
 
     //Returns the amount actually healed

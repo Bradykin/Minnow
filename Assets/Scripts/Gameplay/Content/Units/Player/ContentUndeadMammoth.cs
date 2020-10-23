@@ -13,8 +13,6 @@ public class ContentUndeadMammoth : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        m_neverSetIsDead = true;
-
         m_name = "Undead Mammoth";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);

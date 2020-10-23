@@ -36,7 +36,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameUnit.m_isDead || gameUnit == null)
+                    if (gameUnit == null || gameUnit.m_isDead)
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
