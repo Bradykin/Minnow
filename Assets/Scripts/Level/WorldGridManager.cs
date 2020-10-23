@@ -59,7 +59,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         {
             if (m_gridArray[i].GetGameTile().IsPassable(null, false) && !m_gridArray[i].GetGameTile().GetTerrain().IsEventTerrain())
             {
-                if (CalculateAbsoluteDistanceBetweenPositions(GameHelper.GetPlayer().Castle.GetGameTile(), m_gridArray[i].GetGameTile()) >= 12)
+                if (CalculateAbsoluteDistanceBetweenPositions(GameHelper.GetPlayer().GetCastleGameTile(), m_gridArray[i].GetGameTile()) >= 12)
                 {
                     validTiles.Add(m_gridArray[i]);
                 }
@@ -322,7 +322,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
         PlaceCrystals();
 
-        UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.Castle.GetWorldTile().gameObject);
+        UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.GetCastleWorldTile().gameObject);
     }
 
     /*public void SetupEnemies(GameOpponent gameOpponent)
@@ -756,6 +756,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
         {
             player.m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
+        }
+
+        for (int i = 0; i < player.m_controlledUnits.Count; i++)
+        {
+            player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
         }
     }
 

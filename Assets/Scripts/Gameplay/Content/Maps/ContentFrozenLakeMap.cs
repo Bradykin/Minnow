@@ -20,11 +20,11 @@ public class ContentFrozenLakeMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
-            AddMapEvent(new ContentIcequake(0), 1);
-            AddMapEvent(new ContentIcequake(0), 2);
-            AddMapEvent(new ContentIcequake(0), 3);
-            AddMapEvent(new ContentIcequake(0), 4);
-            AddMapEvent(new ContentIcequake(0), 5);
+            AddMapEvent(new ContentIcequakeEvent(0), 2);
+            AddMapEvent(new ContentIcequakeEvent(0), 3);
+            AddMapEvent(new ContentIcequakeEvent(0), 4);
+            AddMapEvent(new ContentIcequakeEvent(0), 5);
+            AddMapEvent(new ContentIcequakeEvent(0), 6);
         }
     }
 

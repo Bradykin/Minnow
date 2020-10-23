@@ -1,7 +1,4 @@
-﻿
-using Game.Util;
-using JetBrains.Annotations;
-using System.Collections;
+﻿using Game.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,7 +26,8 @@ public class GamePlayer : ITurns
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
     private int m_spellPower = 0;
-    public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
+
+    public bool IsUnitCastle = false;
 
     private GameRelicHolder m_relics;
 
@@ -54,6 +52,55 @@ public class GamePlayer : ITurns
         m_deckBase = new GameDeck();
         m_curDeck = new GameDeck();
         m_cardsInExile = new List<GameCard>();
+    }
+
+    public GameElementBase GetCastleGameElement()
+    {
+        GameBuildingBase CastleBuilding = m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
+
+        if (CastleBuilding != null)
+        {
+            return CastleBuilding;
+        }
+
+        GameUnit CastleUnit = m_controlledUnits.FirstOrDefault(u => u is ContentRoyalCaravan);
+
+        if (CastleUnit != null)
+        {
+            return CastleUnit;
+        }
+
+        return null;
+    }
+
+    public GameTile GetCastleGameTile()
+    {
+        GameBuildingBase CastleBuilding = m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
+
+        if (CastleBuilding != null)
+        {
+            return CastleBuilding.GetGameTile();
+        }
+
+        GameUnit CastleUnit = m_controlledUnits.FirstOrDefault(u => u is ContentRoyalCaravan);
+
+        if (CastleUnit != null)
+        {
+            return CastleUnit.GetGameTile();
+        }
+
+        return null;
+    }
+
+    public WorldTile GetCastleWorldTile()
+    {
+        GameTile castleTile = GetCastleGameTile();
+        if (castleTile == null)
+        {
+            return null;
+        }
+
+        return castleTile.GetWorldTile();
     }
 
     public void LateInit()
@@ -456,9 +503,9 @@ public class GamePlayer : ITurns
     {
         DrawHand();
 
-        if (Castle != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
+        if (GetCastleGameElement() != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
         {
-            UICameraController.Instance.SnapToGameObject(Castle.GetWorldTile().gameObject);
+            UICameraController.Instance.SnapToGameObject(GetCastleWorldTile().gameObject);
         }
         m_curEnergy = GetMaxEnergy();
 

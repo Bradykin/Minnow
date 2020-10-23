@@ -9,12 +9,12 @@ public abstract class AIMoveStep : AIStep
 
     protected IEnumerator MoveTowardsCastle(bool shouldYield, int amountStaminaToSpend)
     {
-        if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().Castle != null)
+        if (GameHelper.GetPlayer() != null && GameHelper.GetPlayer().GetCastleGameElement() != null)
         {
             GameTile moveDestination;
             if (m_AIGameEnemyUnit.m_targetGameTile == null)
             {
-                moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().Castle.GetGameTile(), amountStaminaToSpend);
+                moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
                 m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
             }
             else

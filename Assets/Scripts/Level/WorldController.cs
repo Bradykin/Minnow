@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class WorldController : Singleton<WorldController>
 {
@@ -211,14 +212,28 @@ public class WorldController : Singleton<WorldController>
     {
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
-            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied())
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit.GetType() != typeof(ContentRoyalCaravan))
             {
                 WorldGridManager.Instance.m_gridArray[i].RecycleUnit();
             }
         }
 
         m_gameController.m_gameOpponent.m_controlledUnits.Clear();
-        m_gameController.m_player.m_controlledUnits.Clear();
+
+        if (m_gameController.m_player.m_controlledUnits.Any(u => u.GetType() == typeof(ContentRoyalCaravan)))
+        {
+            for (int i = m_gameController.m_player.m_controlledUnits.Count - 1; i >= 0; i--)
+            {
+                if (m_gameController.m_player.m_controlledUnits[i].GetType() != typeof(ContentRoyalCaravan))
+                {
+                    m_gameController.m_player.m_controlledUnits.RemoveAt(i);
+                }
+            }
+        }
+        else
+        {
+            m_gameController.m_player.m_controlledUnits.Clear();
+        }
     }
 
     public void StartIntermission()
@@ -271,8 +286,6 @@ public class WorldController : Singleton<WorldController>
 
         m_gameController.m_player.ResetCurDeck();
         m_gameController.BeginTurnSequence();
-
-        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_waveNum, ScheduledActionTime.EndOfWave);
 
     }
 

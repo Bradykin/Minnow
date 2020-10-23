@@ -35,7 +35,7 @@ public class AITestSpawnClass : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.H))
             {
-                UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().Castle.GetWorldTile().gameObject);
+                UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().GetCastleWorldTile().gameObject);
             }
 
             if (Input.GetKeyDown(KeyCode.O))

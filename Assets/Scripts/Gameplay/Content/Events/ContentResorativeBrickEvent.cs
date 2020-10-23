@@ -46,7 +46,19 @@ public class GameEventHealCastle : GameEventOption
             return;
         }
 
-        GameHelper.GetPlayer().Castle.GetHealed(m_toHeal);
+        if (GameHelper.GetPlayer().GetCastleGameElement() == null)
+        {
+            return;
+        }
+
+        if (GameHelper.GetPlayer().GetCastleGameElement() is ContentCastleBuilding castleBuilding)
+        {
+            castleBuilding.GetHealed(m_toHeal);
+        }
+        else if (GameHelper.GetPlayer().GetCastleGameElement() is ContentRoyalCaravan castleUnit)
+        {
+            castleUnit.Heal(m_toHeal);
+        }
 
         EndEvent();
     }

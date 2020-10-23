@@ -51,6 +51,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentOverlord());
         m_playerUnits.Add(new ContentRanger());
         m_playerUnits.Add(new ContentRaptor());
+        m_playerUnits.Add(new ContentRoyalCaravan());
         m_playerUnits.Add(new ContentSabobot());
         m_playerUnits.Add(new ContentShadowWarlock());
         m_playerUnits.Add(new ContentSkeleton());
@@ -227,6 +228,11 @@ public class GameUnitFactory
         int r = UnityEngine.Random.Range(0, list.Count);
 
         return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
+    }
+
+    public static GameUnit GetEnemyUnitClone(GameUnit unit)
+    {
+        return (GameUnit)Activator.CreateInstance(unit.GetType());
     }
 
     public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit enemyUnit, GameOpponent gameOpponent)

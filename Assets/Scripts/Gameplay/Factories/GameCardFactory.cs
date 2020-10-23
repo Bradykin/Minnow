@@ -53,6 +53,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentOverlordCard());
         m_cards.Add(new ContentRangerCard());
         m_cards.Add(new ContentRaptorCard());
+        m_cards.Add(new ContentRoyalCaravanCard());
         m_cards.Add(new ContentSabobotCard());
         m_cards.Add(new ContentShadowWarlockCard());
         m_cards.Add(new ContentSkeletonCard());

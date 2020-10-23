@@ -28,9 +28,22 @@ public class ContentLootingsCard : GameCardSpellBase
             return;
         }
 
+        if (GameHelper.GetPlayer().GetCastleGameElement() == null)
+        {
+            return;
+        }
+
         base.PlayCard();
 
-        GameHelper.GetPlayer().Castle.GetHit(m_damageVal);
+        if (GameHelper.GetPlayer().GetCastleGameElement() is ContentCastleBuilding castleBuilding)
+        {
+            castleBuilding.GetHit(m_damageVal);
+        }
+        else if (GameHelper.GetPlayer().GetCastleGameElement() is ContentRoyalCaravan castleUnit)
+        {
+            castleUnit.GetHit(m_damageVal);
+        }
+
         GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(m_lootVal));
     }
 }
