@@ -39,7 +39,7 @@ public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
 
-        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().Castle.GetGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 }

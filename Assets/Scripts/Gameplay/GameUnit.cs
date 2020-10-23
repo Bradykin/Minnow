@@ -31,7 +31,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     protected int m_power;
     protected Typeline m_typeline;
 
-    //Specific data.  Only set if it varies from the default.  Be sure to add to the description so it shows up in the UI.
+    //Specific data.  Only set if it varies from the default.  Be sure to add to the descrip so it shows up in the UI.
     private GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
@@ -109,6 +109,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     }
 
     public virtual void OnOtherSummon(GameUnit other)
+    {
+
+    }
+
+    public virtual void OnMoveBegin()
+    {
+
+    }
+
+    public virtual void OnMoveEnd()
     {
 
     }

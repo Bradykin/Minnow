@@ -16,9 +16,17 @@ public class ContentDeployCaravanEvent : GameMapEvent
 
     public override void TriggerEvent()
     {
-        ContentCastleBuilding castleBuilding = GameHelper.GetPlayer().Castle;
+        if (GameHelper.GetPlayer().GetCastleGameElement() == null || !(GameHelper.GetPlayer().GetCastleGameElement() is ContentCastleBuilding))
+        {
+            Debug.LogError("Can't find castle for Deploy Caravan event");
+            return;
+        }
+        
+        ContentCastleBuilding castleBuilding = (ContentCastleBuilding)GameHelper.GetPlayer().GetCastleGameElement();
 
-        GameHelper.MakePlayerUnit(castleBuilding.GetGameTile(), new ContentRoyalCaravan());
+        ContentRoyalCaravan castleUnit = new ContentRoyalCaravan();
+        GameHelper.MakePlayerUnit(castleBuilding.GetGameTile(), castleUnit);
+        castleUnit.OnSummon();
 
         castleBuilding.GetGameTile().ClearBuilding();
 

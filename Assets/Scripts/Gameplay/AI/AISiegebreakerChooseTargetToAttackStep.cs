@@ -33,7 +33,7 @@ public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStan
         m_AIGameEnemyUnit.m_targetGameElement = null;
 
 
-        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().Castle.GetGameTile(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
+        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 

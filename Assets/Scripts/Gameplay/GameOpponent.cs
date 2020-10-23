@@ -50,7 +50,7 @@ public class GameOpponent : ITurns
         List<GameEnemyUnit> units = new List<GameEnemyUnit>();
         units.AddRange(m_controlledUnits);
 
-        GameTile measureTo = GameHelper.GetPlayer().Castle.GetGameTile();
+        GameTile measureTo = GameHelper.GetPlayer().GetCastleGameTile();
 
         while (units.Count > 0)
         {
@@ -84,9 +84,9 @@ public class GameOpponent : ITurns
             }
         }
 
-        if (Constants.UseSteppedOutEnemyTurns && GameHelper.GetPlayer().Castle != null)
+        if (Constants.UseSteppedOutEnemyTurns && GameHelper.GetPlayer().GetCastleGameElement() != null)
         {
-            UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().Castle.GetWorldTile().gameObject);
+            UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().GetCastleWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())
             {
                 yield return null;

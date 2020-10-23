@@ -172,9 +172,11 @@ public class WorldUnit : MonoBehaviour
 
     public void MoveTo(GameTile targetTile)
     {
+        GetUnit().OnMoveBegin();
         GetUnit().GetWorldTile().ClearUnit();
         targetTile.GetWorldTile().PlaceUnit(this);
         GetUnit().MoveTo(targetTile);
+        GetUnit().OnMoveEnd();
 
         m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit();
     }

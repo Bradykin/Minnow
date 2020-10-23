@@ -1,1 +1,1 @@
-{"m_mapChaosLevels":{"1":5},"m_playerExperience":100,"m_numPlaySessions":2}
+{"m_mapChaosLevels":{"1":5},"m_playerExperience":200,"m_numPlaySessions":4}

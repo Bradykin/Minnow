@@ -30,4 +30,18 @@ public class ContentRoyalCaravan : GameUnit
 
         GameHelper.ReturnToLevelSelectFromLevelScene(true);
     }
+
+    public override void OnMoveBegin()
+    {
+        base.OnMoveBegin();
+
+        GetWorldTile().ReducePlaceRange(m_sightRange - 1);
+    }
+
+    public override void OnMoveEnd()
+    {
+        base.OnMoveEnd();
+
+        GetWorldTile().ExpandPlaceRange(m_sightRange - 1);
+    }
 }

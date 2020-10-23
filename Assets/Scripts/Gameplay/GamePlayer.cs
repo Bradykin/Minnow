@@ -28,7 +28,6 @@ public class GamePlayer : ITurns
     private int m_spellPower = 0;
 
     public bool IsUnitCastle = false;
-    public ContentCastleBuilding Castle => (ContentCastleBuilding)m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
     private GameRelicHolder m_relics;
 
@@ -55,7 +54,26 @@ public class GamePlayer : ITurns
         m_cardsInExile = new List<GameCard>();
     }
 
-    public GameTile GetCastleTile()
+    public GameElementBase GetCastleGameElement()
+    {
+        GameBuildingBase CastleBuilding = m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
+
+        if (CastleBuilding != null)
+        {
+            return CastleBuilding;
+        }
+
+        GameUnit CastleUnit = m_controlledUnits.FirstOrDefault(u => u is ContentRoyalCaravan);
+
+        if (CastleUnit != null)
+        {
+            return CastleUnit;
+        }
+
+        return null;
+    }
+
+    public GameTile GetCastleGameTile()
     {
         GameBuildingBase CastleBuilding = m_controlledBuildings.FirstOrDefault(b => b is ContentCastleBuilding);
 
@@ -72,6 +90,17 @@ public class GamePlayer : ITurns
         }
 
         return null;
+    }
+
+    public WorldTile GetCastleWorldTile()
+    {
+        GameTile castleTile = GetCastleGameTile();
+        if (castleTile == null)
+        {
+            return null;
+        }
+
+        return castleTile.GetWorldTile();
     }
 
     public void LateInit()
@@ -474,9 +503,9 @@ public class GamePlayer : ITurns
     {
         DrawHand();
 
-        if (Castle != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
+        if (GetCastleGameElement() != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
         {
-            UICameraController.Instance.SnapToGameObject(Castle.GetWorldTile().gameObject);
+            UICameraController.Instance.SnapToGameObject(GetCastleWorldTile().gameObject);
         }
         m_curEnergy = GetMaxEnergy();
 
