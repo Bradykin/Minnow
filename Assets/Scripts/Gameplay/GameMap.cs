@@ -125,9 +125,10 @@ public abstract class GameMap : GameElementBase
         //Rare
         m_eventPool.Add(new ContentLibraryOfDenumianEvent(null)); // waves 1-2
         m_eventPool.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-2
-        m_eventPool.Add(new ContentAngelicGiftEvent(null)); // waves 2-6
+        m_eventPool.Add(new ContentDevilishPowerEvent(null)); // waves 2-5
         m_eventPool.Add(new ContentTimeTempleEvent(null)); // waves 3-5
         m_eventPool.Add(new ContentRestorationBrickEvent(null)); // waves 3-5
+        m_eventPool.Add(new ContentAngelicGiftEvent(null)); // waves 2-6
     }
 
     public int GetPlayerUnlockLevel()

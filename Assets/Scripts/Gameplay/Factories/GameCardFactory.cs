@@ -116,6 +116,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentStaminaTrainingCard());
         m_cards.Add(new ContentOptimizeCard());
 
+        //Event Cards
+        m_cards.Add(new ContentLivingBombCard());
+
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
