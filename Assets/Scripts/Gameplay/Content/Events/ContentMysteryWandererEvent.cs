@@ -9,7 +9,7 @@ public class ContentMysteryWanderer : GameEvent
         m_name = "Mystery Wanderer";
         m_eventDesc = "A stranger acosts your troops by the side of the road, and refuses to let them leave without taking one of his services.";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Common;
 
         m_optionOne = new GameEventRemoveCardOption();
         m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
@@ -17,6 +17,6 @@ public class ContentMysteryWanderer : GameEvent
         LateInit();
 
         m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_maxWaveToSpawn = 4;
     }
 }

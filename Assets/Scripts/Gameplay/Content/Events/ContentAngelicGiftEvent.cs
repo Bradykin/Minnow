@@ -16,7 +16,7 @@ public class ContentAngelicGiftEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_maxWaveToSpawn = 6;
 
         LateInit();
     }

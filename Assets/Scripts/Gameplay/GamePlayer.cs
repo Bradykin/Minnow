@@ -224,7 +224,7 @@ public class GamePlayer : ITurns
             }
         }
 
-        toReturn += 2 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
+        toReturn += 3 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
         toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
         toReturn += Globals.m_tempSpellpower;
 

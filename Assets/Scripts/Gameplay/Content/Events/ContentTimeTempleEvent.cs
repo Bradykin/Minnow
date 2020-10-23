@@ -9,7 +9,7 @@ public class ContentTimeTempleEvent : GameEvent
         m_name = "Time Temple";
         m_eventDesc = "A strange temple appears, allowing some control over the flow of time!";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Rare;
 
         m_optionOne = new GameEventSpeedTimeOption();
         m_optionTwo = new GameEventSlowTimeOption();

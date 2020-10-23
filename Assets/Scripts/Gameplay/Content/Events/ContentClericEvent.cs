@@ -15,8 +15,8 @@ public class ContentClericEvent : GameEvent
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
         m_optionThree = new GameEventLeaveOption();
 
-        m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_minWaveToSpawn = 4;
+        m_maxWaveToSpawn = 6;
 
         LateInit();
     }

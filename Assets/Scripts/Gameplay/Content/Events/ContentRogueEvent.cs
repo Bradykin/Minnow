@@ -7,7 +7,7 @@ public class ContentRogueEvent : GameEvent
     public ContentRogueEvent(GameTile tile)
     {
         m_name = "Wandering Rogue";
-        m_eventDesc = "A wandering rogue stops your troops on the side of the road, and offers you a trade.";
+        m_eventDesc = "A wandering rogue stops your troops on the side of the road, and offers you some wares of dubious origin.";
         m_tile = tile;
         m_rarity = GameRarity.Common;
 
@@ -16,7 +16,7 @@ public class ContentRogueEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = Constants.FinalWaveNum;
+        m_maxWaveToSpawn = 6;
 
         LateInit();
     }

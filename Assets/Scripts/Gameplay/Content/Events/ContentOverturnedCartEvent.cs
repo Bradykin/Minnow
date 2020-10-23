@@ -15,7 +15,7 @@ public class ContentOverturnedCartEvent : GameEvent
         m_optionTwo = new GameEventLeaveOption();
 
         m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = 3;
+        m_maxWaveToSpawn = 6;
 
         LateInit();
     }

@@ -18,7 +18,7 @@ public class ContentDemonicFireEvent : GameEvent
         LateInit();
 
         m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 5;
+        m_maxWaveToSpawn = 6;
     }
 }
 
