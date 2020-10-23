@@ -10,7 +10,7 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                Globals.m_testSpawnEnemyUnit = new ContentDarkWarriorEnemy(null);
+                Globals.m_testSpawnEnemyUnit = new ContentShadeEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.M))
@@ -20,7 +20,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentGroundskeeperCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentRaptorCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))

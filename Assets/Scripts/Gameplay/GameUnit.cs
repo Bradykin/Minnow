@@ -260,12 +260,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             return;
         }
 
+        m_isDead = true;
+
         bool willSetDead = true;
 
         bool shouldRevive = canRevive && ShouldRevive();
 
         if (shouldRevive)
         {
+            m_isDead = false;
             m_curHealth = 1;
             UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_gameTile.GetWorldTile().gameObject);
             return;

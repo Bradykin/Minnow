@@ -27,12 +27,12 @@ public class GameExplodeAction : GameAction
             GameBuildingBase building = surroundingTiles[i].GetBuilding();
             GameUnit unit = surroundingTiles[i].m_occupyingUnit;
 
-            if (building != null)
+            if (building != null && !building.m_isDestroyed)
             {
                 building.GetHit(m_explodePower);
             }
 
-            if (unit != null)
+            if (unit != null && !unit.m_isDead)
             {
                 unit.GetHit(m_explodePower);
             }

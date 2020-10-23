@@ -54,15 +54,13 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
     private void PlaceCrystals()
     {
         List<WorldTile> validTiles = new List<WorldTile>();
+        List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Globals.GridSizeX, 12);
 
-        for (int i = 0; i < m_gridArray.Length; i++)
+        for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (m_gridArray[i].GetGameTile().IsPassable(null, false) && !m_gridArray[i].GetGameTile().GetTerrain().IsEventTerrain())
+            if (tilesInRange[i].GetGameTile().IsPassable(null, false) && !tilesInRange[i].GetGameTile().GetTerrain().IsEventTerrain())
             {
-                if (CalculateAbsoluteDistanceBetweenPositions(GameHelper.GetPlayer().GetCastleGameTile(), m_gridArray[i].GetGameTile()) >= 12)
-                {
-                    validTiles.Add(m_gridArray[i]);
-                }
+                validTiles.Add(tilesInRange[i]);
             }
         }
 
