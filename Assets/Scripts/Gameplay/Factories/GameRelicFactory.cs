@@ -18,7 +18,6 @@ public static class GameRelicFactory
 
         //General Relics
         m_relics.Add(new ContentBestialWrathRelic());
-        m_relics.Add(new ContentDominerickRefrainRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
         m_relics.Add(new ContentMorlemainsSkullRelic());
         m_relics.Add(new ContentMysticRuneRelic());
@@ -33,7 +32,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentPinnacleOfFearRelic());
         m_relics.Add(new ContentNaturalProtectionRelic());
         m_relics.Add(new ContentLegendaryFragmentRelic());
-        m_relics.Add(new ContentTomeOfDuluhainRelic());
         m_relics.Add(new ContentCursedAmuletRelic());
         m_relics.Add(new ContentDesignSchematicsRelic());
         m_relics.Add(new ContentMedKitRelic());
@@ -47,6 +45,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
         m_relics.Add(new ContentRestorationBrickRelic());
+        m_relics.Add(new ContentTomeOfDuluhainRelic());
+        m_relics.Add(new ContentDominerickRefrainRelic());
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)

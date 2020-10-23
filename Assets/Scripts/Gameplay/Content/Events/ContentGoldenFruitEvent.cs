@@ -11,6 +11,11 @@ public class ContentGoldenFruitEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Uncommon;
 
+        if (m_tile == null)
+        {
+            return;
+        }
+
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameHealAction(m_tile.m_occupyingUnit, 3)));
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 20);
         m_optionThree = new GameEventLeaveOption();
