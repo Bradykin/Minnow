@@ -51,6 +51,9 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     protected Type m_completedEventTerrainType;
     protected Type m_addedEventTerrainType;
     protected Type m_iceCrackedTerrainType;
+    protected Type m_volcanoEruptTerrainType;
+    protected Type m_marshTideRiseTerrainType;
+    protected Type m_marshTideLowerTerrainType;
 
     public Sprite m_iconWhite;
 
@@ -101,6 +104,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public bool IsWater()
     {
         return m_isWater;
+    }
+
+    public bool IsVolcano()
+    {
+        return m_isVolcano;
     }
 
     public bool IsIce()
@@ -181,6 +189,21 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
     public Type GetIceCrackedTerrainType()
     {
         return m_iceCrackedTerrainType;
+    }
+
+    public Type GetVolcanoEruptTerrainType()
+    {
+        return m_volcanoEruptTerrainType;
+    }
+
+    public Type GetMarshTideRiseTerrainType()
+    {
+        return m_marshTideRiseTerrainType;
+    }
+
+    public Type GetMarshTideLowerTerrainType()
+    {
+        return m_marshTideLowerTerrainType;
     }
 
     public string GetFocusPanelText()

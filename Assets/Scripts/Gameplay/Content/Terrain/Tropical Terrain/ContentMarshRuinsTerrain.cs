@@ -15,11 +15,14 @@ public class ContentMarshRuinsTerrain : GameTerrainBase
         m_maxTerrainImageNumber = 2;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
+        m_isPlains = true;
         m_isPassable = true;
         m_isWaterSource = true;
         m_isEventTerrain = true;
 
         m_completedEventTerrainType = typeof(ContentMarshTerrain);
+        m_marshTideRiseTerrainType = typeof(ContentBogRuinsTerrain);
+        m_marshTideLowerTerrainType = typeof(ContentTropicalPlainsRuinsTerrain);
 
         LateInit();
     }

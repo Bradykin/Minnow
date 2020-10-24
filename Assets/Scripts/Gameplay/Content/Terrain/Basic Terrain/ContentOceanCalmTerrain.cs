@@ -17,6 +17,8 @@ public class ContentOceanCalmTerrain : GameTerrainBase
 
         m_isWater = true;
 
+        m_marshTideLowerTerrainType = typeof(ContentBogTerrain);
+
         LateInit();
     }
 }

@@ -21,6 +21,7 @@ public class ContentTropicalPlainsRuinsTerrain : GameTerrainBase
 
         m_burnedTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
         m_completedEventTerrainType = typeof(ContentTropicalPlainsTerrain);
+        m_marshTideRiseTerrainType = typeof(ContentMarshRuinsTerrain);
 
         LateInit();
     }

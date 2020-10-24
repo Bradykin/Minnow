@@ -361,6 +361,48 @@ public class GameTerrainFactory
         return toReturn;
     }
 
+    public static GameTerrainBase GetVolcanoEruptTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetVolcanoEruptTerrainType() == null)
+        {
+            Debug.LogError("Missing volcano erupt terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetVolcanoEruptTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
+    public static GameTerrainBase GetMarshTideRiseTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetMarshTideRiseTerrainType() == null)
+        {
+            Debug.LogError("Missing marsh tide rise terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetMarshTideRiseTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
+    public static GameTerrainBase GetMarshTideLowerTerrainClone(GameTerrainBase currentTerrain)
+    {
+        if (currentTerrain.GetMarshTideLowerTerrainType() == null)
+        {
+            Debug.LogError("Missing marsh tide lower terrain type for " + currentTerrain.m_name);
+            return GetTerrainClone(currentTerrain);
+        }
+
+        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetMarshTideLowerTerrainType());
+        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
+
+        return toReturn;
+    }
+
     public static GameTerrainBase GetPreviousTerrainList()
     {
         if (!m_hasInit)

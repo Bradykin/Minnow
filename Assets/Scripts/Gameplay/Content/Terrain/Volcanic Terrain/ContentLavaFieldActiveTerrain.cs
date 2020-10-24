@@ -6,8 +6,8 @@ public class ContentLavaFieldActiveTerrain : GameTerrainBase
 {
     public ContentLavaFieldActiveTerrain()
     {
-        m_damageReduction = Constants.PlainsDamageReduction;
-        m_costToPass = Constants.PlainsMovementCost;
+        m_damageReduction = Constants.LavaFieldDamageReduction;
+        m_costToPass = Constants.LavaFieldMovementCost;
 
         m_name = "LavaFieldActive";
         m_desc = GenerateDescription();

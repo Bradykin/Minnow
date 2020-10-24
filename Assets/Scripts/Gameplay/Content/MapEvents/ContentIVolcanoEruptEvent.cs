@@ -21,7 +21,14 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
             if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
             {
-                //Do thing
+                if (gameTile.GetTerrain().IsVolcano())
+                {
+                    gameTile.SetTerrain(GameTerrainFactory.GetVolcanoEruptTerrainClone(gameTile.GetTerrain()));
+                }
+                else
+                {
+                    gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
+                }
             }
         }
     }

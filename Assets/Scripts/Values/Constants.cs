@@ -95,6 +95,11 @@ public static class Constants
     public static int DunesMovementCost = 3;
     public static int DunesDamageTaken = 0;
 
+    //Volcano unique tiles
+    public static int LavaFieldDamageReduction = 0;
+    public static int LavaFieldMovementCost = 2;
+    public static int LavaFieldDamageDealt = 10;
+
     //Snow unique tiles
     public static int SnowBankDamageReduction = 0;
     public static int SnowBankMovementCost = 2;
@@ -107,8 +112,8 @@ public static class Constants
     public static int MarshMovementCost = 2;
     public static int MarshStaminaRegenLoss = 0;
     public static int BogDamageReduction = 0;
-    public static int BogMovementCost = 2;
-    public static int BogStaminaRegenLoss = 2;
+    public static int BogMovementCost = 3;
+    public static int BogStaminaRegenLoss = 0;
 
     public static int GetWaveLength (int waveNum)
     {

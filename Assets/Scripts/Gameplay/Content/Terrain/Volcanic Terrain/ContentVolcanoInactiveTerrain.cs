@@ -18,6 +18,8 @@ public class ContentVolcanoInactiveTerrain : GameTerrainBase
         m_isMountain = true;
         m_isVolcano = true;
 
+        m_volcanoEruptTerrainType = typeof(ContentVolcanoActiveTerrain);
+
         LateInit();
     }
 }

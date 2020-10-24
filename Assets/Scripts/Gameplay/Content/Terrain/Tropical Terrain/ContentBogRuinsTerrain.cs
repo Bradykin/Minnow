@@ -19,6 +19,8 @@ public class ContentBogRuinsTerrain : GameTerrainBase
         m_isEventTerrain = true;
 
         m_completedEventTerrainType = typeof(ContentBogTerrain);
+        m_marshTideRiseTerrainType = typeof(ContentOceanCalmTerrain);
+        m_marshTideLowerTerrainType = typeof(ContentMarshRuinsTerrain);
 
         LateInit();
     }
