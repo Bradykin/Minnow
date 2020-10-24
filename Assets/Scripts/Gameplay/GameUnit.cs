@@ -50,6 +50,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     //Special functionality
     public bool m_instantWaterMovement;
     public bool m_startWithMaxStamina;
+    public bool m_takesLavaFieldDamage = true;
 
     public void CopyOff(GameUnit other)
     {
@@ -1193,6 +1194,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
                 int healAmount = m_gameTile.GetCostToPass(this) * medkitCount * 3;
                 Heal(healAmount);
             }
+        }
+
+        if (m_takesLavaFieldDamage && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
+        {
+            GetHit(Constants.LavaFieldDamageDealt);
         }
     }
 
