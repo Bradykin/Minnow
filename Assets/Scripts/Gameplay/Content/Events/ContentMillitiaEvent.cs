@@ -68,7 +68,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
         if (m_tile.m_occupyingUnit.m_name != toGainCard.GetUnit().m_name)
         {
-            UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit);
+            UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit, true);
         }
         UIHelper.CreateUnitTooltip(toGainCard.GetUnit());
     }
