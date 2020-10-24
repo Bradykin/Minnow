@@ -1089,7 +1089,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     {
         UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
 
-        m_power += powerToRemove;
+        m_power -= powerToRemove;
         m_maxHealth -= healthToRemove;
 
         if (m_maxHealth < 1)
