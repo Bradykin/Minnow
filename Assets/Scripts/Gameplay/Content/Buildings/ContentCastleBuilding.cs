@@ -29,7 +29,7 @@ public class ContentCastleBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
-        if (terrain.IsFlatTerrain())
+        if (terrain.IsPlains())
         {
             return true;
         }

@@ -26,7 +26,7 @@ public class ContentTempleBuilding : GameBuildingBase
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
-        if (terrain.IsFlatTerrain())
+        if (terrain.IsPlains())
         {
             return true;
         }

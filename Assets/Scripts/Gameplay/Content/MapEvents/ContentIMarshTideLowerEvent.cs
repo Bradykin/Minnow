@@ -24,6 +24,13 @@ public class ContentMarshTideLowerEvent : GameMapEvent
                 if (gameTile.GetTerrain().GetMarshTideLowerTerrainType() != null)
                 {
                     gameTile.SetTerrain(GameTerrainFactory.GetMarshTideLowerTerrainClone(gameTile.GetTerrain()));
+                    if (gameTile.GetBuilding() != null)
+                    {
+                        if (!gameTile.GetBuilding().IsValidTerrainToPlace(gameTile.GetTerrain(), gameTile))
+                        {
+                            gameTile.ClearBuilding();
+                        }
+                    }
                 }
             }
         }
