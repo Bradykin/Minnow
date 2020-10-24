@@ -20,6 +20,7 @@ public static class GameMapFactory
         m_maps.Add(new ContentDeltaMap());
         m_maps.Add(new ContentMountainPassMap());
         m_maps.Add(new ContentFrozenLakeMap());
+        m_maps.Add(new ContentVolcanoRunMap());
     }
 
     public static GameMap GetMapById(int id)

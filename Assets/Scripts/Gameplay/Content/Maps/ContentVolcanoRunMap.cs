@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLakesideHardMap : GameMap
+public class ContentVolcanoRunMap : GameMap
 {
-    public ContentLakesideHardMap()
+    public ContentVolcanoRunMap()
     {
-        m_name = "Lakeside Hard";
-        m_desc = "Defend from 3 different angles in this expert map!";
+        m_name = "Volcano Run";
+        m_desc = "The valley seems so idyllic and perfect. I'm sure nothing will go wrong...";
 
         m_difficulty = MapDifficulty.Hard;
 
-        m_id = 1;
+        m_id = 8;
 
         m_playerUnlockLevel = 1;
 
@@ -22,8 +22,11 @@ public class ContentLakesideHardMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
-            AddMapEvent(new ContentDrySeasonMapEvent(0), 2);
-            AddMapEvent(new ContentRainRefillMapEvent(0), 3);
+            AddMapEvent(new ContentDeployCaravanEvent(0), 2);
+            AddMapEvent(new ContentVolcanoEruptionEvent(1), 3);
+            AddMapEvent(new ContentVolcanoEruptionEvent(2), 4);
+            AddMapEvent(new ContentVolcanoEruptionEvent(3), 5);
+            AddMapEvent(new ContentVolcanoEruptionEvent(4), 6);
         }
     }
 

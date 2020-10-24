@@ -20,6 +20,7 @@ public class GameTerrainFactory
     private static List<GameTerrainBase> m_yellowDesertTerrain = new List<GameTerrainBase>();
     private static List<GameTerrainBase> m_volcanicTerrain = new List<GameTerrainBase>();
     private static List<GameTerrainBase> m_ruinsTerrain = new List<GameTerrainBase>();
+    private static List<GameTerrainBase> m_tempTerrain = new List<GameTerrainBase>();
 
     private static bool m_hasInit = false;
     
@@ -235,6 +236,17 @@ public class GameTerrainFactory
         m_ruinsTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_ruinsTerrain.Add(new ContentSnowPlainsRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Ruins Terrain", m_ruinsTerrain));
+
+        //Temp Terrain
+        m_tempTerrain.Add(new ContentTropicalPlainsTerrain());
+        m_tempTerrain.Add(new ContentMarshTerrain());
+        m_tempTerrain.Add(new ContentBogTerrain());
+        m_tempTerrain.Add(new ContentOceanCalmTerrain());
+        m_tempTerrain.Add(new ContentJungleForestTerrain());
+        m_tempTerrain.Add(new ContentSwampForestTerrain());
+        m_tempTerrain.Add(new ContentHillsTerrain());
+        m_tempTerrain.Add(new ContentMountainTerrain());
+        m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Temp Terrain", m_tempTerrain));
 
         m_currentTerrainIndex = 0;
         m_currentTerrainListIndex = 0;
