@@ -61,11 +61,11 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
         base.SetCardLevel(level);
 
         m_cost = 1;
-        m_spellEffect = 1;
+        m_spellEffect = 2;
 
         if (m_cardLevel >= 1)
         {
-            m_spellEffect = 2;
+            m_spellEffect = 3;
         }
 
         if (m_cardLevel >= 2)
