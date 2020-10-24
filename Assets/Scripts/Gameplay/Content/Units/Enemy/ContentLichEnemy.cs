@@ -46,7 +46,10 @@ public class ContentLichEnemy : GameEnemyUnit
     {
         string descString = base.GetDesc();
 
-        descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
+        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
+        {
+            descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
+        }
 
         return descString;
     }

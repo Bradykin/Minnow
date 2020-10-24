@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentDrainingBoltCard : GameCardSpellBase
 {
-    private int m_staminaToDrain = 1;
+    private int m_staminaToDrain = 2;
 
     public ContentDrainingBoltCard()
     {

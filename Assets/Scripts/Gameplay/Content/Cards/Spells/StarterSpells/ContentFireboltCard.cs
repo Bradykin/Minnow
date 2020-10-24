@@ -56,11 +56,11 @@ public class ContentFireboltCard : GameCardSpellBase
         base.SetCardLevel(level);
 
         m_cost = 1;
-        m_spellEffect = 4;
+        m_spellEffect = 5;
 
         if (m_cardLevel >= 1)
         {
-            m_spellEffect += 3;
+            m_spellEffect += 4;
         }
         
         if (m_cardLevel >= 2)
