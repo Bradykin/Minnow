@@ -1196,7 +1196,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
             }
         }
 
-        if (m_takesLavaFieldDamage && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
+        if (GetTeam() == Team.Player && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }
