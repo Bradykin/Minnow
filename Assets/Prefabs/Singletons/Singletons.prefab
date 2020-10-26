@@ -38353,7 +38353,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -38391,6 +38391,7 @@ MonoBehaviour:
   m_intermissionHUD: {fileID: 8979168205424223443}
   m_globalHUD: {fileID: 3497629329801053153}
   m_levelSelectHUD: {fileID: 4679912508734709582}
+  m_rectTransform: {fileID: 0}
 --- !u!1 &6332728894453118640
 GameObject:
   m_ObjectHideFlags: 0

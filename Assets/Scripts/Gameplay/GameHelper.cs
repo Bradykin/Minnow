@@ -156,7 +156,7 @@ public static class GameHelper
         FactoryManager.Instance.StopAllCoroutines();
         Globals.m_levelActive = false;
 
-        WorldController.Instance.EndLevel(PlaythroughEndType.Loss);
+        WorldController.Instance.EndLevel(RunEndType.Loss);
         WorldGridManager.Instance.RecycleGrid();
 
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");

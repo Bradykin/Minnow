@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayerSaveData
+[Serializable]
+public class PlayerAccountData
 {
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
@@ -10,10 +12,8 @@ public class GamePlayerSaveData
     public int m_playerExperience;
     public int m_numPlaySessions;
 
-    public GamePlayerSaveData()
+    public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
-
-        m_mapChaosLevels.Add(1, 5);
     }
 }

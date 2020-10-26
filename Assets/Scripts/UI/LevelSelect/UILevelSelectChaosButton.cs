@@ -58,8 +58,8 @@ public class UILevelSelectChaosButton : UIElementBase
         }
 
         if (!Constants.CheatsOn && m_isIncrease && 
-            (!GameMetaProgression.GamePlayerSaveData.m_mapChaosLevels.ContainsKey(UILevelSelectController.Instance.m_curMap.m_id) || 
-            GameMetaProgression.GamePlayerSaveData.m_mapChaosLevels[UILevelSelectController.Instance.m_curMap.m_id] < Globals.m_curChaos))
+            (!PlayerDataManager.PlayerAccountData.m_mapChaosLevels.ContainsKey(UILevelSelectController.Instance.m_curMap.m_id) || 
+            PlayerDataManager.PlayerAccountData.m_mapChaosLevels[UILevelSelectController.Instance.m_curMap.m_id] < Globals.m_curChaos))
         {
             return false;
         }

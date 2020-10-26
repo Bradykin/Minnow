@@ -34,17 +34,17 @@ public abstract class GameRelic : GameElementBase
 
     public virtual int GetRelicLevel()
     {
-        if (!GameMetaProgression.IsMapUnlocked(m_mapUnlockID))
+        if (!PlayerDataManager.IsMapUnlocked(m_mapUnlockID))
         {
             return 0;
         }
 
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
+        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
         {
             return 2;
         }
 
-        if (GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
+        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
         {
             return 1;
         }

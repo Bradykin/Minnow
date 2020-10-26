@@ -1,27 +1,25 @@
-﻿using Game.Util;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class GameMetaProgression
+public static class PlayerDataManager
 {
-    public static GamePlayerSaveData GamePlayerSaveData
+    public static PlayerAccountData PlayerAccountData
     {
         get
         {
-            if (m_gamePlayerSaveData == null)
+            if (m_playerAccountData == null)
             {
-                m_gamePlayerSaveData = GameFiles.ImportPlayerSaveData();
+                m_playerAccountData = Files.ImportPlayerAccountData();
             }
-            return m_gamePlayerSaveData;
+            return m_playerAccountData;
         }
         set
         {
-            m_gamePlayerSaveData = value;
+            m_playerAccountData = value;
         }
     }
-    private static GamePlayerSaveData m_gamePlayerSaveData;
+    private static PlayerAccountData m_playerAccountData;
 
     public static bool m_hasInit;
 
@@ -37,7 +35,12 @@ public static class GameMetaProgression
             Init();
         }
 
-        return Mathf.FloorToInt((float)(GamePlayerSaveData.m_playerExperience)/1000.0f);
+        return Mathf.FloorToInt((float)(PlayerAccountData.m_playerExperience)/1000.0f);
+    }
+
+    public static (int, int) GetProgressToNextLevel()
+    {
+        return ((int)(PlayerAccountData.m_playerExperience % 1000), 1000);
     }
 
     public static bool IsChaosLevelAchieved(int mapId, int chaosLevel)
@@ -47,12 +50,12 @@ public static class GameMetaProgression
             Init();
         }
 
-        if (!GamePlayerSaveData.m_mapChaosLevels.ContainsKey(mapId))
+        if (!PlayerAccountData.m_mapChaosLevels.ContainsKey(mapId))
         {
             return false;
         }
 
-        return GamePlayerSaveData.m_mapChaosLevels[mapId] >= chaosLevel;
+        return PlayerAccountData.m_mapChaosLevels[mapId] >= chaosLevel;
     }
 
     public static bool IsMapUnlocked(int mapId)
@@ -97,22 +100,22 @@ public static class GameMetaProgression
         return false;
     }
 
-    public static void UpdatePlayerSaveDataOnEndPlaythrough(PlaythroughEndType endType, int experienceAmount, int mapID, int curChaos)
+    public static void UpdatePlayerAccountDataOnEndRun(RunEndType endType, int experienceAmount, int mapID, int curChaos)
     {
         int previousLevel = GetCurLevel();
 
-        GamePlayerSaveData.m_playerExperience += experienceAmount;
-        GamePlayerSaveData.m_numPlaySessions++;
+        PlayerAccountData.m_playerExperience += experienceAmount;
+        PlayerAccountData.m_numPlaySessions++;
 
-        if (endType == PlaythroughEndType.Win)
+        if (endType == RunEndType.Win)
         {
-            if (!GamePlayerSaveData.m_mapChaosLevels.ContainsKey(mapID))
+            if (!PlayerAccountData.m_mapChaosLevels.ContainsKey(mapID))
             {
-                GamePlayerSaveData.m_mapChaosLevels.Add(mapID, curChaos);
+                PlayerAccountData.m_mapChaosLevels.Add(mapID, curChaos);
             }
-            else if (GamePlayerSaveData.m_mapChaosLevels[mapID] < curChaos)
+            else if (PlayerAccountData.m_mapChaosLevels[mapID] < curChaos)
             {
-                GamePlayerSaveData.m_mapChaosLevels[mapID] = curChaos;
+                PlayerAccountData.m_mapChaosLevels[mapID] = curChaos;
             }
         }
 

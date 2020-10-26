@@ -76,7 +76,7 @@ public static class GameRelicFactory
     {
         List<GameRelic> relicList = GetListWithoutPlayerRelics();
 
-        int curLevel = GameMetaProgression.GetCurLevel();
+        int curLevel = PlayerDataManager.GetCurLevel();
 
         for (int i = relicList.Count - 1; i >= 0; i--)
         {

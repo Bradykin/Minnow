@@ -12,11 +12,11 @@ public class WorldGridRoot : MonoBehaviour, IReset
         JsonGridData jsonData;
         if (Globals.mapToLoad == string.Empty)
         {
-            Globals.mapToLoad = GameFiles.DEFAULT_GRID_DATA_PATH;
+            Globals.mapToLoad = Files.DEFAULT_GRID_DATA_PATH;
         }
 
 #if UNITY_EDITOR
-        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.EDITOR_PATH, Globals.mapToLoad)));
+        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
 #else
         jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
 #endif

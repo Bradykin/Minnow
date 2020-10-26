@@ -37,7 +37,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public override bool PlayerHasUnlockedCard()
     {
-        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && GameMetaProgression.IsChaosLevelAchieved(m_mapUnlockID, 1));
+        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, 1));
     }
 
     public override void PlayCard(GameUnit targetUnit)

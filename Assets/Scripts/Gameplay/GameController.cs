@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlaythroughEndType : int
+public enum RunEndType : int
 {
     Win,
     Loss,
@@ -56,7 +56,6 @@ public class GameController
         m_player.LateInit();
         m_gameOpponent.LateInit();
         Globals.m_levelActive = true;
-        //WorldGridManager.Instance.SetupEnemies(m_gameOpponent);
 
         //TEMP: to start the turns. Should happen in a different way in future
         BeginTurnSequence();
@@ -131,12 +130,12 @@ public class GameController
         m_playthroughExperienceAmount = experienceAmount;
     }
 
-    public void OnEndPlaythrough(PlaythroughEndType endType)
+    public void OnEndPlaythrough(RunEndType endType)
     {
-        if (endType != PlaythroughEndType.Quit)
+        if (endType != RunEndType.Quit)
         {
-            GameMetaProgression.UpdatePlayerSaveDataOnEndPlaythrough(endType, Mathf.Max(50, m_playthroughExperienceAmount), m_map.m_id, Globals.m_curChaos);
-            GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
+            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, Mathf.Max(50, m_playthroughExperienceAmount), m_map.m_id, Globals.m_curChaos);
+            Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }
     }
 }

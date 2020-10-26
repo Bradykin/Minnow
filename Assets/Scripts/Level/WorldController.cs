@@ -31,7 +31,7 @@ public class WorldController : Singleton<WorldController>
         AudioBackgroundController.Instance.StartBackgroundMusic(map);
     }
 
-    public void EndLevel(PlaythroughEndType endType)
+    public void EndLevel(RunEndType endType)
     {
         m_isInGame = false;
 
@@ -403,6 +403,6 @@ public class WorldController : Singleton<WorldController>
 
     public void OnApplicationQuit()
     {
-        GameFiles.ExportPlayerSaveData(GameMetaProgression.GamePlayerSaveData);
+        Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
     }
 }

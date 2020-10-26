@@ -98,7 +98,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
                 return;
             }
 
-            bool optionOneActive = GameMetaProgression.IsCardUnlocked(cardOne);
+            bool optionOneActive = PlayerDataManager.IsCardUnlocked(cardOne);
             m_optionOne.gameObject.SetActive(optionOneActive);
             if (optionOneActive)
             {
@@ -106,7 +106,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
                 m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
             }
 
-            bool optionTwoActive = GameMetaProgression.IsCardUnlocked(cardTwo);
+            bool optionTwoActive = PlayerDataManager.IsCardUnlocked(cardTwo);
             m_optionTwo.gameObject.SetActive(optionTwoActive);
             if (optionTwoActive)
             {
@@ -114,7 +114,7 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
                 m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
             }
 
-            bool optionThreeActive = GameMetaProgression.IsCardUnlocked(cardThree);
+            bool optionThreeActive = PlayerDataManager.IsCardUnlocked(cardThree);
             m_optionThree.gameObject.SetActive(optionThreeActive);
             if (optionThreeActive)
             {
