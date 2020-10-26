@@ -35,7 +35,7 @@ public static class PlayerDataManager
             Init();
         }
 
-        return Mathf.FloorToInt((float)(PlayerAccountData.m_playerExperience)/1000.0f);
+        return Mathf.FloorToInt((float)(PlayerAccountData.m_playerExperience)/1000.0f) + 1;
     }
 
     public static (int, int) GetProgressToNextLevel()
