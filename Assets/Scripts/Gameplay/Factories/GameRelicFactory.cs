@@ -101,7 +101,7 @@ public static class GameRelicFactory
 
         if (relicList.Count == 0)
         {
-            Debug.LogError("No viable cards found");
+            Debug.LogError("No viable relics found");
             return null;
         }
 
