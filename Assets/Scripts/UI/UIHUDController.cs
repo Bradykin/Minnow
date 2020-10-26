@@ -1,13 +1,23 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIHUDController : MonoBehaviour
+public class UIHUDController : Singleton<UIHUDController>
 {
     public GameObject m_waveHUD;
     public GameObject m_intermissionHUD;
     public GameObject m_globalHUD;
     public GameObject m_levelSelectHUD;
+
+    public RectTransform m_rectTransform;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        m_rectTransform = GetComponent<RectTransform>();
+    }
 
     void Update()
     {

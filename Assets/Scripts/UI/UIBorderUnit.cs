@@ -37,6 +37,15 @@ public class UIBorderUnit : MonoBehaviour
 
     private void UpdatePosition()
     {
+        Vector3 unitWorldToScreen = Camera.main.WorldToScreenPoint(m_unit.transform.position);
+        //Vector3 centerScreenPoint = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0));
+
+        Vector2 clampedUnitWorldToScreen = new Vector2(Mathf.Clamp(unitWorldToScreen.x, m_rectTransform.rect.width / 2, UIHUDController.Instance.m_rectTransform.rect.width - (m_rectTransform.rect.width / 2)), 
+                                                       Mathf.Clamp(unitWorldToScreen.y, m_rectTransform.rect.height / 2, UIHUDController.Instance.m_rectTransform.rect.height - (m_rectTransform.rect.height / 2)));
+        m_rectTransform.anchoredPosition = clampedUnitWorldToScreen;
+        //m_rectTransform.anchoredPosition = Camera.main.WorldToScreenPoint(m_unit.transform.position);
+
+
         /*Vector3 pos = Camera.main.transform.position;
         Vector3 dir = (m_unit.transform.position - Camera.main.transform.position);
         Vector3 normalizedDir = new Vector3(dir.x, dir.y, transform.position.z).normalized;
