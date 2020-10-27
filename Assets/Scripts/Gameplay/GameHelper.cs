@@ -121,6 +121,11 @@ public static class GameHelper
         return false;
     }
 
+    public static bool IsPlayerTurn()
+    {
+        return WorldController.Instance.m_gameController.m_currentTurn == WorldController.Instance.m_gameController.m_player;
+    }
+
     public static List<GameCard> GetPlayerBaseDeckOfUnits()
     {
         List<GameCard> deckOfUnits = new List<GameCard>();
