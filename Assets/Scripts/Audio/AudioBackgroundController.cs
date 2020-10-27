@@ -12,6 +12,18 @@ public class AudioBackgroundController : Singleton<AudioBackgroundController>
         m_audioSource = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        if (GlobalSettings.m_music)
+        {
+            m_audioSource.volume = 1.0f;
+        }
+        else
+        {
+            m_audioSource.volume = 0.0f;
+        }
+    }
+
     public void StartBackgroundMusic(GameMap toStart)
     {
         m_audioSource.clip = toStart.m_backgroundMusic;
