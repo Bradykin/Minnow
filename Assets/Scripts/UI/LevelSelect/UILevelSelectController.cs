@@ -18,13 +18,10 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
 
     public GameObject m_startGameButton;
 
+    public GameObject m_mainMenu;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            LoadSavedRun();
-        }
-        
         if (m_curMap == null)
         {
             m_infoObj.SetActive(false);
@@ -37,6 +34,8 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
             m_difficultyText.text = "";
 
             m_startGameButton.SetActive(false);
+
+            m_mainMenu.SetActive(true);
         }
         else
         {
@@ -65,35 +64,13 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
             }          
 
             m_startGameButton.SetActive(true);
+            m_mainMenu.SetActive(false);
         }
     }
 
     public bool HasLevelSelected()
     {
         return m_curMap != null;
-    }
-
-    public void LoadSavedRun()
-    {
-        if (PlayerDataManager.PlayerAccountData.PlayerRunData == null)
-        {
-            return;
-        }
-        
-        List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
-        int mapId = PlayerDataManager.PlayerAccountData.PlayerRunData.m_mapId;
-
-        for (int i = 0; i < mapList.Count; i++)
-        {
-            if (mapList[i].mapID == mapId)
-            {
-                Globals.mapToLoad = mapList[i].dataPath;
-                Globals.loadingRun = true;
-                WorldController.Instance.BeginLevel(GameMapFactory.GetMapById(mapId));
-                SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
-                return;
-            }
-        }
     }
 
     public void SetSelectedLevel(GameMap newMap)
