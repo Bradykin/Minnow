@@ -14,7 +14,7 @@ public class ContentOptimizeCard : GameCardSpellBase
         m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -29,11 +29,6 @@ public class ContentOptimizeCard : GameCardSpellBase
         {
             return "Gain " + m_energyGain + " energy and draw " + m_cardDraw + " cards.";
         }
-    }
-
-    public override bool PlayerHasUnlockedCard()
-    {
-        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, 1));
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -51,18 +46,16 @@ public class ContentOptimizeCard : GameCardSpellBase
         player.DrawCards(m_cardDraw);
     }
 
-    public override void SetCardLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetCardLevel(level);
-
         m_cost = 1;
 
-        if (m_cardLevel >= 1)
+        if (level >= 1)
         {
             m_cost = 0;
         }
 
-        if (m_cardLevel >= 2)
+        if (level >= 2)
         {
             m_cardDraw = 5;
             m_energyGain = 5;

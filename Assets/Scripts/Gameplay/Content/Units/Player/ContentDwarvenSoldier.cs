@@ -13,26 +13,24 @@ public class ContentDwarvenSoldier : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_maxHealth = 8;
         m_maxStamina = 4;
         m_staminaRegen = 3;
         m_power = 4;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_power = 7;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             m_maxHealth = 15;
         }

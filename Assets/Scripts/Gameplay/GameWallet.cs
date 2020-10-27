@@ -20,7 +20,7 @@ public class GameWallet
     {
         m_gold += toAdd.m_gold;
 
-        UIHelper.CreateWalletWorldElementNotification(toAdd.m_gold); //nmartino: Come back to this, make this a UIElementNotification instead; so that it follows the camera around
+        UIHelper.CreateWalletWorldElementNotification(toAdd.m_gold);
     }
 
     public void SubtractResources(GameWallet toAdd)

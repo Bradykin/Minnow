@@ -10,9 +10,9 @@ public class UIReputationBarController : MonoBehaviour
 
     void Update()
     {
-        int reputationLevel = 6;
-        int curRepVal = 1250;
-        int nextRepVal = 2000;
+        int reputationLevel = PlayerDataManager.GetCurLevel();
+        int curRepVal = PlayerDataManager.GetProgressToNextLevel().Item1;
+        int nextRepVal = PlayerDataManager.GetProgressToNextLevel().Item2;
 
         m_reputationLevelText.text = "Reputation Level: " + reputationLevel;
         m_reputationValueText.text = curRepVal + "/" + nextRepVal;

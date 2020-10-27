@@ -15,27 +15,25 @@ public class ContentLizardSoldier : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_maxHealth = 9;
         m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = 7;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_staminaRegen = 6;
             m_maxStamina = 6;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             m_power = 22;
         }

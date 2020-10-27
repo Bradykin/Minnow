@@ -11,7 +11,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -24,7 +24,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             spString = GetSpellPowerString();
         }
 
-        if (m_cardLevel >= 2)
+        if (GetCardLevel() >= 2)
         {
             return "Give an allied unit +" + m_spellEffect + spString + "/+" + m_spellEffect + spString + ".\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
         }
@@ -45,26 +45,24 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 
         int powerToAdd = GetSpellValue();
         int healthToAdd = 0;
-        if (m_cardLevel >= 2)
+        if (GetCardLevel() >= 2)
         {
             healthToAdd = GetSpellValue();
         }
         targetUnit.AddStats(powerToAdd, healthToAdd);
     }
 
-    public override void SetCardLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetCardLevel(level);
-
         m_cost = 1;
         m_spellEffect = 2;
 
-        if (m_cardLevel >= 1)
+        if (level >= 1)
         {
             m_spellEffect = 4;
         }
 
-        if (m_cardLevel >= 2)
+        if (level >= 2)
         {
             //Also buff health
         }

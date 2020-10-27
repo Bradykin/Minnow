@@ -19,14 +19,9 @@ public abstract class GameCard : GameElementBase
     public string m_typeline;
     public Target m_targetType;
     public bool m_shouldExile;
-    public int m_unlockLevel;
     public int m_storedTagWeight;
-    protected int m_cardLevel;
 
     protected int m_playerUnlockLevel;
-
-    //Starter Card Data
-    protected int m_mapUnlockID = 0;
 
     public virtual string GetName()
     {
@@ -195,27 +190,11 @@ public abstract class GameCard : GameElementBase
         return false;
     }
 
-    public virtual void SetCardLevel(int level)
-    {
-        m_cardLevel = level;
-    }
+    public virtual void InitializeWithLevel(int level) { }
 
     public virtual int GetCardLevel()
     {
-        if (!PlayerDataManager.IsMapUnlocked(m_mapUnlockID))
-        {
-            return 0;
-        }
-
-        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
-        {
-            return 2;
-        }
-
-        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
-        {
-            return 1;
-        }
+        //TODO: alex - Hook this up to player save data.
 
         return 0;
     }

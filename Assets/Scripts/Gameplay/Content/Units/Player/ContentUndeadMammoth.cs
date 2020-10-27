@@ -17,17 +17,15 @@ public class ContentUndeadMammoth : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), false);
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_powerBuff = 3;
         m_healthBuff = 10;
 
@@ -36,12 +34,12 @@ public class ContentUndeadMammoth : GameUnit
         m_staminaRegen = 3;
         m_power = 4;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_powerBuff = 8;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             m_maxStamina = 6;
             m_staminaRegen = 6;

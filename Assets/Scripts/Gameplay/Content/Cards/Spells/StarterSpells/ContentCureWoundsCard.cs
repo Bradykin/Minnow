@@ -10,7 +10,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
 
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -19,7 +19,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
     {
         string description = GetHealDescString();
 
-        if (m_cardLevel >= 2)
+        if (GetCardLevel() >= 2)
         {
             description += "\nTrigger <b>Enrage</b> on the target.\n";
         }
@@ -38,11 +38,6 @@ public class ContentCureWoundsCard : GameCardSpellBase
         return description;
     }
 
-    public override bool PlayerHasUnlockedCard()
-    {
-        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, 1));
-    }
-
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
@@ -54,7 +49,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
 
         targetUnit.Heal(GetSpellValue());
 
-        if (m_cardLevel >= 2)
+        if (GetCardLevel() >= 2)
         {
             List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
             int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
@@ -76,19 +71,17 @@ public class ContentCureWoundsCard : GameCardSpellBase
         }
     }
 
-    public override void SetCardLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetCardLevel(level);
-
         m_cost = 1;
         m_spellEffect = 8;
 
-        if (m_cardLevel >= 1)
+        if (level >= 1)
         {
             m_spellEffect = 20;
         }
 
-        if (m_cardLevel >= 2)
+        if (level >= 2)
         {
             //Triggers enrage on the unit
         }

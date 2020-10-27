@@ -80,11 +80,11 @@ public static class GameRelicFactory
 
         for (int i = relicList.Count - 1; i >= 0; i--)
         {
-            if (!Constants.CheatsOn && relicList[i].GetPlayerUnlockLevel() > curLevel)
+            /*if (!Constants.CheatsOn && relicList[i].GetPlayerUnlockLevel() > curLevel) //TODO: alex - Reimplement this functionality with the new system.
             {
                 relicList.RemoveAt(i);
                 continue;
-            }
+            }*/
             
             if (exclusionRelic != null && relicList[i].m_name == exclusionRelic.m_name)
             {

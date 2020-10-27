@@ -13,27 +13,25 @@ public class ContentStoneGolem : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_maxHealth = 40;
         m_maxStamina = 2;
         m_staminaRegen = 1;
         m_power = 1;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_maxStamina = 4;
             m_staminaRegen = 2;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             m_power = 10;
             m_maxHealth = 60;

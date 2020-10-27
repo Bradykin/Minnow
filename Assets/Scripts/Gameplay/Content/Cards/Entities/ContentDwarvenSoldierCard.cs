@@ -6,11 +6,11 @@ public class ContentDwarvenSoldierCard : GameUnitCard
 {
     public ContentDwarvenSoldierCard()
     {
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         m_unit = new ContentDwarvenSoldier();
 
-        m_unit.SetUnitLevel(m_cardLevel);
+        m_unit.InitializeWithLevel(GetCardLevel());
 
         m_cost = 1;
 

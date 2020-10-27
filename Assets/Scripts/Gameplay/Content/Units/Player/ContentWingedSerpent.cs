@@ -15,26 +15,24 @@ public class ContentWingedSerpent : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_maxHealth = 3;
         m_maxStamina = 5;
         m_staminaRegen = 2;
         m_power = 1;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_maxHealth = 8;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             m_staminaRegen = 3;
         }

@@ -14,7 +14,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
 
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -55,18 +55,16 @@ public class ContentAegisCard : GameCardSpellBase
         }
     }
 
-    public override void SetCardLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetCardLevel(level);
-
         m_cost = 1;
 
-        if (m_cardLevel >= 1)
+        if (level >= 1)
         {
             m_amount = 2;
         }
 
-        if (m_cardLevel >= 2)
+        if (level >= 2)
         {
             m_cost = 0;
         }
