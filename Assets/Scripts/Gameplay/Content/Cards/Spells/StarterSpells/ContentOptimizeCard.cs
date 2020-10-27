@@ -10,7 +10,7 @@ public class ContentOptimizeCard : GameCardSpellBase
     public ContentOptimizeCard()
     {
         m_name = "Optimize";
-        m_targetType = Target.Ally;
+        m_targetType = Target.None;
         m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 

@@ -79,7 +79,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentCureWoundsCard());
         m_cards.Add(new ContentCurseOfInactionCard());
         m_cards.Add(new ContentDemonicAspectCard());
-        m_cards.Add(new ContentDemoralizeCard());
+        m_cards.Add(new ContentControlMoralCard());
         m_cards.Add(new ContentDreamCard());
         m_cards.Add(new ContentEncouragementCard());
         m_cards.Add(new ContentEnergizeCard());
