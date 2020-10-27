@@ -20,6 +20,11 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            LoadSavedRun();
+        }
+        
         if (m_curMap == null)
         {
             m_infoObj.SetActive(false);
@@ -66,6 +71,28 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
     public bool HasLevelSelected()
     {
         return m_curMap != null;
+    }
+
+    public void LoadSavedRun()
+    {
+        if (PlayerDataManager.PlayerAccountData.PlayerRunData == null)
+        {
+            return;
+        }
+        
+        List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
+        int mapId = PlayerDataManager.PlayerAccountData.PlayerRunData.m_mapId;
+
+        for (int i = 0; i < mapList.Count; i++)
+        {
+            if (mapList[i].mapID == mapId)
+            {
+                Globals.mapToLoad = mapList[i].dataPath;
+                WorldController.Instance.BeginLevel(GameMapFactory.GetMapById(mapId));
+                SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
+                return;
+            }
+        }
     }
 
     public void SetSelectedLevel(GameMap newMap)

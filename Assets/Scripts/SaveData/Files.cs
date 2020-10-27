@@ -12,7 +12,7 @@ public static class Files
     public const string BUILD_DATA_PATH = "BuildData";
     public const string MAP_META_DATA_PATH = "MapMetaData.txt";
     public const string DEFAULT_GRID_DATA_PATH = "JsonGridData0.txt";
-    public const string PLAYER_ACCOUNT_DATA_PATH = "PlayerAccountData.txt";
+    public const string PLAYER_ACCOUNT_DATA_PATH = "PlayerAccountData.player";
 
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
     public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);

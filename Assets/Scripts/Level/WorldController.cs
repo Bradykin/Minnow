@@ -403,6 +403,11 @@ public class WorldController : Singleton<WorldController>
 
     public void OnApplicationQuit()
     {
+        if (m_isInGame)
+        {
+            PlayerDataManager.PlayerAccountData.SaveRunData();
+        }
+        
         Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,11 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
+    [JsonIgnore]
+    public PlayerRunData PlayerRunData => m_playerRunData;
+    [JsonProperty]
+    private PlayerRunData m_playerRunData = null;
+    
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
 
@@ -15,5 +21,11 @@ public class PlayerAccountData
     public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
+    }
+
+    public void SaveRunData()
+    {
+        m_playerRunData = new PlayerRunData();
+        m_playerRunData.SaveRunData();
     }
 }
