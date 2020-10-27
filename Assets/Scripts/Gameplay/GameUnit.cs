@@ -1238,6 +1238,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public void LoadFromJson(JsonGameUnitData jsonData)
     {
+        m_keywordHolder.RemoveAllKeywords();
+        
         m_curHealth = jsonData.curHealth;
         m_team = (Team)jsonData.team;
         m_curStamina = jsonData.curStamina;

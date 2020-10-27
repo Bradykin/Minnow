@@ -15,11 +15,19 @@ public class WorldGridRoot : MonoBehaviour, IReset
             Globals.mapToLoad = Files.DEFAULT_GRID_DATA_PATH;
         }
 
+        if (Globals.loadingRun)
+        {
+            jsonData = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGridData;
+        }
+        else
+        {
 #if UNITY_EDITOR
-        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
+            jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
 #else
-        jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
+            jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
 #endif
+        }
+
         Globals.mapToLoad = string.Empty;
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(transform);

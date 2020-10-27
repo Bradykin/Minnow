@@ -397,6 +397,12 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
     {
         m_gridPosition = jsonData.gridPosition;
 
+        if (jsonData.gameTerrainData != string.Empty && jsonData.gameTerrainData != null)
+        {
+            JsonGameTerrainData jsonGameTerrainData = JsonConvert.DeserializeObject<JsonGameTerrainData>(jsonData.gameTerrainData);
+            SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
+        }
+
         if (jsonData.gameUnitData != string.Empty && jsonData.gameUnitData != null)
         {
             JsonGameUnitData jsonGameUnitData = JsonConvert.DeserializeObject<JsonGameUnitData>(jsonData.gameUnitData);
@@ -410,12 +416,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             JsonGameBuildingData jsonGameBuildingData = JsonConvert.DeserializeObject<JsonGameBuildingData>(jsonData.gameBuildingData);
             PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
-        }
-
-        if (jsonData.gameTerrainData != string.Empty && jsonData.gameTerrainData != null)
-        {
-            JsonGameTerrainData jsonGameTerrainData = JsonConvert.DeserializeObject<JsonGameTerrainData>(jsonData.gameTerrainData);
-            SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
         }
 
         if (jsonData.gameSpawnPointData != string.Empty && jsonData.gameSpawnPointData != null)

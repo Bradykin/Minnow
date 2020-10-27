@@ -88,6 +88,7 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
             if (mapList[i].mapID == mapId)
             {
                 Globals.mapToLoad = mapList[i].dataPath;
+                Globals.loadingRun = true;
                 WorldController.Instance.BeginLevel(GameMapFactory.GetMapById(mapId));
                 SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
                 return;

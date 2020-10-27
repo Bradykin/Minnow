@@ -18,6 +18,7 @@ public static class Globals
     }
 
     //TODO: THis is temp.
+    public static bool loadingRun = false;
     public static string mapToLoad = string.Empty;
 
     public static UICard m_selectedCard;
