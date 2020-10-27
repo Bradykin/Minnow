@@ -159,18 +159,8 @@ public class GameCardSpellBase : GameCard
         return m_keywordHolder;
     }
 
-    //TODO: nmartino - Go through the overrides and find a way to make them function w/ this.
     public override string GetDesc()
     {
-        string desc = m_desc;
-
-        /*if (GetKeywordHolderForRead().m_keywords.Count > 0 && (desc != ""))
-        {
-            desc += "\n";
-        }
-
-        desc += GetKeywordHolderForRead().GetDesc();
-        */
-        return desc;
+        return m_desc;
     }
 }

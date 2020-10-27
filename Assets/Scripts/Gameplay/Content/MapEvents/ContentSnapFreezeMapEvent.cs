@@ -21,7 +21,7 @@ public class ContentSnapFreezeMapEvent : GameMapEvent
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
             if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
             {
-                gameTile.SetTerrain(new ContentIceTerrain(), true);  //nmartino: This should be ice
+                gameTile.SetTerrain(new ContentIceTerrain(), true);
             }
         }
     }

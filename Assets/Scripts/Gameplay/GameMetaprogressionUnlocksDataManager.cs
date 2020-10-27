@@ -1,0 +1,95 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class GameMetaprogressionUnlocksDataManager
+{
+    private static bool m_isInit;
+
+    private static List<GameMetaprogressionDataElement> m_dataElements = new List<GameMetaprogressionDataElement>();
+
+    public static void InitData()
+    {
+        GameMap lakesideMap = new ContentLakesideMap(); //Tutorial map
+        GameMap deltaMap = new ContentDeltaMap();
+        GameMap mountainPass = new ContentMountainPassMap();
+        GameMap crimsonIslandsMap = new ContentCrimsonIslandsMap();
+        GameMap frozenLake = new ContentFrozenLakeMap();
+        GameMap desertPassMap = new ContentDesertPassMap();
+        GameMap volcanoRun = new ContentVolcanoRunMap();
+        GameMap lakesideHardMap = new ContentLakesideHardMap();
+        GameMap themarshlands = new ContentTheMarshlandsMap();
+        GameMap snowmeltMap = new ContentSnowmeltMap();
+
+        GameCard lizardSoldierCard = new ContentLizardSoldierCard();
+        GameCard undeadMammothCard = new ContentUndeadMammothCard();
+
+        GameCard wingedSerpentCard = new ContentWingedSerpentCard();
+        GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
+
+        GameCard cureWoundsCard = new ContentCureWoundsCard();
+        GameCard joltCard= new ContentJoltCard();
+
+        GameCard drainingBoltCard = new ContentDrainingBoltCard();
+        GameCard weakeningBoltCard = new ContentWeakeningBoltCard();
+
+        GameCard staminaTrainingCard = new ContentStaminaTrainingCard();
+        GameCard optimizeCard = new ContentOptimizeCard(); //nmartino add optimize to a map (need 5 more maps + final map)
+
+        FillMapData(deltaMap.m_id, lizardSoldierCard);
+        FillMapData(mountainPass.m_id, wingedSerpentCard);
+        FillMapData(crimsonIslandsMap.m_id, cureWoundsCard);
+        FillMapData(frozenLake.m_id, drainingBoltCard);
+        FillMapData(desertPassMap.m_id, staminaTrainingCard);
+        FillMapData(volcanoRun.m_id, undeadMammothCard);
+        FillMapData(lakesideHardMap.m_id, mechanizedBeastCard);
+        FillMapData(themarshlands.m_id, joltCard);
+        FillMapData(snowmeltMap.m_id, weakeningBoltCard);
+
+        m_isInit = true;
+    }
+
+    private static void FillMapData(int mapId, GameCard rewardCard)
+    {
+        int unlockReward = 1;
+        int bonusExp1 = 2;
+        int upgradeReward1 = 3;
+        int bonusExp2 = 4;
+        int upgradeReward2 = 5;
+
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, unlockReward, rewardCard, 0));
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, bonusExp1, 250));
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, upgradeReward1, rewardCard, 1));
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, bonusExp2, 500));
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, upgradeReward2, rewardCard, 2));
+    }
+
+    public static Sprite GetIconForMapAndChaos(int mapId, int chaosNum)
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetMapId() == mapId && m_dataElements[i].GetChaosLevel() == chaosNum)
+            {
+                return m_dataElements[i].GetIcon();
+            }
+        }
+
+        return null;
+    }
+
+    public static void CompleteMapAtChaosFirstTime(int mapId, int chaosNum)
+    {
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetMapId() == mapId && m_dataElements[i].GetChaosLevel() == chaosNum)
+            {
+                //TODO: Alex, unlock the m_dataElements[i] in player data.
+            }
+        }
+    }
+}

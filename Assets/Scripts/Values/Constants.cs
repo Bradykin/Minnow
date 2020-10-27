@@ -26,9 +26,6 @@ public static class Constants
 
     public static int MaxChaos = 5;
 
-    public static int RankOneChaosLevel = 3;
-    public static int RankTwoChaosLevel = 5;
-
     //UI Data
     public static float TooltipWidth = 5.5f;
 

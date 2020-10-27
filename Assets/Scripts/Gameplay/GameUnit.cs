@@ -44,8 +44,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
     public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
-    protected int m_mapUnlockID;
-    protected int m_unitLevel;
 
     //Special functionality
     public bool m_instantWaterMovement;
@@ -1144,33 +1142,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public virtual int GetUnitLevel()
     {
-        if (!PlayerDataManager.IsMapUnlocked(m_mapUnlockID))
-        {
-            return 0;
-        }
-
-        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankOneChaosLevel))
-        {
-            return 2;
-        }
-
-        if (PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, Constants.RankTwoChaosLevel))
-        {
-            return 1;
-        }
+        //TODO: alex - Hook this up to player save data.
 
         return 0;
-    }
-
-    public virtual void SetUnitLevel(int level)
-    {
-        m_unitLevel = level;
     }
 
     public virtual bool IsInvulnerable()
     {
         return false;
     }
+
+    public virtual void InitializeWithLevel(int level) { }
 
     //============================================================================================================//
 

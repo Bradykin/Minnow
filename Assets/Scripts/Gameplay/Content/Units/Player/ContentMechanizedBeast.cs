@@ -15,26 +15,24 @@ public class ContentMechanizedBeast : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        SetUnitLevel(GetUnitLevel());
+        InitializeWithLevel(GetUnitLevel());
 
         LateInit();
     }
 
-    public override void SetUnitLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetUnitLevel(level);
-
         m_maxHealth = 5;
         m_maxStamina = 6;
         m_staminaRegen = 2;
         m_power = 5;
 
-        if (m_unitLevel >= 1)
+        if (level >= 1)
         {
             m_maxStamina = 10;
         }
 
-        if (m_unitLevel >= 2)
+        if (level >= 2)
         {
             AddKeyword(new GameMountainwalkKeyword(), false);
         }

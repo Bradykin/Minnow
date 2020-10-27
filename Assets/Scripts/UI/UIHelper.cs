@@ -226,6 +226,21 @@ public static class UIHelper
         return Resources.Load<Sprite>("Maps/" + mapName) as Sprite;
     }
 
+    public static Sprite GetIconCardReward(string cardName, int level)
+    {
+        return Resources.Load<Sprite>("UI/Rewards/" + cardName + " " + level) as Sprite;
+    }
+
+    public static Sprite GetIconRelicReward(string relicName, int level)
+    {
+        return Resources.Load<Sprite>("UI/Rewards/" + relicName + " " + level) as Sprite;
+    }
+
+    public static Sprite GetIconExpReward(int bonusExp)
+    {
+        return Resources.Load<Sprite>("UI/Rewards/EXP") as Sprite;
+    }
+
     //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
     /*public static Sprite GetRandomIconTerrain(string terrainName)
     {

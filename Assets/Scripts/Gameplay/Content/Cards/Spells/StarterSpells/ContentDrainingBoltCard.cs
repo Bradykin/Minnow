@@ -12,7 +12,7 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         m_targetType = Target.Unit;
         m_rarity = GameRarity.Starter;
 
-        SetCardLevel(GetCardLevel());
+        InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
     }
@@ -35,12 +35,6 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         return description;
     }
 
-
-    public override bool PlayerHasUnlockedCard()
-    {
-        return Constants.CheatsOn || (base.PlayerHasUnlockedCard() && PlayerDataManager.IsChaosLevelAchieved(m_mapUnlockID, 1));
-    }
-
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
@@ -61,19 +55,17 @@ public class ContentDrainingBoltCard : GameCardSpellBase
         targetUnit.DrainStamina(m_staminaToDrain);
     }
 
-    public override void SetCardLevel(int level)
+    public override void InitializeWithLevel(int level)
     {
-        base.SetCardLevel(level);
-
         m_cost = 1;
         m_spellEffect = 2;
 
-        if (m_cardLevel >= 1)
+        if (level >= 1)
         {
             m_spellEffect = 4;
         }
 
-        if (m_cardLevel >= 2)
+        if (level >= 2)
         {
             m_staminaToDrain = 3;
         }
