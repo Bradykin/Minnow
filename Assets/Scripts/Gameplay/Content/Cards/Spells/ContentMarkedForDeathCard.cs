@@ -10,8 +10,8 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
         m_name = "Marked for Death";
         m_targetType = Target.Enemy;
-        m_cost = 3;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 2;
+        m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
         m_playerUnlockLevel = 3;
@@ -23,6 +23,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
         m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Brittle);
     }
 
     public override string GetDesc()
