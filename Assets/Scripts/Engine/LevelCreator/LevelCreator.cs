@@ -283,7 +283,7 @@ public class LevelCreator : MonoBehaviour
 #if UNITY_EDITOR
         string path = Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]);
 #else
-        string path = Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]);
+        string path = Path.Combine(Files.BUILD_PATH, dataPaths[pathIndex]);
 #endif
 
         if (!File.Exists(path))
@@ -304,7 +304,7 @@ public class LevelCreator : MonoBehaviour
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
 #else
-        File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
+        File.WriteAllText(Path.Combine(Files.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
 #endif
 
         List<JsonMapMetaData> jsonMapMetaData = Globals.LoadMapMetaData();

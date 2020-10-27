@@ -23,7 +23,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #else
-        path = Path.Combine(GameFiles.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
+        path = Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #endif
 
         if (!File.Exists(path))
@@ -42,7 +42,7 @@ public static class Files
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
 #else
-        File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
+        File.WriteAllText(Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
 #endif
 
         return export;
@@ -54,7 +54,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #else
-        path = Path.Combine(GameFiles.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
+        path = Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #endif
 
         File.Delete(path);

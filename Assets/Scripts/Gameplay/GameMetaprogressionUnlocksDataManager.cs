@@ -14,12 +14,12 @@ public static class GameMetaprogressionUnlocksDataManager
         GameMap deltaMap = new ContentDeltaMap();
         GameMap mountainPass = new ContentMountainPassMap();
         GameMap crimsonIslandsMap = new ContentCrimsonIslandsMap();
-        GameMap frozenLake = new ContentFrozenLakeMap();
+        GameMap snowmeltMap = new ContentSnowmeltMap();
         GameMap desertPassMap = new ContentDesertPassMap();
         GameMap volcanoRun = new ContentVolcanoRunMap();
         GameMap lakesideHardMap = new ContentLakesideHardMap();
         GameMap themarshlands = new ContentTheMarshlandsMap();
-        GameMap snowmeltMap = new ContentSnowmeltMap();
+        GameMap frozenLake = new ContentFrozenLakeMap();
 
         GameCard lizardSoldierCard = new ContentLizardSoldierCard();
         GameCard undeadMammothCard = new ContentUndeadMammothCard();
@@ -39,12 +39,12 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(deltaMap.m_id, lizardSoldierCard);
         FillMapData(mountainPass.m_id, wingedSerpentCard);
         FillMapData(crimsonIslandsMap.m_id, cureWoundsCard);
-        FillMapData(frozenLake.m_id, drainingBoltCard);
+        FillMapData(snowmeltMap.m_id, drainingBoltCard);
         FillMapData(desertPassMap.m_id, staminaTrainingCard);
         FillMapData(volcanoRun.m_id, undeadMammothCard);
         FillMapData(lakesideHardMap.m_id, mechanizedBeastCard);
         FillMapData(themarshlands.m_id, joltCard);
-        FillMapData(snowmeltMap.m_id, weakeningBoltCard);
+        FillMapData(frozenLake.m_id, weakeningBoltCard);
 
         m_isInit = true;
     }
