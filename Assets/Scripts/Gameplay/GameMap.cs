@@ -92,7 +92,7 @@ public abstract class GameMap : GameElementBase
             if (m_mapEventTriggerWaves[i] == waveNum && m_mapEvents[i].m_triggerType == triggerType)
             {
                 m_mapEvents[i].TriggerEvent();
-                UIMapEventController.Instance.AddEvent(m_mapEvents[i]);
+                UIHelper.CreateHUDNotification(m_mapEvents[i].m_name, m_mapEvents[i].GetDesc());
             }
         }
     }

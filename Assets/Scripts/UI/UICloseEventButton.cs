@@ -14,6 +14,6 @@ public class UICloseEventButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIMapEventController.Instance.CloseCurrentEvent();
+        UIHUDNotificationController.Instance.CloseCurrentEvent();
     }
 }
