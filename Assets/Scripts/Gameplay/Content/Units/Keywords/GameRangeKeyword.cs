@@ -28,7 +28,7 @@ public class GameRangeKeyword : GameKeywordBase
         return "" + m_range;
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
@@ -36,9 +36,7 @@ public class GameRangeKeyword : GameKeywordBase
             intValue = m_range
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)

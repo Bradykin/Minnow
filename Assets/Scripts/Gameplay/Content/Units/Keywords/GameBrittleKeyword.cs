@@ -29,7 +29,7 @@ public class GameBrittleKeyword : GameKeywordBase
         return "" + m_amount;
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
@@ -37,9 +37,7 @@ public class GameBrittleKeyword : GameKeywordBase
             intValue = m_amount
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)

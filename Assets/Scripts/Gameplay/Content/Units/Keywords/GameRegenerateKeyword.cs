@@ -28,7 +28,7 @@ public class GameRegenerateKeyword : GameKeywordBase
         return "" + m_regenVal;
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
@@ -36,9 +36,7 @@ public class GameRegenerateKeyword : GameKeywordBase
             intValue = m_regenVal
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)

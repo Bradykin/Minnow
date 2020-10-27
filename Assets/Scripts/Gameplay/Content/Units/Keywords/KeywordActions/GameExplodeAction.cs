@@ -57,7 +57,7 @@ public class GameExplodeAction : GameAction
         return "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -66,9 +66,7 @@ public class GameExplodeAction : GameAction
             intValue2 = m_explodeRange
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

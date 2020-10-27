@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
+public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywordHolderData, GameUnit)>
 {
     private List<GameKeywordBase> m_keywords;
 
@@ -118,29 +118,26 @@ public class GameKeywordHolder : ISave, ILoad<(JsonKeywordHolderData, GameUnit)>
         return m_keywords.Count;
     }
 
-    public string SaveToJsonAsString()
+    public JsonKeywordHolderData SaveToJson()
     {
         JsonKeywordHolderData jsonData = new JsonKeywordHolderData
         {
-            keywordJson = new List<string>()
+            keywordJson = new List<JsonKeywordData>()
         };
 
         foreach (GameKeywordBase keyword in m_keywords)
         {
-            jsonData.keywordJson.Add(keyword.SaveToJsonAsString());
+            jsonData.keywordJson.Add(keyword.SaveToJson());
         }
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public void LoadFromJson((JsonKeywordHolderData, GameUnit) tuple)
     {
-        foreach (string keywordJson in tuple.Item1.keywordJson)
+        foreach (JsonKeywordData keywordJson in tuple.Item1.keywordJson)
         {
-            JsonKeywordData keywordData = JsonConvert.DeserializeObject<JsonKeywordData>(keywordJson);
-            m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordData, tuple.Item2));
+            m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordJson, tuple.Item2));
         }
     }
 }

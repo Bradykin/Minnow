@@ -90,7 +90,7 @@ public class GameReturnToDeckBuffedAction : GameAction
         return "Return " + m_retuningUnit.m_name + " to your deck, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -99,9 +99,7 @@ public class GameReturnToDeckBuffedAction : GameAction
             intValue2 = m_healthBuff
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

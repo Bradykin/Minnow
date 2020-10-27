@@ -36,7 +36,7 @@ public class GameGetHitAction : GameAction
         return "Get hit for " + m_damage + ".";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -44,9 +44,7 @@ public class GameGetHitAction : GameAction
             intValue1 = m_damage
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

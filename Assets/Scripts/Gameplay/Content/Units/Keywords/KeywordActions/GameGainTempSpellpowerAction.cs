@@ -32,7 +32,7 @@ public class GameGainTempSpellpowerAction : GameAction
         return "+ " + m_toGain + " spellpower until end of turn";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -40,9 +40,7 @@ public class GameGainTempSpellpowerAction : GameAction
             intValue1 = m_toGain
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

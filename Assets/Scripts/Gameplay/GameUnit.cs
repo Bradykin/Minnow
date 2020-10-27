@@ -19,7 +19,7 @@ public enum Typeline : int
     Count // = 3
 }
 
-public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameUnitData>
+public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData>, ILoad<JsonGameUnitData>
 {
     //General data.  This should be set for every unit
     protected Team m_team;
@@ -1188,7 +1188,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public JsonGameUnitData SaveToJson()
     {
-        string keywordHolderJson = m_keywordHolder.SaveToJsonAsString();
+        JsonKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
 
         JsonGameUnitData jsonData = new JsonGameUnitData
         {
@@ -1209,15 +1209,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         return jsonData;
     }
 
-    public string SaveToJsonAsString()
-    {
-        JsonGameUnitData jsonData = SaveToJson();
-
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
-    }
-
     public void LoadFromJson(JsonGameUnitData jsonData)
     {
         m_keywordHolder.RemoveAllKeywords();
@@ -1233,7 +1224,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
         m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;
 
-        JsonKeywordHolderData jsonKeywordHolderData = JsonConvert.DeserializeObject<JsonKeywordHolderData>(jsonData.keywordHolderJson);
-        m_keywordHolder.LoadFromJson((jsonKeywordHolderData, this));
+        m_keywordHolder.LoadFromJson((jsonData.keywordHolderJson, this));
     }
 }

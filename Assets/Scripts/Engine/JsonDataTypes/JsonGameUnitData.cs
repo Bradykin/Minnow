@@ -15,7 +15,7 @@ public class JsonGameUnitData
     public int maxStamina;
     public int power;
     public int typeline;
-    public string keywordHolderJson;
+    public JsonKeywordHolderData keywordHolderJson;
     public int staminaToAttack;
     public int sightRange;
 }

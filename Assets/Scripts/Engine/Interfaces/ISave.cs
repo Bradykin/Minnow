@@ -1,7 +1,7 @@
 ﻿namespace Game.Util
 {
-    public interface ISave
+    public interface ISave<T>
     {
-        string SaveToJsonAsString();
+        T SaveToJson();
     }
 }

@@ -50,7 +50,7 @@ public class GameGainStaminaRangeAction : GameAction
         return "All friendly units within range " + m_range + " gain " + m_toGain + " Stamina";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -58,9 +58,7 @@ public class GameGainStaminaRangeAction : GameAction
             intValue1 = m_toGain
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

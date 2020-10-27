@@ -58,7 +58,7 @@ public class GameHealAction : GameAction
         return "Heal for " + m_healVal + ".";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -66,9 +66,7 @@ public class GameHealAction : GameAction
             intValue1 = m_healVal
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

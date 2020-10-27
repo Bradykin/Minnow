@@ -38,7 +38,7 @@ public class GameLoseStatsAction : GameAction
         return "-" + m_powerToLose + "/-" + m_healthToLose + ".";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -47,9 +47,7 @@ public class GameLoseStatsAction : GameAction
             intValue2 = m_healthToLose
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

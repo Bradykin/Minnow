@@ -11,7 +11,7 @@ public enum BuildingType
     Defensive
 }
 
-public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<JsonGameBuildingData>
+public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGameBuildingData>, ILoad<JsonGameBuildingData>
 {
     protected GameTile m_gameTile;
 

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public struct JsonKeywordHolderData
 {
-    public List<string> keywordJson;
+    public List<JsonKeywordData> keywordJson;
 }

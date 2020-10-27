@@ -67,7 +67,7 @@ public class GameGainRangeAction : GameAction
         return "+ " + m_toGain + " range";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -75,9 +75,7 @@ public class GameGainRangeAction : GameAction
             intValue1 = m_toGain
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

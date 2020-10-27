@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : GameElementBase, ISave, ILoad<JsonTileData>, ICustomRecycle
+public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGameTileData>, ICustomRecycle
 {
     public Vector2Int m_gridPosition;
 
@@ -390,81 +390,6 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonTileData>, ICustomRecy
         }
 
         return jsonData;
-    }
-
-    public string SaveToJsonAsString()
-    {
-        JsonTileData jsonData = new JsonTileData
-        {
-            gridPosition = m_gridPosition,
-        };
-
-        if (m_occupyingUnit != null)
-        {
-            jsonData.gameUnitData = m_occupyingUnit.SaveToJsonAsString();
-        }
-        if (m_building != null)
-        {
-            jsonData.gameBuildingData = m_building.SaveToJsonAsString();
-        }
-        if (m_terrain != null)
-        {
-            jsonData.gameTerrainData = m_terrain.SaveToJsonAsString();
-        }
-        if (m_spawnPoint != null)
-        {
-            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJsonAsString();
-        }
-        if (m_gameEventMarkers != null)
-        {
-            jsonData.gameEventMarkers = m_gameEventMarkers;
-        }
-
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
-    }
-
-    public void LoadFromJson(JsonTileData jsonData)
-    {
-        m_gridPosition = jsonData.gridPosition;
-
-        if (jsonData.gameTerrainData != string.Empty && jsonData.gameTerrainData != null)
-        {
-            JsonGameTerrainData jsonGameTerrainData = JsonConvert.DeserializeObject<JsonGameTerrainData>(jsonData.gameTerrainData);
-            SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonGameTerrainData));
-        }
-
-        if (jsonData.gameUnitData != string.Empty && jsonData.gameUnitData != null)
-        {
-            JsonGameUnitData jsonGameUnitData = JsonConvert.DeserializeObject<JsonGameUnitData>(jsonData.gameUnitData);
-            if (jsonGameUnitData.team == (int)Team.Player)
-                PlaceUnit(GameUnitFactory.GetUnitFromJson(jsonGameUnitData));
-            else
-                PlaceUnit(GameUnitFactory.GetEnemyFromJson(jsonGameUnitData, WorldController.Instance.m_gameController.m_gameOpponent));
-        }
-
-        if (jsonData.gameBuildingData != string.Empty && jsonData.gameBuildingData != null)
-        {
-            JsonGameBuildingData jsonGameBuildingData = JsonConvert.DeserializeObject<JsonGameBuildingData>(jsonData.gameBuildingData);
-            PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonGameBuildingData));
-        }
-
-        if (jsonData.gameSpawnPointData != string.Empty && jsonData.gameSpawnPointData != null)
-        {
-            GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-            gameSpawnPoint.LoadFromJson(JsonConvert.DeserializeObject<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
-            SetSpawnPoint(gameSpawnPoint);
-        }
-
-        if (jsonData.gameEventMarkers != null)
-        {
-            m_gameEventMarkers = jsonData.gameEventMarkers;
-        }
-        else
-        {
-            m_gameEventMarkers = new List<int>();
-        }
     }
 
     public void LoadFromJson(JsonGameTileData jsonData)

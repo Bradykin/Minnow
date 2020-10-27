@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventData>
+public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILoad<JsonGameEventData>
 {
     public GameTile m_tile;
     public int m_staminaCost;
@@ -56,7 +56,7 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
 
     //============================================================================================================//
 
-    public JsonGameEventData SaveToJsonAsJson()
+    public JsonGameEventData SaveToJson()
     {
         JsonGameEventData jsonData = new JsonGameEventData
         {
@@ -64,15 +64,6 @@ public abstract class GameEvent : GameElementBase, ISave, ILoad<JsonGameEventDat
         };
 
         return jsonData;
-    }
-
-    public string SaveToJsonAsString()
-    {
-        JsonGameEventData jsonData = SaveToJsonAsJson();
-
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
     }
 
     public void LoadFromJson(JsonGameEventData jsonData)

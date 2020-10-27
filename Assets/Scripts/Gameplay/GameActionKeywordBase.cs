@@ -56,17 +56,20 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         return toReturn;
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            //actionJson = m_action.SaveToJson()
+            actionJson = new List<JsonActionData>()
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
+        for (int i = 0; i < m_actions.Count; i++)
+        {
+            jsonData.actionJson.Add(m_actions[i].SaveToJson());
+        }
 
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)

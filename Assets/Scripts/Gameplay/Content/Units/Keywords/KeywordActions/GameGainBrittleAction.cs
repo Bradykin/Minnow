@@ -34,7 +34,7 @@ public class GameGainBrittleAction : GameAction
         return "Gain <b>Brittle</b> " + m_toGain + ".";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
@@ -42,9 +42,7 @@ public class GameGainBrittleAction : GameAction
             intValue1 = m_toGain
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

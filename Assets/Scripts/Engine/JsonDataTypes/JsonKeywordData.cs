@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct JsonKeywordData
+[Serializable]
+public class JsonKeywordData
 {
     //GameElementBase values
     public string name;
 
     //Json Keyword parsing data
     public int intValue;
-    public string actionJson;
+    public List<JsonActionData> actionJson;
 }

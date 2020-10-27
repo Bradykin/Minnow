@@ -298,7 +298,7 @@ public class LevelCreator : MonoBehaviour
             return;
         }
 
-        JsonGridData jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(path));
+        JsonMapData jsonData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(path));
 
         WorldGridManager.Instance.LoadFromJson(jsonData);
         WorldGridManager.Instance.Setup(m_worldGridLevelCreatorRoot.transform);
@@ -306,14 +306,11 @@ public class LevelCreator : MonoBehaviour
 
     public void SaveGrid(int pathIndex)
     {
-        string jsonGridData = WorldGridManager.Instance.SaveToJsonAsString();
         JsonMapData jsonMapData = WorldGridManager.Instance.SaveToJson();
         var export = JsonConvert.SerializeObject(jsonMapData);
 #if UNITY_EDITOR
-        File.WriteAllText(Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]), jsonGridData);
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, dataPaths2[pathIndex]), export);
 #else
-        File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]), jsonGridData);
         File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, dataPaths2[pathIndex]), export);
 #endif
 

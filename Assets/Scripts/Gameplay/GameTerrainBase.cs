@@ -16,7 +16,7 @@ using UnityEngine;
 //m_isPlains, m_isForest, m_isHill, m_isMountain, m_isWater, m_isHot, m_isCold, m_isEventTerrain, m_isCave, m_isVolcano, m_isBurned, m_canBurn;
 //If applicable, add a type value for the type of terrain this should become in the following scenarios: m_burnedTerrainType, m_unburnedTerrainType, m_completedEventType, m_addedEventType
 //Add new class to the appropriate lists in GameTerrainFactory.Init
-public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTerrainData>
+public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainData>, ILoad<JsonGameTerrainData>
 {
     public int m_damageReduction { get; protected set; }
     public int m_rangeModifier { get; protected set; }
@@ -266,19 +266,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
         };
 
         return jsonData;
-    }
-
-    public string SaveToJsonAsString()
-    {
-        JsonGameTerrainData jsonData = new JsonGameTerrainData
-        {
-            name = m_name,
-            terrainImageNumber = m_terrainImageNumber
-        };
-        
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
     }
 
     public void LoadFromJson(JsonGameTerrainData jsonData)

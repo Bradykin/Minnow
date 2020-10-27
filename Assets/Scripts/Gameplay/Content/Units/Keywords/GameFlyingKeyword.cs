@@ -22,16 +22,14 @@ public class GameFlyingKeyword : GameKeywordBase
         //Stacking this keyword does nothing.
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)

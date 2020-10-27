@@ -104,16 +104,14 @@ public class GameShivNearbyAction : GameAction
         return "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within " + m_shivRange + " tiles.";
     }
 
-    public override string SaveToJson()
+    public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonActionData jsonData)

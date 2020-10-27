@@ -6,12 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGridData>
+public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>, ILoad<JsonMapData>
 {
     public WorldTile[] m_gridArray { get; private set; }
 
     private JsonMapData? m_jsonMapData = null;
-    private JsonGridData? m_jsonGridData = null;
 
     private int m_gridSizeX;
     private int m_gridSizeY;
@@ -38,13 +37,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             return;
         }
 
-        if (m_jsonGridData.HasValue)
-        {
-            JsonGridData jsonGridData = m_jsonGridData.Value;
-            SetupEmptyGrid(parent, jsonGridData.gridSizeX, jsonGridData.gridSizeY);
-            LoadJsonGrid(jsonGridData);
-        }
-        else if (m_jsonMapData.HasValue)
+        if (m_jsonMapData.HasValue)
         {
             JsonMapData jsonMapData = m_jsonMapData.Value;
             SetupEmptyGrid(parent, jsonMapData.gridSizeX, jsonMapData.gridSizeY);
@@ -121,15 +114,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
-        }
-    }
-
-    private void LoadJsonGrid(JsonGridData jsonGridData)
-    {
-        for (int i = 0; i < jsonGridData.jsonTileData.Count; i++)
-        {
-            JsonTileData jsonGameTileData = JsonConvert.DeserializeObject<JsonTileData>(jsonGridData.jsonTileData[i]);
-            GetWorldGridTileAtPosition(jsonGameTileData.gridPosition).GetGameTile().LoadFromJson(jsonGameTileData);
         }
     }
 
@@ -797,25 +781,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
         return jsonData;
     }
 
-    public string SaveToJsonAsString()
-    {
-        JsonGridData jsonData = new JsonGridData
-        {
-            gridSizeX = m_gridSizeX,
-            gridSizeY = m_gridSizeY,
-            jsonTileData = new List<string>()
-        };
-
-        for (int i = 0; i < m_gridArray.Length; i++)
-        {
-            jsonData.jsonTileData.Add(m_gridArray[i].GetGameTile().SaveToJsonAsString());
-        }
-
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
-    }
-
     public void LoadFromJson(JsonMapData jsonData)
     {
         m_jsonMapData = jsonData;
@@ -824,17 +789,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave, ILoad<JsonGr
             RecycleGrid();
             SetupEmptyGrid(m_gridRoot, jsonData.gridSizeX, jsonData.gridSizeY);
             LoadJsonGrid(m_jsonMapData.Value);
-        }
-    }
-
-    public void LoadFromJson(JsonGridData jsonData)
-    {
-        m_jsonGridData = jsonData;
-        if (m_setup)
-        {
-            RecycleGrid();
-            SetupEmptyGrid(m_gridRoot, jsonData.gridSizeX, jsonData.gridSizeY);
-            LoadJsonGrid(m_jsonGridData.Value); 
         }
     }
 }

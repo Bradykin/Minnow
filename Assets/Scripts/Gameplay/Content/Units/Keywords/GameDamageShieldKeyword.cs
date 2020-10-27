@@ -33,7 +33,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_numShields -= decrease;
     }
 
-    public override string SaveToJsonAsString()
+    public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData
         {
@@ -41,9 +41,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
             intValue = m_numShields
         };
 
-        var export = JsonConvert.SerializeObject(jsonData);
-
-        return export;
+        return jsonData;
     }
 
     public override void LoadFromJson(JsonKeywordData jsonData)
