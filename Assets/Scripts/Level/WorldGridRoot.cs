@@ -9,27 +9,29 @@ public class WorldGridRoot : MonoBehaviour, IReset
 {
     public virtual void Activate()
     {
-        JsonGridData jsonData;
+        JsonMapData jsonMapData;
         if (Globals.mapToLoad == string.Empty)
         {
-            Globals.mapToLoad = Files.DEFAULT_GRID_DATA_PATH;
+            Globals.mapToLoad = Files.DEFAULT_MAP_DATA_PATH;
         }
 
         if (Globals.loadingRun)
         {
-            jsonData = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGridData;
+            jsonMapData = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonMapData;
+            Globals.mapToLoad = string.Empty;
+            WorldGridManager.Instance.LoadFromJson(jsonMapData);
         }
         else
         {
 #if UNITY_EDITOR
-            jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
+            jsonMapData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
 #else
-            jsonData = JsonConvert.DeserializeObject<JsonGridData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
+            jsonMapData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
 #endif
-        }
 
-        Globals.mapToLoad = string.Empty;
-        WorldGridManager.Instance.LoadFromJson(jsonData);
+            Globals.mapToLoad = string.Empty;
+            WorldGridManager.Instance.LoadFromJson(jsonMapData);
+        }
         WorldGridManager.Instance.Setup(transform);
 
         WorldController.Instance.m_gameController.LateInit();

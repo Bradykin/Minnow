@@ -16,6 +16,16 @@ public class GameSpawnPoint : GameElementBase, ISave, ILoad<JsonGameSpawnPointDa
 
     //============================================================================================================//
 
+    public JsonGameSpawnPointData SaveToJson()
+    {
+        JsonGameSpawnPointData jsonData = new JsonGameSpawnPointData
+        {
+            gameSpawnPointMarkers = m_spawnPointMarkers
+        };
+
+        return jsonData;
+    }
+
     public string SaveToJsonAsString()
     {
         JsonGameSpawnPointData jsonData = new JsonGameSpawnPointData

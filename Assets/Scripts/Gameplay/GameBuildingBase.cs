@@ -194,6 +194,18 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave, ILoad<J
 
     //============================================================================================================//
 
+    public JsonGameBuildingData SaveToJson()
+    {
+        JsonGameBuildingData jsonData = new JsonGameBuildingData
+        {
+            name = m_name,
+            curHealth = m_curHealth,
+            isDestroyed = m_isDestroyed,
+        };
+
+        return jsonData;
+    }
+
     public string SaveToJsonAsString()
     {
         JsonGameBuildingData jsonData = new JsonGameBuildingData

@@ -45,7 +45,7 @@ public class ContentConjuredImp : GameUnit
 
         if (!disableDuplicate)
         {
-            ContentConjuredImp copyImp = (ContentConjuredImp)GameUnitFactory.GetUnitFromJson(this.SaveToJsonAsJson());
+            ContentConjuredImp copyImp = (ContentConjuredImp)GameUnitFactory.GetUnitFromJson(this.SaveToJson());
             ContentConjuredImpCard copyImpCard = (ContentConjuredImpCard)GameCardFactory.GetCardFromUnit(copyImp);
             ((ContentConjuredImp)copyImpCard.m_unit).DisableDuplicate();
             copyImpCard.SetDesc(copyImpCard.m_unit.GetDesc());

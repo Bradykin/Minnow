@@ -15,6 +15,7 @@ public class GameController
     public List<ITurns> m_teamTurns;
     public GamePlayer m_player;
     public GameOpponent m_gameOpponent;
+
     public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
 
     private bool ShouldStartIntermission => m_currentTurn == m_player && m_currentWaveTurn > m_currentWaveEndTurn && m_waveNum != Constants.FinalWaveNum;

@@ -12,7 +12,7 @@ public class PlayerRunData
 
     public int m_mapId;
 
-    public JsonGridData m_jsonGridData;
+    public JsonMapData m_jsonMapData;
     
     public PlayerRunData()
     {
@@ -29,6 +29,6 @@ public class PlayerRunData
 
         m_mapId = gameController.GetCurMap().m_id;
         
-        m_jsonGridData = WorldGridManager.Instance.SaveToJson();
+        m_jsonMapData = WorldGridManager.Instance.SaveToJson();
     }
 }

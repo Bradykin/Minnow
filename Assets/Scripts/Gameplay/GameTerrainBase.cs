@@ -257,6 +257,17 @@ public abstract class GameTerrainBase : GameElementBase, ISave, ILoad<JsonGameTe
 
     //============================================================================================================//
 
+    public JsonGameTerrainData SaveToJson()
+    {
+        JsonGameTerrainData jsonData = new JsonGameTerrainData
+        {
+            name = m_name,
+            terrainImageNumber = m_terrainImageNumber
+        };
+
+        return jsonData;
+    }
+
     public string SaveToJsonAsString()
     {
         JsonGameTerrainData jsonData = new JsonGameTerrainData

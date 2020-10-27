@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustomRecycle
+public class GameTile : GameElementBase, ISave, ILoad<JsonTileData>, ICustomRecycle
 {
     public Vector2Int m_gridPosition;
 
@@ -360,9 +360,41 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
 
     //============================================================================================================//
 
-    public string SaveToJsonAsString()
+    public JsonGameTileData SaveToJson()
     {
         JsonGameTileData jsonData = new JsonGameTileData
+        {
+            gridPositionX = m_gridPosition.x,
+            gridPositionY = m_gridPosition.y
+        };
+
+        if (m_occupyingUnit != null)
+        {
+            jsonData.gameUnitData = m_occupyingUnit.SaveToJson();
+        }
+        if (m_building != null)
+        {
+            jsonData.gameBuildingData = m_building.SaveToJson();
+        }
+        if (m_terrain != null)
+        {
+            jsonData.gameTerrainData = m_terrain.SaveToJson();
+        }
+        if (m_spawnPoint != null)
+        {
+            jsonData.gameSpawnPointData = m_spawnPoint.SaveToJson();
+        }
+        if (m_gameEventMarkers != null)
+        {
+            jsonData.gameEventMarkers = m_gameEventMarkers;
+        }
+
+        return jsonData;
+    }
+
+    public string SaveToJsonAsString()
+    {
+        JsonTileData jsonData = new JsonTileData
         {
             gridPosition = m_gridPosition,
         };
@@ -393,7 +425,7 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         return export;
     }
 
-    public void LoadFromJson(JsonGameTileData jsonData)
+    public void LoadFromJson(JsonTileData jsonData)
     {
         m_gridPosition = jsonData.gridPosition;
 
@@ -422,6 +454,45 @@ public class GameTile : GameElementBase, ISave, ILoad<JsonGameTileData>, ICustom
         {
             GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
             gameSpawnPoint.LoadFromJson(JsonConvert.DeserializeObject<JsonGameSpawnPointData>(jsonData.gameSpawnPointData));
+            SetSpawnPoint(gameSpawnPoint);
+        }
+
+        if (jsonData.gameEventMarkers != null)
+        {
+            m_gameEventMarkers = jsonData.gameEventMarkers;
+        }
+        else
+        {
+            m_gameEventMarkers = new List<int>();
+        }
+    }
+
+    public void LoadFromJson(JsonGameTileData jsonData)
+    {
+        m_gridPosition = new Vector2Int(jsonData.gridPositionX, jsonData.gridPositionY);
+
+        if (jsonData.gameTerrainData != null)
+        {
+            SetTerrain(GameTerrainFactory.GetTerrainFromJson(jsonData.gameTerrainData));
+        }
+
+        if (jsonData.gameUnitData != null)
+        {
+            if (jsonData.gameUnitData.team == (int)Team.Player)
+                PlaceUnit(GameUnitFactory.GetUnitFromJson(jsonData.gameUnitData));
+            else
+                PlaceUnit(GameUnitFactory.GetEnemyFromJson(jsonData.gameUnitData, WorldController.Instance.m_gameController.m_gameOpponent));
+        }
+
+        if (jsonData.gameBuildingData != null)
+        {
+            PlaceBuilding(GameBuildingFactory.GetBuildingFromJson(jsonData.gameBuildingData));
+        }
+
+        if (jsonData.gameSpawnPointData != null)
+        {
+            GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+            gameSpawnPoint.LoadFromJson(jsonData.gameSpawnPointData);
             SetSpawnPoint(gameSpawnPoint);
         }
 

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public struct JsonGameTileData
 {
-    public Vector2Int gridPosition;
-    public string gameUnitData;
-    public string gameBuildingData;
-    public string gameTerrainData;
-    public string gameSpawnPointData;
+    public int gridPositionX;
+    public int gridPositionY;
+
+    public JsonGameUnitData gameUnitData;
+    public JsonGameBuildingData gameBuildingData;
+    public JsonGameTerrainData gameTerrainData;
+    public JsonGameSpawnPointData gameSpawnPointData;
 
     public List<int> gameEventMarkers;
 }

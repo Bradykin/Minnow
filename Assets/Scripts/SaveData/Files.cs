@@ -10,8 +10,9 @@ public static class Files
     public const string REMOTE_DATA_PATH = "RemoteData";
     public const string ADD_TO_BUILD_PATH = "AddToBuild";
     public const string BUILD_DATA_PATH = "BuildData";
+    public const string MAP_DATA_PATH = "MapData";
     public const string MAP_META_DATA_PATH = "MapMetaData.txt";
-    public const string DEFAULT_GRID_DATA_PATH = "JsonGridData0.txt";
+    public const string DEFAULT_MAP_DATA_PATH = "MapData0.txt";
     public const string PLAYER_ACCOUNT_DATA_PATH = "PlayerAccountData.player";
 
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);

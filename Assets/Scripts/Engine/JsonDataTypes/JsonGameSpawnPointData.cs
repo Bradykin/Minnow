@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct JsonGameSpawnPointData
+[Serializable]
+public class JsonGameSpawnPointData
 {
     //GameSpawnPoint values
     public List<int> gameSpawnPointMarkers;

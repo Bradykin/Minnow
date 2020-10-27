@@ -1186,7 +1186,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     //============================================================================================================//
 
-    public JsonGameUnitData SaveToJsonAsJson()
+    public JsonGameUnitData SaveToJson()
     {
         string keywordHolderJson = m_keywordHolder.SaveToJsonAsString();
 
@@ -1211,7 +1211,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave, ILoad<JsonGameU
 
     public string SaveToJsonAsString()
     {
-        JsonGameUnitData jsonData = SaveToJsonAsJson();
+        JsonGameUnitData jsonData = SaveToJson();
 
         var export = JsonConvert.SerializeObject(jsonData);
 

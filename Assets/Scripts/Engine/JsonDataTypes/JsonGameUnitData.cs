@@ -1,4 +1,7 @@
-﻿public struct JsonGameUnitData
+﻿using System;
+
+[Serializable]
+public class JsonGameUnitData
 {
     //GameElementBase values
     public string name;
