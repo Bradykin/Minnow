@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDemoralizeCard : GameCardSpellBase
+public class ContentControlMoralCard : GameCardSpellBase
 {
-    public ContentDemoralizeCard()
+    public ContentControlMoralCard()
     {
-        m_name = "Demoralize";
+        m_name = "Control Moral";
         m_desc = "Set a units Stamina to 2.";
         m_targetType = Target.Unit;
         m_cost = 1;

@@ -614,6 +614,11 @@ public static class UIHelper
         return "";
     }
 
+    public static void CreateHUDNotification(string title, string desc)
+    {
+        UIHUDNotificationController.Instance.AddNotification(title, desc);
+    }
+
     public static void CreateRelicTooltip(GameRelic relic)
     {
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.m_name, relic.GetDesc()));
@@ -696,6 +701,11 @@ public static class UIHelper
     public static bool CanControlCamera()
     {
         if (GameHelper.IsOpponentsTurn())
+        {
+            return false;
+        }
+
+        if (UILevelSelectController.Instance == null)
         {
             return false;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Game.Util;
 
 public class UIBorderUnit : MonoBehaviour
     , IPointerClickHandler
@@ -29,8 +30,14 @@ public class UIBorderUnit : MonoBehaviour
 
     void Update()
     {
+        if (m_unit.GetUnit().m_isDead || Globals.m_inIntermission)
+        {
+            Recycler.Recycle<UIBorderUnit>(this);
+            return;
+        }
+
         //Hide this if the WorldUnit is on screen.
-        m_holder.SetActive(!m_unit.m_renderer.isVisible && m_unit.GetUnit().GetCurStamina() > 0);
+        m_holder.SetActive(!m_unit.m_renderer.isVisible && m_unit.GetUnit().GetCurStamina() > 0 && GameHelper.IsPlayerTurn());
 
         UpdatePosition();
     }

@@ -33,6 +33,7 @@ public class GameTag
         Tank,
         Exile,
         DamageSpell,
+        Brittle,
         BuffSpell,
         UtilitySpell
     }
@@ -186,7 +187,8 @@ public class GameTag
             tagType == TagType.Midrange ||
             tagType == TagType.Tank ||
             tagType == TagType.Exile ||
-            tagType == TagType.UtilitySpell)
+            tagType == TagType.UtilitySpell ||
+            tagType == TagType.Brittle)
         {
             return true;
         }

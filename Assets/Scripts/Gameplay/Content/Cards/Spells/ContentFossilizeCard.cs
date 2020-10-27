@@ -13,8 +13,8 @@ public class ContentFossilizeCard : GameCardSpellBase
         m_name = "Fossilize";
         m_desc = "Target enemy unit gets -" + m_powerAmount + "/-0, -" + m_staminaDrainAmount + " Stamina, and gains '<b>Brittle</b>: " + m_brittleAmount + "'.";
         m_targetType = Target.Enemy;
-        m_cost = 3;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 2;
+        m_rarity = GameRarity.Rare;
 
         m_playerUnlockLevel = 3;
 
@@ -23,6 +23,7 @@ public class ContentFossilizeCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.Brittle);
     }
 
     public override void PlayCard(GameUnit targetUnit)

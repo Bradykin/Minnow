@@ -26,7 +26,7 @@ public class WorldGridRoot : MonoBehaviour, IReset
 #if UNITY_EDITOR
             jsonMapData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(Path.Combine(Files.EDITOR_PATH, Globals.mapToLoad)));
 #else
-            jsonMapData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(Path.Combine(GameFiles.BUILD_PATH, Globals.mapToLoad)));
+            jsonMapData = JsonConvert.DeserializeObject<JsonMapData>(File.ReadAllText(Path.Combine(Files.BUILD_PATH, Globals.mapToLoad)));
 #endif
 
             Globals.mapToLoad = string.Empty;

@@ -514,7 +514,15 @@ public class GamePlayer : ITurns
             AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
-        for (int i = 0; i < m_controlledUnits.Count; i++)
+        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+        {
+            if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn)
+            {
+                UIHelper.CreateHUDNotification("Totem of the Wolf", "The white moon begins!");
+            }
+        }
+
+            for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].StartTurn();
         }

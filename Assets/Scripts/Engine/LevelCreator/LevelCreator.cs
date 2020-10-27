@@ -23,20 +23,13 @@ public class LevelCreator : MonoBehaviour
     private string dataPath;
 
     private List<string> dataPaths;
-    private List<string> dataPaths2;
 
     private void Start()
     {
-        dataPath = "JsonGridData";
         dataPaths = new List<string>();
         for (int i = 0; i < 10; i++)
         {
-            dataPaths.Add(dataPath + i + ".txt");
-        }
-        dataPaths2 = new List<string>();
-        for (int i = 0; i < 10; i++)
-        {
-            dataPaths2.Add(Files.MAP_DATA_PATH + i + ".txt");
+            dataPaths.Add(Files.MAP_DATA_PATH + i + ".txt");
         }
         Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
         Globals.m_currentlyPaintingBuilding = new ContentCastleBuilding();
@@ -289,7 +282,7 @@ public class LevelCreator : MonoBehaviour
 #if UNITY_EDITOR
         string path = Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]);
 #else
-        string path = Path.Combine(GameFiles.BUILD_PATH, dataPaths[pathIndex]);
+        string path = Path.Combine(Files.BUILD_PATH, dataPaths[pathIndex]);
 #endif
 
         if (!File.Exists(path))
@@ -309,9 +302,9 @@ public class LevelCreator : MonoBehaviour
         JsonMapData jsonMapData = WorldGridManager.Instance.SaveToJson();
         var export = JsonConvert.SerializeObject(jsonMapData);
 #if UNITY_EDITOR
-        File.WriteAllText(Path.Combine(Files.EDITOR_PATH, dataPaths2[pathIndex]), export);
+        File.WriteAllText(Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]), export);
 #else
-        File.WriteAllText(Path.Combine(GameFiles.BUILD_PATH, dataPaths2[pathIndex]), export);
+        File.WriteAllText(Path.Combine(Files.BUILD_PATH, dataPaths[pathIndex]), export);
 #endif
 
         List<JsonMapMetaData> jsonMapMetaData = Globals.LoadMapMetaData();
