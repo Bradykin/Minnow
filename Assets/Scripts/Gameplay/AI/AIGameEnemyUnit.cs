@@ -107,8 +107,8 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public void CleanupTurn()
     {
-        m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_waveNum;
-        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentWaveTurn;
+        m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_currentWaveNumber;
+        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentTurnNumber;
         if (m_targetGameElement == null)
         {
             m_newAIDebugLog.m_targetGameElementName = "Null";

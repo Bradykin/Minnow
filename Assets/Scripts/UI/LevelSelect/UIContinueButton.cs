@@ -35,7 +35,7 @@ public class UIContinueButton : UIElementBase
         }
 
         List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
-        int mapId = PlayerDataManager.PlayerAccountData.PlayerRunData.m_mapId;
+        int mapId = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGameControllerData.mapId;
 
         for (int i = 0; i < mapList.Count; i++)
         {

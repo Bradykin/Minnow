@@ -123,7 +123,7 @@ public static class GameHelper
 
     public static bool IsPlayerTurn()
     {
-        return WorldController.Instance.m_gameController.m_currentTurn == WorldController.Instance.m_gameController.m_player;
+        return WorldController.Instance.m_gameController.CurrentActor == WorldController.Instance.m_gameController.m_player;
     }
 
     public static List<GameCard> GetPlayerBaseDeckOfUnits()
@@ -197,7 +197,7 @@ public static class GameHelper
             return false;
         }
 
-        return WorldController.Instance.m_gameController.m_currentTurn == GameHelper.GetOpponent();
+        return WorldController.Instance.m_gameController.CurrentActor == GameHelper.GetOpponent();
     }
 
     public static bool IsInGame()

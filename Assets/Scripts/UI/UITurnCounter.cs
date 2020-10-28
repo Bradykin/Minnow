@@ -24,20 +24,20 @@ public class UITurnCounter : UIElementBase
         if (Globals.m_inIntermission)
         {
             m_titleText.text = "Intermission";
-            m_countText.text = "Next wave: " + gameController.m_waveNum;
+            m_countText.text = "Next wave: " + gameController.m_currentWaveNumber;
         }
         else
         {
-            if (gameController.m_waveNum == Constants.FinalWaveNum)
+            if (gameController.m_currentWaveNumber == Constants.FinalWaveNum)
             {
                 m_titleText.text = "Final Wave";
                 m_countText.text = "Beat the boss";
             }
             else
             {
-                int turnNum = gameController.m_currentWaveTurn - 1;
+                int turnNum = gameController.m_currentTurnNumber - 1;
 
-                m_titleText.text = "Wave " + gameController.m_waveNum;
+                m_titleText.text = "Wave " + gameController.m_currentWaveNumber;
                 if (turnNum < gameController.GetEndWaveTurn()-1)
                 {
                     m_countText.text = gameController.GetEndWaveTurn() - turnNum + " turns remain.";

@@ -421,6 +421,16 @@ public static class GameCardFactory
         return null;
     }
 
+    public static GameCard GetCardFromJson(JsonGameCardData jsonData)
+    {
+        int i = m_cards.FindIndex(t => t.m_name == jsonData.name);
+
+        GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
+        newCard.LoadFromJson(jsonData);
+
+        return newCard;
+    }
+
     public static List<GameCard> GetTotalCardList()
     {
         return m_cards;

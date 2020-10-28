@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDeck
+public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 {
     private List<GameCard> m_cards = new List<GameCard>();
     private List<GameCard> m_discard = new List<GameCard>();
@@ -148,5 +149,33 @@ public class GameDeck
     public List<GameCard> GetCardsForRead()
     {
         return m_cards;
+    }
+
+    //============================================================================================================//
+
+    public JsonGameDeckData SaveToJson()
+    {
+        JsonGameDeckData jsonData = new JsonGameDeckData
+        {
+            jsonGameCardsInDeckData = new List<JsonGameCardData>(),
+            jsonGameCardsInDiscardData = new List<JsonGameCardData>()
+        };
+
+        for (int i = 0; i < m_cards.Count; i++)
+        {
+            jsonData.jsonGameCardsInDeckData.Add(m_cards[i].SaveToJson());
+        }
+
+        for (int i = 0; i < m_discard.Count; i++)
+        {
+            jsonData.jsonGameCardsInDiscardData.Add(m_discard[i].SaveToJson());
+        }
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGameDeckData jsonData)
+    {
+
     }
 }

@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public abstract class GameCard : GameElementBase
+public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave<JsonGameCardData>
 {
     public enum Target
     { 
@@ -197,5 +199,25 @@ public abstract class GameCard : GameElementBase
         //TODO: alex - Hook this up to player save data.
 
         return 0;
+    }
+
+    //============================================================================================================//
+
+    public virtual JsonGameCardData SaveToJson()
+    {
+        JsonGameCardData jsonData = new JsonGameCardData
+        {
+            name = this.GetType().ToString()
+        };
+
+
+        Debug.Log(GetName());
+
+        return jsonData;
+    }
+
+    public virtual void LoadFromJson(JsonGameCardData jsonData)
+    {
+
     }
 }
