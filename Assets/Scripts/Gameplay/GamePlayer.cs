@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GamePlayer : ITurns
+public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlayerData>
 {
     public static GameCard StarterSimpleUnit = new ContentDwarvenSoldierCard();
     public static GameCard StarterAdvancedUnit = new ContentStoneGolemCard();
@@ -105,11 +105,15 @@ public class GamePlayer : ITurns
 
     public void LateInit()
     {
-        m_deckBase.FillStartingDeck();
+        if (Globals.loadingRun)
+        {
+            return;
+        }
 
         m_maxEnergy = Constants.StartingEnergy;
         m_curEnergy = GetMaxEnergy();
 
+        m_deckBase.FillStartingDeck();
         ResetCurDeck();
 
         m_curDeck.Shuffle();
@@ -350,10 +354,10 @@ public class GamePlayer : ITurns
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
-        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inTurns && 
-            WorldController.Instance.m_gameController.m_currentWaveTurn <= WorldController.Instance.m_gameController.GetEndWaveTurn())
+        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inGameplay && 
+            WorldController.Instance.m_gameController.m_currentTurnNumber <= WorldController.Instance.m_gameController.GetEndWaveTurn())
         {
-            Globals.m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentWaveTurn + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
+            Globals.m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
             Debug.Log("Set wolf turn to " + Globals.m_totemOfTheWolfTurn);
         }
 
@@ -383,7 +387,7 @@ public class GamePlayer : ITurns
     {
         int toReturn = Constants.InitialHandSize;
 
-        if (GameHelper.GetGameController().m_currentWaveTurn == 0)
+        if (GameHelper.GetGameController().m_currentTurnNumber == 0)
         {
             toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
         }
@@ -503,20 +507,20 @@ public class GamePlayer : ITurns
     {
         DrawHand();
 
-        if (GetCastleGameElement() != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentWaveTurn == 0))
+        if (GetCastleGameElement() != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentTurnNumber == 0))
         {
             UICameraController.Instance.SnapToGameObject(GetCastleWorldTile().gameObject);
         }
         m_curEnergy = GetMaxEnergy();
 
-        if (GameHelper.GetGameController().m_currentWaveTurn == 0)
+        if (GameHelper.GetGameController().m_currentTurnNumber == 0)
         {
             AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
         }
 
         if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
         {
-            if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn)
+            if (GameHelper.GetGameController().m_currentTurnNumber + 1 == Globals.m_totemOfTheWolfTurn)
             {
                 UIHelper.CreateHUDNotification("Totem of the Wolf", "The white moon begins!");
             }
@@ -541,6 +545,10 @@ public class GamePlayer : ITurns
             }
         }
         Globals.m_canSelect = true;
+
+        GameHelper.GetGameController().m_randomSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(GameHelper.GetGameController().m_randomSeed);
+        PlayerDataManager.PlayerAccountData.SaveRunData();
     }
 
     public void EndTurn()
@@ -577,5 +585,82 @@ public class GamePlayer : ITurns
         Globals.m_goldPerShivKill = 0;
         Globals.m_tempSpellpower = 0;
         Globals.m_canSelect = false;
+    }
+
+    //============================================================================================================//
+
+    public JsonGamePlayerData SaveToJson()
+    {
+        JsonGamePlayerData jsonData = new JsonGamePlayerData
+        {
+            maxEnergy = m_maxEnergy,
+            curEnergy = m_curEnergy,
+            maxActions = m_maxActions,
+            curActions = m_curActions,
+            jsonDeckBaseData = m_deckBase.SaveToJson(),
+            jsonDeckCurrentData = m_curDeck.SaveToJson(),
+            jsonGameCardsInHandData = new List<JsonGameCardData>(),
+            jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
+            jsonGameCardsInExileData = new List<JsonGameCardData>()
+        };
+
+        for (int i = 0; i < m_hand.Count; i++)
+        {
+            jsonData.jsonGameCardsInHandData.Add(m_hand[i].SaveToJson());
+        }
+
+        for (int i = 0; i < m_cardsToDiscard.Count; i++)
+        {
+            jsonData.jsonGameCardsInDiscardData.Add(m_cardsToDiscard[i].SaveToJson());
+        }
+
+        for (int i = 0; i < m_cardsInExile.Count; i++)
+        {
+            jsonData.jsonGameCardsInExileData.Add(m_cardsInExile[i].SaveToJson());
+        }
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGamePlayerData jsonData)
+    {
+        m_maxEnergy = jsonData.maxEnergy;
+        m_curEnergy = jsonData.curEnergy;
+        m_maxActions = jsonData.maxActions;
+        m_curActions = jsonData.curActions;
+        
+        m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);
+        m_curDeck.LoadFromJson(jsonData.jsonDeckCurrentData);
+        
+        for (int i = 0; i < jsonData.jsonGameCardsInHandData.Count; i++)
+        {
+            m_hand.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInHandData[i]));
+        }
+
+        for (int i = 0; i < jsonData.jsonGameCardsInDiscardData.Count; i++)
+        {
+            m_cardsToDiscard.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDiscardData[i]));
+        }
+
+        for (int i = 0; i < jsonData.jsonGameCardsInExileData.Count; i++)
+        {
+            if (jsonData.jsonGameCardsInExileData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInExileData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInExileData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInExileData[i].jsonGameUnitYPosition.Value);
+
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInExileData[i].name)
+                {
+                    m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_cardsInExile.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInExileData[i]));
+        }
     }
 }

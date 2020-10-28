@@ -68,7 +68,7 @@ public class UIFocusInfoPanel : UIElementBase
             List<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
-                m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
+                m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
             }
         }
         else if (cardData.m_card is GameCardSpellBase)
@@ -92,7 +92,7 @@ public class UIFocusInfoPanel : UIElementBase
             List<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
-                m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
+                m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
             }
 
             m_shouldShow = true;
@@ -114,7 +114,7 @@ public class UIFocusInfoPanel : UIElementBase
         List<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
         for (int i = 0; i < keywords.Count; i++)
         {
-            m_descText.text += "<b>" + keywords[i].m_name + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
+            m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
         }
     }
 

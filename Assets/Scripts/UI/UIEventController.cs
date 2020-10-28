@@ -31,7 +31,7 @@ public class UIEventController : Singleton<UIEventController>
 
         m_event = gameEvent;
 
-        m_titleText.text = m_event.m_name;
+        m_titleText.text = m_event.GetName();
         m_descText.text = m_event.m_eventDesc;
 
         if (m_event.m_optionOne != null)

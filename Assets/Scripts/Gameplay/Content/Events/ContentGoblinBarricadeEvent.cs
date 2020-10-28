@@ -34,7 +34,7 @@ public class GameEventBreakBarricadeOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Sacrifice " + m_tile.m_occupyingUnit.m_name + ", but gain " + m_wallet.m_gold + " gold.";
+        m_message = "Sacrifice " + m_tile.m_occupyingUnit.GetName() + ", but gain " + m_wallet.m_gold + " gold.";
 
         return base.GetMessage();
     }

@@ -307,7 +307,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             int numSoulTrap = GameHelper.RelicCount<ContentSoulTrapRelic>();
             if (numSoulTrap > 0)
             {
-                if (GameHelper.GetGameController().m_currentTurn == player)
+                if (GameHelper.GetGameController().CurrentActor == player)
                 {
                     player.DrawCards(3 * numSoulTrap);
                 }
@@ -691,7 +691,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
 
-            if (GameHelper.GetGameController().m_currentWaveTurn == Globals.m_totemOfTheWolfTurn)
+            if (GameHelper.GetGameController().m_currentTurnNumber == Globals.m_totemOfTheWolfTurn)
             {
                 staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>();
             }
@@ -754,7 +754,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (canChangeName)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.GetName() + ".", true, m_gameTile.GetWorldTile().gameObject);
         }
 
         m_keywordHolder.AddKeyword(newKeyword);
@@ -1058,7 +1058,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         int staminaToRegen = GetStaminaRegen();
         //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
-        if (GameHelper.GetGameController().m_currentWaveTurn + 1 == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
+        if (GameHelper.GetGameController().m_currentTurnNumber + 1 == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
             staminaToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
@@ -1128,7 +1128,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
     }
 
-    public string GetName()
+    public override string GetName()
     {
         if (HasCustomName())
         {

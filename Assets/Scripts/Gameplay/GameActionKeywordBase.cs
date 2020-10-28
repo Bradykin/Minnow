@@ -16,7 +16,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
             bool isAddingAction = false;
             for (int c = 0; c < m_actions.Count; c++)
             {
-                if (m_actions[c].m_name == tempKeyword.m_actions[i].m_name)
+                if (m_actions[c].GetName() == tempKeyword.m_actions[i].GetName())
                 {
                     m_actions[c].AddAction(tempKeyword.m_actions[i]);
                     isAddingAction = true;

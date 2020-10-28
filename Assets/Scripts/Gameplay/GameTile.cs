@@ -42,7 +42,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (IsOccupied())
         {
-            Debug.LogWarning("Placing new unit " + newUnit.m_name + " over existing unit " + m_occupyingUnit.m_name + ".");
+            Debug.LogWarning("Placing new unit " + newUnit.GetName() + " over existing unit " + m_occupyingUnit.GetName() + ".");
         }
 
         m_occupyingUnit = newUnit;
@@ -64,7 +64,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (HasBuilding())
         {
-            Debug.LogWarning("Placing new building " + newBuilding.m_name + " over existing building " + m_building.m_name + ".");
+            Debug.LogWarning("Placing new building " + newBuilding.GetName() + " over existing building " + m_building.GetName() + ".");
         }
 
         if (newBuilding.GetTeam() == Team.Player)
@@ -135,11 +135,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (HasBuilding())
         {
-            return m_building.m_name;
+            return m_building.GetName();
         }
         else
         {
-            return GetTerrain().m_name;
+            return GetTerrain().GetName();
         }
     }
 
@@ -192,7 +192,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
     public bool IsSpecialSoftFogTile()
     {
-        return GetTerrain().IsEventTerrain() || (HasBuilding() && GetBuilding().m_name == new ContentPowerCrystalBuilding().m_name);
+        return GetTerrain().IsEventTerrain() || (HasBuilding() && GetBuilding().GetName() == new ContentPowerCrystalBuilding().GetName());
     }
 
     public void SetTerrain(GameTerrainBase newTerrain, bool clearBuilding = false)

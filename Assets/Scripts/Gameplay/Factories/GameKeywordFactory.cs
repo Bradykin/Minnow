@@ -16,6 +16,7 @@ public class GameKeywordFactory
     {
         m_keywords.Add(new GameDeathKeyword(null));
         m_keywords.Add(new GameEnrageKeyword(null));
+        m_keywords.Add(new GameForestwalkKeyword());
         m_keywords.Add(new GameFlyingKeyword());
         m_keywords.Add(new GameWaterwalkKeyword());
         m_keywords.Add(new GameMountainwalkKeyword());
@@ -37,7 +38,7 @@ public class GameKeywordFactory
         if (!m_hasInit)
             Init();
 
-        int i = m_keywords.FindIndex(t => t.m_name == jsonData.name);
+        int i = m_keywords.FindIndex(t => t.GetName() == jsonData.name);
 
         GameKeywordBase newKeyword;
         switch (m_keywords[i].m_keywordParamType)

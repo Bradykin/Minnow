@@ -86,7 +86,7 @@ public static class GameRelicFactory
                 continue;
             }*/
             
-            if (exclusionRelic != null && relicList[i].m_name == exclusionRelic.m_name)
+            if (exclusionRelic != null && relicList[i].GetName() == exclusionRelic.GetName())
             {
                 relicList.RemoveAt(i);
                 continue;
@@ -150,7 +150,7 @@ public static class GameRelicFactory
             bool isDup = false;
             for (int c = 0; c < playerRelics.Count; c++)
             {
-                if (m_relics[i].m_name == playerRelics[c].m_name)
+                if (m_relics[i].GetName() == playerRelics[c].GetName())
                 {
                     isDup = true;
                 }

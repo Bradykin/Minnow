@@ -7,11 +7,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerRunData
 {
-    public int m_currentWave;
-    public int m_currentTurn;
-
-    public int m_mapId;
-
+    public JsonGameControllerData m_jsonGameControllerData;
     public JsonMapData m_jsonMapData;
     
     public PlayerRunData()
@@ -21,13 +17,19 @@ public class PlayerRunData
 
     public void SaveRunData()
     {
+        if (!WorldController.Instance.m_isInGame)
+        {
+            Debug.LogError("Tried to save run while not in game");
+            return;
+        }
+        
         GameController gameController = GameHelper.GetGameController();
         if (gameController == null)
         {
             Debug.LogError("Trying to save player run data, can't find gamecontroller");
         }
 
-        m_mapId = gameController.GetCurMap().m_id;
+        m_jsonGameControllerData = gameController.SaveToJson();
         
         m_jsonMapData = WorldGridManager.Instance.SaveToJson();
     }

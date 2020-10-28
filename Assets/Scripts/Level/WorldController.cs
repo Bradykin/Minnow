@@ -17,12 +17,19 @@ public class WorldController : Singleton<WorldController>
 
     public bool m_isInGame;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public void BeginLevel(GameMap map)
     {
         m_isInGame = true;
 
         m_gameController = new GameController(map);
         map.TriggerStartMap();
+
+            
         m_playerHand = new List<UICard>();
 
         m_playerUnitFocusIndex = 0;
@@ -35,7 +42,7 @@ public class WorldController : Singleton<WorldController>
     {
         m_isInGame = false;
 
-        m_gameController.OnEndPlaythrough(endType);
+        m_gameController.OnEndRun(endType);
         m_gameController = null;
         for(int i = 0; i < m_playerHand.Count; i++)
         {
@@ -246,7 +253,7 @@ public class WorldController : Singleton<WorldController>
         ClearAllUnits();
 
         GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
-        intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_waveNum * 20;
+        intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_currentWaveNumber * 20;
 
         player.m_wallet.AddResources(intermissionWallet);
 
@@ -267,7 +274,7 @@ public class WorldController : Singleton<WorldController>
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
 
-        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_waveNum, ScheduledActionTime.StartOfWave);
+        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
     }
 
     public void EndIntermission()
@@ -403,11 +410,6 @@ public class WorldController : Singleton<WorldController>
 
     public void OnApplicationQuit()
     {
-        if (m_isInGame)
-        {
-            PlayerDataManager.PlayerAccountData.SaveRunData();
-        }
-        
         Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
     }
 }

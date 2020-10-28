@@ -27,7 +27,6 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
 
     public T GetKeyword<T>()
     {
-        List<T> listOfKeyword = new List<T>();
         for (int i = 0; i < m_keywords.Count; i++)
         {
             if (m_keywords[i] is T val)
@@ -63,7 +62,7 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
         //If there are any keywords that are the same as the one being added; instead of adding a new one, add this one to that keyword
         for (int i = 0; i < m_keywords.Count; i++)
         {
-            if (m_keywords[i].m_name == newKeyword.m_name)
+            if (m_keywords[i].GetName() == newKeyword.GetName())
             {
                 m_keywords[i].AddKeyword(newKeyword);
                 return;
@@ -94,7 +93,7 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
                 continue;
             }
 
-            descString += "<b>" + m_keywords[i].m_name + "</b>";
+            descString += "<b>" + m_keywords[i].GetName() + "</b>";
             if (m_keywords[i].m_shortDesc != string.Empty)
             {
                 descString += " <i>(" + m_keywords[i].m_shortDesc + ")</i>";

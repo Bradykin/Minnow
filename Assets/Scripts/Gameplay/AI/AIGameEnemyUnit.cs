@@ -107,15 +107,15 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public void CleanupTurn()
     {
-        m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_waveNum;
-        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentWaveTurn;
+        m_newAIDebugLog.m_waveNumber = GameHelper.GetGameController().m_currentWaveNumber;
+        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentTurnNumber;
         if (m_targetGameElement == null)
         {
             m_newAIDebugLog.m_targetGameElementName = "Null";
         }
         else
         {
-            m_newAIDebugLog.m_targetGameElementName = m_targetGameElement.m_name;
+            m_newAIDebugLog.m_targetGameElementName = m_targetGameElement.GetName();
         }
 
         if (m_targetGameTile == null)
@@ -129,22 +129,22 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
         for (int i = 0; i < m_possibleUnitTargets.Count; i++)
         {
-            m_newAIDebugLog.m_possibleUnitTargets.Add(m_possibleUnitTargets[i].m_name);
+            m_newAIDebugLog.m_possibleUnitTargets.Add(m_possibleUnitTargets[i].GetName());
         }
 
         for (int i = 0; i < m_possibleBuildingTargets.Count; i++)
         {
-            m_newAIDebugLog.m_possibleBuildingTargets.Add(m_possibleBuildingTargets[i].m_name);
+            m_newAIDebugLog.m_possibleBuildingTargets.Add(m_possibleBuildingTargets[i].GetName());
         }
 
         for (int i = 0; i < m_vulnerableUnitTargets.Count; i++)
         {
-            m_newAIDebugLog.m_vulnerableUnitTargets.Add(m_vulnerableUnitTargets[i].m_name);
+            m_newAIDebugLog.m_vulnerableUnitTargets.Add(m_vulnerableUnitTargets[i].GetName());
         }
 
         for (int i = 0; i < m_vulnerableBuildingTargets.Count; i++)
         {
-            m_newAIDebugLog.m_vulnerableBuildingTargets.Add(m_vulnerableBuildingTargets[i].m_name);
+            m_newAIDebugLog.m_vulnerableBuildingTargets.Add(m_vulnerableBuildingTargets[i].GetName());
         }
 
         m_AIDebugLogs.Add(JsonConvert.SerializeObject(m_newAIDebugLog));

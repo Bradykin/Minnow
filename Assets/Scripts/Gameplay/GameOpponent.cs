@@ -112,7 +112,7 @@ public class GameOpponent : ITurns
             m_controlledUnits[i].EndTurn();
         }
 
-        if (GameHelper.GetGameController().m_currentWaveTurn >= GameHelper.GetGameController().GetEndWaveTurn())
+        if (GameHelper.GetGameController().m_currentTurnNumber >= GameHelper.GetGameController().GetEndWaveTurn())
         {
             return;
         }
@@ -139,14 +139,14 @@ public class GameOpponent : ITurns
         //handle spawning of bosses and elites
         if (fogSpawningActive)
         {
-            if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
                 WorldController.Instance.SetHasSpawnedBoss(true);
             }
 
-            if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
@@ -163,7 +163,7 @@ public class GameOpponent : ITurns
                 m_spawnPoints[randomIndex] = temp;
             }
 
-            if (GameHelper.GetGameController().m_currentWaveTurn <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_waveNum == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -181,7 +181,7 @@ public class GameOpponent : ITurns
                 WorldController.Instance.SetHasSpawnedBoss(true);
             }
 
-            if (GameHelper.GetGameController().m_currentWaveTurn >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -233,7 +233,7 @@ public class GameOpponent : ITurns
             for (int i = 0; i < numEnemiesToSpawn; i++)
             {
                 //Spawn enemy in edge of fog
-                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_currentWaveNumber);
                 SpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
             }
         }
@@ -255,7 +255,7 @@ public class GameOpponent : ITurns
 
         for (int i = 0; i < tiles.Count; i++)
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_waveNum);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_currentWaveNumber);
             if (!tiles[i].IsPassable(newEnemyUnit, false))
             {
                 continue;
@@ -288,7 +288,7 @@ public class GameOpponent : ITurns
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetGameController().m_waveNum, spawnPoint);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetGameController().m_currentWaveNumber, spawnPoint);
 
             if (newEnemyUnit == null)
             {

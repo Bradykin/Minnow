@@ -6,7 +6,7 @@
     {
         m_hasTooltip = true;
         m_relic = relic;
-        m_message = "Take " + m_relic.m_name;
+        m_message = "Take " + m_relic.GetName();
     }
 
     public override void AcceptOption()

@@ -21,11 +21,11 @@ public class GameIntermissionActionController
     {
         if (HasBuilding())
         {
-            return m_building.m_building.m_name;
+            return m_building.m_building.GetName();
         }
         else if (HasAction())
         {
-            return m_action.m_name;
+            return m_action.GetName();
         }
 
         return "Invalid";

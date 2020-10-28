@@ -59,13 +59,13 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetNextTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.m_name;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.GetName();
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetNextBuilding(Globals.m_currentlyPaintingBuilding);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
-                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.GetName();
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
             {
@@ -109,13 +109,13 @@ public class LevelCreator : MonoBehaviour
             {
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetPreviousTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
-                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.m_name;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingTerrain.GetName();
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {
                 Globals.m_currentlyPaintingBuilding = GameBuildingFactory.GetPreviousBuilding(Globals.m_currentlyPaintingBuilding);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
-                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.GetName();
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
             {
@@ -160,7 +160,7 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingType = typeof(GameBuildingBase);
                 m_selectedImage.sprite = Globals.m_currentlyPaintingBuilding.m_icon;
                 m_selectedListNotifier.text = "Buildings";
-                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.m_name;
+                m_selectedTileNotifier.text = Globals.m_currentlyPaintingBuilding.GetName();
             }
             else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase))
             {

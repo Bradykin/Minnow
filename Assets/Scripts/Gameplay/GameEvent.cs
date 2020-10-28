@@ -44,7 +44,7 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
 
     public virtual bool IsValidToSpawn(GameTile tile)
     {
-        int currentTurn = GameHelper.GetGameController().m_waveNum;
+        int currentTurn = GameHelper.GetGameController().m_currentWaveNumber;
 
         if (currentTurn >= m_minWaveToSpawn && currentTurn <= m_maxWaveToSpawn)
         {

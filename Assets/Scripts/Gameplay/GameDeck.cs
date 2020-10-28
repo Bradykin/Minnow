@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDeck
+public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 {
     private List<GameCard> m_cards = new List<GameCard>();
     private List<GameCard> m_discard = new List<GameCard>();
@@ -148,5 +149,73 @@ public class GameDeck
     public List<GameCard> GetCardsForRead()
     {
         return m_cards;
+    }
+
+    //============================================================================================================//
+
+    public JsonGameDeckData SaveToJson()
+    {
+        JsonGameDeckData jsonData = new JsonGameDeckData
+        {
+            jsonGameCardsInDeckData = new List<JsonGameCardData>(),
+            jsonGameCardsInDiscardData = new List<JsonGameCardData>()
+        };
+
+        for (int i = 0; i < m_cards.Count; i++)
+        {
+            jsonData.jsonGameCardsInDeckData.Add(m_cards[i].SaveToJson());
+        }
+
+        for (int i = 0; i < m_discard.Count; i++)
+        {
+            jsonData.jsonGameCardsInDiscardData.Add(m_discard[i].SaveToJson());
+        }
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGameDeckData jsonData)
+    {
+        for (int i = 0; i < jsonData.jsonGameCardsInDeckData.Count; i++)
+        {
+            if (jsonData.jsonGameCardsInDeckData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInDeckData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInDeckData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInDeckData[i].jsonGameUnitYPosition.Value);
+
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDeckData[i].name)
+                {
+                    m_cards.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_cards.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDeckData[i]));
+        }
+
+        for (int i = 0; i < jsonData.jsonGameCardsInDiscardData.Count; i++)
+        {
+            if (jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitYPosition.Value);
+
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDiscardData[i].name)
+                {
+                    m_discard.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_discard.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDiscardData[i]));
+        }
     }
 }

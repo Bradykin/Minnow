@@ -190,4 +190,28 @@ public class GameUnitCard : GameCard
 
         return desc;
     }
+
+    //============================================================================================================//
+
+    public override JsonGameCardData SaveToJson()
+    {
+        JsonGameCardData jsonData = new JsonGameCardData
+        {
+            name = GetName(),
+            jsonGameUnitData = m_unit.SaveToJson()
+        };
+
+        if (m_unit.GetGameTile() != null)
+        {
+            jsonData.jsonGameUnitXPosition = m_unit.GetGameTile().m_gridPosition.x;
+            jsonData.jsonGameUnitYPosition = m_unit.GetGameTile().m_gridPosition.y;
+        }
+
+        return jsonData;
+    }
+
+    public override void LoadFromJson(JsonGameCardData jsonData)
+    {
+
+    }
 }

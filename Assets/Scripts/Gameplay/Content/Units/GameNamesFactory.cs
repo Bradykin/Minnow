@@ -105,6 +105,8 @@ public class GameNamesFactory
         m_constructNames.Add("Evron");
         m_constructNames.Add("Umi");
         m_constructNames.Add("Aminiv");
+
+        m_hasInit = true;
     }
 
     public static string GetCustomUnitName(Typeline unitType)

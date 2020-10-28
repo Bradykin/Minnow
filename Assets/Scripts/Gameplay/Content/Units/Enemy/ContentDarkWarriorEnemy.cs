@@ -51,7 +51,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
 
     private int GetHealthModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_waveNum;
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
 
         int scalingValue = waveNum;
         if (waveNum >= 3)
@@ -64,14 +64,14 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
 
     private int GetStaminaRegenModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_waveNum;
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
 
         return Mathf.FloorToInt((float)waveNum * 0.5f);
     }
 
     private int GetPowerModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_waveNum;
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
 
         return waveNum * 3;
     }

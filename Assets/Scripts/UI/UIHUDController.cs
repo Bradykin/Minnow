@@ -62,7 +62,7 @@ public class UIHUDController : Singleton<UIHUDController>
             {
                 m_intermissionHUD.SetActive(false);
 
-                if (WorldController.Instance.m_gameController.m_currentTurn == WorldController.Instance.m_gameController.m_player)
+                if (WorldController.Instance.m_gameController.CurrentActor == WorldController.Instance.m_gameController.m_player)
                 {
                     m_waveHUD.SetActive(true);
                 }

@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,38 +11,39 @@ public enum RunEndType : int
     Quit
 }
 
-public class GameController
+public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameControllerData>
 {
-    public List<ITurns> m_teamTurns;
+    public List<ITurns> m_teamActor;
     public GamePlayer m_player;
     public GameOpponent m_gameOpponent;
 
-    public ITurns m_currentTurn => m_teamTurns[m_currentTurnIndex];
+    public ITurns CurrentActor => m_teamActor[m_currentActorIterator];
+    private int m_currentActorIterator = 0;
 
-    private bool ShouldStartIntermission => m_currentTurn == m_player && m_currentWaveTurn > m_currentWaveEndTurn && m_waveNum != Constants.FinalWaveNum;
+    private bool ShouldStartIntermission => CurrentActor == m_player && m_currentTurnNumber > m_endOfWaveTurnNumber && m_currentWaveNumber != Constants.FinalWaveNum;
 
-    private int m_currentTurnIndex = 0;
-    public bool m_inTurns = false;
+    public bool m_inGameplay = false;
 
-    public int m_waveNum;
-    public int m_currentWaveTurn;
-    private int m_currentWaveEndTurn;
+    public int m_currentWaveNumber;
+    public int m_currentTurnNumber;
+    private int m_endOfWaveTurnNumber;
 
     public GameMap m_map;
 
-    private int m_playthroughExperienceAmount;
+    private int m_runExperienceAmount;
+    public int m_randomSeed;
 
     public GameController(GameMap map)
     {
         m_player = new GamePlayer();
         m_gameOpponent = new GameOpponent();
-        m_teamTurns = new List<ITurns>();
-        m_teamTurns.Add(m_player);
-        m_teamTurns.Add(m_gameOpponent);
+        m_teamActor = new List<ITurns>();
+        m_teamActor.Add(m_player);
+        m_teamActor.Add(m_gameOpponent);
 
-        m_waveNum = 1;
-        m_currentWaveTurn = 1;
-        m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
+        m_currentWaveNumber = 1;
+        m_currentTurnNumber = 1;
+        m_endOfWaveTurnNumber = Constants.GetWaveLength(m_currentWaveNumber);
 
         m_map = map;
     }
@@ -59,7 +61,14 @@ public class GameController
         Globals.m_levelActive = true;
 
         //TEMP: to start the turns. Should happen in a different way in future
-        BeginTurnSequence();
+        if (Globals.loadingRun)
+        {
+            LoadGameEnterTurnSequence();
+        }
+        else
+        {
+            BeginTurnSequence();
+        }
     }
 
     public void BeginTurnSequence()
@@ -68,25 +77,34 @@ public class GameController
         {
             Globals.m_totemOfTheWolfTurn = Random.Range(0, GetEndWaveTurn() + 1);
         }
-        
-        m_currentTurnIndex = 0;
-        m_inTurns = true;
+
+        m_randomSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(m_randomSeed);
+
+        m_currentActorIterator = 0;
+        m_inGameplay = true;
         m_gameOpponent.EliteSpawnWaveModifier = Random.Range(0, 3);
-        m_currentTurn.StartTurn();
+        CurrentActor.StartTurn();
+    }
+
+    public void LoadGameEnterTurnSequence()
+    {
+        m_currentActorIterator = 0;
+        m_inGameplay = true;
     }
 
     public void MoveToNextTurn()
     {
-        m_currentTurn.EndTurn();
+        CurrentActor.EndTurn();
 
-        if (m_currentTurnIndex == m_teamTurns.Count - 1)
+        if (m_currentActorIterator == m_teamActor.Count - 1)
         {
-            m_currentWaveTurn++;
-            m_currentTurnIndex = 0;
+            m_currentTurnNumber++;
+            m_currentActorIterator = 0;
         }
         else
         {
-            m_currentTurnIndex++;
+            m_currentActorIterator++;
         }
 
         bool didStartIntermission = CheckStartIntermission();
@@ -95,14 +113,14 @@ public class GameController
             return;
         }
 
-        m_currentTurn.StartTurn();
+        CurrentActor.StartTurn();
     }
 
     public bool CheckStartIntermission()
     {
         if (ShouldStartIntermission)
         {
-            m_inTurns = false;
+            m_inGameplay = false;
             OnEndWave();
             WorldController.Instance.StartIntermission();
             return true;
@@ -113,30 +131,60 @@ public class GameController
 
     private void OnEndWave()
     {
-        GetCurMap().TriggerMapEvents(m_waveNum, ScheduledActionTime.EndOfWave);
-        m_waveNum++;
-        m_currentWaveTurn = 1;
-        m_currentWaveEndTurn = Constants.GetWaveLength(m_waveNum);
+        GetCurMap().TriggerMapEvents(m_currentWaveNumber, ScheduledActionTime.EndOfWave);
+        m_currentWaveNumber++;
+        m_currentTurnNumber = 1;
+        m_endOfWaveTurnNumber = Constants.GetWaveLength(m_currentWaveNumber);
     }
 
     public int GetEndWaveTurn()
     {
-        int toReturn = m_currentWaveEndTurn;
+        int toReturn = m_endOfWaveTurnNumber;
 
         return toReturn;
     }
 
-    public void AddPlaythroughExperience(int experienceAmount)
+    public void AddRunExperience(int experienceAmount)
     {
-        m_playthroughExperienceAmount = experienceAmount;
+        m_runExperienceAmount += experienceAmount;
     }
 
-    public void OnEndPlaythrough(RunEndType endType)
+    public void OnEndRun(RunEndType endType)
     {
         if (endType != RunEndType.Quit)
         {
-            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, Mathf.Max(50, m_playthroughExperienceAmount), m_map.m_id, Globals.m_curChaos);
+            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, Mathf.Max(50, m_runExperienceAmount), m_map.m_id, Globals.m_curChaos);
             Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }
+    }
+
+
+    //============================================================================================================//
+
+    public JsonGameControllerData SaveToJson()
+    {
+        JsonGameControllerData jsonData = new JsonGameControllerData
+        {
+            currentWave = m_currentWaveNumber,
+            currentTurn = m_currentTurnNumber,
+            mapId = GetCurMap().m_id,
+            runExperienceAMount = m_runExperienceAmount,
+            randomSeed = m_randomSeed,
+            jsonGamePlayerData = m_player.SaveToJson()
+        };
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGameControllerData jsonData)
+    {
+        m_currentWaveNumber = jsonData.currentWave;
+        m_currentTurnNumber = jsonData.currentTurn;
+        m_runExperienceAmount = jsonData.runExperienceAMount;
+
+        m_randomSeed = jsonData.randomSeed;
+        Random.InitState(m_randomSeed);
+
+        m_player.LoadFromJson(jsonData.jsonGamePlayerData);
     }
 }

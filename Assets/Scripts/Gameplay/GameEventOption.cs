@@ -15,7 +15,7 @@ public abstract class GameEventOption
     public virtual void EndEvent()
     {
         UIEventController.Instance.EndEvent();
-        GameHelper.GetGameController().AddPlaythroughExperience(m_experienceAmount);
+        GameHelper.GetGameController().AddRunExperience(m_experienceAmount);
     }
 
     public virtual string GetMessage()

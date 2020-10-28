@@ -81,7 +81,7 @@ public class GameEventConsumeFireOption : GameEventOption
 
     public override void Init()
     {
-        m_message = m_tile.m_occupyingUnit.m_name + " gains '<b>Enrage</b>: Gain +" + m_toGrow + "/+0'";
+        m_message = m_tile.m_occupyingUnit.GetName() + " gains '<b>Enrage</b>: Gain +" + m_toGrow + "/+0'";
     }
 
     public override void AcceptOption()

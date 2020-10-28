@@ -40,7 +40,7 @@ public class GameEventTakeHorsesOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingUnit.m_name + " gains " + m_maxStamina + " max Stamina and " + m_staminaRegen + " Stamina regen per turn.";
+        m_message = m_tile.m_occupyingUnit.GetName() + " gains " + m_maxStamina + " max Stamina and " + m_staminaRegen + " Stamina regen per turn.";
 
         return base.GetMessage();
     }

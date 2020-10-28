@@ -71,7 +71,7 @@ public static class GameBuildingFactory
         if (!m_hasInit)
             Init();
 
-        int i = m_buildings.FindIndex(t => t.m_name == jsonData.name);
+        int i = m_buildings.FindIndex(t => t.GetName() == jsonData.name);
 
         GameBuildingBase newBuilding = (GameBuildingBase)Activator.CreateInstance(m_buildings[i].GetType());
         newBuilding.LoadFromJson(jsonData);
