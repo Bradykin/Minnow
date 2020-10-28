@@ -47,11 +47,15 @@ public class UILevelSelectButton : MonoBehaviour
         if (UILevelSelectController.Instance.m_curMap == m_map)
         {
             UILevelSelectController.Instance.SetSelectedLevel(null);
+
+            AudioBackgroundController.Instance.StopBackgroundMusic();
         }
         else
         {
             UILevelSelectController.Instance.SetSelectedLevel(m_map);
             UICameraController.Instance.SmoothCameraTransitionToGameObject(gameObject);
+
+            AudioBackgroundController.Instance.StartBackgroundMusic(m_map);
         }
     }
 
@@ -69,6 +73,11 @@ public class UILevelSelectButton : MonoBehaviour
         if (UIHelper.UIShouldBlockClick())
         {
             return;
+        }
+
+        if (!m_isHovered)
+        {
+            AudioHelper.PlaySFX(AudioHelper.UIHover);
         }
 
         m_isHovered = true;
