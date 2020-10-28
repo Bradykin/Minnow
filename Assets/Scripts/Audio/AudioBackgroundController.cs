@@ -14,14 +14,7 @@ public class AudioBackgroundController : Singleton<AudioBackgroundController>
 
     void Update()
     {
-        if (GlobalSettings.m_music)
-        {
-            m_audioSource.volume = 1.0f;
-        }
-        else
-        {
-            m_audioSource.volume = 0.0f;
-        }
+        m_audioSource.volume = GlobalSettings.m_musicVolume;
     }
 
     public void StartBackgroundMusic(GameMap toStart)

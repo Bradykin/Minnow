@@ -30,6 +30,8 @@ public class UISelectorButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         UIIntermissionController.Instance.SetSelectorType(m_selectorType);
         Globals.m_selectedIntermissionBuilding = null;
     }

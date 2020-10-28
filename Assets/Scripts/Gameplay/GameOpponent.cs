@@ -75,7 +75,7 @@ public class GameOpponent : ITurns
 
             units.Remove(unit);
 
-            if (Constants.UseSteppedOutEnemyTurns && !unit.GetGameTile().m_isFog)
+            if (GlobalSettings.m_followEnemy && !unit.GetGameTile().m_isFog)
             {
                 if (!unit.m_isDead && unit.GetGameTile() != null)
                 {
@@ -84,7 +84,7 @@ public class GameOpponent : ITurns
             }
         }
 
-        if (Constants.UseSteppedOutEnemyTurns && GameHelper.GetPlayer().GetCastleGameElement() != null)
+        if (GlobalSettings.m_followEnemy && GameHelper.GetPlayer().GetCastleGameElement() != null)
         {
             UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().GetCastleWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())

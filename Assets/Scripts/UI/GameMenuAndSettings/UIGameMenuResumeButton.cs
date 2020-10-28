@@ -10,6 +10,8 @@ public class UIGameMenuResumeButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         m_gameMenu.SetActive(false);
     }
 

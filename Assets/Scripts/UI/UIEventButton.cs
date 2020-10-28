@@ -19,6 +19,8 @@ public class UIEventButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (m_eventOption == null)
         {
             return;

@@ -14,6 +14,8 @@ public class UICloseEventButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         UIHUDNotificationController.Instance.CloseCurrentEvent();
     }
 }

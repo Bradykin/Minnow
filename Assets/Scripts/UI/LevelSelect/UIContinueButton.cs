@@ -16,6 +16,8 @@ public class UIContinueButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (m_holdler.activeSelf)
         {
             LoadSavedRun();

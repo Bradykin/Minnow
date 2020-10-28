@@ -18,6 +18,8 @@ public class UILevelSelectChaosButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (!IsActive())
         {
             return;

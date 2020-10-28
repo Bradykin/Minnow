@@ -131,7 +131,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         return m_building != null;
     }
 
-    public string GetName()
+    public override string GetName()
     {
         if (HasBuilding())
         {

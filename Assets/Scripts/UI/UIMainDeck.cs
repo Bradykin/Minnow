@@ -28,6 +28,8 @@ public class UIMainDeck : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.View, "Base Deck");
     }
 

@@ -4,28 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UISettingMusicButton : UIElementBase
+public class UISettingsSFXButton : UIElementBase
         , IPointerClickHandler
 {
-    public Text m_musicText;
+    public Text m_sfxText;
 
     void Start()
     {
-        SetMusicString();
+        SetSFXText();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GlobalSettings.m_musicVolume == 0.0f)
+        if (GlobalSettings.m_sfxVolume == 0.0f)
         {
-            GlobalSettings.m_musicVolume = 1.0f;
+            GlobalSettings.m_sfxVolume = 1.0f;
         }
         else
         {
-            GlobalSettings.m_musicVolume = 0.0f;
+            GlobalSettings.m_sfxVolume = 0.0f;
         }
 
-        SetMusicString();
+        SetSFXText();
 
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
     }
@@ -35,15 +35,15 @@ public class UISettingMusicButton : UIElementBase
         //Left as stub
     }
 
-    private void SetMusicString()
+    private void SetSFXText()
     {
-        if (GlobalSettings.m_musicVolume > 0)
+        if (GlobalSettings.m_sfxVolume > 0.0f)
         {
-            m_musicText.text = "Music: ON";
-        } 
+            m_sfxText.text = "SFX: ON";
+        }
         else
         {
-            m_musicText.text = "Music: OFF";
+            m_sfxText.text = "SFX: OFF";
         }
     }
 }

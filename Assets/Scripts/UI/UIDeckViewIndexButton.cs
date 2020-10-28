@@ -37,6 +37,8 @@ public class UIDeckViewIndexButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (!m_holder.activeSelf)
         {
             return;

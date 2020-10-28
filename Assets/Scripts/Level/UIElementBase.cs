@@ -25,6 +25,8 @@ public abstract class UIElementBase : MonoBehaviour
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        AudioHelper.PlaySFX(AudioHelper.UIHover);
+
         m_tintImage.color = UIHelper.GetValidTintColor(true);
 
         if (!m_isShowingTooltip)

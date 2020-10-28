@@ -26,6 +26,8 @@ public class UIDeck : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         GamePlayer player = GameHelper.GetPlayer();
 
         UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View, "Current Deck");

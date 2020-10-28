@@ -32,6 +32,8 @@ public class UIBeginWaveButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (GameHelper.GetPlayer().GetCurActions() > 0)
         {
             return;

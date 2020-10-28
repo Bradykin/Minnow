@@ -11,6 +11,8 @@ public class UILevelSelectStartButton : UIElementBase
 {
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (UILevelSelectController.Instance.m_curMap == null)
         {
             return;

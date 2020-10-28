@@ -65,11 +65,13 @@ public class UIRelic : UIElementBase
         {
             UIRelicSelectController.Instance.AcceptRelic(m_relic);
             UITooltipController.Instance.ClearTooltipStack();
+            AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
         }
 
         if (m_selectionType == RelicSelectionType.SelectStarter)
         {
             GamePlayer.StarterRelic = m_relic;
+            AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
         }
     }
 }

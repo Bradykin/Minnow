@@ -10,6 +10,8 @@ public class UIGameMenuSettingsButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         m_settingsMenu.SetActive(!m_settingsMenu.activeSelf);
     }
 

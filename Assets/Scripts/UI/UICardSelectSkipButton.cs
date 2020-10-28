@@ -30,6 +30,8 @@ public class UICardSelectSkipButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         if (!m_isActive)
         {
             return;

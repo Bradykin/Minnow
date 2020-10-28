@@ -36,6 +36,8 @@ public class UIEndTurnButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         EndTurn();
     }
 

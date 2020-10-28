@@ -9,6 +9,8 @@ public class UIRelicSelectSkipButton : UIElementBase
 {
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+
         UIRelicSelectController.Instance.SkipSelection();
         m_tintImage.color = UIHelper.GetDefaultTintColor();
         Globals.m_selectedCard = null;
