@@ -39,7 +39,7 @@ public static class GameMapFactory
             {
                 if (returnMap != null)
                 {
-                    Debug.LogError("Multiple maps with the same id.  Critical to fix this. Maps: " + returnMap.m_name + ", " + m_maps[i].m_name + ".");
+                    Debug.LogError("Multiple maps with the same id.  Critical to fix this. Maps: " + returnMap.GetName() + ", " + m_maps[i].GetName() + ".");
                     return returnMap;
                 }
                 else

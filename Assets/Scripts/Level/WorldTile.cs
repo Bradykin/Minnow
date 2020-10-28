@@ -50,7 +50,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             GameBuildingBase building = GetGameTile().GetBuilding();
 
             m_titleHolder.SetActive(true);
-            m_nameText.text = building.m_name;
+            m_nameText.text = building.GetName();
             m_healthText.text = building.m_curHealth + "/" + building.m_maxHealth;
         }
         else

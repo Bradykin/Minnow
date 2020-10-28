@@ -105,11 +105,15 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void LateInit()
     {
-        m_deckBase.FillStartingDeck();
+        if (Globals.loadingRun)
+        {
+            return;
+        }
 
         m_maxEnergy = Constants.StartingEnergy;
         m_curEnergy = GetMaxEnergy();
 
+        m_deckBase.FillStartingDeck();
         ResetCurDeck();
 
         m_curDeck.Shuffle();
@@ -541,6 +545,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
         Globals.m_canSelect = true;
+
+        GameHelper.GetGameController().m_randomSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(GameHelper.GetGameController().m_randomSeed);
+        PlayerDataManager.PlayerAccountData.SaveRunData();
     }
 
     public void EndTurn()
@@ -585,26 +593,30 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         JsonGamePlayerData jsonData = new JsonGamePlayerData
         {
+            maxEnergy = m_maxEnergy,
+            curEnergy = m_curEnergy,
+            maxActions = m_maxActions,
+            curActions = m_curActions,
             jsonDeckBaseData = m_deckBase.SaveToJson(),
             jsonDeckCurrentData = m_curDeck.SaveToJson(),
-            jsonCardsInHandData = new List<JsonGameCardData>(),
-            jsonCardsInDiscardData = new List<JsonGameCardData>(),
-            jsonCardsInExileData = new List<JsonGameCardData>()
+            jsonGameCardsInHandData = new List<JsonGameCardData>(),
+            jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
+            jsonGameCardsInExileData = new List<JsonGameCardData>()
         };
 
         for (int i = 0; i < m_hand.Count; i++)
         {
-            jsonData.jsonCardsInHandData.Add(m_hand[i].SaveToJson());
+            jsonData.jsonGameCardsInHandData.Add(m_hand[i].SaveToJson());
         }
 
         for (int i = 0; i < m_cardsToDiscard.Count; i++)
         {
-            jsonData.jsonCardsInDiscardData.Add(m_cardsToDiscard[i].SaveToJson());
+            jsonData.jsonGameCardsInDiscardData.Add(m_cardsToDiscard[i].SaveToJson());
         }
 
         for (int i = 0; i < m_cardsInExile.Count; i++)
         {
-            jsonData.jsonCardsInExileData.Add(m_cardsInExile[i].SaveToJson());
+            jsonData.jsonGameCardsInExileData.Add(m_cardsInExile[i].SaveToJson());
         }
 
         return jsonData;
@@ -612,19 +624,43 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void LoadFromJson(JsonGamePlayerData jsonData)
     {
-        for (int i = 0; i < jsonData.jsonCardsInHandData.Count; i++)
+        m_maxEnergy = jsonData.maxEnergy;
+        m_curEnergy = jsonData.curEnergy;
+        m_maxActions = jsonData.maxActions;
+        m_curActions = jsonData.curActions;
+        
+        m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);
+        m_curDeck.LoadFromJson(jsonData.jsonDeckCurrentData);
+        
+        for (int i = 0; i < jsonData.jsonGameCardsInHandData.Count; i++)
         {
-            m_hand.Add(GameCardFactory.GetCardFromJson(jsonData.jsonCardsInHandData[i]));
+            m_hand.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInHandData[i]));
         }
 
-        for (int i = 0; i < jsonData.jsonCardsInDiscardData.Count; i++)
+        for (int i = 0; i < jsonData.jsonGameCardsInDiscardData.Count; i++)
         {
-            m_cardsToDiscard.Add(GameCardFactory.GetCardFromJson(jsonData.jsonCardsInDiscardData[i]));
+            m_cardsToDiscard.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDiscardData[i]));
         }
 
-        for (int i = 0; i < jsonData.jsonCardsInExileData.Count; i++)
+        for (int i = 0; i < jsonData.jsonGameCardsInExileData.Count; i++)
         {
-            m_cardsInExile.Add(GameCardFactory.GetCardFromJson(jsonData.jsonCardsInExileData[i]));
+            if (jsonData.jsonGameCardsInExileData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInExileData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInExileData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInExileData[i].jsonGameUnitYPosition.Value);
+
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInExileData[i].name)
+                {
+                    m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_cardsInExile.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInExileData[i]));
         }
     }
 }

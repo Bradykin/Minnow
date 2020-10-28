@@ -176,6 +176,46 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 
     public void LoadFromJson(JsonGameDeckData jsonData)
     {
+        for (int i = 0; i < jsonData.jsonGameCardsInDeckData.Count; i++)
+        {
+            if (jsonData.jsonGameCardsInDeckData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInDeckData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInDeckData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInDeckData[i].jsonGameUnitYPosition.Value);
 
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDeckData[i].name)
+                {
+                    m_cards.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_cards.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDeckData[i]));
+        }
+
+        for (int i = 0; i < jsonData.jsonGameCardsInDiscardData.Count; i++)
+        {
+            if (jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitXPosition.HasValue && jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitYPosition.HasValue)
+            {
+                WorldTile worldTile = WorldGridManager.Instance.GetWorldGridTileAtPosition
+                    (jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitXPosition.Value, jsonData.jsonGameCardsInDiscardData[i].jsonGameUnitYPosition.Value);
+
+                if (worldTile == null)
+                {
+                    return;
+                }
+
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDiscardData[i].name)
+                {
+                    m_discard.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    continue;
+                }
+            }
+            m_discard.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInDiscardData[i]));
+        }
     }
 }

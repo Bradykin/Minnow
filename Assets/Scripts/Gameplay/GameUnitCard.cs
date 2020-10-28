@@ -201,6 +201,12 @@ public class GameUnitCard : GameCard
             jsonGameUnitData = m_unit.SaveToJson()
         };
 
+        if (m_unit.GetGameTile() != null)
+        {
+            jsonData.jsonGameUnitXPosition = m_unit.GetGameTile().m_gridPosition.x;
+            jsonData.jsonGameUnitYPosition = m_unit.GetGameTile().m_gridPosition.y;
+        }
+
         return jsonData;
     }
 

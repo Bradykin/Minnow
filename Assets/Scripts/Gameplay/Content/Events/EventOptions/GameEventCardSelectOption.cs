@@ -11,7 +11,7 @@
 
     public override string GetMessage()
     {
-        m_message = "Gain " + m_card.m_name + ".";
+        m_message = "Gain " + m_card.GetName() + ".";
 
         return base.GetMessage();
     }

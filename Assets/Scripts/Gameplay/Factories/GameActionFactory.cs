@@ -25,6 +25,7 @@ public class GameActionFactory
         m_actions.Add(new GameGetHitAction(null, 0));
         m_actions.Add(new GameRoarOfVictoryAction(null));
         m_actions.Add(new GameSpellcraftAttackAction(null));
+        m_actions.Add(new GameShivNearbyAction(null));
 
         m_hasInit = true;
     }
@@ -36,7 +37,7 @@ public class GameActionFactory
 
         string actionName = jsonData.name;
 
-        int i = m_actions.FindIndex(t => t.m_name == actionName);
+        int i = m_actions.FindIndex(t => t.GetName() == actionName);
 
         GameAction newAction;
         switch (m_actions[i].m_actionParamType)

@@ -1,4 +1,5 @@
 ﻿using Game.Util;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     public GameMap m_map;
 
     private int m_runExperienceAmount;
+    public int m_randomSeed;
 
     public GameController(GameMap map)
     {
@@ -59,7 +61,14 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         Globals.m_levelActive = true;
 
         //TEMP: to start the turns. Should happen in a different way in future
-        BeginTurnSequence();
+        if (Globals.loadingRun)
+        {
+            LoadGameEnterTurnSequence();
+        }
+        else
+        {
+            BeginTurnSequence();
+        }
     }
 
     public void BeginTurnSequence()
@@ -68,11 +77,20 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         {
             Globals.m_totemOfTheWolfTurn = Random.Range(0, GetEndWaveTurn() + 1);
         }
-        
+
+        m_randomSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(m_randomSeed);
+
         m_currentActorIterator = 0;
         m_inGameplay = true;
         m_gameOpponent.EliteSpawnWaveModifier = Random.Range(0, 3);
         CurrentActor.StartTurn();
+    }
+
+    public void LoadGameEnterTurnSequence()
+    {
+        m_currentActorIterator = 0;
+        m_inGameplay = true;
     }
 
     public void MoveToNextTurn()
@@ -83,8 +101,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         {
             m_currentTurnNumber++;
             m_currentActorIterator = 0;
-
-            PlayerDataManager.PlayerAccountData.SaveRunData();
         }
         else
         {
@@ -153,7 +169,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             currentTurn = m_currentTurnNumber,
             mapId = GetCurMap().m_id,
             runExperienceAMount = m_runExperienceAmount,
-
+            randomSeed = m_randomSeed,
             jsonGamePlayerData = m_player.SaveToJson()
         };
 
@@ -165,6 +181,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
         m_runExperienceAmount = jsonData.runExperienceAMount;
+
+        m_randomSeed = jsonData.randomSeed;
+        Random.InitState(m_randomSeed);
 
         m_player.LoadFromJson(jsonData.jsonGamePlayerData);
     }

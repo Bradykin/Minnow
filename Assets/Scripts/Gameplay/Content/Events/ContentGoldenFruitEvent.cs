@@ -43,7 +43,7 @@ public class GameEventGiveKeywordOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingUnit.m_name + " gains " + m_keyword.GetDesc() + ".";
+        m_message = m_tile.m_occupyingUnit.GetName() + " gains " + m_keyword.GetDesc() + ".";
 
         return base.GetMessage();
     }

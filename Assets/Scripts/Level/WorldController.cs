@@ -17,6 +17,11 @@ public class WorldController : Singleton<WorldController>
 
     public bool m_isInGame;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public void BeginLevel(GameMap map)
     {
         m_isInGame = true;
@@ -24,17 +29,8 @@ public class WorldController : Singleton<WorldController>
         m_gameController = new GameController(map);
         map.TriggerStartMap();
 
-        if (Globals.loadingRun)
-        {
-            m_gameController.m_currentTurnNumber = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGameControllerData.currentTurn;
-            m_gameController.m_currentWaveNumber = PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGameControllerData.currentWave;
             
-            m_playerHand = new List<UICard>();
-        }
-        else
-        {
-            m_playerHand = new List<UICard>();
-        }
+        m_playerHand = new List<UICard>();
 
         m_playerUnitFocusIndex = 0;
         Globals.m_selectedCard = null;

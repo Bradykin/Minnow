@@ -24,8 +24,12 @@ public static class GameCardFactory
     private static List<GameCard> m_uncommonSpellCards = new List<GameCard>();
     private static List<GameCard> m_commonSpellCards = new List<GameCard>();
 
+    private static bool m_hasInit = false;
+
     public static void Init()
     {
+        m_hasInit = true;
+
         //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
@@ -204,6 +208,11 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardCard(List<GameCard> exclusionList = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameCard> checkList = GetCheckList(m_commonCards, m_uncommonCards, m_rareCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -211,6 +220,11 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardUnitCard(List<GameCard> exclusionList = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameCard> checkList = GetCheckList(m_commonUnitCards, m_uncommonUnitCards, m_rareUnitCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -218,6 +232,11 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardUnitCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (rarity == GameElementBase.GameRarity.Common)
         {
             return GetCardFromList(m_commonUnitCards, exclusionList);
@@ -237,6 +256,11 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardSpellCard(List<GameCard> exclusionList = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameCard> checkList = GetCheckList(m_commonSpellCards, m_uncommonSpellCards, m_rareSpellCards);
 
         return GetCardFromList(checkList, exclusionList);
@@ -244,6 +268,11 @@ public static class GameCardFactory
 
     public static GameCard GetRandomStandardSpellCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (rarity == GameElementBase.GameRarity.Common)
         {
             return GetCardFromList(m_commonSpellCards, exclusionList);
@@ -263,6 +292,11 @@ public static class GameCardFactory
 
     private static List<GameCard> GetCheckList(List<GameCard> commonCards, List<GameCard> uncommonCards, List<GameCard> rareCards)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         int chanceForUncommon = Constants.PercentChanceForUncommonCard;
         int chanceForRare = Constants.PercentChanceForRareCard;
 
@@ -283,11 +317,21 @@ public static class GameCardFactory
 
     public static GameCard GetCardClone(GameCard toClone)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         return (GameCard)Activator.CreateInstance(toClone.GetType());
     }
 
     public static GameCard GetCardDup(GameCard toClone)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         GameCard clone = (GameCard)Activator.CreateInstance(toClone.GetType());
 
         if (toClone is GameUnitCard && clone is GameUnitCard)
@@ -303,6 +347,11 @@ public static class GameCardFactory
 
     private static GameCard GetCardFromList(List<GameCard> list, List<GameCard> exclusionList)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         //Fill the list by removing anything that was excluded.
         List<GameCard> finalList = new List<GameCard>();
         int currentLevel = PlayerDataManager.GetCurLevel();
@@ -331,7 +380,7 @@ public static class GameCardFactory
                 bool hasInExclusion = false;
                 for (int c = 0; c < exclusionList.Count; c++)
                 {
-                    if (exclusionList[c].m_name == list[i].m_name)
+                    if (exclusionList[c].GetName() == list[i].GetName())
                     {
                         hasInExclusion = true;
                         break;
@@ -387,13 +436,18 @@ public static class GameCardFactory
 
     public static GameUnitCard GetCardFromUnit(GameUnit unit)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         if (unit.GetTeam() == Team.Player)
         {
             for (int i = 0; i < m_unitCards.Count; i++)
             {
                 GameUnitCard unitCard = (GameUnitCard)m_unitCards[i];
 
-                if (unitCard.GetUnit().m_name == unit.m_name)
+                if (unitCard.GetUnit().GetName() == unit.GetName())
                 {
                     GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_unitCards[i]);
                     cardClone.SetUnit(unit);
@@ -408,7 +462,7 @@ public static class GameCardFactory
             {
                 GameUnitCard unitCard = (GameUnitCard)m_enemyCards[i];
 
-                if (unitCard.GetUnit().m_name == unit.m_name)
+                if (unitCard.GetUnit().GetName() == unit.GetName())
                 {
                     GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_enemyCards[i]);
                     cardClone.SetUnit(unit);
@@ -423,7 +477,12 @@ public static class GameCardFactory
 
     public static GameCard GetCardFromJson(JsonGameCardData jsonData)
     {
-        int i = m_cards.FindIndex(t => t.m_name == jsonData.name);
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int i = m_cards.FindIndex(t => t.GetName() == jsonData.name);
 
         GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
         newCard.LoadFromJson(jsonData);
@@ -433,6 +492,11 @@ public static class GameCardFactory
 
     public static List<GameCard> GetTotalCardList()
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         return m_cards;
     }
 }

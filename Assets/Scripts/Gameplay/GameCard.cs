@@ -25,11 +25,6 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
     protected int m_playerUnlockLevel;
 
-    public virtual string GetName()
-    {
-        return m_name;
-    }
-
     public int GetCost()
     {
         int toReturn = m_cost + m_costTempModifier;
@@ -207,11 +202,8 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     {
         JsonGameCardData jsonData = new JsonGameCardData
         {
-            name = this.GetType().ToString()
+            name = GetName()
         };
-
-
-        Debug.Log(GetName());
 
         return jsonData;
     }

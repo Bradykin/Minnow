@@ -16,7 +16,7 @@
     {
         m_relic = GameRelicFactory.GetRandomRelicAtRarity(m_rarity, m_excludeRelic);
 
-        m_message = "Take " + m_relic.m_name;
+        m_message = "Take " + m_relic.GetName();
     }
 
     public override void AcceptOption()

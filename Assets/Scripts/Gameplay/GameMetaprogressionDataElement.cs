@@ -45,11 +45,11 @@ public class GameMetaprogressionDataElement
     {
         if (m_card != null)
         {
-            return UIHelper.GetIconCardReward(m_card.m_name, m_level);
+            return UIHelper.GetIconCardReward(m_card.GetName(), m_level);
         }
         else if (m_relic != null)
         {
-            return UIHelper.GetIconRelicReward(m_relic.m_name, m_level);
+            return UIHelper.GetIconRelicReward(m_relic.GetName(), m_level);
         }
         else if (m_bonusExp > 0)
         {

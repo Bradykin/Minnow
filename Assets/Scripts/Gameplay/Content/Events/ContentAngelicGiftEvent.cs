@@ -45,7 +45,7 @@ public class GameEventAngelicWings : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingUnit.m_name + " gains Flying!.";
+        m_message = m_tile.m_occupyingUnit.GetName() + " gains Flying!.";
 
         return base.GetMessage();
     }
@@ -67,6 +67,6 @@ public class GameEventAngelicWings : GameEventOption
     public override void BuildTooltip()
     {
         GameFlyingKeyword keyword = new GameFlyingKeyword();
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.m_name, keyword.m_focusInfoText, m_tile.m_occupyingUnit.GetTeam()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(keyword.GetName(), keyword.m_focusInfoText, m_tile.m_occupyingUnit.GetTeam()));
     }
 }

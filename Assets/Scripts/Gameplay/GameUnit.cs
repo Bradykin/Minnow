@@ -754,7 +754,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (canChangeName)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.m_name + ".", true, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.GetName() + ".", true, m_gameTile.GetWorldTile().gameObject);
         }
 
         m_keywordHolder.AddKeyword(newKeyword);
@@ -1128,7 +1128,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
     }
 
-    public string GetName()
+    public override string GetName()
     {
         if (HasCustomName())
         {

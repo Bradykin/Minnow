@@ -18,7 +18,7 @@ public class GameEventOrcRelicOption : GameEventOption
     {
         m_relic = GameRelicFactory.GetRandomRelicAtRarity(GameElementBase.GameRarity.Rare);
 
-        m_message = "Go for the large treasure, taking " + m_relic.m_name + " and waking " + m_orcsToSpawn + " orcs from slumber.";
+        m_message = "Go for the large treasure, taking " + m_relic.GetName() + " and waking " + m_orcsToSpawn + " orcs from slumber.";
     }
 
     public override void AcceptOption()

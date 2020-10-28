@@ -621,7 +621,7 @@ public static class UIHelper
 
     public static void CreateRelicTooltip(GameRelic relic)
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.m_name, relic.GetDesc()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.GetName(), relic.GetDesc()));
     }
 
     public static string GetDifficultyText(MapDifficulty difficulty)

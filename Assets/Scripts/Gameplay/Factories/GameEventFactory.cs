@@ -106,7 +106,7 @@ public static class GameEventFactory
 
     public static GameEvent GetEventFromJson(JsonGameEventData jsonData, GameTile tile)
     {
-        int i = m_events.FindIndex(t => t.m_name == jsonData.name);
+        int i = m_events.FindIndex(t => t.GetName() == jsonData.name);
 
         GameEvent newEvent = (GameEvent)Activator.CreateInstance(m_events[i].GetType(), tile);
         newEvent.LoadFromJson(jsonData);

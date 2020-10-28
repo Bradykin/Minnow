@@ -266,7 +266,7 @@ public class GameTerrainFactory
         if (!m_hasInit)
             Init();
 
-        return m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex].m_name;
+        return m_terrain[m_currentTerrainListIndex].Value[m_currentTerrainIndex].GetName();
     }
 
     public static List<GameTerrainBase> GetCurrentTerrainList()
@@ -309,7 +309,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetCompletedEventTerrainType() == null)
         {
-            Debug.LogError("Missing completed event type for " + currentTerrain.m_name);
+            Debug.LogError("Missing completed event type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -323,7 +323,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetUnburnedTerrainType() == null)
         {
-            Debug.LogError("Missing unburned terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing unburned terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -337,7 +337,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetBurnedTerrainType() == null)
         {
-            Debug.LogError("Missing burned terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing burned terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -351,7 +351,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetIceCrackedTerrainType() == null)
         {
-            Debug.LogError("Missing ice cracked terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing ice cracked terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -365,7 +365,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetVolcanoEruptTerrainType() == null)
         {
-            Debug.LogError("Missing volcano erupt terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing volcano erupt terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -379,7 +379,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetMarshTideRiseTerrainType() == null)
         {
-            Debug.LogError("Missing marsh tide rise terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing marsh tide rise terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -393,7 +393,7 @@ public class GameTerrainFactory
     {
         if (currentTerrain.GetMarshTideLowerTerrainType() == null)
         {
-            Debug.LogError("Missing marsh tide lower terrain type for " + currentTerrain.m_name);
+            Debug.LogError("Missing marsh tide lower terrain type for " + currentTerrain.GetName());
             return GetTerrainClone(currentTerrain);
         }
 
@@ -470,7 +470,7 @@ public class GameTerrainFactory
         {
             List<GameTerrainBase> currentTerrainList = m_terrain[i].Value;
 
-            int r = currentTerrainList.FindIndex(t => t.m_name == jsonData.name);
+            int r = currentTerrainList.FindIndex(t => t.GetName() == jsonData.name);
 
             if (r == -1)
             {

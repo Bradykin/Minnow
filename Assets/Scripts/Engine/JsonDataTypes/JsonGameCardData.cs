@@ -9,4 +9,6 @@ public struct JsonGameCardData
     public string name;
 
     public JsonGameUnitData jsonGameUnitData;
+    public int? jsonGameUnitXPosition;
+    public int? jsonGameUnitYPosition;
 }

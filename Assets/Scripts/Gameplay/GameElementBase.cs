@@ -13,9 +13,14 @@ public class GameElementBase
         Event
     }
 
-    public string m_name { get; protected set; }
+    protected string m_name { get; set; }
     protected string m_desc = string.Empty;
     public Sprite m_icon { get; protected set; }
     public GameRarity m_rarity { get; protected set; } = GameRarity.Common;
     public GameTag m_tags = new GameTag();
+
+    public virtual string GetName()
+    {
+        return m_name;
+    }
 }
