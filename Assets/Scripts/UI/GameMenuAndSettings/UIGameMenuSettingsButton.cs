@@ -10,7 +10,7 @@ public class UIGameMenuSettingsButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        m_settingsMenu.SetActive(true);
+        m_settingsMenu.SetActive(!m_settingsMenu.activeSelf);
     }
 
     public override void HandleTooltip()
