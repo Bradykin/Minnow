@@ -19,6 +19,8 @@ public class UICardStarterTypeSelect : MonoBehaviour
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioHelper.PlaySFX(AudioHelper.UICardClick);
+
         if (m_cardType == UIStarterCardSelectionController.Instance.m_curSelectedType)
         {
             UIStarterCardSelectionController.Instance.SetCurSelectedType(UIStarterCardSelectionController.StarterCardType.None);

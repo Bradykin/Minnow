@@ -147,6 +147,8 @@ public class UICard : MonoBehaviour
         Globals.m_canScroll = false;
         m_isHovered = true;
 
+        AudioHelper.PlaySFX(AudioHelper.UICardHover);
+
         if (!ShouldShowSelectedTint())
         {
             if (m_displayType == CardDisplayType.Hand)

@@ -112,6 +112,8 @@ public class WorldUnit : MonoBehaviour
             return;
         }
 
+        AudioHelper.PlaySFX(AudioHelper.WorldUnitClick);
+
         if (Globals.m_selectedCard != null)
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()))
@@ -191,6 +193,11 @@ public class WorldUnit : MonoBehaviour
         if (UIHelper.UIShouldBlockClick())
         {
             return;
+        }
+
+        if (!m_isHovered)
+        {
+            AudioHelper.PlaySFX(AudioHelper.WorldUnitHover);
         }
 
         if (!m_isShowingTooltip)

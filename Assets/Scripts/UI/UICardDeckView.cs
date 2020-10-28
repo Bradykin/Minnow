@@ -24,6 +24,8 @@ public class UICardDeckView : MonoBehaviour
             return;
         }
 
+        AudioHelper.PlaySFX(AudioHelper.UICardClick);
+
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
         {
