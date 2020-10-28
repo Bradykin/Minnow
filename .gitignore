@@ -55,10 +55,10 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# Player Files
-*.player
-
 # Crashlytics generated file
 crashlytics-build.properties
 
 Minnow/Temp/UnityLockfile
+
+# Player Files
+*.player
