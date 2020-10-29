@@ -26,6 +26,8 @@ public static class AudioHelper
     public static AudioClip DebuffSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DebuffSpellCategory") as AudioClip;
     public static AudioClip DamageSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DamageSpellCategory") as AudioClip;
 
+    public static AudioClip UnitGetHit = Resources.Load<AudioClip>("Audio/SFX/UnitGetHit") as AudioClip;
+
     public static AudioClip GetBackgroundMusic(string mapName)
     {
         return Resources.Load<AudioClip>("Audio/MapBackground/" + mapName) as AudioClip;

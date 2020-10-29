@@ -186,6 +186,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth -= damage;
 
+        AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
+
         List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
         int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 
