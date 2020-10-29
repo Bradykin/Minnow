@@ -18,6 +18,8 @@ public class ContentReforgingCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Creation);
         m_tags.AddTag(GameTag.TagType.Reanimate);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override void PlayCard()

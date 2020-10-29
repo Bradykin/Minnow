@@ -22,6 +22,8 @@ public class ContentInsightCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.Spellpower);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()

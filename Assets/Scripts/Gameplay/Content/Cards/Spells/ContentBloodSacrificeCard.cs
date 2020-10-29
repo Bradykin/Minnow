@@ -23,6 +23,8 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
         m_tags.AddTag(GameTag.TagType.Spellpower);
         m_tags.AddTag(GameTag.TagType.Creation);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()

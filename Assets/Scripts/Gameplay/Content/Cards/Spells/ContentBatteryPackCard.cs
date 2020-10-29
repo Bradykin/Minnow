@@ -20,6 +20,8 @@ public class ContentBatteryPackCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MaxStamina);
         m_tags.AddTag(GameTag.TagType.Creation);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()

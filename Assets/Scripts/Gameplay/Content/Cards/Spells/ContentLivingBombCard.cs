@@ -34,8 +34,22 @@ public class ContentLivingBombCard : GameCardSpellBase
             return;
         }
 
+        if (targetUnit.GetTeam() == Team.Player)
+        {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Buff);
+        }
+        else
+        {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Debuff);
+        }
+
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameDeathKeyword(new GameExplodeAction(targetUnit, GetSpellValue(), m_range)));
+    }
+
+    protected override void HandleAudio()
+    {
+        //Left blank intentionally, audio is handled in PlayCard
     }
 }

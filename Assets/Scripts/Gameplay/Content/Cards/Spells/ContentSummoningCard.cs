@@ -15,6 +15,8 @@ public class ContentSummoningCard : GameCardSpellBase
         m_playerUnlockLevel = 3;
 
         SetupBasicData();
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override void PlayCard()

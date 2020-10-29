@@ -21,6 +21,8 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
         m_tags.AddTag(GameTag.TagType.Healing);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }
 
     public override string GetDesc()

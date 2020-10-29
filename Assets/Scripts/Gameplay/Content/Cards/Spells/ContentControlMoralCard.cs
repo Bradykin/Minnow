@@ -27,9 +27,23 @@ public class ContentControlMoralCard : GameCardSpellBase
             return;
         }
 
+        if (targetUnit.GetTeam() == Team.Player)
+        {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Buff);
+        }
+        else
+        {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Debuff);
+        }
+
         base.PlayCard(targetUnit);
 
         targetUnit.EmptyStamina();
         targetUnit.GainStamina(2);
+    }
+
+    protected override void HandleAudio()
+    {
+        //Left blank intentionally, audio is handled in PlayCard
     }
 }

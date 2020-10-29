@@ -19,6 +19,8 @@ public class ContentLootingsCard : GameCardSpellBase
         m_playerUnlockLevel = 2;
 
         SetupBasicData();
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }
 
     public override void PlayCard()

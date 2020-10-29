@@ -49,6 +49,15 @@ public class ContentPurgeCard : GameCardSpellBase
 
         if (targetUnit.GetTeam() == Team.Player)
         {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Buff);
+        }
+        else
+        {
+            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Debuff);
+        }
+
+        if (targetUnit.GetTeam() == Team.Player)
+        {
             if (targetUnit.GetKeywordHolderForRead().GetNumKeywords() > 0)
             {
                 targetUnit.AddStats(GetSpellValue(), GetSpellValue());
@@ -56,5 +65,10 @@ public class ContentPurgeCard : GameCardSpellBase
         }
 
         targetUnit.GetKeywordHolderForRead().RemoveAllKeywords();
+    }
+
+    protected override void HandleAudio()
+    {
+        //Left blank intentionally, audio is handled in PlayCard
     }
 }

@@ -18,6 +18,8 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
         m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
 
         SetupBasicData();
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
     }
 
     public override string GetDesc()

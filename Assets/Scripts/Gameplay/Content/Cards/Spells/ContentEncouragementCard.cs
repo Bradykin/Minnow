@@ -19,6 +19,8 @@ public class ContentEncouragementCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Monster);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Healing);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

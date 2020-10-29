@@ -20,6 +20,8 @@ public class ContentOverchargeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MaxStamina);
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

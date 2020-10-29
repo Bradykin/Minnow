@@ -20,6 +20,8 @@ public class ContentFirestormCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.DamageSpell);
         m_tags.AddTag(GameTag.TagType.Spellpower);
         m_tags.AddTag(GameTag.TagType.Enrage);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }
 
     public override string GetDesc()

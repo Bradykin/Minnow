@@ -24,6 +24,8 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.DamageSpell);
         m_tags.AddTag(GameTag.TagType.Spellpower);
         m_tags.AddTag(GameTag.TagType.Brittle);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
     }
 
     public override string GetDesc()

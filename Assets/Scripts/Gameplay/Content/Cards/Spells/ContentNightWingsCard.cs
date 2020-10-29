@@ -20,6 +20,8 @@ public class ContentNightWingsCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Explorer);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

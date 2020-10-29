@@ -22,6 +22,8 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Enrage);
         m_tags.AddTag(GameTag.TagType.Healing);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

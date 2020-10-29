@@ -17,6 +17,8 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.LowCost);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()

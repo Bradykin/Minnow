@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameCardSpellBase : GameCard
 {
+    protected AudioHelper.SpellAudioCategory m_audioCategory;
+
     //This is for keywords on the card that we want to display info for.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
 
@@ -113,6 +115,8 @@ public class GameCardSpellBase : GameCard
 
         Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(null);
+
+        HandleAudio();
     }
 
     public override void PlayCard(GameBuildingBase targetBuilding)
@@ -121,6 +125,8 @@ public class GameCardSpellBase : GameCard
 
         Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetBuilding.GetGameTile());
+
+        HandleAudio();
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -132,6 +138,8 @@ public class GameCardSpellBase : GameCard
         {
             TriggerSpellcraft(targetUnit.GetGameTile());
         }
+
+        HandleAudio();
     }
 
     public override void PlayCard(GameTile targetTile)
@@ -140,6 +148,13 @@ public class GameCardSpellBase : GameCard
 
         Globals.m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetTile);
+
+        HandleAudio();
+    }
+
+    protected virtual void HandleAudio()
+    {
+        AudioHelper.PlaySFX(m_audioCategory);
     }
 
     protected void TriggerSpellcraft(GameTile tileCastAt)

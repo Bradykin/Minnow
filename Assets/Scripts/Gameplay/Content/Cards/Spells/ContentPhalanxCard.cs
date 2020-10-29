@@ -17,6 +17,8 @@ public class ContentPhalanxCard : GameCardSpellBase
         m_playerUnlockLevel = 1;
 
         SetupBasicData();
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

@@ -14,6 +14,8 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         InitializeWithLevel(GetCardLevel());
 
         SetupBasicData();
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()

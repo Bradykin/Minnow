@@ -17,6 +17,8 @@ public class ContentShivCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Shiv);
+
+        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }
 
     public override string GetDesc()
