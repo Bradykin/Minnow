@@ -143,7 +143,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 } 
                 else if (Globals.m_selectedCard != null)
                 {
-                    if (!Globals.m_inIntermission)
+                    if (GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
                     {
                         m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()));
                     }
@@ -159,11 +159,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else
             {
-                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && !Globals.m_inIntermission)
+                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedCard != null && !Globals.m_inIntermission && m_inSpellcraftRange > 0)
+                else if (Globals.m_selectedCard != null && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission && m_inSpellcraftRange > 0)
                 {
                     m_tintRenderer.color = UIHelper.GetSpellcraftTint(m_inSpellcraftRange);
                 }
@@ -197,7 +197,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         //Handle Frame Color
-        if (GetGameTile().m_isFog || Globals.m_inIntermission)
+        if (GetGameTile().m_isFog || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             m_frameRenderer.color = Color.black;
         }
@@ -300,7 +300,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         UICard selectedCard = Globals.m_selectedCard;
-        if (selectedCard != null && !Globals.m_inIntermission)
+        if (selectedCard != null && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
         {
             if (selectedCard.m_card.IsValidToPlay(GetGameTile()))
             {
@@ -334,7 +334,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         WorldUnit selectedUnit = Globals.m_selectedUnit;
-        if (selectedUnit != null && !Globals.m_inIntermission)
+        if (selectedUnit != null && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
         {
             if (GetGameTile().HasBuilding() && 
                 GetGameTile().GetBuilding().GetTeam() == Team.Enemy && 
@@ -396,7 +396,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
         }
 
-        if ((selectedUnit == null && selectedBuilding == null && selectedCard == null) || Globals.m_inIntermission)
+        if ((selectedUnit == null && selectedBuilding == null && selectedCard == null) || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             UIHelper.SelectTile(this);
         }

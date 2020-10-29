@@ -156,10 +156,9 @@ public static class GameHelper
         return deckOfSpells;
     }
 
-    public static void ReturnToLevelSelectFromLevelScene(bool givePlaythroughRewards)
+    public static void ReturnToLevelSelectFromLevelScene()
     {
         FactoryManager.Instance.StopAllCoroutines();
-        Globals.m_levelActive = false;
 
         WorldController.Instance.EndLevel(RunEndType.Loss);
         WorldGridManager.Instance.RecycleGrid();

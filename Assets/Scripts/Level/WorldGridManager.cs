@@ -45,7 +45,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
         else
         {
-            SetupEmptyGrid(parent, Globals.GridSizeX, Globals.GridSizeY);
+            SetupEmptyGrid(parent, Constants.GridSizeX, Constants.GridSizeY);
         }
 
         m_setup = true;
@@ -54,7 +54,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
     private void PlaceCrystals()
     {
         List<WorldTile> validTiles = new List<WorldTile>();
-        List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Globals.GridSizeX, 12);
+        List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 12);
 
         for (int i = 0; i < tilesInRange.Count; i++)
         {
@@ -109,8 +109,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             m_gridArray[i] = FactoryManager.Instance.GetFactory<WorldTileFactory>().CreateObject<WorldTile>();
             m_gridArray[i].transform.parent = m_gridRoot;
 
-            int x = i % Globals.GridSizeX;
-            int y = i / Globals.GridSizeX;
+            int x = i % Constants.GridSizeX;
+            int y = i / Constants.GridSizeX;
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
@@ -267,10 +267,10 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public WorldTile GetWorldGridTileAtPosition(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= Globals.GridSizeX || y >= Globals.GridSizeY)
+        if (x < 0 || y < 0 || x >= Constants.GridSizeX || y >= Constants.GridSizeY)
             return null;
         
-        return m_gridArray[x + y * Globals.GridSizeX];
+        return m_gridArray[x + y * Constants.GridSizeX];
     }
 
     public WorldTile GetWorldGridTileAtPosition(Vector2Int position)

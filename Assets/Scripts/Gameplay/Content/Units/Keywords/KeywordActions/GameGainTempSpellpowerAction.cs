@@ -17,7 +17,7 @@ public class GameGainTempSpellpowerAction : GameAction
 
     public override void DoAction()
     {
-        Globals.m_tempSpellpower += m_toGain;
+        GameHelper.GetPlayer().m_tempSpellpowerIncrease += m_toGain;
     }
 
     public override void AddAction(GameAction toAdd)

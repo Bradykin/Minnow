@@ -12,4 +12,5 @@ public struct JsonGameControllerData
     public int randomSeed;
 
     public JsonGamePlayerData jsonGamePlayerData;
+    public JsonGameOpponentData jsonGameOpponentData;
 }

@@ -113,7 +113,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard();
 
-        Globals.m_spellsPlayedThisTurn++;
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
         TriggerSpellcraft(null);
 
         HandleAudio();
@@ -123,7 +123,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetBuilding);
 
-        Globals.m_spellsPlayedThisTurn++;
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetBuilding.GetGameTile());
 
         HandleAudio();
@@ -133,7 +133,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetUnit);
 
-        Globals.m_spellsPlayedThisTurn++;
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
         if (CanTriggerSpellPower())
         {
             TriggerSpellcraft(targetUnit.GetGameTile());
@@ -146,7 +146,7 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetTile);
 
-        Globals.m_spellsPlayedThisTurn++;
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
         TriggerSpellcraft(targetTile);
 
         HandleAudio();

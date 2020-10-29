@@ -31,11 +31,6 @@ public static class Globals
     public static GameBuildingIntermission m_selectedIntermissionBuilding;
     public static bool m_canSelect = true;
     public static bool m_canScroll = true;
-    public static bool m_inIntermission = false;
-
-    //Sizing for a "square" hexagon grid
-    public static int GridSizeX = 30;
-    public static int GridSizeY = 30;
 
     //Values that should be in some "LevelCreatorState" data
     public static bool m_levelCreatorEraserMode = false;
@@ -52,17 +47,12 @@ public static class Globals
     public static GameEnemyUnit m_focusedDebugEnemyUnit = null;
 
     //Values that will be moved into player save data
-    public static int m_spellsPlayedPreviousTurn = 0;
-    public static int m_spellsPlayedThisTurn = 0;
-    public static int m_fletchingCount = 0;
     public static int m_totemOfTheWolfTurn = -1;
     public static int m_goldPerShivKill = 0;
     public static int m_curChaos = 1;
-    public static int m_tempSpellpower = 0;
     public static bool m_worthySacrificeEvent = false;
 
     private static bool m_hasInit;
-    public static bool m_levelActive;
 
     public static void Init()
     {

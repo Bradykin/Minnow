@@ -26,6 +26,10 @@ public static class Constants
 
     public static int MaxChaos = 5;
 
+    //Sizing for a "square" hexagon grid
+    public static int GridSizeX = 30;
+    public static int GridSizeY = 30;
+
     //UI Data
     public static float TooltipWidth = 5.5f;
 

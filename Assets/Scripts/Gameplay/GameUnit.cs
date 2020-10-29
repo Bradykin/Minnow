@@ -818,7 +818,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GetRange() > 1)
             {
-                toReturn += Globals.m_fletchingCount;
+                toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
             }
         }
 

@@ -31,6 +31,6 @@ public class ContentFletchingCard : GameCardSpellBase
 
         base.PlayCard();
 
-        Globals.m_fletchingCount += m_fletchlingCount;
+        GameHelper.GetPlayer().m_fletchingPowerIncrease += m_fletchlingCount;
     }
 }

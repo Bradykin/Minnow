@@ -272,7 +272,7 @@ public class LevelCreator : MonoBehaviour
 
     public void SpawnGrid()
     {
-        WorldGridManager.Instance.SetupEmptyGrid(transform, Globals.GridSizeX, Globals.GridSizeY);
+        WorldGridManager.Instance.SetupEmptyGrid(transform, Constants.GridSizeX, Constants.GridSizeY);
     }
 
     public void LoadGrid(int pathIndex)
@@ -314,7 +314,7 @@ public class LevelCreator : MonoBehaviour
         {
             mapName = dataPaths[pathIndex],
             mapID = pathIndex,
-            gridSize = new Vector2Int(Globals.GridSizeX, Globals.GridSizeY),
+            gridSize = new Vector2Int(Constants.GridSizeX, Constants.GridSizeY),
             mapDifficulty = (int)MapDifficulty.Easy,
             dataPath = dataPaths[pathIndex]
         };

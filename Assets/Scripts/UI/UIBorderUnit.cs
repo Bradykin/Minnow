@@ -30,7 +30,7 @@ public class UIBorderUnit : MonoBehaviour
 
     void Update()
     {
-        if (m_unit.GetUnit().m_isDead || Globals.m_inIntermission)
+        if (m_unit.GetUnit().m_isDead || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             Recycler.Recycle<UIBorderUnit>(this);
             return;

@@ -39,6 +39,12 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     private List<GamePlayerScheduledActions> m_scheduledActions = new List<GamePlayerScheduledActions>();
 
+    //Specific variables tracked for various spell effects
+    public int m_spellsPlayedPreviousTurn = 0;
+    public int m_spellsPlayedThisTurn = 0;
+    public int m_fletchingPowerIncrease = 0;
+    public int m_tempSpellpowerIncrease = 0;
+
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
@@ -277,7 +283,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         toReturn += 3 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
         toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
-        toReturn += Globals.m_tempSpellpower;
+        toReturn += m_tempSpellpowerIncrease;
 
         return toReturn;
     }
@@ -354,7 +360,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
-        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && WorldController.Instance.m_gameController.m_inGameplay && 
+        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && GameHelper.GetGameController().m_runStateType != RunStateType.Gameplay && 
             WorldController.Instance.m_gameController.m_currentTurnNumber <= WorldController.Instance.m_gameController.GetEndWaveTurn())
         {
             Globals.m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
@@ -579,11 +585,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
-        Globals.m_spellsPlayedPreviousTurn = Globals.m_spellsPlayedThisTurn;
-        Globals.m_spellsPlayedThisTurn = 0;
-        Globals.m_fletchingCount = 0;
+        GameHelper.GetPlayer().m_spellsPlayedPreviousTurn = GameHelper.GetPlayer().m_spellsPlayedThisTurn;
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn = 0;
+        m_fletchingPowerIncrease = 0;
         Globals.m_goldPerShivKill = 0;
-        Globals.m_tempSpellpower = 0;
+        m_tempSpellpowerIncrease = 0;
         Globals.m_canSelect = false;
     }
 
@@ -601,7 +607,12 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonDeckCurrentData = m_curDeck.SaveToJson(),
             jsonGameCardsInHandData = new List<JsonGameCardData>(),
             jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
-            jsonGameCardsInExileData = new List<JsonGameCardData>()
+            jsonGameCardsInExileData = new List<JsonGameCardData>(),
+
+            spellsPlayedPreviousTurn = m_spellsPlayedPreviousTurn,
+            spellsPlayedThisTurn = m_spellsPlayedThisTurn,
+            fletchingPowerIncrease = m_fletchingPowerIncrease,
+            tempSpellpowerIncrease = m_tempSpellpowerIncrease
         };
 
         for (int i = 0; i < m_hand.Count; i++)
@@ -662,5 +673,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
             m_cardsInExile.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInExileData[i]));
         }
+
+        m_spellsPlayedPreviousTurn = jsonData.spellsPlayedPreviousTurn;
+        m_spellsPlayedThisTurn = jsonData.spellsPlayedThisTurn;
+        m_fletchingPowerIncrease = jsonData.fletchingPowerIncrease;
+        m_tempSpellpowerIncrease = jsonData.tempSpellpowerIncrease;
     }
 }

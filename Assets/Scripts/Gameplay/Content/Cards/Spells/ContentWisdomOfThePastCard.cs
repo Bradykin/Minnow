@@ -24,9 +24,9 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
     public override string GetDesc()
     {
         string predictionString = "";
-        if (!Globals.m_inIntermission)
+        if (GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
         {
-            predictionString = "(" + Globals.m_spellsPlayedPreviousTurn + ")";
+            predictionString = "(" + GameHelper.GetPlayer().m_spellsPlayedPreviousTurn + ")";
         }
 
         return "Draw cards equal to the number of spells played last turn " + predictionString + ".";
@@ -41,7 +41,7 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
 
         base.PlayCard();
 
-        for (int i = 0; i < Globals.m_spellsPlayedPreviousTurn; i++)
+        for (int i = 0; i < GameHelper.GetPlayer().m_spellsPlayedPreviousTurn; i++)
         {
             GameHelper.GetPlayer().DrawCard();
         }

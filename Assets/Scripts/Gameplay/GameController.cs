@@ -11,6 +11,13 @@ public enum RunEndType : int
     Quit
 }
 
+public enum RunStateType : int
+{
+    None,
+    Gameplay,
+    Intermission
+}
+
 public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameControllerData>
 {
     public List<ITurns> m_teamActor;
@@ -22,7 +29,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     private bool ShouldStartIntermission => CurrentActor == m_player && m_currentTurnNumber > m_endOfWaveTurnNumber && m_currentWaveNumber != Constants.FinalWaveNum;
 
-    public bool m_inGameplay = false;
+    public RunStateType m_runStateType = RunStateType.None;
 
     public int m_currentWaveNumber;
     public int m_currentTurnNumber;
@@ -58,7 +65,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         WorldGridManager.Instance.SetupWorldGridTeams(m_player, m_gameOpponent);
         m_player.LateInit();
         m_gameOpponent.LateInit();
-        Globals.m_levelActive = true;
 
         //TEMP: to start the turns. Should happen in a different way in future
         if (Globals.loadingRun)
@@ -82,15 +88,15 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         Random.InitState(m_randomSeed);
 
         m_currentActorIterator = 0;
-        m_inGameplay = true;
-        m_gameOpponent.EliteSpawnWaveModifier = Random.Range(0, 3);
+        m_runStateType = RunStateType.Gameplay;
+        m_gameOpponent.m_eliteSpawnWaveModifier = Random.Range(0, 3);
         CurrentActor.StartTurn();
     }
 
     public void LoadGameEnterTurnSequence()
     {
         m_currentActorIterator = 0;
-        m_inGameplay = true;
+        m_runStateType = RunStateType.Gameplay;
     }
 
     public void MoveToNextTurn()
@@ -120,7 +126,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         if (ShouldStartIntermission)
         {
-            m_inGameplay = false;
+            m_runStateType = RunStateType.Intermission;
             OnEndWave();
             WorldController.Instance.StartIntermission();
             return true;
@@ -170,7 +176,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             mapId = GetCurMap().m_id,
             runExperienceAMount = m_runExperienceAmount,
             randomSeed = m_randomSeed,
-            jsonGamePlayerData = m_player.SaveToJson()
+            jsonGamePlayerData = m_player.SaveToJson(),
+            jsonGameOpponentData = m_gameOpponent.SaveToJson()
         };
 
         return jsonData;
@@ -186,5 +193,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         Random.InitState(m_randomSeed);
 
         m_player.LoadFromJson(jsonData.jsonGamePlayerData);
+        m_gameOpponent.LoadFromJson(jsonData.jsonGameOpponentData);
     }
 }

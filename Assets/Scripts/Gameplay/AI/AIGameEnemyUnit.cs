@@ -64,7 +64,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
         for (int i = 0; i < m_setupAISteps.Count; i++)
         {
-            if (!Globals.m_levelActive)
+            if (GameHelper.GetGameController().m_runStateType == RunStateType.None)
             {
                 break;
             }
@@ -80,7 +80,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
             m_doSteps = false;
             for (int i = 0; i < m_activeAISteps.Count; i++)
             {
-                if (!Globals.m_levelActive)
+                if (GameHelper.GetGameController().m_runStateType == RunStateType.None)
                 {
                     break;
                 }

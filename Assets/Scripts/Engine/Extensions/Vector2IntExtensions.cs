@@ -11,27 +11,27 @@ namespace Game.Util
             List<Vector2Int> adjacentTiles = new List<Vector2Int>();
 
             Vector2Int tileLeftCoordinates = centerCoordinate.LeftCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileLeftCoordinates);
 
             Vector2Int tileRightCoordinates = centerCoordinate.RightCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileRightCoordinates);
 
             Vector2Int tileUpLeftCoordinates = centerCoordinate.UpLeftCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileUpLeftCoordinates);
 
             Vector2Int tileUpRightCoordinates = centerCoordinate.UpRightCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileUpRightCoordinates);
 
             Vector2Int tileDownLeftCoordinates = centerCoordinate.DownLeftCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileDownLeftCoordinates);
 
             Vector2Int tileDownRightCoordinates = centerCoordinate.DownRightCoordinate();
-            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Globals.GridSizeX || tileLeftCoordinates.y >= Globals.GridSizeY))
+            if (!(tileLeftCoordinates.x < 0 || tileLeftCoordinates.y < 0 || tileLeftCoordinates.x >= Constants.GridSizeX || tileLeftCoordinates.y >= Constants.GridSizeY))
                 adjacentTiles.Add(tileDownRightCoordinates);
 
             return adjacentTiles;

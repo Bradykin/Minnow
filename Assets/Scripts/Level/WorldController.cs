@@ -247,7 +247,7 @@ public class WorldController : Singleton<WorldController>
     {
         GamePlayer player = m_gameController.m_player;
 
-        Globals.m_spellsPlayedPreviousTurn = 0;
+        GameHelper.GetPlayer().m_spellsPlayedPreviousTurn = 0;
 
         UITooltipController.Instance.ClearTooltipStack();
         ClearAllUnits();
@@ -260,7 +260,7 @@ public class WorldController : Singleton<WorldController>
         player.OnEndWave();
 
         Globals.m_canScroll = true;
-        Globals.m_inIntermission = true;
+        m_gameController.m_runStateType = RunStateType.Intermission;
         Globals.m_selectedCard = null;
 
         Globals.m_selectedUnit = null;
@@ -288,7 +288,7 @@ public class WorldController : Singleton<WorldController>
         Globals.m_canScroll = true;
         Globals.m_selectedIntermissionBuilding = null;
 
-        Globals.m_inIntermission = false;
+        m_gameController.m_runStateType = RunStateType.Gameplay;
         m_hasSpawnedEliteThisWave = false;
 
         m_gameController.m_player.ResetCurDeck();

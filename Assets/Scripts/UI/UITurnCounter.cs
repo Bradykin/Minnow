@@ -21,7 +21,7 @@ public class UITurnCounter : UIElementBase
             return;
         }
 
-        if (Globals.m_inIntermission)
+        if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             m_titleText.text = "Intermission";
             m_countText.text = "Next wave: " + gameController.m_currentWaveNumber;

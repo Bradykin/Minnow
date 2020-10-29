@@ -53,7 +53,7 @@ public class UIHUDController : Singleton<UIHUDController>
         {
             m_globalHUD.SetActive(true);
 
-            if (Globals.m_inIntermission)
+            if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
             {
                 m_intermissionHUD.SetActive(true);
                 m_waveHUD.SetActive(false);

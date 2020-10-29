@@ -21,7 +21,7 @@ public class UIEnergy : UIElementBase
             return;
         }
 
-        if (Globals.m_inIntermission)
+        if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             m_countText.text = player.GetCurActions() + "/" + player.GetMaxActions();
         }
@@ -33,7 +33,7 @@ public class UIEnergy : UIElementBase
 
     public override void HandleTooltip()
     {
-        if (Globals.m_inIntermission)
+        if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take various actions during the intermission phase!"));
         }

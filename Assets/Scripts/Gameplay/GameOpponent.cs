@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameOpponent : ITurns
+public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameOpponentData>
 {
     public List<GameEnemyUnit> m_controlledUnits { get; private set; }
 
     public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
-    public int EliteSpawnWaveModifier;
+    public int m_eliteSpawnWaveModifier;
 
     public GameOpponent()
     {
@@ -146,7 +146,7 @@ public class GameOpponent : ITurns
                 WorldController.Instance.SetHasSpawnedBoss(true);
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
@@ -181,7 +181,7 @@ public class GameOpponent : ITurns
                 WorldController.Instance.SetHasSpawnedBoss(true);
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (EliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -343,5 +343,22 @@ public class GameOpponent : ITurns
         }
 
         Debug.LogError("Spawn at Edge of fog failed to find any position to spawn in");
+    }
+
+    //============================================================================================================//
+
+    public JsonGameOpponentData SaveToJson()
+    {
+        JsonGameOpponentData jsonData = new JsonGameOpponentData
+        {
+            eliteSpawnWaveModifier = m_eliteSpawnWaveModifier
+        };
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGameOpponentData jsonData)
+    {
+        m_eliteSpawnWaveModifier = jsonData.eliteSpawnWaveModifier;
     }
 }

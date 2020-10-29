@@ -11,9 +11,9 @@ public class UICameraController : Singleton<UICameraController>
     private float m_zoomSpeed = 20.0f;
 
     private float m_cameraLimitDown = 1.0f;
-    private float m_cameraLimitUp = 2.0f * (Globals.GridSizeY + 4);
+    private float m_cameraLimitUp = 2.0f * (Constants.GridSizeY + 4);
     private float m_cameraLimitLeft = 10.0f;
-    private float m_cameraLimitRight = 3.0f * (Globals.GridSizeX - 3);
+    private float m_cameraLimitRight = 3.0f * (Constants.GridSizeX - 3);
 
     public Vector3 m_startingTransform { get; private set; }
 
