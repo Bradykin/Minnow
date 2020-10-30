@@ -18,7 +18,7 @@ public class UISettingMusicButton : UIElementBase
     {
         if (GlobalSettings.m_musicVolume == 0.0f)
         {
-            GlobalSettings.m_musicVolume = 1.0f;
+            GlobalSettings.m_musicVolume = AudioHelper.DefaultMusicVolume;
         }
         else
         {
