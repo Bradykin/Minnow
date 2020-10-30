@@ -79,10 +79,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public void BeginTurnSequence()
     {
-        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
-        {
-            Globals.m_totemOfTheWolfTurn = Random.Range(0, GetEndWaveTurn() + 1);
-        }
+        m_player.OnBeginWave();
+        m_gameOpponent.OnBeginWave();
 
         m_randomSeed = (int)System.DateTime.Now.Ticks;
         Random.InitState(m_randomSeed);

@@ -197,7 +197,7 @@ public class GameUnitCard : GameCard
     {
         JsonGameCardData jsonData = new JsonGameCardData
         {
-            name = GetName(),
+            baseName = GetBaseName(),
             jsonGameUnitData = m_unit.SaveToJson()
         };
 
@@ -212,6 +212,6 @@ public class GameUnitCard : GameCard
 
     public override void LoadFromJson(JsonGameCardData jsonData)
     {
-
+        m_unit = GameUnitFactory.GetUnitFromJson(jsonData.jsonGameUnitData);
     }
 }

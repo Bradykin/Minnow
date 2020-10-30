@@ -122,7 +122,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         HandleSpawn();
     }
 
-    public void OnIntermissionBegin()
+    public void OnBeginWave()
     {
         m_hasSpawnedEliteThisWave = false;
         m_eliteSpawnWaveModifier = UnityEngine.Random.Range(0, 3);

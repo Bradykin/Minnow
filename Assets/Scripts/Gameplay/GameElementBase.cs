@@ -23,4 +23,9 @@ public class GameElementBase
     {
         return m_name;
     }
+
+    public string GetBaseName()
+    {
+        return m_name;
+    }
 }

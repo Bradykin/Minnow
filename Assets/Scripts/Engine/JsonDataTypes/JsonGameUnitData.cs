@@ -4,9 +4,10 @@
 public class JsonGameUnitData
 {
     //GameElementBase values
-    public string name;
+    public string baseName;
 
     //GameUnit data
+    public string customName;
     public int team;
     public int curHealth;
     public int curStamina;

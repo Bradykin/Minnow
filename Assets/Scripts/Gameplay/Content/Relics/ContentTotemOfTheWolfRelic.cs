@@ -15,6 +15,6 @@ public class ContentTotemOfTheWolfRelic : GameRelic
 
     public override string GetDesc()
     {
-        return base.GetDesc() + "\nTotem of the wolf turn: " + Globals.m_totemOfTheWolfTurn;
+        return base.GetDesc() + "\nTotem of the wolf turn: " + GameHelper.GetPlayer().m_totemOfTheWolfTurn;
     }
 }

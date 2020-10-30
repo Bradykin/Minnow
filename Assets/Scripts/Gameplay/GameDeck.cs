@@ -188,7 +188,7 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDeckData[i].name)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetBaseName() == jsonData.jsonGameCardsInDeckData[i].baseName)
                 {
                     m_cards.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
                     continue;
@@ -209,7 +209,7 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInDiscardData[i].name)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetBaseName() == jsonData.jsonGameCardsInDiscardData[i].baseName)
                 {
                     m_discard.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
                     continue;

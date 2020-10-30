@@ -16,8 +16,11 @@ public struct JsonGamePlayerData
     public List<JsonGameCardData> jsonGameCardsInDiscardData;
     public List<JsonGameCardData> jsonGameCardsInExileData;
 
+    public int goldAmount;
+
     public int spellsPlayedPreviousTurn;
     public int spellsPlayedThisTurn;
     public int fletchingPowerIncrease;
     public int tempSpellpowerIncrease;
+    public int totemOfTheWolfTurn;
 }

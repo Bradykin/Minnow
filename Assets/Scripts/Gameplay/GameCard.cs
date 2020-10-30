@@ -202,7 +202,7 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     {
         JsonGameCardData jsonData = new JsonGameCardData
         {
-            name = GetName()
+            baseName = GetName()
         };
 
         return jsonData;

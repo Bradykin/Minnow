@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public struct JsonGameCardData
 {
-    public string name;
+    public string baseName;
 
     public JsonGameUnitData jsonGameUnitData;
     public int? jsonGameUnitXPosition;

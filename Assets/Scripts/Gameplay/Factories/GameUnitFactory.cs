@@ -256,7 +256,7 @@ public class GameUnitFactory
 
     public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
-        int i = m_playerUnits.FindIndex(t => t.GetName() == jsonData.name);
+        int i = m_playerUnits.FindIndex(t => t.GetName() == jsonData.baseName);
 
         GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());
         newPlayerUnit.LoadFromJson(jsonData);
@@ -266,7 +266,7 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
-        int i = m_enemies.FindIndex(t => t.GetName() == jsonData.name);
+        int i = m_enemies.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameEnemyUnit newEnemy = (GameEnemyUnit)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
         newEnemy.LoadFromJson(jsonData);

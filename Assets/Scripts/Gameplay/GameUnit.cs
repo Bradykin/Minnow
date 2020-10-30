@@ -693,7 +693,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
 
-            if (GameHelper.GetGameController().m_currentTurnNumber == Globals.m_totemOfTheWolfTurn)
+            if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
                 staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>();
             }
@@ -1060,7 +1060,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         int staminaToRegen = GetStaminaRegen();
         //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
-        if (GameHelper.GetGameController().m_currentTurnNumber + 1 == Globals.m_totemOfTheWolfTurn && GetTeam() == Team.Player)
+        if (GameHelper.GetGameController().m_currentTurnNumber + 1 == GameHelper.GetPlayer().m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
             staminaToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
         }
@@ -1194,7 +1194,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         JsonGameUnitData jsonData = new JsonGameUnitData
         {
-            name = m_name,
+            baseName = m_name,
+            customName = m_customName,
             team = (int)m_team,
             curHealth = m_curHealth,
             curStamina = m_curStamina,
@@ -1214,6 +1215,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void LoadFromJson(JsonGameUnitData jsonData)
     {
         m_keywordHolder.RemoveAllKeywords();
+
+        m_customName = jsonData.customName;
         
         m_curHealth = jsonData.curHealth;
         m_team = (Team)jsonData.team;

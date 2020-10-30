@@ -44,6 +44,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public int m_spellsPlayedThisTurn = 0;
     public int m_fletchingPowerIncrease = 0;
     public int m_tempSpellpowerIncrease = 0;
+    public int m_totemOfTheWolfTurn = -1;
 
     public GamePlayer()
     {
@@ -363,8 +364,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && GameHelper.GetGameController().m_runStateType != RunStateType.Gameplay && 
             WorldController.Instance.m_gameController.m_currentTurnNumber <= WorldController.Instance.m_gameController.GetEndWaveTurn())
         {
-            Globals.m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
-            Debug.Log("Set wolf turn to " + Globals.m_totemOfTheWolfTurn);
+            m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
+            Debug.Log("Set wolf turn to " + m_totemOfTheWolfTurn);
         }
 
         m_relics.AddRelic(toAdd);
@@ -499,6 +500,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         }
     }
 
+    public void OnBeginWave()
+    {
+        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+        {
+            GameHelper.GetPlayer().m_totemOfTheWolfTurn = Random.Range(0, GameHelper.GetGameController().GetEndWaveTurn() + 1);
+        }
+    }
+
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)
@@ -526,7 +535,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber + 1 == Globals.m_totemOfTheWolfTurn)
+            if (GameHelper.GetGameController().m_currentTurnNumber + 1 == m_totemOfTheWolfTurn)
             {
                 UIHelper.CreateHUDNotification("Totem of the Wolf", "The white moon begins!");
             }
@@ -609,10 +618,13 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
             jsonGameCardsInExileData = new List<JsonGameCardData>(),
 
+            goldAmount = m_wallet.m_gold,
+
             spellsPlayedPreviousTurn = m_spellsPlayedPreviousTurn,
             spellsPlayedThisTurn = m_spellsPlayedThisTurn,
             fletchingPowerIncrease = m_fletchingPowerIncrease,
-            tempSpellpowerIncrease = m_tempSpellpowerIncrease
+            tempSpellpowerIncrease = m_tempSpellpowerIncrease,
+            totemOfTheWolfTurn = m_totemOfTheWolfTurn
         };
 
         for (int i = 0; i < m_hand.Count; i++)
@@ -665,7 +677,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInExileData[i].name)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInExileData[i].baseName)
                 {
                     m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
                     continue;
@@ -678,5 +690,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_spellsPlayedThisTurn = jsonData.spellsPlayedThisTurn;
         m_fletchingPowerIncrease = jsonData.fletchingPowerIncrease;
         m_tempSpellpowerIncrease = jsonData.tempSpellpowerIncrease;
+        m_totemOfTheWolfTurn = jsonData.totemOfTheWolfTurn;
+        m_wallet.m_gold = jsonData.goldAmount;
     }
 }

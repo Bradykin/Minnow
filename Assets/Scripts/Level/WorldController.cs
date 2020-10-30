@@ -243,7 +243,6 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
-        m_gameController.m_gameOpponent.OnIntermissionBegin();
         GamePlayer player = m_gameController.m_player;
 
         GameHelper.GetPlayer().m_spellsPlayedPreviousTurn = 0;

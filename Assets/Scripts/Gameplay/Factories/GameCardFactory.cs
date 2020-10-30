@@ -482,7 +482,7 @@ public static class GameCardFactory
             Init();
         }
 
-        int i = m_cards.FindIndex(t => t.GetName() == jsonData.name);
+        int i = m_cards.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
         newCard.LoadFromJson(jsonData);
