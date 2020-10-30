@@ -89,7 +89,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
         m_currentActorIterator = 0;
         m_runStateType = RunStateType.Gameplay;
-        m_gameOpponent.m_eliteSpawnWaveModifier = Random.Range(0, 3);
         CurrentActor.StartTurn();
     }
 

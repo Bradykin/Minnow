@@ -11,8 +11,6 @@ public class WorldController : Singleton<WorldController>
 
     public List<UICard> m_playerHand { get; private set; }
 
-    private bool m_hasSpawnedEliteThisWave;
-    private bool m_hasSpawnedBoss;
     private int m_playerUnitFocusIndex;
 
     public bool m_isInGame;
@@ -245,6 +243,7 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
+        m_gameController.m_gameOpponent.OnIntermissionBegin();
         GamePlayer player = m_gameController.m_player;
 
         GameHelper.GetPlayer().m_spellsPlayedPreviousTurn = 0;
@@ -289,7 +288,6 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedIntermissionBuilding = null;
 
         m_gameController.m_runStateType = RunStateType.Gameplay;
-        m_hasSpawnedEliteThisWave = false;
 
         m_gameController.m_player.ResetCurDeck();
         m_gameController.BeginTurnSequence();
@@ -301,7 +299,6 @@ public class WorldController : Singleton<WorldController>
         Debug.Log("The player has won!");
 
         //Do Cleanup
-        m_hasSpawnedBoss = false;
 
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
     }
@@ -386,26 +383,6 @@ public class WorldController : Singleton<WorldController>
         }
 
         return validFocusUnits;
-    }
-
-    public bool HasSpawnedEliteThisWave()
-    {
-        return m_hasSpawnedEliteThisWave;
-    }
-
-    public void SetHasSpawnedEliteThisWave(bool newVal)
-    {
-        m_hasSpawnedEliteThisWave = newVal;
-    }
-
-    public bool HasSpawnedBoss()
-    {
-        return m_hasSpawnedBoss;
-    }
-
-    public void SetHasSpawnedBoss(bool newVal)
-    {
-        m_hasSpawnedBoss = newVal;
     }
 
     public void OnApplicationQuit()

@@ -5,4 +5,6 @@ using UnityEngine;
 public struct JsonGameOpponentData
 {
     public int eliteSpawnWaveModifier;
+    public bool hasSpawnedEliteThisWave;
+    public bool hasSpawnedBoss;
 }

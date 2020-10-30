@@ -12,7 +12,9 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
-    public int m_eliteSpawnWaveModifier;
+    private int m_eliteSpawnWaveModifier;
+    private bool m_hasSpawnedEliteThisWave;
+    private bool m_hasSpawnedBoss;
 
     public GameOpponent()
     {
@@ -120,6 +122,12 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         HandleSpawn();
     }
 
+    public void OnIntermissionBegin()
+    {
+        m_hasSpawnedEliteThisWave = false;
+        m_eliteSpawnWaveModifier = UnityEngine.Random.Range(0, 3);
+    }
+
     private void HandleSpawn()
     {
         //Generate number of enemies to spawn
@@ -139,18 +147,18 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         //handle spawning of bosses and elites
         if (fogSpawningActive)
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !m_hasSpawnedBoss)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                WorldController.Instance.SetHasSpawnedBoss(true);
+                m_hasSpawnedBoss = true;
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !m_hasSpawnedEliteThisWave)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+                m_hasSpawnedEliteThisWave = true;
             }
         }
         else
@@ -163,7 +171,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                 m_spawnPoints[randomIndex] = temp;
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !WorldController.Instance.HasSpawnedBoss())
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !m_hasSpawnedBoss)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -178,10 +186,10 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                         break;
                     }
                 }
-                WorldController.Instance.SetHasSpawnedBoss(true);
+                m_hasSpawnedBoss = true;
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !WorldController.Instance.HasSpawnedEliteThisWave())
+            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !m_hasSpawnedEliteThisWave)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -196,7 +204,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                         break;
                     }
                 }
-                WorldController.Instance.SetHasSpawnedEliteThisWave(true);
+                m_hasSpawnedEliteThisWave = true;
             }
         }
 
@@ -351,8 +359,10 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     {
         JsonGameOpponentData jsonData = new JsonGameOpponentData
         {
-            eliteSpawnWaveModifier = m_eliteSpawnWaveModifier
-        };
+            eliteSpawnWaveModifier = m_eliteSpawnWaveModifier,
+            hasSpawnedEliteThisWave = m_hasSpawnedEliteThisWave,
+            hasSpawnedBoss = m_hasSpawnedBoss
+};
 
         return jsonData;
     }
@@ -360,5 +370,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     public void LoadFromJson(JsonGameOpponentData jsonData)
     {
         m_eliteSpawnWaveModifier = jsonData.eliteSpawnWaveModifier;
+        m_hasSpawnedEliteThisWave = jsonData.hasSpawnedEliteThisWave;
+        m_hasSpawnedBoss = jsonData.hasSpawnedBoss;
     }
 }
