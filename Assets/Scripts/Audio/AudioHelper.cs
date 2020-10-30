@@ -28,6 +28,8 @@ public static class AudioHelper
 
     public static AudioClip UnitGetHit = Resources.Load<AudioClip>("Audio/SFX/UnitGetHit") as AudioClip;
 
+    public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;
+
     public static AudioClip GetBackgroundMusic(string mapName)
     {
         return Resources.Load<AudioClip>("Audio/MapBackground/" + mapName) as AudioClip;
