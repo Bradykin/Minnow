@@ -14,6 +14,7 @@ public class ContentStoneGolem : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
 
         AddKeyword(new GameTauntKeyword(), false);
+        AddKeyword(new GameDamageReductionKeyword(2), false);
 
         InitializeWithLevel(GetUnitLevel());
 

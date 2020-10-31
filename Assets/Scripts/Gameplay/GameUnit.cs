@@ -231,6 +231,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage += brittleKeyword.m_amount;
         }
 
+        GameDamageReductionKeyword damageReductionKeyword = m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
+        if (damageReductionKeyword != null)
+        {
+            damage -= damageReductionKeyword.m_damageReduction;
+        }
+
         if (damage < 0)
         {
             damage = 0;
