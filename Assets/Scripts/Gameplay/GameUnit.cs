@@ -1204,6 +1204,28 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 Heal(healAmount);
             }
         }
+
+        int callOfTheSeaCount = GameHelper.RelicCount<ContentCallOfTheSeaRelic>();
+        if (callOfTheSeaCount > 0 && GetTeam() == Team.Player)
+        {
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
+
+            bool isNearWater = false;
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                if (surroundingTiles[i].GetTerrain().IsWater())
+                {
+                    isNearWater = true;
+                    break;
+                }
+            }
+            
+            if (isNearWater)
+            {
+                int healAmount = m_gameTile.GetCostToPass(this) * callOfTheSeaCount * 10;
+                Heal(healAmount);
+            }
+        }
     }
 
     public virtual void EndTurn()

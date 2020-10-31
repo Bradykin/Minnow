@@ -40,6 +40,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTotemOfTheWolfRelic());
         m_relics.Add(new ContentBurningShivsRelic());
         m_relics.Add(new ContentPoisonedShivsRelic());
+        m_relics.Add(new ContentCallOfTheSeaRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
