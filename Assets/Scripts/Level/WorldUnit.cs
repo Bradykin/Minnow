@@ -183,6 +183,9 @@ public class WorldUnit : MonoBehaviour
         GetUnit().OnMoveEnd();
 
         m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit();
+
+        m_renderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;
+        m_tintRenderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;
     }
 
     public void SetVisible(bool isVisible)
