@@ -19,6 +19,7 @@ public class GameShivKeyword : GameKeywordBase
         //Stacking this keyword does nothing.
     }
 
+    //Left blank intentionally
     public override string GetDesc()
     {
         return "";

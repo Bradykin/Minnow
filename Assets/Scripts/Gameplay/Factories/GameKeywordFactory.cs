@@ -21,6 +21,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameEnrageKeyword(null));
         m_keywords.Add(new GameForestwalkKeyword());
         m_keywords.Add(new GameFlyingKeyword());
+        m_keywords.Add(new GameImmuneToLavaKeyword());
         m_keywords.Add(new GameKnowledgeableKeyword(null));
         m_keywords.Add(new GameMomentumKeyword(null));
         m_keywords.Add(new GameMountainwalkKeyword());

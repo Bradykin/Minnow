@@ -1210,7 +1210,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         RegenStamina();
 
-        if (GetTeam() == Team.Player && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
+        if (m_keywordHolder.GetKeywords<GameImmuneToLavaKeyword>() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }
