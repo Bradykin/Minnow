@@ -18,7 +18,7 @@ public class UISettingsSFXButton : UIElementBase
     {
         if (GlobalSettings.m_sfxVolume == 0.0f)
         {
-            GlobalSettings.m_sfxVolume = 0.5f;
+            GlobalSettings.m_sfxVolume = AudioHelper.DefaultSFXVolume;
         }
         else
         {

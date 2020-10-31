@@ -29,12 +29,7 @@ public static class GameHelper
     public static void MakePlayerBuilding(GameTile targetTile, GameBuildingBase building)
     {
         GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
+        
         GameBuildingBase toPlace = GameBuildingFactory.GetBuildingClone(building);
 
         targetTile.PlaceBuilding(toPlace);
@@ -42,6 +37,15 @@ public static class GameHelper
 
         UIHelper.ClearDefensiveBuildingTiles();
         UIHelper.SetDefensiveBuildingTiles();
+    }
+
+    public static void DestroyPlayerBuilding(GameTile buildingTile)
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        player.RemoveControlledBuilding(buildingTile.GetBuilding());
+        buildingTile.ClearBuilding();
+        buildingTile.SetTerrain(new ContentDirtPlainsTerrain(), true);
     }
 
     public static GamePlayer GetPlayer()

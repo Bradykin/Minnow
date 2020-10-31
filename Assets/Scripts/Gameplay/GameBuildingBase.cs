@@ -158,21 +158,13 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
 
         UIHelper.ClearDefensiveBuildingTiles();
         UIHelper.SetDefensiveBuildingTiles();
+
+        GameHelper.DestroyPlayerBuilding(this.m_gameTile);
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile);
 
-    public virtual void TriggerEndOfWave()
-    {
-        //The castle doesn't heal or come back at the end of the round
-        if (this is ContentCastleBuilding)
-        {
-            return;
-        }
-
-        m_isDestroyed = false;
-        m_curHealth = m_maxHealth;
-    }
+    public virtual void TriggerEndOfWave() { }
 
     //============================================================================================================//
 

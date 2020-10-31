@@ -11,6 +11,9 @@ public static class AudioHelper
         Damage
     }
 
+    public static float DefaultMusicVolume = 0.6f;
+    public static float DefaultSFXVolume = 0.4f;
+
     public static AudioClip UIHover = Resources.Load<AudioClip>("Audio/SFX/UIHover") as AudioClip;
     public static AudioClip UIClick = Resources.Load<AudioClip>("Audio/SFX/UIClick") as AudioClip;
 

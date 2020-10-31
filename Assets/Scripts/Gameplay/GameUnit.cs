@@ -1158,12 +1158,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     //============================================================================================================//
 
-    public virtual void StartTurn() { }
-
-    public virtual void EndTurn()
+    public virtual void StartTurn() 
     {
-        RegenStamina();
-
         List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
         for (int i = 0; i < regenKeywords.Count; i++)
         {
@@ -1179,6 +1175,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 Heal(healAmount);
             }
         }
+    }
+
+    public virtual void EndTurn()
+    {
+        RegenStamina();
 
         if (GetTeam() == Team.Player && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
         {
