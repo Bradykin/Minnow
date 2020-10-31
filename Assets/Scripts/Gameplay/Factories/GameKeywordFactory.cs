@@ -29,6 +29,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameSpellcraftKeyword(null));
         m_keywords.Add(new GameSummonKeyword(null));
         m_keywords.Add(new GameVictoriousKeyword(null));
+        m_keywords.Add(new GameShivKeyword());
         
         m_hasInit = true;
     }

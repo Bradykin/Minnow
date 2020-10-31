@@ -16,6 +16,8 @@ public struct JsonGamePlayerData
     public List<JsonGameCardData> jsonGameCardsInDiscardData;
     public List<JsonGameCardData> jsonGameCardsInExileData;
 
+    public List<JsonGameScheduledActionData> jsonGameScheduledActionData;
+
     public int goldAmount;
 
     public int spellsPlayedPreviousTurn;

@@ -33,14 +33,15 @@ public class WorldGridRoot : MonoBehaviour, IReset
             Globals.mapToLoad = string.Empty;
             WorldGridManager.Instance.LoadFromJson(jsonMapData);
         }
-        WorldGridManager.Instance.Setup(transform);
 
-        WorldController.Instance.m_gameController.LateInit();
+        WorldGridManager.Instance.Setup(transform);
 
         if (Globals.loadingRun)
         {
             GameHelper.GetGameController().LoadFromJson(PlayerDataManager.PlayerAccountData.PlayerRunData.m_jsonGameControllerData);
         }
+
+        GameHelper.GetGameController().LateInit();
     }
 
     public virtual void Reset()

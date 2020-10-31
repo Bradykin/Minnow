@@ -617,6 +617,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonGameCardsInHandData = new List<JsonGameCardData>(),
             jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
             jsonGameCardsInExileData = new List<JsonGameCardData>(),
+            jsonGameScheduledActionData = new List<JsonGameScheduledActionData>(),
 
             goldAmount = m_wallet.m_gold,
 
@@ -642,6 +643,15 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonData.jsonGameCardsInExileData.Add(m_cardsInExile[i].SaveToJson());
         }
 
+        for (int i = 0; i < m_scheduledActions.Count; i++)
+        {
+            jsonData.jsonGameScheduledActionData.Add(new JsonGameScheduledActionData
+            {
+                scheduledActionTime = (int)m_scheduledActions[i].scheduledActionTime,
+                jsonActionData = m_scheduledActions[i].gameAction.SaveToJson()
+            });
+        }
+
         return jsonData;
     }
 
@@ -654,6 +664,13 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         
         m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);
         m_curDeck.LoadFromJson(jsonData.jsonDeckCurrentData);
+
+        for (int i = 0; i < jsonData.jsonGameScheduledActionData.Count; i++)
+        {
+            ScheduledActionTime scheduledActionTime = (ScheduledActionTime)jsonData.jsonGameScheduledActionData[i].scheduledActionTime;
+            GameAction gameAction = GameActionFactory.GetActionWithName(jsonData.jsonGameScheduledActionData[i].jsonActionData);
+            AddScheduledAction(scheduledActionTime, gameAction);
+        }
         
         for (int i = 0; i < jsonData.jsonGameCardsInHandData.Count; i++)
         {

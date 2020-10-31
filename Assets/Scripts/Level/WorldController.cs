@@ -245,32 +245,54 @@ public class WorldController : Singleton<WorldController>
     {
         GamePlayer player = m_gameController.m_player;
 
-        GameHelper.GetPlayer().m_spellsPlayedPreviousTurn = 0;
+        List<GameCard> exclusionCards = new List<GameCard>();
+        GameCard cardOne;
+        GameCard cardTwo;
+        GameCard cardThree;
 
-        UITooltipController.Instance.ClearTooltipStack();
-        ClearAllUnits();
+        if (!Globals.loadingRun)
+        {
+            player.m_spellsPlayedPreviousTurn = 0;
 
-        UIWorldElementNotificationController.Instance.ClearAllWorldElementNotifications();
+            UITooltipController.Instance.ClearTooltipStack();
+            ClearAllUnits();
 
-        GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
-        intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_currentWaveNumber * 20;
+            UIWorldElementNotificationController.Instance.ClearAllWorldElementNotifications();
 
-        player.m_wallet.AddResources(intermissionWallet);
+            GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
+            intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_currentWaveNumber * 20;
 
-        player.OnEndWave();
+            player.m_wallet.AddResources(intermissionWallet);
+
+            player.OnEndWave();
+
+            cardOne = GameCardFactory.GetRandomStandardUnitCard();
+            exclusionCards.Add(cardOne);
+            cardTwo = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
+            exclusionCards.Add(cardTwo);
+            cardThree = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
+
+            m_gameController.m_savedInIntermission = true;
+            m_gameController.m_intermissionSavedCardOne = cardOne;
+            m_gameController.m_intermissionSavedCardTwo = cardTwo;
+            m_gameController.m_intermissionSavedCardThree = cardThree;
+            PlayerDataManager.PlayerAccountData.SaveRunData();
+        }
+        else
+        {
+            cardOne = m_gameController.m_intermissionSavedCardOne;
+            exclusionCards.Add(cardOne);
+            cardTwo = m_gameController.m_intermissionSavedCardTwo;
+            exclusionCards.Add(cardTwo);
+            cardThree = m_gameController.m_intermissionSavedCardThree;
+            Globals.loadingRun = false;
+        }
 
         Globals.m_canScroll = true;
         m_gameController.m_runStateType = RunStateType.Intermission;
         Globals.m_selectedCard = null;
 
         Globals.m_selectedUnit = null;
-
-        List<GameCard> exclusionCards = new List<GameCard>();
-        GameCard cardOne = GameCardFactory.GetRandomStandardUnitCard();
-        exclusionCards.Add(cardOne);
-        GameCard cardTwo = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
-        exclusionCards.Add(cardTwo);
-        GameCard cardThree = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
 
@@ -279,6 +301,8 @@ public class WorldController : Singleton<WorldController>
 
     public void EndIntermission()
     {
+        m_gameController.m_savedInIntermission = false;
+
         if (Constants.FogOfWar)
         {
             WorldGridManager.Instance.EndIntermissionFogUpdate();
