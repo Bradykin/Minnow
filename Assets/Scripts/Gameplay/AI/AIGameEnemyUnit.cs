@@ -20,6 +20,8 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
     public List<GameUnit> m_vulnerableUnitTargets = new List<GameUnit>();
     public List<GameBuildingBase> m_vulnerableBuildingTargets = new List<GameBuildingBase>();
 
+    public List<GameUnit> m_tauntUnitTargets = new List<GameUnit>();
+
     public GameElementBase m_targetGameElement = null;
     public GameTile m_targetGameTile = null;
 
@@ -29,8 +31,8 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public AIDebugTurnLog m_newAIDebugLog = null;
 
-    public bool UseSteppedOutTurn => 
-        GlobalSettings.m_followEnemy &&
+    public bool UseSteppedOutTurn =>
+        PlayerDataManager.PlayerAccountData.m_followEnemy &&
         (!m_gameEnemyUnit.GetGameTile().m_isFog
         || (m_targetGameTile != null && !m_targetGameTile.m_isFog)
         || (m_targetGameElement != null && m_targetGameElement is GameUnit gameUnitBase && !gameUnitBase.GetGameTile().m_isFog)
@@ -154,6 +156,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
         m_possibleBuildingTargets.Clear();
         m_vulnerableUnitTargets.Clear();
         m_vulnerableBuildingTargets.Clear();
+        m_tauntUnitTargets.Clear();
         m_targetGameElement = null;
         m_targetGameTile = null;
         m_doSteps = true;

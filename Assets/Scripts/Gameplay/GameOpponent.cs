@@ -77,7 +77,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
             units.Remove(unit);
 
-            if (GlobalSettings.m_followEnemy && !unit.GetGameTile().m_isFog)
+            if (PlayerDataManager.PlayerAccountData.m_followEnemy && !unit.GetGameTile().m_isFog)
             {
                 if (!unit.m_isDead && unit.GetGameTile() != null)
                 {
@@ -86,7 +86,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             }
         }
 
-        if (GlobalSettings.m_followEnemy && GameHelper.GetPlayer().GetCastleGameElement() != null)
+        if (PlayerDataManager.PlayerAccountData.m_followEnemy && GameHelper.GetPlayer().GetCastleGameElement() != null)
         {
             UICameraController.Instance.SmoothCameraTransitionToGameObject(GameHelper.GetPlayer().GetCastleWorldTile().gameObject);
             while (UICameraController.Instance.IsCameraSmoothing())

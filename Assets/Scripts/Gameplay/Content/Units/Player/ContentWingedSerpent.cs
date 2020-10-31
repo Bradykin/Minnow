@@ -11,11 +11,11 @@ public class ContentWingedSerpent : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        AddKeyword(new GameFlyingKeyword(), false);
-
         m_name = "Winged Serpent";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+
+        AddKeyword(new GameFlyingKeyword(), false);
 
         InitializeWithLevel(GetUnitLevel());
 

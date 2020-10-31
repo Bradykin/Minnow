@@ -9,6 +9,13 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 
     public override IEnumerator TakeStep(bool shouldYield)
     {
+        GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
+        if (closestTauntUnitInRange != null)
+        {
+            m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
+            yield break;
+        }
+
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)
         {

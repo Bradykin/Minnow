@@ -14,23 +14,26 @@ public class GameKeywordFactory
 
     public static void Init()
     {
+        m_keywords.Add(new GameBrittleKeyword(0));
+        m_keywords.Add(new GameDamageReductionKeyword(0));
+        m_keywords.Add(new GameDamageShieldKeyword(0));
         m_keywords.Add(new GameDeathKeyword(null));
         m_keywords.Add(new GameEnrageKeyword(null));
         m_keywords.Add(new GameForestwalkKeyword());
         m_keywords.Add(new GameFlyingKeyword());
-        m_keywords.Add(new GameWaterwalkKeyword());
-        m_keywords.Add(new GameMountainwalkKeyword());
         m_keywords.Add(new GameKnowledgeableKeyword(null));
         m_keywords.Add(new GameMomentumKeyword(null));
+        m_keywords.Add(new GameMountainwalkKeyword());
         m_keywords.Add(new GameRangeKeyword(0));
-        m_keywords.Add(new GameBrittleKeyword(0));
-        m_keywords.Add(new GameDamageShieldKeyword(0));
         m_keywords.Add(new GameRegenerateKeyword(0));
+        m_keywords.Add(new GameShivKeyword());
         m_keywords.Add(new GameSpellcraftKeyword(null));
         m_keywords.Add(new GameSummonKeyword(null));
+        m_keywords.Add(new GameTauntKeyword());
+        m_keywords.Add(new GameThornsKeyword(0));
         m_keywords.Add(new GameVictoriousKeyword(null));
-        m_keywords.Add(new GameShivKeyword());
-        
+        m_keywords.Add(new GameWaterwalkKeyword());
+
         m_hasInit = true;
     }
 

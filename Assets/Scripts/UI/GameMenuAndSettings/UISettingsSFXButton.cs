@@ -16,13 +16,13 @@ public class UISettingsSFXButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GlobalSettings.m_sfxVolume == 0.0f)
+        if (PlayerDataManager.PlayerAccountData.m_sfxVolume == 0.0f)
         {
-            GlobalSettings.m_sfxVolume = AudioHelper.DefaultSFXVolume;
+            PlayerDataManager.PlayerAccountData.m_sfxVolume = AudioHelper.DefaultSFXVolume;
         }
         else
         {
-            GlobalSettings.m_sfxVolume = 0.0f;
+            PlayerDataManager.PlayerAccountData.m_sfxVolume = 0.0f;
         }
 
         SetSFXText();
@@ -37,7 +37,7 @@ public class UISettingsSFXButton : UIElementBase
 
     private void SetSFXText()
     {
-        if (GlobalSettings.m_sfxVolume > 0.0f)
+        if (PlayerDataManager.PlayerAccountData.m_sfxVolume > 0.0f)
         {
             m_sfxText.text = "SFX: ON";
         }

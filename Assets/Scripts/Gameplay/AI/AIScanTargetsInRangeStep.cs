@@ -41,6 +41,11 @@ public class AIScanTargetsInRangeStep : AIStep
 
                 possibleUnitTargets.Add(tile.m_occupyingUnit);
 
+                if (tile.m_occupyingUnit.GetKeyword<GameTauntKeyword>() != null)
+                {
+                    m_AIGameEnemyUnit.m_tauntUnitTargets.Add(tile.m_occupyingUnit);
+                }
+
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
                 int numHitsToRateVulnerable = 2;
                 if (tile.m_occupyingUnit.GetKeyword<GameDamageShieldKeyword>() != null)

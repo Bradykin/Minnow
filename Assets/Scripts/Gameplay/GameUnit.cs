@@ -229,7 +229,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameBrittleKeyword brittleKeyword = m_keywordHolder.GetKeyword<GameBrittleKeyword>();
         if (brittleKeyword != null)
         {
-            damage += brittleKeyword.m_amount;
+            damage += brittleKeyword.m_damageIncrease;
+        }
+
+        GameDamageReductionKeyword damageReductionKeyword = m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
+        if (damageReductionKeyword != null)
+        {
+            damage -= damageReductionKeyword.m_damageReduction;
         }
 
         if (damage < 0)
@@ -579,7 +585,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             SpendStamina(GetStaminaToAttack());
         }
 
+        int thornsReturnDamage = 0;
+        GameThornsKeyword thornsKeyword = other.m_keywordHolder.GetKeyword<GameThornsKeyword>();
+        if (thornsKeyword != null)
+        {
+            thornsReturnDamage += thornsKeyword.m_thornsDamage;
+        }
+
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
+
+        if (thornsReturnDamage > 0)
+        {
+            GetHit(thornsReturnDamage);
+        }
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
         int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();

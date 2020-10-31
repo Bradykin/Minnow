@@ -3,30 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBrittleKeyword : GameKeywordBase
+public class GameDamageReductionKeyword : GameKeywordBase
 {
-    public int m_damageIncrease;
+    public int m_damageReduction;
 
-    public GameBrittleKeyword(int damageIncrease)
+    public GameDamageReductionKeyword(int damageReduction)
     {
-        m_damageIncrease = damageIncrease;
+        m_damageReduction = damageReduction;
 
-        m_name = "Brittle";
-        m_focusInfoText = "Takes additional damage.";
-        m_shortDesc = "Takes more damage on hit";
+        m_name = "Damage Reduction";
+        m_focusInfoText = "Takes less damage from all sources.";
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
+        GameDamageReductionKeyword tempKeyword = (GameDamageReductionKeyword)toAdd;
 
-        m_damageIncrease += tempKeyword.m_damageIncrease;
+        m_damageReduction += tempKeyword.m_damageReduction;
     }
 
     public override string GetDesc()
     {
-        return "" + m_damageIncrease;
+        return "" + m_damageReduction;
     }
 
     public override JsonKeywordData SaveToJson()
@@ -34,7 +33,7 @@ public class GameBrittleKeyword : GameKeywordBase
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            intValue = m_damageIncrease
+            intValue = m_damageReduction
         };
 
         return jsonData;
