@@ -70,4 +70,36 @@ public class GameActionFactory
 
         return newAction;
     }
+
+    public static GameAction GetActionWithName(JsonActionData jsonData)
+    {
+        if (!m_hasInit)
+            Init();
+
+        string actionName = jsonData.name;
+
+        int i = m_actions.FindIndex(t => t.GetName() == actionName);
+
+        GameAction newAction;
+        switch (m_actions[i].m_actionParamType)
+        {
+            case GameAction.ActionParamType.NoParams:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType());
+                break;
+            case GameAction.ActionParamType.IntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), jsonData.intValue1);
+                break;
+            case GameAction.ActionParamType.TwoIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), jsonData.intValue1, jsonData.intValue2);
+                break;
+            case GameAction.ActionParamType.GameWalletParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));
+                break;
+            default:
+                return null;
+        }
+        newAction.LoadFromJson(jsonData);
+
+        return newAction;
+    }
 }

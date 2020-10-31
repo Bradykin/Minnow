@@ -40,6 +40,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     private int m_runExperienceAmount;
     public int m_randomSeed;
 
+    public bool m_savedInIntermission;
+    public GameCard m_intermissionSavedCardOne;
+    public GameCard m_intermissionSavedCardTwo;
+    public GameCard m_intermissionSavedCardThree;
+
     public GameController(GameMap map)
     {
         m_player = new GamePlayer();
@@ -93,7 +98,16 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     public void LoadGameEnterTurnSequence()
     {
         m_currentActorIterator = 0;
-        m_runStateType = RunStateType.Gameplay;
+
+        if (m_savedInIntermission)
+        {
+            CheckStartIntermission(true);
+        }
+        else
+        {
+            m_runStateType = RunStateType.Gameplay;
+            Globals.loadingRun = false;
+        }
     }
 
     public void MoveToNextTurn()
@@ -119,8 +133,15 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         CurrentActor.StartTurn();
     }
 
-    public bool CheckStartIntermission()
+    public bool CheckStartIntermission(bool forceIntermission = false)
     {
+        if (forceIntermission)
+        {
+            m_runStateType = RunStateType.Intermission;
+            WorldController.Instance.StartIntermission();
+            return true;
+        }
+        
         if (ShouldStartIntermission)
         {
             m_runStateType = RunStateType.Intermission;
@@ -173,9 +194,19 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             mapId = GetCurMap().m_id,
             runExperienceAMount = m_runExperienceAmount,
             randomSeed = m_randomSeed,
+
+            savedInIntermission = m_savedInIntermission,
+
             jsonGamePlayerData = m_player.SaveToJson(),
             jsonGameOpponentData = m_gameOpponent.SaveToJson()
         };
+
+        if (m_savedInIntermission)
+        {
+            jsonData.jsonIntermissionCardDataOne = m_intermissionSavedCardOne.SaveToJson();
+            jsonData.jsonIntermissionCardDataTwo = m_intermissionSavedCardTwo.SaveToJson();
+            jsonData.jsonIntermissionCardDataThree = m_intermissionSavedCardThree.SaveToJson();
+        }
 
         return jsonData;
     }
@@ -185,6 +216,15 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
         m_runExperienceAmount = jsonData.runExperienceAMount;
+
+        m_savedInIntermission = jsonData.savedInIntermission;
+
+        if (m_savedInIntermission)
+        {
+            m_intermissionSavedCardOne = GameCardFactory.GetCardFromJson(jsonData.jsonIntermissionCardDataOne);
+            m_intermissionSavedCardTwo = GameCardFactory.GetCardFromJson(jsonData.jsonIntermissionCardDataTwo);
+            m_intermissionSavedCardThree = GameCardFactory.GetCardFromJson(jsonData.jsonIntermissionCardDataThree);
+        }
 
         m_randomSeed = jsonData.randomSeed;
         Random.InitState(m_randomSeed);

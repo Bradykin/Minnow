@@ -447,7 +447,7 @@ public static class GameCardFactory
             {
                 GameUnitCard unitCard = (GameUnitCard)m_unitCards[i];
 
-                if (unitCard.GetUnit().GetName() == unit.GetName())
+                if (unitCard.GetUnit().GetBaseName() == unit.GetBaseName())
                 {
                     GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_unitCards[i]);
                     cardClone.SetUnit(unit);
@@ -462,7 +462,7 @@ public static class GameCardFactory
             {
                 GameUnitCard unitCard = (GameUnitCard)m_enemyCards[i];
 
-                if (unitCard.GetUnit().GetName() == unit.GetName())
+                if (unitCard.GetUnit().GetBaseName() == unit.GetBaseName())
                 {
                     GameUnitCard cardClone = (GameUnitCard)GetCardClone(m_enemyCards[i]);
                     cardClone.SetUnit(unit);
