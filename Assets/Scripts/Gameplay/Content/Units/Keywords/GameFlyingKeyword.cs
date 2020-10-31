@@ -8,7 +8,7 @@ public class GameFlyingKeyword : GameKeywordBase
     public GameFlyingKeyword()
     {
         m_name = "Flying";
-        m_focusInfoText = "All terrain only takes 1 Stamina to move over; can fly over impassable terrain.  Don't benefit from terrain protection.";
+        m_focusInfoText = "All terrain only takes 1 Stamina to move over; can fly over impassable terrain.  Is unaffected by all traits and damage reduction of terrain.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

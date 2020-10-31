@@ -6,11 +6,11 @@ using UnityEngine;
 public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlayerData>
 {
     public static GameCard StarterSimpleUnit = new ContentDwarvenSoldierCard();
-    public static GameCard StarterAdvancedUnit = new ContentStoneGolemCard();
+    public static GameCard StarterAdvancedUnit = new ContentAlphaBoarCard();
     public static GameCard StarterDamageSpell = new ContentFireboltCard();
     public static GameCard StarterDefensiveSpell = new ContentAegisCard();
     public static GameCard StarterExileSpell = new ContentGrowTalonsCard();
-    public static GameRelic StarterRelic = new ContentLivingStoneRelic();
+    public static GameRelic StarterRelic = new ContentMaskOfAgesRelic();
 
     public int m_curEnergy;
     private int m_maxEnergy;

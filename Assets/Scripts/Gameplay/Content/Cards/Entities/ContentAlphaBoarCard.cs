@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentStoneGolemCard : GameUnitCard
+public class ContentAlphaBoarCard : GameUnitCard
 {
-    public ContentStoneGolemCard()
+    public ContentAlphaBoarCard()
     {
         InitializeWithLevel(GetCardLevel());
 
-        m_unit = new ContentStoneGolem();
+        m_unit = new ContentAlphaBoar();
 
         m_unit.InitializeWithLevel(GetCardLevel());
 
         m_cost = 2;
 
         FillBasicData();
-
-        m_tags.AddTag(GameTag.TagType.Tank);
-        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

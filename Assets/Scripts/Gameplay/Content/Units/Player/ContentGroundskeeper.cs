@@ -16,7 +16,6 @@ public class ContentGroundskeeper : GameUnit
         m_staminaRegen = 1;
         m_power = 5;
 
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 

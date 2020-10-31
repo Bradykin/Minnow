@@ -123,7 +123,7 @@ public class UIFocusInfoPanel : UIElementBase
         m_shouldShow = true;
 
         m_titleText.text = worldTile.GetGameTile().GetName();
-        m_descText.text = "Protection: " + worldTile.GetGameTile().GetDamageReduction(null);
+        m_descText.text = "Damage Reduction: " + worldTile.GetGameTile().GetDamageReduction(null);
         if (!worldTile.GetGameTile().IsPassable(null, false))
         {
             m_descText.text += "\n\nNot Passable" + "\n";
