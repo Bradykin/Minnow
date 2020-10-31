@@ -61,7 +61,7 @@ public class AIScanTargetsInRangeStep : AIStep
                 }
             }
 
-            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && !tile.IsOccupied())
+            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().GetTeam() == Team.Player && !tile.IsOccupied())
             {
                 possibleBuildingTargets.Add(tile.GetBuilding());
 
