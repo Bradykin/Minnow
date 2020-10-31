@@ -18,9 +18,9 @@ public class GameDamageReductionKeyword : GameKeywordBase
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameRangeKeyword tempKeyword = (GameRangeKeyword)toAdd;
+        GameDamageReductionKeyword tempKeyword = (GameDamageReductionKeyword)toAdd;
 
-        m_damageReduction += tempKeyword.m_range;
+        m_damageReduction += tempKeyword.m_damageReduction;
     }
 
     public override string GetDesc()

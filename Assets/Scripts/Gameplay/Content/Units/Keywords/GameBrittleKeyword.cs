@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GameBrittleKeyword : GameKeywordBase
 {
-    public int m_amount;
+    public int m_damageIncrease;
 
-    public GameBrittleKeyword(int amount)
+    public GameBrittleKeyword(int damageIncrease)
     {
-        m_amount = amount;
+        m_damageIncrease = damageIncrease;
 
         m_name = "Brittle";
         m_focusInfoText = "Takes additional damage.";
@@ -21,12 +21,12 @@ public class GameBrittleKeyword : GameKeywordBase
     {
         GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
 
-        m_amount += tempKeyword.m_amount;
+        m_damageIncrease += tempKeyword.m_damageIncrease;
     }
 
     public override string GetDesc()
     {
-        return "" + m_amount;
+        return "" + m_damageIncrease;
     }
 
     public override JsonKeywordData SaveToJson()
@@ -34,7 +34,7 @@ public class GameBrittleKeyword : GameKeywordBase
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            intValue = m_amount
+            intValue = m_damageIncrease
         };
 
         return jsonData;
