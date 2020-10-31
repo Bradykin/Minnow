@@ -45,7 +45,10 @@ public static class GameHelper
 
         player.RemoveControlledBuilding(buildingTile.GetBuilding());
         buildingTile.ClearBuilding();
-        buildingTile.SetTerrain(new ContentDirtPlainsTerrain(), true);
+        if (buildingTile.GetTerrain().IsMountain() == false && buildingTile.GetTerrain().IsWater() == false)
+        {
+            buildingTile.SetTerrain(new ContentRubbleTerrain(), true);
+        }
     }
 
     public static GamePlayer GetPlayer()

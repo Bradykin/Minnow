@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTauntKeyword : GameKeywordBase
+public class GameImmuneToLavaKeyword : GameKeywordBase
 {
-    public GameTauntKeyword()
+    public GameImmuneToLavaKeyword()
     {
-        m_name = "Taunt";
-        m_focusInfoText = "Enemies will choose to attack this unit over any other possible targets.";
+        m_name = "Immune to Lava";
+        m_focusInfoText = "This creature doesn't take damage from lava terrain.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
