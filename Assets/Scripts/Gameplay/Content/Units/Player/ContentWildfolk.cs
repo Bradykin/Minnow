@@ -8,6 +8,8 @@ public class ContentWildfolk : GameUnit
 
     public ContentWildfolk()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
+
         m_keywords = new List<GameKeywordBase>();
         m_keywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
         m_keywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));

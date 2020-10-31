@@ -28,7 +28,17 @@ namespace Game.Util
         public T CreateObject<T>(WorldTile tile)
         {
             GameObject obj = CreateGameObject();
-            obj.transform.position = tile.GetScreenPositionForUnit();
+            WorldUnit uiUnit = obj.GetComponent<WorldUnit>();
+            uiUnit.Init(tile.GetGameTile().m_occupyingUnit);
+            /*obj.transform.position = tile.GetScreenPositionForUnit();
+
+            GameObject uiParent = GameObject.Find("UI");
+            if (uiParent != null)
+            {
+                obj.transform.parent = uiParent.transform;
+            }*/
+
+            obj.transform.position = tile.GetScreenPositionForUnit(uiUnit);
 
             GameObject uiParent = GameObject.Find("UI");
             if (uiParent != null)
@@ -36,14 +46,12 @@ namespace Game.Util
                 obj.transform.parent = uiParent.transform;
             }
 
-            WorldUnit uiUnit = obj.GetComponent<WorldUnit>();
+            uiUnit.SetMoveTarget(tile.GetScreenPositionForUnit(uiUnit));
 
             if (tile.GetGameTile().m_isFog)
             {
                 uiUnit.SetVisible(false);
             }
-
-            uiUnit.Init(tile.GetGameTile().m_occupyingUnit);
 
             if (uiUnit.GetUnit().GetTeam() == Team.Player)
             {

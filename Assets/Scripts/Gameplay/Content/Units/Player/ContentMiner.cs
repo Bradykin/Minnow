@@ -9,6 +9,8 @@ public class ContentMiner : GameUnit
 
     public ContentMiner()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
+
         m_miningRange = 1;
         m_miningVal = 5;
 

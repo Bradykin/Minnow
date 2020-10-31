@@ -6,6 +6,8 @@ public class ContentNaturalScout : GameUnit
 {
     public ContentNaturalScout()
     {
+        m_worldTilePositionAdjustment = new Vector3(0.2f, -0.3f, 0);
+
         m_maxHealth = 1;
         m_maxStamina = 10;
         m_staminaRegen = 5;

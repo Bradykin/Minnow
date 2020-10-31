@@ -6,6 +6,8 @@ public class ContentElvenWizard : GameUnit
 {
     public ContentElvenWizard()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.2f, 0);
+
         m_maxHealth = 15;
         m_maxStamina = 8;
         m_staminaRegen = 2;

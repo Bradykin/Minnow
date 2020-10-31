@@ -6,6 +6,8 @@ public class ContentCyclops : GameUnit
 {
     public ContentCyclops()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.25f, 0);
+
         m_maxHealth = 100;
         m_maxStamina = 3;
         m_staminaRegen = 1;

@@ -6,6 +6,8 @@ public class ContentDwarvenSoldier : GameUnit
 {
     public ContentDwarvenSoldier()
     {
+        m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
+
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 

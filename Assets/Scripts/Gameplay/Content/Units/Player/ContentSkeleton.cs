@@ -9,6 +9,8 @@ public class ContentSkeleton : GameUnit
 
     public ContentSkeleton()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_chance = 75;
         m_healthBonus = 15;
 

@@ -9,6 +9,8 @@ public class ContentMetalGolem : GameUnit
 
     public ContentMetalGolem()
     {
+        m_worldTilePositionAdjustment = new Vector3(0.1f, 0.3f, 0);
+
         m_eatingRange = 1;
 
         m_maxHealth = 25;

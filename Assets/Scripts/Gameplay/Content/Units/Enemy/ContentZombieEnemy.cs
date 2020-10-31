@@ -11,6 +11,8 @@ public class ContentZombieEnemy : GameEnemyUnit
 {
     public ContentZombieEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         ContentZombie zombieOrigin = new ContentZombie();
         zombieOrigin.SetTeam(Team.Enemy);
 
@@ -66,6 +68,7 @@ public class ContentZombieEnemy : GameEnemyUnit
         {
             GameUnit newZombie = new ContentZombie();
             other.m_worldUnit.Init(newZombie);
+            other.m_worldUnit.SetMoveTarget(other.m_worldUnit.gameObject.transform.position);
             GameHelper.GetPlayer().RemoveControlledUnit(other);
             GameHelper.GetPlayer().AddControlledUnit(newZombie);
 

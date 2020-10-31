@@ -20,7 +20,6 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_keywordHolder.AddKeyword(new GameKnowledgeableKeyword(null));
 
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.Spellpower);
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
 

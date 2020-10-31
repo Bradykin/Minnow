@@ -6,6 +6,8 @@ public class ContentWanderer : GameUnit
 {
     public ContentWanderer()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 4;

@@ -6,6 +6,8 @@ public class ContentRaptor : GameUnit
 {
     public ContentRaptor()
     {
+        m_worldTilePositionAdjustment = new Vector3(0.2f, -0.6f, 0);
+
         m_maxHealth = 4;
         m_maxStamina = 5;
         m_staminaRegen = 3;
