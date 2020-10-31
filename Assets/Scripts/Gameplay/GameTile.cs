@@ -299,7 +299,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             bool isOccupiedOpposingTeam = IsOccupied();
             if (isOccupiedOpposingTeam)
             {
-                isOccupiedOpposingTeam = checkerUnit.GetTeam() != m_occupyingUnit.GetTeam();
+                bool isZombiePass = (checkerUnit is ContentZombie || checkerUnit is ContentZombieEnemy) && (m_occupyingUnit is ContentZombie || m_occupyingUnit is ContentZombieEnemy);
+                
+                isOccupiedOpposingTeam = !isZombiePass && checkerUnit.GetTeam() != m_occupyingUnit.GetTeam();
             }
 
             bool hasNotDestroyedBuilding = HasBuilding();

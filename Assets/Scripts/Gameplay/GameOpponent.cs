@@ -341,7 +341,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         {
             int curTileIndex = UnityEngine.Random.Range(0, tilesAtFogEdge.Count);
 
-            if (!tilesAtFogEdge[curTileIndex].IsOccupied() && tilesAtFogEdge[curTileIndex].GetTerrain().IsPassable(newEnemyUnit))
+            if (!tilesAtFogEdge[curTileIndex].IsOccupied() && tilesAtFogEdge[curTileIndex].IsPassable(newEnemyUnit, false))
             {
                 tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
                 m_controlledUnits.Add(newEnemyUnit);
