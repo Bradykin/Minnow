@@ -250,6 +250,8 @@ public class WorldController : Singleton<WorldController>
         UITooltipController.Instance.ClearTooltipStack();
         ClearAllUnits();
 
+        UIWorldElementNotificationController.Instance.ClearAllWorldElementNotifications();
+
         GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
         intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_currentWaveNumber * 20;
 

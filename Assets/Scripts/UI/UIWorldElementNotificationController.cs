@@ -15,6 +15,8 @@ public class UIWorldElementNotificationController : Singleton<UIWorldElementNoti
     private List<GameObject> m_runningNotificationObjs = new List<GameObject>();
     private List<int> m_counters = new List<int>();
 
+    private List<UIWorldElementNotification> m_runningUIElements = new List<UIWorldElementNotification>();
+
     void FixedUpdate()
     {
         int numWaiting = m_messages.Count;
@@ -25,6 +27,7 @@ public class UIWorldElementNotificationController : Singleton<UIWorldElementNoti
             {
                 m_counters.RemoveAt(i);
                 m_runningNotificationObjs.RemoveAt(i);
+                m_runningUIElements.RemoveAt(i);
                 continue;
             }
 
@@ -76,10 +79,30 @@ public class UIWorldElementNotificationController : Singleton<UIWorldElementNoti
 
     private void RaiseMessage(int index)
     {
-        FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(m_messages[index], m_colors[index], m_positionObjs[index]);
+        UIWorldElementNotification elementNotification = FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(m_messages[index], m_colors[index], m_positionObjs[index]);
+
+        m_runningUIElements.Add(elementNotification);
 
         m_messages.RemoveAt(index);
         m_colors.RemoveAt(index);
         m_positionObjs.RemoveAt(index);
+    }
+
+    public void ClearAllWorldElementNotifications()
+    {
+        m_messages = new List<string>();
+        m_colors = new List<Color>();
+
+        for (int i = m_runningUIElements.Count - 1; i >= 0; i--)
+        {
+            Destroy(m_runningUIElements[i].gameObject);
+        }
+
+        m_runningUIElements = new List<UIWorldElementNotification>();
+
+        m_positionObjs = new List<GameObject>();
+
+        m_runningNotificationObjs = new List<GameObject>();
+        m_counters = new List<int>();
     }
 }
