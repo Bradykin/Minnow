@@ -197,7 +197,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         //Handle Frame Color
-        if (GetGameTile().m_isFog || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
+        if (GetGameTile().m_isFog || (GameHelper.GetGameController() != null && GameHelper.GetGameController().m_runStateType == RunStateType.Intermission))
         {
             m_frameRenderer.color = Color.black;
         }

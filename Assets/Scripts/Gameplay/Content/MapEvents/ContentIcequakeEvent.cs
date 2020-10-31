@@ -17,31 +17,67 @@ public class ContentIcequakeEvent : GameMapEvent
     public override void TriggerEvent()
     {
         List<GameTile> tiles = new List<GameTile>();
+        List<GameTile> visibleTiles = new List<GameTile>();
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
+            if (gameTile.GetTerrain().IsIceCracked())
             {
                 tiles.Add(gameTile);
+
+                if (gameTile.m_isFog == false)
+                {
+                    visibleTiles.Add(gameTile);
+                }
             }
         }
 
-        int numQuakes = tiles.Count / 6;
+        int numQuakes = 2;
+
+        while (numQuakes > 0 && visibleTiles.Count > 0)
+        {
+            int index = Random.Range(0, visibleTiles.Count);
+            GameTile gameTile = visibleTiles[index];
+
+            if (gameTile.GetTerrain().IsIceCracked() && gameTile.GetTerrain().GetIceCrackedTerrainType() != null)
+            {
+                gameTile.SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(gameTile.GetTerrain()));
+
+                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(gameTile, 1);
+                for (int i = 0; i < surroundingTiles.Count; i++)
+                {
+                    if (surroundingTiles[i].GetTerrain().IsIce() && surroundingTiles[i].GetTerrain().GetIceCrackedTerrainType() != null)
+                    {
+                        surroundingTiles[i].SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(surroundingTiles[i].GetTerrain()));
+                    }
+                }
+                numQuakes--;
+            }
+
+            tiles.RemoveAt(index);
+        }
 
         while (numQuakes > 0 && tiles.Count > 0)
         {
             int index = Random.Range(0, tiles.Count);
             GameTile gameTile = tiles[index];
 
-            if (gameTile.GetTerrain().IsIce() && gameTile.GetTerrain().GetIceCrackedTerrainType() != null)
+            if (gameTile.GetTerrain().IsIceCracked() && gameTile.GetTerrain().GetIceCrackedTerrainType() != null)
             {
                 gameTile.SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(gameTile.GetTerrain()));
+
+                List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(gameTile, 1);
+                for (int i = 0; i < surroundingTiles.Count; i++)
+                {
+                    if (surroundingTiles[i].GetTerrain().IsIce() && surroundingTiles[i].GetTerrain().GetIceCrackedTerrainType() != null)
+                    {
+                        surroundingTiles[i].SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(surroundingTiles[i].GetTerrain()));
+                    }
+                }
                 numQuakes--;
             }
-            else
-            {
-                tiles.RemoveAt(index);
-            }
+
+            tiles.RemoveAt(index);
         }
     }
 }
