@@ -114,6 +114,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
             m_gridArray[i].Init(x, y);
             m_gridArray[i].transform.position = m_gridArray[i].GetScreenPosition();
+            m_gridArray[i].m_renderer.sortingOrder = y;
+            m_gridArray[i].m_tintRenderer.sortingOrder = y;
+            m_gridArray[i].m_frameRenderer.sortingOrder = y;
         }
     }
 
