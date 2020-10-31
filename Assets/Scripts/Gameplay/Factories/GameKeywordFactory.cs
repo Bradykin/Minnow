@@ -30,6 +30,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameSpellcraftKeyword(null));
         m_keywords.Add(new GameSummonKeyword(null));
         m_keywords.Add(new GameTauntKeyword());
+        m_keywords.Add(new GameThornsKeyword(0));
         m_keywords.Add(new GameVictoriousKeyword(null));
         m_keywords.Add(new GameWaterwalkKeyword());
 
