@@ -170,7 +170,7 @@ public class GameUnitFactory
 
             if (spawnPoolIndex < 0 || m_specificSpawnPoolEnemies.Count <= spawnPoolIndex)
             {
-                Debug.LogError("GameUnitFactory received Spawn Point Marker " + spawnPoolIndex + " That does not exist");
+                Debug.LogError("GameUnitFactory received Spawn Point Marker " + spawnPoolIndex + " on a " + m_spawnPoint.m_tile.GetTerrain().GetBaseName() + " at coordinates " + m_spawnPoint.m_tile.m_gridPosition + " That does not exist");
             }
 
             List<GameEnemyUnit> specificSpawnPool = m_specificSpawnPoolEnemies[spawnPoolIndex];

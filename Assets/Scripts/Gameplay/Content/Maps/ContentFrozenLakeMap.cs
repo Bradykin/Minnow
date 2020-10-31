@@ -75,9 +75,13 @@ public class ContentFrozenLakeMap : GameMap
         List<GameEnemyUnit> specificSpawnPool4 = new List<GameEnemyUnit>();
         specificSpawnPool4.AddRange(m_spawnPool);
 
+        List<GameEnemyUnit> specificSpawnPool5 = new List<GameEnemyUnit>();
+        specificSpawnPool5.AddRange(m_spawnPool);
+
         m_specificSpawnPools.Add(specificSpawnPool1);
         m_specificSpawnPools.Add(specificSpawnPool2);
         m_specificSpawnPools.Add(specificSpawnPool3);
         m_specificSpawnPools.Add(specificSpawnPool4);
+        m_specificSpawnPools.Add(specificSpawnPool5);
     }
 }
