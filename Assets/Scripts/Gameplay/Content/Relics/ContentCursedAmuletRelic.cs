@@ -11,5 +11,8 @@ public class ContentCursedAmuletRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

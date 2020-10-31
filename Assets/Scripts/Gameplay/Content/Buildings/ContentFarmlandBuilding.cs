@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentFarmlandBuilding : GameBuildingBase
 {
-    float m_percentageheal = 15.0f;
+    float m_percentageheal = 50.0f;
 
     public ContentFarmlandBuilding()
     {

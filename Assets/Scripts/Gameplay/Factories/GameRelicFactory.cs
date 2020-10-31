@@ -33,13 +33,14 @@ public static class GameRelicFactory
         m_relics.Add(new ContentNaturalProtectionRelic());
         m_relics.Add(new ContentLegendaryFragmentRelic());
         m_relics.Add(new ContentCursedAmuletRelic());
-        m_relics.Add(new ContentDesignSchematicsRelic());
+        //m_relics.Add(new ContentDesignSchematicsRelic());
         m_relics.Add(new ContentMedKitRelic());
         m_relics.Add(new ContentLegacyOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
         m_relics.Add(new ContentTotemOfTheWolfRelic());
         m_relics.Add(new ContentBurningShivsRelic());
         m_relics.Add(new ContentPoisonedShivsRelic());
+        m_relics.Add(new ContentCallOfTheSeaRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

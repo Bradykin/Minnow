@@ -323,6 +323,17 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         PlaceCrystals();
 
+        /*int eventCount = 0;
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            if (m_gridArray[i].GetGameTile().GetTerrain().IsEventTerrain())
+            {
+                eventCount++;
+            }
+        }
+
+        print("Events on map: " + eventCount);*/
+
         UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.GetCastleWorldTile().gameObject);
     }
 

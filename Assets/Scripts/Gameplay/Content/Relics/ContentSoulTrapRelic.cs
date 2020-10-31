@@ -11,5 +11,8 @@ public class ContentSoulTrapRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Reanimate);
     }
 }

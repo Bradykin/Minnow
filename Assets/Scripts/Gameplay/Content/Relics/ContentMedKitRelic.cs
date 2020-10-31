@@ -11,5 +11,9 @@ public class ContentMedKitRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tags.AddTag(GameTag.TagType.Humanoid);
+        m_tags.AddTag(GameTag.TagType.Forest);
     }
 }

@@ -11,5 +11,8 @@ public class ContentDominerickRefrainRelic : GameRelic
         m_rarity = GameRarity.Event;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Shiv);
     }
 }

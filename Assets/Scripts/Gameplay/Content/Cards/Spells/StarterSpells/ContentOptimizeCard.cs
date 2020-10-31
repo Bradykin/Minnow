@@ -33,14 +33,14 @@ public class ContentOptimizeCard : GameCardSpellBase
         }
     }
 
-    public override void PlayCard(GameUnit targetUnit)
+    public override void PlayCard()
     {
-        if (!IsValidToPlay(targetUnit))
+        if (!IsValidToPlay())
         {
             return;
         }
 
-        base.PlayCard(targetUnit);
+        base.PlayCard();
 
         GamePlayer player = GameHelper.GetPlayer();
 

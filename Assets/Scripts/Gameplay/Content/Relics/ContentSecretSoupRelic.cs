@@ -11,5 +11,8 @@ public class ContentSecretSoupRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
     }
 }

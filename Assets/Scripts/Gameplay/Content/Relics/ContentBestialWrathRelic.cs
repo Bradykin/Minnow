@@ -11,5 +11,10 @@ public class ContentBestialWrathRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Momentum);
+        m_tags.AddTag(GameTag.TagType.Enrage);
+        m_tags.AddTag(GameTag.TagType.Victorious);
+        m_tags.AddTag(GameTag.TagType.Monster);
     }
 }

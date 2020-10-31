@@ -11,5 +11,8 @@ public class ContentNaturalProtectionRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

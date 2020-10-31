@@ -11,5 +11,8 @@ public class ContentDesignSchematicsRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.Reanimate);
     }
 }

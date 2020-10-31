@@ -11,8 +11,10 @@ public class ContentFrontierTownBuilding : GameBuildingBase
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Defensive;
 
-        m_maxHealth = 75;
-        m_cost = new GameWallet(60);
+        m_maxHealth = 40;
+        m_cost = new GameWallet(50);
+
+        m_range = 0;
 
         m_expandsPlaceRange = false;
 
