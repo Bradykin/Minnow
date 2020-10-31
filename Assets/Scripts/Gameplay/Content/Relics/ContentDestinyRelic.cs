@@ -11,5 +11,9 @@ public class ContentDestinyRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

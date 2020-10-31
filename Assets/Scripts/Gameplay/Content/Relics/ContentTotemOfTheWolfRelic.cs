@@ -11,6 +11,9 @@ public class ContentTotemOfTheWolfRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 
     public override string GetDesc()

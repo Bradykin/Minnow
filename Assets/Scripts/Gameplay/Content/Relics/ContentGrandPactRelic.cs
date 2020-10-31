@@ -11,5 +11,11 @@ public class ContentGrandPactRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Creation);
+        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tags.AddTag(GameTag.TagType.Humanoid);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
     }
 }

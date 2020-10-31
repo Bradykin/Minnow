@@ -11,5 +11,10 @@ public class ContentUrbanTacticsRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

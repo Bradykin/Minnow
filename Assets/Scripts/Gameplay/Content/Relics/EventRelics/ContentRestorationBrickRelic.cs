@@ -11,5 +11,7 @@ public class ContentRestorationBrickRelic : GameRelic
         m_rarity = GameRarity.Event;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Gold);
     }
 }

@@ -18,5 +18,7 @@ public class ContentMaskOfAgesRelic : GameRelic
         m_rarity = GameRarity.Starter;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
     }
 }

@@ -11,5 +11,7 @@ public class ContentMorlemainsSkullRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.HighCost);
     }
 }

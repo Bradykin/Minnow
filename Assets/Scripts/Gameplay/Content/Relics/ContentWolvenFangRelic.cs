@@ -11,5 +11,7 @@ public class ContentWolvenFangRelic : GameRelic
         m_rarity = GameRarity.Starter;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

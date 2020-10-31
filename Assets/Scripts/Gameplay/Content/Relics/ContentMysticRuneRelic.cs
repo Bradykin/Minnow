@@ -11,5 +11,8 @@ public class ContentMysticRuneRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
     }
 }

@@ -11,5 +11,7 @@ public class ContentOrbOfEnergyRelic : GameRelic
         m_rarity = GameRarity.Starter;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.HighCost);
     }
 }

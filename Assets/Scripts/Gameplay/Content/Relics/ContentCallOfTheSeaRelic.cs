@@ -11,5 +11,7 @@ public class ContentCallOfTheSeaRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 }

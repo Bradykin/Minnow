@@ -11,5 +11,9 @@ public class ContentTraditionalMethodsRelic : GameRelic
         m_rarity = GameRarity.Event;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tags.AddTag(GameTag.TagType.Midrange);
     }
 }

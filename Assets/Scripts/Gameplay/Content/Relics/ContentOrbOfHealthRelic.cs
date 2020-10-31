@@ -11,5 +11,9 @@ public class ContentOrbOfHealthRelic : GameRelic
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tags.AddTag(GameTag.TagType.Enrage);
     }
 }

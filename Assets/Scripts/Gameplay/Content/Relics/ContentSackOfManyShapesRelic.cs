@@ -11,5 +11,10 @@ public class ContentSackOfManyShapesRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tags.AddTag(GameTag.TagType.Scaler);
     }
 }

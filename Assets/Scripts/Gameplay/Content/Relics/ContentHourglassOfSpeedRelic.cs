@@ -11,5 +11,7 @@ public class ContentHourglassOfSpeedRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
     }
 }

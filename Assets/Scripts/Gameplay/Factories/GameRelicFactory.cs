@@ -33,7 +33,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentNaturalProtectionRelic());
         m_relics.Add(new ContentLegendaryFragmentRelic());
         m_relics.Add(new ContentCursedAmuletRelic());
-        m_relics.Add(new ContentDesignSchematicsRelic());
+        //m_relics.Add(new ContentDesignSchematicsRelic());
         m_relics.Add(new ContentMedKitRelic());
         m_relics.Add(new ContentLegacyOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
