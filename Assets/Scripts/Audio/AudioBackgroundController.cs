@@ -18,7 +18,7 @@ public class AudioBackgroundController : Singleton<AudioBackgroundController>
 
     void Update()
     {
-        m_audioSource.volume = GlobalSettings.m_musicVolume;
+        m_audioSource.volume = PlayerDataManager.PlayerAccountData.m_musicVolume;
 
         if (UILevelSelectController.Instance.m_curMap == null && !m_playingMenuMusic)
         {

@@ -18,6 +18,10 @@ public class PlayerAccountData
     public int m_playerExperience;
     public int m_numPlaySessions;
 
+    public float m_musicVolume = 0; // AudioHelper.DefaultMusicVolume; //0.0f - 1.0f
+    public float m_sfxVolume = 0;// AudioHelper.DefaultSFXVolume; //0.0f - 1.0f
+    public bool m_followEnemy = false;
+
     public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();

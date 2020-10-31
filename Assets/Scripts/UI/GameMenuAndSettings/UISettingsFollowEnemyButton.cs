@@ -16,7 +16,7 @@ public class UISettingsFollowEnemyButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GlobalSettings.m_followEnemy = !GlobalSettings.m_followEnemy;
+        PlayerDataManager.PlayerAccountData.m_followEnemy = !PlayerDataManager.PlayerAccountData.m_followEnemy;
 
         SetFollowText();
 
@@ -30,7 +30,7 @@ public class UISettingsFollowEnemyButton : UIElementBase
 
     private void SetFollowText()
     {
-        if (GlobalSettings.m_followEnemy)
+        if (PlayerDataManager.PlayerAccountData.m_followEnemy)
         {
             m_followText.text = "Watch Enemy Turn";
         }

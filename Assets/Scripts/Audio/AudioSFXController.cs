@@ -14,7 +14,7 @@ public class AudioSFXController : Singleton<AudioSFXController>
 
     void Update()
     {
-        m_audioSource.volume = GlobalSettings.m_sfxVolume;
+        m_audioSource.volume = PlayerDataManager.PlayerAccountData.m_sfxVolume;
     }
 
     public void PlaySFX(AudioClip clip)

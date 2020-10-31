@@ -16,13 +16,13 @@ public class UISettingMusicButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GlobalSettings.m_musicVolume == 0.0f)
+        if (PlayerDataManager.PlayerAccountData.m_musicVolume == 0.0f)
         {
-            GlobalSettings.m_musicVolume = AudioHelper.DefaultMusicVolume;
+            PlayerDataManager.PlayerAccountData.m_musicVolume = AudioHelper.DefaultMusicVolume;
         }
         else
         {
-            GlobalSettings.m_musicVolume = 0.0f;
+            PlayerDataManager.PlayerAccountData.m_musicVolume = 0.0f;
         }
 
         SetMusicString();
@@ -37,7 +37,7 @@ public class UISettingMusicButton : UIElementBase
 
     private void SetMusicString()
     {
-        if (GlobalSettings.m_musicVolume > 0)
+        if (PlayerDataManager.PlayerAccountData.m_musicVolume > 0)
         {
             m_musicText.text = "Music: ON";
         } 
