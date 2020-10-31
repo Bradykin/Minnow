@@ -23,8 +23,9 @@ public class ContentPowerCrystalBuilding : GameBuildingBase
 
     protected override void Die()
     {
+        base.Die();
+
         WorldController.Instance.m_gameController.m_map.DestroyCrystal();
-        m_isDestroyed = true;
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

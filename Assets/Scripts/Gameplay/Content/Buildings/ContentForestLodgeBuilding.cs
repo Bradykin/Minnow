@@ -28,7 +28,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
 
     protected override void Die()
     {
-        m_isDestroyed = true;
+        base.Die();
 
         m_gameTile.GetWorldTile().ReducePlaceRange(m_sightRange-1);
     }

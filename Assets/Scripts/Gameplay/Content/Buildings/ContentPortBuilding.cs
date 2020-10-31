@@ -40,11 +40,6 @@ public class ContentPortBuilding : GameBuildingBase
         base.TriggerEndOfWave();
     }
 
-    protected override void Die()
-    {
-        m_isDestroyed = true;
-    }
-
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
     {
         if (terrain.IsWater())
