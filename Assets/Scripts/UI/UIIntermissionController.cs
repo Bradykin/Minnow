@@ -35,14 +35,14 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         m_intermissionActions.Add(new ContentRelicIntermissionAction());
 
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding()));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentPortBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFarmlandBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFrontierTownBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentSmithyBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMineBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentMagicSchoolBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentTempleBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFortressBuilding()));
-        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentEmberForgeBuilding()));
+        m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentWizardTowerBuilding()));
 
         UpdateActions();
     }
