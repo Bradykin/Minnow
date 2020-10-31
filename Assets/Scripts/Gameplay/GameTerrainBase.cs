@@ -266,7 +266,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
         if (this is ContentIceCrackedTerrain)
         {
-            description += "If a unit dies while standing on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
+            description += "If any unit dies while on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
         }
 
         if (this is ContentLavaFieldActiveTerrain)

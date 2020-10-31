@@ -350,7 +350,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
 
-        if (m_keywordHolder.GetKeyword<GameFlyingKeyword>() == null && GetGameTile().GetTerrain().IsIceCracked())
+        if (GetGameTile().GetTerrain().IsIceCracked())
         {
             GetGameTile().SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(GetGameTile().GetTerrain()));
             List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
