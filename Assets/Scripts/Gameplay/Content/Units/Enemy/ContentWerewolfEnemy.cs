@@ -9,6 +9,8 @@ public class ContentWerewolfEnemy : GameEnemyUnit
 {
     public ContentWerewolfEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 60;
         m_maxStamina = 6;
         m_staminaRegen = 4;

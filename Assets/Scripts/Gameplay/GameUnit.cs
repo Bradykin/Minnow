@@ -44,6 +44,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public WorldUnit m_worldUnit;
     public Sprite m_iconWhite;
     protected string m_customName;
+    protected Vector3 m_worldTilePositionAdjustment = new Vector3(0,0,0);
 
     //Special functionality
     public bool m_instantWaterMovement;
@@ -922,6 +923,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
 
         return toReturn;
+    }
+
+    public Vector3 GetWorldTilePositionAdjustment()
+    {
+        return m_worldTilePositionAdjustment;
     }
 
     public Color GetColor()

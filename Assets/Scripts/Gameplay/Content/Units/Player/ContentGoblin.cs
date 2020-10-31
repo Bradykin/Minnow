@@ -9,6 +9,8 @@ public class ContentGoblin : GameUnit
     
     public ContentGoblin()
     {
+        m_worldTilePositionAdjustment = new Vector3(-0.3f, -0.5f, 0);
+
         m_maxHealth = 18;
         m_maxStamina = 4;
         m_staminaRegen = 3;

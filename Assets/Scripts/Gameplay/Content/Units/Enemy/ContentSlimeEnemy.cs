@@ -6,6 +6,8 @@ public class ContentSlimeEnemy : GameEnemyUnit
 {
     public ContentSlimeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
+        m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
+
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;

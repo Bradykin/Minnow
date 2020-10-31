@@ -9,6 +9,8 @@ public class ContentHomonculus : GameUnit
 
     public ContentHomonculus()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.1f, 0);
+
         m_maxHealth = 4;
         m_maxStamina = 6;
         m_staminaRegen = 2;

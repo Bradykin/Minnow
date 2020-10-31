@@ -6,6 +6,8 @@ public class ContentShadowWarlock : GameUnit
 {
     public ContentShadowWarlock()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
+
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 2;

@@ -30,8 +30,6 @@ public class WorldUnit : MonoBehaviour
 
     public void Init(GameUnit unit)
     {
-        m_moveTarget = gameObject.transform.position;
-
         m_unit = unit;
         unit.m_worldUnit = this;
 
@@ -46,6 +44,16 @@ public class WorldUnit : MonoBehaviour
         }
 
         m_collider = GetComponent<BoxCollider2D>();
+
+        m_damageShieldIndicator.gameObject.transform.localPosition = new Vector3(
+            m_damageShieldIndicator.gameObject.transform.localPosition.x - GetUnit().GetWorldTilePositionAdjustment().x,
+            m_damageShieldIndicator.gameObject.transform.localPosition.y - GetUnit().GetWorldTilePositionAdjustment().y,
+            m_damageShieldIndicator.gameObject.transform.localPosition.z - GetUnit().GetWorldTilePositionAdjustment().z);
+    }
+
+    public void SetMoveTarget(Vector3 moveTarget)
+    {
+        m_moveTarget = moveTarget;
     }
 
     void Update()
@@ -182,7 +190,7 @@ public class WorldUnit : MonoBehaviour
         GetUnit().MoveTo(targetTile);
         GetUnit().OnMoveEnd();
 
-        m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit();
+        m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit(this);
 
         m_renderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;
         m_tintRenderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;

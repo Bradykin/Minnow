@@ -7,6 +7,8 @@ public class ContentElvenSentinel : GameUnit
 {
     public ContentElvenSentinel()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
+
         m_maxHealth = 6;
         m_maxStamina = 5;
         m_staminaRegen = 3;

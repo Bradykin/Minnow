@@ -6,6 +6,8 @@ public class ContentOverlord : GameUnit
 {
     public ContentOverlord()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 12;
         m_maxStamina = 6;
         m_staminaRegen = 3;

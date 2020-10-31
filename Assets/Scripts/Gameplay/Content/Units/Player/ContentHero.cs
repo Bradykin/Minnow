@@ -7,6 +7,8 @@ public class ContentHero : GameUnit
 {
     public ContentHero()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
+
         m_maxHealth = 50;
         m_maxStamina = 6;
         m_staminaRegen = 4;

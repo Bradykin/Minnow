@@ -9,6 +9,8 @@ public class ContentRanger : GameUnit
 
     public ContentRanger()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 15;
         m_maxStamina = 5;
         m_staminaRegen = 2;

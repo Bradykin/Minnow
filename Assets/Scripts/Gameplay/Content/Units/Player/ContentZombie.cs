@@ -7,6 +7,8 @@ public class ContentZombie : GameUnit
 {
     public ContentZombie()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 35;
         m_maxStamina = 6;
         m_staminaRegen = 3;
@@ -46,6 +48,7 @@ public class ContentZombie : GameUnit
         {
             GameEnemyUnit newZombie = new ContentZombieEnemy(GameHelper.GetOpponent());
             other.m_worldUnit.Init(newZombie);
+            other.m_worldUnit.SetMoveTarget(other.m_worldUnit.gameObject.transform.position);
             GameHelper.GetOpponent().m_controlledUnits.Remove((GameEnemyUnit)other);
             GameHelper.GetOpponent().m_controlledUnits.Add(newZombie);
 

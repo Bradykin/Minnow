@@ -6,6 +6,8 @@ public class ContentMage : GameUnit
 {
     public ContentMage()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
+
         m_maxHealth = 6;
         m_maxStamina = 5;
         m_staminaRegen = 3;

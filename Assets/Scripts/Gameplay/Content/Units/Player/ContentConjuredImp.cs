@@ -8,6 +8,8 @@ public class ContentConjuredImp : GameUnit
     
     public ContentConjuredImp()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 15;
         m_maxStamina = 4;
         m_staminaRegen = 3;

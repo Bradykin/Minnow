@@ -8,6 +8,8 @@ public class ContentYetiEnemy : GameEnemyUnit
 {
     public ContentYetiEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
+
         m_maxHealth = 35;
         m_maxStamina = 4;
         m_staminaRegen = 2;

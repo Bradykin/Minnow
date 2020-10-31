@@ -6,6 +6,8 @@ public class ContentInjuredTroll : GameUnit
 {
     public ContentInjuredTroll()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
+
         m_maxHealth = 45;
         m_maxStamina = 8;
         m_staminaRegen = 4;

@@ -6,6 +6,8 @@ public class ContentFishOracle : GameUnit
 {
     public ContentFishOracle()
     {
+        m_worldTilePositionAdjustment = new Vector3(0.2f, -0.65f, 0);
+
         m_maxHealth = 8;
         m_maxStamina = 4;
         m_staminaRegen = 2;

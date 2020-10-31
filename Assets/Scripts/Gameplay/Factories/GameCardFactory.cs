@@ -57,11 +57,10 @@ public static class GameCardFactory
         m_cards.Add(new ContentOverlordCard());
         m_cards.Add(new ContentRangerCard());
         m_cards.Add(new ContentRaptorCard());
-        m_cards.Add(new ContentRoyalCaravanCard());
         m_cards.Add(new ContentSabobotCard());
         m_cards.Add(new ContentShadowWarlockCard());
         m_cards.Add(new ContentSkeletonCard());
-        m_cards.Add(new ContentStoneGolemCard());
+        m_cards.Add(new ContentStoneGolemCard()); //
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
         m_cards.Add(new ContentZombieCard());
@@ -69,6 +68,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentUndeadMammothCard());
         m_cards.Add(new ContentWingedSerpentCard());
         m_cards.Add(new ContentMechanizedBeastCard());
+
+        //Building Unit Cards
+        m_cards.Add(new ContentRoyalCaravanCard());
 
         //Spell Cards
         m_cards.Add(new ContentAegisCard());

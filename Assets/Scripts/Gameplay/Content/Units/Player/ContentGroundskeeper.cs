@@ -9,6 +9,8 @@ public class ContentGroundskeeper : GameUnit
 
     public ContentGroundskeeper()
     {
+        m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
+
         m_maxHealth = 75;
         m_maxStamina = 4;
         m_staminaRegen = 1;

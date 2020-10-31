@@ -10,6 +10,8 @@ public class ContentUndeadMammoth : GameUnit
 
     public ContentUndeadMammoth()
     {
+        m_worldTilePositionAdjustment = new Vector3(0.3f, 0.5f, 0);
+
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
