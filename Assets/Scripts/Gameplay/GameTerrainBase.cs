@@ -57,6 +57,12 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
     public Sprite m_iconWhite;
 
+    public GameTerrainBase()
+    {
+        m_desc = GenerateDescription();
+        m_focusPanelText = GenerateFocusText();
+    }
+
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameUnit checkerUnit)
     {
@@ -217,6 +223,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
         return m_terrainImageNumber;
     }
 
+    //In GameTerrainBase this appears to be not needed. Investigate whether this can be removed or combined into the FocusText later on
     public virtual string GenerateDescription()
     {
         string description = "";
@@ -249,7 +256,22 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
         if (m_rangeModifier > 0)
         {
-            description += "Ranged units on this tile get +" + m_rangeModifier + " increased range.";
+            description += "Ranged units on this tile get +" + m_rangeModifier + " increased range.\n";
+        }
+
+        if (this is ContentIceTerrain)
+        {
+            description += "If an adjacent cracked tile breaks, this tile will break into cracked ice.\n";
+        }
+
+        if (this is ContentIceCrackedTerrain)
+        {
+            description += "If a unit dies while standing on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
+        }
+
+        if (this is ContentLavaFieldActiveTerrain)
+        {
+            description += $"Units standing on this tile take {Constants.LavaFieldDamageDealt} damage at the end of their turn.";
         }
 
         return description;

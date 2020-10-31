@@ -11,8 +11,6 @@ public class ContentHillsTerrain : GameTerrainBase
         m_costToPass = Constants.HillsMovementCost;
 
         m_name = "Hills";
-        m_desc = GenerateDescription();
-        m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
