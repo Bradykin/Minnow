@@ -9,6 +9,13 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 
     public override IEnumerator TakeStep(bool shouldYield)
     {
+        GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
+        if (closestTauntUnitInRange != null)
+        {
+            m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
+            yield break;
+        }
+
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)
         {
@@ -16,17 +23,17 @@ public class AIChooseTargetToAttackStandardStep : AIStep
             yield break;
         }
 
-        GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
-        if (closestVulnerableBuildingInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            yield break;
-        }
-
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null && m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(castleInRange))
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
+            yield break;
+        }
+
+        GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
+        if (closestVulnerableBuildingInRange != null)
+        {
+            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
             yield break;
         }
 
@@ -125,6 +132,23 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         {
             int closestEnemyBuilding = m_AIGameEnemyUnit.m_vulnerableBuildingTargets.Min(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()));
             return m_AIGameEnemyUnit.m_vulnerableBuildingTargets.First(b => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), b.GetGameTile()) == closestEnemyBuilding);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    protected GameUnit FindClosestTauntUnitInRange()
+    {
+        if (m_AIGameEnemyUnit.m_tauntUnitTargets.Count == 1)
+        {
+            return m_AIGameEnemyUnit.m_tauntUnitTargets[0];
+        }
+        else if (m_AIGameEnemyUnit.m_tauntUnitTargets.Count > 1)
+        {
+            int closestEnemyUnit = m_AIGameEnemyUnit.m_tauntUnitTargets.Min(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()));
+            return m_AIGameEnemyUnit.m_tauntUnitTargets.First(e => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), e.GetGameTile()) == closestEnemyUnit);
         }
         else
         {

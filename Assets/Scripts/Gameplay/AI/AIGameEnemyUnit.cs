@@ -20,6 +20,8 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
     public List<GameUnit> m_vulnerableUnitTargets = new List<GameUnit>();
     public List<GameBuildingBase> m_vulnerableBuildingTargets = new List<GameBuildingBase>();
 
+    public List<GameUnit> m_tauntUnitTargets = new List<GameUnit>();
+
     public GameElementBase m_targetGameElement = null;
     public GameTile m_targetGameTile = null;
 
@@ -154,6 +156,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
         m_possibleBuildingTargets.Clear();
         m_vulnerableUnitTargets.Clear();
         m_vulnerableBuildingTargets.Clear();
+        m_tauntUnitTargets.Clear();
         m_targetGameElement = null;
         m_targetGameTile = null;
         m_doSteps = true;

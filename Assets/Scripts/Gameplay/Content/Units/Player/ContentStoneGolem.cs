@@ -13,6 +13,8 @@ public class ContentStoneGolem : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        AddKeyword(new GameTauntKeyword(), false);
+
         InitializeWithLevel(GetUnitLevel());
 
         LateInit();
