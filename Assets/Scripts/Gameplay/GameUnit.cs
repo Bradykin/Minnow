@@ -731,7 +731,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         SpendStamina(GetMaxStamina());
     }
 
-    public void GainStamina(int toGain, bool isRegen = false)
+    public virtual void GainStamina(int toGain, bool isRegen = false)
     {
         int staminaGained = toGain;
 
@@ -784,6 +784,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             SetCustomName();
         }
+    }
+
+    public void RemoveKeyword(GameKeywordBase toRemove)
+    {
+        m_keywordHolder.RemoveKeyword(toRemove);
     }
 
     public T GetKeyword<T>()
@@ -1057,7 +1062,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public void SpendStamina(int toSpend)
+    public virtual void SpendStamina(int toSpend)
     {
         m_curStamina -= toSpend;
 

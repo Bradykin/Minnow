@@ -11,12 +11,7 @@ public class AITestSpawnClass : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.N))
             {
                 GameHelper.GetPlayer().AddEnergy(100);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWandererCard()), true);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWildfolkCard()), true);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentLizardSoldierCard()), true);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentUndeadMammothCard()), true);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentWingedSerpentCard()), true);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentMechanizedBeastCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentStoneGolemCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.M))

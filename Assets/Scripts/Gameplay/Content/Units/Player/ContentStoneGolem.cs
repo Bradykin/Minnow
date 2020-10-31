@@ -4,43 +4,54 @@ using UnityEngine;
 
 public class ContentStoneGolem : GameUnit
 {
+    private GameDamageReductionKeyword m_drKeyword;
+
     public ContentStoneGolem()
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.4f, 0);
 
+        m_maxHealth = 20;
+        m_maxStamina = 3;
+        m_staminaRegen = 1;
+        m_power = 1;
+
+        m_desc = "When at maximum stamina, Stone Golem has Damage Reduction 4.\n";
+
         m_team = Team.Player;
-        m_rarity = GameRarity.Starter;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Stone Golem";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameTauntKeyword(), false);
-        AddKeyword(new GameDamageReductionKeyword(1), false);
-        AddKeyword(new GameThornsKeyword(2), false);
-
-        InitializeWithLevel(GetUnitLevel());
+        m_drKeyword = new GameDamageReductionKeyword(4);
 
         LateInit();
     }
 
-    public override void InitializeWithLevel(int level)
+    public override void GainStamina(int toGain, bool isRegen = false)
     {
-        m_maxHealth = 40;
-        m_maxStamina = 2;
-        m_staminaRegen = 1;
-        m_power = 1;
+        base.GainStamina(toGain, isRegen);
 
-        if (level >= 1)
+        if (m_curStamina == m_maxStamina)
         {
-            m_maxStamina = 4;
-            m_staminaRegen = 2;
+            if (GetKeyword<GameDamageReductionKeyword>() == null)
+            {
+                AddKeyword(m_drKeyword, false);
+            }
         }
+    }
 
-        if (level >= 2)
+    public override void SpendStamina(int toSpend)
+    {
+        base.SpendStamina(toSpend);
+
+        if (m_curStamina < m_maxStamina)
         {
-            m_power = 10;
-            m_maxHealth = 60;
+            if (GetKeyword<GameDamageReductionKeyword>() != null)
+            {
+                RemoveKeyword(m_drKeyword);
+            }
         }
     }
 }
