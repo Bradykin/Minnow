@@ -31,12 +31,9 @@ public class AIScanTargetsInRangeStep : AIStep
             if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.m_occupyingUnit, false))
             {
                 int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower());
-                if (ignoreTargetsCantDamage)
+                if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.m_occupyingUnit.GetKeyword<GameTauntKeyword>() == null)
                 {
-                    if (damageAmountPerHit == 0)
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 possibleUnitTargets.Add(tile.m_occupyingUnit);
