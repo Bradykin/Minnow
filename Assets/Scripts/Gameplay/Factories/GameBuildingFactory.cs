@@ -12,10 +12,10 @@ public static class GameBuildingFactory
     public static void Init()
     {
         m_buildings.Add(new ContentCastleBuilding());
-        m_buildings.Add(new ContentEmberForgeBuilding());
+        m_buildings.Add(new ContentWizardTowerBuilding());
         m_buildings.Add(new ContentForestLodgeBuilding());
         m_buildings.Add(new ContentFortressBuilding());
-        m_buildings.Add(new ContentPortBuilding());
+        m_buildings.Add(new ContentFarmlandBuilding());
         m_buildings.Add(new ContentFrontierTownBuilding());
         m_buildings.Add(new ContentMagicSchoolBuilding());
         m_buildings.Add(new ContentMineBuilding());
