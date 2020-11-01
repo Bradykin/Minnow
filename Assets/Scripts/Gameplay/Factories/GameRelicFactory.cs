@@ -73,6 +73,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentBondOfFamilyRelic());
         m_relics.Add(new ContentAncientRitualRelic());
         m_relics.Add(new ContentTokenOfTheUprisingRelic());
+        m_relics.Add(new ContentSecretTiesRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

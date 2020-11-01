@@ -686,6 +686,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
+        if (GameHelper.HasRelic<ContentSecretTiesRelic>() && m_gameTile != null && GetTypeline() == Typeline.Creation)
+        {
+            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
+            for (int i = 0; i < adjacentTiles.Count; i++)
+            {
+                if (adjacentTiles[i].IsOccupied() &&
+                    adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                    !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                    adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                {
+                    adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                }
+            }
+        }
+
         m_maxStamina += toAdd;
     }
 
