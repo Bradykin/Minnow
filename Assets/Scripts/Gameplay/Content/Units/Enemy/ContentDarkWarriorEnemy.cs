@@ -54,6 +54,11 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
             }
         }
 
+        if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
+        {
+            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(75));
+        }
+
         base.Die(canRevive);
     }
 
