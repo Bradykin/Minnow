@@ -394,6 +394,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (realHealVal > 0)
         {
             UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_worldUnit.gameObject);
+
+            if (GameHelper.HasRelic<ContentLifebringerRelic>())
+            {
+                GainStamina(1);
+            }
         }
 
         return realHealVal;
