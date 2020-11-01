@@ -65,6 +65,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentBeaconOfSanityRelic());
 
         m_relics.Add(new ContentEyeOfTelloRelic());
+        m_relics.Add(new ContentPriceOfFreedomRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
@@ -72,6 +73,28 @@ public static class GameRelicFactory
         m_relics.Add(new ContentRestorationBrickRelic());
         m_relics.Add(new ContentTomeOfDuluhainRelic());
         m_relics.Add(new ContentDominerickRefrainRelic());
+
+        int commonRelics = 0;
+        int uncommonRelics = 0;
+        int rareRelics = 0;
+
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Common)
+            {
+                commonRelics++;
+            }
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+            {
+                uncommonRelics++;
+            }
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Rare)
+            {
+                rareRelics++;
+            }
+        }
+
+        Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)

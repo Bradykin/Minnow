@@ -1403,6 +1403,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void EndTurn()
     {
+        if (GameHelper.HasRelic<ContentPriceOfFreedomRelic>() && GetTeam() == Team.Player && GetCurStamina() == GetMaxStamina())
+        {
+            AddStats(GetCurStamina(), GetCurStamina());
+            EmptyStamina();
+        }
+
         RegenStamina();
 
         if (m_keywordHolder.GetKeywords<GameImmuneToLavaKeyword>() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
