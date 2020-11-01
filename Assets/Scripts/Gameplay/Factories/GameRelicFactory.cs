@@ -37,7 +37,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMedKitRelic());
         m_relics.Add(new ContentLegacyOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
-        //m_relics.Add(new ContentTotemOfTheWolfRelic());
+        m_relics.Add(new ContentSigilOfTheSwordsmanRelic());
         m_relics.Add(new ContentBurningShivsRelic());
         m_relics.Add(new ContentPoisonedShivsRelic());
 
