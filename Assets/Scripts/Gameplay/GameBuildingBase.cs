@@ -92,6 +92,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
             returnCost -= 15;
         }
 
+        if (GameHelper.HasRelic<ContentDiscountTokenRelic>() && returnCost > 100)
+        {
+            returnCost = 99;
+        }
+
         return new GameWallet(returnCost);
     }
 
