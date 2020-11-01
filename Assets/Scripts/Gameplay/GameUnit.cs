@@ -135,6 +135,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GetTypeline() == Typeline.Humanoid)
+        {
+            if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
+            {
+                AddKeyword(new GameMountainwalkKeyword());
+            }
+        }
+
             List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
