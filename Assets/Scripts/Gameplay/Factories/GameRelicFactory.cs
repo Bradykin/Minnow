@@ -77,6 +77,7 @@ public static class GameRelicFactory
         //Second 30
         m_relics.Add(new ContentEvolvedMembraneRelic());
         m_relics.Add(new ContentRelicOfVictoryRelic());
+        m_relics.Add(new ContentStarOfDenumainRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
