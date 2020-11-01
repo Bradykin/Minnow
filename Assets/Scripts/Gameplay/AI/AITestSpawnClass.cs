@@ -16,7 +16,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentDesignSchematicsRelic());
+                Globals.m_testSpawnEnemyUnit = new ContentZombieEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))

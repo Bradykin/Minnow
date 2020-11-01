@@ -58,7 +58,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (tilesInRange[i].GetGameTile().IsPassable(null, false) && !tilesInRange[i].GetGameTile().GetTerrain().IsEventTerrain())
+            if (tilesInRange[i].GetGameTile().IsPassable(null, false) && !tilesInRange[i].GetGameTile().GetTerrain().IsEventTerrain() && tilesInRange[i].GetGameTile().m_gameEventMarkers.Count == 0 && tilesInRange[i].GetGameTile().m_spawnPoint == null)
             {
                 validTiles.Add(tilesInRange[i]);
             }

@@ -31,7 +31,7 @@ public class AISiegebreakerScanTargetsInRangeStep : AIStep
 
         foreach (var tile in tilesInScanRange)
         {
-            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed)
+            if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().GetTeam() == Team.Player)
             {
                 possibleBuildingTargets.Add(tile.GetBuilding());
 

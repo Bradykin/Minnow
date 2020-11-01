@@ -76,8 +76,18 @@ public class AIMoveToTargetStandardStep : AIMoveStep
             yield break;
         }
 
-        int closestTile = tilesToMoveTo.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t));
-        GameTile moveDestination = tilesToMoveTo.First(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t) == closestTile);
+        int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false));
+        GameTile moveDestination;
+        List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false) == closestTileDistance).ToList();
+
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetKeyword<GameFlyingKeyword>() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
+        {
+            moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
+        }
+        else
+        {
+            moveDestination = closestGameTiles[Random.Range(0, closestGameTiles.Count)];
+        }
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
 
         if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
