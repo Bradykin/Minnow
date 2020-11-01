@@ -24,7 +24,7 @@ public class GameGetHitAction : GameAction
 
     public override void DoAction()
     {
-        GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
+        GameBrittleKeyword keyword = m_unit.GetBrittleKeyword();
 
         m_unit.GetHit(m_damage);
     }

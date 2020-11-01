@@ -31,23 +31,23 @@ public class AIScanTargetsInRangeStep : AIStep
             if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.m_occupyingUnit, false))
             {
                 int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower());
-                if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.m_occupyingUnit.GetKeyword<GameTauntKeyword>() == null)
+                if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.m_occupyingUnit.GetTauntKeyword() == null)
                 {
                     continue;
                 }
 
                 possibleUnitTargets.Add(tile.m_occupyingUnit);
 
-                if (tile.m_occupyingUnit.GetKeyword<GameTauntKeyword>() != null)
+                if (tile.m_occupyingUnit.GetTauntKeyword() != null)
                 {
                     m_AIGameEnemyUnit.m_tauntUnitTargets.Add(tile.m_occupyingUnit);
                 }
 
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
                 int numHitsToRateVulnerable = 2;
-                if (tile.m_occupyingUnit.GetKeyword<GameDamageShieldKeyword>() != null)
+                if (tile.m_occupyingUnit.GetDamageShieldKeyword() != null)
                 {
-                    numHitsToRateVulnerable -= tile.m_occupyingUnit.GetKeyword<GameDamageShieldKeyword>().GetShieldLevel();
+                    numHitsToRateVulnerable -= tile.m_occupyingUnit.GetDamageShieldKeyword().GetShieldLevel();
                 }
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)

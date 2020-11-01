@@ -7,7 +7,7 @@ public class ContentTokenOfFriendshipRelic : GameRelic
     public ContentTokenOfFriendshipRelic()
     {
         m_name = "Token of Friendship";
-        m_desc = "Allied Humanoids gain Mountainwalk when summoned.";
+        m_desc = "Allied Humanoids have <b>Mountainwalk</b>.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();

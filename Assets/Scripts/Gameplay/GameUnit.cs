@@ -103,10 +103,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         TriggerSummonRelics();
 
-        List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
-        for (int i = 0; i < summonKeywords.Count; i++)
+        GameSummonKeyword summonKeyword = GetSummonKeyword();
+        if (summonKeyword != null)
         {
-            summonKeywords[i].DoAction();
+            summonKeyword.DoAction();
         }
 
         if (GetTeam() == Team.Player)
@@ -154,7 +154,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (gameUnit != null)
         {
-            GameThornsKeyword thornsKeyword = m_keywordHolder.GetKeyword<GameThornsKeyword>();
+            GameThornsKeyword thornsKeyword = GetThornsKeyword();
             if (thornsKeyword != null)
             {
                 HitUnit(gameUnit, thornsKeyword.m_thornsDamage, false, false);
@@ -180,7 +180,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return 0;
         }
 
-        GameDamageShieldKeyword damageShieldKeyword = m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
+        GameDamageShieldKeyword damageShieldKeyword = GetDamageShieldKeyword();
         if (damageShieldKeyword != null)
         {
             if (!damageShieldKeyword.ShouldBeRemoved())
@@ -189,7 +189,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (damageShieldKeyword.ShouldBeRemoved())
                 {
                     UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
-                    m_keywordHolder.RemoveKeyword(damageShieldKeyword);
+                    RemoveKeyword(damageShieldKeyword);
                 }
                 else
                 {
@@ -199,7 +199,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        if (GameHelper.HasRelic<ContentTalonOfTheCruelRelic>() && GetTeam() == Team.Enemy && GetKeyword<GameFlyingKeyword>() != null)
+        if (GameHelper.HasRelic<ContentTalonOfTheCruelRelic>() && GetTeam() == Team.Enemy && GetFlyingKeyword() != null)
+        {
+            damage = damage * 2;
+        }
+
+        if (GameHelper.HasRelic<ContentHistoryInBloodRelic>())
         {
             damage = damage * 2;
         }
@@ -208,18 +213,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
 
-        List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
+        GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
 
-        for (int i = 0; i < enrageKeywords.Count; i++)
+        if (enrageKeyword != null)
         {
-            enrageKeywords[i].DoAction(damage);
+            enrageKeyword.DoAction(damage);
 
             //Trigger again if the player has Bestial Wrath
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
-                    enrageKeywords[i].DoAction(damage);
+                    enrageKeyword.DoAction(damage);
                 }
             }
         }
@@ -246,13 +251,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         damage -= m_gameTile.GetDamageReduction(this);
 
-        GameBrittleKeyword brittleKeyword = m_keywordHolder.GetKeyword<GameBrittleKeyword>();
+        GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
         if (brittleKeyword != null)
         {
             damage += brittleKeyword.m_damageIncrease;
         }
 
-        GameDamageReductionKeyword damageReductionKeyword = m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
+        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
         if (damageReductionKeyword != null)
         {
             damage -= damageReductionKeyword.m_damageReduction;
@@ -317,10 +322,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth = 0;
 
-        List<GameDeathKeyword> deathKeywords = m_keywordHolder.GetKeywords<GameDeathKeyword>();
-        for (int i = 0; i < deathKeywords.Count; i++)
+        GameDeathKeyword deathKeyword = GetDeathKeyword();
+        if (deathKeyword != null)
         {
-            deathKeywords[i].DoAction();
+            deathKeyword.DoAction();
         }
 
         TriggerDeathRelics();
@@ -339,8 +344,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
-                    surroundingTiles[i].m_occupyingUnit.GetKeyword<GameFlyingKeyword>() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetKeyword<GameWaterwalkKeyword>() == null)
+                    surroundingTiles[i].m_occupyingUnit.GetFlyingKeyword() == null && 
+                    surroundingTiles[i].m_occupyingUnit.GetWaterwalkKeyword() == null)
                 {
                     surroundingTiles[i].m_occupyingUnit.Die();
                 }
@@ -479,9 +484,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void SpellCast(GameCard.Target targetType, GameTile targetTile)
     {
-        List<GameSpellcraftKeyword> spellcraftKeywords = m_keywordHolder.GetKeywords<GameSpellcraftKeyword>();
+        GameSpellcraftKeyword spellcraftKeyword = GetSpellcraftKeyword();
 
-        if (spellcraftKeywords.Count == 0)
+        if (spellcraftKeyword == null)
         {
             return;
         }
@@ -504,18 +509,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        for (int i = 0; i < spellcraftKeywords.Count; i++)
-        {
-            spellcraftKeywords[i].DoAction();
-        }
+        spellcraftKeyword.DoAction();
     }
 
     public void TriggerKnowledgeable()
     {
-        List<GameKnowledgeableKeyword> knowledgeableKeywords = m_keywordHolder.GetKeywords<GameKnowledgeableKeyword>();
-        for (int i = 0; i < knowledgeableKeywords.Count; i++)
+        GameKnowledgeableKeyword knowledgeableKeyword = GetKnowledgeableKeyword();
+        if (knowledgeableKeyword != null)
         {
-            knowledgeableKeywords[i].DoAction();
+            knowledgeableKeyword.DoAction();
         }
     }
 
@@ -610,36 +612,36 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         int damageTaken = other.GetHit(damageAmount, this, shouldThorns);
 
-        List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
 
-        for (int i = 0; i < momentumKeywords.Count; i++)
-        {
-            momentumKeywords[i].DoAction();
+        if (momentumKeyword != null)
+        { 
+            momentumKeyword.DoAction();
 
             //If the player has Bestial Wrath relic, repeat the action
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
-                    momentumKeywords[i].DoAction();
+                    momentumKeyword.DoAction();
                 }
             }
         }
 
         if (other.m_isDead && !m_isDead)
         {
-            List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+            GameVictoriousKeyword victoriousKeyword = GetVictoriousKeyword();
 
-            for (int i = 0; i < victoriousKeywords.Count; i++)
+            if (victoriousKeyword != null)
             {
-                victoriousKeywords[i].DoAction();
+                victoriousKeyword.DoAction();
 
                 //If the player has Bestial Wrath relic, repeat the action
                 if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
                 {
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
-                        victoriousKeywords[i].DoAction();
+                        victoriousKeyword.DoAction();
                     }
                 }
             }
@@ -659,36 +661,36 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
-        List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
+        GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
 
-        for (int i = 0; i < momentumKeywords.Count; i++)
+        if (momentumKeyword != null)
         {
-            momentumKeywords[i].DoAction();
+            momentumKeyword.DoAction();
 
             //Repeat the action if the player has the Bestial Wrath Relic
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
-                    momentumKeywords[i].DoAction();
+                    momentumKeyword.DoAction();
                 }
             }
         }
 
         if (other.m_isDestroyed)
         {
-            List<GameVictoriousKeyword> victoriousKeywords = m_keywordHolder.GetKeywords<GameVictoriousKeyword>();
+            GameVictoriousKeyword victoriousKeyword = GetVictoriousKeyword();
 
-            for (int i = 0; i < victoriousKeywords.Count; i++)
+            if (victoriousKeyword != null)
             {
-                victoriousKeywords[i].DoAction();
+                victoriousKeyword.DoAction();
 
                 //Repeat the action if the player has the Bestial Wrath Relic
                 if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
                 {
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
-                        victoriousKeywords[i].DoAction();
+                        victoriousKeyword.DoAction();
                     }
                 }
             }
@@ -832,14 +834,150 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_keywordHolder.SubtractKeyword(toRemove);
     }
 
-    public T GetKeyword<T>()
+    public virtual GameThornsKeyword GetThornsKeyword()
     {
-        return m_keywordHolder.GetKeyword<T>();
+        //Set the return keyword to a blank keyword
+        GameThornsKeyword toReturn = new GameThornsKeyword(0);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameThornsKeyword keywordThorns = m_keywordHolder.GetKeyword<GameThornsKeyword>();
+        if (keywordThorns != null)
+        {
+            toReturn.AddKeyword(keywordThorns);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentThornsOfRayRelic>() && GetTeam() == Team.Player)
+        {
+            toReturn.AddKeyword(new GameThornsKeyword(2));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.m_thornsDamage == 0)
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
-    public List<T> GetKeywords<T>()
+    public virtual GameFlyingKeyword GetFlyingKeyword()
     {
-        return m_keywordHolder.GetKeywords<T>();
+        return m_keywordHolder.GetKeyword<GameFlyingKeyword>();
+    }
+
+    public virtual GameMountainwalkKeyword GetMountainwalkKeyword()
+    {
+        if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            return new GameMountainwalkKeyword();
+        }
+
+        return m_keywordHolder.GetKeyword<GameMountainwalkKeyword>();
+    }
+
+    public virtual GameWaterwalkKeyword GetWaterwalkKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameWaterwalkKeyword>();
+    }
+
+    public virtual GameForestwalkKeyword GetForestwalkKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameForestwalkKeyword>();
+    }
+
+    public virtual GameTauntKeyword GetTauntKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameTauntKeyword>();
+    }
+
+    public virtual GameLavawalkKeyword GetLavawalkKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameLavawalkKeyword>();
+    }
+
+    public virtual GameRegenerateKeyword GetRegenerateKeyword()
+    {
+        //Set the return keyword to a blank keyword
+        GameRegenerateKeyword toReturn = new GameRegenerateKeyword(0);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameRegenerateKeyword keywordRegen = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        if (keywordRegen != null)
+        {
+            toReturn.AddKeyword(keywordRegen);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentPlagueMaskRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
+        {
+            toReturn.AddKeyword(new GameRegenerateKeyword(5));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.m_regenVal == 0)
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
+    }
+
+    public virtual GameDamageShieldKeyword GetDamageShieldKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
+    }
+
+    public virtual GameBrittleKeyword GetBrittleKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameBrittleKeyword>();
+    }
+
+    public virtual GameEnrageKeyword GetEnrageKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameEnrageKeyword>();
+    }
+
+    public virtual GameMomentumKeyword GetMomentumKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+    }
+
+    public virtual GameVictoriousKeyword GetVictoriousKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+    }
+
+    public virtual GameKnowledgeableKeyword GetKnowledgeableKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameKnowledgeableKeyword>();
+    }
+
+    public virtual GameSpellcraftKeyword GetSpellcraftKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameSpellcraftKeyword>();
+    }
+
+    public virtual GameRangeKeyword GetRangeKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameRangeKeyword>();
+    }
+
+    public virtual GameDeathKeyword GetDeathKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameDeathKeyword>();
+    }
+
+    public virtual GameSummonKeyword GetSummonKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameSummonKeyword>();
+    }
+
+    public virtual GameDamageReductionKeyword GetDamageReductionKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()
@@ -849,7 +987,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int GetRange()
     {
-        GameRangeKeyword rangeKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
+        GameRangeKeyword rangeKeyword = GetRangeKeyword();
         if (rangeKeyword != null)
         {
             int range = rangeKeyword.m_range;
@@ -891,6 +1029,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
             {
                 toReturn -= 2;
+            }
+
+            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn += 10;
             }
 
             if (GetRange() > 1)
@@ -950,6 +1093,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentOrbOfHealthRelic>())
             {
                 toReturn += 6;
+            }
+
+            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn += 10;
             }
         }
 
@@ -1193,13 +1341,133 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual string GetDesc()
     {
-        string descString = "";
-        if (m_desc != null && m_desc != "")
+        return m_desc;
+    }
+
+    public virtual string GetKeywordDesc()
+    {
+        string returnDesc = "";
+
+        GameThornsKeyword thornsKeyword = GetThornsKeyword();
+        if (thornsKeyword != null)
         {
-            descString += m_desc;
+            returnDesc += thornsKeyword.GetDisplayString() + "\n";
         }
 
-        return descString;
+        GameFlyingKeyword flyingKeyword = GetFlyingKeyword();
+        if (flyingKeyword != null)
+        {
+            returnDesc += flyingKeyword.GetDisplayString() + "\n";
+        }
+
+        GameMountainwalkKeyword mountainwalkKeyword = GetMountainwalkKeyword();
+        if (mountainwalkKeyword != null)
+        {
+            returnDesc += mountainwalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameWaterwalkKeyword waterwalkKeyword = GetWaterwalkKeyword();
+        if (waterwalkKeyword != null)
+        {
+            returnDesc += waterwalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameForestwalkKeyword forestwalkKeyword = GetForestwalkKeyword();
+        if (forestwalkKeyword != null)
+        {
+            returnDesc += forestwalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameTauntKeyword tauntKeyword = GetTauntKeyword();
+        if (tauntKeyword != null)
+        {
+            returnDesc += tauntKeyword.GetDisplayString() + "\n";
+        }
+
+        GameLavawalkKeyword lavawalkKeyword = GetLavawalkKeyword();
+        if (lavawalkKeyword != null)
+        {
+            returnDesc += lavawalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameRegenerateKeyword regenKeyword = GetRegenerateKeyword();
+        if (regenKeyword != null)
+        {
+            returnDesc += regenKeyword.GetDisplayString() + "\n";
+        }
+
+        GameDamageShieldKeyword damageShieldKeyword = GetDamageShieldKeyword();
+        if (damageShieldKeyword != null)
+        {
+            returnDesc += damageShieldKeyword.GetDisplayString() + "\n";
+        }
+
+        GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
+        if (brittleKeyword != null)
+        {
+            returnDesc += brittleKeyword.GetDisplayString() + "\n";
+        }
+
+        GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
+        if (enrageKeyword != null)
+        {
+            returnDesc += enrageKeyword.GetDisplayString() + "\n";
+        }
+
+        GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
+        if (momentumKeyword != null)
+        {
+            returnDesc += momentumKeyword.GetDisplayString() + "\n";
+        }
+
+        GameVictoriousKeyword victoriousKeyword = GetVictoriousKeyword();
+        if (victoriousKeyword != null)
+        {
+            returnDesc += victoriousKeyword.GetDisplayString() + "\n";
+        }
+
+        GameKnowledgeableKeyword knowledgeableKeyword = GetKnowledgeableKeyword();
+        if (knowledgeableKeyword != null)
+        {
+            returnDesc += knowledgeableKeyword.GetDisplayString() + "\n";
+        }
+
+        GameSpellcraftKeyword spellcraftKeyword = GetSpellcraftKeyword();
+        if (spellcraftKeyword != null)
+        {
+            returnDesc += spellcraftKeyword.GetDisplayString() + "\n";
+        }
+
+        GameRangeKeyword rangeKeyword = GetRangeKeyword();
+        if (rangeKeyword != null)
+        {
+            returnDesc += rangeKeyword.GetDisplayString() + "\n";
+        }
+
+        GameDeathKeyword deathKeyword = GetDeathKeyword();
+        if (deathKeyword != null)
+        {
+            returnDesc += deathKeyword.GetDisplayString() + "\n";
+        }
+
+        GameSummonKeyword summonKeyword = GetSummonKeyword();
+        if (summonKeyword != null)
+        {
+            returnDesc += summonKeyword.GetDisplayString() + "\n";
+        }
+
+        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
+        if (damageReductionKeyword != null)
+        {
+            returnDesc += damageReductionKeyword.GetDisplayString() + "\n";
+        }
+
+        if(returnDesc.Length >= 2)
+        {
+            returnDesc = returnDesc.Substring(0, returnDesc.Length - 1);
+        }
+
+        return returnDesc;
     }
 
     private void RegenStamina()
@@ -1338,14 +1606,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GetTypeline() == Typeline.Humanoid)
-            {
-                if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
-                {
-                    AddKeyword(new GameMountainwalkKeyword());
-                }
-            }
-
             if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
             {
                 if (GameHelper.HasAllTypelines())
@@ -1456,7 +1716,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentBeadsOfProphecyRelic>() && m_gameTile != null)
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
                     if (adjacentTiles[i].IsOccupied() &&
@@ -1552,10 +1812,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             Heal(GetMaxHealth());
         }
 
-        List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
-        for (int i = 0; i < regenKeywords.Count; i++)
+        GameRegenerateKeyword regenKeyword = GetRegenerateKeyword();
+        if (regenKeyword != null)
         {
-            Heal(regenKeywords[i].m_regenVal);
+            Heal(regenKeyword.m_regenVal);
         }
 
         if (GetTypeline() == Typeline.Humanoid)
@@ -1599,7 +1859,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         RegenStamina();
 
-        if (GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain && m_keywordHolder.GetKeyword<GameLavawalkKeyword>() == null && m_keywordHolder.GetKeyword<GameFlyingKeyword>() == null)
+        if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }

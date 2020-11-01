@@ -63,7 +63,7 @@ public class WorldUnit : MonoBehaviour
             return;
         }
 
-        m_damageShieldIndicator.gameObject.SetActive(GetUnit().GetKeyword<GameDamageShieldKeyword>() != null);
+        m_damageShieldIndicator.gameObject.SetActive(GetUnit().GetDamageShieldKeyword() != null);
 
         if (m_moveTarget != gameObject.transform.position)
         {

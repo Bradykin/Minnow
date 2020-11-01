@@ -54,7 +54,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
             if (numFogCleared > 0)
             {
-                if (m_occupyingUnit.GetKeyword<GameEnrageKeyword>() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
+                if (m_occupyingUnit.GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
                 {
                     m_occupyingUnit.GetHit(2);
                 }
@@ -228,7 +228,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (checkerUnit != null)
         {
-            bool canFly = checkerUnit.GetKeyword<GameFlyingKeyword>() != null;
+            bool canFly = checkerUnit.GetFlyingKeyword() != null;
 
             if (canFly)
             {
@@ -241,17 +241,17 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (checkerUnit != null)
         {
-            if (GetTerrain().IsForest() && checkerUnit.GetKeyword<GameForestwalkKeyword>() != null)
+            if (GetTerrain().IsForest() && checkerUnit.GetForestwalkKeyword() != null)
             {
                 tileValue = 1;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsLava() && checkerUnit.GetKeyword<GameLavawalkKeyword>() != null)
+            else if (GetTerrain().IsLava() && checkerUnit.GetLavawalkKeyword() != null)
             {
                 tileValue = 1;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsWater() && checkerUnit.GetKeyword<GameWaterwalkKeyword>() != null)
+            else if (GetTerrain().IsWater() && checkerUnit.GetWaterwalkKeyword() != null)
             {
                 if (checkerUnit.m_instantWaterMovement)
                 {
@@ -263,12 +263,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 }
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsMountain() && checkerUnit.GetKeyword<GameMountainwalkKeyword>() != null)
+            else if (GetTerrain().IsMountain() && checkerUnit.GetMountainwalkKeyword() != null)
             {
                 tileValue =  2;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsHill() && checkerUnit.GetKeyword<GameMountainwalkKeyword>() != null)
+            else if (GetTerrain().IsHill() && checkerUnit.GetMountainwalkKeyword() != null)
             {
                 tileValue =  1;
                 buildingOverrideValue = false;
@@ -302,7 +302,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (checkerUnit != null)
         {
-            bool canFly = checkerUnit.GetKeyword<GameFlyingKeyword>() != null;
+            bool canFly = checkerUnit.GetFlyingKeyword() != null;
 
             if (canFly)
             {
@@ -350,7 +350,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (checkerUnit != null)
         {
-            if (checkerUnit.GetKeyword<GameFlyingKeyword>() != null)
+            if (checkerUnit.GetFlyingKeyword() != null)
             {
                 return 0;
             }

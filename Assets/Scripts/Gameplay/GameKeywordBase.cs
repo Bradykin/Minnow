@@ -20,6 +20,28 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>,
 
     public abstract string GetDesc();
 
+    public virtual string GetDisplayString()
+    {
+        string displayString = "";
+
+        if (!m_isVisible)
+        {
+            return string.Empty;
+        }
+
+        displayString += "<b>" + GetName() + "</b>";
+        if (m_shortDesc != string.Empty)
+        {
+            displayString += " <i>(" + m_shortDesc + ")</i>";
+        }
+        if (GetDesc() != string.Empty)
+        {
+            displayString += ": " + GetDesc();
+        }
+
+        return displayString;
+    }
+
     public abstract void AddKeyword(GameKeywordBase toAdd);
 
     public abstract void SubtractKeyword(GameKeywordBase toSubtract);
@@ -34,5 +56,4 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>,
     public abstract JsonKeywordData SaveToJson();
 
     public abstract void LoadFromJson(JsonKeywordData jsonData);
-
 }

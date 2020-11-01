@@ -47,18 +47,18 @@ public class ContentCureWoundsCard : GameCardSpellBase
 
         if (GetCardLevel() >= 2)
         {
-            List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
+            GameEnrageKeyword enrageKeyword = targetUnit.GetEnrageKeyword();
 
-            for (int i = 0; i < enrageKeywords.Count; i++)
+            if (enrageKeyword != null)
             {
-                enrageKeywords[i].DoAction(0);
+                enrageKeyword.DoAction(0);
 
                 //Trigger again if the player has the Bestial Wrath relic
                 if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
                 {
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
-                        enrageKeywords[i].DoAction(0);
+                        enrageKeyword.DoAction(0);
                     }
                 }
             }

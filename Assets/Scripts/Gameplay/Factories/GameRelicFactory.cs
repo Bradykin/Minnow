@@ -16,7 +16,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentLoadedChestRelic());
         m_relics.Add(new ContentWolvenFangRelic());
 
-        //General Relics
+        //General Relics (67)
         m_relics.Add(new ContentBestialWrathRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
         m_relics.Add(new ContentMorlemainsSkullRelic());
@@ -40,9 +40,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSigilOfTheSwordsmanRelic());
         m_relics.Add(new ContentBurningShivsRelic());
         m_relics.Add(new ContentPoisonedShivsRelic());
-
-        //New relics to test
-        //First 30
         m_relics.Add(new ContentCallOfTheSeaRelic());
         m_relics.Add(new ContentMaskOfSpeedRelic());
         m_relics.Add(new ContentSackOfSoulsRelic());
@@ -73,8 +70,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentAncientRitualRelic());
         m_relics.Add(new ContentTokenOfTheUprisingRelic());
         m_relics.Add(new ContentSecretTiesRelic());
-
-        //Second 28
         m_relics.Add(new ContentEvolvedMembraneRelic());
         m_relics.Add(new ContentRelicOfVictoryRelic());
         m_relics.Add(new ContentStarOfDenumainRelic());
@@ -85,11 +80,19 @@ public static class GameRelicFactory
         m_relics.Add(new ContentCanvasOfHistoryRelic());
         m_relics.Add(new ContentBeadsOfProphecyRelic());
         m_relics.Add(new ContentTotemOfRevengeRelic());
-
         m_relics.Add(new ContentVoiceOfTheDefenderRelic());
         m_relics.Add(new ContentMemoryOfTheDefenderRelic());
         m_relics.Add(new ContentTailOfLifeRelic());
         m_relics.Add(new ContentAncientMysteryRelic());
+
+        //Need 33 here
+        m_relics.Add(new ContentForbiddenKnowledge());
+        m_relics.Add(new ContentHistoryInBloodRelic());
+        m_relics.Add(new ContentLastHopeRelic());
+        m_relics.Add(new ContentProclamationOfSurrenderRelic());
+        m_relics.Add(new ContentThornsOfRayRelic());
+        m_relics.Add(new ContentPlagueMaskRelic());
+        m_relics.Add(new ContentSecretsOfNatureRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

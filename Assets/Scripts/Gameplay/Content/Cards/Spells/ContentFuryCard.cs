@@ -43,48 +43,43 @@ public class ContentFuryCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        List<GameMomentumKeyword> momentumKeywords = targetUnit.GetKeywords<GameMomentumKeyword>();
-        List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
-        List<GameVictoriousKeyword> victoriousKeywords = targetUnit.GetKeywords<GameVictoriousKeyword>();
+        GameMomentumKeyword momentumKeyword = targetUnit.GetMomentumKeyword();
+        GameEnrageKeyword enrageKeyword = targetUnit.GetEnrageKeyword();
+        GameVictoriousKeyword victoriousKeyword = targetUnit.GetVictoriousKeyword();
 
-        for (int i = 0; i < momentumKeywords.Count; i++)
+        if (momentumKeyword != null)
         {
-            momentumKeywords[i].DoAction();
-
-            //Repeat action if the player has the Bestial Wrath Relic
-            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
-            {
-                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
-                {
-                    momentumKeywords[i].DoAction();
-                }
-            }
+            momentumKeyword.DoAction();
+        }
+        
+        if (enrageKeyword != null)
+        {
+            enrageKeyword.DoAction(0);
         }
 
-        for (int i = 0; i < enrageKeywords.Count; i++)
+        if (victoriousKeyword != null)
         {
-            enrageKeywords[i].DoAction(0);
-
-            //Repeat action if the player has the Bestial Wrath Relic
-            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
-            {
-                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
-                {
-                    enrageKeywords[i].DoAction(0);
-                }
-            }
+            victoriousKeyword.DoAction();
         }
 
-        for (int i = 0; i < victoriousKeywords.Count; i++)
+        //Repeat action if the player has the Bestial Wrath Relic
+        if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
         {
-            victoriousKeywords[i].DoAction();
-
-            //Repeat action if the player has the Bestial Wrath Relic
-            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
+            if (GameHelper.HasRelic<ContentBestialWrathRelic>())
             {
-                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                if (momentumKeyword != null)
                 {
-                    victoriousKeywords[i].DoAction();
+                    momentumKeyword.DoAction();
+                }
+
+                if (enrageKeyword != null)
+                {
+                    enrageKeyword.DoAction(0);
+                }
+
+                if (victoriousKeyword != null)
+                {
+                    victoriousKeyword.DoAction();
                 }
             }
         }

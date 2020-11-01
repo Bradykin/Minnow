@@ -20,7 +20,7 @@ public class ContentConjuredImp : GameUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Conjured Imp";
-        m_desc = "When you play this, add a copy of this card to your hand without this ability.";
+        m_desc = "When you play this, add a copy of this card to your hand without this ability.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
