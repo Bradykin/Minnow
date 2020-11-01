@@ -48,11 +48,12 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMarkOfTordrimRelic());
         m_relics.Add(new ContentFearOfTheShakinaRelic());
         m_relics.Add(new ContentGoldenKnotRelic());
-
         m_relics.Add(new ContentNamelessFlaskRelic());
         m_relics.Add(new ContentTheGreatestGiftRelic());
         m_relics.Add(new ContentSporetechRelic());
         m_relics.Add(new ContentTokenOfFriendshipRelic());
+
+        m_relics.Add(new ContentTheReminderRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

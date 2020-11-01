@@ -1178,6 +1178,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_curStamina = 0;
         }
 
+        if (m_curStamina == 0 && GameHelper.HasRelic<ContentTheReminderRelic>())
+        {
+            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
+            {
+                GetHit(5);
+            }
+        }
+
         UIHelper.ReselectUnit();
     }
 
