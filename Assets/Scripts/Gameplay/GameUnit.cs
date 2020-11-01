@@ -414,6 +414,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 player.DrawCards(1);
             }
+
+            if (GameHelper.HasRelic<ContentRelicOfVictoryRelic>() && GetPower() >= 20)
+            {
+                player.DrawCards(2);
+                player.AddEnergy(2);
+            }
         }
         else if (GetTeam() == Team.Player)
         {
