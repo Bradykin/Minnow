@@ -10,8 +10,8 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentEyeOfTelloRelic());
-                GameHelper.GetPlayer().AddRelic(new ContentTomeOfDuluhainRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDesignSchematicsRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentSecretTiesRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))
@@ -21,12 +21,12 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentArcaneBoltCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentConjuredImpCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentStoneGolemCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.P))

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +48,11 @@ public class ContentConjuredImp : GameUnit
 
         if (!disableDuplicate)
         {
-            ContentConjuredImp copyImp = (ContentConjuredImp)GameUnitFactory.GetUnitFromJson(this.SaveToJson());
+            JsonGameUnitData copyData = this.SaveToJson();
+            copyData.customName = "";
+            copyData.guid = System.Guid.NewGuid().ToString();
+
+            ContentConjuredImp copyImp = (ContentConjuredImp)GameUnitFactory.GetUnitFromJson(copyData);
             ContentConjuredImpCard copyImpCard = (ContentConjuredImpCard)GameCardFactory.GetCardFromUnit(copyImp);
             ((ContentConjuredImp)copyImpCard.m_unit).DisableDuplicate();
             copyImpCard.SetDesc(copyImpCard.m_unit.GetDesc());
