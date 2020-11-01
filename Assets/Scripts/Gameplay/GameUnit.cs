@@ -98,6 +98,26 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_returnedToDeckDeath = false;
         SetHealthStaminaValues();
 
+        if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
+        {
+            if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+            {
+                List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
+                tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
+                tordrimKeywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
+                tordrimKeywords.Add(new GameFlyingKeyword());
+                tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
+                tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
+                tordrimKeywords.Add(new GameRangeKeyword(2));
+                tordrimKeywords.Add(new GameRegenerateKeyword(10));
+                tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
+                tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
+
+                int r = Random.Range(0, tordrimKeywords.Count);
+                AddKeyword(tordrimKeywords[r]);
+            }
+        }
+
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
@@ -190,14 +210,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
 
         List<GameEnrageKeyword> enrageKeywords = m_keywordHolder.GetKeywords<GameEnrageKeyword>();
-        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
             enrageKeywords[i].DoAction(damage);
-            if (GetTypeline() == Typeline.Monster)
+
+            //Trigger again if the player has Bestial Wrath
+            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
-                for (int k = 0; k < numBestialWrath; k++)
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
                     enrageKeywords[i].DoAction(damage);
                 }
@@ -252,7 +273,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            for (int i = 0; i < GameHelper.RelicCount<ContentDestinyRelic>(); i++)
+            if (GameHelper.HasRelic<ContentDestinyRelic>())
             {
                 shouldRevive = shouldRevive || GameHelper.PercentChanceRoll(33);
             }
@@ -297,37 +318,38 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             deathKeywords[i].DoAction();
         }
 
+        if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
+        {
+            player.m_wallet.AddResources(new GameWallet(3));
+        }
+
         if (GetTeam() == Team.Enemy)
         {
-            int numSkulls = GameHelper.RelicCount<ContentMorlemainsSkullRelic>();
-            if (numSkulls > 0)
+            if (GameHelper.HasRelic<ContentMorlemainsSkullRelic>())
             {
-                player.AddEnergy(numSkulls);
+                player.AddEnergy(1);
             }
 
-            int numCatchers = GameHelper.RelicCount<ContentSpiritCatcherRelic>();
-            if (numCatchers > 0)
+            if (GameHelper.HasRelic<ContentSpiritCatcherRelic>())
             {
-                player.DrawCards(numCatchers);
+                player.DrawCards(1);
             }
         }
         else if (GetTeam() == Team.Player)
         {
-            int numSoulTrap = GameHelper.RelicCount<ContentSoulTrapRelic>();
-            if (numSoulTrap > 0)
+            if (GameHelper.HasRelic<ContentSoulTrapRelic>())
             {
                 if (GameHelper.GetGameController().CurrentActor == player)
                 {
-                    player.DrawCards(3 * numSoulTrap);
+                    player.DrawCards(3);
                 }
                 else
                 {
-                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameDrawCardAction(3 * numSoulTrap));
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameDrawCardAction(3));
                 }
             }
 
-            int numCursedAmulet = GameHelper.RelicCount<ContentCursedAmuletRelic>();
-            if (numCursedAmulet > 0 && m_gameTile != null)
+            if (GameHelper.HasRelic<ContentCursedAmuletRelic>() && m_gameTile != null)
             {
                 List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                 for (int i = 0; i < adjacentTiles.Count; i++)
@@ -339,11 +361,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.RelicCount<ContentDesignSchematicsRelic>() > 0 && GetTypeline() == Typeline.Creation && !m_returnedToDeckDeath)
+            if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                m_returnedToDeckDeath = true;
-                GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(this);
-                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
+                AddStats(1, 1);
+                AddMaxStamina(1);
             }
 
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
@@ -575,7 +596,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public int GetSightRange()
     {
-        return m_sightRange;
+        int toReturn = m_sightRange;
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
+        {
+            toReturn += 1;
+        }
+
+        return toReturn;
     }
 
     public virtual int HitUnit(GameUnit other, bool spendStamina = true)
@@ -600,14 +628,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
-        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
-            if (GetTypeline() == Typeline.Monster)
+
+            //If the player has Bestial Wrath relic, repeat the action
+            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
-                for (int k = 0; k < numBestialWrath; k++)
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
                     momentumKeywords[i].DoAction();
                 }
@@ -621,9 +650,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             for (int i = 0; i < victoriousKeywords.Count; i++)
             {
                 victoriousKeywords[i].DoAction();
-                if (GetTypeline() == Typeline.Monster)
+
+                //If the player has Bestial Wrath relic, repeat the action
+                if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
                 {
-                    for (int k = 0; k < numBestialWrath; k++)
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
                         victoriousKeywords[i].DoAction();
                     }
@@ -646,14 +677,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
-        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
-            if (GetTypeline() == Typeline.Monster)
+
+            //Repeat the action if the player has the Bestial Wrath Relic
+            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
-                for (int k = 0; k < numBestialWrath; k++)
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
                     momentumKeywords[i].DoAction();
                 }
@@ -667,9 +699,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             for (int i = 0; i < victoriousKeywords.Count; i++)
             {
                 victoriousKeywords[i].DoAction();
-                if (GetTypeline() == Typeline.Monster)
+
+                //Repeat the action if the player has the Bestial Wrath Relic
+                if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
                 {
-                    for (int k = 0; k < numBestialWrath; k++)
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
                         victoriousKeywords[i].DoAction();
                     }
@@ -710,11 +744,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         int staminaToAttack = m_staminaToAttack;
         if (GetTeam() == Team.Player)
         {
-            staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+            if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
+            {
+                staminaToAttack = staminaToAttack - 1;
+            }
 
             if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
-                staminaToAttack = staminaToAttack - GameHelper.RelicCount<ContentTotemOfTheWolfRelic>();
+                staminaToAttack = staminaToAttack - 1;
+            }
+
+            if (GameHelper.HasRelic<ContentNamelessFlaskRelic>())
+            {
+                if (GetCurStamina() == 1)
+                {
+                    staminaToAttack = 1;
+                }
             }
         }
 
@@ -822,9 +867,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
 
-                if (terrainRange > 0 && GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+                if (terrainRange > 0 && GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
                 {
-                    terrainRange += terrainRange * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
+                    terrainRange += terrainRange * 2;
                 }
                 
                 range += terrainRange;
@@ -842,8 +887,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += (2 * (1 + new ContentWolvenFangRelic().GetRelicLevel())) * GameHelper.RelicCount<ContentWolvenFangRelic>();
-            toReturn -= 2 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+            if (GameHelper.HasRelic<ContentWolvenFangRelic>())
+            {
+                toReturn += (2 * (1 + new ContentWolvenFangRelic().GetRelicLevel()));
+            }
+
+            if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
+            {
+                toReturn -= 2;
+            }
 
             if (GetRange() > 1)
             {
@@ -875,7 +927,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 6 * GameHelper.RelicCount<ContentOrbOfHealthRelic>();
+            if (GameHelper.HasRelic<ContentOrbOfHealthRelic>())
+            {
+                toReturn += 6;
+            }
         }
 
         return toReturn;
@@ -887,7 +942,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 1 * GameHelper.RelicCount<ContentHourglassOfSpeedRelic>();
+            if (GameHelper.HasRelic<ContentHourglassOfSpeedRelic>())
+            {
+                toReturn += 1;
+            }
         }
 
         return toReturn;
@@ -899,12 +957,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            toReturn += 1 * GameHelper.RelicCount<ContentLegendaryFragmentRelic>();
+            if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
+            {
+                toReturn += 1;
+            }
 
-            toReturn -= 2 * GameHelper.RelicCount<ContentUrbanTacticsRelic>();
+            if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
+            {
+                toReturn -= 2;
+            }
 
-            int numGrandPact = GameHelper.RelicCount<ContentGrandPactRelic>();
-            if (numGrandPact > 0)
+            if (GameHelper.HasRelic<ContentGrandPactRelic>())
             {
                 Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
                 List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
@@ -933,22 +996,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (hasAll)
                 {
-                    toReturn += numGrandPact;
+                    toReturn += 1;
                 }
             }
 
             if (m_rarity == GameRarity.Starter)
             {
-                toReturn += GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
+                if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
+                {
+                    toReturn += 1;
+                }
             }
             
             if (m_typeline == Typeline.Monster)
             {
-                toReturn += GameHelper.RelicCount<ContentLegacyOfMonstersRelic>();
+                if (GameHelper.HasRelic<ContentLegacyOfMonstersRelic>())
+                {
+                    toReturn += 1;
+                }
             }
         }
 
-        toReturn += 1 * GameHelper.RelicCount<ContentSecretSoupRelic>();
+        if (GameHelper.HasRelic<ContentSecretSoupRelic>())
+        {
+            toReturn += 1;
+        }
 
         return toReturn;
     }
@@ -995,7 +1067,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void MoveTo(GameTile tile)
     {
         if (tile == m_gameTile)
+        {
             return;
+        }
+
+        if (m_gameTile.m_isFog && !tile.m_isFog && GetTeam() == Team.Enemy)
+        {
+            if (GameHelper.HasRelic<ContentFearOfTheShakinaRelic>())
+            {
+                GetHit(3);
+            }
+        }
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
 
@@ -1096,7 +1178,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
         if (GameHelper.GetGameController().m_currentTurnNumber + 1 == GameHelper.GetPlayer().m_totemOfTheWolfTurn && GetTeam() == Team.Player)
         {
-            staminaToRegen *= (1 + GameHelper.RelicCount<ContentTotemOfTheWolfRelic>());
+            if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
+            {
+                staminaToRegen = staminaToRegen * 2;
+            }
         }
         
         GainStamina(staminaToRegen, true);
@@ -1202,16 +1287,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTypeline() == Typeline.Humanoid)
         {
-            int medkitCount = GameHelper.RelicCount<ContentMedKitRelic>();
-            if (medkitCount > 0 && GetTeam() == Team.Player)
+            if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentMedKitRelic>())
             {
-                int healAmount = m_gameTile.GetCostToPass(this) * medkitCount * 3;
+                int healAmount = m_gameTile.GetCostToPass(this) * 5;
                 Heal(healAmount);
             }
         }
 
-        int callOfTheSeaCount = GameHelper.RelicCount<ContentCallOfTheSeaRelic>();
-        if (callOfTheSeaCount > 0 && GetTeam() == Team.Player)
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentCallOfTheSeaRelic>())
         {
             List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
 
@@ -1227,7 +1310,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             
             if (isNearWater)
             {
-                int healAmount = m_gameTile.GetCostToPass(this) * callOfTheSeaCount * 10;
+                int healAmount = m_gameTile.GetCostToPass(this) * 10;
                 Heal(healAmount);
             }
         }

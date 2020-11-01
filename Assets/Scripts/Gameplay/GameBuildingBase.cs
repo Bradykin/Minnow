@@ -87,9 +87,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     {
         int returnCost = m_cost.m_gold;
 
-        int numRestoritiveBricks = GameHelper.RelicCount<ContentRestorationBrickRelic>();
-
-        for (int i = 0; i < numRestoritiveBricks; i++)
+        if (GameHelper.HasRelic<ContentRestorationBrickRelic>())
         {
             returnCost -= 15;
         }
@@ -105,6 +103,18 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     public int GetCurHealth()
     {
         return m_curHealth;
+    }
+
+    public int GetSightRange()
+    {
+        int toReturn = m_sightRange;
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
+        {
+            toReturn += 1;
+        }
+
+        return toReturn;
     }
 
     public virtual int GetHit(int damage)
@@ -174,10 +184,9 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     {
         if (!m_isDestroyed)
         {
-            int livingStoneCount = GameHelper.RelicCount<ContentLivingStoneRelic>();
-            if (livingStoneCount > 0)
+            if (GameHelper.HasRelic<ContentLivingStoneRelic>())
             {
-                int toIncrease = livingStoneCount * (new ContentLivingStoneRelic().GetRelicLevel() + 1);
+                int toIncrease = (new ContentLivingStoneRelic().GetRelicLevel() + 1);
                 m_maxHealth += toIncrease;
                 GetHealed(toIncrease);
             }

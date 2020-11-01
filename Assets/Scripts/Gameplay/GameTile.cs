@@ -69,12 +69,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (newBuilding.GetTeam() == Team.Player)
         {
-            m_worldTile.ClearSurroundingFog(newBuilding.m_sightRange);
+            m_worldTile.ClearSurroundingFog(newBuilding.GetSightRange());
         }
 
         if (newBuilding.m_expandsPlaceRange)
         {
-            m_worldTile.ExpandPlaceRange(newBuilding.m_sightRange-1);
+            m_worldTile.ExpandPlaceRange(2);
         }
 
         m_building = newBuilding;
@@ -351,9 +351,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             int damageReduction = m_terrain.m_damageReduction;
 
-            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
             {
-                damageReduction += damageReduction * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
+                damageReduction += damageReduction * 2;
             }
             
             return damageReduction;

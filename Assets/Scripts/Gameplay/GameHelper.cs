@@ -96,16 +96,21 @@ public static class GameHelper
         return WorldController.Instance.m_gameController;
     }
 
-    public static int RelicCount<T>()
+    public static bool HasRelic<T>()
     {
         GamePlayer player = GameHelper.GetPlayer();
 
         if (player == null)
         {
-            return 0;
+            return false;
         }
 
-        return player.GetRelics().GetNumRelics<T>();
+        if (player.GetRelics().GetNumRelics<T>() > 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public static bool IsValidChaosLevel(Globals.ChaosLevels toCheck)

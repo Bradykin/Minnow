@@ -260,7 +260,10 @@ public class WorldController : Singleton<WorldController>
             UIWorldElementNotificationController.Instance.ClearAllWorldElementNotifications();
 
             GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
-            intermissionWallet.m_gold += GameHelper.RelicCount<ContentNewInvestmentsRelic>() * m_gameController.m_currentWaveNumber * 20;
+            if (GameHelper.HasRelic<ContentNewInvestmentsRelic>())
+            {
+                intermissionWallet.m_gold += m_gameController.m_currentWaveNumber * 15;
+            }
 
             player.m_wallet.AddResources(intermissionWallet);
 

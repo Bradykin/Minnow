@@ -23,13 +23,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
     {
         string description = GetDamageDescString() + "Drain " + m_drainPower + " Power, adding it to the damage of this card.\n";
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-
-        if (numTraditionalMethods > 1)
-        {
-            description += "Draw " + numTraditionalMethods + " cards.";
-        }
-        else if (numTraditionalMethods > 0)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             description += "Draw a card.";
         }
@@ -48,8 +42,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
         targetUnit.GetHit(GetSpellValue());
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-        for (int i = 0; i < numTraditionalMethods; i++)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
         }

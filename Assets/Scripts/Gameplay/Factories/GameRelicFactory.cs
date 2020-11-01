@@ -33,14 +33,24 @@ public static class GameRelicFactory
         m_relics.Add(new ContentNaturalProtectionRelic());
         m_relics.Add(new ContentLegendaryFragmentRelic());
         m_relics.Add(new ContentCursedAmuletRelic());
-        //m_relics.Add(new ContentDesignSchematicsRelic());
+        m_relics.Add(new ContentDesignSchematicsRelic());
         m_relics.Add(new ContentMedKitRelic());
         m_relics.Add(new ContentLegacyOfMonstersRelic());
         m_relics.Add(new ContentGrandPactRelic());
         m_relics.Add(new ContentTotemOfTheWolfRelic());
         m_relics.Add(new ContentBurningShivsRelic());
         m_relics.Add(new ContentPoisonedShivsRelic());
+
+        //New relics to test
         m_relics.Add(new ContentCallOfTheSeaRelic());
+        m_relics.Add(new ContentMaskOfSpeedRelic());
+        m_relics.Add(new ContentSackOfSoulsRelic());
+        m_relics.Add(new ContentMarkOfTordrimRelic());
+        m_relics.Add(new ContentFearOfTheShakinaRelic());
+        m_relics.Add(new ContentGoldenKnotRelic());
+
+        m_relics.Add(new ContentNamelessFlaskRelic());
+        m_relics.Add(new ContentTheGreatestGiftRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
