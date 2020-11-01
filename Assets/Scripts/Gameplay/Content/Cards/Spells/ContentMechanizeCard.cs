@@ -9,7 +9,7 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_name = "Mechanize";
         m_desc = "Target allied <b>Creation</b> unit loses all current Stamina and gains that much power.";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 0;
         m_rarity = GameRarity.Common;
 
         m_playerUnlockLevel = 2;

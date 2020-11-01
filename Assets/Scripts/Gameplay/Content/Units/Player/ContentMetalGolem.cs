@@ -21,12 +21,12 @@ public class ContentMetalGolem : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
-        AddKeyword(new GameTauntKeyword());
-
         m_name = "Metal Golem";
         m_desc = "At the end of the turn, gain 1 <b>Damage Shield</b> for each mountain in range " + m_eatingRange + ".";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+
+        AddKeyword(new GameTauntKeyword(), false);
 
         LateInit();
     }

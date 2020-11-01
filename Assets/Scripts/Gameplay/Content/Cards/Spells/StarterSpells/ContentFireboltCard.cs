@@ -49,11 +49,11 @@ public class ContentFireboltCard : GameCardSpellBase
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 5;
+        m_spellEffect = 4;
 
         if (level >= 1)
         {
-            m_spellEffect += 4;
+            m_spellEffect += 5;
         }
         
         if (level >= 2)

@@ -43,11 +43,13 @@ public class ContentArcaneBoltCard : GameCardSpellBase
     {
         int spellValueBase = base.GetSpellValue() - m_spellEffect;
 
+        spellValueBase = 5 * spellValueBase + m_spellEffect;
+
         if (spellValueBase < 0)
         {
             spellValueBase = 0;
         }
 
-        return 5 * spellValueBase + m_spellEffect;
+        return spellValueBase;
     }
 }
