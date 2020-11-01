@@ -143,6 +143,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GameHelper.HasRelic<ContentGrandPactRelic>())
+        {
+            if (GameHelper.HasAllTypelines())
+            {
+                AddKeyword(new GameDamageReductionKeyword(1));
+            }
+        }
+
         if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
         {
             int powerChange = Random.Range(-3, 8);
@@ -1026,32 +1034,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentGrandPactRelic>())
             {
-                Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
-                List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
-                for (int i = 0; i < gameUnits.Count; i++)
-                {
-                    int typelineInt = (int)gameUnits[i].GetTypeline();
-                    if (!numCreatureTypes.ContainsKey(typelineInt))
-                    {
-                        numCreatureTypes.Add(typelineInt, 1);
-                    }
-                    else
-                    {
-                        numCreatureTypes[typelineInt]++;
-                    }
-                }
-
-                bool hasAll = true;
-                for (int i = 0; i < (int)Typeline.Count; i++)
-                {
-                    if (!numCreatureTypes.ContainsKey(0))
-                    {
-                        hasAll = false;
-                        break;
-                    }
-                }
-
-                if (hasAll)
+                if (GameHelper.HasAllTypelines())
                 {
                     toReturn += 1;
                 }

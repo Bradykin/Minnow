@@ -215,4 +215,34 @@ public static class GameHelper
     {
         return WorldController.Instance.m_isInGame;
     }
+
+    public static bool HasAllTypelines()
+    {
+        Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
+        List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
+        for (int i = 0; i < gameUnits.Count; i++)
+        {
+            int typelineInt = (int)gameUnits[i].GetTypeline();
+            if (!numCreatureTypes.ContainsKey(typelineInt))
+            {
+                numCreatureTypes.Add(typelineInt, 1);
+            }
+            else
+            {
+                numCreatureTypes[typelineInt]++;
+            }
+        }
+
+        bool hasAll = true;
+        for (int i = 0; i < (int)Typeline.Count; i++)
+        {
+            if (!numCreatureTypes.ContainsKey(0))
+            {
+                hasAll = false;
+                break;
+            }
+        }
+
+        return hasAll;
+    }
 }
