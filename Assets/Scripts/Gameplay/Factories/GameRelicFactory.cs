@@ -61,6 +61,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSymbolOfTheAllianceRelic());
         m_relics.Add(new ContentImpaliumRelic());
         m_relics.Add(new ContentIotalRelic());
+        m_relics.Add(new ContentFadingLightRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

@@ -673,6 +673,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn += 1;
         }
 
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentFadingLightRelic>())
+        {
+            toReturn -= 2;
+        }
+
+        if (toReturn < 0)
+        {
+            toReturn = 0;
+        }
+
         return toReturn;
     }
 
@@ -1334,6 +1344,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void StartTurn() 
     {
+        if (GameHelper.HasRelic<ContentFadingLightRelic>() && GetTeam() == Team.Player)
+        {
+            Heal(GetMaxHealth());
+        }
+
         List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
         for (int i = 0; i < regenKeywords.Count; i++)
         {
