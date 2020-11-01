@@ -82,6 +82,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSachelOfDeceptionRelic());
         m_relics.Add(new ContentDiscountTokenRelic());
         m_relics.Add(new ContentHarvestOfTelumRelic());
+        m_relics.Add(new ContentCanvasOfHistoryRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

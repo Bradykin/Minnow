@@ -1421,6 +1421,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 player.DrawCards(2);
                 player.AddEnergy(2);
             }
+
+            if (GameHelper.HasRelic<ContentCanvasOfHistoryRelic>() && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() &&
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.Heal(15);
+                    }
+                }
+            }
         }
         else if (GetTeam() == Team.Player)
         {
