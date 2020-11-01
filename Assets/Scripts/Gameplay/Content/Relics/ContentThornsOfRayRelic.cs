@@ -7,7 +7,7 @@ public class ContentThornsOfRayRelic : GameRelic
     public ContentThornsOfRayRelic()
     {
         m_name = "Thorns Of Ray";
-        m_desc = "Allied units get <b>Thorns 2</b>.";
+        m_desc = "Allied units have <b>Thorns 2</b>.";
         m_rarity = GameRarity.Common;
 
         LateInit();

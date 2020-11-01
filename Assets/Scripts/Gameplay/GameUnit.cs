@@ -869,6 +869,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameMountainwalkKeyword GetMountainwalkKeyword()
     {
+        if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            return new GameMountainwalkKeyword();
+        }
+
         return m_keywordHolder.GetKeyword<GameMountainwalkKeyword>();
     }
 
@@ -1565,14 +1570,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 else if (r == 2)
                 {
                     m_typeline = Typeline.Creation;
-                }
-            }
-
-            if (GetTypeline() == Typeline.Humanoid)
-            {
-                if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
-                {
-                    AddKeyword(new GameMountainwalkKeyword());
                 }
             }
 

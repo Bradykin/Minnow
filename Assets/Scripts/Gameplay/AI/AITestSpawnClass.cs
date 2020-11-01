@@ -40,7 +40,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                GameHelper.GetPlayer().m_wallet.m_gold += 50;
+                GameHelper.GetPlayer().AddRelic(new ContentTokenOfFriendshipRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.I))
