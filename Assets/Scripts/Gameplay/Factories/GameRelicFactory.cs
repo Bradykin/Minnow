@@ -48,9 +48,32 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMarkOfTordrimRelic());
         m_relics.Add(new ContentFearOfTheShakinaRelic());
         m_relics.Add(new ContentGoldenKnotRelic());
-
         m_relics.Add(new ContentNamelessFlaskRelic());
         m_relics.Add(new ContentTheGreatestGiftRelic());
+        m_relics.Add(new ContentSporetechRelic());
+        m_relics.Add(new ContentTokenOfFriendshipRelic());
+
+        m_relics.Add(new ContentTheReminderRelic());
+        m_relics.Add(new ContentJugOfTordrimRelic());
+        m_relics.Add(new ContentAlterOfTordrimRelic());
+        m_relics.Add(new ContentInstructionsRelic());
+        m_relics.Add(new ContentVowOfTheShakinaRelic());
+        m_relics.Add(new ContentSymbolOfTheAllianceRelic());
+        m_relics.Add(new ContentImpaliumRelic());
+        m_relics.Add(new ContentIotalRelic());
+        m_relics.Add(new ContentFadingLightRelic());
+        m_relics.Add(new ContentBeaconOfSanityRelic());
+
+        m_relics.Add(new ContentEyeOfTelloRelic());
+        m_relics.Add(new ContentPriceOfFreedomRelic());
+        m_relics.Add(new ContentHeroicTrophyRelic());
+        m_relics.Add(new ContentAncientCoinsRelic());
+        m_relics.Add(new ContentCarapaceOfTutuiun());
+        m_relics.Add(new ContentTauntingPipeRelic());
+        m_relics.Add(new ContentBondOfFamilyRelic());
+        m_relics.Add(new ContentAncientRitualRelic());
+        m_relics.Add(new ContentTokenOfTheUprisingRelic());
+        m_relics.Add(new ContentSecretTiesRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
@@ -58,6 +81,28 @@ public static class GameRelicFactory
         m_relics.Add(new ContentRestorationBrickRelic());
         m_relics.Add(new ContentTomeOfDuluhainRelic());
         m_relics.Add(new ContentDominerickRefrainRelic());
+
+        int commonRelics = 0;
+        int uncommonRelics = 0;
+        int rareRelics = 0;
+
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Common)
+            {
+                commonRelics++;
+            }
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+            {
+                uncommonRelics++;
+            }
+            if (m_relics[i].m_rarity == GameElementBase.GameRarity.Rare)
+            {
+                rareRelics++;
+            }
+        }
+
+        Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)

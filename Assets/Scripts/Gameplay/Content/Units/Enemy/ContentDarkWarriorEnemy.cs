@@ -46,6 +46,19 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
 
         UIRelicSelectController.Instance.Init(relicOne, relicTwo);
 
+        if (GameHelper.HasRelic<ContentHeroicTrophyRelic>())
+        {
+            for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
+            {
+                GameHelper.GetPlayer().m_controlledUnits[i].AddStats(5, 5);
+            }
+        }
+
+        if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
+        {
+            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(75));
+        }
+
         base.Die(canRevive);
     }
 

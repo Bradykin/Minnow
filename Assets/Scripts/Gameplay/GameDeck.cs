@@ -78,6 +78,11 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 
     public GameCard GetCardByIndex(int index)
     {
+        if (index >= m_cards.Count)
+        {
+            return null;
+        }
+
         return m_cards[index];
     }
 

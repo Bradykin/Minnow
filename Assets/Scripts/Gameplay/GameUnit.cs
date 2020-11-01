@@ -121,7 +121,82 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
+        if (GameHelper.HasRelic<ContentSporetechRelic>())
+        {
+            int r = Random.Range(0, 3);
+            if (r == 0)
+            {
+                m_typeline = Typeline.Humanoid;
+            }
+            else if (r == 1)
+            {
+                m_typeline = Typeline.Monster;
+            }
+            else if (r == 2)
+            {
+                m_typeline = Typeline.Creation;
+            }
+        }
+
+        if (GetTypeline() == Typeline.Humanoid)
+        {
+            if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
+            {
+                AddKeyword(new GameMountainwalkKeyword());
+            }
+        }
+
+        if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
+        {
+            if (GameHelper.HasAllTypelines())
+            {
+                AddKeyword(new GameDamageReductionKeyword(2));
+            }
+        }
+
+        if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
+        {
+            AddKeyword(new GameTauntKeyword());
+        }
+
+        if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
+        {
+            AddKeyword(new GameDamageReductionKeyword(1));
+        }
+
+        if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
+        {
+            int powerChange = Random.Range(-3, 8);
+            int healthChange = Random.Range(-3, 8);
+
+            if (powerChange >= 0 && healthChange >= 0)
+            {
+                AddStats(powerChange, healthChange);
+            }
+            else if (powerChange < 0 && healthChange < 0)
+            {
+                RemoveStats(-powerChange, -healthChange);
+            }
+            else if (powerChange >= 0 && healthChange < 0)
+            {
+                AddStats(powerChange, 0);
+                RemoveStats(0, -healthChange);
+            }
+            else if (powerChange < 0 && healthChange >= 0)
+            {
+                AddStats(0, healthChange);
+                RemoveStats(-powerChange, 0);
+            }
+        }
+
+        if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
+        {
+            int tempPower = GetPower();
+            m_power = GetMaxHealth();
+            m_maxHealth = tempPower;
+        }
+
+            List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
             summonKeywords[i].DoAction();
@@ -364,10 +439,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
+            if (GameHelper.HasRelic<ContentTokenOfTheUprisingRelic>() && m_gameTile != null && GetTypeline() == Typeline.Humanoid)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() && 
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player && 
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                    }
+                }
+            }
+
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                AddStats(1, 1);
+                AddStats(1, 3);
                 AddMaxStamina(1);
+            }
+
+            if (GameHelper.HasRelic<ContentInstructionsRelic>() && GetTypeline() == Typeline.Creation)
+            {
+                AddStats(GetMaxStamina(), GetMaxStamina());
             }
 
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
@@ -594,6 +689,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
+        if (GameHelper.HasRelic<ContentSecretTiesRelic>() && m_gameTile != null && GetTypeline() == Typeline.Creation)
+        {
+            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
+            for (int i = 0; i < adjacentTiles.Count; i++)
+            {
+                if (adjacentTiles[i].IsOccupied() &&
+                    adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                    !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                    adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                {
+                    adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                }
+            }
+        }
+
         m_maxStamina += toAdd;
     }
 
@@ -604,6 +714,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
         {
             toReturn += 1;
+        }
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentFadingLightRelic>())
+        {
+            toReturn -= 2;
+        }
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentBeaconOfSanityRelic>())
+        {
+            toReturn -= 1;
+        }
+
+        if (toReturn < 0)
+        {
+            toReturn = 0;
         }
 
         return toReturn;
@@ -749,12 +874,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
             {
-                staminaToAttack = staminaToAttack - 1;
+                staminaToAttack--;
             }
 
             if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
-                staminaToAttack = staminaToAttack - 1;
+                staminaToAttack--;
             }
 
             if (GameHelper.HasRelic<ContentNamelessFlaskRelic>())
@@ -762,6 +887,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GetCurStamina() == 1)
                 {
                     staminaToAttack = 1;
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentAncientRitualRelic>())
+            {
+                if (GetTypeline() == Typeline.Monster)
+                {
+                    staminaToAttack--;
                 }
             }
         }
@@ -904,6 +1037,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
             }
+
+            if (GameHelper.HasRelic<ContentBondOfFamilyRelic>())
+            {
+                if (GetGameTile() != null)
+                {
+                    List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 3);
+
+                    for (int i = 0; i < surroundingTiles.Count; i++)
+                    {
+                        if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                            surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+                        {
+                            if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                            {
+                                toReturn += 4;
+                            }
+                            else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                            {
+                                toReturn -= 4;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (toReturn < 0)
@@ -949,6 +1106,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 toReturn += 1;
             }
+
+            if (GameHelper.HasRelic<ContentBeaconOfSanityRelic>())
+            {
+                toReturn += 3;
+            }
+        }
+
+        if (toReturn > 12)
+        {
+            toReturn = 12;
         }
 
         return toReturn;
@@ -970,37 +1137,29 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn -= 2;
             }
 
+            if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
+            {
+                toReturn -= 1;
+            }
+
+            if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Monster)
+            {
+                toReturn -= 1;
+            }
+
             if (GameHelper.HasRelic<ContentGrandPactRelic>())
             {
-                Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
-                List<GameUnit> gameUnits = GameHelper.GetPlayer().m_controlledUnits;
-                for (int i = 0; i < gameUnits.Count; i++)
-                {
-                    int typelineInt = (int)gameUnits[i].GetTypeline();
-                    if (!numCreatureTypes.ContainsKey(typelineInt))
-                    {
-                        numCreatureTypes.Add(typelineInt, 1);
-                    }
-                    else
-                    {
-                        numCreatureTypes[typelineInt]++;
-                    }
-                }
-
-                bool hasAll = true;
-                for (int i = 0; i < (int)Typeline.Count; i++)
-                {
-                    if (!numCreatureTypes.ContainsKey(0))
-                    {
-                        hasAll = false;
-                        break;
-                    }
-                }
-
-                if (hasAll)
+                if (GameHelper.HasAllTypelines())
                 {
                     toReturn += 1;
                 }
+            }
+
+            if (GameHelper.HasRelic<ContentIotalRelic>())
+            {
+                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().m_wallet.m_gold) / 250.0f);
+
+                toReturn += toAdd;
             }
 
             if (m_rarity == GameRarity.Starter)
@@ -1161,6 +1320,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_curStamina = 0;
         }
 
+        if (m_curStamina == 0 && GameHelper.HasRelic<ContentTheReminderRelic>())
+        {
+            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
+            {
+                GetHit(5);
+            }
+        }
+
         UIHelper.ReselectUnit();
     }
 
@@ -1284,6 +1451,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void StartTurn() 
     {
+        if (GameHelper.HasRelic<ContentFadingLightRelic>() && GetTeam() == Team.Player)
+        {
+            Heal(GetMaxHealth());
+        }
+
         List<GameRegenerateKeyword> regenKeywords = m_keywordHolder.GetKeywords<GameRegenerateKeyword>();
         for (int i = 0; i < regenKeywords.Count; i++)
         {
@@ -1323,6 +1495,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void EndTurn()
     {
+        if (GameHelper.HasRelic<ContentPriceOfFreedomRelic>() && GetTeam() == Team.Player && GetCurStamina() == GetMaxStamina())
+        {
+            AddStats(GetCurStamina(), GetCurStamina());
+            EmptyStamina();
+        }
+
         RegenStamina();
 
         if (m_keywordHolder.GetKeywords<GameImmuneToLavaKeyword>() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)

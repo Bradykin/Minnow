@@ -189,7 +189,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         }
     }
 
-    public void PlayCard(GameCard card)
+    public void PlayCard(GameCard card, bool removeFromHand = true)
     {
         bool shouldExile = card.m_shouldExile;
 
@@ -208,7 +208,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_cardsToDiscard.Add(card);
         }
 
-        RemoveCardFromHand(card);
+        if (removeFromHand)
+        {
+            RemoveCardFromHand(card);
+        }
     }
 
     public void RemoveCardFromHand(GameCard toRemove)
@@ -431,6 +434,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        if (GameHelper.HasRelic<ContentAncientRitualRelic>())
+        {
+            toReturn -= 4;
+        }
+
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1);
@@ -452,6 +460,12 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             {
                 toReturn += 1;
             }
+        }
+
+        //Minimize it to 1
+        if (toReturn <= 0)
+        {
+            toReturn = 1;
         }
 
         return toReturn;

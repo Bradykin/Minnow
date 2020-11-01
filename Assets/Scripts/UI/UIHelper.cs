@@ -548,7 +548,12 @@ public static class UIHelper
     public static void CreateUnitTooltip(GameUnit unit, bool secondStack = false)
     {
         GameCard cardFromUnit = GameCardFactory.GetCardFromUnit(unit);
-        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(cardFromUnit, UICard.CardDisplayType.Tooltip);
+        CreateCardTooltip(cardFromUnit, secondStack);
+    }
+
+    public static void CreateCardTooltip(GameCard toShow, bool secondStack = false)
+    {
+        UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(toShow, UICard.CardDisplayType.Tooltip);
 
         if (secondStack)
         {

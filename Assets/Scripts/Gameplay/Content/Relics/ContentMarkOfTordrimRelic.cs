@@ -13,5 +13,6 @@ public class ContentMarkOfTordrimRelic : GameRelic
         LateInit();
 
         m_tags.AddTag(GameTag.TagType.Vanilla);
+        m_tags.AddTag(GameTag.TagType.Tordrim);
     }
 }

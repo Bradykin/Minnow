@@ -136,4 +136,9 @@ public class UITooltipController : Singleton<UITooltipController>
 
         transform.position = worldPoint;
     }
+
+    public GameObject GetTooltipFromStackByIndex(int index)
+    {
+        return m_tooltipStack[index].gameObject;
+    }
 }

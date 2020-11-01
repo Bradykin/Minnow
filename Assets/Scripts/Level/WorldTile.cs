@@ -428,8 +428,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         Globals.m_hoveredTile = null;
     }
 
-    public void ClearFog()
+    public bool ClearFog()
     {
+        if (!GetGameTile().m_isFog)
+        {
+            return false;
+        }
+
         GetGameTile().m_isFog = false;
         GetGameTile().m_isFogBorder = false;
 
@@ -441,16 +446,27 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 adjacentTiles[i].m_isFogBorder = true;
             }
         }
+
+        return true;
     }
 
-    public void ClearSurroundingFog(int distance)
+    public int ClearSurroundingFog(int distance)
     {
+        int numFogCleared = 0;
+
         List<WorldTile> toReveal = WorldGridManager.Instance.GetSurroundingWorldTiles(this, distance, 0);
 
         for (int i = 0; i < toReveal.Count; i++)
         {
-            toReveal[i].ClearFog();
+            bool didReveal = toReveal[i].ClearFog();
+
+            if (didReveal)
+            {
+                numFogCleared++;
+            }
         }
+
+        return numFogCleared;
     }
 
     public void ExpandPlaceRange(int distance)

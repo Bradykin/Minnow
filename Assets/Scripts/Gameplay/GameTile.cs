@@ -50,7 +50,15 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (m_occupyingUnit.GetTeam() == Team.Player)
         {
-            m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
+            int numFogCleared = m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
+
+            if (numFogCleared > 0)
+            {
+                if (m_occupyingUnit.GetKeyword<GameEnrageKeyword>() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
+                {
+                    m_occupyingUnit.GetHit(2);
+                }
+            }
 
             if (GetTerrain().IsEventTerrain())
             {
