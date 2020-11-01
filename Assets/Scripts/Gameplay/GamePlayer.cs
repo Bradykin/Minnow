@@ -695,7 +695,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonData.jsonGameScheduledActionData.Add(new JsonGameScheduledActionData
             {
                 scheduledActionTime = (int)m_scheduledActions[i].scheduledActionTime,
-                jsonActionData = m_scheduledActions[i].gameAction.SaveToJson()
+                jsonActionData = m_scheduledActions[i].gameAction.SaveToJson(),
+                jsonTargetUnitData = m_scheduledActions[i].gameAction.GetGameUnit().SaveToJson()
             });
         }
 
@@ -711,13 +712,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         
         m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);
         m_curDeck.LoadFromJson(jsonData.jsonDeckCurrentData);
-
-        for (int i = 0; i < jsonData.jsonGameScheduledActionData.Count; i++)
-        {
-            ScheduledActionTime scheduledActionTime = (ScheduledActionTime)jsonData.jsonGameScheduledActionData[i].scheduledActionTime;
-            GameAction gameAction = GameActionFactory.GetActionWithName(jsonData.jsonGameScheduledActionData[i].jsonActionData);
-            AddScheduledAction(scheduledActionTime, gameAction);
-        }
         
         for (int i = 0; i < jsonData.jsonGameCardsInHandData.Count; i++)
         {
@@ -741,13 +735,79 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetName() == jsonData.jsonGameCardsInExileData[i].baseName)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetGuid() == jsonData.jsonGameCardsInExileData[i].jsonGameUnitData.guid)
                 {
                     m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
                     continue;
                 }
             }
             m_cardsInExile.Add(GameCardFactory.GetCardFromJson(jsonData.jsonGameCardsInExileData[i]));
+        }
+
+        for (int i = 0; i < jsonData.jsonGameScheduledActionData.Count; i++)
+        {
+            ScheduledActionTime scheduledActionTime = (ScheduledActionTime)jsonData.jsonGameScheduledActionData[i].scheduledActionTime;
+
+            if (jsonData.jsonGameScheduledActionData[i].jsonTargetUnitData == null)
+            {
+                GameAction gameAction = GameActionFactory.GetActionFromJson(jsonData.jsonGameScheduledActionData[i].jsonActionData);
+                AddScheduledAction(scheduledActionTime, gameAction);
+            }
+            else
+            {
+                //Find gameUnit
+                bool hasFoundGameUnit = false;
+                
+                List<GameCard> deckBaseMainDeck = m_deckBase.GetDeck();
+                for (int k = 0; k < deckBaseMainDeck.Count; k++)
+                {
+                    if (deckBaseMainDeck[k] is GameUnitCard gameUnitCard && gameUnitCard.m_unit.GetGuid() == jsonData.jsonGameScheduledActionData[i].jsonTargetUnitData.guid)
+                    {
+                        GameAction gameAction = GameActionFactory.GetActionFromJson(jsonData.jsonGameScheduledActionData[i].jsonActionData, gameUnitCard.m_unit);
+                        AddScheduledAction(scheduledActionTime, gameAction);
+                        hasFoundGameUnit = true;
+                        break;
+                    }
+                }
+
+                if (hasFoundGameUnit)
+                {
+                    continue;
+                }
+
+                List<GameCard> deckBaseDiscard = m_deckBase.GetDiscard();
+                for (int k = 0; k < deckBaseDiscard.Count; k++)
+                {
+                    if (deckBaseDiscard[k] is GameUnitCard gameUnitCard && gameUnitCard.m_unit.GetGuid() == jsonData.jsonGameScheduledActionData[i].jsonTargetUnitData.guid)
+                    {
+                        GameAction gameAction = GameActionFactory.GetActionFromJson(jsonData.jsonGameScheduledActionData[i].jsonActionData, gameUnitCard.m_unit);
+                        AddScheduledAction(scheduledActionTime, gameAction);
+                        hasFoundGameUnit = true;
+                        break;
+                    }
+                }
+
+                if (hasFoundGameUnit)
+                {
+                    continue;
+                }
+
+                for (int k = 0; k < m_cardsInExile.Count; k++)
+                {
+                    if (m_cardsInExile[k] is GameUnitCard gameUnitCard && gameUnitCard.m_unit.GetGuid() == jsonData.jsonGameScheduledActionData[i].jsonTargetUnitData.guid)
+                    {
+                        GameAction gameAction = GameActionFactory.GetActionFromJson(jsonData.jsonGameScheduledActionData[i].jsonActionData, gameUnitCard.m_unit);
+                        AddScheduledAction(scheduledActionTime, gameAction);
+                        hasFoundGameUnit = true;
+                        break;
+                    }
+                }
+
+                if (!hasFoundGameUnit)
+                {
+                    Debug.LogError("Failed to find unit for scheduled event.");
+                }
+            }
         }
 
         m_spellsPlayedPreviousTurn = jsonData.spellsPlayedPreviousTurn;

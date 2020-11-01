@@ -63,6 +63,11 @@ public class GameGainStaminaRangeAction : GameAction
         return m_toGain <= 0 || m_ranges.Count == 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

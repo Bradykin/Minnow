@@ -51,6 +51,11 @@ public class GameLoseStatsAction : GameAction
         return m_powerToLose <= 0 && m_healthToLose <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

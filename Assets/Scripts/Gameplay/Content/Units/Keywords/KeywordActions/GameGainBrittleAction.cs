@@ -46,6 +46,11 @@ public class GameGainBrittleAction : GameAction
         return m_brittleAmount <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

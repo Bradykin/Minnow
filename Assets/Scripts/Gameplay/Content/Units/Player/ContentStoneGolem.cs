@@ -5,6 +5,7 @@ using UnityEngine;
 public class ContentStoneGolem : GameUnit
 {
     private GameDamageReductionKeyword m_drKeyword;
+    private bool m_staminaAdded;
 
     public ContentStoneGolem()
     {
@@ -35,9 +36,10 @@ public class ContentStoneGolem : GameUnit
 
         if (m_curStamina == m_maxStamina)
         {
-            if (GetKeyword<GameDamageReductionKeyword>() == null)
+            if (!m_staminaAdded)
             {
                 AddKeyword(m_drKeyword, false);
+                m_staminaAdded = true;
             }
         }
     }
@@ -48,9 +50,10 @@ public class ContentStoneGolem : GameUnit
 
         if (m_curStamina < m_maxStamina)
         {
-            if (GetKeyword<GameDamageReductionKeyword>() != null)
+            if (m_staminaAdded)
             {
                 SubtractKeyword(m_drKeyword);
+                m_staminaAdded = false;
             }
         }
     }

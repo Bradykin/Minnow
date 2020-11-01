@@ -56,12 +56,12 @@ public class GameKeywordFactory
                 break;
             case GameKeywordBase.KeywordParamType.ActionParam:
                 JsonActionData jsonActionData = jsonData.actionJson[0];
-                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonActionData, gameUnit));
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionFromJson(jsonActionData, gameUnit));
                 if (jsonData.actionJson.Count > 1)
                 {
                     for (int k = 1; k < jsonData.actionJson.Count; k++)
                     {
-                        GameKeywordBase anotherKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionWithName(jsonData.actionJson[k], gameUnit));
+                        GameKeywordBase anotherKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionFromJson(jsonData.actionJson[k], gameUnit));
                         newKeyword.AddKeyword(anotherKeyword);
                     }
                 }

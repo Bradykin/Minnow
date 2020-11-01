@@ -26,11 +26,12 @@ public class GameActionFactory
         m_actions.Add(new GameRoarOfVictoryAction(null, 0));
         m_actions.Add(new GameShivNearbyAction(null, 0, 0));
         m_actions.Add(new GameSpellcraftAttackAction(null, 0));
+        m_actions.Add(new GameSubtractKeywordAction(null, null));
 
         m_hasInit = true;
     }
 
-    public static GameAction GetActionWithName(JsonActionData jsonData, GameUnit gameUnit)
+    public static GameAction GetActionFromJson(JsonActionData jsonData, GameUnit gameUnit)
     {
         if (!m_hasInit)
             Init();
@@ -63,6 +64,9 @@ public class GameActionFactory
             case GameAction.ActionParamType.UnitIntListIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intListValue1);
                 break;
+            case GameAction.ActionParamType.UnitKeywordParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, GameKeywordFactory.GetKeywordsFromJson(jsonData.keywordValue, gameUnit));
+                break;
             case GameAction.ActionParamType.GameWalletParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));
                 break;
@@ -74,7 +78,7 @@ public class GameActionFactory
         return newAction;
     }
 
-    public static GameAction GetActionWithName(JsonActionData jsonData)
+    public static GameAction GetActionFromJson(JsonActionData jsonData)
     {
         if (!m_hasInit)
             Init();

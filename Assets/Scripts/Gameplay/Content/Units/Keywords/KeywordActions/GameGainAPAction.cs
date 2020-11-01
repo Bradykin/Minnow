@@ -46,6 +46,11 @@ public class GameGainStaminaAction : GameAction
         return m_toGain <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

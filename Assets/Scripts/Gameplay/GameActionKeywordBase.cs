@@ -39,7 +39,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         {
             for (int c = 0; c < m_actions.Count; c++)
             {
-                if (m_actions[c].GetName() == toSubtract.GetName())
+                if (m_actions[c].GetName() == tempKeyword.m_actions[i].GetName())
                 {
                     switch (tempKeyword.m_actions[i].m_actionParamType)
                     {
@@ -52,6 +52,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
                         case GameAction.ActionParamType.UnitIntParam:
                         case GameAction.ActionParamType.UnitTwoIntParam:
                         case GameAction.ActionParamType.UnitIntListIntParam:
+                        case GameAction.ActionParamType.UnitKeywordParam:
                         case GameAction.ActionParamType.GameWalletParam:
                             m_actions[c].SubtractAction(tempKeyword.m_actions[i]);
 

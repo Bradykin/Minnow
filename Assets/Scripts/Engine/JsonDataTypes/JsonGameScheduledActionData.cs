@@ -6,4 +6,6 @@ public struct JsonGameScheduledActionData
 {
     public int scheduledActionTime;
     public JsonActionData jsonActionData;
+
+    public JsonGameUnitData jsonTargetUnitData;
 }

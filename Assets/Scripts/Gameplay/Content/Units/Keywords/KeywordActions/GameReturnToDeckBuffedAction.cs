@@ -58,6 +58,11 @@ public class GameReturnToDeckBuffedAction : GameAction
         return m_powerBuff <= 0 && m_healthBuff <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_retuningUnit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

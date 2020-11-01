@@ -14,6 +14,7 @@ public abstract class GameAction : GameElementBase, ISave<JsonActionData>, ILoad
         UnitIntParam,
         UnitTwoIntParam,
         UnitIntListIntParam,
+        UnitKeywordParam,
         GameWalletParam
     }
 
@@ -28,6 +29,8 @@ public abstract class GameAction : GameElementBase, ISave<JsonActionData>, ILoad
     public abstract void SubtractAction(GameAction toSubtract);
 
     public abstract bool ShouldBeRemoved();
+
+    public abstract GameUnit GetGameUnit();
 
     public abstract JsonActionData SaveToJson();
 

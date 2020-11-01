@@ -43,6 +43,7 @@ public class ContentAegisCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false);
+        targetUnit.AddKeyword(new GameDamageReductionKeyword(m_amount), false);
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

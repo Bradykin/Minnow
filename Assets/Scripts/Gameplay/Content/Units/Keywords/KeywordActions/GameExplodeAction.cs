@@ -70,6 +70,11 @@ public class GameExplodeAction : GameAction
         return m_explodePower <= 0 || m_explodeRanges.Count == 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_explodingUnit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

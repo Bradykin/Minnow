@@ -20,6 +20,11 @@ public class GameGainStatsAction : GameAction
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "+" + m_powerToGain + "/+" + m_healthToGain;
+    }
+
     public override void DoAction()
     {
         m_unit.AddStats(m_powerToGain, m_healthToGain);
@@ -46,9 +51,9 @@ public class GameGainStatsAction : GameAction
         return m_powerToGain <= 0 && m_healthToGain <= 0;
     }
 
-    public override string GetDesc()
+    public override GameUnit GetGameUnit()
     {
-        return "+" + m_powerToGain + "/+" + m_healthToGain;
+        return m_unit;
     }
 
     public override JsonActionData SaveToJson()

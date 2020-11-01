@@ -93,6 +93,11 @@ public class GameShivNearbyAction : GameAction
         return m_numShivsThrown <= 0 || m_shivRanges.Count == 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

@@ -48,6 +48,11 @@ public class GameGetHitAction : GameAction
         return m_damage <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

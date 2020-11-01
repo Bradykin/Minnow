@@ -11,5 +11,7 @@ public struct JsonActionData
     public int intValue1;
     public int intValue2;
     public List<int> intListValue1;
+
+    public JsonKeywordData keywordValue;
     public string gameWalletJsonValue;
 }

@@ -39,6 +39,11 @@ public class GameFullHealAction : GameAction
         return false;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

@@ -51,6 +51,11 @@ public class GameDrawCardAction : GameAction
         return m_toDraw <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return null;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

@@ -25,6 +25,7 @@ public class GameUnitFactory
     public static void Init(List<GameEnemyUnit> spawnPool, List<List<GameEnemyUnit>> specificSpawnPoolEnemies)
     {
         //Player Units
+        m_playerUnits.Add(new ContentAlphaBoar());
         m_playerUnits.Add(new ContentConjuredImp());
         m_playerUnits.Add(new ContentCyclops());
         m_playerUnits.Add(new ContentDemonSoldier());

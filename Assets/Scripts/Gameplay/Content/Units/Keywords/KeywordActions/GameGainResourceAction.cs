@@ -44,6 +44,11 @@ public class GameGainResourceAction : GameAction
         return m_toGain.m_gold <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return null;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

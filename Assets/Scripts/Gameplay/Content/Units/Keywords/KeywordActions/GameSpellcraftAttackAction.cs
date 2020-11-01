@@ -61,6 +61,11 @@ public class GameSpellcraftAttackAction : GameAction
         return m_numSpellcraft <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return m_gameUnit;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData

@@ -44,6 +44,11 @@ public class GameGainTempSpellpowerAction : GameAction
         return m_toGain <= 0;
     }
 
+    public override GameUnit GetGameUnit()
+    {
+        return null;
+    }
+
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
