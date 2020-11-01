@@ -678,6 +678,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn -= 2;
         }
 
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentBeaconOfSanityRelic>())
+        {
+            toReturn -= 1;
+        }
+
         if (toReturn < 0)
         {
             toReturn = 0;
@@ -1021,6 +1026,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 toReturn += 1;
             }
+
+            if (GameHelper.HasRelic<ContentBeaconOfSanityRelic>())
+            {
+                toReturn += 3;
+            }
+        }
+
+        if (toReturn > 12)
+        {
+            toReturn = 12;
         }
 
         return toReturn;
