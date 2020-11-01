@@ -400,13 +400,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
-        if (toAdd is ContentTotemOfTheWolfRelic && !GameHelper.HasRelic<ContentTotemOfTheWolfRelic>() && GameHelper.GetGameController().m_runStateType != RunStateType.Gameplay && 
-            WorldController.Instance.m_gameController.m_currentTurnNumber <= WorldController.Instance.m_gameController.GetEndWaveTurn())
-        {
-            m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
-            Debug.Log("Set wolf turn to " + m_totemOfTheWolfTurn);
-        }
-
         m_relics.AddRelic(toAdd);
 
         WorldController.Instance.UpdateHand();
@@ -570,10 +563,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void OnBeginWave()
     {
-        if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
-        {
-            GameHelper.GetPlayer().m_totemOfTheWolfTurn = Random.Range(0, GameHelper.GetGameController().GetEndWaveTurn() + 1);
-        }
+        
     }
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
@@ -604,15 +594,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
-        if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
-        {
-            if (GameHelper.GetGameController().m_currentTurnNumber + 1 == m_totemOfTheWolfTurn)
-            {
-                UIHelper.CreateHUDNotification("Totem of the Wolf", "The white moon begins!");
-            }
-        }
-
-            for (int i = 0; i < m_controlledUnits.Count; i++)
+        for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].StartTurn();
         }

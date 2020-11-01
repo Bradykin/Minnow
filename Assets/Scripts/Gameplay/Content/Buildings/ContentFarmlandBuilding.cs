@@ -15,7 +15,7 @@ public class ContentFarmlandBuilding : GameBuildingBase
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Defensive;
 
-        m_maxHealth = 25;
+        m_maxHealth = 10;
         m_cost = new GameWallet(55);
 
         m_expandsPlaceRange = false;

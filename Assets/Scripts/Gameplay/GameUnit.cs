@@ -540,6 +540,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void AddMaxStamina(int toAdd)
     {
+        if (toAdd == 0)
+        {
+            return;
+        }
+
         if (!HasCustomName())
         {
             SetCustomName();
@@ -877,6 +882,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += (2 * (1 + new ContentWolvenFangRelic().GetRelicLevel()));
             }
 
+            if (GameHelper.HasRelic<ContentSigilOfTheSwordsmanRelic>() && GetTypeline() == Typeline.Humanoid)
+            {
+                toReturn += 6;
+            }
+
             if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
             {
                 toReturn -= 2;
@@ -1086,7 +1096,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentFearOfTheShakinaRelic>())
             {
-                GetHit(3);
+                GetHit(20);
             }
         }
 
@@ -1194,15 +1204,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     private void RegenStamina()
     {
         int staminaToRegen = GetStaminaRegen();
-        //Adding one because regen happens at end of turn and this should happen just before the totem of the wolf. 
-        if (GameHelper.GetGameController().m_currentTurnNumber + 1 == GameHelper.GetPlayer().m_totemOfTheWolfTurn && GetTeam() == Team.Player)
-        {
-            if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
-            {
-                staminaToRegen = staminaToRegen * 2;
-            }
-        }
-        
+
         GainStamina(staminaToRegen, true);
     }
 
