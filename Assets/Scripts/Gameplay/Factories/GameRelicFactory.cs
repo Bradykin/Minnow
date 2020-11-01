@@ -69,6 +69,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentHeroicTrophyRelic());
         m_relics.Add(new ContentAncientCoinsRelic());
         m_relics.Add(new ContentCarapaceOfTutuiun());
+        m_relics.Add(new ContentTauntingPipeRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

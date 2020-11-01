@@ -151,6 +151,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
+        {
+            AddKeyword(new GameTauntKeyword());
+        }
+
         if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
         {
             AddKeyword(new GameDamageReductionKeyword(1));
@@ -1063,6 +1068,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
 
             if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
+            {
+                toReturn -= 1;
+            }
+
+            if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Monster)
             {
                 toReturn -= 1;
             }
