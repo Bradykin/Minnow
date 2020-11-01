@@ -160,6 +160,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             if (triggerKnowledgeable)
             {
                 TriggerKnowledgeable();
+
+                if (GameHelper.HasRelic<ContentAncientMysteryRelic>())
+                {
+                    TriggerKnowledgeable();
+                }
             }
 
             if (m_hand.Count >= Constants.MaxHandSize)

@@ -10,7 +10,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
     public ContentWizardTowerBuilding()
     {
-        m_range = 5;
+        m_range = 4;
 
         m_name = "Wizard Tower";
         m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_spellPowerMultiplier + " times your amount of spellpower at the start of your turn.";

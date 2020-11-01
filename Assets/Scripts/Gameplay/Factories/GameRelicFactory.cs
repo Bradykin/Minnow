@@ -89,6 +89,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentVoiceOfTheDefenderRelic());
         m_relics.Add(new ContentMemoryOfTheDefenderRelic());
         m_relics.Add(new ContentTailOfLifeRelic());
+        m_relics.Add(new ContentAncientMysteryRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
