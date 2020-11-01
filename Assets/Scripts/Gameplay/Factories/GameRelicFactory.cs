@@ -79,6 +79,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentRelicOfVictoryRelic());
         m_relics.Add(new ContentStarOfDenumainRelic());
         m_relics.Add(new ContentTalonOfTheCruelRelic());
+        m_relics.Add(new ContentSachelOfDeceptionRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

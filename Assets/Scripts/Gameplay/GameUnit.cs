@@ -290,6 +290,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
+        if (GameHelper.HasRelic<ContentSachelOfDeceptionRelic>())
+        {
+            if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+            {
+                AddKeyword(new GameDeathKeyword(new GameGainStatsAction(this, 3, 3)));
+                m_isDead = false;
+                m_curHealth = GetMaxHealth();
+                UIHelper.CreateWorldElementNotification(GetName() + " deceives the foe and survives.", true, m_gameTile.GetWorldTile().gameObject);
+                return;
+            }
+        }
+
         m_curHealth = 0;
 
         List<GameDeathKeyword> deathKeywords = m_keywordHolder.GetKeywords<GameDeathKeyword>();
