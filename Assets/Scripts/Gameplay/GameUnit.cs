@@ -899,7 +899,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameRegenerateKeyword GetRegenerateKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        //Set the return keyword to a blank keyword
+        GameRegenerateKeyword toReturn = new GameRegenerateKeyword(0);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameRegenerateKeyword keywordRegen = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        if (keywordRegen != null)
+        {
+            toReturn.AddKeyword(keywordRegen);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentPlagueMaskRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
+        {
+            toReturn.AddKeyword(new GameRegenerateKeyword(5));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.m_regenVal == 0)
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public virtual GameDamageShieldKeyword GetDamageShieldKeyword()

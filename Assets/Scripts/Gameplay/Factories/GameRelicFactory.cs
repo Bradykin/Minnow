@@ -91,6 +91,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentLastHopeRelic());
         m_relics.Add(new ContentProclamationOfSurrenderRelic());
         m_relics.Add(new ContentThornsOfRayRelic());
+        m_relics.Add(new ContentPlagueMaskRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
