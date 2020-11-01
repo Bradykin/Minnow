@@ -96,6 +96,7 @@ public static class GameRelicFactory
 
         //Need 24 more here
         m_relics.Add(new ContentTombOfTheDefenderRelic());
+        m_relics.Add(new ContentPrimeRibRelic());
 
 
         //Event Relics

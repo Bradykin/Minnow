@@ -372,16 +372,23 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         int maxHealth = GetMaxHealth();
 
         int realHealVal = toHeal;
-        if (m_curHealth + toHeal > maxHealth)
+
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
         {
-            realHealVal = maxHealth - m_curHealth;
+            if (m_curHealth + toHeal > maxHealth)
+            {
+                realHealVal = maxHealth - m_curHealth;
+            }
         }
 
         m_curHealth += toHeal;
 
-        if (m_curHealth >= maxHealth)
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
         {
-            m_curHealth = maxHealth;
+            if (m_curHealth >= maxHealth)
+            {
+                m_curHealth = maxHealth;
+            }
         }
 
         if (realHealVal > 0)
