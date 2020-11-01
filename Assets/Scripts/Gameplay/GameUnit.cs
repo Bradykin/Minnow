@@ -361,11 +361,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation && !m_returnedToDeckDeath)
+            if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                m_returnedToDeckDeath = true;
-                GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(this);
-                GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
+                AddStats(1, 1);
+                AddMaxStamina(1);
             }
 
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);
