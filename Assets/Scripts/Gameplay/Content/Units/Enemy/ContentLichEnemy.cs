@@ -44,7 +44,7 @@ public class ContentLichEnemy : GameEnemyUnit
 
     public override string GetDesc()
     {
-        string descString = base.GetDesc();
+        string descString = m_desc;
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {

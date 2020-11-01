@@ -298,7 +298,7 @@ public static class UIHelper
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
-            if (player.m_controlledUnits[i].GetKeyword<GameSpellcraftKeyword>() != null)
+            if (player.m_controlledUnits[i].GetSpellcraftKeyword() != null)
             {
                 m_playerUnitsWithSpellcraft.Add(player.m_controlledUnits[i]);
             }

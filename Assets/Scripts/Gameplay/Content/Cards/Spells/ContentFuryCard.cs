@@ -43,22 +43,44 @@ public class ContentFuryCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        GameMomentumKeyword momentumKeyword = targetUnit.GetKeyword<GameMomentumKeyword>();
-        GameEnrageKeyword enrageKeyword = targetUnit.GetKeyword<GameEnrageKeyword>();
-        GameVictoriousKeyword victoriousKeyword = targetUnit.GetKeyword<GameVictoriousKeyword>();
+        GameMomentumKeyword momentumKeyword = targetUnit.GetMomentumKeyword();
+        GameEnrageKeyword enrageKeyword = targetUnit.GetEnrageKeyword();
+        GameVictoriousKeyword victoriousKeyword = targetUnit.GetVictoriousKeyword();
 
-        momentumKeyword.DoAction();
-        enrageKeyword.DoAction(0);
-        victoriousKeyword.DoAction();
+        if (momentumKeyword != null)
+        {
+            momentumKeyword.DoAction();
+        }
+        
+        if (enrageKeyword != null)
+        {
+            enrageKeyword.DoAction(0);
+        }
+
+        if (victoriousKeyword != null)
+        {
+            victoriousKeyword.DoAction();
+        }
 
         //Repeat action if the player has the Bestial Wrath Relic
         if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
         {
             if (GameHelper.HasRelic<ContentBestialWrathRelic>())
             {
-                momentumKeyword.DoAction();
-                enrageKeyword.DoAction(0);
-                victoriousKeyword.DoAction();
+                if (momentumKeyword != null)
+                {
+                    momentumKeyword.DoAction();
+                }
+
+                if (enrageKeyword != null)
+                {
+                    enrageKeyword.DoAction(0);
+                }
+
+                if (victoriousKeyword != null)
+                {
+                    victoriousKeyword.DoAction();
+                }
             }
         }
     }

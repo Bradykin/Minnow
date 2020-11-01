@@ -9,7 +9,7 @@ public class GameMomentumKeyword : GameActionKeywordBase
         m_actions.Add(action);
 
         m_name = "Momentum";
-        m_focusInfoText = "Triggers when this unit hits another unit.";
+        m_focusInfoText = "Triggers when this unit hits another unit or building.";
         m_shortDesc = "On hit";
         m_keywordParamType = KeywordParamType.ActionParam;
     }

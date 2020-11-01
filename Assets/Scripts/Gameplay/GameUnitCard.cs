@@ -24,7 +24,6 @@ public class GameUnitCard : GameCard
     public void FillBasicData()
     {
         m_name = m_unit.GetName();
-        m_desc = m_unit.GetDesc();
         m_icon = UIHelper.GetIconCard(m_name);
         m_rarity = m_unit.m_rarity;
         m_typeline = GetTypeline();
@@ -52,27 +51,27 @@ public class GameUnitCard : GameCard
             m_tags.AddTag(GameTag.TagType.Creation);
         }
 
-        if (GetUnit().GetKeyword<GameKnowledgeableKeyword>() != null)
+        if (GetUnit().GetKnowledgeableKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Knowledgeable);
         }
-        if (GetUnit().GetKeyword<GameVictoriousKeyword>() != null)
+        if (GetUnit().GetVictoriousKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Victorious);
         }
-        if (GetUnit().GetKeyword<GameEnrageKeyword>() != null)
+        if (GetUnit().GetEnrageKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Enrage);
         }
-        if (GetUnit().GetKeyword<GameMomentumKeyword>() != null)
+        if (GetUnit().GetMomentumKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Momentum);
         }
-        if (GetUnit().GetKeyword<GameRangeKeyword>() != null)
+        if (GetUnit().GetRangeKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Range);
         }
-        if (GetUnit().GetKeyword<GameSpellcraftKeyword>() != null)
+        if (GetUnit().GetSpellcraftKeyword() != null)
         {
             m_tags.AddTag(GameTag.TagType.Spellcraft);
         }
@@ -191,7 +190,7 @@ public class GameUnitCard : GameCard
             desc += "\n";
         }
 
-        desc += GetUnit().GetKeywordHolderForRead().GetDesc();
+        desc += GetUnit().GetKeywordDesc();
 
         return desc;
     }

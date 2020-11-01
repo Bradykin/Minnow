@@ -776,7 +776,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
             if (numFogCleared > 0)
             {
-                if (player.m_controlledUnits[i].GetKeyword<GameEnrageKeyword>() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
+                if (player.m_controlledUnits[i].GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
                 {
                     player.m_controlledUnits[i].GetHit(2);
                 }

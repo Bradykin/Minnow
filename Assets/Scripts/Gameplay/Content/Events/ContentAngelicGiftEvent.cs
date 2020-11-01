@@ -23,7 +23,7 @@ public class ContentAngelicGiftEvent : GameEvent
 
     public override bool IsValidToSpawn(GameTile tile)
     {
-        if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && tile.m_occupyingUnit.GetKeyword<GameFlyingKeyword>() != null)
+        if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && tile.m_occupyingUnit.GetFlyingKeyword() != null)
         {
             return false;
         }

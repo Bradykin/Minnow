@@ -30,21 +30,35 @@ public class GameRoarOfVictoryAction : GameAction
 
     public override void DoAction()
     {
-        GameMomentumKeyword momentumKeyword = m_unit.GetKeyword<GameMomentumKeyword>();
-        GameEnrageKeyword enrageKeyword = m_unit.GetKeyword<GameEnrageKeyword>();
+        GameMomentumKeyword momentumKeyword = m_unit.GetMomentumKeyword();
+        GameEnrageKeyword enrageKeyword = m_unit.GetEnrageKeyword();
 
         for (int c = 0; c < m_numTimesToTrigger; c++)
         {
-            momentumKeyword.DoAction();
-            enrageKeyword.DoAction(0);
+            if (momentumKeyword != null)
+            {
+                momentumKeyword.DoAction();
+            }
+
+            if (enrageKeyword != null)
+            {
+                enrageKeyword.DoAction(0);
+            }
 
             //Repeat the action if the player has the Bestial Wrath relic
             if (m_unit.GetTypeline() == Typeline.Monster && m_unit.GetTeam() == Team.Player)
             {
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
-                    momentumKeyword.DoAction();
-                    enrageKeyword.DoAction(0);
+                    if (momentumKeyword != null)
+                    {
+                        momentumKeyword.DoAction();
+                    }
+
+                    if (enrageKeyword != null)
+                    {
+                        enrageKeyword.DoAction(0);
+                    }
                 }
             }
         }

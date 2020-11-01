@@ -80,7 +80,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         GameTile moveDestination;
         List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false) == closestTileDistance).ToList();
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetKeyword<GameFlyingKeyword>() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
         {
             moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
         }
