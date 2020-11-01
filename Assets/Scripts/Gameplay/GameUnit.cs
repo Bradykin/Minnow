@@ -746,6 +746,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 staminaToAttack = staminaToAttack - 1;
             }
+
+            if (GameHelper.HasRelic<ContentNamelessFlaskRelic>())
+            {
+                if (GetCurStamina() == 1)
+                {
+                    staminaToAttack = 1;
+                }
+            }
         }
 
         return Mathf.Max(1, staminaToAttack);

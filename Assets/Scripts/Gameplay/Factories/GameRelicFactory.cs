@@ -49,6 +49,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentFearOfTheShakinaRelic());
         m_relics.Add(new ContentGoldenKnotRelic());
 
+        m_relics.Add(new ContentNamelessFlaskRelic());
+
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
