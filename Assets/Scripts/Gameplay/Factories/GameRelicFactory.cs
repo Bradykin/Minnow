@@ -57,6 +57,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentJugOfTordrimRelic());
         m_relics.Add(new ContentAlterOfTordrimRelic());
         m_relics.Add(new ContentInstructionsRelic());
+        m_relics.Add(new ContentVowOfTheShakinaRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
