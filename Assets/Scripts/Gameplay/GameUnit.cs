@@ -1788,6 +1788,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
+            if (GameHelper.HasRelic<ContentTombOfTheDefenderRelic>())
+            {
+                if (GameHelper.GetGameController().CurrentActor == player)
+                {
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                }
+                else
+                {
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                }
+            }
+
             if (GameHelper.HasRelic<ContentCursedAmuletRelic>() && m_gameTile != null)
             {
                 List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);

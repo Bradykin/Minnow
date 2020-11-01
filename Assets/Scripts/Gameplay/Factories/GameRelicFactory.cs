@@ -84,8 +84,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMemoryOfTheDefenderRelic());
         m_relics.Add(new ContentTailOfLifeRelic());
         m_relics.Add(new ContentAncientMysteryRelic());
-
-        //Need 33 here
         m_relics.Add(new ContentForbiddenKnowledge());
         m_relics.Add(new ContentHistoryInBloodRelic());
         m_relics.Add(new ContentLastHopeRelic());
@@ -95,6 +93,10 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSecretsOfNatureRelic());
         m_relics.Add(new ContentAdvancedWeaponryRelic());
         m_relics.Add(new ContentBeadofJoyRelic());
+
+        //Need 24 more here
+        m_relics.Add(new ContentTombOfTheDefenderRelic());
+
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
