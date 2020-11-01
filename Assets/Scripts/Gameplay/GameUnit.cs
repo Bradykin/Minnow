@@ -840,10 +840,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameThornsKeyword toReturn = new GameThornsKeyword(0);
 
         //Get the keyword from the holder, if it's not null, add it to the return keyword.
-        GameThornsKeyword keywordThorns = m_keywordHolder.GetKeyword<GameThornsKeyword>();
-        if (keywordThorns != null)
+        GameThornsKeyword holderKeyword = m_keywordHolder.GetKeyword<GameThornsKeyword>();
+        if (holderKeyword != null)
         {
-            toReturn.AddKeyword(keywordThorns);
+            toReturn.AddKeyword(holderKeyword);
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -903,10 +903,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameRegenerateKeyword toReturn = new GameRegenerateKeyword(0);
 
         //Get the keyword from the holder, if it's not null, add it to the return keyword.
-        GameRegenerateKeyword keywordRegen = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
-        if (keywordRegen != null)
+        GameRegenerateKeyword holderKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
+        if (holderKeyword != null)
         {
-            toReturn.AddKeyword(keywordRegen);
+            toReturn.AddKeyword(holderKeyword);
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -947,7 +947,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameVictoriousKeyword GetVictoriousKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+        //Set the return keyword to a blank keyword
+        GameVictoriousKeyword toReturn = new GameVictoriousKeyword(null);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameVictoriousKeyword holderKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
+        if (holderKeyword != null)
+        {
+            toReturn.AddKeyword(holderKeyword);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentBeadofJoyRelic>() && GetTeam() == Team.Player)
+        {
+            toReturn.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 1)));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.IsEmpty())
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public virtual GameKnowledgeableKeyword GetKnowledgeableKeyword()
@@ -962,7 +985,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameRangeKeyword GetRangeKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameRangeKeyword>();
+        //Set the return keyword to a blank keyword
+        GameRangeKeyword toReturn = new GameRangeKeyword(0);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameRangeKeyword holderKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
+        if (holderKeyword != null)
+        {
+            toReturn.AddKeyword(holderKeyword);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentAdvancedWeaponryRelic>() && GetTeam() == Team.Player && toReturn.m_range >= 2)
+        {
+            toReturn.AddKeyword(new GameRangeKeyword(1));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.m_range == 0)
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public virtual GameDeathKeyword GetDeathKeyword()

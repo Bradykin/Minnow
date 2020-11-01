@@ -93,6 +93,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentThornsOfRayRelic());
         m_relics.Add(new ContentPlagueMaskRelic());
         m_relics.Add(new ContentSecretsOfNatureRelic());
+        m_relics.Add(new ContentAdvancedWeaponryRelic());
+        m_relics.Add(new ContentBeadofJoyRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

@@ -7,6 +7,16 @@ public abstract class GameActionKeywordBase : GameKeywordBase
 {
     protected List<GameAction> m_actions = new List<GameAction>();
 
+    public virtual bool IsEmpty()
+    {
+        if (m_actions.Count == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameActionKeywordBase tempKeyword = (GameActionKeywordBase)toAdd;
