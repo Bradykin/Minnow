@@ -187,6 +187,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GameHelper.HasRelic<ContentTalonOfTheCruelRelic>() && GetTeam() == Team.Enemy && GetKeyword<GameFlyingKeyword>() != null)
+        {
+            damage = damage * 2;
+        }
+
         m_curHealth -= damage;
 
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
