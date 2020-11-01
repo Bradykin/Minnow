@@ -31,6 +31,19 @@ public class GameRelicHolder
         return count;
     }
 
+    public GameRelic GetRelic<T>()
+    {
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i] is T val)
+            {
+                return m_relics[i];
+            }
+        }
+
+        return null;
+    }
+
     public List<GameRelic> GetRelicListForRead()
     {
         return m_relics;

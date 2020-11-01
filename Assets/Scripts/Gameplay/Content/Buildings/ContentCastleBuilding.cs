@@ -22,6 +22,15 @@ public class ContentCastleBuilding : GameBuildingBase
 
     protected override void Die()
     {
+        ContentTailOfLifeRelic tailRelic = (ContentTailOfLifeRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentTailOfLifeRelic>());
+        if (tailRelic != null && !tailRelic.HasUsed())
+        {
+            m_curHealth = 50;
+            tailRelic.Use();
+            UIHelper.CreateWorldElementNotification("The castle is spared by the Tail of Life!", false, m_gameTile.GetWorldTile().gameObject);
+            return;
+        }
+
         base.Die();
 
         GameHelper.ReturnToLevelSelectFromLevelScene();
