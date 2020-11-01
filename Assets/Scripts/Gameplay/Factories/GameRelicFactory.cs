@@ -55,6 +55,7 @@ public static class GameRelicFactory
 
         m_relics.Add(new ContentTheReminderRelic());
         m_relics.Add(new ContentJugOfTordrimRelic());
+        m_relics.Add(new ContentAlterOfTordrimRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

@@ -143,6 +143,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
+        {
+            int powerChange = Random.Range(-3, 8);
+            int healthChange = Random.Range(-3, 8);
+
+            if (powerChange >= 0 && healthChange >= 0)
+            {
+                AddStats(powerChange, healthChange);
+            }
+            else if (powerChange < 0 && healthChange < 0)
+            {
+                RemoveStats(-powerChange, -healthChange);
+            }
+            else if (powerChange >= 0 && healthChange < 0)
+            {
+                AddStats(powerChange, 0);
+                RemoveStats(0, -healthChange);
+            }
+            else if (powerChange < 0 && healthChange >= 0)
+            {
+                AddStats(0, healthChange);
+                RemoveStats(-powerChange, 0);
+            }
+        }
+
         if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
         {
             int tempPower = GetPower();
