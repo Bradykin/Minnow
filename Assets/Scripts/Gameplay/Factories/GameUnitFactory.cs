@@ -28,7 +28,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentAlphaBoar());
         m_playerUnits.Add(new ContentConjuredImp());
         m_playerUnits.Add(new ContentCyclops());
-        m_playerUnits.Add(new ContentDemonSoldier());
+        //m_playerUnits.Add(new ContentDemonSoldier());
         m_playerUnits.Add(new ContentDevourer());
         m_playerUnits.Add(new ContentDwarfArchitect());
         m_playerUnits.Add(new ContentDwarfShivcaster());

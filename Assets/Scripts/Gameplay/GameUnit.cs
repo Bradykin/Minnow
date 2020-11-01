@@ -531,6 +531,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void AddMaxStamina(int toAdd)
     {
+        if (toAdd == 0)
+        {
+            return;
+        }
+
         if (!HasCustomName())
         {
             SetCustomName();
@@ -1089,7 +1094,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentFearOfTheShakinaRelic>())
             {
-                GetHit(3);
+                GetHit(20);
             }
         }
 

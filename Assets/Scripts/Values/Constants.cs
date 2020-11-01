@@ -10,7 +10,7 @@ public static class Constants
     public static int StartingActions = 4;
     public static int MaxHandSize = 10;
     public static int MaxTotalStamina = 12;
-    public static int SpawnEliteTurn = 3;
+    public static int SpawnEliteTurn = 2;
     public static int SpawnBossTurn = 2;
 
     public static int PercentChanceForUncommonCard = 38;
