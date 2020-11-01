@@ -767,7 +767,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
         {
-            player.m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(player.m_controlledBuildings[i].m_sightRange);
+            player.m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(player.m_controlledBuildings[i].GetSightRange());
         }
 
         for (int i = 0; i < player.m_controlledUnits.Count; i++)

@@ -23,14 +23,14 @@ public class ContentForestLodgeBuilding : GameBuildingBase
     {
         base.TriggerEndOfWave();
 
-        m_gameTile.GetWorldTile().ExpandPlaceRange(m_sightRange-1);
+        m_gameTile.GetWorldTile().ExpandPlaceRange(2);
     }
 
     protected override void Die()
     {
         base.Die();
 
-        m_gameTile.GetWorldTile().ReducePlaceRange(m_sightRange-1);
+        m_gameTile.GetWorldTile().ReducePlaceRange(2);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

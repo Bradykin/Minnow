@@ -69,12 +69,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (newBuilding.GetTeam() == Team.Player)
         {
-            m_worldTile.ClearSurroundingFog(newBuilding.m_sightRange);
+            m_worldTile.ClearSurroundingFog(newBuilding.GetSightRange());
         }
 
         if (newBuilding.m_expandsPlaceRange)
         {
-            m_worldTile.ExpandPlaceRange(newBuilding.m_sightRange-1);
+            m_worldTile.ExpandPlaceRange(2);
         }
 
         m_building = newBuilding;

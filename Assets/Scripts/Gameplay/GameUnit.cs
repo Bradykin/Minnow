@@ -596,7 +596,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public int GetSightRange()
     {
-        return m_sightRange;
+        int toReturn = m_sightRange;
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
+        {
+            toReturn += 1;
+        }
+
+        return toReturn;
     }
 
     public virtual int HitUnit(GameUnit other, bool spendStamina = true)

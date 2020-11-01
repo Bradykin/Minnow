@@ -105,6 +105,18 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         return m_curHealth;
     }
 
+    public int GetSightRange()
+    {
+        int toReturn = m_sightRange;
+
+        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
+        {
+            toReturn += 1;
+        }
+
+        return toReturn;
+    }
+
     public virtual int GetHit(int damage)
     {
         m_curHealth -= damage;
