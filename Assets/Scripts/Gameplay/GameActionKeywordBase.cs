@@ -94,13 +94,18 @@ public abstract class GameActionKeywordBase : GameKeywordBase
 
     public override bool ShouldBeRemoved()
     {
-        return m_actions.Count == 0;
+        return IsEmpty();
     }
 
     public virtual void DoAction()
     {
         for (int i = 0; i < m_actions.Count; i++)
         {
+            if (m_actions[i] == null)
+            {
+                continue;
+            }
+
             m_actions[i].DoAction();
         }
     }
