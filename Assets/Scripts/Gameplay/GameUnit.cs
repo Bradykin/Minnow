@@ -1435,6 +1435,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     }
                 }
             }
+
+            if (GameHelper.HasRelic<ContentBeadsOfProphecyRelic>() && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() &&
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.GainStamina(1);
+                    }
+                }
+            }
         }
         else if (GetTeam() == Team.Player)
         {
@@ -1473,6 +1487,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                         adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
                     {
                         adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                    }
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentTotemOfRevengeRelic>() && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() &&
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.FillStamina();
                     }
                 }
             }

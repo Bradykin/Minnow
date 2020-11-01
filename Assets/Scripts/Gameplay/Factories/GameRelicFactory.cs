@@ -74,7 +74,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTokenOfTheUprisingRelic());
         m_relics.Add(new ContentSecretTiesRelic());
 
-        //Second 30
+        //Second 28
         m_relics.Add(new ContentEvolvedMembraneRelic());
         m_relics.Add(new ContentRelicOfVictoryRelic());
         m_relics.Add(new ContentStarOfDenumainRelic());
@@ -83,6 +83,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentDiscountTokenRelic());
         m_relics.Add(new ContentHarvestOfTelumRelic());
         m_relics.Add(new ContentCanvasOfHistoryRelic());
+        m_relics.Add(new ContentBeadsOfProphecyRelic());
+        m_relics.Add(new ContentTotemOfRevengeRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
