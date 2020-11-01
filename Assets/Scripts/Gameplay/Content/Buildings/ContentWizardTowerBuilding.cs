@@ -37,6 +37,11 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
         List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_range, 0).Where(t => t.IsOccupied() && t.m_occupyingUnit.GetTeam() == Team.Enemy).ToList();
 
+        if (surroundingTiles.Count == 0)
+        {
+            return;
+        }
+
         int highestHealthAmount = surroundingTiles.Max(t => t.m_occupyingUnit.GetCurHealth());
         GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.m_occupyingUnit.GetCurHealth() == highestHealthAmount);
 
