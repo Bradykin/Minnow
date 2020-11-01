@@ -318,6 +318,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         return toReturn;
     }
 
+    public void AddSpellPower(int toAdd)
+    {
+        m_spellPower += toAdd;
+    }
+
     public void AddControlledUnit(GameUnit toAdd)
     {
         m_controlledUnits.Add(toAdd);

@@ -1505,6 +1505,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
+            if (GameHelper.HasRelic<ContentVoiceOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
+            {
+                player.AddSpellPower(1);
+            }
+
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
                 AddStats(1, 3);
