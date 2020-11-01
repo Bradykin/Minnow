@@ -1031,6 +1031,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn -= 2;
             }
 
+            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn += 10;
+            }
+
             if (GetRange() > 1)
             {
                 toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
@@ -1088,6 +1093,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentOrbOfHealthRelic>())
             {
                 toReturn += 6;
+            }
+
+            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn += 10;
             }
         }
 
