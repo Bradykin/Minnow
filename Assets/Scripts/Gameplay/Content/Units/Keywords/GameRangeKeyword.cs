@@ -16,6 +16,11 @@ public class GameRangeKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_range;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameRangeKeyword tempKeyword = (GameRangeKeyword)toAdd;
@@ -23,9 +28,16 @@ public class GameRangeKeyword : GameKeywordBase
         m_range += tempKeyword.m_range;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_range;
+        GameRangeKeyword tempKeyword = (GameRangeKeyword)toSubtract;
+
+        m_range -= tempKeyword.m_range;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_range <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

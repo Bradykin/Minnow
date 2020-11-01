@@ -16,6 +16,11 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_regenVal;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameRegenerateKeyword tempKeyword = (GameRegenerateKeyword)toAdd;
@@ -23,9 +28,16 @@ public class GameRegenerateKeyword : GameKeywordBase
         m_regenVal += tempKeyword.m_regenVal;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_regenVal;
+        GameRegenerateKeyword tempKeyword = (GameRegenerateKeyword)toSubtract;
+
+        m_regenVal -= tempKeyword.m_regenVal;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_regenVal <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

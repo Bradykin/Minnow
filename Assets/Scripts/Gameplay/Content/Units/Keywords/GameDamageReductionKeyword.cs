@@ -16,6 +16,11 @@ public class GameDamageReductionKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_damageReduction;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameDamageReductionKeyword tempKeyword = (GameDamageReductionKeyword)toAdd;
@@ -23,9 +28,16 @@ public class GameDamageReductionKeyword : GameKeywordBase
         m_damageReduction += tempKeyword.m_damageReduction;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_damageReduction;
+        GameDamageReductionKeyword tempKeyword = (GameDamageReductionKeyword)toSubtract;
+
+        m_damageReduction -= tempKeyword.m_damageReduction;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_damageReduction <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

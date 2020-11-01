@@ -12,15 +12,25 @@ public class GameForestwalkKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    //Left blank intentionally
+    public override string GetDesc()
+    {
+        return "";
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         //Stacking this keyword does nothing.
     }
 
-    //Left blank intentionally
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "";
+        //Subtracting this keyword does nothing.
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return false;
     }
 
     public override JsonKeywordData SaveToJson()

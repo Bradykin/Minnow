@@ -1,49 +1,48 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainStaminaAction : GameAction
+public class GameHealAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_toGain;
+    private int m_healVal;
 
-    public GameGainStaminaAction(GameUnit unit, int toGain)
+    public GameHealAction(GameUnit unit, int healVal)
     {
         m_unit = unit;
-        m_toGain = toGain;
+        m_healVal = healVal;
 
-        m_name = "Gain Stamina";
+        m_name = "Heal";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override string GetDesc()
     {
-        return "Gain " + m_toGain + " Stamina";
+        return "Heal for " + m_healVal + ".";
     }
 
     public override void DoAction()
     {
-        m_unit.GainStamina(m_toGain);
+        m_unit.Heal(m_healVal);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainStaminaAction tempAction = (GameGainStaminaAction)toAdd;
+        GameHealAction tempAction = (GameHealAction)toAdd;
 
-        m_toGain += tempAction.m_toGain;
+        m_healVal += tempAction.m_healVal;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainStaminaAction tempAction = (GameGainStaminaAction)toSubtract;
+        GameHealAction tempAction = (GameHealAction)toSubtract;
 
-        m_toGain -= tempAction.m_toGain;
+        m_healVal -= tempAction.m_healVal;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_toGain <= 0;
+        return m_healVal <= 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -56,7 +55,7 @@ public class GameGainStaminaAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            intValue1 = m_toGain
+            intValue1 = m_healVal
         };
 
         return jsonData;

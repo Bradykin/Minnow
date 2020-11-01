@@ -20,6 +20,11 @@ public class GameLoseStatsAction : GameAction
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "-" + m_powerToLose + "/-" + m_healthToLose + ".";
+    }
+
     public override void DoAction()
     {
         m_unit.RemoveStats(m_powerToLose, m_healthToLose);
@@ -33,9 +38,22 @@ public class GameLoseStatsAction : GameAction
         m_healthToLose += tempAction.m_healthToLose;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "-" + m_powerToLose + "/-" + m_healthToLose + ".";
+        GameLoseStatsAction tempAction = (GameLoseStatsAction)toSubtract;
+
+        m_powerToLose -= tempAction.m_powerToLose;
+        m_healthToLose -= tempAction.m_healthToLose;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_powerToLose <= 0 && m_healthToLose <= 0;
+    }
+
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
     }
 
     public override JsonActionData SaveToJson()

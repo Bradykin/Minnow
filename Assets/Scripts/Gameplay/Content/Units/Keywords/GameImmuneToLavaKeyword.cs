@@ -12,15 +12,25 @@ public class GameImmuneToLavaKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    public override void AddKeyword(GameKeywordBase toAdd)
+    {
+        //Stacking this keyword does nothing.
+    }
+
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
+    {
+        //Subtracting this keyword does nothing.
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return false;
+    }
+
     //Left blank intentionally
     public override string GetDesc()
     {
         return "";
-    }
-
-    public override void AddKeyword(GameKeywordBase toAdd)
-    {
-        //Stacking this keyword does nothing.
     }
 
     public override JsonKeywordData SaveToJson()

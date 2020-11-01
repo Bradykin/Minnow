@@ -6,32 +6,49 @@ using UnityEngine;
 public class GameGainBrittleAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_toGain;
+    private int m_brittleAmount;
 
-    public GameGainBrittleAction(GameUnit unit, int toGain)
+    public GameGainBrittleAction(GameUnit unit, int brittleAmount)
     {
         m_unit = unit;
-        m_toGain = toGain;
+        m_brittleAmount = brittleAmount;
 
         m_name = "Gain Brittle";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "Gain <b>Brittle</b> " + m_brittleAmount + ".";
+    }
+
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameBrittleKeyword(m_toGain), false);
+        m_unit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false);
     }
 
     public override void AddAction(GameAction toAdd)
     {
         GameGainBrittleAction tempAction = (GameGainBrittleAction)toAdd;
 
-        m_toGain += tempAction.m_toGain;
+        m_brittleAmount += tempAction.m_brittleAmount;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "Gain <b>Brittle</b> " + m_toGain + ".";
+        GameGainBrittleAction tempAction = (GameGainBrittleAction)toSubtract;
+
+        m_brittleAmount -= tempAction.m_brittleAmount;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_brittleAmount <= 0;
+    }
+
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
     }
 
     public override JsonActionData SaveToJson()
@@ -39,7 +56,7 @@ public class GameGainBrittleAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            intValue1 = m_toGain
+            intValue1 = m_brittleAmount
         };
 
         return jsonData;

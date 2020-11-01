@@ -77,6 +77,32 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
         m_keywords.Remove(toRemove);
     }
 
+    public void SubtractKeyword(GameKeywordBase toSubtract)
+    {
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i].GetName() == toSubtract.GetName())
+            {
+                switch(m_keywords[i].m_keywordParamType)
+                {
+                    case GameKeywordBase.KeywordParamType.NoParams:
+                        m_keywords.RemoveAt(i);
+                        break;
+                    case GameKeywordBase.KeywordParamType.IntParam:
+                    case GameKeywordBase.KeywordParamType.TwoIntParam:
+                    case GameKeywordBase.KeywordParamType.ActionParam:
+                        m_keywords[i].SubtractKeyword(toSubtract);
+                        if (m_keywords[i].ShouldBeRemoved())
+                        {
+                            m_keywords.RemoveAt(i);
+                        }
+                        break;
+                }
+                return;
+            }
+        }
+    }
+
     public void RemoveAllKeywords()
     {
         m_keywords.Clear();

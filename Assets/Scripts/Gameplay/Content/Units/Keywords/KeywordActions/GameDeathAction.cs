@@ -1,49 +1,43 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainStaminaAction : GameAction
+public class GameDeathAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_toGain;
 
-    public GameGainStaminaAction(GameUnit unit, int toGain)
+    public GameDeathAction(GameUnit unit)
     {
         m_unit = unit;
-        m_toGain = toGain;
 
-        m_name = "Gain Stamina";
-        m_actionParamType = ActionParamType.UnitIntParam;
+        m_name = "Die";
+        m_desc = "Die.";
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override string GetDesc()
     {
-        return "Gain " + m_toGain + " Stamina";
+        return "Die.";
     }
 
     public override void DoAction()
     {
-        m_unit.GainStamina(m_toGain);
+        m_unit.Die();
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainStaminaAction tempAction = (GameGainStaminaAction)toAdd;
-
-        m_toGain += tempAction.m_toGain;
+        //Stacking this action does nothing.
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainStaminaAction tempAction = (GameGainStaminaAction)toSubtract;
-
-        m_toGain -= tempAction.m_toGain;
+        //Stacking this keyword does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_toGain <= 0;
+        return false;
     }
 
     public override GameUnit GetGameUnit()
@@ -55,8 +49,7 @@ public class GameGainStaminaAction : GameAction
     {
         JsonActionData jsonData = new JsonActionData
         {
-            name = m_name,
-            intValue1 = m_toGain
+            name = m_name
         };
 
         return jsonData;

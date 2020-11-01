@@ -51,6 +51,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public bool m_startWithMaxStamina;
     public bool m_takesLavaFieldDamage = true;
 
+    //Unique guid per unit, to use to link together like gameunits in save data
+    private string m_guid = System.Guid.NewGuid().ToString();
+
     public void CopyOff(GameUnit other)
     {
         m_maxHealth = other.m_maxHealth;
@@ -171,10 +174,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameDamageShieldKeyword damageShieldKeyword = m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
         if (damageShieldKeyword != null)
         {
-            if (damageShieldKeyword.m_numShields > 0)
+            if (!damageShieldKeyword.ShouldBeRemoved())
             {
                 damageShieldKeyword.DecreaseShield(1);
-                if (damageShieldKeyword.m_numShields == 0)
+                if (damageShieldKeyword.ShouldBeRemoved())
                 {
                     UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
                     m_keywordHolder.RemoveKeyword(damageShieldKeyword);
@@ -821,6 +824,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_keywordHolder.RemoveKeyword(toRemove);
     }
 
+    public void SubtractKeyword(GameKeywordBase toRemove)
+    {
+        m_keywordHolder.SubtractKeyword(toRemove);
+    }
+
     public T GetKeyword<T>()
     {
         return m_keywordHolder.GetKeyword<T>();
@@ -1248,6 +1256,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
+    //Gets the custom name, without the base name attached
     public string GetCustomName()
     {
         return m_customName;
@@ -1263,6 +1272,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
     }
 
+    //Gets the full name with custom + base or just base
     public override string GetName()
     {
         if (HasCustomName())
@@ -1597,6 +1607,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     //============================================================================================================//
 
+    public string GetGuid()
+    {
+        return m_guid;
+    }
+
     public JsonGameUnitData SaveToJson()
     {
         JsonKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
@@ -1615,7 +1630,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             typeline = (int)m_typeline,
             keywordHolderJson = keywordHolderJson,
             staminaToAttack = m_staminaToAttack,
-            sightRange = m_sightRange
+            sightRange = m_sightRange,
+            guid = GetGuid()
         };
 
         return jsonData;
@@ -1637,6 +1653,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_typeline = (Typeline)jsonData.typeline;
         m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;
+        m_guid = jsonData.guid;
 
         m_keywordHolder.LoadFromJson((jsonData.keywordHolderJson, this));
     }

@@ -19,4 +19,5 @@ public class JsonGameUnitData
     public JsonKeywordHolderData keywordHolderJson;
     public int staminaToAttack;
     public int sightRange;
+    public string guid;
 }

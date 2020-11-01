@@ -17,7 +17,7 @@ public class ContentDevilishPowerEvent : GameEvent
         }
 
         m_optionOne = new GameEventCardSelectOption(new ContentLivingBombCard());
-        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldEnrageAction(m_tile.m_occupyingUnit)));
+        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldEnrageAction(m_tile.m_occupyingUnit, 1)));
 
         m_minWaveToSpawn = 2;
         m_maxWaveToSpawn = 5;

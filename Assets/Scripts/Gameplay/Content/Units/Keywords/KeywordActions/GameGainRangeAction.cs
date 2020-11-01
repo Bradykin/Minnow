@@ -1,40 +1,41 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainTempSpellpowerAction : GameAction
+public class GameGainRangeAction : GameAction
 {
+    private GameUnit m_unit;
     private int m_toGain;
 
-    public GameGainTempSpellpowerAction(int toGain)
+    public GameGainRangeAction(GameUnit unit, int toGain)
     {
+        m_unit = unit;
         m_toGain = toGain;
 
-        m_name = "Gain Temporary Spellpower";
-        m_actionParamType = ActionParamType.IntParam;
+        m_name = "Gain Range";
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override string GetDesc()
     {
-        return "+ " + m_toGain + " spellpower until end of turn";
+        return "+ " + m_toGain + " range";
     }
 
     public override void DoAction()
     {
-        GameHelper.GetPlayer().m_tempSpellpowerIncrease += m_toGain;
+        m_unit.AddKeyword(new GameRangeKeyword(m_toGain));
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainTempSpellpowerAction tempAction = (GameGainTempSpellpowerAction)toAdd;
+        GameGainRangeAction tempAction = (GameGainRangeAction)toAdd;
 
         m_toGain += tempAction.m_toGain;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainTempSpellpowerAction tempAction = (GameGainTempSpellpowerAction)toSubtract;
+        GameGainRangeAction tempAction = (GameGainRangeAction)toSubtract;
 
         m_toGain -= tempAction.m_toGain;
     }
@@ -46,7 +47,7 @@ public class GameGainTempSpellpowerAction : GameAction
 
     public override GameUnit GetGameUnit()
     {
-        return null;
+        return m_unit;
     }
 
     public override JsonActionData SaveToJson()

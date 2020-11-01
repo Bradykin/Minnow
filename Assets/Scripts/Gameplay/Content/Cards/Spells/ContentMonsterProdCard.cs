@@ -7,7 +7,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
     public ContentMonsterProdCard()
     {
         m_name = "Monster Prod";
-        m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: Gain 1 Stamina.'";
+        m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: Gain 1 Stamina until end of turn.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
@@ -43,5 +43,6 @@ public class ContentMonsterProdCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1)));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1))));
     }
 }

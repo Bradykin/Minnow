@@ -15,6 +15,11 @@ public class GameDrawCardAction : GameAction
         m_actionParamType = ActionParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "Draw " + m_toDraw + ".";
+    }
+
     public override void DoAction()
     {
         GamePlayer player = GameHelper.GetPlayer();
@@ -34,9 +39,21 @@ public class GameDrawCardAction : GameAction
         m_toDraw += tempAction.m_toDraw;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "Draw " + m_toDraw + ".";
+        GameDrawCardAction tempAction = (GameDrawCardAction)toSubtract;
+
+        m_toDraw -= tempAction.m_toDraw;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toDraw <= 0;
+    }
+
+    public override GameUnit GetGameUnit()
+    {
+        return null;
     }
 
     public override JsonActionData SaveToJson()

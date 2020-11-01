@@ -103,7 +103,7 @@ public class WorldUnit : MonoBehaviour
         m_staminaContainer.DoUpdate(GetUnit().GetCurStamina(), GetUnit().GetMaxStamina(), GetUnit().GetTeam());
         if (GetUnit().HasCustomName())
         {
-            m_titleText.text = GetUnit().GetCustomName();
+            m_titleText.text = GetUnit().GetName();
         }
         else
         {

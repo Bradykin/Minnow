@@ -8,12 +8,25 @@ public class GameGainGoldEnrageAction : GameAction
     private GameUnit m_unit;
     private int m_numTimesToGain = 1;
 
-    public GameGainGoldEnrageAction(GameUnit unit)
+    public GameGainGoldEnrageAction(GameUnit unit, int numTimesToGain)
     {
         m_unit = unit;
+        m_numTimesToGain = numTimesToGain;
 
         m_name = "Gain Gold Enrage";
-        m_actionParamType = ActionParamType.UnitParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numTimesToGain == 1)
+        {
+            return "Gain gold equal to the damage taken.";
+        }
+        else
+        {
+            return "Gain gold equal to " + m_numTimesToGain + " times the damage taken.";
+        }
     }
 
     public override void DoAction()
@@ -36,16 +49,21 @@ public class GameGainGoldEnrageAction : GameAction
         m_numTimesToGain += tempAction.m_numTimesToGain;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        if (m_numTimesToGain == 1)
-        {
-            return "Gain gold equal to the damage taken.";
-        }
-        else
-        {
-            return "Gain gold equal to " + m_numTimesToGain + " times the damage taken.";
-        }
+        GameGainGoldEnrageAction tempAction = (GameGainGoldEnrageAction)toSubtract;
+
+        m_numTimesToGain -= tempAction.m_numTimesToGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_numTimesToGain <= 0;
+    }
+
+    public override GameUnit GetGameUnit()
+    {
+        return m_unit;
     }
 
     public override JsonActionData SaveToJson()
@@ -53,6 +71,7 @@ public class GameGainGoldEnrageAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
+            intValue1 = m_numTimesToGain
         };
 
         return jsonData;

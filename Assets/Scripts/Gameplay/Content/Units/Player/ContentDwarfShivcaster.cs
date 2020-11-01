@@ -20,102 +20,10 @@ public class ContentDwarfShivcaster : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this)), false);
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, 2)), false);
         AddKeyword(new GameRangeKeyword(2), false);
         AddKeyword(new GameShivKeyword(), false);
 
         LateInit();
-    }
-}
-
-public class GameShivNearbyAction : GameAction
-{
-    private GameUnit m_unit;
-    private GameCard m_shivCard;
-    private int m_numShivsThrown = 2;
-    private int m_shivRange = 2;
-
-    public GameShivNearbyAction(GameUnit unit)
-    {
-        m_unit = unit;
-        m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
-
-        m_name = "Throw Shiv";
-        m_actionParamType = ActionParamType.UnitParam;
-    }
-
-    public override void DoAction()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-
-        if (player == null)
-        {
-            return;
-        }
-
-        List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), m_shivRange);
-
-        List<GameUnit> nearbyEnemies = new List<GameUnit>();
-
-        for (int i = 0; i < nearbyTiles.Count; i++)
-        {
-            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingUnit.m_isDead && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy)
-            {
-                nearbyEnemies.Add(nearbyTiles[i].m_occupyingUnit);
-            }
-        }
-
-        if (nearbyEnemies.Count == 0)
-        {
-            return;
-        }
-
-        for (int i = 0; i < m_numShivsThrown; i++)
-        {
-            int randomIndex = Random.Range(0, nearbyEnemies.Count);
-            m_shivCard.PlayCard(nearbyEnemies[randomIndex]);
-
-            if (nearbyEnemies[randomIndex].m_isDead)
-            {
-                nearbyEnemies.RemoveAt(randomIndex);
-                if (nearbyEnemies.Count == 0)
-                {
-                    break;
-                }
-            }
-        }
-    }
-
-    public override void AddAction(GameAction toAdd)
-    {
-        GameShivNearbyAction tempAction = (GameShivNearbyAction)toAdd;
-
-        //Use the larger of the two shiv ranges instead of adding them.
-        if (tempAction.m_shivRange > m_shivRange)
-        {
-            m_shivRange = tempAction.m_shivRange;
-        }
-
-        m_numShivsThrown += tempAction.m_numShivsThrown;
-    }
-
-    public override string GetDesc()
-    {
-        return "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within " + m_shivRange + " tiles.";
-    }
-
-    public override JsonActionData SaveToJson()
-    {
-        JsonActionData jsonData = new JsonActionData
-        {
-            name = m_name,
-        };
-
-        return jsonData;
-    }
-
-    public override void LoadFromJson(JsonActionData jsonData)
-    {
-        //Currently nothing needs to be done here
     }
 }

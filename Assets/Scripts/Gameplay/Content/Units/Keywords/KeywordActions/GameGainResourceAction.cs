@@ -15,6 +15,11 @@ public class GameGainResourceAction : GameAction
         m_actionParamType = ActionParamType.GameWalletParam;
     }
 
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain.ToString() + ".";
+    }
+
     public override void DoAction()
     {
         GameHelper.GetPlayer().m_wallet.AddResources(m_toGain);
@@ -27,9 +32,21 @@ public class GameGainResourceAction : GameAction
         m_toGain.AddResources(tempAction.m_toGain);
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "Gain " + m_toGain.ToString() + ".";
+        GameGainResourceAction tempAction = (GameGainResourceAction)toSubtract;
+
+        m_toGain.SubtractResources(tempAction.m_toGain);
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toGain.m_gold <= 0;
+    }
+
+    public override GameUnit GetGameUnit()
+    {
+        return null;
     }
 
     public override JsonActionData SaveToJson()
