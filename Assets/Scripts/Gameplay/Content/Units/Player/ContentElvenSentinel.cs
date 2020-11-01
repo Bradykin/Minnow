@@ -28,7 +28,7 @@ public class ContentElvenSentinel : GameUnit
         LateInit();
     }
 
-    protected override int GetDamageToDealTo(GameUnit other)
+    public override int GetDamageToDealTo(GameUnit other)
     {
         int toDeal = base.GetDamageToDealTo(other);
 

@@ -133,7 +133,7 @@ public class WorldUnit : MonoBehaviour
         }
         else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))
         {
-            Globals.m_selectedUnit.GetUnit().HitUnit(GetUnit());
+            Globals.m_selectedUnit.GetUnit().HitUnit(GetUnit(), Globals.m_selectedUnit.GetUnit().GetDamageToDealTo(GetUnit()));
             Globals.m_selectedUnit.PlayHitAnim();
         }
         else if (CanSelect())

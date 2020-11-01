@@ -27,7 +27,7 @@ public class AIAttackOnceStandardStep : AIStep
                         }
                     }
 
-                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit);
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit, m_AIGameEnemyUnit.m_gameEnemyUnit.GetDamageToDealTo(gameUnit));
 
                     if (shouldYield)
                     {

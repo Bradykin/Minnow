@@ -60,9 +60,9 @@ public class ContentZombieEnemy : GameEnemyUnit
         return base.CanHitUnit(other, checkRange);
     }
 
-    public override int HitUnit(GameUnit other, bool spendStamina = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
     {
-        int damageTaken = base.HitUnit(other, spendStamina);
+        int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 
         if (damageTaken > 0 && !other.m_isDead)
         {

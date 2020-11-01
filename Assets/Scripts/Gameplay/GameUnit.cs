@@ -150,8 +150,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_gameTile = worldTile.GetGameTile();
     }
 
-    public virtual int GetHit(int damage)
+    public virtual int GetHit(int damage, GameUnit gameUnit = null, bool shouldThorns = true)
     {
+        if (gameUnit != null)
+        {
+            GameThornsKeyword thornsKeyword = m_keywordHolder.GetKeyword<GameThornsKeyword>();
+            if (thornsKeyword != null)
+            {
+                HitUnit(gameUnit, thornsKeyword.m_thornsDamage, false, false);
+            }
+        }
+
         if (m_isDead)
         {
             return 0;
@@ -586,26 +595,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return toReturn;
     }
 
-    public virtual int HitUnit(GameUnit other, bool spendStamina = true)
+    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
     {
         if (spendStamina)
         {
             SpendStamina(GetStaminaToAttack());
         }
 
-        int thornsReturnDamage = 0;
-        GameThornsKeyword thornsKeyword = other.m_keywordHolder.GetKeyword<GameThornsKeyword>();
-        if (thornsKeyword != null)
-        {
-            thornsReturnDamage += thornsKeyword.m_thornsDamage;
-        }
-
-        int damageTaken = other.GetHit(GetDamageToDealTo(other));
-
-        if (thornsReturnDamage > 0)
-        {
-            GetHit(thornsReturnDamage);
-        }
+        int damageTaken = other.GetHit(damageAmount, this, shouldThorns);
 
         List<GameMomentumKeyword> momentumKeywords = m_keywordHolder.GetKeywords<GameMomentumKeyword>();
 
@@ -694,12 +691,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return 0;
     }
 
-    protected virtual int GetDamageToDealTo(GameUnit target)
+    public virtual int GetDamageToDealTo(GameUnit target)
     {
         return GetPower();
     }
 
-    protected virtual int GetDamageToDealTo(GameBuildingBase target)
+    public virtual int GetDamageToDealTo(GameBuildingBase target)
     {
         return GetPower();
     }

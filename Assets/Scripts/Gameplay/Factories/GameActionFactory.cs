@@ -17,6 +17,8 @@ public class GameActionFactory
         m_actions.Add(new GameExplodeAction(null, 0, 0));
         m_actions.Add(new GameFullHealAction(null));
         m_actions.Add(new GameHealAction(null, 0));
+        m_actions.Add(new GameGainStatsAction(null, 0, 0));
+        m_actions.Add(new GameLoseStatsAction(null, 0, 0));
         m_actions.Add(new GameGainStaminaAction(null, 0));
         m_actions.Add(new GameGainBrittleAction(null, 0));
         m_actions.Add(new GameGainEnergyAction(0));

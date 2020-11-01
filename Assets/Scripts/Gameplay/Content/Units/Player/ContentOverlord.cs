@@ -27,7 +27,7 @@ public class ContentOverlord : GameUnit
         LateInit();
     }
 
-    protected override int GetDamageToDealTo(GameUnit target)
+    public override int GetDamageToDealTo(GameUnit target)
     {
         int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
         this.SpendStamina(GetCurStamina());
@@ -35,7 +35,7 @@ public class ContentOverlord : GameUnit
         return damage;
     }
 
-    protected override int GetDamageToDealTo(GameBuildingBase target)
+    public override int GetDamageToDealTo(GameBuildingBase target)
     {
         int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
         this.SpendStamina(GetCurStamina());
