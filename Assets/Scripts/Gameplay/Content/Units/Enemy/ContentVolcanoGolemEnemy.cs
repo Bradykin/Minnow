@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class ContentVolcanoGolemEnemy : GameEnemyUnit
 {
-    int m_effectRange = 4;
-    int m_effectIncrease = 1;
+    int m_effectRange = 1;
     
     public ContentVolcanoGolemEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 10;
+        m_maxHealth = 30;
         m_maxStamina = 5;
-        m_staminaRegen = 4;
+        m_staminaRegen = 3;
         m_power = 3;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 2;
-        m_maxWave = 3;
+        m_minWave = 3;
+        m_maxWave = 4;
 
         m_name = "Volcano Golem";
-        m_desc = $"Gets +1 power for each other Hellhound within {m_effectRange} range.";
+        m_desc = $"Gets doubled power and only needs 1 stamina to attack while in lava. When this unit dies, all plains and forest tiles within {m_effectRange} range are turned to lava.";
 
         AddKeyword(new GameLavawalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameVictoriousKeyword(new GameGainStaminaRangeAction(this, 1, 2)), false);
+            m_effectRange = 3;
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
@@ -41,22 +40,35 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
 
     public override int GetPower()
     {
-        int basePower = base.GetPower();
-
-        if (GetGameTile() != null)
+        if (GetGameTile().GetTerrain().IsLava())
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange);
+            return base.GetPower() * 2;
+        }
+        
+        return base.GetPower();
+    }
 
-            for (int i = 0; i < surroundingTiles.Count; i++)
+    public override int GetStaminaToAttack()
+    {
+        if (GetGameTile().GetTerrain().IsLava())
+        {
+            return 1;
+        }
+        
+        return base.GetStaminaToAttack();
+    }
+
+    public override void Die(bool canRevive = true)
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange, 0);
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            if (!surroundingTiles[i].HasBuilding() && (surroundingTiles[i].GetTerrain().IsPlains() || surroundingTiles[i].GetTerrain().IsForest()))
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                    surroundingTiles[i].m_occupyingUnit is ContentHellhoundEnemy)
-                {
-                    basePower += m_effectIncrease;
-                }
+                surroundingTiles[i].SetTerrain(new ContentLavaFieldActiveTerrain());
             }
         }
 
-        return basePower;
+        base.Die(canRevive);
     }
 }
