@@ -420,8 +420,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                AddStats(1, 1);
+                AddStats(1, 3);
                 AddMaxStamina(1);
+            }
+
+            if (GameHelper.HasRelic<ContentInstructionsRelic>() && GetTypeline() == Typeline.Creation)
+            {
+                AddStats(GetMaxStamina(), GetMaxStamina());
             }
 
             WorldController.Instance.m_gameController.m_player.m_controlledUnits.Remove(this);

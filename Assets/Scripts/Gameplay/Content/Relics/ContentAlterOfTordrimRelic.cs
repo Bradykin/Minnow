@@ -13,5 +13,6 @@ public class ContentAlterOfTordrimRelic : GameRelic
         LateInit();
 
         m_tags.AddTag(GameTag.TagType.Tordrim);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }
