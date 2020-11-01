@@ -1040,6 +1040,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
+            if (GameHelper.HasRelic<ContentIotalRelic>())
+            {
+                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().m_wallet.m_gold) / 250.0f);
+
+                toReturn += toAdd;
+            }
+
             if (m_rarity == GameRarity.Starter)
             {
                 if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
