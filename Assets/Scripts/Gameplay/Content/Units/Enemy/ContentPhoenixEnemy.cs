@@ -16,7 +16,7 @@ public class ContentPhoenixEnemy : GameEnemyUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Phoenix";
-        m_desc = "Heals to full at the start of each turn if it is on a lava tile. If this unit dies while on a lava tile, it will respawn with full health.";
+        m_desc = "If this unit dies while on a lava tile, it will respawn with full health.";
 
         m_minWave = 4;
         m_maxWave = 6;
@@ -35,15 +35,15 @@ public class ContentPhoenixEnemy : GameEnemyUnit
         LateInit();
     }
 
-    protected override bool ShouldRevive()
+    protected override bool ShouldRevive(out int healthSurvivedAt)
     {
-        bool shouldReviveBase = base.ShouldRevive();
+        bool shouldReviveBase = base.ShouldRevive(out healthSurvivedAt);
 
         bool isReviving = shouldReviveBase || GetGameTile().GetTerrain().IsLava();
 
         if (isReviving)
         {
-            Heal(GetMaxHealth());
+            healthSurvivedAt = GetMaxHealth();
             SpendStamina(GetCurStamina());
         }
 

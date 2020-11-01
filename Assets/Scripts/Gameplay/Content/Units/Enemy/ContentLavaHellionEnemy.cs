@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSlimeEnemy : GameEnemyUnit
+public class ContentLavaHellionEnemy : GameEnemyUnit
 {
-    public ContentSlimeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentLavaHellionEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 2;
+        m_maxHealth = 70;
+        m_maxStamina = 6;
+        m_staminaRegen = 5;
+        m_power = 12;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 1;
-        m_maxWave = 2;
+        m_minWave = 5;
+        m_maxWave = 6;
 
-        m_name = "Slime";
+        m_name = "Lava Hellion";
         m_desc = "";
 
+        AddKeyword(new GameImmuneToLavaKeyword(), false);
+        AddKeyword(new GameVictoriousKeyword(new GameDoublePowerAction(this, 1)), false);
+        AddKeyword(new GameDamageReductionKeyword(3), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
+            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

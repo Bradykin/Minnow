@@ -31,9 +31,9 @@ public class ContentSkeleton : GameUnit
         LateInit();
     }
 
-    protected override bool ShouldRevive()
+    protected override bool ShouldRevive(out int healthSurvivedAt)
     {
-        bool shouldReviveBase =  base.ShouldRevive();
+        bool shouldReviveBase =  base.ShouldRevive(out healthSurvivedAt);
         bool shouldReviveTrigger = GameHelper.PercentChanceRoll(m_chance);
 
         bool isReviving = shouldReviveBase || shouldReviveTrigger;
