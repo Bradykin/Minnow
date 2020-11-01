@@ -66,7 +66,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility) && GetGameTile().GetTerrain().IsLava())
         {
-            GameDamageReductionKeyword gameDamageReductionKeyword = GetKeyword<GameDamageReductionKeyword>();
+            GameDamageReductionKeyword gameDamageReductionKeyword = GetDamageReductionKeyword();
 
             if (gameDamageReductionKeyword == null)
             {
@@ -85,7 +85,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility) && GetGameTile().GetTerrain().IsLava())
         {
-            GameDamageReductionKeyword gameDamageReductionKeyword = GetKeyword<GameDamageReductionKeyword>();
+            GameDamageReductionKeyword gameDamageReductionKeyword = GetDamageReductionKeyword();
 
             if (gameDamageReductionKeyword == null)
             {
