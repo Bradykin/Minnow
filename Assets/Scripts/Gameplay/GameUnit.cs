@@ -991,6 +991,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
             }
+
+            if (GameHelper.HasRelic<ContentBondOfFamilyRelic>())
+            {
+                if (GetGameTile() != null)
+                {
+                    List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 3);
+
+                    for (int i = 0; i < surroundingTiles.Count; i++)
+                    {
+                        if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                            surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+                        {
+                            if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                            {
+                                toReturn += 4;
+                            }
+                            else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                            {
+                                toReturn -= 4;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (toReturn < 0)
