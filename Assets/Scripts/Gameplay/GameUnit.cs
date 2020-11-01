@@ -161,6 +161,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             AddKeyword(new GameDamageReductionKeyword(1));
         }
 
+        if (GameHelper.HasRelic<ContentEvolvedMembraneRelic>())
+        {
+            AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 1)));
+        }
+
         if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
         {
             int powerChange = Random.Range(-3, 8);

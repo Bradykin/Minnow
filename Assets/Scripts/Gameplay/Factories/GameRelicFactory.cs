@@ -42,6 +42,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentPoisonedShivsRelic());
 
         //New relics to test
+        //First 30
         m_relics.Add(new ContentCallOfTheSeaRelic());
         m_relics.Add(new ContentMaskOfSpeedRelic());
         m_relics.Add(new ContentSackOfSoulsRelic());
@@ -52,7 +53,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTheGreatestGiftRelic());
         m_relics.Add(new ContentSporetechRelic());
         m_relics.Add(new ContentTokenOfFriendshipRelic());
-
         m_relics.Add(new ContentTheReminderRelic());
         m_relics.Add(new ContentJugOfTordrimRelic());
         m_relics.Add(new ContentAlterOfTordrimRelic());
@@ -63,7 +63,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentIotalRelic());
         m_relics.Add(new ContentFadingLightRelic());
         m_relics.Add(new ContentBeaconOfSanityRelic());
-
         m_relics.Add(new ContentEyeOfTelloRelic());
         m_relics.Add(new ContentPriceOfFreedomRelic());
         m_relics.Add(new ContentHeroicTrophyRelic());
@@ -74,6 +73,9 @@ public static class GameRelicFactory
         m_relics.Add(new ContentAncientRitualRelic());
         m_relics.Add(new ContentTokenOfTheUprisingRelic());
         m_relics.Add(new ContentSecretTiesRelic());
+
+        //Second 30
+        m_relics.Add(new ContentEvolvedMembraneRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
