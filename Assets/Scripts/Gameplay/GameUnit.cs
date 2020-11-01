@@ -1599,7 +1599,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         RegenStamina();
 
-        if (GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain && m_keywordHolder.GetKeyword<GameImmuneToLavaKeyword>() == null && m_keywordHolder.GetKeyword<GameFlyingKeyword>() == null)
+        if (GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain && m_keywordHolder.GetKeyword<GameLavawalkKeyword>() == null && m_keywordHolder.GetKeyword<GameFlyingKeyword>() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }

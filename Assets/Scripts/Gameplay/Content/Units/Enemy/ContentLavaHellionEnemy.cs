@@ -22,7 +22,7 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_name = "Lava Hellion";
         m_desc = "";
 
-        AddKeyword(new GameImmuneToLavaKeyword(), false);
+        AddKeyword(new GameLavawalkKeyword(), false);
         AddKeyword(new GameVictoriousKeyword(new GameDoublePowerAction(this, 1)), false);
         AddKeyword(new GameDamageReductionKeyword(3), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
