@@ -118,7 +118,24 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
+        if (GameHelper.HasRelic<ContentSporetechRelic>())
+        {
+            int r = Random.Range(0, 3);
+            if (r == 0)
+            {
+                m_typeline = Typeline.Humanoid;
+            }
+            else if (r == 1)
+            {
+                m_typeline = Typeline.Monster;
+            }
+            else if (r == 2)
+            {
+                m_typeline = Typeline.Creation;
+            }
+        }
+
+            List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {
             summonKeywords[i].DoAction();

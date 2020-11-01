@@ -51,6 +51,7 @@ public static class GameRelicFactory
 
         m_relics.Add(new ContentNamelessFlaskRelic());
         m_relics.Add(new ContentTheGreatestGiftRelic());
+        m_relics.Add(new ContentSporetechRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
