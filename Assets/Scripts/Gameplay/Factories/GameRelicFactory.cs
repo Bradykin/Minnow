@@ -66,6 +66,7 @@ public static class GameRelicFactory
 
         m_relics.Add(new ContentEyeOfTelloRelic());
         m_relics.Add(new ContentPriceOfFreedomRelic());
+        m_relics.Add(new ContentHeroicTrophyRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
