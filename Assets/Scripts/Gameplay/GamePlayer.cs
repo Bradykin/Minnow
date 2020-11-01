@@ -434,6 +434,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        if (GameHelper.HasRelic<ContentAncientRitualRelic>())
+        {
+            toReturn -= 4;
+        }
+
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1);
@@ -455,6 +460,12 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             {
                 toReturn += 1;
             }
+        }
+
+        //Minimize it to 1
+        if (toReturn <= 0)
+        {
+            toReturn = 1;
         }
 
         return toReturn;

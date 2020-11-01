@@ -841,12 +841,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
             {
-                staminaToAttack = staminaToAttack - 1;
+                staminaToAttack--;
             }
 
             if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
-                staminaToAttack = staminaToAttack - 1;
+                staminaToAttack--;
             }
 
             if (GameHelper.HasRelic<ContentNamelessFlaskRelic>())
@@ -854,6 +854,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GetCurStamina() == 1)
                 {
                     staminaToAttack = 1;
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentAncientRitualRelic>())
+            {
+                if (GetTypeline() == Typeline.Monster)
+                {
+                    staminaToAttack--;
                 }
             }
         }

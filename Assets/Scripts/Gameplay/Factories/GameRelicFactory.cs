@@ -71,6 +71,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentCarapaceOfTutuiun());
         m_relics.Add(new ContentTauntingPipeRelic());
         m_relics.Add(new ContentBondOfFamilyRelic());
+        m_relics.Add(new ContentAncientRitualRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
