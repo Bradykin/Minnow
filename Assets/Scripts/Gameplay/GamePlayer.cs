@@ -191,7 +191,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void PlayCard(GameCard card)
     {
-        if (card.m_shouldExile)
+        bool shouldExile = card.m_shouldExile;
+
+        if (GameHelper.HasRelic<ContentGoldenKnotRelic>() && card is GameCardSpellBase)
+        {
+            shouldExile = false;
+        }
+
+        if (shouldExile)
         {
             m_cardsInExile.Add(card);
             m_curDeck.RemoveCard(card);

@@ -46,6 +46,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMaskOfSpeedRelic());
         m_relics.Add(new ContentSackOfSoulsRelic());
         m_relics.Add(new ContentMarkOfTordrimRelic());
+        m_relics.Add(new ContentFearOfTheShakinaRelic());
+        m_relics.Add(new ContentGoldenKnotRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

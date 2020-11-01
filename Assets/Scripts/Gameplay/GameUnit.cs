@@ -1048,7 +1048,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void MoveTo(GameTile tile)
     {
         if (tile == m_gameTile)
+        {
             return;
+        }
+
+        if (m_gameTile.m_isFog && !tile.m_isFog && GetTeam() == Team.Enemy)
+        {
+            if (GameHelper.HasRelic<ContentFearOfTheShakinaRelic>())
+            {
+                GetHit(3);
+            }
+        }
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
 
