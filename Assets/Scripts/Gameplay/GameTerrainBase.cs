@@ -37,6 +37,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isEventTerrain;
     protected bool m_isCave;
     protected bool m_isVolcano;
+    protected bool m_isLava;
     protected bool m_isIce;
     protected bool m_isIceCracked;
     protected bool m_isWaterSource;
@@ -115,6 +116,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public bool IsVolcano()
     {
         return m_isVolcano;
+    }
+
+    public bool IsLava()
+    {
+        return m_isLava;
     }
 
     public bool IsIce()

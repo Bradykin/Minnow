@@ -134,6 +134,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentMobolaEnemyCard());
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
+        m_enemyCards.Add(new ContentPhoenixEnemyCard());
         m_enemyCards.Add(new ContentSiegebreakerCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
