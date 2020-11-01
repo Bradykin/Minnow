@@ -143,6 +143,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
+        {
+            int tempPower = GetPower();
+            m_power = GetMaxHealth();
+            m_maxHealth = tempPower;
+        }
+
             List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {

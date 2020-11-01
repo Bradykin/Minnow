@@ -36,7 +36,8 @@ public class GameTag
         Brittle,
         BuffSpell,
         UtilitySpell,
-        Vanilla
+        Vanilla,
+        Tordrim
     }
 
     public List<TagType> m_tagTypes = new List<TagType>();

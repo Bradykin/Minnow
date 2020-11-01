@@ -54,6 +54,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTokenOfFriendshipRelic());
 
         m_relics.Add(new ContentTheReminderRelic());
+        m_relics.Add(new ContentJugOfTordrimRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
