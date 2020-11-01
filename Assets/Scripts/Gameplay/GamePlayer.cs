@@ -189,7 +189,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         }
     }
 
-    public void PlayCard(GameCard card)
+    public void PlayCard(GameCard card, bool removeFromHand = true)
     {
         bool shouldExile = card.m_shouldExile;
 
@@ -208,7 +208,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_cardsToDiscard.Add(card);
         }
 
-        RemoveCardFromHand(card);
+        if (removeFromHand)
+        {
+            RemoveCardFromHand(card);
+        }
     }
 
     public void RemoveCardFromHand(GameCard toRemove)

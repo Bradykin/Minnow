@@ -64,6 +64,8 @@ public static class GameRelicFactory
         m_relics.Add(new ContentFadingLightRelic());
         m_relics.Add(new ContentBeaconOfSanityRelic());
 
+        m_relics.Add(new ContentEyeOfTelloRelic());
+
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
