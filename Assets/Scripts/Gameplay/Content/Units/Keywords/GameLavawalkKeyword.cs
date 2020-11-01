@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameImmuneToLavaKeyword : GameKeywordBase
+public class GameLavawalkKeyword : GameKeywordBase
 {
-    public GameImmuneToLavaKeyword()
+    public GameLavawalkKeyword()
     {
-        m_name = "Immune to Lava";
-        m_focusInfoText = "This creature doesn't take damage from lava terrain.";
+        m_name = "Lavawalk";
+        m_focusInfoText = "This creature doesn't take damage from lava terrain. Lava tiles only cost 1 Stamina to move through.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

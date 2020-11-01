@@ -134,6 +134,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(Globals.m_testSpawnEnemyUnit, WorldController.Instance.m_gameController.m_gameOpponent);
                     GetGameTile().PlaceUnit(newEnemyUnit);
+                    newEnemyUnit.OnSummon();
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
                     Globals.m_testSpawnEnemyUnit = null;
                 }

@@ -246,6 +246,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 tileValue = 1;
                 buildingOverrideValue = false;
             }
+            else if (GetTerrain().IsLava() && checkerUnit.GetLavawalkKeyword() != null)
+            {
+                tileValue = 1;
+                buildingOverrideValue = false;
+            }
             else if (GetTerrain().IsWater() && checkerUnit.GetWaterwalkKeyword() != null)
             {
                 if (checkerUnit.m_instantWaterMovement)

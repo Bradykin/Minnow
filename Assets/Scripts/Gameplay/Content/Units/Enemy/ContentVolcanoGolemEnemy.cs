@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentHellhoundEnemy : GameEnemyUnit
+public class ContentVolcanoGolemEnemy : GameEnemyUnit
 {
     int m_effectRange = 4;
     int m_effectIncrease = 1;
     
-    public ContentHellhoundEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentVolcanoGolemEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
@@ -22,7 +22,7 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_minWave = 2;
         m_maxWave = 3;
 
-        m_name = "Hellhound";
+        m_name = "Volcano Golem";
         m_desc = $"Gets +1 power for each other Hellhound within {m_effectRange} range.";
 
         AddKeyword(new GameLavawalkKeyword(), false);

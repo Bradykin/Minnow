@@ -892,9 +892,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_keywordHolder.GetKeyword<GameTauntKeyword>();
     }
 
-    public virtual GameImmuneToLavaKeyword GetImmuneToLavaKeyword()
+    public virtual GameLavawalkKeyword GetLavawalkKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameImmuneToLavaKeyword>();
+        return m_keywordHolder.GetKeyword<GameLavawalkKeyword>();
     }
 
     public virtual GameRegenerateKeyword GetRegenerateKeyword()
@@ -1430,10 +1430,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             returnDesc += tauntKeyword.GetDisplayString() + "\n";
         }
 
-        GameImmuneToLavaKeyword immuneToLavaKeyword = GetImmuneToLavaKeyword();
-        if (immuneToLavaKeyword != null)
+        GameLavawalkKeyword lavawalkKeyword = GetLavawalkKeyword();
+        if (lavawalkKeyword != null)
         {
-            returnDesc += immuneToLavaKeyword.GetDisplayString() + "\n";
+            returnDesc += lavawalkKeyword.GetDisplayString() + "\n";
         }
 
         GameRegenerateKeyword regenKeyword = GetRegenerateKeyword();
@@ -1905,7 +1905,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         RegenStamina();
 
-        if (GetImmuneToLavaKeyword() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain && GetFlyingKeyword() == null)
+        if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }
