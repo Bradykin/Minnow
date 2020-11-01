@@ -44,6 +44,8 @@ public static class GameRelicFactory
         //New relics to test
         m_relics.Add(new ContentCallOfTheSeaRelic());
         m_relics.Add(new ContentMaskOfSpeedRelic());
+        m_relics.Add(new ContentSackOfSoulsRelic());
+        m_relics.Add(new ContentMarkOfTordrimRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

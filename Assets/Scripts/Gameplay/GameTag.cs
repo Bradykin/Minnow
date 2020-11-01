@@ -35,7 +35,8 @@ public class GameTag
         DamageSpell,
         Brittle,
         BuffSpell,
-        UtilitySpell
+        UtilitySpell,
+        Vanilla
     }
 
     public List<TagType> m_tagTypes = new List<TagType>();

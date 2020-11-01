@@ -19,6 +19,7 @@ public class ContentPurgeCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.Vanilla);
     }
 
     public override string GetDesc()
@@ -58,13 +59,13 @@ public class ContentPurgeCard : GameCardSpellBase
 
         if (targetUnit.GetTeam() == Team.Player)
         {
-            if (targetUnit.GetKeywordHolderForRead().GetNumKeywords() > 0)
+            if (targetUnit.GetKeywordHolderForRead().GetNumVisibleKeywords() > 0)
             {
                 targetUnit.AddStats(GetSpellValue(), GetSpellValue());
             }
         }
 
-        targetUnit.GetKeywordHolderForRead().RemoveAllKeywords();
+        targetUnit.GetKeywordHolderForRead().RemoveAllVisibleKeywords();
     }
 
     protected override void HandleAudio()

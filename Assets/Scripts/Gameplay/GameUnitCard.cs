@@ -86,6 +86,11 @@ public class GameUnitCard : GameCard
         {
             m_tags.AddTag(GameTag.TagType.LowCost);
         }
+
+        if (GetUnit().GetKeywordHolderForRead().GetNumVisibleKeywords() == 0)
+        {
+            m_tags.AddTag(GameTag.TagType.Vanilla);
+        }
     }
 
     public void InitEnemyCard()

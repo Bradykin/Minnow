@@ -82,6 +82,17 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
         m_keywords.Clear();
     }
 
+    public void RemoveAllVisibleKeywords()
+    {
+        for (int i = m_keywords.Count - 1; i >= 0; i--)
+        {
+            if (m_keywords[i].m_isVisible)
+            {
+                m_keywords.RemoveAt(i);
+            }
+        }
+    }
+
     public string GetDesc()
     {
         string descString = "";
@@ -115,6 +126,21 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
     public int GetNumKeywords()
     {
         return m_keywords.Count;
+    }
+
+    public int GetNumVisibleKeywords()
+    {
+        int numVisibleKeywords = 0;
+
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i].m_isVisible)
+            {
+                numVisibleKeywords++;
+            }
+        }
+
+        return numVisibleKeywords;
     }
 
     public JsonKeywordHolderData SaveToJson()

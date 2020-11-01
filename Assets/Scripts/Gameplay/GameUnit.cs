@@ -98,6 +98,26 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_returnedToDeckDeath = false;
         SetHealthStaminaValues();
 
+        if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
+        {
+            if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+            {
+                List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
+                tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
+                tordrimKeywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
+                tordrimKeywords.Add(new GameFlyingKeyword());
+                tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
+                tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
+                tordrimKeywords.Add(new GameRangeKeyword(2));
+                tordrimKeywords.Add(new GameRegenerateKeyword(10));
+                tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
+                tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
+
+                int r = Random.Range(0, tordrimKeywords.Count);
+                AddKeyword(tordrimKeywords[r]);
+            }
+        }
+
         List<GameSummonKeyword> summonKeywords = m_keywordHolder.GetKeywords<GameSummonKeyword>();
         for (int i = 0; i < summonKeywords.Count; i++)
         {

@@ -10,8 +10,7 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddEnergy(100);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentStoneGolemCard()), true);
+                GameHelper.GetPlayer().AddRelic(new ContentMarkOfTordrimRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))
