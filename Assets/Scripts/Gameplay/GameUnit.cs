@@ -271,9 +271,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return damage;
     }
 
-    protected virtual bool ShouldRevive()
+    protected virtual bool ShouldRevive(out int healthSurviveAt)
     {
         bool shouldRevive = false;
+        healthSurviveAt = 1;
 
         if (GetTeam() == Team.Player)
         {
@@ -297,12 +298,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         bool willSetDead = true;
 
-        bool shouldRevive = canRevive && ShouldRevive();
+        bool shouldRevive = ShouldRevive(out int healthSurviveAt) && canRevive;
 
         if (shouldRevive)
         {
             m_isDead = false;
-            m_curHealth = 1;
+            m_curHealth = healthSurviveAt;
             UIHelper.CreateWorldElementNotification(GetName() + " resists death.", true, m_gameTile.GetWorldTile().gameObject);
             return;
         }
@@ -1828,7 +1829,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         RegenStamina();
 
-        if (GetImmuneToLavaKeyword() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain)
+        if (GetImmuneToLavaKeyword() == null && GetGameTile().GetTerrain() is ContentLavaFieldActiveTerrain && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
         }

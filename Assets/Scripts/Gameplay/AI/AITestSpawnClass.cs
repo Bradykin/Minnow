@@ -10,18 +10,17 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentThornsOfRayRelic());
-                //GameHelper.GetPlayer().AddRelic(new ContentTomeOfDuluhainRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                Globals.m_testSpawnEnemyUnit = new ContentZombieEnemy(null);
+                Globals.m_testSpawnEnemyUnit = new ContentLavaHellionEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentConjuredImpCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFirestormCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))

@@ -16,6 +16,7 @@ public class ContentLavaFieldActiveTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isHot = true;
+        m_isLava = true;
 
         LateInit();
     }
