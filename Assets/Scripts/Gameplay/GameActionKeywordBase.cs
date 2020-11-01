@@ -14,7 +14,16 @@ public abstract class GameActionKeywordBase : GameKeywordBase
             return true;
         }
 
-        return false;
+        bool anyNotNull = false;
+        for (int i = 0; i < m_actions.Count; i++)
+        {
+            if (m_actions[i] != null)
+            {
+                anyNotNull = true;
+            }
+        }
+
+        return !anyNotNull;
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
@@ -26,6 +35,11 @@ public abstract class GameActionKeywordBase : GameKeywordBase
             bool isAddingAction = false;
             for (int c = 0; c < m_actions.Count; c++)
             {
+                if (m_actions[c] == null)
+                {
+                    continue;
+                }
+
                 if (m_actions[c].GetName() == tempKeyword.m_actions[i].GetName())
                 {
                     m_actions[c].AddAction(tempKeyword.m_actions[i]);
@@ -97,6 +111,11 @@ public abstract class GameActionKeywordBase : GameKeywordBase
 
         for (int i = 0; i < m_actions.Count; i++)
         {
+            if (m_actions[i] == null)
+            {
+                continue;
+            }
+
             toReturn += m_actions[i].GetDesc();
 
             if (i != m_actions.Count -1)
