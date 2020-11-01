@@ -8,7 +8,7 @@ public class ContentVoiceOfTheDefenderRelic : GameRelic
     {
         m_name = "Voice of the Defender";
         m_desc = "When an allied <b>Creation</b> unit dies, gain 1 <b>Spell Power</b>.";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 

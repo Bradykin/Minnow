@@ -1289,109 +1289,117 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void TriggerSummonRelics()
     {
-        if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
+        if (GetTeam() == Team.Player)
         {
-            if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+            if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
             {
-                List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
-                tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
-                tordrimKeywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
-                tordrimKeywords.Add(new GameFlyingKeyword());
-                tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
-                tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
-                tordrimKeywords.Add(new GameRangeKeyword(2));
-                tordrimKeywords.Add(new GameRegenerateKeyword(10));
-                tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
-                tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
+                if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+                {
+                    List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
+                    tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
+                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
+                    tordrimKeywords.Add(new GameFlyingKeyword());
+                    tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
+                    tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
+                    tordrimKeywords.Add(new GameRangeKeyword(2));
+                    tordrimKeywords.Add(new GameRegenerateKeyword(10));
+                    tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
+                    tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
 
-                int r = Random.Range(0, tordrimKeywords.Count);
-                AddKeyword(tordrimKeywords[r]);
+                    int r = Random.Range(0, tordrimKeywords.Count);
+                    AddKeyword(tordrimKeywords[r]);
+                }
             }
-        }
 
-        if (GameHelper.HasRelic<ContentSporetechRelic>())
-        {
-            int r = Random.Range(0, 3);
-            if (r == 0)
+            if (GameHelper.HasRelic<ContentSporetechRelic>())
             {
-                m_typeline = Typeline.Humanoid;
+                int r = Random.Range(0, 3);
+                if (r == 0)
+                {
+                    m_typeline = Typeline.Humanoid;
+                }
+                else if (r == 1)
+                {
+                    m_typeline = Typeline.Monster;
+                }
+                else if (r == 2)
+                {
+                    m_typeline = Typeline.Creation;
+                }
             }
-            else if (r == 1)
+
+            if (GetTypeline() == Typeline.Humanoid)
             {
-                m_typeline = Typeline.Monster;
+                if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
+                {
+                    AddKeyword(new GameMountainwalkKeyword());
+                }
             }
-            else if (r == 2)
+
+            if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
             {
-                m_typeline = Typeline.Creation;
+                if (GameHelper.HasAllTypelines())
+                {
+                    AddKeyword(new GameDamageReductionKeyword(2));
+                }
             }
-        }
 
-        if (GetTypeline() == Typeline.Humanoid)
-        {
-            if (GameHelper.HasRelic<ContentTokenOfFriendshipRelic>())
+            if (GameHelper.HasRelic<ContentMemoryOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                AddKeyword(new GameMountainwalkKeyword());
+                GameHelper.GetPlayer().AddSpellPower(1);
             }
-        }
 
-        if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
-        {
-            if (GameHelper.HasAllTypelines())
+            if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
             {
-                AddKeyword(new GameDamageReductionKeyword(2));
+                AddKeyword(new GameTauntKeyword());
             }
-        }
 
-        if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
-        {
-            AddKeyword(new GameTauntKeyword());
-        }
-
-        if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
-        {
-            AddKeyword(new GameDamageReductionKeyword(1));
-        }
-
-        if (GameHelper.HasRelic<ContentStarOfDenumainRelic>())
-        {
-            AddKeyword(new GameDamageShieldKeyword(1));
-        }
-
-        if (GameHelper.HasRelic<ContentEvolvedMembraneRelic>())
-        {
-            AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 1)));
-        }
-
-        if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
-        {
-            int powerChange = Random.Range(-3, 8);
-            int healthChange = Random.Range(-3, 8);
-
-            if (powerChange >= 0 && healthChange >= 0)
+            if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
             {
-                AddStats(powerChange, healthChange);
+                AddKeyword(new GameDamageReductionKeyword(1));
             }
-            else if (powerChange < 0 && healthChange < 0)
-            {
-                RemoveStats(-powerChange, -healthChange);
-            }
-            else if (powerChange >= 0 && healthChange < 0)
-            {
-                AddStats(powerChange, 0);
-                RemoveStats(0, -healthChange);
-            }
-            else if (powerChange < 0 && healthChange >= 0)
-            {
-                AddStats(0, healthChange);
-                RemoveStats(-powerChange, 0);
-            }
-        }
 
-        if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
-        {
-            int tempPower = GetPower();
-            m_power = GetMaxHealth();
-            m_maxHealth = tempPower;
+            if (GameHelper.HasRelic<ContentStarOfDenumainRelic>())
+            {
+                AddKeyword(new GameDamageShieldKeyword(1));
+            }
+
+            if (GameHelper.HasRelic<ContentEvolvedMembraneRelic>())
+            {
+                AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 1)));
+            }
+
+            if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
+            {
+                int powerChange = Random.Range(-3, 8);
+                int healthChange = Random.Range(-3, 8);
+
+                if (powerChange >= 0 && healthChange >= 0)
+                {
+                    AddStats(powerChange, healthChange);
+                }
+                else if (powerChange < 0 && healthChange < 0)
+                {
+                    RemoveStats(-powerChange, -healthChange);
+                }
+                else if (powerChange >= 0 && healthChange < 0)
+                {
+                    AddStats(powerChange, 0);
+                    RemoveStats(0, -healthChange);
+                }
+                else if (powerChange < 0 && healthChange >= 0)
+                {
+                    AddStats(0, healthChange);
+                    RemoveStats(-powerChange, 0);
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
+            {
+                int tempPower = GetPower();
+                m_power = GetMaxHealth();
+                m_maxHealth = tempPower;
+            }
         }
     }
 

@@ -86,6 +86,9 @@ public static class GameRelicFactory
         m_relics.Add(new ContentBeadsOfProphecyRelic());
         m_relics.Add(new ContentTotemOfRevengeRelic());
 
+        m_relics.Add(new ContentVoiceOfTheDefenderRelic());
+        m_relics.Add(new ContentMemoryOfTheDefenderRelic());
+
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
