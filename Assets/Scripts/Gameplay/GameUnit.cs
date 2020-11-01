@@ -436,6 +436,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
+            if (GameHelper.HasRelic<ContentTokenOfTheUprisingRelic>() && m_gameTile != null && GetTypeline() == Typeline.Humanoid)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].IsOccupied() && 
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player && 
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                    }
+                }
+            }
+
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
                 AddStats(1, 3);
