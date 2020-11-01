@@ -1,4 +1,5 @@
-﻿using Game.Util;
+﻿
+using Game.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -155,6 +156,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (card != null) //This can be null if the deck and discard are both empty
         {
+            //This block is what happens when you can actually draw a card
             card.OnDraw();
 
             if (triggerKnowledgeable)
@@ -164,6 +166,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 if (GameHelper.HasRelic<ContentAncientMysteryRelic>())
                 {
                     TriggerKnowledgeable();
+                }
+
+                if (GameHelper.HasRelic<ContentForbiddenKnowledge>())
+                {
+                    AddEnergy(1);
                 }
             }
 
@@ -568,6 +575,16 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
+        if (GameHelper.HasRelic<ContentLastHopeRelic>())
+        {
+            DrawCard();
+        }
+
+        if (GameHelper.HasRelic<ContentProclamationOfSurrenderRelic>())
+        {
+            AddEnergy(1);
+        }
+
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].SpellCast(targetType, targetTile);

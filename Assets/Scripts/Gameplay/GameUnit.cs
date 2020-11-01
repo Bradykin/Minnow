@@ -204,6 +204,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage = damage * 2;
         }
 
+        if (GameHelper.HasRelic<ContentHistoryInBloodRelic>())
+        {
+            damage = damage * 2;
+        }
+
         m_curHealth -= damage;
 
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
@@ -836,11 +841,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_keywordHolder.GetKeyword<T>();
     }
 
-    public List<T> GetKeywords<T>()
-    {
-        return m_keywordHolder.GetKeywords<T>();
-    }
-
     public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;
@@ -1455,7 +1455,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentBeadsOfProphecyRelic>() && m_gameTile != null)
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
                     if (adjacentTiles[i].IsOccupied() &&

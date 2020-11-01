@@ -10,8 +10,8 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentEyeOfTelloRelic());
-                GameHelper.GetPlayer().AddRelic(new ContentTomeOfDuluhainRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentThornsOfRayRelic());
+                //GameHelper.GetPlayer().AddRelic(new ContentTomeOfDuluhainRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))

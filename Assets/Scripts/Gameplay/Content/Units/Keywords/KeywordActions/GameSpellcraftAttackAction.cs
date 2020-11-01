@@ -39,6 +39,12 @@ public class GameSpellcraftAttackAction : GameAction
         for (int i = 0; i < m_numSpellcraft; i++)
         {
             player.TriggerSpellcraft(GameCard.Target.Unit, m_gameUnit.GetGameTile());
+
+            //If we have Impalium, do it again
+            if (GameHelper.HasRelic<ContentImpaliumRelic>())
+            {
+                player.TriggerSpellcraft(GameCard.Target.Unit, m_gameUnit.GetGameTile());
+            }
         }
     }
 
