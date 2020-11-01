@@ -59,6 +59,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentInstructionsRelic());
         m_relics.Add(new ContentVowOfTheShakinaRelic());
         m_relics.Add(new ContentSymbolOfTheAllianceRelic());
+        m_relics.Add(new ContentImpaliumRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

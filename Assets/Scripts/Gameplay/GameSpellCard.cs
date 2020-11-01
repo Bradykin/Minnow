@@ -167,6 +167,12 @@ public class GameCardSpellBase : GameCard
         }
 
         player.TriggerSpellcraft(m_targetType, tileCastAt);
+
+        //If we have Impalium, do it again
+        if (GameHelper.HasRelic<ContentImpaliumRelic>())
+        {
+            player.TriggerSpellcraft(m_targetType, tileCastAt);
+        }
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()
