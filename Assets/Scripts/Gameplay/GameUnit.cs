@@ -143,12 +143,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        if (GameHelper.HasRelic<ContentGrandPactRelic>())
+        if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
         {
             if (GameHelper.HasAllTypelines())
             {
-                AddKeyword(new GameDamageReductionKeyword(1));
+                AddKeyword(new GameDamageReductionKeyword(2));
             }
+        }
+
+        if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
+        {
+            AddKeyword(new GameDamageReductionKeyword(1));
         }
 
         if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
@@ -1055,6 +1060,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
             {
                 toReturn -= 2;
+            }
+
+            if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
+            {
+                toReturn -= 1;
             }
 
             if (GameHelper.HasRelic<ContentGrandPactRelic>())
