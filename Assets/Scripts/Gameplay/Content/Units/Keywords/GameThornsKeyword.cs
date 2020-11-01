@@ -16,6 +16,11 @@ public class GameThornsKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_thornsDamage;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameThornsKeyword tempKeyword = (GameThornsKeyword)toAdd;
@@ -23,9 +28,16 @@ public class GameThornsKeyword : GameKeywordBase
         m_thornsDamage += tempKeyword.m_thornsDamage;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_thornsDamage;
+        GameThornsKeyword tempKeyword = (GameThornsKeyword)toSubtract;
+
+        m_thornsDamage -= tempKeyword.m_thornsDamage;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_thornsDamage <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

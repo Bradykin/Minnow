@@ -23,6 +23,16 @@ public class GameTauntKeyword : GameKeywordBase
         //Stacking this keyword does nothing.
     }
 
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
+    {
+        //Subtracting this keyword does nothing.
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return false;
+    }
+
     public override JsonKeywordData SaveToJson()
     {
         JsonKeywordData jsonData = new JsonKeywordData

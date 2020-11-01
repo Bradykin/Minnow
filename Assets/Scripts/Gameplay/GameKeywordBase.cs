@@ -18,16 +18,21 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>,
     public string m_shortDesc = string.Empty;
     public bool m_isVisible = true;
 
+    public abstract string GetDesc();
+
     public abstract void AddKeyword(GameKeywordBase toAdd);
 
-    public abstract JsonKeywordData SaveToJson();
+    public abstract void SubtractKeyword(GameKeywordBase toSubtract);
 
-    public abstract void LoadFromJson(JsonKeywordData jsonData);
+    public abstract bool ShouldBeRemoved();
 
     public virtual string GetFocusInfoText()
     {
         return m_focusInfoText;
     }
 
-    public abstract string GetDesc();
+    public abstract JsonKeywordData SaveToJson();
+
+    public abstract void LoadFromJson(JsonKeywordData jsonData);
+
 }

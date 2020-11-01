@@ -169,10 +169,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameDamageShieldKeyword damageShieldKeyword = m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
         if (damageShieldKeyword != null)
         {
-            if (damageShieldKeyword.m_numShields > 0)
+            if (!damageShieldKeyword.ShouldBeRemoved())
             {
                 damageShieldKeyword.DecreaseShield(1);
-                if (damageShieldKeyword.m_numShields == 0)
+                if (damageShieldKeyword.ShouldBeRemoved())
                 {
                     UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
                     m_keywordHolder.RemoveKeyword(damageShieldKeyword);
@@ -789,6 +789,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void RemoveKeyword(GameKeywordBase toRemove)
     {
         m_keywordHolder.RemoveKeyword(toRemove);
+    }
+
+    public void SubtractKeyword(GameKeywordBase toRemove)
+    {
+        m_keywordHolder.SubtractKeyword(toRemove);
     }
 
     public T GetKeyword<T>()

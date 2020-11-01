@@ -23,9 +23,9 @@ public class GameActionFactory
         m_actions.Add(new GameGainRangeAction(null, 0));
         m_actions.Add(new GameGainResourceAction(null));
         m_actions.Add(new GameGetHitAction(null, 0));
-        m_actions.Add(new GameRoarOfVictoryAction(null));
-        m_actions.Add(new GameSpellcraftAttackAction(null));
-        m_actions.Add(new GameShivNearbyAction(null));
+        m_actions.Add(new GameRoarOfVictoryAction(null, 0));
+        m_actions.Add(new GameShivNearbyAction(null, 0, 0));
+        m_actions.Add(new GameSpellcraftAttackAction(null, 0));
 
         m_hasInit = true;
     }
@@ -59,6 +59,9 @@ public class GameActionFactory
                 break;
             case GameAction.ActionParamType.UnitTwoIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2);
+                break;
+            case GameAction.ActionParamType.UnitIntListIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intListValue1);
                 break;
             case GameAction.ActionParamType.GameWalletParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));

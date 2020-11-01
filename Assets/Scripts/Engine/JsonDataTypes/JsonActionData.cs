@@ -10,5 +10,6 @@ public struct JsonActionData
     //Json Keyword parsing data
     public int intValue1;
     public int intValue2;
+    public List<int> intListValue1;
     public string gameWalletJsonValue;
 }

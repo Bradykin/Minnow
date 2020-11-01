@@ -17,6 +17,11 @@ public class GameGainStaminaAction : GameAction
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain + " Stamina";
+    }
+
     public override void DoAction()
     {
         m_unit.GainStamina(m_toGain);
@@ -28,10 +33,17 @@ public class GameGainStaminaAction : GameAction
 
         m_toGain += tempAction.m_toGain;
     }
-    
-    public override string GetDesc()
+
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "Gain " + m_toGain + " Stamina";
+        GameGainStaminaAction tempAction = (GameGainStaminaAction)toSubtract;
+
+        m_toGain -= tempAction.m_toGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toGain <= 0;
     }
 
     public override JsonActionData SaveToJson()

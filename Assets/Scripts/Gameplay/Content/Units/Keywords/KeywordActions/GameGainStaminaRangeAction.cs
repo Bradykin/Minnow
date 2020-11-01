@@ -1,27 +1,34 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameGainStaminaRangeAction : GameAction
 {
     private GameUnit m_unit;
     private int m_toGain;
-    private int m_range;
+    private List<int> m_ranges;
 
     public GameGainStaminaRangeAction(GameUnit unit, int toGain, int range)
     {
         m_unit = unit;
         m_toGain = toGain;
-        m_range = range;
+        m_ranges = new List<int>();
+        m_ranges.Add(range);
 
         m_name = "Gain Stamina";
-        m_actionParamType = ActionParamType.UnitIntParam;
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
+    }
+
+    public override string GetDesc()
+    {
+        return "All friendly units within range " + m_ranges.Max() + " gain " + m_toGain + " Stamina";
     }
 
     public override void DoAction()
     {
-        List<GameTile> tilesInRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), m_range, 0);
+        List<GameTile> tilesInRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_unit.GetGameTile(), m_ranges.Max(), 0);
         
         for (int i = 0; i < tilesInRange.Count; i++)
         {
@@ -36,18 +43,24 @@ public class GameGainStaminaRangeAction : GameAction
     {
         GameGainStaminaRangeAction tempAction = (GameGainStaminaRangeAction)toAdd;
 
-        //Use the greater of the two ranges; don't add them.
-        if (tempAction.m_range > m_range)
-        {
-            m_range = tempAction.m_range;
-        }
-
         m_toGain += tempAction.m_toGain;
+        m_ranges.AddRange(tempAction.m_ranges);
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toAdd)
     {
-        return "All friendly units within range " + m_range + " gain " + m_toGain + " Stamina";
+        GameGainStaminaRangeAction tempAction = (GameGainStaminaRangeAction)toAdd;
+
+        m_toGain -= tempAction.m_toGain;
+        for (int i = 0; i < tempAction.m_ranges.Count; i++)
+        {
+            m_ranges.Remove(tempAction.m_ranges[i]);
+        }
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toGain <= 0 || m_ranges.Count == 0;
     }
 
     public override JsonActionData SaveToJson()
@@ -55,7 +68,8 @@ public class GameGainStaminaRangeAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            intValue1 = m_toGain
+            intValue1 = m_toGain,
+            intListValue1 = m_ranges
         };
 
         return jsonData;

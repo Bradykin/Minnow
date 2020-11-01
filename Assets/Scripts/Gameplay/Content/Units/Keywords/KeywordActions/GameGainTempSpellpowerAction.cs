@@ -15,6 +15,11 @@ public class GameGainTempSpellpowerAction : GameAction
         m_actionParamType = ActionParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "+ " + m_toGain + " spellpower until end of turn";
+    }
+
     public override void DoAction()
     {
         GameHelper.GetPlayer().m_tempSpellpowerIncrease += m_toGain;
@@ -27,9 +32,16 @@ public class GameGainTempSpellpowerAction : GameAction
         m_toGain += tempAction.m_toGain;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "+ " + m_toGain + " spellpower until end of turn";
+        GameGainTempSpellpowerAction tempAction = (GameGainTempSpellpowerAction)toSubtract;
+
+        m_toGain -= tempAction.m_toGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toGain <= 0;
     }
 
     public override JsonActionData SaveToJson()

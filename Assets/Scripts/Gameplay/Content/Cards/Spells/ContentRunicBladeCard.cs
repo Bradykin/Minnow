@@ -40,6 +40,6 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit)));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1)));
     }
 }

@@ -1,51 +1,48 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGetHitAction : GameAction
+public class GameGainRangeAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_damage;
+    private int m_toGain;
 
-    public GameGetHitAction(GameUnit unit, int damage)
+    public GameGainRangeAction(GameUnit unit, int toGain)
     {
         m_unit = unit;
-        m_damage = damage;
+        m_toGain = toGain;
 
-        m_name = "Get hit";
+        m_name = "Gain Range";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override string GetDesc()
     {
-        return "Get hit for " + m_damage + ".";
+        return "+ " + m_toGain + " range";
     }
 
     public override void DoAction()
     {
-        GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
-
-        m_unit.GetHit(m_damage);
+        m_unit.AddKeyword(new GameRangeKeyword(m_toGain));
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGetHitAction tempAction = (GameGetHitAction)toAdd;
+        GameGainRangeAction tempAction = (GameGainRangeAction)toAdd;
 
-        m_damage += tempAction.m_damage;
+        m_toGain += tempAction.m_toGain;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGetHitAction tempAction = (GameGetHitAction)toSubtract;
+        GameGainRangeAction tempAction = (GameGainRangeAction)toSubtract;
 
-        m_damage -= tempAction.m_damage;
+        m_toGain -= tempAction.m_toGain;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_damage <= 0;
+        return m_toGain <= 0;
     }
 
     public override JsonActionData SaveToJson()
@@ -53,7 +50,7 @@ public class GameGetHitAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            intValue1 = m_damage
+            intValue1 = m_toGain
         };
 
         return jsonData;

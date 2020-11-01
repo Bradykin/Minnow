@@ -8,12 +8,13 @@ public class GameGainGoldEnrageAction : GameAction
     private GameUnit m_unit;
     private int m_numTimesToGain = 1;
 
-    public GameGainGoldEnrageAction(GameUnit unit)
+    public GameGainGoldEnrageAction(GameUnit unit, int numTimesToGain)
     {
         m_unit = unit;
+        m_numTimesToGain = numTimesToGain;
 
         m_name = "Gain Gold Enrage";
-        m_actionParamType = ActionParamType.UnitParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override void DoAction()
@@ -36,6 +37,18 @@ public class GameGainGoldEnrageAction : GameAction
         m_numTimesToGain += tempAction.m_numTimesToGain;
     }
 
+    public override void SubtractAction(GameAction toSubtract)
+    {
+        GameGainGoldEnrageAction tempAction = (GameGainGoldEnrageAction)toSubtract;
+
+        m_numTimesToGain -= tempAction.m_numTimesToGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_numTimesToGain <= 0;
+    }
+
     public override string GetDesc()
     {
         if (m_numTimesToGain == 1)
@@ -53,6 +66,7 @@ public class GameGainGoldEnrageAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
+            intValue1 = m_numTimesToGain
         };
 
         return jsonData;

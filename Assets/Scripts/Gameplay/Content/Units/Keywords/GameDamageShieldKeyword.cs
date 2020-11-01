@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameDamageShieldKeyword : GameKeywordBase
 {
-    public int m_numShields;
+    private int m_numShields;
 
     public GameDamageShieldKeyword(int numShields)
     {
@@ -16,6 +16,16 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_numShields;
+    }
+
+    public int GetShieldLevel()
+    {
+        return m_numShields;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toAdd;
@@ -23,14 +33,21 @@ public class GameDamageShieldKeyword : GameKeywordBase
         m_numShields += tempKeyword.m_numShields;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_numShields;
+        GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toSubtract;
+
+        m_numShields -= tempKeyword.m_numShields;
     }
 
     public void DecreaseShield(int decrease)
     {
         m_numShields -= decrease;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_numShields <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

@@ -33,6 +33,19 @@ public class GameGainStatsAction : GameAction
         m_healthToGain += tempAction.m_healthToGain;
     }
 
+    public override void SubtractAction(GameAction toSubtract)
+    {
+        GameGainStatsAction tempAction = (GameGainStatsAction)toSubtract;
+
+        m_powerToGain -= tempAction.m_powerToGain;
+        m_healthToGain -= tempAction.m_healthToGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_powerToGain <= 0 && m_healthToGain <= 0;
+    }
+
     public override string GetDesc()
     {
         return "+" + m_powerToGain + "/+" + m_healthToGain;

@@ -1,26 +1,33 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameExplodeAction : GameAction
 {
     private GameUnit m_explodingUnit;
     private int m_explodePower;
-    private int m_explodeRange;
+    private List<int> m_explodeRanges;
 
     public GameExplodeAction(GameUnit explodingUnit, int explodePower, int explodeRange)
     {
         m_explodingUnit = explodingUnit;
         m_explodePower = explodePower;
-        m_explodeRange = explodeRange;
+        m_explodeRanges = new List<int>();
+        m_explodeRanges.Add(explodeRange);
 
         m_name = "Explode";
-        m_actionParamType = ActionParamType.UnitTwoIntParam;
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
+    }
+
+    public override string GetDesc()
+    {
+        return "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRanges.Max();
     }
 
     public override void DoAction()
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_explodingUnit.GetGameTile(), m_explodeRange, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_explodingUnit.GetGameTile(), m_explodeRanges.Max(), 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
@@ -43,18 +50,24 @@ public class GameExplodeAction : GameAction
     {
         GameExplodeAction tempAction = (GameExplodeAction)toAdd;
 
-        //Use the greater of the two ranges; don't add them.
-        if (tempAction.m_explodeRange > m_explodeRange)
-        {
-            m_explodeRange = tempAction.m_explodeRange;
-        }
-
         m_explodePower += tempAction.m_explodePower;
+        m_explodeRanges.AddRange(tempAction.m_explodeRanges);
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toAdd)
     {
-        return "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRange;
+        GameExplodeAction tempAction = (GameExplodeAction)toAdd;
+
+        m_explodePower -= tempAction.m_explodePower;
+        for (int i = 0; i < tempAction.m_explodeRanges.Count; i++)
+        {
+            m_explodeRanges.Remove(tempAction.m_explodeRanges[i]);
+        }
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_explodePower <= 0 || m_explodeRanges.Count == 0;
     }
 
     public override JsonActionData SaveToJson()
@@ -63,7 +76,7 @@ public class GameExplodeAction : GameAction
         {
             name = m_name,
             intValue1 = m_explodePower,
-            intValue2 = m_explodeRange
+            intListValue1 = m_explodeRanges
         };
 
         return jsonData;

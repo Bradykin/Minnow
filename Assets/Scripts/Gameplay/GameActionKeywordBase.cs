@@ -31,6 +31,47 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         }
     }
 
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
+    {
+        GameActionKeywordBase tempKeyword = (GameActionKeywordBase)toSubtract;
+
+        for (int i = 0; i < tempKeyword.m_actions.Count; i++)
+        {
+            for (int c = 0; c < m_actions.Count; c++)
+            {
+                if (m_actions[c].GetName() == toSubtract.GetName())
+                {
+                    switch (tempKeyword.m_actions[i].m_actionParamType)
+                    {
+                        case GameAction.ActionParamType.NoParams:
+                        case GameAction.ActionParamType.UnitParam:
+                            m_actions.RemoveAt(c);
+                            break;
+                        case GameAction.ActionParamType.IntParam:
+                        case GameAction.ActionParamType.TwoIntParam:
+                        case GameAction.ActionParamType.UnitIntParam:
+                        case GameAction.ActionParamType.UnitTwoIntParam:
+                        case GameAction.ActionParamType.UnitIntListIntParam:
+                        case GameAction.ActionParamType.GameWalletParam:
+                            m_actions[c].SubtractAction(tempKeyword.m_actions[i]);
+
+                            if (m_actions[c].ShouldBeRemoved())
+                            {
+                                m_actions.RemoveAt(c);
+                            }
+                            break;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_actions.Count == 0;
+    }
+
     public virtual void DoAction()
     {
         for (int i = 0; i < m_actions.Count; i++)

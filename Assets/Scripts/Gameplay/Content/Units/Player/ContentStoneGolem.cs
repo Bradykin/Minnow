@@ -50,7 +50,7 @@ public class ContentStoneGolem : GameUnit
         {
             if (GetKeyword<GameDamageReductionKeyword>() != null)
             {
-                RemoveKeyword(m_drKeyword);
+                SubtractKeyword(m_drKeyword);
             }
         }
     }

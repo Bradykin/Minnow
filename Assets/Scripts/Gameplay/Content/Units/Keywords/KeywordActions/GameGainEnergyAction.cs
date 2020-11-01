@@ -15,6 +15,11 @@ public class GameGainEnergyAction : GameAction
         m_actionParamType = ActionParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "Gain " + m_toGain + " energy.";
+    }
+
     public override void DoAction()
     {
         GamePlayer player = GameHelper.GetPlayer();
@@ -34,9 +39,16 @@ public class GameGainEnergyAction : GameAction
         m_toGain += tempAction.m_toGain;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        return "Gain " + m_toGain + " energy.";
+        GameGainEnergyAction tempAction = (GameGainEnergyAction)toSubtract;
+
+        m_toGain -= tempAction.m_toGain;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_toGain <= 0;
     }
 
     public override JsonActionData SaveToJson()

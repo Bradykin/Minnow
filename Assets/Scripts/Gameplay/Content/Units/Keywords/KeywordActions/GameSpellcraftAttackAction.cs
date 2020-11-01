@@ -6,12 +6,25 @@ public class GameSpellcraftAttackAction : GameAction
     private GameUnit m_gameUnit;
     private int m_numSpellcraft = 1;
 
-    public GameSpellcraftAttackAction(GameUnit gameUnit)
+    public GameSpellcraftAttackAction(GameUnit gameUnit, int numSpellcraft)
     {
         m_gameUnit = gameUnit;
+        m_numSpellcraft = numSpellcraft;
 
         m_name = "Spellcraft";
-        m_actionParamType = ActionParamType.UnitParam;
+        m_actionParamType = ActionParamType.UnitIntParam;
+    }
+
+    public override string GetDesc()
+    {
+        if (m_numSpellcraft == 1)
+        {
+            return "Trigger <b>Spellcraft</b>.";
+        }
+        else
+        {
+            return "Trigger <b>Spellcraft</b> " + m_numSpellcraft + " times.";
+        }
     }
 
     public override void DoAction()
@@ -36,23 +49,24 @@ public class GameSpellcraftAttackAction : GameAction
         m_numSpellcraft += tempAction.m_numSpellcraft;
     }
 
-    public override string GetDesc()
+    public override void SubtractAction(GameAction toSubtract)
     {
-        if (m_numSpellcraft == 1)
-        {
-            return "Trigger <b>Spellcraft</b>.";
-        }
-        else
-        {
-            return "Trigger <b>Spellcraft</b> " + m_numSpellcraft + " times.";
-        }
+        GameSpellcraftAttackAction tempAction = (GameSpellcraftAttackAction)toSubtract;
+
+        m_numSpellcraft -= tempAction.m_numSpellcraft;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_numSpellcraft <= 0;
     }
 
     public override JsonActionData SaveToJson()
     {
         JsonActionData jsonData = new JsonActionData
         {
-            name = m_name
+            name = m_name,
+            intValue1 = m_numSpellcraft
         };
 
         return jsonData;

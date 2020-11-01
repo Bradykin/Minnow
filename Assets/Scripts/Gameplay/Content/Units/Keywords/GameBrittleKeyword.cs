@@ -17,6 +17,11 @@ public class GameBrittleKeyword : GameKeywordBase
         m_keywordParamType = KeywordParamType.IntParam;
     }
 
+    public override string GetDesc()
+    {
+        return "" + m_damageIncrease;
+    }
+
     public override void AddKeyword(GameKeywordBase toAdd)
     {
         GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
@@ -24,9 +29,16 @@ public class GameBrittleKeyword : GameKeywordBase
         m_damageIncrease += tempKeyword.m_damageIncrease;
     }
 
-    public override string GetDesc()
+    public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        return "" + m_damageIncrease;
+        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toSubtract;
+
+        m_damageIncrease -= tempKeyword.m_damageIncrease;
+    }
+
+    public override bool ShouldBeRemoved()
+    {
+        return m_damageIncrease <= 0;
     }
 
     public override JsonKeywordData SaveToJson()

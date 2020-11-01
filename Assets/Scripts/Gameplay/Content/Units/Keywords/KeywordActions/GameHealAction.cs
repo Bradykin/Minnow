@@ -1,51 +1,48 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGetHitAction : GameAction
+public class GameHealAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_damage;
+    private int m_healVal;
 
-    public GameGetHitAction(GameUnit unit, int damage)
+    public GameHealAction(GameUnit unit, int healVal)
     {
         m_unit = unit;
-        m_damage = damage;
+        m_healVal = healVal;
 
-        m_name = "Get hit";
+        m_name = "Heal";
         m_actionParamType = ActionParamType.UnitIntParam;
     }
 
     public override string GetDesc()
     {
-        return "Get hit for " + m_damage + ".";
+        return "Heal for " + m_healVal + ".";
     }
 
     public override void DoAction()
     {
-        GameBrittleKeyword keyword = m_unit.GetKeyword<GameBrittleKeyword>();
-
-        m_unit.GetHit(m_damage);
+        m_unit.Heal(m_healVal);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGetHitAction tempAction = (GameGetHitAction)toAdd;
+        GameHealAction tempAction = (GameHealAction)toAdd;
 
-        m_damage += tempAction.m_damage;
+        m_healVal += tempAction.m_healVal;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGetHitAction tempAction = (GameGetHitAction)toSubtract;
+        GameHealAction tempAction = (GameHealAction)toSubtract;
 
-        m_damage -= tempAction.m_damage;
+        m_healVal -= tempAction.m_healVal;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_damage <= 0;
+        return m_healVal <= 0;
     }
 
     public override JsonActionData SaveToJson()
@@ -53,7 +50,7 @@ public class GameGetHitAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            intValue1 = m_damage
+            intValue1 = m_healVal
         };
 
         return jsonData;
