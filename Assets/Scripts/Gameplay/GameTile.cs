@@ -349,9 +349,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             int damageReduction = m_terrain.m_damageReduction;
 
-            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.RelicCount<ContentNaturalProtectionRelic>() > 0)
+            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
             {
-                damageReduction += damageReduction * GameHelper.RelicCount<ContentNaturalProtectionRelic>();
+                damageReduction += damageReduction * 2;
             }
             
             return damageReduction;

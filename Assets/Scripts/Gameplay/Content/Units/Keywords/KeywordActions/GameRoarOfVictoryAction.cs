@@ -20,25 +20,33 @@ public class GameRoarOfVictoryAction : GameAction
         List<GameMomentumKeyword> momentumKeywords = m_unit.GetKeywords<GameMomentumKeyword>();
         List<GameEnrageKeyword> enrageKeywords = m_unit.GetKeywords<GameEnrageKeyword>();
 
-        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
-
         for (int c = 0; c < m_numToTrigger; c++)
         {
             for (int i = 0; i < momentumKeywords.Count; i++)
             {
                 momentumKeywords[i].DoAction();
-                for (int k = 0; k < numBestialWrath; k++)
+
+                //Repeat the action if the player has the Bestial Wrath relic
+                if (m_unit.GetTypeline() == Typeline.Monster && m_unit.GetTeam() == Team.Player)
                 {
-                    momentumKeywords[i].DoAction();
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                    {
+                        momentumKeywords[i].DoAction();
+                    }
                 }
             }
 
             for (int i = 0; i < enrageKeywords.Count; i++)
             {
                 enrageKeywords[i].DoAction(0);
-                for (int k = 0; k < numBestialWrath; k++)
+
+                //Repeat the action if the player has the Bestial Wrath relic
+                if (m_unit.GetTypeline() == Typeline.Monster && m_unit.GetTeam() == Team.Player)
                 {
-                    enrageKeywords[i].DoAction(0);
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                    {
+                        enrageKeywords[i].DoAction(0);
+                    }
                 }
             }
         }

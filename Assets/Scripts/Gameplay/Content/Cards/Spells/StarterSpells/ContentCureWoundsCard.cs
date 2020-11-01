@@ -26,13 +26,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
             description += "\nTrigger <b>Enrage</b> on the target.\n";
         }
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-
-        if (numTraditionalMethods > 1)
-        {
-            description += "\nDraw " + numTraditionalMethods + " cards.";
-        }
-        else if (numTraditionalMethods > 0)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             description += "\nDraw a card.";
         }
@@ -54,20 +48,24 @@ public class ContentCureWoundsCard : GameCardSpellBase
         if (GetCardLevel() >= 2)
         {
             List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
-            int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
 
             for (int i = 0; i < enrageKeywords.Count; i++)
             {
                 enrageKeywords[i].DoAction(0);
-                for (int k = 0; k < numBestialWrath; k++)
+
+                //Trigger again if the player has the Bestial Wrath relic
+                if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
                 {
-                    enrageKeywords[i].DoAction(0);
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                    {
+                        enrageKeywords[i].DoAction(0);
+                    }
                 }
             }
         }
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-        for (int i = 0; i < numTraditionalMethods; i++)
+
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
         }

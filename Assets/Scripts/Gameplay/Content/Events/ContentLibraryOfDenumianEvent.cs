@@ -23,7 +23,7 @@ public class ContentLibraryOfDenumianEvent : GameEvent
 
     public override bool IsValidToSpawn(GameTile tile)
     {
-        if (GameHelper.RelicCount<ContentDominerickRefrainRelic>() > 0 || GameHelper.RelicCount<ContentTomeOfDuluhainRelic>() > 0)
+        if (GameHelper.HasRelic<ContentDominerickRefrainRelic>() || GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
         {
             return false;
         }

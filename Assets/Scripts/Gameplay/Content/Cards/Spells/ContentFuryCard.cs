@@ -47,32 +47,45 @@ public class ContentFuryCard : GameCardSpellBase
         List<GameEnrageKeyword> enrageKeywords = targetUnit.GetKeywords<GameEnrageKeyword>();
         List<GameVictoriousKeyword> victoriousKeywords = targetUnit.GetKeywords<GameVictoriousKeyword>();
 
-        int numBestialWrath = GameHelper.RelicCount<ContentBestialWrathRelic>();
-
         for (int i = 0; i < momentumKeywords.Count; i++)
         {
             momentumKeywords[i].DoAction();
-            for (int k = 0; k < numBestialWrath; k++)
+
+            //Repeat action if the player has the Bestial Wrath Relic
+            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
             {
-                momentumKeywords[i].DoAction();
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                {
+                    momentumKeywords[i].DoAction();
+                }
             }
         }
 
         for (int i = 0; i < enrageKeywords.Count; i++)
         {
             enrageKeywords[i].DoAction(0);
-            for (int k = 0; k < numBestialWrath; k++)
+
+            //Repeat action if the player has the Bestial Wrath Relic
+            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
             {
-                enrageKeywords[i].DoAction(0);
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                {
+                    enrageKeywords[i].DoAction(0);
+                }
             }
         }
 
         for (int i = 0; i < victoriousKeywords.Count; i++)
         {
             victoriousKeywords[i].DoAction();
-            for (int k = 0; k < numBestialWrath; k++)
+
+            //Repeat action if the player has the Bestial Wrath Relic
+            if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
             {
-                victoriousKeywords[i].DoAction();
+                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                {
+                    victoriousKeywords[i].DoAction();
+                }
             }
         }
     }

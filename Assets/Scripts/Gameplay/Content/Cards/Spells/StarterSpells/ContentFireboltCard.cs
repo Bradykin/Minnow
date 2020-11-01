@@ -21,13 +21,7 @@ public class ContentFireboltCard : GameCardSpellBase
     {
         string description = GetDamageDescString();
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-
-        if (numTraditionalMethods > 1)
-        {
-            description += "Draw " + numTraditionalMethods + " cards.";
-        }
-        else if (numTraditionalMethods > 0)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             description += "Draw a card.";
         }
@@ -46,8 +40,7 @@ public class ContentFireboltCard : GameCardSpellBase
 
         targetUnit.GetHit(GetSpellValue());
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-        for (int i = 0; i < numTraditionalMethods; i++)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
         }

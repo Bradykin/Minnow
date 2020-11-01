@@ -33,14 +33,12 @@ public class ContentShivCard : GameCardSpellBase
             return;
         }
 
-        int staminaDrain = 2 * GameHelper.RelicCount<ContentPoisonedShivsRelic>();
-
-        if (staminaDrain > 0)
+        if (GameHelper.HasRelic<ContentPoisonedShivsRelic>())
         {
-            targetUnit.SpendStamina(staminaDrain);
+            targetUnit.SpendStamina(2);
         }
 
-        if (GameHelper.RelicCount<ContentBurningShivsRelic>() > 0)
+        if (GameHelper.HasRelic<ContentBurningShivsRelic>())
         {
             for (int i = 0; i < 3; i++)
             {

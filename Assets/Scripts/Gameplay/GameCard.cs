@@ -31,11 +31,17 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
         if (this is GameCardSpellBase)
         {
-            toReturn -= GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+            if (GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
+            {
+                toReturn -= 1;
+            }
         }
         else if (this is GameUnitCard)
         {
-            toReturn -= GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
+            if (GameHelper.HasRelic<ContentPinnacleOfFearRelic>())
+            {
+                toReturn -= 1;
+            }
         }
 
         if (toReturn < 0)
@@ -93,9 +99,9 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
     public virtual void OnDraw()
     {
-        if (GameHelper.RelicCount<ContentMysticRuneRelic>() > 0)
+        if (GameHelper.HasRelic<ContentMysticRuneRelic>())
         {
-            m_cost = Random.Range(0, 3);
+            m_cost = Random.Range(0, 4);
         }
     }
 

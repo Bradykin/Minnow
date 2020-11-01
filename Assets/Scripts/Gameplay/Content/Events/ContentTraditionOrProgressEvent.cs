@@ -23,7 +23,7 @@ public class ContentTraditionOrProgressEvent : GameEvent
 
     public override bool IsValidToSpawn(GameTile tile)
     {
-        if (GameHelper.RelicCount<ContentTraditionalMethodsRelic>() > 0 || GameHelper.RelicCount<ContentNewInvestmentsRelic>() > 0)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>() || GameHelper.HasRelic<ContentNewInvestmentsRelic>())
         {
             return false;
         }

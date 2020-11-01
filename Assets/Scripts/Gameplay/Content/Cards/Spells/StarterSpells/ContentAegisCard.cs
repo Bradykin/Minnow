@@ -25,13 +25,7 @@ public class ContentAegisCard : GameCardSpellBase
     {
         string description = m_desc;
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-
-        if (numTraditionalMethods > 1)
-        {
-            description += "\nDraw " + numTraditionalMethods + " cards.";
-        }
-        else if (numTraditionalMethods > 0)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             description += "\nDraw a card.";
         }
@@ -50,8 +44,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false);
 
-        int numTraditionalMethods = GameHelper.RelicCount<ContentTraditionalMethodsRelic>();
-        for (int i = 0; i < numTraditionalMethods; i++)
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
         }

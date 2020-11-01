@@ -201,7 +201,20 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_cardsToDiscard.Add(card);
         }
 
-        m_hand.Remove(card);
+        RemoveCardFromHand(card);
+    }
+
+    public void RemoveCardFromHand(GameCard toRemove)
+    {
+        m_hand.Remove(toRemove);
+
+        if (m_hand.Count == 0)
+        {
+            if (GetRelics().GetNumRelics<ContentMaskOfSpeedRelic>() > 0)
+            {
+                DrawCard();
+            }
+        }
     }
 
     public void SpendEnergy(int toSpend)
@@ -282,8 +295,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
-        toReturn += 3 * GameHelper.RelicCount<ContentDominerickRefrainRelic>();
-        toReturn -= 3 * GameHelper.RelicCount<ContentTomeOfDuluhainRelic>();
+        if (GameHelper.HasRelic<ContentDominerickRefrainRelic>())
+        {
+            toReturn += 3;
+        }
+        if (GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
+        {
+            toReturn -= 3;
+        }
         toReturn += m_tempSpellpowerIncrease;
 
         return toReturn;
@@ -361,7 +380,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
-        if (toAdd is ContentTotemOfTheWolfRelic && GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() == 0 && GameHelper.GetGameController().m_runStateType != RunStateType.Gameplay && 
+        if (toAdd is ContentTotemOfTheWolfRelic && !GameHelper.HasRelic<ContentTotemOfTheWolfRelic>() && GameHelper.GetGameController().m_runStateType != RunStateType.Gameplay && 
             WorldController.Instance.m_gameController.m_currentTurnNumber <= WorldController.Instance.m_gameController.GetEndWaveTurn())
         {
             m_totemOfTheWolfTurn = Random.Range(WorldController.Instance.m_gameController.m_currentTurnNumber + 1, WorldController.Instance.m_gameController.GetEndWaveTurn() + 1);
@@ -385,7 +404,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
-        toReturn += (new ContentOrbOfEnergyRelic().GetRelicLevel() + 1) * GameHelper.RelicCount<ContentOrbOfEnergyRelic>();
+        if (GameHelper.HasRelic<ContentOrbOfEnergyRelic>())
+        {
+            toReturn += (new ContentOrbOfEnergyRelic().GetRelicLevel() + 1);
+        }
 
         return toReturn;
     }
@@ -396,14 +418,26 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.GetGameController().m_currentTurnNumber == 0)
         {
-            toReturn += 3 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>();
+            if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
+            {
+                toReturn += 3;
+            }
         }
 
-        toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1) * GameHelper.RelicCount<ContentMaskOfAgesRelic>();
+        if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
+        {
+            toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1);
+        }
 
-        toReturn += 2 * GameHelper.RelicCount<ContentMysticRuneRelic>();
+        if (GameHelper.HasRelic<ContentMysticRuneRelic>())
+        {
+            toReturn += 2;
+        }
 
-        toReturn -= 1 * GameHelper.RelicCount<ContentPinnacleOfFearRelic>();
+        if (GameHelper.HasRelic<ContentPinnacleOfFearRelic>())
+        {
+            toReturn -= 1;
+        }
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
@@ -451,7 +485,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         int toReturn = m_maxActions;
 
-        toReturn += 1 * GameHelper.RelicCount<ContentHoovesOfProductionRelic>();
+        if (GameHelper.HasRelic<ContentHoovesOfProductionRelic>())
+        {
+            toReturn += 1;
+        }
 
         return toReturn;
     }
@@ -502,7 +539,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void OnBeginWave()
     {
-        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+        if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
         {
             GameHelper.GetPlayer().m_totemOfTheWolfTurn = Random.Range(0, GameHelper.GetGameController().GetEndWaveTurn() + 1);
         }
@@ -530,10 +567,13 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.GetGameController().m_currentTurnNumber == 0)
         {
-            AddEnergy(2 * GameHelper.RelicCount<ContentSackOfManyShapesRelic>());
+            if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
+            {
+                AddEnergy(2);
+            }
         }
 
-        if (GameHelper.RelicCount<ContentTotemOfTheWolfRelic>() > 0)
+        if (GameHelper.HasRelic<ContentTotemOfTheWolfRelic>())
         {
             if (GameHelper.GetGameController().m_currentTurnNumber + 1 == m_totemOfTheWolfTurn)
             {
