@@ -27,7 +27,7 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         AddKeyword(new GameBrittleKeyword(m_brittleAmount), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageShieldKeyword(3), false);
+            AddKeyword(new GameDamageReductionKeyword(3), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

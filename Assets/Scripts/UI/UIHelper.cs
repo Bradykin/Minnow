@@ -241,6 +241,23 @@ public static class UIHelper
         return Resources.Load<Sprite>("UI/Rewards/EXP") as Sprite;
     }
 
+    public static Sprite GetIconChest(GameElementBase.GameRarity chestRarity)
+    {
+        if (chestRarity == GameElementBase.GameRarity.Common)
+        {
+            return Resources.Load<Sprite>("UI/Chests/Copper Chest") as Sprite;
+        }
+        else if (chestRarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return Resources.Load<Sprite>("UI/Chests/Silver Chest") as Sprite;
+        }
+        else if (chestRarity == GameElementBase.GameRarity.Rare)
+        {
+            return Resources.Load<Sprite>("UI/Chests/Gold Chest") as Sprite;
+        }
+        return null;
+    }
+
     //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
     /*public static Sprite GetRandomIconTerrain(string terrainName)
     {
@@ -671,6 +688,21 @@ public static class UIHelper
         }
 
         return Color.white;
+    }
+
+    public static void TriggerRelicSelect()
+    {
+        GameElementBase.GameRarity rarity = GameRelicFactory.GetRandomRarity();
+
+        TriggerRelicSelect(rarity);
+    }
+
+    public static void TriggerRelicSelect(GameElementBase.GameRarity rarity)
+    {
+        GameRelic relicOne = GameRelicFactory.GetRandomRelicAtRarity(rarity);
+        GameRelic relicTwo = GameRelicFactory.GetRandomRelicAtRarity(rarity, relicOne);
+
+        UIRelicSelectController.Instance.Init(relicOne, relicTwo);
     }
 
     public static bool UIShouldBlockClick()

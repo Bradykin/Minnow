@@ -16,6 +16,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public GameObject m_spawnIndicator;
     public GameObject m_specialTileIndicator;
+    public GameObject m_chestIndicator;
     public Text m_spawnText;
     public Text m_specialTileText;
 
@@ -44,6 +45,19 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     void Update()
     {
         HandleFogUpdate();
+
+        if (GetGameTile().m_isChest)
+        {
+            if (m_chestIndicator.activeSelf == false)
+            {
+                m_chestIndicator.GetComponent<SpriteRenderer>().sprite = UIHelper.GetIconChest(GetGameTile().m_chestRarity);
+            }
+            m_chestIndicator.SetActive(true);
+        }
+        else
+        {
+            m_chestIndicator.SetActive(false);
+        }
 
         if (GetGameTile().HasBuilding())
         {
