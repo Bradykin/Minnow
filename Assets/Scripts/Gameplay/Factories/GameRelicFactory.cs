@@ -104,12 +104,14 @@ public static class GameRelicFactory
         m_relics.Add(new ContentToolOfTheDeadmanRelic());
         m_relics.Add(new ContentSecretOfTheDeepRelic());
         m_relics.Add(new ContentAngelicFeatherRelic());
-
-        //Need 13 more here
         m_relics.Add(new ContentBloodFeatherRelic());
         m_relics.Add(new ContentGoldenFeatherRelic());
         m_relics.Add(new ContentTalonOfTheMeradominRelic());
         m_relics.Add(new ContentAncientEvilRelic());
+
+        //Need 9 more here (2 common, 4 uncommon, 1 rare)
+        m_relics.Add(new ContentEverflowingCanteenRelic());
+        m_relics.Add(new ContentHealthFlaskRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

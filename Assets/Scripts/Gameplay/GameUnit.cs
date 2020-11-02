@@ -947,6 +947,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword(new GameRegenerateKeyword(5));
         }
 
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentHealthFlaskRelic>() && GetTeam() == Team.Player && m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth()/2.0f)))
+        {
+            toReturn.AddKeyword(new GameRegenerateKeyword(5));
+        }
+
         //If the return keyword is still blank, set it to null
         if (toReturn.m_regenVal == 0)
         {
@@ -1078,7 +1084,38 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameDamageReductionKeyword GetDamageReductionKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
+        //Set the return keyword to a blank keyword
+        GameDamageReductionKeyword toReturn = new GameDamageReductionKeyword(0);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameDamageReductionKeyword holderKeyword = m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
+        if (holderKeyword != null)
+        {
+            toReturn.AddKeyword(holderKeyword);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentEverflowingCanteenRelic>() && m_gameTile != null && GetTeam() == Team.Player)
+        {
+            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+            for (int i = 0; i < adjacentTiles.Count; i++)
+            {
+                if (adjacentTiles[i].GetTerrain().IsWater())
+                {
+                    toReturn.AddKeyword(new GameDamageReductionKeyword(2));
+                    break;
+                }
+            }
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.m_damageReduction == 0)
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()

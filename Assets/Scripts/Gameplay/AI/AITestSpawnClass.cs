@@ -40,7 +40,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentEyeOfMoragRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentEverflowingCanteenRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.I))
