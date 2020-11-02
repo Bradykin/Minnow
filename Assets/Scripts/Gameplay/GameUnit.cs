@@ -1811,6 +1811,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     }
                 }
             }
+
+            if (GameHelper.HasRelic<ContentToolOfTheDeadmanRelic>())
+            {
+                if (GameHelper.GetGameController().CurrentActor == player)
+                {
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                }
+                else
+                {
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                }
+            }
         }
         else if (GetTeam() == Team.Player)
         {

@@ -430,6 +430,18 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
                 if (gameTile.GetTerrain().IsWater())
                 {
+                    gameTile.SetTerrain(new ContentIceTerrain(), true);
+                }
+            }
+        }
+
+        if (toAdd is ContentEyeOfDorosonRelic)
+        {
+            for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                if (gameTile.GetTerrain().IsMountain())
+                {
                     gameTile.SetTerrain(new ContentDirtPlainsTerrain(), true);
                 }
             }
