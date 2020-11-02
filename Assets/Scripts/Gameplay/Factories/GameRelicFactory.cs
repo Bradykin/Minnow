@@ -99,6 +99,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentPrimeRibRelic());
         m_relics.Add(new ContentLifebringerRelic());
         m_relics.Add(new ContentShardOfSorrowRelic());
+        m_relics.Add(new ContentChargingRingRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

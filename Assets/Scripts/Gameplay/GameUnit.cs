@@ -954,7 +954,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameMomentumKeyword GetMomentumKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        //Set the return keyword to a blank keyword
+        GameMomentumKeyword toReturn = new GameMomentumKeyword(null);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameMomentumKeyword holderKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        if (holderKeyword != null)
+        {
+            toReturn.AddKeyword(holderKeyword);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentChargingRingRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
+        {
+            toReturn.AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 1, 1)));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.IsEmpty())
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public virtual GameVictoriousKeyword GetVictoriousKeyword()
