@@ -372,21 +372,33 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         int maxHealth = GetMaxHealth();
 
         int realHealVal = toHeal;
-        if (m_curHealth + toHeal > maxHealth)
+
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
         {
-            realHealVal = maxHealth - m_curHealth;
+            if (m_curHealth + toHeal > maxHealth)
+            {
+                realHealVal = maxHealth - m_curHealth;
+            }
         }
 
         m_curHealth += toHeal;
 
-        if (m_curHealth >= maxHealth)
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
         {
-            m_curHealth = maxHealth;
+            if (m_curHealth >= maxHealth)
+            {
+                m_curHealth = maxHealth;
+            }
         }
 
         if (realHealVal > 0)
         {
             UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_worldUnit.gameObject);
+
+            if (GameHelper.HasRelic<ContentLifebringerRelic>())
+            {
+                GainStamina(1);
+            }
         }
 
         return realHealVal;
@@ -942,7 +954,30 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameMomentumKeyword GetMomentumKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        //Set the return keyword to a blank keyword
+        GameMomentumKeyword toReturn = new GameMomentumKeyword(null);
+
+        //Get the keyword from the holder, if it's not null, add it to the return keyword.
+        GameMomentumKeyword holderKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
+        if (holderKeyword != null)
+        {
+            toReturn.AddKeyword(holderKeyword);
+        }
+
+        //Check relics and other effects to see if anything needs to be added to the return keyword
+        if (GameHelper.HasRelic<ContentChargingRingRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
+        {
+            toReturn.AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 1, 1)));
+        }
+
+        //If the return keyword is still blank, set it to null
+        if (toReturn.IsEmpty())
+        {
+            toReturn = null;
+        }
+
+        //Return it
+        return toReturn;
     }
 
     public virtual GameVictoriousKeyword GetVictoriousKeyword()
@@ -1788,6 +1823,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 else
                 {
                     player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameDrawCardAction(3));
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentTombOfTheDefenderRelic>())
+            {
+                if (GameHelper.GetGameController().CurrentActor == player)
+                {
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                }
+                else
+                {
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
                 }
             }
 

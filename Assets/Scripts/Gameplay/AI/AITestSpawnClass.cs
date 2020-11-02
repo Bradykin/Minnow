@@ -40,12 +40,12 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentBeadofJoyRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentShardOfSorrowRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                GameHelper.GetPlayer().AddEnergy(1);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
             }
 
             if (Input.GetKeyDown(KeyCode.U))
