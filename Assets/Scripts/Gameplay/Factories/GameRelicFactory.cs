@@ -101,6 +101,7 @@ public static class GameRelicFactory
 
         //Need 19 more here
         m_relics.Add(new ContentEyeOfMoragRelic());
+        m_relics.Add(new ContentEyeOfTelsimirRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

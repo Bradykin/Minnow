@@ -423,6 +423,18 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        if (toAdd is ContentEyeOfTelsimirRelic)
+        {
+            for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                if (gameTile.GetTerrain().IsWater())
+                {
+                    gameTile.SetTerrain(new ContentDirtPlainsTerrain(), true);
+                }
+            }
+        }
+
         m_relics.AddRelic(toAdd);
 
         WorldController.Instance.UpdateHand();
