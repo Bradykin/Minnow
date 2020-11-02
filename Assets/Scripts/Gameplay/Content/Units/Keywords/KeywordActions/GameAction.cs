@@ -13,6 +13,7 @@ public abstract class GameAction : GameElementBase, ISave<JsonActionData>, ILoad
         UnitParam,
         UnitIntParam,
         UnitTwoIntParam,
+        UnitListIntParam,
         UnitIntListIntParam,
         UnitKeywordParam,
         GameWalletParam
