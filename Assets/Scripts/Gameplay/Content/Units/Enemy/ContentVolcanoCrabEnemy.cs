@@ -62,12 +62,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        GameRarity rarity = GameRelicFactory.GetRandomRarity();
-
-        GameRelic relicOne = GameRelicFactory.GetRandomRelicAtRarity(rarity);
-        GameRelic relicTwo = GameRelicFactory.GetRandomRelicAtRarity(rarity, relicOne);
-
-        UIRelicSelectController.Instance.Init(relicOne, relicTwo);
+        UIHelper.TriggerRelicSelect();
 
         if (GameHelper.HasRelic<ContentHeroicTrophyRelic>())
         {

@@ -17,17 +17,7 @@ public class ContentRelicIntermissionAction : GameActionIntermission
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        if (player == null)
-        {
-            return;
-        }
-
-        GameRarity rarity = GameRelicFactory.GetRandomRarity();
-
-        GameRelic relicOne = GameRelicFactory.GetRandomRelicAtRarity(rarity);
-        GameRelic relicTwo = GameRelicFactory.GetRandomRelicAtRarity(rarity, relicOne);
-
-        UIRelicSelectController.Instance.Init(relicOne, relicTwo);
+        UIHelper.TriggerRelicSelect();
 
         SpendCost();
     }

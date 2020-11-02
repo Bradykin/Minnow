@@ -7,7 +7,7 @@ public class ContentSigilOfTheSwordsmanRelic : GameRelic
     public ContentSigilOfTheSwordsmanRelic()
     {
         m_name = "Sigil of the Swordsman";
-        m_desc = "Allied <b>Humanoid<b> units get +6/+0.";
+        m_desc = "Allied <b>Humanoid</b> units get +6/+0.";
         m_rarity = GameRarity.Common;
 
         LateInit();

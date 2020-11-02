@@ -1880,6 +1880,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 int tempPower = GetPower();
                 m_power = GetMaxHealth();
                 m_maxHealth = tempPower;
+                m_curHealth = GetMaxHealth();
             }
         }
     }
