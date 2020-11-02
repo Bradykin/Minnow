@@ -35,15 +35,15 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isWater;
 
     protected bool m_isEventTerrain;
-    protected bool m_isCave;
+    protected bool m_isCave; // Not currently used
     protected bool m_isVolcano;
     protected bool m_isLava;
     protected bool m_isIce;
     protected bool m_isIceCracked;
-    protected bool m_isWaterSource;
+    protected bool m_isWaterSource; // Not currently used
 
-    protected bool m_isHot;
-    protected bool m_isCold;
+    protected bool m_isHot; // Not currently used
+    protected bool m_isCold; // Not currently used
     protected bool m_isBurned;
     protected bool m_canBurn;
 
