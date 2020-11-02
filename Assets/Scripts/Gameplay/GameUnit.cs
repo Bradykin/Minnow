@@ -211,6 +211,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth -= damage;
 
+        if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
+        {
+            AddKeyword(new GameDamageShieldKeyword(3));
+        }
+
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
 
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
