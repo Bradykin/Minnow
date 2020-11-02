@@ -54,6 +54,7 @@ public class ContentVolcanoRunMap : GameMap
         m_spawnPool.Add(new ContentVolcanoGolemEnemy(null)); //Waves 4-6
         m_spawnPool.Add(new ContentPhoenixEnemy(null)); //Waves 4-6
         m_spawnPool.Add(new ContentLavaHellionEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentDemonMagicianEnemy(null)); //Waves 4-4
         m_spawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
         m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
 
@@ -85,7 +86,7 @@ public class ContentVolcanoRunMap : GameMap
         //Wave 1 - 1
         //Wave 2 - 3
         //Wave 3 - 5
-        //Wave 4 - 6
+        //Wave 4 - 7
         //Wave 5 - 6
         //Wave 6 - 5
     }

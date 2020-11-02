@@ -75,6 +75,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
                         case GameAction.ActionParamType.TwoIntParam:
                         case GameAction.ActionParamType.UnitIntParam:
                         case GameAction.ActionParamType.UnitTwoIntParam:
+                        case GameAction.ActionParamType.UnitListIntParam:
                         case GameAction.ActionParamType.UnitIntListIntParam:
                         case GameAction.ActionParamType.UnitKeywordParam:
                         case GameAction.ActionParamType.GameWalletParam:

@@ -17,6 +17,7 @@ public class GameActionFactory
         m_actions.Add(new GameDeathAction(null));
         m_actions.Add(new GameExplodeAction(null, 0, 0));
         m_actions.Add(new GameFullHealAction(null));
+        m_actions.Add(new GameFullHealRangeAction(null, 0));
         m_actions.Add(new GameHealAction(null, 0));
         m_actions.Add(new GameGainStatsAction(null, 0, 0));
         m_actions.Add(new GameLoseStatsAction(null, 0, 0));
@@ -64,6 +65,9 @@ public class GameActionFactory
                 break;
             case GameAction.ActionParamType.UnitTwoIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2);
+                break;
+            case GameAction.ActionParamType.UnitListIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intListValue1);
                 break;
             case GameAction.ActionParamType.UnitIntListIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intListValue1);

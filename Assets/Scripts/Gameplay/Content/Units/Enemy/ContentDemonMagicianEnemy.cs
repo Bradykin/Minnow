@@ -22,12 +22,14 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_name = "Demon Magician";
         m_desc = "This unit is immune to all spells.";
 
-        AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
+        int rangeAmount = 2;
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
+            rangeAmount = 3;
         }
+
+        AddKeyword(new GameRangeKeyword(rangeAmount), false);
+        AddKeyword(new GameLavawalkKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
