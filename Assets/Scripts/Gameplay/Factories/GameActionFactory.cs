@@ -21,6 +21,7 @@ public class GameActionFactory
         m_actions.Add(new GameGainStatsAction(null, 0, 0));
         m_actions.Add(new GameLoseStatsAction(null, 0, 0));
         m_actions.Add(new GameGainStaminaAction(null, 0));
+        m_actions.Add(new GameGainStaminaRegenAction(null, 0));
         m_actions.Add(new GameGainBrittleAction(null, 0));
         m_actions.Add(new GameGainEnergyAction(0));
         m_actions.Add(new GameGainRangeAction(null, 0));

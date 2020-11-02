@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ContentVolcanoCrabEnemy : GameEnemyUnit
 {
-    int m_powerIncrease = 3;
+    int m_powerIncrease;
     int m_staminaRegenIncrease = 1;
-    int m_damageReductionDecrease = 2;
+    int m_damageReductionDecrease = 1;
 
-    int m_maxDamageReduction = 12;
+    int m_maxDamageReduction;
     
     public ContentVolcanoCrabEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -16,9 +16,10 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
         m_maxHealth = 8 + GetHealthModByWave();
         m_maxStamina = 6;
-        m_staminaRegen = 1;
+        m_staminaRegen = 3;
         m_power = 2 + GetPowerModByWave();
 
+        m_powerIncrease = 2 + GetPowerIncreaseModByWave();
         m_maxDamageReduction = 3 + GetDamageReductionModByWave();
 
         m_team = Team.Enemy;
@@ -29,8 +30,12 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_maxWave = 6;
 
         m_name = "Volcano Crab";
-        m_desc = $"An elite foe.  Defeat it and gain a relic!\nAt the start of each turn, this unit gets +{m_powerIncrease} Power, +{m_staminaRegenIncrease} Stamina Regen, and -{m_damageReductionDecrease} Damage Reduction.";
+        m_desc = $"An elite foe.  Defeat it and gain a relic!\n";
+        //At the start of each turn, this unit gets +{m_powerIncrease} Power, +{m_staminaRegenIncrease} Stamina Regen, and -{m_damageReductionDecrease} Damage Reduction.";
 
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), false);
+        AddKeyword(new GameEnrageKeyword(new GameSubtractKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), false);
         AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), false);
         AddKeyword(new GameLavawalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
@@ -78,16 +83,6 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         }
 
         base.Die(canRevive);
-    }
-
-    public override void StartTurn()
-    {
-        m_staminaRegen += m_staminaRegenIncrease;
-        m_maxStamina += m_staminaRegenIncrease;
-        m_power += m_powerIncrease;
-        SubtractKeyword(new GameDamageReductionKeyword(m_damageReductionDecrease));
-
-        base.StartTurn();
     }
 
     public override void OnMoveEnd()
@@ -153,5 +148,12 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
 
         return waveNum * 2;
+    }
+
+    private int GetPowerIncreaseModByWave()
+    {
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+
+        return waveNum;
     }
 }
