@@ -10,7 +10,7 @@ public class GameElementBase
         Uncommon,
         Rare,
         Starter,
-        Event
+        Special
     }
 
     protected string m_name { get; set; }

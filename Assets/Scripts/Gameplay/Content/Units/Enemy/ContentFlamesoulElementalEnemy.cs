@@ -22,7 +22,7 @@ public class ContentFlamesoulElementalEnemy : GameEnemyUnit
         }
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Special;
         m_isBoss = true;
 
         m_minWave = Constants.FinalWaveNum;

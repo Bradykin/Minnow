@@ -11,7 +11,7 @@ public class ContentShivCard : GameCardSpellBase
         m_name = "Shiv";
         m_targetType = Target.Unit;
         m_cost = 0;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Special;
         m_shouldExile = true;
 
         SetupBasicData();
