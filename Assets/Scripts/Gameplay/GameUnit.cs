@@ -1127,6 +1127,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += 6;
             }
 
+            if (GameHelper.HasRelic<ContentAncientEvilRelic>() && GetTypeline() == Typeline.Monster)
+            {
+                ContentAncientEvilRelic evilRelic = (ContentAncientEvilRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentAncientEvilRelic>());
+                if (evilRelic.IsTransformed())
+                {
+                    toReturn += 10;
+                }
+            }
+
             if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
             {
                 toReturn -= 2;
@@ -1182,6 +1191,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public Typeline GetTypeline()
     {
+        if (GetTeam() == Team.Player)
+        {
+            if (GameHelper.HasRelic<ContentAncientEvilRelic>())
+            {
+                ContentAncientEvilRelic evilRelic = (ContentAncientEvilRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentAncientEvilRelic>());
+                if (evilRelic.IsTransformed())
+                {
+                    return Typeline.Monster;
+                }
+            }
+        }
+
         return m_typeline;
     }
 
@@ -1199,6 +1220,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentOrbOfHealthRelic>())
             {
                 toReturn += 6;
+            }
+
+            if (GameHelper.HasRelic<ContentAncientEvilRelic>() && GetTypeline() == Typeline.Monster)
+            {
+                ContentAncientEvilRelic evilRelic = (ContentAncientEvilRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentAncientEvilRelic>());
+                if (evilRelic.IsTransformed())
+                {
+                    toReturn += 10;
+                }
             }
 
             if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
@@ -1807,6 +1837,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 player.DrawCards(2);
                 player.AddEnergy(2);
+            }
+
+            if (GameHelper.HasRelic<ContentAncientEvilRelic>())
+            {
+                ContentAncientEvilRelic evilRelic = (ContentAncientEvilRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentAncientEvilRelic>());
+                evilRelic.AddKillCount();
             }
 
             if (GameHelper.HasRelic<ContentCanvasOfHistoryRelic>() && m_gameTile != null)

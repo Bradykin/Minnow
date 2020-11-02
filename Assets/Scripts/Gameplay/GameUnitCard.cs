@@ -138,7 +138,7 @@ public class GameUnitCard : GameCard
         return true;
     }
 
-    protected string GetTypeline()
+    public override string GetTypeline()
     {
         string typeline = "Unit - " + m_unit.GetTypeline();
 
