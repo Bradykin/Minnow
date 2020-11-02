@@ -93,13 +93,14 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSecretsOfNatureRelic());
         m_relics.Add(new ContentAdvancedWeaponryRelic());
         m_relics.Add(new ContentBeadofJoyRelic());
-
-        //Need 24 more here
         m_relics.Add(new ContentTombOfTheDefenderRelic());
         m_relics.Add(new ContentPrimeRibRelic());
         m_relics.Add(new ContentLifebringerRelic());
         m_relics.Add(new ContentShardOfSorrowRelic());
         m_relics.Add(new ContentChargingRingRelic());
+
+        //Need 19 more here
+        m_relics.Add(new ContentEyeOfMoragRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
