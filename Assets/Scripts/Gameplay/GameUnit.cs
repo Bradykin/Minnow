@@ -1132,6 +1132,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn -= 2;
             }
 
+            if (GameHelper.HasRelic<ContentTalonOfTheMeradominRelic>())
+            {
+                toReturn += 5;
+            }
+
             if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
             {
                 toReturn += 10;

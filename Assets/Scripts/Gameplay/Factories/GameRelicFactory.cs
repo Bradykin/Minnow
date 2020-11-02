@@ -108,6 +108,7 @@ public static class GameRelicFactory
         //Need 13 more here
         m_relics.Add(new ContentBloodFeatherRelic());
         m_relics.Add(new ContentGoldenFeatherRelic());
+        m_relics.Add(new ContentTalonOfTheMeradominRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
