@@ -407,6 +407,46 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
+        if (toAdd is ContentEyeOfMoragRelic)
+        {
+            for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                if (gameTile.GetTerrain().IsForest() && gameTile.GetTerrain().CanBurn())
+                {
+                    gameTile.SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(gameTile.GetTerrain()));
+                    if (gameTile.IsOccupied())
+                    {
+                        gameTile.m_occupyingUnit.Die();
+                    }
+                }
+            }
+        }
+
+        if (toAdd is ContentEyeOfTelsimirRelic)
+        {
+            for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                if (gameTile.GetTerrain().IsWater())
+                {
+                    gameTile.SetTerrain(new ContentIceTerrain(), true);
+                }
+            }
+        }
+
+        if (toAdd is ContentEyeOfDorosonRelic)
+        {
+            for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+            {
+                GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+                if (gameTile.GetTerrain().IsMountain())
+                {
+                    gameTile.SetTerrain(new ContentDirtPlainsTerrain(), true);
+                }
+            }
+        }
+
         m_relics.AddRelic(toAdd);
 
         WorldController.Instance.UpdateHand();

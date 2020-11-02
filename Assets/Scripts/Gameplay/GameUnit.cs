@@ -211,6 +211,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth -= damage;
 
+        if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
+        {
+            AddKeyword(new GameDamageShieldKeyword(3));
+        }
+
+        if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
+        {
+            AddStats(10, 0);
+        }
+
+        if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
+        {
+            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(10));
+        }
+
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
 
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
@@ -891,6 +906,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameWaterwalkKeyword GetWaterwalkKeyword()
     {
+        if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            return new GameWaterwalkKeyword();
+        }
+
         return m_keywordHolder.GetKeyword<GameWaterwalkKeyword>();
     }
 
@@ -1110,6 +1130,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentLegendaryFragmentRelic>())
             {
                 toReturn -= 2;
+            }
+
+            if (GameHelper.HasRelic<ContentTalonOfTheMeradominRelic>())
+            {
+                toReturn += 5;
             }
 
             if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
@@ -1811,6 +1836,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     }
                 }
             }
+
+            if (GameHelper.HasRelic<ContentToolOfTheDeadmanRelic>())
+            {
+                if (GameHelper.GetGameController().CurrentActor == player)
+                {
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                }
+                else
+                {
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                }
+            }
         }
         else if (GetTeam() == Team.Player)
         {
@@ -1958,6 +1995,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
+        }
+
+        if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            if (m_gameTile != null && m_gameTile.GetTerrain().IsWater())
+            {
+                Die();
+            }
         }
     }
 
