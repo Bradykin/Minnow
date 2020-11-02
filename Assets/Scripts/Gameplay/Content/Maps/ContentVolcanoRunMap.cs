@@ -55,13 +55,17 @@ public class ContentVolcanoRunMap : GameMap
         m_spawnPool.Add(new ContentPhoenixEnemy(null)); //Waves 4-6
         m_spawnPool.Add(new ContentLavaHellionEnemy(null)); //Waves 5-6
         m_spawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
+        m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
 
-
+        //Supporting normal enemies
+        m_spawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
         m_spawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
         m_spawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
         m_spawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
         m_spawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
-        m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
+
+        //Supporting Desert Enemies
+
 
         //Idea use desert spawns for waves 3-4 from the desert area, use basic spawns for waves 3-4 from the bottom right Re-examine creature pool with that idea
 
@@ -76,8 +80,8 @@ public class ContentVolcanoRunMap : GameMap
         //New wave enemy distribution:
         //Wave 1 - 1
         //Wave 2 - 3
-        //Wave 3 - 4
-        //Wave 4 - 5
+        //Wave 3 - 5
+        //Wave 4 - 6
         //Wave 5 - 6
         //Wave 6 - 5
     }

@@ -14,10 +14,12 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 20;
-        m_maxStamina = 8;
+        m_maxHealth = 8 + GetHealthModByWave();
+        m_maxStamina = 6;
         m_staminaRegen = 1;
-        m_power = 2;
+        m_power = 2 + GetPowerModByWave();
+
+        m_maxDamageReduction = 3 + GetDamageReductionModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Event;
@@ -124,5 +126,32 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
                 AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction - gameDamageReductionKeyword.m_damageReduction));
             }
         }
+    }
+
+    private int GetHealthModByWave()
+    {
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+
+        int scalingValue = waveNum;
+        if (waveNum >= 3)
+        {
+            scalingValue += (waveNum - 2);
+        }
+
+        return scalingValue * 4;
+    }
+
+    private int GetDamageReductionModByWave()
+    {
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+
+        return waveNum * 3;
+    }
+
+    private int GetPowerModByWave()
+    {
+        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+
+        return waveNum * 2;
     }
 }
