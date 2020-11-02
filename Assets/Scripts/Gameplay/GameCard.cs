@@ -40,6 +40,20 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
             {
                 toReturn -= 1;
             }
+
+            if (GameHelper.HasRelic<ContentShardOfSorrowRelic>())
+            {
+                int numShivsInHand = 0;
+                for (int i = 0; i < GameHelper.GetPlayer().m_hand.Count; i++)
+                {
+                    if (GameHelper.GetPlayer().m_hand[i] is ContentShivCard)
+                    {
+                        numShivsInHand++;
+                    }
+                }
+
+                toReturn -= numShivsInHand;
+            }
         }
         else if (this is GameUnitCard)
         {
