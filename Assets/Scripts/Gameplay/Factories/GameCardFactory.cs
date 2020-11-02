@@ -128,12 +128,16 @@ public static class GameCardFactory
 
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());
+        m_enemyCards.Add(new ContentBasiliskEnemyCard());
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
         m_enemyCards.Add(new ContentBurningMonstrosityEnemyCard());
+        m_enemyCards.Add(new ContentCrumblingAncientEnemyCard());
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
+        m_enemyCards.Add(new ContentDemonMagicianEnemyCard());
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
         m_enemyCards.Add(new ContentFlamesoulElementalEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
+        m_enemyCards.Add(new ContentJackalEnemyCard());
         m_enemyCards.Add(new ContentLavaHellionCard());
         m_enemyCards.Add(new ContentLichEnemyCard());
         m_enemyCards.Add(new ContentLizardmanEnemyCard());
@@ -141,6 +145,8 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
         m_enemyCards.Add(new ContentPhoenixEnemyCard());
+        m_enemyCards.Add(new ContentSandWyvernEnemyCard());
+        m_enemyCards.Add(new ContentSandVortexEnemyCard());
         m_enemyCards.Add(new ContentScorchingSerpentEnemyCard());
         m_enemyCards.Add(new ContentSiegebreakerCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());

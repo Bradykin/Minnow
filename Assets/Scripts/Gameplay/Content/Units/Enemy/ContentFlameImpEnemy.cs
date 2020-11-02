@@ -19,7 +19,7 @@ public class ContentFlameImpEnemy : GameEnemyUnit
         m_minWave = 1;
         m_maxWave = 2;
 
-        m_name = "Slime";
+        m_name = "Flame Imp";
         m_desc = "";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

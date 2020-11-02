@@ -58,14 +58,18 @@ public class ContentVolcanoRunMap : GameMap
         m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
 
         //Supporting normal enemies
-        m_spawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
-        m_spawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
-        m_spawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
-        m_spawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
-        m_spawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
+        List<GameEnemyUnit> baseTerrainSpawnPool = new List<GameEnemyUnit>();
+        baseTerrainSpawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
+        baseTerrainSpawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
+        baseTerrainSpawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
+        baseTerrainSpawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
+        baseTerrainSpawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
+        m_specificSpawnPools.Add(baseTerrainSpawnPool);
 
         //Supporting Desert Enemies
-
+        List<GameEnemyUnit> desertTerrainSpawnPool = new List<GameEnemyUnit>();
+        desertTerrainSpawnPool.Add(new ContentCrumblingAncientEnemy(null));
+        m_specificSpawnPools.Add(desertTerrainSpawnPool);
 
         //Idea use desert spawns for waves 3-4 from the desert area, use basic spawns for waves 3-4 from the bottom right Re-examine creature pool with that idea
 
