@@ -8,7 +8,7 @@ public class ContentHarvestOfTelumRelic : GameRelic
     {
         m_name = "Harvest of Telum";
         m_desc = "Gain an extra 25 gold at the end of each wave.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 

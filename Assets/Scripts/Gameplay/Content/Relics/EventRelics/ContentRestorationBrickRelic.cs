@@ -8,7 +8,7 @@ public class ContentRestorationBrickRelic : GameRelic
     {
         m_name = "Restoration Brick";
         m_desc = "Buildings cost 15 less gold.";
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 

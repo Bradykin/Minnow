@@ -108,14 +108,10 @@ public static class GameRelicFactory
         m_relics.Add(new ContentGoldenFeatherRelic());
         m_relics.Add(new ContentTalonOfTheMeradominRelic());
         m_relics.Add(new ContentAncientEvilRelic());
-
-        //Need 9 more here (1 common, 3 uncommon, 1 rare)
         m_relics.Add(new ContentEverflowingCanteenRelic());
         m_relics.Add(new ContentHealthFlaskRelic());
         m_relics.Add(new ContentToldiranMiracleRelic());
         m_relics.Add(new ContentNectarOfTheSeaGodRelic());
-
-        //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
         m_relics.Add(new ContentRestorationBrickRelic());
@@ -142,7 +138,7 @@ public static class GameRelicFactory
             }
         }
 
-        Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
+        //Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)
