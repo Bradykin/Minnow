@@ -109,9 +109,11 @@ public static class GameRelicFactory
         m_relics.Add(new ContentTalonOfTheMeradominRelic());
         m_relics.Add(new ContentAncientEvilRelic());
 
-        //Need 9 more here (2 common, 4 uncommon, 1 rare)
+        //Need 9 more here (1 common, 3 uncommon, 1 rare)
         m_relics.Add(new ContentEverflowingCanteenRelic());
         m_relics.Add(new ContentHealthFlaskRelic());
+        m_relics.Add(new ContentToldiranMiracleRelic());
+        m_relics.Add(new ContentNectarOfTheSeaGodRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());

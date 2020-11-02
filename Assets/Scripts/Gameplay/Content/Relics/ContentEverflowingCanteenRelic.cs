@@ -11,5 +11,8 @@ public class ContentEverflowingCanteenRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Water);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

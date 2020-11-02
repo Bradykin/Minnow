@@ -11,5 +11,7 @@ public class ContentHealthFlaskRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
+
+        m_tags.AddTag(GameTag.TagType.Healing);
     }
 }

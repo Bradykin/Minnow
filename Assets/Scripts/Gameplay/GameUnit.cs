@@ -1164,6 +1164,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += 6;
             }
 
+            if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>() && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].GetTerrain().IsWater())
+                    {
+                        toReturn += 3;
+                        break;
+                    }
+                }
+            }
+
             if (GameHelper.HasRelic<ContentAncientEvilRelic>() && GetTypeline() == Typeline.Monster)
             {
                 ContentAncientEvilRelic evilRelic = (ContentAncientEvilRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentAncientEvilRelic>());
@@ -1265,6 +1278,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (evilRelic.IsTransformed())
                 {
                     toReturn += 10;
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>() && m_gameTile != null)
+            {
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                for (int i = 0; i < adjacentTiles.Count; i++)
+                {
+                    if (adjacentTiles[i].GetTerrain().IsWater())
+                    {
+                        toReturn += 3;
+                        break;
+                    }
                 }
             }
 
@@ -1779,6 +1805,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 else if (r == 2)
                 {
                     m_typeline = Typeline.Creation;
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
+            {
+                if (GameHelper.HasAllTypelines())
+                {
+                    GameHelper.GetPlayer().DrawCard();
+                    GameHelper.GetPlayer().AddEnergy(2);
                 }
             }
 
