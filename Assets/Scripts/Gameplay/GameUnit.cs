@@ -545,6 +545,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (knowledgeableKeyword != null)
         {
             knowledgeableKeyword.DoAction();
+
+            if (GameHelper.HasRelic<ContentForbiddenKnowledge>())
+            {
+                GameHelper.GetPlayer().AddEnergy(1);
+            }
         }
     }
 

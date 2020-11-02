@@ -162,16 +162,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             if (triggerKnowledgeable)
             {
                 TriggerKnowledgeable();
-
-                if (GameHelper.HasRelic<ContentAncientMysteryRelic>())
-                {
-                    TriggerKnowledgeable();
-                }
-
-                if (GameHelper.HasRelic<ContentForbiddenKnowledge>())
-                {
-                    AddEnergy(1);
-                }
             }
 
             if (m_hand.Count >= Constants.MaxHandSize)
@@ -190,6 +180,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].TriggerKnowledgeable();
+
+            if (GameHelper.HasRelic<ContentAncientMysteryRelic>())
+            {
+                m_controlledUnits[i].TriggerKnowledgeable();
+            }
         }
     }
 
