@@ -47,21 +47,38 @@ public class ContentVolcanoRunMap : GameMap
 
     protected override void FillSpawnPool()
     {
-        m_spawnPool.Add(new ContentAngryBirdEnemy(null));
-        m_spawnPool.Add(new ContentDarkWarriorEnemy(null));
-        m_spawnPool.Add(new ContentLichEnemy(null));
-        m_spawnPool.Add(new ContentLizardmanEnemy(null));
-        m_spawnPool.Add(new ContentMobolaEnemy(null));
-        m_spawnPool.Add(new ContentOrcEnemy(null));
-        m_spawnPool.Add(new ContentOrcShamanEnemy(null));
-        m_spawnPool.Add(new ContentSiegebreakerUnit(null));
-        m_spawnPool.Add(new ContentSlimeEnemy(null));
-        m_spawnPool.Add(new ContentSnakeEnemy(null));
-        m_spawnPool.Add(new ContentSpinnerEnemy(null));
-        m_spawnPool.Add(new ContentToadEnemy(null));
-        m_spawnPool.Add(new ContentWerewolfEnemy(null));
-        m_spawnPool.Add(new ContentYetiEnemy(null));
-        m_spawnPool.Add(new ContentShadeEnemy(null));
-        m_spawnPool.Add(new ContentZombieEnemy(null));
+        m_spawnPool.Add(new ContentBlindBeastEnemy(null)); //Waves 1-2
+        m_spawnPool.Add(new ContentScorchingSerpentEnemy(null)); //Waves 2-3
+        m_spawnPool.Add(new ContentHellhoundEnemy(null)); //Waves 3-5
+        m_spawnPool.Add(new ContentBurningMonstrosityEnemy(null)); //Waves 3-4
+        m_spawnPool.Add(new ContentVolcanoGolemEnemy(null)); //Waves 4-6
+        m_spawnPool.Add(new ContentPhoenixEnemy(null)); //Waves 4-6
+        m_spawnPool.Add(new ContentLavaHellionEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
+
+
+        m_spawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
+        m_spawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
+        m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
+
+        //Idea use desert spawns for waves 3-4 from the desert area, use basic spawns for waves 3-4 from the bottom right Re-examine creature pool with that idea
+
+        //Old wave enemy distribution:
+        //Wave 1 - 1
+        //Wave 2 - 3
+        //Wave 3 - 4
+        //Wave 4 - 7
+        //Wave 5 - 7
+        //Wave 6 - 7
+
+        //New wave enemy distribution:
+        //Wave 1 - 1
+        //Wave 2 - 3
+        //Wave 3 - 4
+        //Wave 4 - 5
+        //Wave 5 - 6
+        //Wave 6 - 5
     }
 }

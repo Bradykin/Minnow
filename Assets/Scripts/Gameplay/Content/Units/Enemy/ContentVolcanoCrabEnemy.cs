@@ -20,13 +20,14 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_power = 2;
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Event;
+        m_isElite = true;
 
-        m_minWave = 3;
-        m_maxWave = 4;
+        m_minWave = 1;
+        m_maxWave = 6;
 
         m_name = "Volcano Crab";
-        m_desc = $"At the start of each turn, this unit gets +{m_powerIncrease} Power, +{m_staminaRegenIncrease} Stamina Regen, and -{m_damageReductionDecrease} Damage Reduction.";
+        m_desc = $"An elite foe.  Defeat it and gain a relic!\nAt the start of each turn, this unit gets +{m_powerIncrease} Power, +{m_staminaRegenIncrease} Stamina Regen, and -{m_damageReductionDecrease} Damage Reduction.";
 
         AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), false);
         AddKeyword(new GameLavawalkKeyword(), false);
@@ -48,6 +49,33 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         base.OnSummon();
 
         SpendStamina(GetCurStamina() - 1);
+    }
+
+    public override void Die(bool canRevive = true)
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        GameRarity rarity = GameRelicFactory.GetRandomRarity();
+
+        GameRelic relicOne = GameRelicFactory.GetRandomRelicAtRarity(rarity);
+        GameRelic relicTwo = GameRelicFactory.GetRandomRelicAtRarity(rarity, relicOne);
+
+        UIRelicSelectController.Instance.Init(relicOne, relicTwo);
+
+        if (GameHelper.HasRelic<ContentHeroicTrophyRelic>())
+        {
+            for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
+            {
+                player.m_controlledUnits[i].AddStats(5, 5);
+            }
+        }
+
+        if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
+        {
+            player.m_wallet.AddResources(new GameWallet(75));
+        }
+
+        base.Die(canRevive);
     }
 
     public override void StartTurn()

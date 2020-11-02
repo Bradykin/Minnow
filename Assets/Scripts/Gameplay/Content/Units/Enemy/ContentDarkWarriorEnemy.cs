@@ -50,13 +50,13 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         {
             for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
             {
-                GameHelper.GetPlayer().m_controlledUnits[i].AddStats(5, 5);
+                player.m_controlledUnits[i].AddStats(5, 5);
             }
         }
 
         if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
         {
-            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(75));
+            player.m_wallet.AddResources(new GameWallet(75));
         }
 
         base.Die(canRevive);
