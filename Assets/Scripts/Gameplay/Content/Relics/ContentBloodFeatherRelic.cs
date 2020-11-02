@@ -7,7 +7,7 @@ public class ContentBloodFeatherRelic : GameRelic
     public ContentBloodFeatherRelic()
     {
         m_name = "Blood Feather";
-        m_desc = "When an allied unit survives a hit with 1 health; it gets +10/+0.";
+        m_desc = "When an allied unit survives a hit with 3 health; it gets +10/+0.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
