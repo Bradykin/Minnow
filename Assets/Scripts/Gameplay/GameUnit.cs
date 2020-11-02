@@ -216,6 +216,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             AddKeyword(new GameDamageShieldKeyword(3));
         }
 
+        if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
+        {
+            AddStats(10, 0);
+        }
+
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
 
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();

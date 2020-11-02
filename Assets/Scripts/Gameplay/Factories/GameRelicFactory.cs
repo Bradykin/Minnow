@@ -106,6 +106,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentAngelicFeatherRelic());
 
         //Need 13 more here
+        m_relics.Add(new ContentBloodFeatherRelic());
 
         //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
