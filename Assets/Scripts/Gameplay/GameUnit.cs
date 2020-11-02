@@ -891,6 +891,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameWaterwalkKeyword GetWaterwalkKeyword()
     {
+        if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            return new GameWaterwalkKeyword();
+        }
+
         return m_keywordHolder.GetKeyword<GameWaterwalkKeyword>();
     }
 
@@ -1970,6 +1975,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
+        }
+
+        if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        {
+            if (m_gameTile != null && m_gameTile.GetTerrain().IsWater())
+            {
+                Die();
+            }
         }
     }
 
