@@ -10,13 +10,12 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentAncientEvilRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                Globals.m_testSpawnEnemyUnit = new ContentSlimeEnemy(null);
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), true);
+                Globals.m_testSpawnEnemyUnit = new ContentDemonMagicianEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))
