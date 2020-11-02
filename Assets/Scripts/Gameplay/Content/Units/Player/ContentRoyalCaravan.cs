@@ -12,7 +12,7 @@ public class ContentRoyalCaravan : GameUnit
         m_power = 5;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Special;
 
         AddKeyword(new GameRangeKeyword(2), false);
 

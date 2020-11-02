@@ -8,7 +8,7 @@ public class ContentTraditionalMethodsRelic : GameRelic
     {
         m_name = "Traditional Methods";
         m_desc = "Starter spells gain 'Draw a card', and Starter units gain +1 Stamina regen.";
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Rare;
 
         LateInit();
 

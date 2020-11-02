@@ -447,6 +447,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        if (toAdd is ContentAncientEvilRelic)
+        {
+            m_wallet.AddResources(new GameWallet(1));
+        }
+
         m_relics.AddRelic(toAdd);
 
         WorldController.Instance.UpdateHand();

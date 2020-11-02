@@ -104,13 +104,14 @@ public static class GameRelicFactory
         m_relics.Add(new ContentToolOfTheDeadmanRelic());
         m_relics.Add(new ContentSecretOfTheDeepRelic());
         m_relics.Add(new ContentAngelicFeatherRelic());
-
-        //Need 13 more here
         m_relics.Add(new ContentBloodFeatherRelic());
         m_relics.Add(new ContentGoldenFeatherRelic());
         m_relics.Add(new ContentTalonOfTheMeradominRelic());
-
-        //Event Relics
+        m_relics.Add(new ContentAncientEvilRelic());
+        m_relics.Add(new ContentEverflowingCanteenRelic());
+        m_relics.Add(new ContentHealthFlaskRelic());
+        m_relics.Add(new ContentToldiranMiracleRelic());
+        m_relics.Add(new ContentNectarOfTheSeaGodRelic());
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
         m_relics.Add(new ContentRestorationBrickRelic());
@@ -137,7 +138,7 @@ public static class GameRelicFactory
             }
         }
 
-        Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
+        //Debug.Log("Common: " + commonRelics + "\nUncommon: " + uncommonRelics + "\nRare: " + rareRelics);
     }
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)

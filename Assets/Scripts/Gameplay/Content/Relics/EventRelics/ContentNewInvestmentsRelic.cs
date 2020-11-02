@@ -7,8 +7,8 @@ public class ContentNewInvestmentsRelic : GameRelic
     public ContentNewInvestmentsRelic()
     {
         m_name = "New Investments";
-        m_desc = "Gain an extra 40 gold at the end of each wave.";
-        m_rarity = GameRarity.Event;
+        m_desc = "Gain an extra 15 gold at the end of each wave.";
+        m_rarity = GameRarity.Common;
 
         LateInit();
 

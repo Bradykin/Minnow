@@ -13,7 +13,7 @@ public class ContentLivingBombCard : GameCardSpellBase
         m_name = "Living Bomb";
         m_targetType = Target.Unit;
         m_cost = 2;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Rare;
 
         SetupBasicData();
 

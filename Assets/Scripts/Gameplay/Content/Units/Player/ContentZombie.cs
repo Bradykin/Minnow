@@ -15,7 +15,7 @@ public class ContentZombie : GameUnit
         m_power = 4;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Special;
 
         m_name = "Zombie";
         m_desc = "On hit, turn them into a zombie.\nZombies can't attack zombies.";

@@ -122,8 +122,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentWeakeningBoltCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
-
-        //Event Cards
         m_cards.Add(new ContentLivingBombCard());
 
         //Enemy Cards

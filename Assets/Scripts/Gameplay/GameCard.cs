@@ -25,6 +25,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
     protected int m_playerUnlockLevel;
 
+    public virtual string GetTypeline()
+    {
+        return m_typeline;
+    }
+
     public int GetCost()
     {
         int toReturn = m_cost + m_costTempModifier;

@@ -23,7 +23,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_maxDamageReduction = 3 + GetDamageReductionModByWave();
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Event;
+        m_rarity = GameRarity.Special;
         m_isElite = true;
 
         m_minWave = 1;

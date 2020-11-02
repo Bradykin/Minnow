@@ -121,7 +121,7 @@ public class UICard : MonoBehaviour
         m_image.sprite = m_card.m_icon;
         m_nameText.text = m_card.GetName();
         m_costText.text = m_card.GetCost() + "";
-        m_typelineText.text = m_card.m_typeline;
+        m_typelineText.text = m_card.GetTypeline();
         m_descText.text = m_card.GetDesc();
 
         m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
