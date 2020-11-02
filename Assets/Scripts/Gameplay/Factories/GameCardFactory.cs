@@ -131,6 +131,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
         m_enemyCards.Add(new ContentBurningMonstrosityEnemyCard());
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
+        m_enemyCards.Add(new ContentFlameImpEnemyCard());
         m_enemyCards.Add(new ContentFlamesoulElementalEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
         m_enemyCards.Add(new ContentLavaHellionCard());
