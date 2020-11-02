@@ -18,7 +18,7 @@ public class GameSubtractKeywordAction : GameAction
 
     public override string GetDesc()
     {
-        return $"Remove {m_keyword.GetDesc()} from {m_unit.GetName()}";
+        return $"Remove {m_keyword.GetDesc()} {m_keyword.GetName()} from {m_unit.GetName()}";
     }
 
     public override void DoAction()

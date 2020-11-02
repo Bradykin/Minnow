@@ -182,12 +182,12 @@ public class WorldUnit : MonoBehaviour
         return GetUnit().CanMoveTo(toMoveTo);
     }
 
-    public void MoveTo(GameTile targetTile)
+    public void MoveTo(GameTile targetTile, bool spendStamina = true)
     {
         GetUnit().OnMoveBegin();
         GetUnit().GetWorldTile().ClearUnit();
         targetTile.GetWorldTile().PlaceUnit(this);
-        GetUnit().MoveTo(targetTile);
+        GetUnit().MoveTo(targetTile, spendStamina);
         GetUnit().OnMoveEnd();
 
         m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit(this);

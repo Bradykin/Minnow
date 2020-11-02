@@ -1315,7 +1315,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
-    public void MoveTo(GameTile tile)
+    public void MoveTo(GameTile tile, bool spendStamina = true)
     {
         if (tile == m_gameTile)
         {
@@ -1335,7 +1335,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_gameTile.ClearUnit();
         tile.PlaceUnit(this);
 
-        SpendStamina(pathCost);
+        if (spendStamina)
+        {
+            SpendStamina(pathCost);
+        }
     }
 
     public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
