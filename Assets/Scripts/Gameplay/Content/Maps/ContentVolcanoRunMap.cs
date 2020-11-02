@@ -69,7 +69,8 @@ public class ContentVolcanoRunMap : GameMap
 
         //Supporting Desert Enemies
         List<GameEnemyUnit> desertTerrainSpawnPool = new List<GameEnemyUnit>();
-        desertTerrainSpawnPool.Add(new ContentCrumblingAncientEnemy(null));
+        desertTerrainSpawnPool.Add(new ContentJackalEnemy(null)); //Waves 4-5?
+        desertTerrainSpawnPool.Add(new ContentCrumblingAncientEnemy(null)); //Waves 3-4
         m_specificSpawnPools.Add(desertTerrainSpawnPool);
 
         //Idea use desert spawns for waves 3-4 from the desert area, use basic spawns for waves 3-4 from the bottom right Re-examine creature pool with that idea
