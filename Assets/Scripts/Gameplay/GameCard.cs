@@ -179,6 +179,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
             return false;
         }
 
+        if (targetUnit is ContentDemonMagicianEnemy)
+        {
+            return false;
+        }
+
         if (m_targetType == Target.Ally && targetUnit.GetTeam() == Team.Player)
         {
             return true;
