@@ -10,12 +10,12 @@ public class AITestSpawnClass : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentEvolvedMembraneRelic());
+                GameHelper.GetPlayer().AddRelic(new ContentDominerickRefrainRelic());
             }
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameHelper.GetPlayer().AddRelic(new ContentBeadofJoyRelic());
+                Globals.m_testSpawnEnemyUnit = new ContentBasiliskEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))

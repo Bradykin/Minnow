@@ -7,8 +7,8 @@ public class ContentRoyalCaravan : GameUnit
     public ContentRoyalCaravan()
     {
         m_maxHealth = 50;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
+        m_maxStamina = 5;
+        m_staminaRegen = 3;
         m_power = 5;
 
         m_team = Team.Player;

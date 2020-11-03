@@ -22,7 +22,6 @@ public class ContentSabobot : GameUnit
         m_rarity = GameRarity.Uncommon;
         AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), false);
         AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
-        AddKeyword(new GameFlyingKeyword(), false);
 
         m_name = "Sabobot";
         m_desc = "Starts at full Stamina.";

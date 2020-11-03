@@ -47,6 +47,7 @@ public class ContentVolcanoRunMap : GameMap
 
     protected override void FillSpawnPool()
     {
+        //All enemies on map
         m_spawnPool.Add(new ContentBlindBeastEnemy(null)); //Waves 1-2
         m_spawnPool.Add(new ContentScorchingSerpentEnemy(null)); //Waves 2-3
         m_spawnPool.Add(new ContentHellhoundEnemy(null)); //Waves 3-5
@@ -57,6 +58,30 @@ public class ContentVolcanoRunMap : GameMap
         m_spawnPool.Add(new ContentDemonMagicianEnemy(null)); //Waves 4-4
         m_spawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
         m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
+        m_spawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
+        m_spawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
+        m_spawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
+        m_spawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
+        m_spawnPool.Add(new ContentJackalEnemy(null)); //Waves 4-5?
+        m_spawnPool.Add(new ContentCrumblingAncientEnemy(null)); //Waves 3-5
+        m_spawnPool.Add(new ContentBasiliskEnemy(null)); //Waves 3-4
+        m_spawnPool.Add(new ContentSnakeEnemy(null)); //Waves 4
+        m_spawnPool.Add(new ContentFlameImpEnemy(null)); //Waves 2-6
+
+        //Main spawn pool
+        List<GameEnemyUnit> mainSpawnPool = new List<GameEnemyUnit>();
+        mainSpawnPool.Add(new ContentBlindBeastEnemy(null)); //Waves 1-2
+        mainSpawnPool.Add(new ContentScorchingSerpentEnemy(null)); //Waves 2-3
+        mainSpawnPool.Add(new ContentHellhoundEnemy(null)); //Waves 3-5
+        mainSpawnPool.Add(new ContentBurningMonstrosityEnemy(null)); //Waves 3-4
+        mainSpawnPool.Add(new ContentVolcanoGolemEnemy(null)); //Waves 4-6
+        mainSpawnPool.Add(new ContentPhoenixEnemy(null)); //Waves 4-6
+        mainSpawnPool.Add(new ContentLavaHellionEnemy(null)); //Waves 5-6
+        mainSpawnPool.Add(new ContentDemonMagicianEnemy(null)); //Waves 4-4
+        mainSpawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
+        mainSpawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
+        m_specificSpawnPools.Add(mainSpawnPool);
 
         //Supporting normal enemies
         List<GameEnemyUnit> baseTerrainSpawnPool = new List<GameEnemyUnit>();
@@ -69,10 +94,11 @@ public class ContentVolcanoRunMap : GameMap
 
         //Supporting Desert Enemies
         List<GameEnemyUnit> desertTerrainSpawnPool = new List<GameEnemyUnit>();
-        desertTerrainSpawnPool.Add(new ContentCrumblingAncientEnemy(null));
+        desertTerrainSpawnPool.Add(new ContentJackalEnemy(null)); //Waves 4-5?
+        desertTerrainSpawnPool.Add(new ContentCrumblingAncientEnemy(null)); //Waves 3-5
+        desertTerrainSpawnPool.Add(new ContentBasiliskEnemy(null)); //Waves 3-4
+        desertTerrainSpawnPool.Add(new ContentSnakeEnemy(null)); //Waves 4
         m_specificSpawnPools.Add(desertTerrainSpawnPool);
-
-        //Idea use desert spawns for waves 3-4 from the desert area, use basic spawns for waves 3-4 from the bottom right Re-examine creature pool with that idea
 
         //Old wave enemy distribution:
         //Wave 1 - 1

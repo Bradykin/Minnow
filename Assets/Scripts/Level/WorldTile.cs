@@ -506,7 +506,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void HandleFogUpdate()
     {
-        if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder())
+        if (GetGameTile().m_isFog && !GameHelper.IsInLevelBuilder() && !Constants.DebugSeeAllThroughFog)
         {
             if (m_occupyingUnitObj != null)
             {

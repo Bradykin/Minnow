@@ -15,12 +15,13 @@ public class ContentGladiator : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
-        AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), false);
-        AddKeyword(new GameTauntKeyword(), false);
 
         m_name = "Gladiator";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+
+        AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), false);
+        AddKeyword(new GameTauntKeyword(), false);
 
         LateInit();
     }

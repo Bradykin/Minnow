@@ -217,7 +217,7 @@ public class WorldController : Singleton<WorldController>
     {
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
-            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit.GetType() != typeof(ContentRoyalCaravan))
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && !(WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit is ContentRoyalCaravan))
             {
                 WorldGridManager.Instance.m_gridArray[i].RecycleUnit();
             }

@@ -11,7 +11,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_maxHealth = 8;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 4;
+        m_power = 6;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

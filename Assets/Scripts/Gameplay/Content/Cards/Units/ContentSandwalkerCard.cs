@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWingedSerpentCard : GameUnitCard
+public class ContentSandwalkerCard : GameUnitCard
 {
-    public ContentWingedSerpentCard()
+    public ContentSandwalkerCard()
     {
-        m_unit = new ContentWingedSerpent();
+        m_unit = new ContentSandwalker();
 
         m_cost = 1;
 
