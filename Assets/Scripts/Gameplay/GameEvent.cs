@@ -16,9 +16,6 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
     public GameEventOption m_optionTwo;
     public GameEventOption m_optionThree;
 
-    protected int m_minWaveToSpawn;
-    protected int m_maxWaveToSpawn;
-
     public void Init()
     {
         if (m_optionOne != null)
@@ -40,18 +37,6 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
     protected virtual void LateInit()
     {
         m_staminaCost = 2;
-    }
-
-    public virtual bool IsValidToSpawn(GameTile tile)
-    {
-        int currentTurn = GameHelper.GetGameController().m_currentWaveNumber;
-
-        if (currentTurn >= m_minWaveToSpawn && currentTurn <= m_maxWaveToSpawn)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     //============================================================================================================//

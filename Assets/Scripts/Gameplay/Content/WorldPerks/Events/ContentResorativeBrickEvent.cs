@@ -9,13 +9,9 @@ public class ContentRestorationBrickEvent : GameEvent
         m_name = "Restoration Brick";
         m_eventDesc = "You find a bizzare brick on the side of the road.  It seems to be magical!  You can use it to restore your castle, or take it with you to improve building capabilities!";
         m_tile = tile;
-        m_rarity = GameRarity.Rare;
 
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentRestorationBrickRelic());
         m_optionTwo = new GameEventHealCastle(35);
-
-        m_minWaveToSpawn = 3;
-        m_maxWaveToSpawn = 5;
 
         LateInit();
     }

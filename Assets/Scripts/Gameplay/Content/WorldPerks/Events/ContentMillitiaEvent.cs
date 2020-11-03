@@ -9,13 +9,9 @@ public class ContentMillitiaEvent : GameEvent
         m_name = "Millitia";
         m_eventDesc = "A band of millitia is fighting off some enemies here.  Looks like you could help!";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
 
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
-
-        m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 4;
 
         LateInit();
     }

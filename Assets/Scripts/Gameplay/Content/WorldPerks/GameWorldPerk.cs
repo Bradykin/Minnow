@@ -63,6 +63,16 @@ public class GameWorldPerk
         return m_perkType == WorldPerkType.Chest;
     }
 
+    public bool IsEvent()
+    {
+        return m_perkType == WorldPerkType.Event;
+    }
+
+    public bool IsAltar()
+    {
+        return m_perkType == WorldPerkType.Altar;
+    }
+
     public Sprite GetChestIcon()
     {
         return UIHelper.GetIconChest(m_chestRarity);

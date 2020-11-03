@@ -9,26 +9,12 @@ public class ContentAngelicGiftEvent : GameEvent
         m_name = "Angelic Gift";
         m_eventDesc = "An angel comes down from the sky and offers you an angelic choice:";
         m_tile = tile;
-        m_rarity = GameRarity.Rare;
 
         m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Uncommon);
         m_optionTwo = new GameEventAngelicWings(tile);
         m_optionThree = new GameEventLeaveOption();
 
-        m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 6;
-
         LateInit();
-    }
-
-    public override bool IsValidToSpawn(GameTile tile)
-    {
-        if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && tile.m_occupyingUnit.GetFlyingKeyword() != null)
-        {
-            return false;
-        }
-
-        return base.IsValidToSpawn(tile);
     }
 }
 

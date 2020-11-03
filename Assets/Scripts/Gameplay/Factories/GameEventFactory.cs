@@ -17,31 +17,6 @@ public static class GameEventFactory
 
     public static GameEvent GetRandomEvent(GameTile tile)
     {
-        GameElementBase.GameRarity rarity = GetRandomRarity();
-
-        return GetRandomEventAtRarity(tile, rarity);
-    }
-
-    public static GameElementBase.GameRarity GetRandomRarity()
-    {
-        float random = UnityEngine.Random.Range(0.0f, 100.0f);
-
-        if (random <= Constants.PercentChanceForRareEvent)
-        {
-            return GameElementBase.GameRarity.Rare;
-        }
-        else if (random <= Constants.PercentChanceForRareEvent + Constants.PercentChanceForUncommonEvent)
-        {
-            return GameElementBase.GameRarity.Uncommon;
-        }
-        else
-        {
-            return GameElementBase.GameRarity.Common;
-        }
-    }
-
-    public static GameEvent GetRandomEventAtRarity(GameTile tile, GameElementBase.GameRarity rarity)
-    {
         List<GameEvent> availableEvents = new List<GameEvent>();
 
         for (int i = 0; i < m_events.Count; i++)
@@ -51,15 +26,7 @@ public static class GameEventFactory
                 continue;
             }
 
-            if (m_events[i].m_rarity != rarity)
-            {
-                continue;
-            }
-
-            if (m_events[i].IsValidToSpawn(tile))
-            {
-                availableEvents.Add(m_events[i]);
-            }
+            availableEvents.Add(m_events[i]);
         }
 
         //TEMP CODE
@@ -72,10 +39,7 @@ public static class GameEventFactory
                     continue;
                 }
 
-                if (m_events[i].IsValidToSpawn(tile))
-                {
-                    availableEvents.Add(m_events[i]);
-                }
+                availableEvents.Add(m_events[i]);
             }
         }
 

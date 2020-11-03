@@ -9,7 +9,6 @@ public class ContentGoldenFruitEvent : GameEvent
         m_name = "Golden Fruit";
         m_eventDesc = "A golden fruit falls on the head of one of your troops.  It looks delicious, but just carrying it seems to have magical properties.";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
 
         if (m_tile == null)
         {
@@ -21,9 +20,6 @@ public class ContentGoldenFruitEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
-
-        m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = 6;
     }
 }
 
@@ -43,7 +39,7 @@ public class GameEventGiveKeywordOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingUnit.GetName() + " gains " + m_keyword.GetDesc() + ".";
+        m_message = m_tile.m_occupyingUnit.GetName() + " gains " + m_keyword.GetDisplayString() + ".";
 
         return base.GetMessage();
     }

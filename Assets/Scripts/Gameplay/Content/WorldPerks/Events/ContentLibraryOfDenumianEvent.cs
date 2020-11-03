@@ -16,18 +16,5 @@ public class ContentLibraryOfDenumianEvent : GameEvent
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
-
-        m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = 2;
-    }
-
-    public override bool IsValidToSpawn(GameTile tile)
-    {
-        if (GameHelper.HasRelic<ContentDominerickRefrainRelic>() || GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
-        {
-            return false;
-        }
-
-        return base.IsValidToSpawn(tile);
     }
 }
