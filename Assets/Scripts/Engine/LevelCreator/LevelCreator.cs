@@ -70,7 +70,7 @@ public class LevelCreator : MonoBehaviour
             else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
             {
                 Globals.m_currentlyPaintingNumberIndex++;
-                if (Globals.m_currentlyPaintingNumberIndex > 5)
+                if (Globals.m_currentlyPaintingNumberIndex > 10)
                 {
                     Globals.m_currentlyPaintingNumberIndex = 0;
                 }

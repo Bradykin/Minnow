@@ -19,7 +19,7 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_rarity = GameRarity.Uncommon;
 
         m_minWave = 3;
-        m_maxWave = 4;
+        m_maxWave = 5;
 
         m_name = "Crumbling Ancient";
         m_desc = "";

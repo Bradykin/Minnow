@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGameTileData>, ICustomRecycle
 {
@@ -215,11 +216,14 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         m_terrain = newTerrain;
 
-        if (m_terrain.IsEventTerrain())
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("LevelCreatorScene"))
         {
-            m_isChest = true;
-            m_chestRarity = GameRelicFactory.GetRandomRarity();
-            SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
+            if (m_terrain.IsEventTerrain())
+            {
+                m_isChest = true;
+                m_chestRarity = GameRelicFactory.GetRandomRarity();
+                SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
+            }
         }
     }
 

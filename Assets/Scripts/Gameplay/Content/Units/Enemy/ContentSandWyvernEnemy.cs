@@ -8,23 +8,25 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 2;
+        m_maxHealth = 80;
+        m_maxStamina = 7;
+        m_staminaRegen = 4;
+        m_power = 25;
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
-        m_minWave = 1;
-        m_maxWave = 2;
+        m_minWave = 5;
+        m_maxWave = 6;
 
         m_name = "Sand Wyvern";
         m_desc = "";
 
+        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
+            AddKeyword(new GameDamageShieldKeyword(4), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
