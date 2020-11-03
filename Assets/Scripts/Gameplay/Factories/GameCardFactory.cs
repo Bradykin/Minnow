@@ -143,6 +143,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
         m_enemyCards.Add(new ContentPhoenixEnemyCard());
+        m_enemyCards.Add(new ContentPolarWarriorEnemyCard());
         m_enemyCards.Add(new ContentSandWyvernEnemyCard());
         m_enemyCards.Add(new ContentSandVortexEnemyCard());
         m_enemyCards.Add(new ContentScorchingSerpentEnemyCard());
