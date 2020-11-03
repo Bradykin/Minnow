@@ -77,4 +77,19 @@ public class GameWorldPerk
     {
         return UIHelper.GetIconChest(m_chestRarity);
     }
+
+    public GameElementBase.GameRarity GetChestRarity()
+    {
+        return m_chestRarity;
+    }
+
+    public GameEvent GetEvent()
+    {
+        return m_event;
+    }
+
+    public GameEvent GetAltar()
+    {
+        return m_altar;
+    }
 }

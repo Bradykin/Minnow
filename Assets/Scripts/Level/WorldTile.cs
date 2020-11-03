@@ -32,6 +32,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private int m_inSpellcraftRange;
     private int m_inDefensiveBuildingRange;
 
+    private bool m_isShowingTooltip;
+
     private GameTile m_gameTile;
 
     void Start()
@@ -424,6 +426,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
+        if (!m_isShowingTooltip)
+        {
+            HandleTooltip();
+        }
+
         if (m_gameTile.GetTerrain() != null && m_gameTile.GetTerrain().IsEventTerrain())
         {
             Globals.m_hoveredTile = this;
@@ -439,6 +446,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     void OnMouseExit()
     {
         m_isHovered = false;
+
+        UITooltipController.Instance.ClearTooltipStack();
+
+        m_isShowingTooltip = false;
 
         Globals.m_hoveredTile = null;
     }
@@ -517,6 +528,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             if (GetGameTile().m_isSoftFog || GetGameTile().IsSpecialSoftFogTile())
             {
                 m_fogRenderer.color = new Color(m_fogRenderer.color.r, m_fogRenderer.color.g, m_fogRenderer.color.b, 0.35f);
+                m_fogRenderer.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             }
             else
             {
@@ -591,6 +603,19 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public void ClearInDefensiveBuildingRangeCount()
     {
         m_inDefensiveBuildingRange = 0;
+    }
+
+    public void HandleTooltip()
+    {
+        if (Globals.m_canSelect)
+        {
+            if (GetGameTile().m_gameWorldPerk != null)
+            {
+                UIHelper.CreateWorldPerkTooltip(GetGameTile().m_gameWorldPerk);
+
+                m_isShowingTooltip = true;
+            }
+        }
     }
 
     public void CustomRecycle(params object[] args)
