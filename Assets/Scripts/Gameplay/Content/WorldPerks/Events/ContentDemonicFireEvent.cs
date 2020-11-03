@@ -9,16 +9,12 @@ public class ContentDemonicFireEvent : GameEvent
         m_name = "Demonic Fire";
         m_eventDesc = "A ghostly fire flies before you. Will you consume it, or let it fly?";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
 
         m_optionOne = new GameEventConsumeFireOption(m_tile, 3);
         m_optionTwo = new GameEventFirestormOption(2, 4);
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
-
-        m_minWaveToSpawn = 2;
-        m_maxWaveToSpawn = 6;
     }
 }
 

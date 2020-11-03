@@ -589,6 +589,22 @@ public static class UIHelper
         UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
     }
 
+    public static void CreateWorldPerkTooltip(GameWorldPerk perk)
+    {
+        if (perk.IsChest())
+        {
+            UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetChestRarity() + " Chest", "Send troops here to collect a " + perk.GetChestRarity() + " relic!"));
+        }
+        else if (perk.IsEvent())
+        {
+            UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetEvent().GetName(), perk.GetEvent().m_eventDesc));
+        }
+        else if (perk.IsAltar())
+        {
+            UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetAltar().GetName(), perk.GetAltar().m_eventDesc));
+        }
+    }
+
     public static void CreateChaosTooltipStack()
     {
         for (int i = 1; i < Globals.m_curChaos; i++)

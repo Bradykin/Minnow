@@ -9,13 +9,9 @@ public class ContentGoblinBarricadeEvent : GameEvent
         m_name = "Goblin Barricade";
         m_eventDesc = "A goblin barricade stands before you!  Breaking it may cost some troops, but it'd help the trade in the region.";
         m_tile = tile;
-        m_rarity = GameRarity.Common;
 
         m_optionOne = new GameEventBreakBarricadeOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
-
-        m_minWaveToSpawn = 3;
-        m_maxWaveToSpawn = 5;
 
         LateInit();
     }

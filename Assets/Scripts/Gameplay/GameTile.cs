@@ -22,9 +22,8 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool m_isFogBorder;
     public bool m_canPlace;
 
-    public bool m_isChest;
-    public GameRarity m_chestRarity = GameRarity.Common;
-
+    public GameWorldPerk m_gameWorldPerk;
+    
     public GameTile(WorldTile worldTile)
     {
         m_worldTile = worldTile;
@@ -64,10 +63,15 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 }
             }
 
-            if (m_isChest)
+            if (m_gameWorldPerk != null)
             {
-                UIHelper.TriggerRelicSelect(m_chestRarity);
-                m_isChest = false;
+                m_gameWorldPerk.Trigger();
+
+                if (m_gameWorldPerk.IsEvent())
+                {
+                    SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
+                }
+                m_gameWorldPerk = null;
             }
         }
     }
@@ -204,7 +208,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
     public bool IsSpecialSoftFogTile()
     {
-        return m_isChest || (HasBuilding() && GetBuilding().GetName() == new ContentPowerCrystalBuilding().GetName());
+        return m_gameWorldPerk != null || (HasBuilding() && GetBuilding().GetName() == new ContentPowerCrystalBuilding().GetName());
     }
 
     public void SetTerrain(GameTerrainBase newTerrain, bool clearBuilding = false)
@@ -216,13 +220,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         m_terrain = newTerrain;
 
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("LevelCreatorScene"))
+        if (!GameHelper.IsInLevelBuilder())
         {
-            if (m_terrain.IsEventTerrain())
+            if (newTerrain.IsEventTerrain())
             {
-                m_isChest = true;
-                m_chestRarity = GameRelicFactory.GetRandomRarity();
-                SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
+                m_gameWorldPerk = new GameWorldPerk(GameEventFactory.GetRandomEvent(this), false);
             }
         }
     }

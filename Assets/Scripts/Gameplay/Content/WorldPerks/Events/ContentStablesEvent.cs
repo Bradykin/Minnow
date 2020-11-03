@@ -9,16 +9,12 @@ public class ContentStablesEvent : GameEvent
         m_name = "Stables";
         m_eventDesc = "You come across some abandoned stables in this wartorn land.  The troops could take the horses left behind, or you could sell them.";
         m_tile = tile;
-        m_rarity = GameRarity.Uncommon;
 
         m_optionOne = new GameEventTakeHorsesOption(m_tile);
         m_optionTwo = new GameEventTakeGoldOption(75);
         m_optionThree = new GameEventLeaveOption();
 
         LateInit();
-
-        m_minWaveToSpawn = 1;
-        m_maxWaveToSpawn = 6;
     }
 }
 
