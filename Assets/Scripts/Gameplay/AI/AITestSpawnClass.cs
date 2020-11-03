@@ -15,7 +15,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                Globals.m_testSpawnEnemyUnit = new ContentBurningMonstrosityEnemy(null);
+                Globals.m_testSpawnEnemyUnit = new ContentArcticSkyfoxEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))
