@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWingedSerpent : GameUnit
+public class ContentSandwalker : GameUnit
 {
-    public ContentWingedSerpent()
+    public ContentSandwalker()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        m_name = "Winged Serpent";
+        m_name = "Sandwalker";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 0)), false);
 
         InitializeWithLevel(GetUnitLevel());
 
@@ -24,10 +24,10 @@ public class ContentWingedSerpent : GameUnit
 
     public override void InitializeWithLevel(int level)
     {
-        m_maxHealth = 3;
+        m_maxHealth = 5;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 1;
+        m_staminaRegen = 3;
+        m_power = 3;
 
         if (level >= 1)
         {
@@ -36,7 +36,7 @@ public class ContentWingedSerpent : GameUnit
 
         if (level >= 2)
         {
-            m_staminaRegen = 3;
+            AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 2)));
         }
     }
 }

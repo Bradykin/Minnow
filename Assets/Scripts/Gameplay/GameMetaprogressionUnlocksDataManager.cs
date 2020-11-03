@@ -24,7 +24,7 @@ public static class GameMetaprogressionUnlocksDataManager
         GameCard lizardSoldierCard = new ContentLizardSoldierCard();
         GameCard undeadMammothCard = new ContentUndeadMammothCard();
 
-        GameCard wingedSerpentCard = new ContentWingedSerpentCard();
+        GameCard wingedSerpentCard = new ContentSandwalkerCard();
         GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
 
         GameCard cureWoundsCard = new ContentCureWoundsCard();

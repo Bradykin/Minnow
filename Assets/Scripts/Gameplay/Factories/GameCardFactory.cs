@@ -66,7 +66,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentZombieCard());
         m_cards.Add(new ContentLizardSoldierCard());
         m_cards.Add(new ContentUndeadMammothCard());
-        m_cards.Add(new ContentWingedSerpentCard());
+        m_cards.Add(new ContentSandwalkerCard());
         m_cards.Add(new ContentMechanizedBeastCard());
         m_cards.Add(new ContentAlphaBoarCard());
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ContentWeakeningBoltCard : GameCardSpellBase
 {
-    private int m_drainPower = 1;
-
     public ContentWeakeningBoltCard()
     {
         m_name = "Weakening Bolt";
@@ -21,7 +19,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string description = GetDamageDescString() + "Drain " + m_drainPower + " Power, adding it to the damage of this card.\n";
+        string description = GetDamageDescString() + "Drain " + m_spellEffect + " Power from the target.\n";
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
@@ -40,22 +38,19 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHit(GetSpellValue());
+        targetUnit.GetHit(m_spellEffect);
+        targetUnit.RemoveStats(m_spellEffect, 0);
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
         }
-
-        targetUnit.RemoveStats(m_drainPower, 0);
-
-        m_spellEffect += m_drainPower;
     }
 
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 2;
+        m_spellEffect = 3;
 
         if (level >= 1)
         {
@@ -64,7 +59,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
         if (level >= 2)
         {
-            m_drainPower = 2;
+            m_spellEffect = 5;
         }
     }
 }
