@@ -7,7 +7,7 @@ public class ContentBullheadedCard : GameCardSpellBase
     public ContentBullheadedCard()
     {
         m_name = "Bullheaded";
-        m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: +1/+0.'";
+        m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: +1/+0 until end of wave.'";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Uncommon;
@@ -42,5 +42,6 @@ public class ContentBullheadedCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0))));
     }
 }

@@ -33,7 +33,7 @@ public static class GameCardFactory
         //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
-        m_cards.Add(new ContentDemonSoldierCard());
+        //m_cards.Add(new ContentDemonSoldierCard());
         m_cards.Add(new ContentDevourerCard());
         m_cards.Add(new ContentDwarfArchitectCard());
         m_cards.Add(new ContentDwarfShivcasterCard());
