@@ -46,11 +46,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     {
         HandleFogUpdate();
 
-        if (GetGameTile().m_isChest)
+        if (GetGameTile().m_gameWorldPerk != null && GetGameTile().m_gameWorldPerk.IsChest())
         {
             if (m_chestIndicator.activeSelf == false)
             {
-                m_chestIndicator.GetComponent<SpriteRenderer>().sprite = UIHelper.GetIconChest(GetGameTile().m_chestRarity);
+                m_chestIndicator.GetComponent<SpriteRenderer>().sprite = GetGameTile().m_gameWorldPerk.GetChestIcon();
             }
             m_chestIndicator.SetActive(true);
         }

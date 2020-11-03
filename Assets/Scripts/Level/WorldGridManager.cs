@@ -72,6 +72,102 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
+    private void PlaceChests()
+    {
+        //Place common chests
+        List<WorldTile> validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRangeForCommon = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), 9, 4);
+
+        for (int i = 0; i < tilesInRangeForCommon.Count; i++)
+        {
+            if (TileValidForChest(tilesInRangeForCommon[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRangeForCommon[i]);
+            }
+        }
+
+        for (int i = 0; i < Constants.NumCommonChests; i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Common);
+
+            validTiles.RemoveAt(r);
+        }
+
+        //Place uncommon chests
+        validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRangeForUncommon = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), 15, 8);
+
+        for (int i = 0; i < tilesInRangeForUncommon.Count; i++)
+        {
+            if (TileValidForChest(tilesInRangeForUncommon[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRangeForUncommon[i]);
+            }
+        }
+
+        for (int i = 0; i < Constants.NumUncommonChests; i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Uncommon);
+
+            validTiles.RemoveAt(r);
+        }
+
+        //Place rare chests
+        validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRangeForRare = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 15);
+
+        for (int i = 0; i < tilesInRangeForRare.Count; i++)
+        {
+            if (TileValidForChest(tilesInRangeForRare[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRangeForRare[i]);
+            }
+        }
+
+        for (int i = 0; i < Constants.NumRareChests; i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Rare);
+
+            validTiles.RemoveAt(r);
+        }
+    }
+
+    private bool TileValidForChest(GameTile toCheck)
+    {
+        if (!toCheck.IsPassable(null, false))
+        {
+            return false;
+        }
+
+        if (toCheck.m_gameWorldPerk != null)
+        {
+            return false;
+        }
+
+        if (toCheck.HasBuilding())
+        {
+            return false;
+        }
+
+        if (toCheck.m_gameEventMarkers.Count != 0)
+        {
+            return false;
+        }
+
+        if (toCheck.m_spawnPoint != null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public void SetupEmptyGrid(Transform parent, int gridSizeX, int gridSizeY)
     {
         if (m_setup)
@@ -322,6 +418,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         PlaceCrystals();
+        PlaceChests();
 
         /*int eventCount = 0;
         for (int i = 0; i < m_gridArray.Length; i++)
