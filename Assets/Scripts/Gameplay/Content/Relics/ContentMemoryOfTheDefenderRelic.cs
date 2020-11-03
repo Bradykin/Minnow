@@ -7,7 +7,7 @@ public class ContentMemoryOfTheDefenderRelic : GameRelic
     public ContentMemoryOfTheDefenderRelic()
     {
         m_name = "Memory of the Defender";
-        m_desc = "When an allied <b>Creation</b> unit is summoned, gain 1 <b>Spell Power</b>.";
+        m_desc = "When an allied <b>Creation</b> unit is summoned, lose 10 gold, if you do gain 1 <b>Spell Power</b>.";
         m_rarity = GameRarity.Rare;
 
         LateInit();

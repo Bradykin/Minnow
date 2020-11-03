@@ -1832,7 +1832,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentMemoryOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                GameHelper.GetPlayer().AddSpellPower(1);
+                if (GameHelper.GetPlayer().m_wallet.m_gold >= 10)
+                {
+                    GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(10));
+                    GameHelper.GetPlayer().AddSpellPower(1);
+                }
             }
 
             if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)

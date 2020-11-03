@@ -8,7 +8,7 @@ public class ContentSecretTiesRelic : GameRelic
     {
         m_name = "Secret Ties";
         m_desc = "When an allied <b>Creation</b> unit gains max stamina, all allied <b>Monster</b> units within range 3 gain 'Victorious: Get +3/+3'";
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Rare;
 
         LateInit();
 
