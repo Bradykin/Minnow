@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentArcticSkyfoxEnemy : GameEnemyUnit
+public class ContentGreatFrostlizardEnemy : GameEnemyUnit
 {
-    public ContentArcticSkyfoxEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentGreatFrostlizardEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
@@ -19,7 +19,7 @@ public class ContentArcticSkyfoxEnemy : GameEnemyUnit
         m_minWave = 1;
         m_maxWave = 2;
 
-        m_name = "Arctic Skyfox";
+        m_name = "Great Frostlizard";
         m_desc = "";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

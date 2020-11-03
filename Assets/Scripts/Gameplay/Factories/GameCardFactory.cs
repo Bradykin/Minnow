@@ -126,7 +126,7 @@ public static class GameCardFactory
 
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());
-        m_enemyCards.Add(new ContentArcticSkyfoxEnemyCard());
+        m_enemyCards.Add(new ContentValgulaEnemyCard());
         m_enemyCards.Add(new ContentBasiliskEnemyCard());
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
         m_enemyCards.Add(new ContentBurningMonstrosityEnemyCard());
@@ -136,6 +136,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
         m_enemyCards.Add(new ContentFlamesoulElementalEnemyCard());
         m_enemyCards.Add(new ContentFrozenImpEnemyCard());
+        m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
         m_enemyCards.Add(new ContentJackalEnemyCard());
@@ -154,6 +155,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
+        m_enemyCards.Add(new ContentSnowWolfbeastEnemyCard());
         m_enemyCards.Add(new ContentSpinnerEnemyCard());
         m_enemyCards.Add(new ContentToadEnemyCard());
         m_enemyCards.Add(new ContentVolcanoCrabEnemyCard());
