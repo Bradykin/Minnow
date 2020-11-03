@@ -60,6 +60,7 @@ public static class Constants
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;
+    public static bool DebugSeeAllThroughFog = false;
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
 #else
