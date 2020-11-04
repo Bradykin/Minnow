@@ -22,7 +22,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_maxWave = 3;
 
         m_name = "Basilisk";
-        m_desc = "When this unit hits another, it gives them Brittle {m_brittleAmount}.";
+        m_desc = $"When this unit hits another, it gives them Brittle {m_brittleAmount}.";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
