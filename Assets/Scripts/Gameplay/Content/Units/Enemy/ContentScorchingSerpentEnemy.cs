@@ -8,10 +8,10 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
 {
     public ContentScorchingSerpentEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 8;
+        m_maxHealth = 7;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_power = 4;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
@@ -19,8 +19,8 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_name = "Scorching Serpent";
         m_desc = "";
 
-        m_minWave = 2;
-        m_maxWave = 3;
+        m_minWave = 1;
+        m_maxWave = 2;
 
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

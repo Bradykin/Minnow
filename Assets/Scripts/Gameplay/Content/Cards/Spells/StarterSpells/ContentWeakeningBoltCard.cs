@@ -19,7 +19,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string description = GetDamageDescString() + "Drain " + m_spellEffect + " Power from the target.\n";
+        string description = GetDamageDescString(false) + "Drain " + m_spellEffect + " Power from the target.\n";
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

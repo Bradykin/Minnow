@@ -60,10 +60,10 @@ public class GameCardSpellBase : GameCard
         return toReturn;
     }
 
-    protected string GetDamageDescString()
+    protected string GetDamageDescString(bool useSpellpower = true)
     {
         string spString = "";
-        if (HasSpellPower())
+        if (useSpellpower && HasSpellPower())
         {
             spString = GetSpellPowerString();
         }

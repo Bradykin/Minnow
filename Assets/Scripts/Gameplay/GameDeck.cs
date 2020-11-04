@@ -43,11 +43,11 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
         {
             for (int i = 0; i < 2; i++)
             {
-                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Common));
+                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Common, GameCardFactory.m_tribalCards));
             }
 
-            m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon));
-            m_cards.Add(GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon));
+            m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards));
+            m_cards.Add(GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards));
         }
     }
 

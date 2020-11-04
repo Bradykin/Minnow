@@ -18,6 +18,24 @@ public class ContentVolcanoRunMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        int wave = GameHelper.GetGameController().m_currentWaveNumber;
+        int baseAmount = base.GetNumEnemiesToSpawn();
+
+        if (wave == 2 || wave == 3)
+        {
+            baseAmount += 2;
+        }
+
+        if (wave == 4 || wave == 5 || wave == 6)
+        {
+            baseAmount += 4;
+        }
+
+        return baseAmount;
+    }
+
     protected override void FillMapEvents()
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
