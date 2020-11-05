@@ -10,11 +10,16 @@ public class ContentDemonicFireEvent : GameEvent
         m_eventDesc = "A ghostly fire flies before you. Will you consume it, or let it fly?";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventConsumeFireOption(m_tile, 3);
         m_optionTwo = new GameEventFirestormOption(2, 4);
         m_optionThree = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }
 

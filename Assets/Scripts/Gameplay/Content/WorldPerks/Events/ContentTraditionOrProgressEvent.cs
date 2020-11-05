@@ -10,10 +10,15 @@ public class ContentTraditionOrProgressEvent : GameEvent
         m_eventDesc = "Sometimes life gives you a choice: you can honour the traditions of the past or forge forward for new opportunities. What kind of person are you?";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentTraditionalMethodsRelic());
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentNewInvestmentsRelic());
         m_optionThree = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }

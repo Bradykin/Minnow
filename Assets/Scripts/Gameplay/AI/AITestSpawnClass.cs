@@ -25,7 +25,7 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentBloodSacrificeCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentDreamCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.P))

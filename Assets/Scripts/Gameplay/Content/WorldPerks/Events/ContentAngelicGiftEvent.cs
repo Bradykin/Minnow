@@ -10,11 +10,16 @@ public class ContentAngelicGiftEvent : GameEvent
         m_eventDesc = "An angel comes down from the sky and offers you an angelic choice:";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Uncommon);
-        m_optionTwo = new GameEventAngelicWings(tile);
+        m_optionTwo = new GameEventAngelicWings(m_tile);
         m_optionThree = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }
 

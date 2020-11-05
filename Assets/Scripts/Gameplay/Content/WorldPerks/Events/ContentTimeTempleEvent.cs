@@ -10,10 +10,15 @@ public class ContentTimeTempleEvent : GameEvent
         m_eventDesc = "A strange temple appears, allowing some control over the flow of time!";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventSpeedTimeOption();
         m_optionTwo = new GameEventSlowTimeOption();
 
-        Init();
+        base.LateInit();
     }
 }
 

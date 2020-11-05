@@ -11,10 +11,15 @@ public class ContentLibraryOfDenumianEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Rare;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentDominerickRefrainRelic());
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentTomeOfDuluhainRelic());
         m_optionThree = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }

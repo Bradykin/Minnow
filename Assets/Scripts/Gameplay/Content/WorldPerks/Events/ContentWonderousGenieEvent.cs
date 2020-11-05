@@ -10,10 +10,14 @@ public class ContentWonderousGenieEvent : GameEvent
         m_eventDesc = "A strange genie offers you a choice of two ancient relics.  Choose carefully; you may come to regret not picking the other...";
         m_tile = tile;
 
-        GameRarity rarity = GameRelicFactory.GetRandomRarity();
+        Init();
+    }
 
+    public override void LateInit()
+    {
+        GameRarity rarity = GameRelicFactory.GetRandomRarity();
         m_optionOne = new GameEventTakeRandomRelicChoiceOption(rarity);
 
-        Init();
+        base.LateInit();
     }
 }

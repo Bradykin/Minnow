@@ -10,10 +10,15 @@ public class ContentRestorationBrickEvent : GameEvent
         m_eventDesc = "You find a bizzare brick on the side of the road.  It seems to be magical!  You can use it to restore your castle, or take it with you to improve building capabilities!";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentRestorationBrickRelic());
         m_optionTwo = new GameEventHealCastle(35);
 
-        Init();
+        base.LateInit();
     }
 }
 

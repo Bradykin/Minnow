@@ -10,16 +10,16 @@ public class ContentGoldenFruitEvent : GameEvent
         m_eventDesc = "A golden fruit falls on the head of one of your troops.  It looks delicious, but just carrying it seems to have magical properties.";
         m_tile = tile;
 
-        if (m_tile == null)
-        {
-            return;
-        }
+        Init();
+    }
 
+    public override void LateInit()
+    {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameHealAction(m_tile.m_occupyingUnit, 3)));
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 20);
         m_optionThree = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }
 

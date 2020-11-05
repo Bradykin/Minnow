@@ -10,14 +10,14 @@ public class ContentBurrowOrSwimEvent : GameEvent
         m_eventDesc = "A water mole appears before you, and begins to chant.\n'Burrow or swim!  Swim or burrow!'\n'CHOOOOOOOOSE!'";
         m_tile = tile;
 
-        if (m_tile == null)
-        {
-            return;
-        }
+        Init();
+    }
 
+    public override void LateInit()
+    {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameWaterwalkKeyword());
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameMountainwalkKeyword());
 
-        Init();
+        base.LateInit();
     }
 }

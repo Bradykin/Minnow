@@ -10,11 +10,6 @@ public class ContentForestOrCityEvent : GameEvent
         m_eventDesc = "While sleeping at camp, your troops hear a whisper forcing them to choose between the wisdom of the forest and the knowledge of the city.";
         m_tile = tile;
 
-        if (m_tile == null)
-        {
-            return;
-        }
-
         Init();
     }
 

@@ -11,11 +11,16 @@ public class ContentGemsOfProphecyEvent : GameEvent
         m_eventDesc = "You find a set of prophetic gems. Which one shall tell your fate?";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventProphecyOfAdventureOption(m_tile);
         m_optionTwo = new GameEventDamageReductionOption(m_tile);
         m_optionThree = new GameEventProphecyTakeGoldOption(100);
 
-        Init();
+        base.LateInit();
     }
 }
 

@@ -10,10 +10,15 @@ public class ContentMillitiaEvent : GameEvent
         m_eventDesc = "A band of millitia is fighting off some enemies here.  Looks like you could help!";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
 
-        Init();
+        base.LateInit();
     }
 }
 
