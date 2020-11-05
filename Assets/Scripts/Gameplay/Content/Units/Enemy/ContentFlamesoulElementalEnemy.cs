@@ -29,9 +29,10 @@ public class ContentFlamesoulElementalEnemy : GameEnemyUnit
         m_maxWave = Constants.FinalWaveNum;
 
         m_name = "Flamesoul Elemental";
-        m_desc = "Moves by teleporting up to 4 tiles at a time. Teleports after being attacked by a unit.";
+        m_desc = "The final boss.  Kill it, and win.\n";
 
         AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameFlyingKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
