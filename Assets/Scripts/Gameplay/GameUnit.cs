@@ -953,7 +953,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
-        if (GameHelper.HasRelic<ContentHealthFlaskRelic>() && GetTeam() == Team.Player && m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth()/2.0f)))
+        if (GameHelper.HasRelic<ContentHealthFlaskRelic>() && 
+            GetTeam() == Team.Player && 
+            m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth()/2.0f)) &&
+            m_gameTile != null)
         {
             toReturn.AddKeyword(new GameRegenerateKeyword(5));
         }
