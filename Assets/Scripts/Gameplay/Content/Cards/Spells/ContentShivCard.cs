@@ -61,7 +61,7 @@ public class ContentShivCard : GameCardSpellBase
         }
     }
 
-    protected override bool CanTriggerSpellPower()
+    protected override bool CanTriggerSpellcraft()
     {
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < player.m_controlledUnits.Count; i++)

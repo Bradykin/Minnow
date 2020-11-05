@@ -94,7 +94,7 @@ public class GameCardSpellBase : GameCard
         }
     }
 
-    protected virtual bool CanTriggerSpellPower()
+    protected virtual bool CanTriggerSpellcraft()
     {
         return true;
     }
@@ -109,11 +109,33 @@ public class GameCardSpellBase : GameCard
         return GetSpellValue() != m_spellEffect;
     }
 
+    private void PlayCardImpl()
+    {
+        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
+
+        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
+        {
+            GameDeck curDeck = GameHelper.GetPlayer().m_curDeck;
+
+            if (curDeck.GetDeck().Count > 0)
+            {
+                GameCard topCard = curDeck.GetDeck()[0];
+
+                if (topCard == this)
+                {
+                    curDeck.GetDeck().RemoveAt(0);
+                    curDeck.GetDiscard().Add(this);
+                }
+            }
+        }
+    }
+
     public override void PlayCard()
     {
         base.PlayCard();
 
-        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
+        PlayCardImpl();
+
         TriggerSpellcraft(null);
 
         HandleAudio();
@@ -123,7 +145,8 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetBuilding);
 
-        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
+        PlayCardImpl();
+
         TriggerSpellcraft(targetBuilding.GetGameTile());
 
         HandleAudio();
@@ -133,8 +156,9 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetUnit);
 
-        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
-        if (CanTriggerSpellPower())
+        PlayCardImpl();
+
+        if (CanTriggerSpellcraft())
         {
             TriggerSpellcraft(targetUnit.GetGameTile());
         }
@@ -146,7 +170,8 @@ public class GameCardSpellBase : GameCard
     {
         base.PlayCard(targetTile);
 
-        GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
+        PlayCardImpl();
+
         TriggerSpellcraft(targetTile);
 
         HandleAudio();
