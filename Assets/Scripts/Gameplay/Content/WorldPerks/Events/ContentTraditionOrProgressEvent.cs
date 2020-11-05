@@ -14,6 +14,6 @@ public class ContentTraditionOrProgressEvent : GameEvent
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentNewInvestmentsRelic());
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }

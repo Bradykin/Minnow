@@ -15,9 +15,14 @@ public class ContentForestOrCityEvent : GameEvent
             return;
         }
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameForestwalkKeyword());
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameKnowledgeableKeyword(new GameGainStaminaAction(m_tile.m_occupyingUnit, 1)));
 
-        LateInit();
+        base.LateInit();
     }
 }

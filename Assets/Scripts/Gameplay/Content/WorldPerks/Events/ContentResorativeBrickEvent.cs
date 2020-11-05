@@ -13,7 +13,7 @@ public class ContentRestorationBrickEvent : GameEvent
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentRestorationBrickRelic());
         m_optionTwo = new GameEventHealCastle(35);
 
-        LateInit();
+        Init();
     }
 }
 

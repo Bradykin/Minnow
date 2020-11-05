@@ -13,7 +13,7 @@ public class ContentMillitiaEvent : GameEvent
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }
 

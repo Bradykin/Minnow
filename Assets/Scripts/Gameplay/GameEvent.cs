@@ -16,7 +16,12 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
     public GameEventOption m_optionTwo;
     public GameEventOption m_optionThree;
 
-    public void Init()
+    protected virtual void Init()
+    {
+        m_staminaCost = 2;
+    }
+
+    public virtual void LateInit()
     {
         if (m_optionOne != null)
         {
@@ -32,11 +37,6 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
         {
             m_optionThree.Init();
         }
-    }
-
-    protected virtual void LateInit()
-    {
-        m_staminaCost = 2;
     }
 
     //============================================================================================================//

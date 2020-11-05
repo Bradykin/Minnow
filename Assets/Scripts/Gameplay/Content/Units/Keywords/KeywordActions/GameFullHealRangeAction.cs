@@ -19,6 +19,16 @@ public class GameFullHealRangeAction : GameAction
         m_actionParamType = ActionParamType.UnitListIntParam;
     }
 
+    public GameFullHealRangeAction(GameUnit unit, List<int> ranges)
+    {
+        m_unit = unit;
+        m_ranges = new List<int>();
+        m_ranges.AddRange(ranges);
+
+        m_name = "Full Heal Range";
+        m_actionParamType = ActionParamType.UnitListIntParam;
+    }
+
     public override string GetDesc()
     {
         return $"Fully heal all allied units in range {m_ranges.Max()}";

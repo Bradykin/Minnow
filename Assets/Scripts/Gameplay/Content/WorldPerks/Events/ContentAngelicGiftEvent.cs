@@ -14,7 +14,7 @@ public class ContentAngelicGiftEvent : GameEvent
         m_optionTwo = new GameEventAngelicWings(tile);
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }
 

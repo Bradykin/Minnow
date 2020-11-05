@@ -10,9 +10,14 @@ public class ContentMagicianEvent : GameEvent
         m_eventDesc = "A wandering magician stops your troops on the side of the road, and offers an interesting service in the name of stability in the land.";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventStatsBuffOption(m_tile, 7, 15);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
-        LateInit();
+        base.LateInit();
     }
 }

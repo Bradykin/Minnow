@@ -147,7 +147,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         //handle spawning of bosses and elites
         if (fogSpawningActive)
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !m_hasSpawnedBoss)
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 SpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
@@ -171,7 +171,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                 m_spawnPoints[randomIndex] = temp;
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetGameController().m_currentWaveNumber == Constants.FinalWaveNum && !m_hasSpawnedBoss)
+            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
                 for (int i = 0; i < m_spawnPoints.Count; i++)
@@ -241,7 +241,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             for (int i = 0; i < numEnemiesToSpawn; i++)
             {
                 //Spawn enemy in edge of fog
-                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_currentWaveNumber);
+                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetCurrentWaveNum());
                 SpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
             }
         }
@@ -263,7 +263,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         for (int i = 0; i < tiles.Count; i++)
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetGameController().m_currentWaveNumber);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetCurrentWaveNum());
             if (!tiles[i].IsPassable(newEnemyUnit, false))
             {
                 continue;
@@ -296,7 +296,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetGameController().m_currentWaveNumber, spawnPoint);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetCurrentWaveNum(), spawnPoint);
 
             if (newEnemyUnit == null)
             {

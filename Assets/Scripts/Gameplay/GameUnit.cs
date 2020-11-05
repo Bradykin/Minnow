@@ -875,7 +875,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameThornsKeyword holderKeyword = m_keywordHolder.GetKeyword<GameThornsKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameThornsKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -943,7 +943,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameRegenerateKeyword holderKeyword = m_keywordHolder.GetKeyword<GameRegenerateKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameRegenerateKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -992,7 +992,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameMomentumKeyword holderKeyword = m_keywordHolder.GetKeyword<GameMomentumKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameMomentumKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -1020,7 +1020,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameVictoriousKeyword holderKeyword = m_keywordHolder.GetKeyword<GameVictoriousKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameVictoriousKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -1058,7 +1058,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameRangeKeyword holderKeyword = m_keywordHolder.GetKeyword<GameRangeKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameRangeKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword
@@ -1096,7 +1096,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameDamageReductionKeyword holderKeyword = m_keywordHolder.GetKeyword<GameDamageReductionKeyword>();
         if (holderKeyword != null)
         {
-            toReturn.AddKeyword(holderKeyword);
+            toReturn.AddKeyword((GameDamageReductionKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
         //Check relics and other effects to see if anything needs to be added to the return keyword

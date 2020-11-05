@@ -18,6 +18,6 @@ public class ContentCombatTrainingEvent : GameEvent
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, 0,3)));
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameVictoriousKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, 5,0)));
 
-        LateInit();
+        Init();
     }
 }

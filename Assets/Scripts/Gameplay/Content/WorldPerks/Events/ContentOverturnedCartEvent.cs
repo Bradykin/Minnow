@@ -11,10 +11,15 @@ public class ContentOverturnedCartEvent : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Common;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventTakeGoldOption(75);
         m_optionTwo = new GameEventLeaveOption();
 
-        LateInit();
+        base.LateInit();
     }
 }
 

@@ -15,6 +15,6 @@ public class ContentLibraryOfDenumianEvent : GameEvent
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentTomeOfDuluhainRelic());
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }

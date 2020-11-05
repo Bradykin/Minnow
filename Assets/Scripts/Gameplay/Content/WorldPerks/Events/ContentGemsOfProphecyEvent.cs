@@ -15,7 +15,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
         m_optionTwo = new GameEventDamageReductionOption(m_tile);
         m_optionThree = new GameEventProphecyTakeGoldOption(100);
 
-        LateInit();
+        Init();
     }
 }
 

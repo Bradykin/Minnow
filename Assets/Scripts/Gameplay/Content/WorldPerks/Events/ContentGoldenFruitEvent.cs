@@ -19,7 +19,7 @@ public class ContentGoldenFruitEvent : GameEvent
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 20);
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }
 

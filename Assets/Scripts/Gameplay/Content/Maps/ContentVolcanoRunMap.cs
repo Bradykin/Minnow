@@ -20,7 +20,7 @@ public class ContentVolcanoRunMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        int wave = GameHelper.GetGameController().m_currentWaveNumber;
+        int wave = GameHelper.GetCurrentWaveNum();
         int baseAmount = base.GetNumEnemiesToSpawn();
 
         if (wave == 2 || wave == 3)
@@ -103,8 +103,8 @@ public class ContentVolcanoRunMap : GameMap
 
         //Supporting normal enemies
         List<GameEnemyUnit> baseTerrainSpawnPool = new List<GameEnemyUnit>();
-        baseTerrainSpawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
-        baseTerrainSpawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
+        //baseTerrainSpawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
+        //baseTerrainSpawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
         baseTerrainSpawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
         baseTerrainSpawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
         baseTerrainSpawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right

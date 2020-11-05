@@ -96,6 +96,21 @@ public static class GameHelper
         return WorldController.Instance.m_gameController;
     }
 
+    public static int GetCurrentWaveNum()
+    {
+        if (WorldController.Instance == null)
+        {
+            return 1;
+        }
+
+        if (WorldController.Instance.m_gameController == null)
+        {
+            return 1;
+        }
+
+        return WorldController.Instance.m_gameController.m_currentWaveNumber;
+    }
+
     public static bool HasRelic<T>()
     {
         GamePlayer player = GameHelper.GetPlayer();

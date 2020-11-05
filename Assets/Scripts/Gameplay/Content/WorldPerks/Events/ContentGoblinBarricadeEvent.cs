@@ -10,10 +10,15 @@ public class ContentGoblinBarricadeEvent : GameEvent
         m_eventDesc = "A goblin barricade stands before you!  Breaking it may cost some troops, but it'd help the trade in the region.";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventBreakBarricadeOption(m_tile);
         m_optionTwo = new GameEventLeaveOption();
 
-        LateInit();
+        base.LateInit();
     }
 }
 

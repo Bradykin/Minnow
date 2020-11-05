@@ -120,7 +120,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
     private int GetHealthModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+        int waveNum = GameHelper.GetCurrentWaveNum();
 
         int scalingValue = waveNum;
         if (waveNum >= 3)
@@ -133,21 +133,21 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
     private int GetDamageReductionModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+        int waveNum = GameHelper.GetCurrentWaveNum();
 
         return waveNum * 3;
     }
 
     private int GetPowerModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+        int waveNum = GameHelper.GetCurrentWaveNum();
 
         return waveNum * 2;
     }
 
     private int GetPowerIncreaseModByWave()
     {
-        int waveNum = GameHelper.GetGameController().m_currentWaveNumber;
+        int waveNum = GameHelper.GetCurrentWaveNum();
 
         return waveNum;
     }

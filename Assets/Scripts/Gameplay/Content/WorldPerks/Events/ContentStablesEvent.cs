@@ -14,7 +14,7 @@ public class ContentStablesEvent : GameEvent
         m_optionTwo = new GameEventTakeGoldOption(75);
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }
 

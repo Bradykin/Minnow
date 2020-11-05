@@ -13,7 +13,7 @@ public class ContentTimeTempleEvent : GameEvent
         m_optionOne = new GameEventSpeedTimeOption();
         m_optionTwo = new GameEventSlowTimeOption();
 
-        LateInit();
+        Init();
     }
 }
 

@@ -18,6 +18,6 @@ public class ContentDevilishPowerEvent : GameEvent
         m_optionOne = new GameEventCardSelectOption(new ContentLivingBombCard());
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldEnrageAction(m_tile.m_occupyingUnit, 1)));
 
-        LateInit();
+        Init();
     }
 }

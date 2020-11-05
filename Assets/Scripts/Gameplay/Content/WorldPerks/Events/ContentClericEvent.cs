@@ -10,10 +10,15 @@ public class ContentClericEvent : GameEvent
         m_eventDesc = "A wandering cleric stops your troops on the side of the road, and offers to help purge some of the weakness from your spirit.";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventRemoveCardOption();
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        base.LateInit();
     }
 }

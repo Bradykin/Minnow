@@ -14,7 +14,7 @@ public class ContentDemonicFireEvent : GameEvent
         m_optionTwo = new GameEventFirestormOption(2, 4);
         m_optionThree = new GameEventLeaveOption();
 
-        LateInit();
+        Init();
     }
 }
 

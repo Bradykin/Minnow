@@ -10,9 +10,14 @@ public class ContentMysteryWanderer : GameEvent
         m_eventDesc = "A stranger acosts your troops by the side of the road, and refuses to let them leave without taking one of his services.";
         m_tile = tile;
 
+        Init();
+    }
+
+    public override void LateInit()
+    {
         m_optionOne = new GameEventRemoveCardOption();
         m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
 
-        LateInit();
+        base.LateInit();
     }
 }

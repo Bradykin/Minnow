@@ -14,6 +14,6 @@ public class ContentWonderousGenieEvent : GameEvent
 
         m_optionOne = new GameEventTakeRandomRelicChoiceOption(rarity);
 
-        LateInit();
+        Init();
     }
 }

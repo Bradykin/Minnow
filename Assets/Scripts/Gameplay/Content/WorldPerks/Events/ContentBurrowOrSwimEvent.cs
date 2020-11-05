@@ -18,6 +18,6 @@ public class ContentBurrowOrSwimEvent : GameEvent
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameWaterwalkKeyword());
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameMountainwalkKeyword());
 
-        LateInit();
+        Init();
     }
 }
