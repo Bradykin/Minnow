@@ -81,7 +81,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForCommon.Count; i++)
         {
-            if (TileValidForChest(tilesInRangeForCommon[i].GetGameTile()))
+            if (TileValidForChestAltar(tilesInRangeForCommon[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForCommon[i]);
             }
@@ -102,7 +102,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForUncommon.Count; i++)
         {
-            if (TileValidForChest(tilesInRangeForUncommon[i].GetGameTile()))
+            if (TileValidForChestAltar(tilesInRangeForUncommon[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForUncommon[i]);
             }
@@ -123,7 +123,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForRare.Count; i++)
         {
-            if (TileValidForChest(tilesInRangeForRare[i].GetGameTile()))
+            if (TileValidForChestAltar(tilesInRangeForRare[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForRare[i]);
             }
@@ -138,7 +138,50 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
-    private bool TileValidForChest(GameTile toCheck)
+    public void PlaceAltars()
+    {
+        //Place 
+        List<WorldTile> validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 15);
+
+        for (int i = 0; i < tilesInRange.Count; i++)
+        {
+            if (TileValidForChestAltar(tilesInRange[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRange[i]);
+            }
+        }
+
+        int r = UnityEngine.Random.Range(0, validTiles.Count);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentTelloAltar(validTiles[r].GetGameTile()), true);
+        validTiles.RemoveAt(r);
+
+        r = UnityEngine.Random.Range(0, validTiles.Count);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentDorphinAltar(validTiles[r].GetGameTile()), true);
+        validTiles.RemoveAt(r);
+
+        r = UnityEngine.Random.Range(0, validTiles.Count);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentMonAltar(validTiles[r].GetGameTile()), true);
+        validTiles.RemoveAt(r);
+
+        r = UnityEngine.Random.Range(0, validTiles.Count);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentSugoAltar(validTiles[r].GetGameTile()), true);
+        validTiles.RemoveAt(r);
+    }
+
+    public void ClearAltars()
+    {
+        for (int i= 0; i < m_gridArray.Length; i++)
+        {
+            if (m_gridArray[i].GetGameTile().m_gameWorldPerk != null && m_gridArray[i].GetGameTile().m_gameWorldPerk.IsAltar())
+            {
+                m_gridArray[i].GetGameTile().m_gameWorldPerk = null;
+            }
+        }
+    }
+
+    private bool TileValidForChestAltar(GameTile toCheck)
     {
         if (!toCheck.IsPassable(null, false))
         {

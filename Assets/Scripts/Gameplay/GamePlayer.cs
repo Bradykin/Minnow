@@ -402,6 +402,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
         }
 
+        if (toAdd is ContentGreedOfDorphinRelic)
+        {
+            m_wallet.AddResources(new GameWallet(200));
+        }
+
         if (toAdd is ContentEyeOfMoragRelic)
         {
             for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
@@ -464,6 +469,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())
+        {
+            toReturn += 2;
+        }
+
         if (GameHelper.HasRelic<ContentOrbOfEnergyRelic>())
         {
             toReturn += (new ContentOrbOfEnergyRelic().GetRelicLevel() + 1);
@@ -492,6 +502,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1);
+        }
+
+        if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())
+        {
+            toReturn += 2;
         }
 
         if (GameHelper.HasRelic<ContentMysticRuneRelic>())

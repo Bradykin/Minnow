@@ -60,7 +60,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentIotalRelic());
         m_relics.Add(new ContentFadingLightRelic());
         m_relics.Add(new ContentBeaconOfSanityRelic());
-        m_relics.Add(new ContentEyeOfTelloRelic());
         m_relics.Add(new ContentPriceOfFreedomRelic());
         m_relics.Add(new ContentHeroicTrophyRelic());
         m_relics.Add(new ContentAncientCoinsRelic());
@@ -119,6 +118,12 @@ public static class GameRelicFactory
         m_relics.Add(new ContentNewInvestmentsRelic());
         m_relics.Add(new ContentTomeOfDuluhainRelic());
         m_relics.Add(new ContentDominerickRefrainRelic());
+        
+        //Altars
+        m_relics.Add(new ContentEyeOfTelloRelic());
+        m_relics.Add(new ContentTacticsOfMonRelic());
+        m_relics.Add(new ContentGreedOfDorphinRelic());
+        m_relics.Add(new ContentMightOfSugoRelic());
 
         int commonRelics = 0;
         int uncommonRelics = 0;

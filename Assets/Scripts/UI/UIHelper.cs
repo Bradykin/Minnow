@@ -245,17 +245,22 @@ public static class UIHelper
     {
         if (chestRarity == GameElementBase.GameRarity.Common)
         {
-            return Resources.Load<Sprite>("UI/Chests/Copper Chest") as Sprite;
+            return Resources.Load<Sprite>("UI/WorldPerks/Copper Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Uncommon)
         {
-            return Resources.Load<Sprite>("UI/Chests/Silver Chest") as Sprite;
+            return Resources.Load<Sprite>("UI/WorldPerks/Silver Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Rare)
         {
-            return Resources.Load<Sprite>("UI/Chests/Gold Chest") as Sprite;
+            return Resources.Load<Sprite>("UI/WorldPerks/Gold Chest") as Sprite;
         }
         return null;
+    }
+
+    public static Sprite GetIconAltar(string altarName)
+    {
+        return Resources.Load<Sprite>("UI/WorldPerks/" + altarName) as Sprite;
     }
 
     //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants

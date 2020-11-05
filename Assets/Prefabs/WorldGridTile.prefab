@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 868980117}
   - component: {fileID: 868980118}
   m_Layer: 0
-  m_Name: ChestIndicator
+  m_Name: WorldPerkIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_fogOfWar: {fileID: 451235019}
   m_spawnIndicator: {fileID: 21548296}
   m_specialTileIndicator: {fileID: 938591797}
-  m_chestIndicator: {fileID: 868980116}
+  m_worldPerkIndicator: {fileID: 868980116}
   m_spawnText: {fileID: 1025461040}
   m_specialTileText: {fileID: 1248123030}
   m_titleHolder: {fileID: 549068398}

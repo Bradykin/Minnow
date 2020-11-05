@@ -28,6 +28,8 @@ public static class Constants
     public static int NumUncommonChests = 1;
     public static int NumRareChests = 1;
 
+    public static int AltarWave = 2;
+
     public static int MaxChaos = 5;
 
     //Sizing for a "square" hexagon grid

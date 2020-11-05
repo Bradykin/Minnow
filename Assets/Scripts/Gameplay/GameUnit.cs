@@ -1172,6 +1172,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += 6;
             }
 
+            if (GameHelper.HasRelic<ContentMightOfSugoRelic>())
+            {
+                toReturn += 15;
+            }
+
             if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>() && m_gameTile != null)
             {
                 List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
@@ -1278,6 +1283,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentOrbOfHealthRelic>())
             {
                 toReturn += 6;
+            }
+
+            if (GameHelper.HasRelic<ContentMightOfSugoRelic>())
+            {
+                toReturn += 15;
             }
 
             if (GameHelper.HasRelic<ContentAncientEvilRelic>() && GetTypeline() == Typeline.Monster)

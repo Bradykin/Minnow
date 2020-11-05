@@ -304,6 +304,12 @@ public class WorldController : Singleton<WorldController>
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
 
         m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
+
+        if (m_gameController.m_currentWaveNumber == Constants.AltarWave)
+        {
+            WorldGridManager.Instance.PlaceAltars();
+            UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
+        }
     }
 
     public void EndIntermission()

@@ -26,21 +26,12 @@ public static class GameEventFactory
                 continue;
             }
 
-            availableEvents.Add(m_events[i]);
-        }
-
-        //TEMP CODE
-        if (availableEvents.Count == 0)
-        {
-            for (int i = 0; i < m_events.Count; i++)
+            if (m_events[i].m_rarity == GameElementBase.GameRarity.Special)
             {
-                if (m_recentEvents.Contains(m_events[i]))
-                {
-                    continue;
-                }
-
-                availableEvents.Add(m_events[i]);
+                continue;
             }
+
+            availableEvents.Add(m_events[i]);
         }
 
         if (availableEvents.Count == 0)

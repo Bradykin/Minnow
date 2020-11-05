@@ -73,9 +73,18 @@ public class GameWorldPerk
         return m_perkType == WorldPerkType.Altar;
     }
 
-    public Sprite GetChestIcon()
+    public Sprite GetIcon()
     {
-        return UIHelper.GetIconChest(m_chestRarity);
+        if (IsChest())
+        {
+            return UIHelper.GetIconChest(m_chestRarity);
+        }
+        else if (IsAltar())
+        {
+            return UIHelper.GetIconAltar(m_altar.GetName());
+        }
+
+        return null;
     }
 
     public GameElementBase.GameRarity GetChestRarity()
