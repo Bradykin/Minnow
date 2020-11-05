@@ -16,7 +16,7 @@ public class ContentGoldenFruitEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameHealAction(m_tile.m_occupyingUnit, 3)));
-        m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 20);
+        m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 50);
         m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();

@@ -112,9 +112,11 @@ public static class GameRelicFactory
         m_relics.Add(new ContentHealthFlaskRelic());
         m_relics.Add(new ContentToldiranMiracleRelic());
         m_relics.Add(new ContentNectarOfTheSeaGodRelic());
+        m_relics.Add(new ContentRestorationBrickRelic());
+
+        //Event Relics
         m_relics.Add(new ContentTraditionalMethodsRelic());
         m_relics.Add(new ContentNewInvestmentsRelic());
-        m_relics.Add(new ContentRestorationBrickRelic());
         m_relics.Add(new ContentTomeOfDuluhainRelic());
         m_relics.Add(new ContentDominerickRefrainRelic());
 

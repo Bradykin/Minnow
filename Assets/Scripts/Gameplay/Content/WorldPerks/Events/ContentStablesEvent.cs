@@ -16,7 +16,7 @@ public class ContentStablesEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventTakeHorsesOption(m_tile);
-        m_optionTwo = new GameEventTakeGoldOption(75);
+        m_optionTwo = new GameEventTakeGoldOption(50);
         m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
@@ -26,14 +26,11 @@ public class ContentStablesEvent : GameEvent
 public class GameEventTakeHorsesOption : GameEventOption
 {
     private GameTile m_tile;
-    private int m_staminaRegen;
-    private int m_maxStamina;
+    private int m_staminaRegen = 2;
+    private int m_maxStamina = 2;
 
     public GameEventTakeHorsesOption(GameTile tile)
     {
-        m_staminaRegen = 1;
-        m_maxStamina = 1;
-
         m_tile = tile;
 
         m_hasTooltip = true;

@@ -104,33 +104,25 @@ public abstract class GameMap : GameElementBase
 
     protected void FillBasicEventPool()
     {
-        //Common
-        m_eventPool.Add(new ContentOverturnedCartEvent(null)); // waves 1-6
-        m_eventPool.Add(new ContentRogueEvent(null)); // waves 1-6
-        m_eventPool.Add(new ContentMagicianEvent(null)); // waves 1-6
-        m_eventPool.Add(new ContentMysteryWanderer(null)); // waves 2-4
-        m_eventPool.Add(new ContentOrcDenEvent(null)); // waves 3-4
-        m_eventPool.Add(new ContentGoblinBarricadeEvent(null)); // waves 3-5
-        m_eventPool.Add(new ContentClericEvent(null)); // waves 4-6
-
-        //Uncommon
-        m_eventPool.Add(new ContentStablesEvent(null)); // waves 1-6
-        m_eventPool.Add(new ContentGoldenFruitEvent(null)); // waves 1-6
-        m_eventPool.Add(new ContentMillitiaEvent(null)); // waves 2-4
-        m_eventPool.Add(new ContentDemonicFireEvent(null)); // waves 2-6
-        m_eventPool.Add(new ContentWonderousGenieEvent(null)); // waves 2-6
-        m_eventPool.Add(new ContentBurrowOrSwimEvent(null)); // waves 2-6
-        m_eventPool.Add(new ContentForestOrCityEvent(null)); // waves 2-6
-        m_eventPool.Add(new ContentCombatTrainingEvent(null)); // waves 3-6
-        m_eventPool.Add(new ContentGemsOfProphecyEvent(null)); // waves 3-6
-
-        //Rare
-        m_eventPool.Add(new ContentLibraryOfDenumianEvent(null)); // waves 1-2
-        m_eventPool.Add(new ContentTraditionOrProgressEvent(null)); // waves 1-2
-        m_eventPool.Add(new ContentDevilishPowerEvent(null)); // waves 2-5
-        m_eventPool.Add(new ContentTimeTempleEvent(null)); // waves 3-5
-        m_eventPool.Add(new ContentRestorationBrickEvent(null)); // waves 3-5
-        m_eventPool.Add(new ContentAngelicGiftEvent(null)); // waves 2-6
+        m_eventPool.Add(new ContentOverturnedCartEvent(null));
+        m_eventPool.Add(new ContentRogueEvent(null));
+        m_eventPool.Add(new ContentMagicianEvent(null));
+        m_eventPool.Add(new ContentOrcDenEvent(null));
+        m_eventPool.Add(new ContentGoblinBarricadeEvent(null));
+        m_eventPool.Add(new ContentStablesEvent(null));
+        m_eventPool.Add(new ContentGoldenFruitEvent(null));
+        m_eventPool.Add(new ContentMillitiaEvent(null));
+        m_eventPool.Add(new ContentDemonicFireEvent(null));
+        m_eventPool.Add(new ContentBurrowOrSwimEvent(null));
+        m_eventPool.Add(new ContentForestOrCityEvent(null));
+        m_eventPool.Add(new ContentCombatTrainingEvent(null));
+        m_eventPool.Add(new ContentGemsOfProphecyEvent(null));
+        m_eventPool.Add(new ContentLibraryOfDenumianEvent(null));
+        m_eventPool.Add(new ContentTraditionOrProgressEvent(null));
+        m_eventPool.Add(new ContentDevilishPowerEvent(null));
+        m_eventPool.Add(new ContentTimeTempleEvent(null));
+        m_eventPool.Add(new ContentRestorationBrickEvent(null));
+        m_eventPool.Add(new ContentAngelicGiftEvent(null));
     }
 
     public int GetPlayerUnlockLevel()

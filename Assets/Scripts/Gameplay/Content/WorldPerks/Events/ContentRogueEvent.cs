@@ -15,8 +15,8 @@ public class ContentRogueEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
-        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard());
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Rare));
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Rare));
         m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();

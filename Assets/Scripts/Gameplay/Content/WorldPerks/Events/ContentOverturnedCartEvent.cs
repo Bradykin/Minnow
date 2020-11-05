@@ -16,7 +16,7 @@ public class ContentOverturnedCartEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeGoldOption(75);
+        m_optionOne = new GameEventTakeGoldOption(50);
         m_optionTwo = new GameEventLeaveOption();
 
         base.LateInit();

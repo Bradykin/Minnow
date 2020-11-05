@@ -30,7 +30,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
     public GameEventHelpMillitiaOption(GameTile tile)
     {
         m_tile = tile;
-        m_card = GameCardFactory.GetRandomStandardUnitCard();
+        m_card = GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Rare);
 
         m_hasTooltip = true;
     }

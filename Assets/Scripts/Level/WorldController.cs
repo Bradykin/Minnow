@@ -262,7 +262,7 @@ public class WorldController : Singleton<WorldController>
             GameWallet intermissionWallet = new GameWallet(Constants.GoldPerWave);
             if (GameHelper.HasRelic<ContentNewInvestmentsRelic>())
             {
-                intermissionWallet.m_gold += 15;
+                intermissionWallet.m_gold += 35;
             }
             if (GameHelper.HasRelic<ContentHarvestOfTelumRelic>())
             {

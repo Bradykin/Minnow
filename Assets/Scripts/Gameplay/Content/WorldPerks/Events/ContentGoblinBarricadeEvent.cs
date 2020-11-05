@@ -30,7 +30,7 @@ public class GameEventBreakBarricadeOption : GameEventOption
     public GameEventBreakBarricadeOption(GameTile tile)
     {
         m_tile = tile;
-        m_wallet = new GameWallet(150);
+        m_wallet = new GameWallet(100);
     }
 
     public override string GetMessage()

@@ -15,7 +15,7 @@ public class ContentMagicianEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventStatsBuffOption(m_tile, 7, 15);
+        m_optionOne = new GameEventStatsBuffOption(m_tile, 10, 25);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         base.LateInit();

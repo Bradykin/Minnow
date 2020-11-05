@@ -15,7 +15,7 @@ public class ContentAngelicGiftEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Uncommon);
+        m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Rare);
         m_optionTwo = new GameEventAngelicWings(m_tile);
         m_optionThree = new GameEventLeaveOption();
 
