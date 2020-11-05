@@ -223,7 +223,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
         {
-            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(10));
+            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(5));
         }
 
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
@@ -1372,7 +1372,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentIotalRelic>())
             {
-                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().m_wallet.m_gold) / 250.0f);
+                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().m_wallet.m_gold) / 150.0f);
 
                 toReturn += toAdd;
             }
@@ -1903,7 +1903,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
         {
-            player.m_wallet.AddResources(new GameWallet(3));
+            player.m_wallet.AddResources(new GameWallet(1));
         }
 
         if (GetTeam() == Team.Enemy)

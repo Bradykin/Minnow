@@ -58,7 +58,7 @@ public static class Constants
     };
 
     public static int FinalWaveNum = 6;
-    public static int GoldPerWave = 25;
+    public static int GoldPerWave = 35;
 
     //Testing Data
     public static bool SnapToCastleAtStart = false;

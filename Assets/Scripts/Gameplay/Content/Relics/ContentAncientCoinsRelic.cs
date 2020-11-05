@@ -7,7 +7,7 @@ public class ContentAncientCoinsRelic : GameRelic
     public ContentAncientCoinsRelic()
     {
         m_name = "Ancient Coins";
-        m_desc = "Whenever an elite dies, gain 75 gold.";
+        m_desc = "Whenever an elite dies, gain 50 gold.";
         m_rarity = GameRarity.Common;
 
         LateInit();

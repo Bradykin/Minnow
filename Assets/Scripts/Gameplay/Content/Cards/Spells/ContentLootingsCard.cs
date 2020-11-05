@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentLootingsCard : GameCardSpellBase
 {
-    private int m_lootVal = 75;
+    private int m_lootVal = 30;
     private int m_damageVal = 10;
 
     public ContentLootingsCard()

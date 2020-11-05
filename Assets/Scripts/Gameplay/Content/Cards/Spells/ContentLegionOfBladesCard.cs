@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentLegionOfBladesCard : GameCardSpellBase
 {
-    private int m_goldGain = 10;
+    private int m_goldGain = 3;
 
     public ContentLegionOfBladesCard()
     {

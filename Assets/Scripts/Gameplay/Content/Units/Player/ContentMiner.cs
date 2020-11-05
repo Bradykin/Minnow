@@ -12,7 +12,7 @@ public class ContentMiner : GameUnit
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 
         m_miningRange = 1;
-        m_miningVal = 5;
+        m_miningVal = 2;
 
         m_maxHealth = 4;
         m_maxStamina = 4;
