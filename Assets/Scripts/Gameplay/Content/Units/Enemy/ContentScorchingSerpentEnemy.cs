@@ -45,7 +45,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
             return amount;
         }
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 0);
         List<GameTile> surroundingTilesTarget = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1).Where(t => !surroundingTiles.Contains(t) && !t.IsOccupied() && t.IsPassable(other, false)).ToList();
 
         if (surroundingTilesTarget.Count > 1)
