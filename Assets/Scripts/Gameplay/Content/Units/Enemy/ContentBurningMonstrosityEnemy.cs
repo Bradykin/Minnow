@@ -25,6 +25,7 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
         m_name = "Burning Monstrosity";
         m_desc = "";
 
+        AddKeyword(new GameLavawalkKeyword(), false);
         AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), false);
         AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

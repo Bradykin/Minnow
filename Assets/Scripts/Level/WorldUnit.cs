@@ -120,6 +120,12 @@ public class WorldUnit : MonoBehaviour
             return;
         }
 
+        GameController gameController = GameHelper.GetGameController();
+        if (gameController != null && gameController.m_runStateType == RunStateType.Intermission)
+        {
+            return;
+        }
+
         if (Globals.m_selectedCard != null)
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()))
