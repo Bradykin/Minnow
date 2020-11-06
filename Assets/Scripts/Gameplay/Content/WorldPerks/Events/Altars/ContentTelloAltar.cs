@@ -9,6 +9,7 @@ public class ContentTelloAltar : GameEvent
         m_name = "Tello";
         m_eventDesc = "An altar of Tello.  Behold the power of the eye.";
         m_tile = tile;
+        m_rarity = GameRarity.Special;
 
         Init();
     }

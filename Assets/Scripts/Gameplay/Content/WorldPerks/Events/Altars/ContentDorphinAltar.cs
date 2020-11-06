@@ -9,6 +9,7 @@ public class ContentDorphinAltar : GameEvent
         m_name = "Dorphin";
         m_eventDesc = "An altar of Dorphin.  Behold the power of gold.";
         m_tile = tile;
+        m_rarity = GameRarity.Special;
 
         Init();
     }
