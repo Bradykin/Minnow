@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ContentCrumblingAncientEnemy : GameEnemyUnit
 {
-    private int m_brittleAmount = 15;
+    private int m_brittleAmount = 10;
+    private int m_staminaLossAmount = 1;
 
     public ContentCrumblingAncientEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -13,7 +14,7 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_maxHealth = 200;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 50;
+        m_power = 30;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
@@ -24,10 +25,10 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_name = "Crumbling Ancient";
         m_desc = "";
 
-        AddKeyword(new GameBrittleKeyword(m_brittleAmount), false);
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(this, m_brittleAmount)), false);
+        if (!GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(3), false);
+            AddKeyword(new GameEnrageKeyword(new GameLoseStaminaAction(this, m_staminaLossAmount)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
@@ -36,22 +37,5 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
-    }
-
-    public override void Die(bool canRevive = true)
-    {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-            for (int i = 0; i < adjacentTiles.Count; i++)
-            {
-                if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player && !adjacentTiles[i].m_occupyingUnit.m_isDead)
-                {
-                    adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
-                }
-            }
-        }
-
-        base.Die(canRevive);
     }
 }

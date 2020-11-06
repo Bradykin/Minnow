@@ -21,6 +21,17 @@ public class GameGainStaminaRangeAction : GameAction
         m_actionParamType = ActionParamType.UnitIntListIntParam;
     }
 
+    public GameGainStaminaRangeAction(GameUnit unit, int toGain, List<int> ranges)
+    {
+        m_unit = unit;
+        m_toGain = toGain;
+        m_ranges = new List<int>();
+        m_ranges.AddRange(ranges);
+
+        m_name = "Gain Stamina Range";
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
+    }
+
     public override string GetDesc()
     {
         return "All friendly units within range " + m_ranges.Max() + " gain " + m_toGain + " Stamina";

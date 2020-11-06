@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ContentBurningMonstrosityEnemy : GameEnemyUnit
 {
-    private int m_explosionDamage = 20;
-    private int m_explosionRange = 1;
+    private int m_explosionDamage = 15;
+    private int m_explosionRange = 2;
 
     public ContentBurningMonstrosityEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 7;
+        m_maxHealth = 10;
+        m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 10;
+        m_power = 1;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
@@ -36,13 +36,15 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
-        m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AIAttackOnceStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
     }
 
     public override void Die(bool canRevive = true)
     {
+        base.Die(canRevive);
+
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
@@ -54,7 +56,5 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
                 }
             }
         }
-
-        base.Die(canRevive);
     }
 }

@@ -26,7 +26,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameRegenerateKeyword(10), false);
+            AddKeyword(new GameRangeKeyword(2), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

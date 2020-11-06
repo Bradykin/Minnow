@@ -19,13 +19,14 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.HasBuilding())
-            {
-                gameTile.ClearBuilding();
-            }
 
             if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
             {
+                if (gameTile.HasBuilding() && gameTile.GetBuilding().GetTeam() == Team.Player)
+                {
+                    gameTile.ClearBuilding();
+                }
+
                 if (gameTile.GetTerrain().IsVolcano())
                 {
                     gameTile.SetTerrain(GameTerrainFactory.GetVolcanoEruptTerrainClone(gameTile.GetTerrain()));

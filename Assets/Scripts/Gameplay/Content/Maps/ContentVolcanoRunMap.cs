@@ -76,10 +76,6 @@ public class ContentVolcanoRunMap : GameMap
         m_spawnPool.Add(new ContentDemonMagicianEnemy(null)); //Waves 4-4
         m_spawnPool.Add(new ContentFlamesoulElementalEnemy(null)); //Boss
         m_spawnPool.Add(new ContentVolcanoCrabEnemy(null)); //Elite
-        m_spawnPool.Add(new ContentOrcEnemy(null)); //Waves 3-4
-        m_spawnPool.Add(new ContentOrcShamanEnemy(null)); //Waves 3-4
-        m_spawnPool.Add(new ContentMobolaEnemy(null)); //Waves 5-6
-        m_spawnPool.Add(new ContentWerewolfEnemy(null)); //Waves 5-6
         m_spawnPool.Add(new ContentToadEnemy(null)); //Wave 2, only spawn in the boomerang basic terrain region and the bottom right
         m_spawnPool.Add(new ContentJackalEnemy(null)); //Waves 4-5?
         m_spawnPool.Add(new ContentCrumblingAncientEnemy(null)); //Waves 3-5

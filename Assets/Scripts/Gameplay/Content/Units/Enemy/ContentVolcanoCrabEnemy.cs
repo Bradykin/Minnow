@@ -31,7 +31,6 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
         m_name = "Volcano Crab";
         m_desc = $"An elite foe.  Defeat it and gain a relic!\n";
-        //At the start of each turn, this unit gets +{m_powerIncrease} Power, +{m_staminaRegenIncrease} Stamina Regen, and -{m_damageReductionDecrease} Damage Reduction.";
 
         AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), false);
         AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), false);

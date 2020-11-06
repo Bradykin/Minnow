@@ -77,7 +77,7 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public IEnumerator TakeTurn(bool shouldYield)
     {
-        while (m_doSteps)
+        while (!m_gameEnemyUnit.m_isDead && m_doSteps)
         {
             m_doSteps = false;
             for (int i = 0; i < m_activeAISteps.Count; i++)

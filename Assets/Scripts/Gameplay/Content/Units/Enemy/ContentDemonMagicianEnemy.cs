@@ -9,7 +9,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
         m_maxHealth = 24;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 8;
 
@@ -22,14 +22,13 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_name = "Demon Magician";
         m_desc = "This unit is immune to all spells.";
 
-        int rangeAmount = 2;
+        AddKeyword(new GameRangeKeyword(2), false);
+        AddKeyword(new GameLavawalkKeyword(), false);
+
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            rangeAmount = 3;
+            //Momentum: -1 spellpower until end of round
         }
-
-        AddKeyword(new GameRangeKeyword(rangeAmount), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentJackalEnemy : GameEnemyUnit
 {
-    public int m_basePower = 12;
+    public int m_basePower = 16;
     public int m_baseMaxHealth = 45;
     public int m_range = 2;
     
@@ -13,14 +13,14 @@ public class ContentJackalEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
         m_maxHealth = m_baseMaxHealth;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = m_basePower;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 4;
+        m_minWave = 5;
         m_maxWave = 5;
 
         m_name = "Jackal";

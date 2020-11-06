@@ -20,6 +20,17 @@ public class GameExplodeAction : GameAction
         m_actionParamType = ActionParamType.UnitIntListIntParam;
     }
 
+    public GameExplodeAction(GameUnit explodingUnit, int explodePower, List<int> explodeRanges)
+    {
+        m_explodingUnit = explodingUnit;
+        m_explodePower = explodePower;
+        m_explodeRanges = new List<int>();
+        m_explodeRanges.AddRange(explodeRanges);
+
+        m_name = "Explode";
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
+    }
+
     public override string GetDesc()
     {
         return "Explode for " + m_explodePower + " damage to all units and buildings in range " + m_explodeRanges.Max();

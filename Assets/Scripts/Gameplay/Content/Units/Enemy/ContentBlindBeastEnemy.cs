@@ -20,11 +20,11 @@ public class ContentBlindBeastEnemy : GameEnemyUnit
         m_maxWave = 2;
 
         m_name = "Blind Beast";
-        m_desc = $"Can only detect targets within 1 range of itself.";
+        m_desc = $"Can only detect targets within range 1 of itself.";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 1, 1)), false);
+            AddKeyword(new GameDamageReductionKeyword(2), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIBlindBeastScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

@@ -8,7 +8,7 @@ public class ContentPhoenixEnemy : GameEnemyUnit
     public ContentPhoenixEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 45;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 15;
 

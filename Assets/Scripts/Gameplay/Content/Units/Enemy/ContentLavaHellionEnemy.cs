@@ -9,7 +9,7 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
         m_maxHealth = 70;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = 12;
 
