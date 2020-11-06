@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Game.Util;
 
-public class UIBorderUnit : MonoBehaviour
+public class UIBorderUnit : MonoBehaviour, IReset
     , IPointerClickHandler
 {
     RectTransform m_rectTransform;
@@ -23,6 +23,16 @@ public class UIBorderUnit : MonoBehaviour
         m_image.sprite = toTrack.GetUnit().m_icon;
     }
 
+    public void Activate()
+    {
+        
+    }
+
+    public void Reset()
+    {
+        Recycler.Recycle<UIBorderUnit>(this);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_unit.gameObject);
@@ -30,7 +40,7 @@ public class UIBorderUnit : MonoBehaviour
 
     void Update()
     {
-        if (m_unit.GetUnit().m_isDead || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
+        if (m_unit == null || m_unit.gameObject.activeSelf == false || m_unit.GetUnit() == null || m_unit.GetUnit().m_isDead || GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             Recycler.Recycle<UIBorderUnit>(this);
             return;
