@@ -1164,7 +1164,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentWolvenFangRelic>())
             {
-                toReturn += (2 * (1 + new ContentWolvenFangRelic().GetRelicLevel()));
+                toReturn += (4 * (1 + new ContentWolvenFangRelic().GetRelicLevel()));
             }
 
             if (GameHelper.HasRelic<ContentSigilOfTheSwordsmanRelic>() && GetTypeline() == Typeline.Humanoid)

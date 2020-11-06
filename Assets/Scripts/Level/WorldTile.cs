@@ -32,8 +32,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private int m_inSpellcraftRange;
     private int m_inDefensiveBuildingRange;
 
-    private bool m_isShowingTooltip;
-
     private GameTile m_gameTile;
 
     void Start()
@@ -253,9 +251,12 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         GetGameTile().m_gridPosition = new Vector2Int(x, y);
     }
 
-    public void OnMosueDownExt()
+    public void OnMouseDownExt()
     {
-        OnMouseDownImpl(false);
+        if (!GetGameTile().m_isFog)
+        {
+            OnMouseDownImpl(false);
+        }
     }
 
     void OnMouseDown()
@@ -459,10 +460,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     void OnMouseExit()
     {
         m_isHovered = false;
-
-        UITooltipController.Instance.ClearTooltipStack();
-
-        m_isShowingTooltip = false;
 
         Globals.m_hoveredTile = null;
     }

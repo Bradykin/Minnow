@@ -37,6 +37,6 @@ public class UIWorldPerkIndicator : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        m_ownerTile.OnMosueDownExt();
+        m_ownerTile.OnMouseDownExt();
     }
 }
