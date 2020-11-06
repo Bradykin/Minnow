@@ -15,12 +15,12 @@ public class AITestSpawnClass : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                Globals.m_testSpawnEnemyUnit = new ContentCrumblingAncientEnemy(null);
+                Globals.m_testSpawnEnemyUnit = new ContentDemonMagicianEnemy(null);
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentFirestormCard()), true);
+                GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShadowWarlockCard()), true);
             }
 
             if (Input.GetKeyDown(KeyCode.L))

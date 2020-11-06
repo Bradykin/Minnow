@@ -621,6 +621,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         {
             m_deckBase.GetDeck()[i].SetTempCost(0);
         }
+
+        m_tempSpellpowerIncrease = 0;
     }
 
     public void OnBeginWave()
@@ -723,7 +725,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         GameHelper.GetPlayer().m_spellsPlayedThisTurn = 0;
         m_fletchingPowerIncrease = 0;
         Globals.m_goldPerShivKill = 0;
-        m_tempSpellpowerIncrease = 0;
         Globals.m_canSelect = false;
     }
 

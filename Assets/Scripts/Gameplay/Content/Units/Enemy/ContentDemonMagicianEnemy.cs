@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ContentDemonMagicianEnemy : GameEnemyUnit
 {
+    int m_range = 2;
+    int m_spellpowerLoseAmount = 1;
+    
     public ContentDemonMagicianEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
@@ -22,12 +25,12 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_name = "Demon Magician";
         m_desc = "This unit is immune to all spells.";
 
-        AddKeyword(new GameRangeKeyword(2), false);
+        AddKeyword(new GameRangeKeyword(m_range), false);
         AddKeyword(new GameLavawalkKeyword(), false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            //Momentum: -1 spellpower until end of round
+            AddKeyword(new GameMomentumKeyword(new GameLoseTempSpellpowerAction(m_spellpowerLoseAmount)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
