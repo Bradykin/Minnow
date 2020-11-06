@@ -9,6 +9,7 @@ public class ContentMonAltar : GameEvent
         m_name = "Mon";
         m_eventDesc = "An altar of Mon.  Behold the power of tactics.";
         m_tile = tile;
+        m_rarity = GameRarity.Special;
 
         Init();
     }

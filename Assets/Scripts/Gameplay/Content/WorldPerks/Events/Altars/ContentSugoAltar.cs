@@ -9,6 +9,7 @@ public class ContentSugoAltar : GameEvent
         m_name = "Sugo";
         m_eventDesc = "An altar of Sugo.  Behold the power of strength.";
         m_tile = tile;
+        m_rarity = GameRarity.Special;
 
         Init();
     }

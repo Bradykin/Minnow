@@ -37,7 +37,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         AddKeyword(new GameEnrageKeyword(new GameSubtractKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), false);
         AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), false);
         AddKeyword(new GameLavawalkKeyword(), false);
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_desc += " When this unit steps on a lava tile, it regains all Damage Reduction.";
         }
@@ -83,7 +83,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
     {
         base.OnMoveEnd();
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility) && GetGameTile().GetTerrain().IsLava())
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength) && GetGameTile().GetTerrain().IsLava())
         {
             GameDamageReductionKeyword gameDamageReductionKeyword = GetDamageReductionKeyword();
 
@@ -102,7 +102,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
     {
         base.EndTurn();
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility) && GetGameTile().GetTerrain().IsLava())
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength) && GetGameTile().GetTerrain().IsLava())
         {
             GameDamageReductionKeyword gameDamageReductionKeyword = GetDamageReductionKeyword();
 
