@@ -83,6 +83,28 @@ public class GameWorldPerk
         {
             return UIHelper.GetIconAltar(m_altar.GetName());
         }
+        else if (IsEvent())
+        {
+            return UIHelper.GetIconEvent();
+        }
+
+        return null;
+    }
+
+    public Sprite GetWIcon()
+    {
+        if (IsChest())
+        {
+            return UIHelper.GetWIconChest(m_chestRarity);
+        }
+        else if (IsAltar())
+        {
+            return UIHelper.GetWIconAltar(m_altar.GetName());
+        }
+        else if (IsEvent())
+        {
+            return UIHelper.GetWIconEvent();
+        }
 
         return null;
     }

@@ -48,14 +48,21 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     {
         HandleFogUpdate();
 
-        if (GetGameTile().m_gameWorldPerk != null &&
-            (GetGameTile().m_gameWorldPerk.IsChest() || GetGameTile().m_gameWorldPerk.IsAltar()))
+        if (GetGameTile().m_gameWorldPerk != null)
         {
             if (m_worldPerkIndicator.activeSelf == false)
             {
-                m_worldPerkIndicator.GetComponent<SpriteRenderer>().sprite = GetGameTile().m_gameWorldPerk.GetIcon();
+                m_worldPerkIndicator.SetActive(true); 
+                m_worldPerkIndicator.GetComponent<UIWorldPerkIndicator>().Init(GetGameTile().m_gameWorldPerk, this);
+
+                if (!GameHelper.IsInLevelBuilder())
+                {
+                    if (GetGameTile().m_gameWorldPerk.IsEvent())
+                    {
+                        GetGameTile().SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetGameTile().GetTerrain()));
+                    }
+                }
             }
-            m_worldPerkIndicator.SetActive(true);
         }
         else
         {
@@ -246,14 +253,24 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         GetGameTile().m_gridPosition = new Vector2Int(x, y);
     }
 
+    public void OnMosueDownExt()
+    {
+        OnMouseDownImpl(false);
+    }
+
     void OnMouseDown()
+    {
+        OnMouseDownImpl(true);
+    }
+
+    private void OnMouseDownImpl(bool uiShouldBlock)
     {
         if (!Globals.m_canSelect)
         {
             return;
         }
 
-        if (UIHelper.UIShouldBlockClick())
+        if (UIHelper.UIShouldBlockClick() && uiShouldBlock)
         {
             return;
         }
@@ -354,8 +371,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         WorldUnit selectedUnit = Globals.m_selectedUnit;
         if (selectedUnit != null && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
         {
-            if (GetGameTile().HasBuilding() && 
-                GetGameTile().GetBuilding().GetTeam() == Team.Enemy && 
+            if (GetGameTile().HasBuilding() &&
+                GetGameTile().GetBuilding().GetTeam() == Team.Enemy &&
                 !GetGameTile().GetBuilding().m_isDestroyed &&
                 selectedUnit.GetUnit().CanHitBuilding(GetGameTile().GetBuilding()))
             {
@@ -425,11 +442,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         if (UIHelper.UIShouldBlockClick())
         {
             return;
-        }
-
-        if (!m_isShowingTooltip)
-        {
-            HandleTooltip();
         }
 
         if (m_gameTile.GetTerrain() != null && m_gameTile.GetTerrain().IsEventTerrain())
@@ -604,19 +616,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     public void ClearInDefensiveBuildingRangeCount()
     {
         m_inDefensiveBuildingRange = 0;
-    }
-
-    public void HandleTooltip()
-    {
-        if (Globals.m_canSelect)
-        {
-            if (GetGameTile().m_gameWorldPerk != null)
-            {
-                UIHelper.CreateWorldPerkTooltip(GetGameTile().m_gameWorldPerk);
-
-                m_isShowingTooltip = true;
-            }
-        }
     }
 
     public void CustomRecycle(params object[] args)

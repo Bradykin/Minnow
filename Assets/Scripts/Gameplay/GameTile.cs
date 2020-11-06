@@ -65,11 +65,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
             if (m_gameWorldPerk != null)
             {
-                if (m_gameWorldPerk.IsEvent())
-                {
-                    SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetTerrain()));
-                }
-
                 m_gameWorldPerk.Trigger();
 
                 m_gameWorldPerk = null;
@@ -209,7 +204,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
     public bool IsSpecialSoftFogTile()
     {
-        return m_gameWorldPerk != null || (HasBuilding() && GetBuilding().GetName() == new ContentPowerCrystalBuilding().GetName());
+        return (HasBuilding() && GetBuilding().GetName() == new ContentPowerCrystalBuilding().GetName());
     }
 
     public void SetTerrain(GameTerrainBase newTerrain, bool clearBuilding = false)

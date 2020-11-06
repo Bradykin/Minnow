@@ -206,11 +206,6 @@ public static class UIHelper
         return Resources.Load<Sprite>("Units/" + unitName) as Sprite;
     }
 
-    public static Sprite GetIconEvent(string eventName)
-    {
-        return Resources.Load<Sprite>("Events/" + eventName) as Sprite;
-    }
-
     public static Sprite GetIconBuilding(string buildingName)
     {
         return Resources.Load<Sprite>("Buildings/" + buildingName) as Sprite;
@@ -261,6 +256,38 @@ public static class UIHelper
     public static Sprite GetIconAltar(string altarName)
     {
         return Resources.Load<Sprite>("UI/WorldPerks/" + altarName) as Sprite;
+    }
+
+    public static Sprite GetIconEvent()
+    {
+        return Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
+    }
+
+    public static Sprite GetWIconChest(GameElementBase.GameRarity chestRarity)
+    {
+        if (chestRarity == GameElementBase.GameRarity.Common)
+        {
+            return Resources.Load<Sprite>("UI/WorldPerks/Copper ChestW") as Sprite;
+        }
+        else if (chestRarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return Resources.Load<Sprite>("UI/WorldPerks/Silver ChestW") as Sprite;
+        }
+        else if (chestRarity == GameElementBase.GameRarity.Rare)
+        {
+            return Resources.Load<Sprite>("UI/WorldPerks/Gold ChestW") as Sprite;
+        }
+        return null;
+    }
+
+    public static Sprite GetWIconAltar(string altarName)
+    {
+        return Resources.Load<Sprite>("UI/WorldPerks/" + altarName + "W") as Sprite;
+    }
+
+    public static Sprite GetWIconEvent()
+    {
+        return Resources.Load<Sprite>("UI/WorldPerks/EventW") as Sprite;
     }
 
     //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
