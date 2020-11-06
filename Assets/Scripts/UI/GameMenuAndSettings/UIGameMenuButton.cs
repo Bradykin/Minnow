@@ -8,7 +8,20 @@ public class UIGameMenuButton : UIElementBase
 {
     public GameObject m_gameMenu;
 
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            OpenMenuImpl();
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
+    {
+        OpenMenuImpl();
+    }
+
+    private void OpenMenuImpl()
     {
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
 
