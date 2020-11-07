@@ -169,7 +169,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (IsInvulnerable())
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " is invulnerable and takes no damage!", false, m_gameTile.GetWorldTile().gameObject);
+            if (!GetGameTile().m_isFog)
+            {
+                UIHelper.CreateWorldElementNotification(GetName() + " is invulnerable and takes no damage!", false, m_gameTile.GetWorldTile().gameObject);
+            }
             return 0;
         }
 
@@ -177,7 +180,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (damage <= 0)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " takes no damage from the hit!", false, m_gameTile.GetWorldTile().gameObject);
+            if (!GetGameTile().m_isFog)
+            {
+                UIHelper.CreateWorldElementNotification(GetName() + " takes no damage from the hit!", false, m_gameTile.GetWorldTile().gameObject);
+            }
             return 0;
         }
 
@@ -189,12 +195,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 damageShieldKeyword.DecreaseShield(1);
                 if (damageShieldKeyword.ShouldBeRemoved())
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
+                    if (!GetGameTile().m_isFog)
+                    {
+                        UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
+                    }
                     RemoveKeyword(damageShieldKeyword);
                 }
                 else
                 {
-                    UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_worldUnit.gameObject);
+                    if (!GetGameTile().m_isFog)
+                    {
+                        UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_worldUnit.gameObject);
+                    }
                 }
                 return 0;
             }
@@ -258,7 +270,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
         else
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!" + damageReducDesc, false, m_gameTile.GetWorldTile().gameObject);
+            if (!GetGameTile().m_isFog)
+            {
+                UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!" + damageReducDesc, false, m_gameTile.GetWorldTile().gameObject);
+            }
         }
 
         return damage;
@@ -1564,14 +1579,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_curStamina = 0;
         }
 
-        if (m_curStamina == 0 && GameHelper.HasRelic<ContentTheReminderRelic>())
-        {
-            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
-            {
-                GetHit(5);
-            }
-        }
-
         UIHelper.ReselectUnit();
     }
 
@@ -1862,7 +1869,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
+            if (GameHelper.HasRelic<ContentToldiranMiracleRelic>())
             {
                 if (GameHelper.HasAllTypelines())
                 {
