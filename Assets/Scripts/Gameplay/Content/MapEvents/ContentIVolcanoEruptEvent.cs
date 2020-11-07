@@ -5,11 +5,14 @@ using UnityEngine;
 public class ContentVolcanoEruptionEvent : GameMapEvent
 {
     private int m_markerToCheck;
+    private bool m_onlyVolcano;
 
-    public ContentVolcanoEruptionEvent(int markerToCheck)
+    public ContentVolcanoEruptionEvent(int markerToCheck, bool onlyVolcano)
     {
         m_name = "Volcano Eruption";
         m_desc = "Volcanoes erupt, burning the terrain and covering it with active lava. Run!";
+
+        m_onlyVolcano = onlyVolcano;
 
         m_markerToCheck = markerToCheck;
     }
@@ -30,8 +33,17 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
                 if (gameTile.GetTerrain().IsVolcano())
                 {
                     gameTile.SetTerrain(GameTerrainFactory.GetVolcanoEruptTerrainClone(gameTile.GetTerrain()));
+
+                    if (m_onlyVolcano)
+                    {
+                        List<WorldTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingWorldTiles(gameTile.GetWorldTile(), 2, 0);
+                        for (int k = 0; k < surroundingTiles.Count; k++)
+                        {
+                            surroundingTiles[k].ClearFog();
+                        }
+                    }
                 }
-                else
+                else if (!m_onlyVolcano)
                 {
                     gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
                 }

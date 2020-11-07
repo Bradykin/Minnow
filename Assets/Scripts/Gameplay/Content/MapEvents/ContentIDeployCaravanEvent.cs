@@ -9,7 +9,7 @@ public class ContentDeployCaravanEvent : GameMapEvent
     public ContentDeployCaravanEvent(int markerToCheck)
     {
         m_name = "Deploy Caravan";
-        m_desc = "Volcanic eruptions loom on the horizon. Your court had fled to its royal caravan, and needs to run now!";
+        m_desc = "Volcanic eruptions loom on the horizon. Your court has fled to the royal caravan, and needs to run now!";
 
         m_markerToCheck = markerToCheck;
     }

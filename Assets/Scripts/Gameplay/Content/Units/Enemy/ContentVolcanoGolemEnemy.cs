@@ -13,7 +13,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
         m_maxHealth = 40;
         m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 30;
+        m_power = 15;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
