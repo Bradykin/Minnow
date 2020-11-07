@@ -231,9 +231,9 @@ public class GameUnitFactory
         return (GameEnemyUnit)Activator.CreateInstance(list[r].GetType(), gameOpponent);
     }
 
-    public static GameUnit GetEnemyUnitClone(GameUnit unit)
+    public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit unit)
     {
-        return (GameUnit)Activator.CreateInstance(unit.GetType());
+        return (GameEnemyUnit)Activator.CreateInstance(unit.GetType(), WorldController.Instance.m_gameController.m_gameOpponent);
     }
 
     public static GameEnemyUnit GetEnemyUnitClone(GameEnemyUnit enemyUnit, GameOpponent gameOpponent)
@@ -273,5 +273,18 @@ public class GameUnitFactory
         newEnemy.LoadFromJson(jsonData);
 
         return newEnemy;
+    }
+
+    public static GameEnemyUnit GetEnemyFromName(string name)
+    {
+        for (int i = 0; i < m_enemies.Count; i++)
+        {
+            if (m_enemies[i].GetName() == name)
+            {
+                return GetEnemyUnitClone(m_enemies[i]);
+            }
+        }
+
+        return null;
     }
 }

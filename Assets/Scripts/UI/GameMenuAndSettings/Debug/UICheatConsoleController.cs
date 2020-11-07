@@ -59,6 +59,18 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "AddEnemy")
+        {
+            HandleAddEnemy(param);
+            return;
+        }
+
+        if (cheat == "EndWave")
+        {
+            HandleEndWave();
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -86,5 +98,22 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         }
 
         GameHelper.GetPlayer().AddCardToHand(newCard, true);
+    }
+
+    private void HandleAddEnemy(string param)
+    {
+        GameEnemyUnit newEnemy = GameUnitFactory.GetEnemyFromName(param);
+        if (newEnemy == null)
+        {
+            Debug.Log(param + " is an invalid enemy name.");
+            return;
+        }
+
+        Globals.m_testSpawnEnemyUnit = newEnemy;
+    }
+
+    private void HandleEndWave()
+    {
+        WorldController.Instance.m_gameController.StartIntermissionCheat();
     }
 }

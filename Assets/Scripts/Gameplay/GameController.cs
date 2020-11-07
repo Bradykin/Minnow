@@ -142,20 +142,32 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         if (forceIntermission)
         {
-            m_runStateType = RunStateType.Intermission;
-            WorldController.Instance.StartIntermission();
+            StartIntermissionImpl(false);
             return true;
         }
         
         if (ShouldStartIntermission)
         {
-            m_runStateType = RunStateType.Intermission;
-            OnEndWave();
-            WorldController.Instance.StartIntermission();
+            StartIntermissionImpl();
             return true;
         }
 
         return false;
+    }
+
+    public void StartIntermissionCheat()
+    {
+        StartIntermissionImpl();
+    }
+
+    private void StartIntermissionImpl(bool shouldEndWave = true)
+    {
+        m_runStateType = RunStateType.Intermission;
+        if (shouldEndWave)
+        {
+            OnEndWave();
+        }
+        WorldController.Instance.StartIntermission();
     }
 
     private void OnEndWave()
