@@ -40,6 +40,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     private int m_runExperienceAmount;
     public int m_randomSeed;
 
+    //Variables used for unit card offerings in intermissions
+    public int m_numRareUnitOptionsOffered = 0;
+    public int m_previousRareUnitOptionWave = 0;
+
+    //Save data variables - find a better place for these
     public bool m_savedInIntermission;
     public GameCard m_intermissionSavedCardOne;
     public GameCard m_intermissionSavedCardTwo;
@@ -195,8 +200,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             runExperienceAMount = m_runExperienceAmount,
             randomSeed = m_randomSeed,
 
-            savedInIntermission = m_savedInIntermission,
+            numRareUnitOptionsOffered = m_numRareUnitOptionsOffered,
+            previousRareUnitOptionWave = m_previousRareUnitOptionWave,
 
+            savedInIntermission = m_savedInIntermission,
             jsonGamePlayerData = m_player.SaveToJson(),
             jsonGameOpponentData = m_gameOpponent.SaveToJson()
         };
@@ -216,6 +223,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
         m_runExperienceAmount = jsonData.runExperienceAMount;
+
+        m_numRareUnitOptionsOffered = jsonData.numRareUnitOptionsOffered;
+        m_previousRareUnitOptionWave = jsonData.previousRareUnitOptionWave;
 
         m_savedInIntermission = jsonData.savedInIntermission;
 

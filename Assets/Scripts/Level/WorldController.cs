@@ -273,11 +273,14 @@ public class WorldController : Singleton<WorldController>
 
             player.OnEndWave();
 
-            cardOne = GameCardFactory.GetRandomStandardUnitCard();
+            //Choose unit rarity
+            GameElementBase.GameRarity gameRarity = SelectIntermissionUnitRarity();
+
+            cardOne = GameCardFactory.GetRandomStandardUnitCard(gameRarity);
             exclusionCards.Add(cardOne);
-            cardTwo = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
+            cardTwo = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
             exclusionCards.Add(cardTwo);
-            cardThree = GameCardFactory.GetRandomStandardUnitCard(exclusionCards);
+            cardThree = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
 
             m_gameController.m_savedInIntermission = true;
             m_gameController.m_intermissionSavedCardOne = cardOne;
@@ -310,6 +313,38 @@ public class WorldController : Singleton<WorldController>
             WorldGridManager.Instance.PlaceAltars();
             UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
         }
+    }
+
+    private GameElementBase.GameRarity SelectIntermissionUnitRarity()
+    {
+        GameElementBase.GameRarity gameRarity;
+
+        if ((m_gameController.m_currentWaveNumber == 2) ||
+            (m_gameController.m_previousRareUnitOptionWave == 3 && m_gameController.m_currentWaveNumber == 4) ||
+            (m_gameController.m_numRareUnitOptionsOffered == 2))
+        {
+            gameRarity = GameCardFactory.GetRandomRarity();
+            while (gameRarity == GameElementBase.GameRarity.Rare)
+            {
+                gameRarity = GameCardFactory.GetRandomRarity();
+            }
+        }
+        else if (m_gameController.m_numRareUnitOptionsOffered == 0 && m_gameController.m_currentWaveNumber == 6)
+        {
+            gameRarity = GameElementBase.GameRarity.Rare;
+        }
+        else
+        {
+            gameRarity = GameCardFactory.GetRandomRarity();
+        }
+
+        if (gameRarity == GameElementBase.GameRarity.Rare)
+        {
+            m_gameController.m_numRareUnitOptionsOffered++;
+            m_gameController.m_previousRareUnitOptionWave = m_gameController.m_currentWaveNumber;
+        }
+
+        return gameRarity;
     }
 
     public void EndIntermission()
