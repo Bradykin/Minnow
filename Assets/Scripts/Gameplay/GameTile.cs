@@ -358,33 +358,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         return true;
     }
 
-    public int GetDamageReduction(GameUnit checkerUnit)
-    {
-        if (checkerUnit != null)
-        {
-            if (checkerUnit.GetFlyingKeyword() != null)
-            {
-                return 0;
-            }
-        }
-
-        if (HasBuilding())
-        {
-            return 0;
-        }
-        else
-        {
-            int damageReduction = m_terrain.m_damageReduction;
-
-            if (damageReduction > 0 && checkerUnit != null && checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-            {
-                damageReduction += damageReduction * 2;
-            }
-            
-            return damageReduction;
-        }
-    }
-
     //============================================================================================================//
 
     public JsonGameTileData SaveToJson()

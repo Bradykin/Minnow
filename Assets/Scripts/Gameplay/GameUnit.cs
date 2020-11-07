@@ -246,9 +246,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         string damageReducDesc = "";
-        if (m_gameTile.GetDamageReduction(this) > 0)
+        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
+        if (damageReductionKeyword != null)
         {
-            damageReducDesc = " (Reduced by " + m_gameTile.GetDamageReduction(this) + " from " + m_gameTile.GetName() + ")";
+            damageReducDesc = " (Reduced by " + damageReductionKeyword.m_damageReduction + " from <b>Damage Reduction</b>)";
         }
 
         if (m_curHealth <= 0)
@@ -265,8 +266,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int CalculateDamageAmount(int damage)
     {
-        damage -= m_gameTile.GetDamageReduction(this);
-
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
         if (brittleKeyword != null)
         {
@@ -1132,6 +1131,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     toReturn.AddKeyword(new GameDamageReductionKeyword(2));
                     break;
                 }
+            }
+        }
+
+        if (GetFlyingKeyword() == null && m_gameTile != null)
+        {
+            int terrainDamageReduction = m_gameTile.GetTerrain().m_damageReduction;
+
+            if (terrainDamageReduction > 0)
+            {
+                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+                {
+                    terrainDamageReduction += terrainDamageReduction * 2;
+                }
+
+                toReturn.AddKeyword(new GameDamageReductionKeyword(terrainDamageReduction));
             }
         }
 
