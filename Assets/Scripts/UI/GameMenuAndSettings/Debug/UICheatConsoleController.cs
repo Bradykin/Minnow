@@ -45,6 +45,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "ClearPlayerAccountData")
+        {
+            HandleClearPlayerAccountData();
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -72,5 +78,19 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         }
 
         GameHelper.GetPlayer().AddCardToHand(newCard, true);
+    }
+
+    private void HandleClearPlayerAccountData()
+    {
+        PlayerDataManager.ClearPlayerAccountData();
+
+        Files.ClearPlayerAccountData();
+
+        if (Constants.DebugRandomStarterLevels)
+        {
+            PlayerDataManager.RandomizeStarterCardLevels();
+        }
+
+        UIStarterCardSelectionController.Instance.ResetStarterCardInit();
     }
 }
