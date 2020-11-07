@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
+using UnityEngine.UI;
 
 public class UICheatConsoleController : Singleton<UICheatConsoleController>
 {
     public GameObject m_consoleHolder;
+    public InputField m_inputField;
 
     void Start()
     {
@@ -20,6 +22,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         if (Input.GetKeyUp(KeyCode.BackQuote) || Input.GetKeyUp(KeyCode.F2))
         {
             m_consoleHolder.SetActive(!m_consoleHolder.activeSelf);
+
+            if (m_consoleHolder.activeSelf)
+            {
+                m_inputField.Select();
+            }
         }
     }
 
