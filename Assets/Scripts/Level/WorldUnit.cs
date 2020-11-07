@@ -194,6 +194,7 @@ public class WorldUnit : MonoBehaviour
         GetUnit().GetWorldTile().ClearUnit();
         targetTile.GetWorldTile().PlaceUnit(this);
         GetUnit().MoveTo(targetTile, spendStamina);
+        
         GetUnit().OnMoveEnd();
 
         m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit(this);

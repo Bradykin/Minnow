@@ -558,6 +558,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
             m_occupyingUnitObj = null;
         }
+        else
+        {
+            Debug.LogError("Trying to recycle unit that is not on the tile.");
+        }
     }
 
     public void PlaceUnit(WorldUnit newUnit)
