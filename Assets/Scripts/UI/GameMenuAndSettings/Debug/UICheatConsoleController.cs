@@ -26,8 +26,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     public void TriggerCheat(string msg)
     {
         string cheat = msg.Substring(0, msg.IndexOf(" "));
-        int index = msg.IndexOf(" ");
-        int len = msg.Length-1;
         string param = msg.Substring(msg.IndexOf(" ") + 1);
 
         HandleCheats(cheat, param);

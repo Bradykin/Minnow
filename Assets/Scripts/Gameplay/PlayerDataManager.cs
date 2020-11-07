@@ -155,8 +155,6 @@ public static class PlayerDataManager
 
     public static void RandomizeStarterCardLevels()
     {
-        Debug.LogWarning("Randomizing all starter card levels");
-
         PlayerAccountData.m_starterCardUnlockLevels.Clear();
 
         GameCard alphaBoarCard = new ContentAlphaBoarCard();

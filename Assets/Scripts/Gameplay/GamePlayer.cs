@@ -119,7 +119,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_curDeck.Shuffle();
 
-        AddRelic(GameRelicFactory.GetRelicWithName(PlayerDataManager.PlayerAccountData.StarterRelicName));
+        AddRelic(GameRelicFactory.GetRelicByName(PlayerDataManager.PlayerAccountData.StarterRelicName));
     }
 
     public void DrawHand()
