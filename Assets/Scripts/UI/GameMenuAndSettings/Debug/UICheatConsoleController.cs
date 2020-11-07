@@ -101,6 +101,42 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "AddGold")
+        {
+            HandleAddGold(param);
+            return;
+        }
+
+        if (cheat == "AddEnergy")
+        {
+            HandleAddEnergy(param);
+            return;
+        }
+
+        if (cheat == "AddActions")
+        {
+            HandleAddActions(param);
+            return;
+        }
+
+        if (cheat == "RemoveActions")
+        {
+            HandleRemoveActions(param);
+            return;
+        }
+
+        if (cheat == "SetCastleHealth")
+        {
+            HandleSetCastleHealth(param);
+            return;
+        }
+
+        if (cheat == "Uber")
+        {
+            HandleUber();
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -198,6 +234,41 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         }
 
         Globals.m_testSpawnEnemyUnit = newEnemy;
+    }
+
+    private void HandleAddGold(string param)
+    {
+        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(int.Parse(param)));
+    }
+
+    private void HandleAddEnergy(string param)
+    {
+        GameHelper.GetPlayer().AddEnergy(int.Parse(param));
+    }
+
+    private void HandleAddActions(string param)
+    {
+        GameHelper.GetPlayer().AddBonusActions(int.Parse(param));
+    }
+
+    private void HandleRemoveActions(string param)
+    {
+        GameHelper.GetPlayer().SpendActions(int.Parse(param));
+    }
+
+    private void HandleSetCastleHealth(string param)
+    {
+        GameHelper.GetPlayer().GetCastleGameTile().GetBuilding().m_maxHealth = int.Parse(param);
+        GameHelper.GetPlayer().GetCastleGameTile().GetBuilding().m_curHealth += int.Parse(param);
+    }
+
+    private void HandleUber()
+    {
+        HandleAddGold("10000");
+        HandleAddEnergy("10000");
+        HandleAddActions("10");
+
+        HandleSetCastleHealth("10000");
     }
 
     private void HandleEndWave()
