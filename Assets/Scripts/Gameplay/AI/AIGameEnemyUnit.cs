@@ -64,6 +64,11 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
     {
         m_newAIDebugLog = new AIDebugTurnLog();
 
+        if (GameHelper.GetGameController() == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < m_setupAISteps.Count; i++)
         {
             if (GameHelper.GetGameController().m_runStateType == RunStateType.None)
@@ -109,6 +114,11 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public void CleanupTurn()
     {
+        if (GameHelper.GetGameController() == null)
+        {
+            return;
+        }
+
         m_newAIDebugLog.m_waveNumber = GameHelper.GetCurrentWaveNum();
         m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentTurnNumber;
         if (m_targetGameElement == null)
