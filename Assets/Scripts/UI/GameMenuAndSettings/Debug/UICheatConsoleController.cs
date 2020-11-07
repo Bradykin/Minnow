@@ -65,15 +65,27 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
-        if (cheat == "ToggleDebugSeeAllThroughFog")
+        if (cheat == "ToggleFog")
         {
-            ToggleDebugSeeAllThroughFog();
+            ToggleFog();
             return;
         }
 
-        if (cheat == "SetDebugRandomStarterLevels")
+        if (cheat == "SetRandomStarterCardLevels")
         {
-            SetDebugRandomStarterLevels(param);
+            SetRandomStarterCardLevels(param);
+            return;
+        }
+
+        if (cheat == "SetCurrentWave")
+        {
+            SetCurrentWave(param);
+            return;
+        }
+
+        if (cheat == "SetCurrentTurn")
+        {
+            SetCurrentTurn(param);
             return;
         }
 
@@ -120,12 +132,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         UIStarterCardSelectionController.Instance.ResetStarterCardInit();
     }
 
-    private void ToggleDebugSeeAllThroughFog()
+    private void ToggleFog()
     {
         Constants.DebugSeeAllThroughFog = !Constants.DebugSeeAllThroughFog;
     }
 
-    private void SetDebugRandomStarterLevels(string param)
+    private void SetRandomStarterCardLevels(string param)
     {
         if (param == "True")
         {
@@ -133,12 +145,34 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
-        if (param == "false")
+        if (param == "False")
         {
             Constants.DebugRandomStarterLevels = false;
             return;
         }
 
         Debug.Log($"{param} is an invalid input, must be True or False");
+    }
+
+    private void SetCurrentWave(string param)
+    {
+        if (int.TryParse(param, out int result))
+        {
+            GameHelper.GetGameController().m_currentWaveNumber = result;
+            return;
+        }
+
+        Debug.Log($"{param} is an invalid input. Must be a number.");
+    }
+
+    private void SetCurrentTurn(string param)
+    {
+        if (int.TryParse(param, out int result))
+        {
+            GameHelper.GetGameController().m_currentTurnNumber = result;
+            return;
+        }
+
+        Debug.Log($"{param} is an invalid input. Must be a number.");
     }
 }

@@ -240,7 +240,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         if (fogSpawningActive)
         {
             //Try spawning at edge of fog
-            while (enemyCapToSpawn >= 0)
+            while (enemyCapToSpawn > 0)
             {
                 TrySpawnAtEdgeOfFog(null, tilesAtFogEdge, ref enemyCapToSpawn);
             }
