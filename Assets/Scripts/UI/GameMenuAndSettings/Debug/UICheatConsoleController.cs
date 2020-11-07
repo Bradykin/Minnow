@@ -101,6 +101,24 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "AddGold")
+        {
+            HandleAddGold(param);
+            return;
+        }
+
+        if (cheat == "AddEnergy")
+        {
+            HandleAddEnergy(param);
+            return;
+        }
+
+        if (cheat == "AddActions")
+        {
+            HandleAddActions(param);
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -198,6 +216,21 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         }
 
         Globals.m_testSpawnEnemyUnit = newEnemy;
+    }
+
+    private void HandleAddGold(string param)
+    {
+        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(int.Parse(param)));
+    }
+
+    private void HandleAddEnergy(string param)
+    {
+        GameHelper.GetPlayer().AddEnergy(int.Parse(param));
+    }
+
+    private void HandleAddActions(string param)
+    {
+        GameHelper.GetPlayer().AddBonusActions(int.Parse(param));
     }
 
     private void HandleEndWave()
