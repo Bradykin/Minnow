@@ -46,6 +46,25 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
         m_optionThree.gameObject.SetActive(false);
     }
 
+    public void ResetStarterCardInit()
+    {
+        m_basicUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName), UICard.CardDisplayType.StarterTypeSelect);
+        m_advancedUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName), UICard.CardDisplayType.StarterTypeSelect);
+        m_damageSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName), UICard.CardDisplayType.StarterTypeSelect);
+        m_defensiveSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName), UICard.CardDisplayType.StarterTypeSelect);
+        m_exileSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterExileSpellName), UICard.CardDisplayType.StarterTypeSelect);
+
+        m_basicUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.BasicUnit);
+        m_advancedUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.AdvancedUnit);
+        m_damageSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.DamageSpell);
+        m_defensiveSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.DefensiveSpell);
+        m_exileSpell.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.ExileSpell);
+
+        m_optionOne.gameObject.SetActive(false);
+        m_optionTwo.gameObject.SetActive(false);
+        m_optionThree.gameObject.SetActive(false);
+    }
+
     public void SetCurSelectedType(StarterCardType type)
     {
         m_curSelectedType = type;

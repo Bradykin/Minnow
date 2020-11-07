@@ -17,7 +17,16 @@ public class UIDebugSettingClearAccountDataButton : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Alex, clear account data here
+        PlayerDataManager.ClearPlayerAccountData();
+
+        Files.ClearPlayerAccountData();
+
+        if (Constants.DebugRandomStarterLevels)
+        {
+            PlayerDataManager.RandomizeStarterCardLevels();
+        }
+
+        UIStarterCardSelectionController.Instance.ResetStarterCardInit();
 
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
     }
