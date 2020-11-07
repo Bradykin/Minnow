@@ -24,7 +24,7 @@ public static class GameMetaprogressionUnlocksDataManager
         GameCard lizardSoldierCard = new ContentLizardSoldierCard();
         GameCard undeadMammothCard = new ContentUndeadMammothCard();
 
-        GameCard wingedSerpentCard = new ContentSandwalkerCard();
+        GameCard sandwalkerCard = new ContentSandwalkerCard();
         GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
 
         GameCard cureWoundsCard = new ContentCureWoundsCard();
@@ -37,7 +37,7 @@ public static class GameMetaprogressionUnlocksDataManager
         GameCard optimizeCard = new ContentOptimizeCard(); //nmartino add optimize to a map (need 5 more maps + final map)
 
         FillMapData(deltaMap.m_id, lizardSoldierCard);
-        FillMapData(mountainPass.m_id, wingedSerpentCard);
+        FillMapData(mountainPass.m_id, sandwalkerCard);
         FillMapData(crimsonIslandsMap.m_id, cureWoundsCard);
         FillMapData(snowmeltMap.m_id, drainingBoltCard);
         FillMapData(desertPassMap.m_id, staminaTrainingCard);

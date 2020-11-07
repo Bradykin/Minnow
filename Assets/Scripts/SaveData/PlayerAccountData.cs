@@ -15,6 +15,8 @@ public class PlayerAccountData
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
 
+    public Dictionary<string, int> m_starterCardUnlockLevels;
+
     public int m_playerExperience;
     public int m_numPlaySessions;
 
@@ -25,6 +27,7 @@ public class PlayerAccountData
     public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
+        m_starterCardUnlockLevels = new Dictionary<string, int>();
     }
 
     public void SaveRunData()

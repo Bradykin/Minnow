@@ -40,7 +40,7 @@ public class ContentAlphaBoar : GameUnit
         {
             m_power = 10;
             m_maxStamina = 6;
-            AddKeyword(new GameEnrageKeyword(new GameGainEnergyAction(1)));
+            AddKeyword(new GameEnrageKeyword(new GameGainEnergyAction(1)), false);
         }
     }
 }

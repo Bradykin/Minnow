@@ -1775,6 +1775,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int GetUnitLevel()
     {
+        if (m_rarity == GameRarity.Starter)
+        {
+            if (PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels.ContainsKey(GetBaseName()))
+            {
+                return PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels[GetBaseName()];
+            }
+            else
+            {
+                return 0;
+            }
+        }
         //TODO: alex - Hook this up to player save data.
 
         return 0;

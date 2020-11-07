@@ -66,11 +66,14 @@ public static class Constants
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;
-    public static bool DebugSeeAllThroughFog = false;
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
+    public static bool DebugSeeAllThroughFog = false;
+    public static bool DebugRandomStarterLevels = true;
 #else
     public static bool CheatsOn = false;
+    public static bool DebugSeeAllThroughFog = false;
+    public static bool DebugRandomStarterLevels = false;
 #endif
     public static bool SteppedOutEnemyTurnsCameraFollowMovement = true;
     public static int SteppedOutEnemyTurnsCameraFollowThreshold = 3;
