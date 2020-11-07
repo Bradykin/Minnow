@@ -25,8 +25,22 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     public void TriggerCheat(string msg)
     {
-        string cheat = msg.Substring(0, msg.IndexOf(" "));
-        string param = msg.Substring(msg.IndexOf(" ") + 1);
+        string cheat = "";
+        int indexOfSpace = msg.IndexOf(" ");
+        if (indexOfSpace > 0)
+        {
+            cheat = msg.Substring(0, msg.IndexOf(" "));
+        }
+        else
+        {
+            cheat = msg;
+        }
+        string param = "";
+        int paramIndex = msg.IndexOf(" ") + 1;
+        if (paramIndex > 0)
+        {
+            param = msg.Substring(paramIndex);
+        }
 
         HandleCheats(cheat, param);
     }
