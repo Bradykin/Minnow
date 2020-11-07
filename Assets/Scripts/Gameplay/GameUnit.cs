@@ -45,6 +45,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public Sprite m_iconWhite;
     protected string m_customName;
     protected Vector3 m_worldTilePositionAdjustment = new Vector3(0,0,0);
+    protected bool m_usesBigTooltip;
 
     //Special functionality
     public bool m_instantWaterMovement;
@@ -1272,6 +1273,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public int GetCurHealth()
     {
         return m_curHealth;
+    }
+
+    public bool UsesBigTooltip()
+    {
+        return m_usesBigTooltip;
     }
 
     public int GetMaxHealth()

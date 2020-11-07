@@ -307,7 +307,14 @@ public class WorldUnit : MonoBehaviour
     {
         if (Globals.m_canSelect)
         {
-            UIHelper.CreateUnitTooltip(GetUnit());
+            if (GetUnit().UsesBigTooltip())
+            {
+                UIHelper.CreateBigUnitTooltip(GetUnit());
+            }
+            else
+            {
+                UIHelper.CreateUnitTooltip(GetUnit());
+            }
         }
     }
 }

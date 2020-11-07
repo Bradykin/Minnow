@@ -600,9 +600,31 @@ public static class UIHelper
         CreateCardTooltip(cardFromUnit, secondStack);
     }
 
+    public static void CreateBigUnitTooltip(GameUnit unit, bool secondStack = false)
+    {
+        GameCard cardFromUnit = GameCardFactory.GetCardFromUnit(unit);
+        CreateBigCardTooltip(cardFromUnit, secondStack);
+    }
+
     public static void CreateCardTooltip(GameCard toShow, bool secondStack = false)
     {
         UICard obj = FactoryManager.Instance.GetFactory<UICardTooltipFactory>().CreateObject<UICard>(toShow, UICard.CardDisplayType.Tooltip);
+
+        if (secondStack)
+        {
+            UITooltipController.Instance.AddTooltipToSecondStack(obj.GetCardTooltip());
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(obj.GetCardTooltip());
+        }
+    }
+
+    public static void CreateBigCardTooltip(GameCard toShow, bool secondStack = false)
+    {
+        UICardBigTooltipFactory fact = FactoryManager.Instance.GetFactory<UICardBigTooltipFactory>();
+
+        UICard obj = fact.CreateObject<UICard>(toShow, UICard.CardDisplayType.Tooltip);
 
         if (secondStack)
         {
