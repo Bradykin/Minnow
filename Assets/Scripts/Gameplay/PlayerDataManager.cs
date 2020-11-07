@@ -117,6 +117,15 @@ public static class PlayerDataManager
             {
                 PlayerAccountData.m_mapChaosLevels[mapID] = curChaos;
             }
+
+            if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+            {
+                PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
+            }
+            else
+            {
+                PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+            }
         }
 
         int curLevel = GetCurLevel();
