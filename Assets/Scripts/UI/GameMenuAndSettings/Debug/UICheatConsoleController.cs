@@ -51,7 +51,19 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
-        Debug.Log(cheat + " is an invalid cheat command.");
+        if (cheat == "ToggleDebugSeeAllThroughFog")
+        {
+            ToggleDebugSeeAllThroughFog();
+            return;
+        }
+
+        if (cheat == "SetDebugRandomStarterLevels")
+        {
+            SetDebugRandomStarterLevels(param);
+            return;
+        }
+
+        Debug.Log($"{cheat} is an invalid cheat command.");
     }
 
 
@@ -61,7 +73,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         GameRelic newRelic = GameRelicFactory.GetRelicByName(param);
         if (newRelic == null)
         {
-            Debug.Log(param + " is an invalid relic name.");
+            Debug.Log($"{param} is an invalid relic name.");
             return;
         }
 
@@ -73,7 +85,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         GameCard newCard = GameCardFactory.GetCardByName(param);
         if (newCard == null)
         {
-            Debug.Log(param + " is an invalid card name.");
+            Debug.Log($"{param} is an invalid card name.");
             return;
         }
 
@@ -92,5 +104,27 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         }
 
         UIStarterCardSelectionController.Instance.ResetStarterCardInit();
+    }
+
+    private void ToggleDebugSeeAllThroughFog()
+    {
+        Constants.DebugSeeAllThroughFog = !Constants.DebugSeeAllThroughFog;
+    }
+
+    private void SetDebugRandomStarterLevels(string param)
+    {
+        if (param == "True")
+        {
+            Constants.DebugRandomStarterLevels = true;
+            return;
+        }
+
+        if (param == "false")
+        {
+            Constants.DebugRandomStarterLevels = false;
+            return;
+        }
+
+        Debug.Log($"{param} is an invalid input, must be True or False");
     }
 }
