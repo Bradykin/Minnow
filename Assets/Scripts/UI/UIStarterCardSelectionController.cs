@@ -29,11 +29,11 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
 
     void Start()
     {
-        m_basicUnit.Init(GamePlayer.StarterSimpleUnit, UICard.CardDisplayType.StarterTypeSelect);
-        m_advancedUnit.Init(GamePlayer.StarterAdvancedUnit, UICard.CardDisplayType.StarterTypeSelect);
-        m_damageSpell.Init(GamePlayer.StarterDamageSpell, UICard.CardDisplayType.StarterTypeSelect);
-        m_defensiveSpell.Init(GamePlayer.StarterDefensiveSpell, UICard.CardDisplayType.StarterTypeSelect);
-        m_exileSpell.Init(GamePlayer.StarterExileSpell, UICard.CardDisplayType.StarterTypeSelect);
+        m_basicUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName), UICard.CardDisplayType.StarterTypeSelect);
+        m_advancedUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName), UICard.CardDisplayType.StarterTypeSelect);
+        m_damageSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName), UICard.CardDisplayType.StarterTypeSelect);
+        m_defensiveSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName), UICard.CardDisplayType.StarterTypeSelect);
+        m_exileSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterExileSpellName), UICard.CardDisplayType.StarterTypeSelect);
 
         m_basicUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.BasicUnit);
         m_advancedUnit.gameObject.AddComponent<UICardStarterTypeSelect>().Init(StarterCardType.AdvancedUnit);
@@ -128,28 +128,28 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
     {
         if (type == StarterCardType.BasicUnit)
         {
-            GamePlayer.StarterSimpleUnit = card;
-            m_basicUnit.Init(GamePlayer.StarterSimpleUnit, UICard.CardDisplayType.StarterTypeSelect);
+            PlayerDataManager.PlayerAccountData.StarterSimpleUnitName = card.GetBaseName();
+            m_basicUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName), UICard.CardDisplayType.StarterTypeSelect);
         }
         else if (type == StarterCardType.AdvancedUnit)
         {
-            GamePlayer.StarterAdvancedUnit = card;
-            m_advancedUnit.Init(GamePlayer.StarterAdvancedUnit, UICard.CardDisplayType.StarterTypeSelect);
+            PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName = card.GetBaseName();
+            m_advancedUnit.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName), UICard.CardDisplayType.StarterTypeSelect);
         }
         else if (type == StarterCardType.DamageSpell)
         {
-            GamePlayer.StarterDamageSpell = card;
-            m_damageSpell.Init(GamePlayer.StarterDamageSpell, UICard.CardDisplayType.StarterTypeSelect);
+            PlayerDataManager.PlayerAccountData.StarterDamageSpellName = card.GetBaseName();
+            m_damageSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName), UICard.CardDisplayType.StarterTypeSelect);
         }
         else if (type == StarterCardType.DefensiveSpell)
         {
-            GamePlayer.StarterDefensiveSpell = card;
-            m_defensiveSpell.Init(GamePlayer.StarterDefensiveSpell, UICard.CardDisplayType.StarterTypeSelect);
+            PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName = card.GetBaseName();
+            m_defensiveSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName), UICard.CardDisplayType.StarterTypeSelect);
         }
         else if (type == StarterCardType.ExileSpell)
         {
-            GamePlayer.StarterExileSpell = card;
-            m_exileSpell.Init(GamePlayer.StarterExileSpell, UICard.CardDisplayType.StarterTypeSelect);
+            PlayerDataManager.PlayerAccountData.StarterExileSpellName = card.GetBaseName();
+            m_exileSpell.Init(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterExileSpellName), UICard.CardDisplayType.StarterTypeSelect);
         }
     }
 }

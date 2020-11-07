@@ -30,23 +30,23 @@ public class UICardStarterSelect : MonoBehaviour
 
         if (m_cardType == UIStarterCardSelectionController.StarterCardType.BasicUnit)
         {
-            isSelected = GamePlayer.StarterSimpleUnit.GetName() == m_uiCard.m_card.GetName();
+            isSelected = PlayerDataManager.PlayerAccountData.StarterSimpleUnitName == m_uiCard.m_card.GetName();
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.AdvancedUnit)
         {
-            isSelected = GamePlayer.StarterAdvancedUnit.GetName() == m_uiCard.m_card.GetName();
+            isSelected = PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName == m_uiCard.m_card.GetName();
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.DamageSpell)
         {
-            isSelected = GamePlayer.StarterDamageSpell.GetName() == m_uiCard.m_card.GetName();
+            isSelected = PlayerDataManager.PlayerAccountData.StarterDamageSpellName == m_uiCard.m_card.GetName();
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.DefensiveSpell)
         {
-            isSelected = GamePlayer.StarterDefensiveSpell.GetName() == m_uiCard.m_card.GetName();
+            isSelected = PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName == m_uiCard.m_card.GetName();
         }
         else if (m_cardType == UIStarterCardSelectionController.StarterCardType.ExileSpell)
         {
-            isSelected = GamePlayer.StarterExileSpell.GetName() == m_uiCard.m_card.GetName();
+            isSelected = PlayerDataManager.PlayerAccountData.StarterExileSpellName == m_uiCard.m_card.GetName();
         }
 
         return isSelected;

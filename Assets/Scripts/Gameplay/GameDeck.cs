@@ -16,27 +16,27 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
     {
         for (int i = 0; i < 3; i++)
         {
-            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterSimpleUnit));
+            m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName)));
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterAdvancedUnit));
+            m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName)));
         }
 
         for (int i = 0; i < 2; i++)
         {
-            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterDamageSpell));
+            m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName)));
         }
 
         for (int i = 0; i < 2; i++)
         {
-            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterDefensiveSpell));
+            m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName)));
         }
 
         for (int i = 0; i < 1; i++)
         {
-            m_cards.Add(GameCardFactory.GetCardClone(GamePlayer.StarterExileSpell));
+            m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardWithName(PlayerDataManager.PlayerAccountData.StarterExileSpellName)));
         }
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddCards))

@@ -20,6 +20,13 @@ public class PlayerAccountData
 
     public Dictionary<string, int> m_starterCardUnlockLevels;
 
+    public string StarterSimpleUnitName = "Dwarven Soldier";
+    public string StarterAdvancedUnitName = "Alpha Boar";
+    public string StarterDamageSpellName = "Firebolt";
+    public string StarterDefensiveSpellName = "Aegis";
+    public string StarterExileSpellName = "Grow Talons";
+    public string StarterRelicName = "Mask of Ages";
+
     public int m_playerExperience;
     public int m_numPlaySessions;
 
