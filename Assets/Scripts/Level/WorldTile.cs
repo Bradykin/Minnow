@@ -200,7 +200,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else if (Globals.m_selectedIntermissionBuilding != null &&
                     Globals.m_selectedIntermissionBuilding.m_building.IsValidTerrainToPlace(GetGameTile().GetTerrain(), GetGameTile()) &&
-                    !GetGameTile().GetTerrain().IsEventTerrain() &&
                     !GetGameTile().m_isFog)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
@@ -443,15 +442,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         if (UIHelper.UIShouldBlockClick())
         {
             return;
-        }
-
-        if (m_gameTile.GetTerrain() != null && m_gameTile.GetTerrain().IsEventTerrain())
-        {
-            Globals.m_hoveredTile = this;
-        }
-        else
-        {
-            Globals.m_hoveredTile = null;
         }
 
         m_isHovered = true;

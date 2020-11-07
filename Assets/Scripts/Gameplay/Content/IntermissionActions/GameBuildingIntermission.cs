@@ -37,11 +37,6 @@ public class GameBuildingIntermission
             return false;
         }
 
-        if (gameTile.GetTerrain().IsEventTerrain())
-        {
-            return false;
-        }
-
         if (!m_building.IsValidTerrainToPlace(gameTile.GetTerrain(), gameTile))
         {
             return false;
