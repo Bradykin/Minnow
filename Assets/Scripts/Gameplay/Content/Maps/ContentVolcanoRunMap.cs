@@ -25,12 +25,12 @@ public class ContentVolcanoRunMap : GameMap
 
         if (wave == 2 || wave == 3)
         {
-            baseAmount += 2;
+            baseAmount += 1;
         }
 
         if (wave == 4 || wave == 5 || wave == 6)
         {
-            baseAmount += 4;
+            baseAmount += 2;
         }
 
         return baseAmount;

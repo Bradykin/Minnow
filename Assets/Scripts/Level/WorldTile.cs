@@ -32,6 +32,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private int m_inSpellcraftRange;
     private int m_inDefensiveBuildingRange;
 
+    public bool m_shouldAlertTint;
+
     private GameTile m_gameTile;
 
     void Start()
@@ -182,7 +184,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else
             {
-                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
+                if (m_shouldAlertTint)
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(false);
+                }
+                else if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
