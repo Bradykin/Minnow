@@ -109,22 +109,29 @@ public static class PlayerDataManager
 
         if (endType == RunEndType.Win)
         {
+            bool firstTimeCompleteChaosLevel = false;
+            
             if (!PlayerAccountData.m_mapChaosLevels.ContainsKey(mapID))
             {
                 PlayerAccountData.m_mapChaosLevels.Add(mapID, curChaos);
+                firstTimeCompleteChaosLevel = true;
             }
             else if (PlayerAccountData.m_mapChaosLevels[mapID] < curChaos)
             {
                 PlayerAccountData.m_mapChaosLevels[mapID] = curChaos;
+                firstTimeCompleteChaosLevel = true;
             }
 
-            if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+            if (firstTimeCompleteChaosLevel)
             {
-                PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
-            }
-            else
-            {
-                PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+                if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+                {
+                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
+                }
+                else
+                {
+                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+                }
             }
         }
 
