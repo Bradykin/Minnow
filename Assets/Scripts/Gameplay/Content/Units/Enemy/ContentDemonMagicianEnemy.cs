@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContentDemonMagicianEnemy : GameEnemyUnit
 {
     int m_range = 2;
-    int m_spellpowerLoseAmount = 1;
+    int m_magicPowerLoseAmount = 1;
     
     public ContentDemonMagicianEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -30,7 +30,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameLoseTempSpellpowerAction(m_spellpowerLoseAmount)), false);
+            AddKeyword(new GameMomentumKeyword(new GameLoseTempMagicPowerAction(m_magicPowerLoseAmount)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

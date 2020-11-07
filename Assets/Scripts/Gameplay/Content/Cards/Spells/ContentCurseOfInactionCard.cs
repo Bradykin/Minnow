@@ -24,13 +24,13 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Give a unit '<b>Momentum</b>: take " + m_spellEffect + spString + " damage.'\n" + GetModifiedBySpellPowerString();
+        return "Give a unit '<b>Momentum</b>: take " + m_spellEffect + mpString + " damage.'\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

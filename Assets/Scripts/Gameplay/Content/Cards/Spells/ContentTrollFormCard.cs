@@ -26,13 +26,13 @@ public class ContentTrollFormCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit gains '<b>Regen</b>: " + m_spellEffect + spString + "'.\n" + GetModifiedBySpellPowerString();
+        return "Target allied unit gains '<b>Regen</b>: " + m_spellEffect + mpString + "'.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

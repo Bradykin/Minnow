@@ -15,7 +15,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
 
@@ -24,7 +24,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "x5 benefits from Spell Power.";
+        return GetDamageDescString() + "x5 benefits from <b>Magic Power</b>.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

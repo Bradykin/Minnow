@@ -1872,7 +1872,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.GetPlayer().m_wallet.m_gold >= 10)
                 {
                     GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(10));
-                    GameHelper.GetPlayer().AddSpellPower(1);
+                    GameHelper.GetPlayer().AddMagicPower(1);
                 }
             }
 
@@ -2073,7 +2073,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentVoiceOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                player.AddSpellPower(1);
+                player.AddMagicPower(1);
             }
 
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)

@@ -21,7 +21,7 @@ public class ContentImmolationCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Forest);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

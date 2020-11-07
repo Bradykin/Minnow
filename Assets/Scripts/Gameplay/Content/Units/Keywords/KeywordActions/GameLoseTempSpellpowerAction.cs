@@ -3,38 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoseTempSpellpowerAction : GameAction
+public class GameLoseTempMagicPowerAction : GameAction
 {
     private int m_toLose;
 
-    public GameLoseTempSpellpowerAction(int toLose)
+    public GameLoseTempMagicPowerAction(int toLose)
     {
         m_toLose = toLose;
 
-        m_name = "Lose Temporary Spellpower";
+        m_name = "Lose Temporary Magic Power";
         m_actionParamType = ActionParamType.IntParam;
     }
 
     public override string GetDesc()
     {
-        return "- " + m_toLose + " spellpower until end of wave.";
+        return "- " + m_toLose + " <b>Magic Power</b> until end of wave.";
     }
 
     public override void DoAction()
     {
-        GameHelper.GetPlayer().m_tempSpellpowerIncrease -= m_toLose;
+        GameHelper.GetPlayer().m_tempMagicPowerIncrease -= m_toLose;
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameLoseTempSpellpowerAction tempAction = (GameLoseTempSpellpowerAction)toAdd;
+        GameLoseTempMagicPowerAction tempAction = (GameLoseTempMagicPowerAction)toAdd;
 
         m_toLose += tempAction.m_toLose;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameLoseTempSpellpowerAction tempAction = (GameLoseTempSpellpowerAction)toSubtract;
+        GameLoseTempMagicPowerAction tempAction = (GameLoseTempMagicPowerAction)toSubtract;
 
         m_toLose -= tempAction.m_toLose;
     }
