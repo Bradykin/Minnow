@@ -11,7 +11,15 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
     public ContentVolcanoEruptionEvent(int markerToCheck, bool onlyVolcano)
     {
         m_name = "Volcano Eruption";
-        m_desc = "Volcanoes erupt, burning the terrain and covering it with active lava. Run!";
+
+        if (onlyVolcano)
+        {
+            m_desc = "Loud noises are coming from a volcano. An eruption is coming soon!";
+        }
+        else
+        {
+            m_desc = "Volcanoes erupt, burning the terrain and covering it with lava. Run!";
+        }
 
         m_onlyVolcano = onlyVolcano;
 
