@@ -21,7 +21,7 @@ public class ContentPowerCrystalBuilding : GameBuildingBase
         m_team = Team.Enemy;
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
 

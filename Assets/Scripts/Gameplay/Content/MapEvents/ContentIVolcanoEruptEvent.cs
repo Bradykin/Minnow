@@ -24,7 +24,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
             {
                 if (gameTile.HasBuilding() && gameTile.GetBuilding().GetTeam() == Team.Player)
                 {
-                    gameTile.ClearBuilding();
+                    gameTile.GetBuilding().Die();
                 }
 
                 if (gameTile.GetTerrain().IsVolcano())

@@ -165,7 +165,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         return healing;
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         m_isDestroyed = true;
 

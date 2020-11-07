@@ -26,7 +26,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
         m_gameTile.GetWorldTile().ExpandPlaceRange(2);
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
 

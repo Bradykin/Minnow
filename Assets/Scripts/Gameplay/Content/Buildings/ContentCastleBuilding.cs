@@ -20,7 +20,7 @@ public class ContentCastleBuilding : GameBuildingBase
         LateInit();
     }
 
-    protected override void Die()
+    public override void Die()
     {
         ContentTailOfLifeRelic tailRelic = (ContentTailOfLifeRelic)(GameHelper.GetPlayer().GetRelics().GetRelic<ContentTailOfLifeRelic>());
         if (tailRelic != null && !tailRelic.HasUsed())
