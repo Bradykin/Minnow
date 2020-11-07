@@ -240,9 +240,17 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         if (fogSpawningActive)
         {
             //Try spawning at edge of fog
-            while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0)
+            int numTries = 10;
+            while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0 && numTries > 0)
             {
-                TrySpawnAtEdgeOfFog(null, tilesAtFogEdge, ref enemyCapToSpawn);
+                if (TrySpawnAtEdgeOfFog(null, tilesAtFogEdge, ref enemyCapToSpawn))
+                {
+                    numTries = 10;
+                }
+                else
+                {
+                    numTries--;
+                }
             }
         }
     }
@@ -354,16 +362,16 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return true;
     }
 
-    private void TrySpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge, ref float enemyCapToSpawn)
+    private bool TrySpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge, ref float enemyCapToSpawn)
     {
         if (newEnemyUnit == null)
         {
             newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetCurrentWaveNum());
         }
 
-        if ((enemyCapToSpawn < newEnemyUnit.m_spawningWeight && newEnemyUnit.m_spawningWeight > 1) || (enemyCapToSpawn <= 0 && newEnemyUnit.m_spawningWeight > 0))
+        if ((enemyCapToSpawn < newEnemyUnit.m_spawningWeight) || (enemyCapToSpawn <= 0 && newEnemyUnit.m_spawningWeight > 0))
         {
-            return;
+            return false;
         }
         enemyCapToSpawn -= newEnemyUnit.m_spawningWeight;
 
@@ -385,11 +393,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
             tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);
-            //Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
-            return;
+            return true;
         }
 
         Debug.Log("Spawn at Edge of fog failed to find any position to spawn in");
+        return false;
     }
 
     //============================================================================================================//
