@@ -17,7 +17,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.BackQuote))
+        if (Input.GetKeyUp(KeyCode.BackQuote) || Input.GetKeyUp(KeyCode.F2))
         {
             m_consoleHolder.SetActive(!m_consoleHolder.activeSelf);
         }
