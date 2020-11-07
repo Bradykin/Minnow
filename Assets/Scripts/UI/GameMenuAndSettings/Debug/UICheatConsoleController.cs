@@ -119,6 +119,18 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "SetCastleHealth")
+        {
+            HandleSetCastleHealth(param);
+            return;
+        }
+
+        if (cheat == "Uber")
+        {
+            HandleUber();
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -231,6 +243,21 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     private void HandleAddActions(string param)
     {
         GameHelper.GetPlayer().AddBonusActions(int.Parse(param));
+    }
+
+    private void HandleSetCastleHealth(string param)
+    {
+        GameHelper.GetPlayer().GetCastleGameTile().GetBuilding().m_maxHealth = int.Parse(param);
+        GameHelper.GetPlayer().GetCastleGameTile().GetBuilding().m_curHealth += int.Parse(param);
+    }
+
+    private void HandleUber()
+    {
+        HandleAddGold("10000");
+        HandleAddEnergy("10000");
+        HandleAddActions("10000");
+
+        HandleSetCastleHealth("10000");
     }
 
     private void HandleEndWave()
