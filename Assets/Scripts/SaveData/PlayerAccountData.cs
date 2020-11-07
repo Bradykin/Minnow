@@ -15,7 +15,17 @@ public class PlayerAccountData
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
 
+    //Key = map ID, value = most recent chaos hovered on this map in menu
+    public Dictionary<int, int> m_mapChaosUIAutoset;
+
     public Dictionary<string, int> m_starterCardUnlockLevels;
+
+    public string StarterSimpleUnitName = "Dwarven Soldier";
+    public string StarterAdvancedUnitName = "Alpha Boar";
+    public string StarterDamageSpellName = "Firebolt";
+    public string StarterDefensiveSpellName = "Aegis";
+    public string StarterExileSpellName = "Grow Talons";
+    public string StarterRelicName = "Mask of Ages";
 
     public int m_playerExperience;
     public int m_numPlaySessions;
@@ -27,6 +37,7 @@ public class PlayerAccountData
     public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
+        m_mapChaosUIAutoset = new Dictionary<int, int>();
         m_starterCardUnlockLevels = new Dictionary<string, int>();
     }
 

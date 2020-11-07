@@ -11,6 +11,9 @@ public struct JsonGameControllerData
 
     public int randomSeed;
 
+    public int numRareUnitOptionsOffered;
+    public int previousRareUnitOptionWave;
+
     public bool savedInIntermission;
     public JsonGameCardData jsonIntermissionCardDataOne;
     public JsonGameCardData jsonIntermissionCardDataTwo;

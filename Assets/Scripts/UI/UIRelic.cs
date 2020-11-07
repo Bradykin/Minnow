@@ -24,7 +24,7 @@ public class UIRelic : UIElementBase
     {
         if (m_selectionType == RelicSelectionType.SelectStarter)
         {
-            if (GamePlayer.StarterRelic.GetName() == m_relic.GetName())
+            if (PlayerDataManager.PlayerAccountData.StarterRelicName == m_relic.GetName())
             {
                 m_tintImage.color = UIHelper.GetSelectTintColor(true);
             }
@@ -70,7 +70,7 @@ public class UIRelic : UIElementBase
 
         if (m_selectionType == RelicSelectionType.SelectStarter)
         {
-            GamePlayer.StarterRelic = m_relic;
+            PlayerDataManager.PlayerAccountData.StarterRelicName = m_relic.GetBaseName();
             AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
         }
     }

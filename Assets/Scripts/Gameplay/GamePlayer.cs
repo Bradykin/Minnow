@@ -6,13 +6,6 @@ using UnityEngine;
 
 public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlayerData>
 {
-    public static GameCard StarterSimpleUnit = new ContentDwarvenSoldierCard();
-    public static GameCard StarterAdvancedUnit = new ContentAlphaBoarCard();
-    public static GameCard StarterDamageSpell = new ContentFireboltCard();
-    public static GameCard StarterDefensiveSpell = new ContentAegisCard();
-    public static GameCard StarterExileSpell = new ContentGrowTalonsCard();
-    public static GameRelic StarterRelic = new ContentMaskOfAgesRelic();
-
     public int m_curEnergy;
     private int m_maxEnergy;
 
@@ -126,7 +119,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_curDeck.Shuffle();
 
-        AddRelic(GameRelicFactory.GetGameRelicClone(StarterRelic));
+        AddRelic(GameRelicFactory.GetRelicWithName(PlayerDataManager.PlayerAccountData.StarterRelicName));
     }
 
     public void DrawHand()

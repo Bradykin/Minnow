@@ -109,13 +109,29 @@ public static class PlayerDataManager
 
         if (endType == RunEndType.Win)
         {
+            bool firstTimeCompleteChaosLevel = false;
+            
             if (!PlayerAccountData.m_mapChaosLevels.ContainsKey(mapID))
             {
                 PlayerAccountData.m_mapChaosLevels.Add(mapID, curChaos);
+                firstTimeCompleteChaosLevel = true;
             }
             else if (PlayerAccountData.m_mapChaosLevels[mapID] < curChaos)
             {
                 PlayerAccountData.m_mapChaosLevels[mapID] = curChaos;
+                firstTimeCompleteChaosLevel = true;
+            }
+
+            if (firstTimeCompleteChaosLevel)
+            {
+                if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+                {
+                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
+                }
+                else
+                {
+                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+                }
             }
         }
 
@@ -130,5 +146,58 @@ public static class PlayerDataManager
                 List<GameCard> newCardUnlocks = GameCardFactory.GetTotalCardList().Where(c => c.GetPlayerUnlockLevel() == i).ToList();
             }
         }
+    }
+
+    public static void ClearPlayerAccountData()
+    {
+        PlayerAccountData = null;
+    }
+
+    public static void RandomizeStarterCardLevels()
+    {
+        Debug.LogWarning("Randomizing all starter card levels");
+
+        PlayerAccountData.m_starterCardUnlockLevels.Clear();
+
+        GameCard alphaBoarCard = new ContentAlphaBoarCard();
+        GameCard lizardSoldierCard = new ContentLizardSoldierCard();
+        GameCard undeadMammothCard = new ContentUndeadMammothCard();
+
+        GameCard dwarvenSoldierCard = new ContentDwarvenSoldierCard();
+        GameCard sandwalkerCard = new ContentSandwalkerCard();
+        GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
+
+        GameCard aegisCard = new ContentAegisCard();
+        GameCard cureWoundsCard = new ContentCureWoundsCard();
+        GameCard joltCard = new ContentJoltCard();
+
+        GameCard fireboltCard = new ContentFireboltCard();
+        GameCard drainingBoltCard = new ContentDrainingBoltCard();
+        GameCard weakeningBoltCard = new ContentWeakeningBoltCard();
+
+        GameCard growTalonsCard = new ContentGrowTalonsCard();
+        GameCard staminaTrainingCard = new ContentStaminaTrainingCard();
+        GameCard optimizeCard = new ContentOptimizeCard();
+
+
+        PlayerAccountData.m_starterCardUnlockLevels.Add(alphaBoarCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(lizardSoldierCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(undeadMammothCard.GetBaseName(), Random.Range(0, 3));
+
+        PlayerAccountData.m_starterCardUnlockLevels.Add(dwarvenSoldierCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(sandwalkerCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(mechanizedBeastCard.GetBaseName(), Random.Range(0, 3));
+
+        PlayerAccountData.m_starterCardUnlockLevels.Add(aegisCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(cureWoundsCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(joltCard.GetBaseName(), Random.Range(0, 3));
+
+        PlayerAccountData.m_starterCardUnlockLevels.Add(fireboltCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(drainingBoltCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(weakeningBoltCard.GetBaseName(), Random.Range(0, 3));
+
+        PlayerAccountData.m_starterCardUnlockLevels.Add(growTalonsCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(staminaTrainingCard.GetBaseName(), Random.Range(0, 3));
+        PlayerAccountData.m_starterCardUnlockLevels.Add(optimizeCard.GetBaseName(), Random.Range(0, 3));
     }
 }

@@ -248,6 +248,24 @@ public static class GameCardFactory
         }
     }
 
+    public static GameElementBase.GameRarity GetRandomRarity()
+    {
+        float random = UnityEngine.Random.Range(0.0f, 100.0f);
+
+        if (random <= Constants.PercentChanceForRareCard)
+        {
+            return GameElementBase.GameRarity.Rare;
+        }
+        else if (random <= Constants.PercentChanceForRareCard + Constants.PercentChanceForUncommonCard)
+        {
+            return GameElementBase.GameRarity.Uncommon;
+        }
+        else
+        {
+            return GameElementBase.GameRarity.Common;
+        }
+    }
+
     public static GameCard GetRandomStandardCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
@@ -528,6 +546,21 @@ public static class GameCardFactory
 
         GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
         newCard.LoadFromJson(jsonData);
+
+        return newCard;
+    }
+
+
+    public static GameCard GetCardWithName(string cardName)
+    {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
+        int i = m_cards.FindIndex(t => t.GetBaseName() == cardName);
+
+        GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
 
         return newCard;
     }
