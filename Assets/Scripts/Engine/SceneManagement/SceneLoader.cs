@@ -10,10 +10,7 @@ namespace Game.Util
     {
         private static readonly Dictionary<string, SceneRoot> SCENES = new Dictionary<string, SceneRoot>
         {
-            { "MainMenuScene", null },
             { "LevelScene", null },
-            { "AlexTestScene", null },
-            { "NickTestScene", null },
             { "LevelSelectScene", null },
             { "LevelCreatorScene", null }
         };

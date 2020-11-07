@@ -240,7 +240,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         if (fogSpawningActive)
         {
             //Try spawning at edge of fog
-            while (enemyCapToSpawn > 0)
+            while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0)
             {
                 TrySpawnAtEdgeOfFog(null, tilesAtFogEdge, ref enemyCapToSpawn);
             }
@@ -371,16 +371,25 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         {
             int curTileIndex = UnityEngine.Random.Range(0, tilesAtFogEdge.Count);
 
-            if (!tilesAtFogEdge[curTileIndex].IsOccupied() && tilesAtFogEdge[curTileIndex].IsPassable(newEnemyUnit, false))
+            if (tilesAtFogEdge[curTileIndex].IsOccupied())
             {
-                tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
-                m_controlledUnits.Add(newEnemyUnit);
-                //Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
-                return;
+                tilesAtFogEdge.RemoveAt(curTileIndex);
+                continue;
             }
+
+            if (!tilesAtFogEdge[curTileIndex].IsPassable(newEnemyUnit, false))
+            {
+                tilesAtFogEdge.RemoveAt(curTileIndex);
+                continue;
+            }
+
+            tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
+            m_controlledUnits.Add(newEnemyUnit);
+            //Debug.Log("SPAWN " + newEnemyUnit + " AT FOG EDGE");
+            return;
         }
 
-        Debug.LogError("Spawn at Edge of fog failed to find any position to spawn in");
+        Debug.Log("Spawn at Edge of fog failed to find any position to spawn in");
     }
 
     //============================================================================================================//
