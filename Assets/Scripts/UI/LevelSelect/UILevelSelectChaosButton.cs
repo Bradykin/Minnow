@@ -34,6 +34,16 @@ public class UILevelSelectChaosButton : UIElementBase
             Globals.m_curChaos--;
         }
 
+
+        if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(UILevelSelectController.Instance.m_curMap.m_id))
+        {
+            PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[UILevelSelectController.Instance.m_curMap.m_id] = Globals.m_curChaos;
+        }
+        else
+        {
+            PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(UILevelSelectController.Instance.m_curMap.m_id, Globals.m_curChaos);
+        }
+
         HandleTooltip();
     }
 

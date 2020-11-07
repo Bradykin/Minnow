@@ -56,6 +56,23 @@ public class UILevelSelectButton : MonoBehaviour
             UICameraController.Instance.SmoothCameraTransitionToGameObject(gameObject);
 
             AudioBackgroundController.Instance.StartBackgroundMusic(m_map);
+
+            if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(m_id))
+            {
+                Globals.m_curChaos = PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[m_id];
+            }
+            else
+            {
+                if (m_id == 0)
+                {
+                    Globals.m_curChaos = 0;
+                }
+                else
+                {
+                    Globals.m_curChaos = 1;
+                }
+                PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(m_id, Globals.m_curChaos);
+            }
         }
     }
 
