@@ -1071,6 +1071,24 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword(new GameRangeKeyword(1));
         }
 
+        if (m_gameTile != null)
+        {
+            int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
+
+            if (terrainRange > 0)
+            {
+                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+                {
+                    terrainRange += terrainRange * 2;
+                }
+
+                if (toReturn != null && toReturn.m_range > 0)
+                {
+                    toReturn.AddKeyword(new GameRangeKeyword(terrainRange));
+                }
+            }
+        }
+
         //If the return keyword is still blank, set it to null
         if (toReturn.m_range == 0)
         {
@@ -1137,21 +1155,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameRangeKeyword rangeKeyword = GetRangeKeyword();
         if (rangeKeyword != null)
         {
-            int range = rangeKeyword.m_range;
-
-            if (m_gameTile != null)
-            {
-                int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
-
-                if (terrainRange > 0 && GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-                {
-                    terrainRange += terrainRange * 2;
-                }
-                
-                range += terrainRange;
-            }
-
-            return range;
+            return rangeKeyword.m_range;
         }
 
         return 1;
