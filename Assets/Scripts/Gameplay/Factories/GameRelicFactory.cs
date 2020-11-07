@@ -270,15 +270,6 @@ public static class GameRelicFactory
         return newList;
     }
 
-    public static GameRelic GetRelicWithName(string relicName)
-    {
-        int i = m_relics.FindIndex(t => t.GetBaseName() == relicName);
-
-        GameRelic newRelic = (GameRelic)Activator.CreateInstance(m_relics[i].GetType());
-
-        return newRelic;
-    }
-
     public static GameRelic GetGameRelicClone(GameRelic toClone)
     {
         return (GameRelic)Activator.CreateInstance(toClone.GetType());

@@ -550,21 +550,6 @@ public static class GameCardFactory
         return newCard;
     }
 
-
-    public static GameCard GetCardWithName(string cardName)
-    {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
-        int i = m_cards.FindIndex(t => t.GetBaseName() == cardName);
-
-        GameCard newCard = (GameCard)Activator.CreateInstance(m_cards[i].GetType());
-
-        return newCard;
-    }
-
     public static List<GameCard> GetTotalCardList()
     {
         if (!m_hasInit)
@@ -577,6 +562,11 @@ public static class GameCardFactory
 
     public static GameCard GetCardByName(string name)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         for (int i = 0; i < m_cards.Count; i++)
         {
             if (m_cards[i].GetName() == name)
