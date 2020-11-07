@@ -119,6 +119,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "RemoveActions")
+        {
+            HandleRemoveActions(param);
+            return;
+        }
+
         if (cheat == "SetCastleHealth")
         {
             HandleSetCastleHealth(param);
@@ -245,6 +251,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         GameHelper.GetPlayer().AddBonusActions(int.Parse(param));
     }
 
+    private void HandleRemoveActions(string param)
+    {
+        GameHelper.GetPlayer().SpendActions(int.Parse(param));
+    }
+
     private void HandleSetCastleHealth(string param)
     {
         GameHelper.GetPlayer().GetCastleGameTile().GetBuilding().m_maxHealth = int.Parse(param);
@@ -255,7 +266,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     {
         HandleAddGold("10000");
         HandleAddEnergy("10000");
-        HandleAddActions("10000");
+        HandleAddActions("10");
 
         HandleSetCastleHealth("10000");
     }

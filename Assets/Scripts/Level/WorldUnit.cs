@@ -219,7 +219,7 @@ public class WorldUnit : MonoBehaviour
             AudioHelper.PlaySFX(AudioHelper.WorldUnitHover);
         }
 
-        if (!m_isShowingTooltip)
+        if (!m_isShowingTooltip && !GetUnit().GetGameTile().m_isFog)
         {
             HandleTooltip();
 
