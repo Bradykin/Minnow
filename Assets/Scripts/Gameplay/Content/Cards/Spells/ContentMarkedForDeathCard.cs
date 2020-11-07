@@ -22,7 +22,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Brittle);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
@@ -30,7 +30,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedBySpellPowerString();
+        return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

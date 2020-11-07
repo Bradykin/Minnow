@@ -20,19 +20,19 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
         if (GetCardLevel() >= 2)
         {
-            return "Give an allied unit +" + m_spellEffect + spString + " max Stamina.\nFill the target's Stamina.\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+            return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\nFill the target's Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
         }
         else
         {
-            return "Give an allied unit +" + m_spellEffect + spString + " max Stamina.\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+            return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
         }
     }
 

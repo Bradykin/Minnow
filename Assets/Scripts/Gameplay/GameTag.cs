@@ -9,7 +9,7 @@ public class GameTag
         Humanoid,
         Monster,
         Creation,
-        Spellpower,
+        MagicPower,
         Reanimate,
         StaminaRegen,
         MaxStamina,

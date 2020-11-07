@@ -6,14 +6,14 @@ using UnityEngine;
 public class ContentWizardTowerBuilding : GameBuildingBase
 {
     public int m_power = 5;
-    public int m_spellPowerMultiplier = 20;
+    public int m_magicPowerMultiplier = 20;
 
     public ContentWizardTowerBuilding()
     {
         m_range = 4;
 
         m_name = "Wizard Tower";
-        m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_spellPowerMultiplier + " times your amount of spellpower at the start of your turn.";
+        m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b> at the start of your turn.";
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 
@@ -46,14 +46,14 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.m_occupyingUnit.GetCurHealth() == highestHealthAmount);
 
         GamePlayer player = GameHelper.GetPlayer();
-        int spellPower = 0;
+        int magicPower = 0;
 
         if (player != null)
         {
-            spellPower = player.GetSpellPower();
+            magicPower = player.GetMagicPower();
         }
 
-        highestHealthTile.m_occupyingUnit.GetHit(m_power + spellPower * m_spellPowerMultiplier);
+        highestHealthTile.m_occupyingUnit.GetHit(m_power + magicPower * m_magicPowerMultiplier);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

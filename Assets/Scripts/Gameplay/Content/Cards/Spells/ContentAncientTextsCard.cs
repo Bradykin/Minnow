@@ -20,7 +20,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_keywordHolder.AddKeyword(new GameKnowledgeableKeyword(null));
 
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
@@ -28,13 +28,13 @@ public class ContentAncientTextsCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Trigger <b>Knowledgeable</b> " + m_spellEffect + spString + " times.\n" + GetModifiedBySpellPowerString();
+        return "Trigger <b>Knowledgeable</b> " + m_spellEffect + mpString + " times.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard()

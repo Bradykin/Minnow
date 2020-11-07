@@ -18,13 +18,19 @@ public class ContentLivingBombCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Reanimate);
     }
 
     public override string GetDesc()
     {
-        return "Target unit explodes on death, dealing " + GetSpellValue() + " damage to all units in range " + m_range + ".\n" + GetModifiedBySpellPowerString();
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return "Target unit explodes on death, dealing " + GetSpellValue() + mpString + " damage to all units in range " + m_range + ".\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

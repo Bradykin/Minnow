@@ -41,6 +41,11 @@ public class GameEnemyUnit : GameUnit
         SetHealthStaminaValues();
 
         m_typeline = Typeline.Monster;
+
+        if (m_isBoss || m_isElite)
+        {
+            m_usesBigTooltip = true;
+        }
     }
 
     //============================================================================================================//

@@ -21,20 +21,20 @@ public class ContentInsightCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Trigger <b>Spellcraft</b> " + m_spellEffect + spString + " times (including the trigger from this card).\n" + GetModifiedBySpellPowerString();
+        return "Trigger <b>Spellcraft</b> " + m_spellEffect + mpString + " times (including the trigger from this card).\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard()

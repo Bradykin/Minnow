@@ -26,7 +26,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public List<GameUnit> m_controlledUnits { get; private set; }
     public List<GameBuildingBase> m_controlledBuildings { get; private set; }
 
-    private int m_spellPower = 0;
+    private int m_magicPower = 0;
 
     public bool IsUnitCastle = false;
 
@@ -44,7 +44,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public int m_spellsPlayedPreviousTurn = 0;
     public int m_spellsPlayedThisTurn = 0;
     public int m_fletchingPowerIncrease = 0;
-    public int m_tempSpellpowerIncrease = 0;
+    public int m_tempMagicPowerIncrease = 0;
     public int m_totemOfTheWolfTurn = -1;
 
     public GamePlayer()
@@ -300,9 +300,9 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_curEnergy += toAdd;
     }
 
-    public int GetSpellPower()
+    public int GetMagicPower()
     {
-        int toReturn = m_spellPower;
+        int toReturn = m_magicPower;
 
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
@@ -320,14 +320,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         {
             toReturn -= 3;
         }
-        toReturn += m_tempSpellpowerIncrease;
+        toReturn += m_tempMagicPowerIncrease;
 
         return toReturn;
     }
 
-    public void AddSpellPower(int toAdd)
+    public void AddMagicPower(int toAdd)
     {
-        m_spellPower += toAdd;
+        m_magicPower += toAdd;
     }
 
     public void AddControlledUnit(GameUnit toAdd)
@@ -622,7 +622,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             m_deckBase.GetDeck()[i].SetTempCost(0);
         }
 
-        m_tempSpellpowerIncrease = 0;
+        m_tempMagicPowerIncrease = 0;
     }
 
     public void OnBeginWave()
@@ -750,7 +750,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             spellsPlayedPreviousTurn = m_spellsPlayedPreviousTurn,
             spellsPlayedThisTurn = m_spellsPlayedThisTurn,
             fletchingPowerIncrease = m_fletchingPowerIncrease,
-            tempSpellpowerIncrease = m_tempSpellpowerIncrease,
+            tempMagicPowerIncrease = m_tempMagicPowerIncrease,
             totemOfTheWolfTurn = m_totemOfTheWolfTurn
         };
 
@@ -892,7 +892,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_spellsPlayedPreviousTurn = jsonData.spellsPlayedPreviousTurn;
         m_spellsPlayedThisTurn = jsonData.spellsPlayedThisTurn;
         m_fletchingPowerIncrease = jsonData.fletchingPowerIncrease;
-        m_tempSpellpowerIncrease = jsonData.tempSpellpowerIncrease;
+        m_tempMagicPowerIncrease = jsonData.tempMagicPowerIncrease;
         m_totemOfTheWolfTurn = jsonData.totemOfTheWolfTurn;
         m_wallet.m_gold = jsonData.goldAmount;
     }

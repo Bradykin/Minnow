@@ -45,6 +45,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public Sprite m_iconWhite;
     protected string m_customName;
     protected Vector3 m_worldTilePositionAdjustment = new Vector3(0,0,0);
+    protected bool m_usesBigTooltip;
 
     //Special functionality
     public bool m_instantWaterMovement;
@@ -245,9 +246,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         string damageReducDesc = "";
-        if (m_gameTile.GetDamageReduction(this) > 0)
+        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
+        if (damageReductionKeyword != null)
         {
-            damageReducDesc = " (Reduced by " + m_gameTile.GetDamageReduction(this) + " from " + m_gameTile.GetName() + ")";
+            damageReducDesc = " (Reduced by " + damageReductionKeyword.m_damageReduction + " from <b>Damage Reduction</b>)";
         }
 
         if (m_curHealth <= 0)
@@ -264,8 +266,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int CalculateDamageAmount(int damage)
     {
-        damage -= m_gameTile.GetDamageReduction(this);
-
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
         if (brittleKeyword != null)
         {
@@ -1070,6 +1070,24 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword(new GameRangeKeyword(1));
         }
 
+        if (m_gameTile != null)
+        {
+            int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
+
+            if (terrainRange > 0)
+            {
+                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+                {
+                    terrainRange += terrainRange * 2;
+                }
+
+                if (toReturn != null && toReturn.m_range > 0)
+                {
+                    toReturn.AddKeyword(new GameRangeKeyword(terrainRange));
+                }
+            }
+        }
+
         //If the return keyword is still blank, set it to null
         if (toReturn.m_range == 0)
         {
@@ -1116,6 +1134,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GetFlyingKeyword() == null && m_gameTile != null)
+        {
+            int terrainDamageReduction = m_gameTile.GetTerrain().m_damageReduction;
+
+            if (terrainDamageReduction > 0)
+            {
+                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+                {
+                    terrainDamageReduction += terrainDamageReduction * 2;
+                }
+
+                toReturn.AddKeyword(new GameDamageReductionKeyword(terrainDamageReduction));
+            }
+        }
+
         //If the return keyword is still blank, set it to null
         if (toReturn.m_damageReduction == 0)
         {
@@ -1136,21 +1169,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameRangeKeyword rangeKeyword = GetRangeKeyword();
         if (rangeKeyword != null)
         {
-            int range = rangeKeyword.m_range;
-
-            if (m_gameTile != null)
-            {
-                int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
-
-                if (terrainRange > 0 && GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-                {
-                    terrainRange += terrainRange * 2;
-                }
-                
-                range += terrainRange;
-            }
-
-            return range;
+            return rangeKeyword.m_range;
         }
 
         return 1;
@@ -1272,6 +1291,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public int GetCurHealth()
     {
         return m_curHealth;
+    }
+
+    public bool UsesBigTooltip()
+    {
+        return m_usesBigTooltip;
     }
 
     public int GetMaxHealth()
@@ -1859,7 +1883,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.GetPlayer().m_wallet.m_gold >= 10)
                 {
                     GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(10));
-                    GameHelper.GetPlayer().AddSpellPower(1);
+                    GameHelper.GetPlayer().AddMagicPower(1);
                 }
             }
 
@@ -2060,7 +2084,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentVoiceOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                player.AddSpellPower(1);
+                player.AddMagicPower(1);
             }
 
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)

@@ -21,7 +21,7 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.HighCost);
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Creation);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
@@ -29,13 +29,13 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Sacrifice an allied unit to draw " + m_spellEffect + spString + " card and gain " + m_spellEffect + spString + " energy.\n" + GetModifiedBySpellPowerString();
+        return "Sacrifice an allied unit to draw " + m_spellEffect + mpString + " card and gain " + m_spellEffect + mpString + " energy.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

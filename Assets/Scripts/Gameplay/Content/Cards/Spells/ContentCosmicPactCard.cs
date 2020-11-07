@@ -19,7 +19,7 @@ public class ContentCosmicPactCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;

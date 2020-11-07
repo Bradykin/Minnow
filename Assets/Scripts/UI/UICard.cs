@@ -48,7 +48,10 @@ public class UICard : MonoBehaviour
 
     void Start()
     {
-        m_tintImage.color = UIHelper.GetDefaultTintColor();
+        if (m_tintImage != null)
+        {
+            m_tintImage.color = UIHelper.GetDefaultTintColor();
+        }
     }
 
     public void Init(GameCard card, CardDisplayType displayType)
@@ -98,13 +101,19 @@ public class UICard : MonoBehaviour
     {
         if (ShouldShowSelectedTint())
         {
-            m_tintImage.color = UIHelper.GetSelectTintColor(true);
+            if (m_tintImage != null)
+            {
+                m_tintImage.color = UIHelper.GetSelectTintColor(true);
+            }
         }
         else
         {
             if (!m_isHovered)
             {
-                m_tintImage.color = UIHelper.GetSelectTintColor(false);
+                if (m_tintImage != null)
+                {
+                    m_tintImage.color = UIHelper.GetSelectTintColor(false);
+                }
             }
         }
 
@@ -120,11 +129,17 @@ public class UICard : MonoBehaviour
 
         m_image.sprite = m_card.m_icon;
         m_nameText.text = m_card.GetName();
-        m_costText.text = m_card.GetCost() + "";
+        if (m_costText != null)
+        {
+            m_costText.text = m_card.GetCost() + "";
+        }
         m_typelineText.text = m_card.GetTypeline();
         m_descText.text = m_card.GetDesc();
 
-        m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
+        if (m_rarityImage != null)
+        {
+            m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
+        }
 
         if (m_unitCard != null)
         {
@@ -153,11 +168,17 @@ public class UICard : MonoBehaviour
         {
             if (m_displayType == CardDisplayType.Hand)
             {
-                m_tintImage.color = UIHelper.GetValidTintColor(m_card.IsValidToPlay());
+                if (m_tintImage != null)
+                {
+                    m_tintImage.color = UIHelper.GetValidTintColor(m_card.IsValidToPlay());
+                }
             }
             else
             {
-                m_tintImage.color = UIHelper.GetValidTintColor(true);
+                if (m_tintImage != null)
+                {
+                    m_tintImage.color = UIHelper.GetValidTintColor(true);
+                }
             }
         }
 
@@ -171,7 +192,10 @@ public class UICard : MonoBehaviour
 
         if (!ShouldShowSelectedTint())
         {
-            m_tintImage.color = UIHelper.GetDefaultTintColor();
+            if (m_tintImage != null)
+            {
+                m_tintImage.color = UIHelper.GetDefaultTintColor();
+            }
         }
 
         Globals.m_hoveredCard = null;

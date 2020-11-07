@@ -20,19 +20,19 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
         if (GetCardLevel() >= 2)
         {
-            return "Give an allied unit +" + m_spellEffect + spString + "/+" + m_spellEffect + spString + ".\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+            return "Give an allied unit +" + m_spellEffect + mpString + "/+" + m_spellEffect + mpString + ".\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
         }
         else
         {
-            return "Give an allied unit +" + m_spellEffect + spString + "/+0.\n" + GetModifiedBySpellPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+            return "Give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
         }
     }
 

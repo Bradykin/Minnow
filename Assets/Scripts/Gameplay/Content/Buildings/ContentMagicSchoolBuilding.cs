@@ -11,7 +11,7 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_magicIncrease = 1;
 
         m_name = "Magic School";
-        m_desc = "Train your spellcasters to increase spell power by " + m_magicIncrease + ".";
+        m_desc = "Train your spellcasters to increase <b>Magic Power</b> by " + m_magicIncrease + ".";
         m_rarity = GameRarity.Uncommon;
         m_buildingType = BuildingType.Economic;
 

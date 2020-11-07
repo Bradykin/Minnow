@@ -18,7 +18,7 @@ public class ContentPurgeCard : GameCardSpellBase
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Vanilla);
     }
 
@@ -26,11 +26,11 @@ public class ContentPurgeCard : GameCardSpellBase
     {
         if (m_spellEffect != GetSpellValue())
         {
-            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedBySpellPowerString();
+            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedByMagicPowerString();
         }
         else
         {
-            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + ".\n" + GetModifiedBySpellPowerString();
+            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it gains +" + m_spellEffect + "/+" + m_spellEffect + ".\n" + GetModifiedByMagicPowerString();
         }
     }
 

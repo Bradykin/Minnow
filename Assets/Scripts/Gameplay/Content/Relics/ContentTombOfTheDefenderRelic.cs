@@ -13,7 +13,7 @@ public class ContentTombOfTheDefenderRelic : GameRelic
         LateInit();
 
         m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.Creation);
         m_tags.AddTag(GameTag.TagType.Reanimate);

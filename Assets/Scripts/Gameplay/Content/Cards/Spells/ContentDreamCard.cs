@@ -24,13 +24,13 @@ public class ContentDreamCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Draw " + m_spellEffect + spString + " cards.\n" + GetModifiedBySpellPowerString();
+        return "Draw " + m_spellEffect + mpString + " cards.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard()

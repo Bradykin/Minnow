@@ -14,7 +14,7 @@ public class ContentToolOfTheDeadmanRelic : GameRelic
 
         m_tags.AddTag(GameTag.TagType.Shiv);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.Spellpower);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
     }
 }

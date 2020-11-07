@@ -20,6 +20,8 @@ namespace Game.Util
         [SerializeField]
         private GameObject m_uiCardTooltipPrefab = null;
         [SerializeField]
+        private GameObject m_uiCardBigTooltipPrefab = null;
+        [SerializeField]
         private GameObject m_uiWorldElementNotificationPrefab = null;
         [SerializeField]
         private GameObject m_uiStaminaBubblePrefab = null;
@@ -74,6 +76,8 @@ namespace Game.Util
                     return new UICardFactory(m_uiCardPrefab, m_uiPlayerHandParent) as T;
                 case bool _ when type == typeof(UICardTooltipFactory):
                     return new UICardTooltipFactory(m_uiCardTooltipPrefab) as T;
+                case bool _ when type == typeof(UICardBigTooltipFactory):
+                    return new UICardBigTooltipFactory(m_uiCardBigTooltipPrefab) as T;
                 case bool _ when type == typeof(UIWorldElementNotificationFactory):
                     return new UIWorldElementNotificationFactory(m_uiWorldElementNotificationPrefab) as T;
                 case bool _ when type == typeof(UISimpleTooltipFactory):

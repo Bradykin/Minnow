@@ -45382,6 +45382,8 @@ MonoBehaviour:
     type: 3}
   m_uiCardTooltipPrefab: {fileID: 757981490098818967, guid: 7e83a66c522e72e42923a0ad883b8f21,
     type: 3}
+  m_uiCardBigTooltipPrefab: {fileID: 596973763979364293, guid: 151d08d228328b142a673f3adce0dfbe,
+    type: 3}
   m_uiWorldElementNotificationPrefab: {fileID: 3599552122858822999, guid: 9be644c790a93154cb9d6bd04a016df2,
     type: 3}
   m_uiStaminaBubblePrefab: {fileID: 5267820902191216698, guid: 21e4f35677c007e499b94a96b346f62d,

@@ -49,7 +49,7 @@ public class GameCardSpellBase : GameCard
 
         if (player != null)
         {
-            toReturn += player.GetSpellPower();
+            toReturn += player.GetMagicPower();
         }
 
         if (toReturn < 0)
@@ -60,29 +60,29 @@ public class GameCardSpellBase : GameCard
         return toReturn;
     }
 
-    protected string GetDamageDescString(bool useSpellpower = true)
+    protected string GetDamageDescString(bool useMagicPower = true)
     {
-        string spString = "";
-        if (useSpellpower && HasSpellPower())
+        string mpString = "";
+        if (useMagicPower && HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + spString + " damage.\n";
+        return "Deal " + m_spellEffect + mpString + " damage.\n";
     }
 
     protected string GetHealDescString()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Heal for " + m_spellEffect + spString + ".\n";
+        return "Heal for " + m_spellEffect + mpString + ".\n";
     }
 
-    protected string GetSpellPowerString()
+    protected string GetMagicPowerString()
     {
         if (GetSpellValue() == m_spellEffect)
         {
@@ -99,12 +99,12 @@ public class GameCardSpellBase : GameCard
         return true;
     }
 
-    protected string GetModifiedBySpellPowerString()
+    protected string GetModifiedByMagicPowerString()
     {
-        return "<i>(Modified by spell power)</i>";
+        return "<i>(Modified by <b>Magic Power</b>)</i>";
     }
 
-    protected bool HasSpellPower()
+    protected bool HasMagicPower()
     {
         return GetSpellValue() != m_spellEffect;
     }

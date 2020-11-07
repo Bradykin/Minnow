@@ -26,13 +26,13 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string spString = "";
-        if (HasSpellPower())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            spString = GetSpellPowerString();
+            mpString = GetMagicPowerString();
         }
 
-        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + spString + " max Stamina.\n" + GetModifiedBySpellPowerString();
+        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)
