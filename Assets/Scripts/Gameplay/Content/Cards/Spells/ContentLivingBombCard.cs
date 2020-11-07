@@ -24,7 +24,7 @@ public class ContentLivingBombCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target unit explodes on death, dealing " + GetSpellValue() + " damage to all units in range " + m_range + ".\n" + GetModifiedBySpellPowerString();
+        return "Target unit explodes on death, dealing " + GetSpellValue() + GetSpellPowerString() + " damage to all units in range " + m_range + ".\n" + GetModifiedBySpellPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)
