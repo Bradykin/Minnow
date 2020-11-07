@@ -3,45 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainResourceAction : GameAction
+public class GameGainGoldAction : GameAction
 {
-    private GameWallet m_toGain;
+    private int m_toGain;
 
-    public GameGainResourceAction(GameWallet toGain)
+    public GameGainGoldAction(int toGain)
     {
         m_toGain = toGain;
 
-        m_name = "Gain Resources";
-        m_actionParamType = ActionParamType.GameWalletParam;
+        m_name = "Gain Gold";
+        m_actionParamType = ActionParamType.IntParam;
     }
 
     public override string GetDesc()
     {
-        return "Gain " + m_toGain.ToString() + ".";
+        return $"Gain {m_toGain} Gold.";
     }
 
     public override void DoAction()
     {
-        GameHelper.GetPlayer().m_wallet.AddResources(m_toGain);
+        GameHelper.GetPlayer().m_wallet.AddGold(m_toGain);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainResourceAction tempAction = (GameGainResourceAction)toAdd;
+        GameGainGoldAction tempAction = (GameGainGoldAction)toAdd;
 
-        m_toGain.AddResources(tempAction.m_toGain);
+        m_toGain += tempAction.m_toGain;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainResourceAction tempAction = (GameGainResourceAction)toSubtract;
+        GameGainGoldAction tempAction = (GameGainGoldAction)toSubtract;
 
-        m_toGain.SubtractResources(tempAction.m_toGain);
+        m_toGain -= tempAction.m_toGain;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_toGain.m_gold <= 0;
+        return m_toGain <= 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -54,7 +54,7 @@ public class GameGainResourceAction : GameAction
         JsonActionData jsonData = new JsonActionData
         {
             name = m_name,
-            gameWalletJsonValue = JsonConvert.SerializeObject(m_toGain)
+            intValue1 = m_toGain
         };
 
         return jsonData;

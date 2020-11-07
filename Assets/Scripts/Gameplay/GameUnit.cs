@@ -1822,7 +1822,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
                     tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
-                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
+                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainGoldAction(10)));
                     tordrimKeywords.Add(new GameFlyingKeyword());
                     tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
                     tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));

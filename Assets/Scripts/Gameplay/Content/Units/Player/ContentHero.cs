@@ -19,7 +19,7 @@ public class ContentHero : GameUnit
 
         AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), false);
         AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 5)), false);
-        AddKeyword(new GameVictoriousKeyword(new GameGainResourceAction(new GameWallet(15))), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainGoldAction(15)), false);
 
         m_name = "Hero";
         m_typeline = Typeline.Humanoid;

@@ -12,7 +12,7 @@ public class ContentWildfolk : GameUnit
 
         m_keywords = new List<GameKeywordBase>();
         m_keywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
-        m_keywords.Add(new GameEnrageKeyword(new GameGainResourceAction(new GameWallet(10))));
+        m_keywords.Add(new GameEnrageKeyword(new GameGainGoldAction(10)));
         m_keywords.Add(new GameFlyingKeyword());
         m_keywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
         m_keywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));

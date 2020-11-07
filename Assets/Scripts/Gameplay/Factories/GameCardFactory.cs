@@ -569,7 +569,7 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
-            if (m_cards[i].GetName() == name)
+            if (m_cards[i].GetBaseName() == name)
             {
                 return GetCardClone(m_cards[i]);
             }
