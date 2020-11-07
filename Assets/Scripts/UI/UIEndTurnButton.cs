@@ -28,7 +28,7 @@ public class UIEndTurnButton : UIElementBase
             m_endTurnText.color = UIHelper.m_defaultColor;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (UIHelper.GetKeyDown(KeyCode.Space))
         {
             EndTurn();
         }

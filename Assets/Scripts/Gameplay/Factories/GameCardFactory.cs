@@ -541,5 +541,18 @@ public static class GameCardFactory
 
         return m_cards;
     }
+
+    public static GameCard GetCardByName(string name)
+    {
+        for (int i = 0; i < m_cards.Count; i++)
+        {
+            if (m_cards[i].GetName() == name)
+            {
+                return GetCardClone(m_cards[i]);
+            }
+        }
+
+        return null;
+    }
 }
 

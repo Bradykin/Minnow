@@ -8,7 +8,7 @@ public class AITestSpawnClass : MonoBehaviour
     {
         if (Constants.CheatsOn)
         {
-            if (Input.GetKeyDown(KeyCode.N))
+            /*if (Input.GetKeyDown(KeyCode.N))
             {
                 GameHelper.GetPlayer().AddRelic(new ContentBeadofJoyRelic());
             }
@@ -60,7 +60,7 @@ public class AITestSpawnClass : MonoBehaviour
                         Debug.Log(AIGameEnemyUnit.m_AIDebugLogs[i]);
                     }
                 }
-            }
+            }*/
         }
     }
 }

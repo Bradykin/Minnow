@@ -36,7 +36,7 @@ public class ContentSandwalker : GameUnit
 
         if (level >= 2)
         {
-            AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 2)));
+            AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 2)), false);
         }
     }
 }

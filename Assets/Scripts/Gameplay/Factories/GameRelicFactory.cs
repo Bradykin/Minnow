@@ -274,5 +274,18 @@ public static class GameRelicFactory
     {
         return (GameRelic)Activator.CreateInstance(toClone.GetType());
     }
+
+    public static GameRelic GetRelicByName(string name)
+    {
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i].GetName() == name)
+            {
+                return GetGameRelicClone(m_relics[i]);
+            }
+        }
+
+        return null;
+    }
 }
 

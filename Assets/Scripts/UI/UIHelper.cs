@@ -824,4 +824,34 @@ public static class UIHelper
 
         return true;
     }
+
+    public static bool GetKeyDown(KeyCode key)
+    {
+        if (!IsKeyValid())
+        {
+            return false;
+        }
+
+        return Input.GetKeyDown(key);
+    }
+
+    public static bool GetKey(KeyCode key)
+    {
+        if (!IsKeyValid())
+        {
+            return false;
+        }
+
+        return Input.GetKey(key);
+    }
+
+    private static bool IsKeyValid()
+    {
+        if (Constants.CheatsOn && UICheatConsoleController.Instance.m_consoleHolder.activeSelf)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

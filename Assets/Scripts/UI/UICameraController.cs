@@ -122,7 +122,7 @@ public class UICameraController : Singleton<UICameraController>
     private bool ScrollLeft()
     {
         bool mouseAtEdge = Input.mousePosition.x <= m_cameraBound && Input.mousePosition.x >= 0;
-        bool keyPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+        bool keyPressed = UIHelper.GetKey(KeyCode.A) || UIHelper.GetKey(KeyCode.LeftArrow);
         bool withinLimit = transform.position.x > m_cameraLimitLeft;
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
@@ -133,7 +133,7 @@ public class UICameraController : Singleton<UICameraController>
     private bool ScrollRight()
     {
         bool mouseAtEdge = Input.mousePosition.x >= Screen.width - m_cameraBound && Input.mousePosition.x <= Screen.width;
-        bool keyPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+        bool keyPressed = UIHelper.GetKey(KeyCode.D) || UIHelper.GetKey(KeyCode.RightArrow);
         bool withinLimit = transform.position.x < m_cameraLimitRight;
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
@@ -144,7 +144,7 @@ public class UICameraController : Singleton<UICameraController>
     private bool ScrollDown()
     {
         bool mouseAtEdge = Input.mousePosition.y <= m_cameraBound && Input.mousePosition.y >= 0;
-        bool keyPressed = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+        bool keyPressed = UIHelper.GetKey(KeyCode.S) || UIHelper.GetKey(KeyCode.DownArrow);
         bool withinLimit = transform.position.y > m_cameraLimitDown;
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;
@@ -155,7 +155,7 @@ public class UICameraController : Singleton<UICameraController>
     private bool ScrollUp()
     {
         bool mouseAtEdge = Input.mousePosition.y >= Screen.height - m_cameraBound && Input.mousePosition.y <= Screen.height;
-        bool keyPressed = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        bool keyPressed = UIHelper.GetKey(KeyCode.W) || UIHelper.GetKey(KeyCode.UpArrow);
         bool withinLimit = transform.position.y < m_cameraLimitUp;
 
         bool edgeScrolling = mouseAtEdge && Globals.m_canScroll;

@@ -61,7 +61,7 @@ public class WorldController : Singleton<WorldController>
         
         HandlePlayerHand();
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (UIHelper.GetKeyDown(KeyCode.Q))
         {
             FocusPrevPlayerUnit();
 
@@ -71,7 +71,7 @@ public class WorldController : Singleton<WorldController>
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.E))
+        if (UIHelper.GetKeyDown(KeyCode.E))
         {
             FocusNextPlayerUnit();
         }
