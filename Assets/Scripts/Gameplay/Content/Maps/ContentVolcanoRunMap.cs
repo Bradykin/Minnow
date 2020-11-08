@@ -96,7 +96,7 @@ public class ContentVolcanoRunMap : GameMap
         List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
         //Wave 1
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 1, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.25f));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.75f));
 
         //Wave 2
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 2, 1, 1));
