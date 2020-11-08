@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLavaRhinoUnit : GameEnemyUnit
+public class ContentLavaRhinoEnemy : GameEnemyUnit
 {
-    public ContentLavaRhinoUnit(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentLavaRhinoEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 90;
         m_maxStamina = 6;
@@ -15,9 +15,6 @@ public class ContentLavaRhinoUnit : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
         m_shouldAlwaysPassEnemies = true;
-
-        m_minWave = 4;
-        m_maxWave = 6;
 
         m_name = "Lava Rhino";
         m_desc = "Can move through your units.\nWill only attack at full Stamina, and only buildings.\nCan hit buildings that have a unit on top of them.\n";

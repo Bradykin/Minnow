@@ -20,9 +20,6 @@ public class ContentSnakeEnemy : GameEnemyUnit
         m_name = "Snake";
         m_desc = "On hit, permanently give -2/-0.\n";
 
-        m_minWave = 4;
-        m_maxWave = 4;
-
         int damageShield = 2;
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

@@ -10,9 +10,6 @@ public abstract class GameMap : GameElementBase
     private List<GameMapEvent> m_mapEvents = new List<GameMapEvent>();
     private List<int> m_mapEventTriggerWaves = new List<int>();
 
-    protected List<GameEnemyUnit> m_spawnPool = new List<GameEnemyUnit>();
-    protected List<List<GameEnemyUnit>> m_specificSpawnPools = new List<List<GameEnemyUnit>>();
-
     protected List<GameEnemyUnit> m_totalEnemiesOnMap = new List<GameEnemyUnit>();
     protected GameSpawnPool m_defaultSpawnPool;
     protected List<GameSpawnPool> m_spawnPointSpawnPools = new List<GameSpawnPool>();
@@ -48,7 +45,7 @@ public abstract class GameMap : GameElementBase
     public void TriggerStartMap()
     {
         FillSpawnPool();
-        GameUnitFactory.Init(m_spawnPool, m_specificSpawnPools);
+        GameUnitFactory.Init(m_totalEnemiesOnMap, m_defaultSpawnPool, m_spawnPointSpawnPools);
 
         FillExclusionCardPool();
         GameCardFactory.Init();
@@ -108,7 +105,68 @@ public abstract class GameMap : GameElementBase
         }
     }
 
-    protected abstract void FillSpawnPool();
+    protected virtual void FillSpawnPool()
+    {
+        m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLichEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSlimeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSpinnerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentWerewolfEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentYetiEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
+
+        List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
+        //Wave 1
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));
+
+        //Wave 2
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 2, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
+
+        //Wave 3
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 3, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 3, 1, 1));
+
+        //Wave 4
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 4, 1, 1));
+
+        //Wave 5
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 1));
+
+        //Wave 6
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 1));
+
+        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolDatas);
+    }
+
     protected abstract void FillExclusionCardPool();
     protected abstract void FillEventPool();
     protected abstract void FillExclusionRelicPool();

@@ -20,9 +20,6 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_name = "Lizardman";
         m_desc = "Lizardmen move on water tiles without spending Stamina.\n";
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         AddKeyword(new GameWaterwalkKeyword(), false);
         m_instantWaterMovement = true;
         AddKeyword(new GameDamageShieldKeyword(2), false);

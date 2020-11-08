@@ -40,19 +40,4 @@ public class ContentCrimsonIslandsMap : GameMap
     {
 
     }
-
-    protected override void FillSpawnPool()
-    {
-        m_spawnPool.Add(new ContentAngryBirdEnemy(null));
-        m_spawnPool.Add(new ContentDarkWarriorEnemy(null));
-        m_spawnPool.Add(new ContentLichEnemy(null));
-        m_spawnPool.Add(new ContentLizardmanEnemy(null));
-        m_spawnPool.Add(new ContentOrcEnemy(null));
-        m_spawnPool.Add(new ContentLavaRhinoUnit(null));
-        m_spawnPool.Add(new ContentSlimeEnemy(null));
-        m_spawnPool.Add(new ContentSpinnerEnemy(null));
-        m_spawnPool.Add(new ContentYetiEnemy(null));
-        m_spawnPool.Add(new ContentShadeEnemy(null));
-        m_spawnPool.Add(new ContentZombieEnemy(null));
-    }
 }

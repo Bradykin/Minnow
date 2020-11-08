@@ -17,9 +17,6 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_name = "Shade";
         m_desc = "";
 
-        m_minWave = 4;
-        m_maxWave = 4;
-
         AddKeyword(new GameFlyingKeyword(), false);
         AddKeyword(new GameDamageShieldKeyword(2), false);
 

@@ -11,11 +11,6 @@ public class GameEnemyUnit : GameUnit
     public bool m_isElite;
     public bool m_isBoss;
 
-    public int m_minWave;
-    public int m_maxWave;
-
-    public float m_spawningWeight = 1.0f;
-
     public int m_experienceAmount = 5;
 
     public GameEnemyUnit(GameOpponent gameOpponent)

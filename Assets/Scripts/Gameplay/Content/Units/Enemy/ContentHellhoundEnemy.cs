@@ -19,9 +19,6 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 3;
-        m_maxWave = 5;
-
         m_name = "Hellhound";
         m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_effectRange} range.";
 

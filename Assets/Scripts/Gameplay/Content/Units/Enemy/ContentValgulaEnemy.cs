@@ -16,9 +16,6 @@ public class ContentValgulaEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 1;
-        m_maxWave = 2;
-
         m_name = "Valgula";
         m_desc = "";
 

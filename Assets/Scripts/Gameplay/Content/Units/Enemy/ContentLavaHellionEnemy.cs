@@ -16,9 +16,6 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         m_name = "Lava Hellion";
         m_desc = "";
 

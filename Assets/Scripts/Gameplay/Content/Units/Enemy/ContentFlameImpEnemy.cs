@@ -20,9 +20,6 @@ public class ContentFlameImpEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 4;
-        m_maxWave = 6;
-
         m_name = "Flame Imp";
         m_desc = "";
 

@@ -18,9 +18,6 @@ public class ContentPhoenixEnemy : GameEnemyUnit
         m_name = "Phoenix";
         m_desc = "If this unit dies while on a lava tile, it will respawn with full health.";
 
-        m_minWave = 4;
-        m_maxWave = 6;
-
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

@@ -6,11 +6,11 @@ public class GameSpawnPoolData
 {
     public GameEnemyUnit m_gameEnemy;
 
-    public float m_wave;
+    public int m_wave;
     public float m_spawnWeight;
     public float m_priorityWeight;
 
-    public GameSpawnPoolData(GameEnemyUnit gameEnemy, float wave, float spawnWeight, float priorityWeight)
+    public GameSpawnPoolData(GameEnemyUnit gameEnemy, int wave, float spawnWeight, float priorityWeight)
     {
         m_gameEnemy = gameEnemy;
 

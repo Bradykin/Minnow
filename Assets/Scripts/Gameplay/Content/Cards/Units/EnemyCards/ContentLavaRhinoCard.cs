@@ -6,7 +6,7 @@ public class ContentLavaRhinoCard : GameUnitCard
 {
     public ContentLavaRhinoCard()
     {
-        m_unit = new ContentLavaRhinoUnit(null);
+        m_unit = new ContentLavaRhinoEnemy(null);
 
         InitEnemyCard();
     }

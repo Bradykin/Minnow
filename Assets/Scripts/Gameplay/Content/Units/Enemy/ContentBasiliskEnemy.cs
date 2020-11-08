@@ -18,9 +18,6 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 3;
-        m_maxWave = 3;
-
         m_name = "Basilisk";
         m_desc = $"When this unit hits another, it gives them Brittle {m_brittleAmount}.";
 

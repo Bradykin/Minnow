@@ -19,9 +19,6 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 4;
-        m_maxWave = 4;
-
         m_name = "Demon Magician";
         m_desc = "This unit is immune to all spells.";
 
