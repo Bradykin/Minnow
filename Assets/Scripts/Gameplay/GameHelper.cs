@@ -260,4 +260,19 @@ public static class GameHelper
 
         return hasAll;
     }
+
+    public static bool IsUnitInWorld(GameUnit toTest)
+    {
+        if (toTest.GetGameTile() == null)
+        {
+            return false;
+        }
+
+        if (Globals.m_inDeckView)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

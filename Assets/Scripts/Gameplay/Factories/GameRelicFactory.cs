@@ -279,7 +279,7 @@ public static class GameRelicFactory
     {
         for (int i = 0; i < m_relics.Count; i++)
         {
-            if (m_relics[i].GetName() == name)
+            if (m_relics[i].GetName().ToLower() == name.ToLower())
             {
                 return GetGameRelicClone(m_relics[i]);
             }

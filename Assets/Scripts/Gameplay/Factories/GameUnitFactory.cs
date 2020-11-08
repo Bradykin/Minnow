@@ -193,7 +193,7 @@ public class GameUnitFactory
     {
         for (int i = 0; i < m_enemies.Count; i++)
         {
-            if (m_enemies[i].GetName() == name)
+            if (m_enemies[i].GetName().ToLower() == name.ToLower())
             {
                 return GetEnemyUnitClone(m_enemies[i]);
             }

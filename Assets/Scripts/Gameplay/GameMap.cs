@@ -114,7 +114,7 @@ public abstract class GameMap : GameElementBase
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSiegebreakerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSlimeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSpinnerEnemy(null));
@@ -146,10 +146,10 @@ public abstract class GameMap : GameElementBase
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSiegebreakerEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 4, 1, 1));
 
         //Wave 5
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSiegebreakerEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 5, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 5, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
@@ -157,7 +157,7 @@ public abstract class GameMap : GameElementBase
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 1));
 
         //Wave 6
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSiegebreakerEnemy(null), 6, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));

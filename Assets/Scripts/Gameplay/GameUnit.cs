@@ -394,6 +394,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = willSetDead;
+        SetGameTile(null);
     }
 
     //Returns the amount actually healed
@@ -605,17 +606,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
-        if (GameHelper.HasRelic<ContentSecretTiesRelic>() && m_gameTile != null && GetTypeline() == Typeline.Creation)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
-            for (int i = 0; i < adjacentTiles.Count; i++)
+            if (GameHelper.HasRelic<ContentSecretTiesRelic>() && GetTypeline() == Typeline.Creation)
             {
-                if (adjacentTiles[i].IsOccupied() &&
-                    adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                    !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                    adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
+                for (int i = 0; i < adjacentTiles.Count; i++)
                 {
-                    adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                    if (adjacentTiles[i].IsOccupied() &&
+                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                    {
+                        adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                    }
                 }
             }
         }
@@ -966,14 +970,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             toReturn.AddKeyword(new GameRegenerateKeyword(5));
         }
-
-        //Check relics and other effects to see if anything needs to be added to the return keyword
-        if (GameHelper.HasRelic<ContentHealthFlaskRelic>() && 
-            GetTeam() == Team.Player && 
-            m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth()/2.0f)) &&
-            m_gameTile != null)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            toReturn.AddKeyword(new GameRegenerateKeyword(5));
+            //Check relics and other effects to see if anything needs to be added to the return keyword
+            if (GameHelper.HasRelic<ContentHealthFlaskRelic>() &&
+            GetTeam() == Team.Player &&
+            m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth() / 2.0f)))
+            {
+                toReturn.AddKeyword(new GameRegenerateKeyword(5));
+            }
         }
 
         //If the return keyword is still blank, set it to null
@@ -1085,7 +1090,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword(new GameRangeKeyword(1));
         }
 
-        if (m_gameTile != null)
+        if (GameHelper.IsUnitInWorld(this))
         {
             int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
 
@@ -1135,32 +1140,35 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword((GameDamageReductionKeyword)GameKeywordFactory.GetKeywordClone(holderKeyword, this));
         }
 
-        //Check relics and other effects to see if anything needs to be added to the return keyword
-        if (GameHelper.HasRelic<ContentEverflowingCanteenRelic>() && m_gameTile != null && GetTeam() == Team.Player)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-            for (int i = 0; i < adjacentTiles.Count; i++)
+            //Check relics and other effects to see if anything needs to be added to the return keyword
+            if (GameHelper.HasRelic<ContentEverflowingCanteenRelic>() && GetTeam() == Team.Player)
             {
-                if (adjacentTiles[i].GetTerrain().IsWater())
+                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                for (int i = 0; i < adjacentTiles.Count; i++)
                 {
-                    toReturn.AddKeyword(new GameDamageReductionKeyword(2));
-                    break;
+                    if (adjacentTiles[i].GetTerrain().IsWater())
+                    {
+                        toReturn.AddKeyword(new GameDamageReductionKeyword(2));
+                        break;
+                    }
                 }
             }
-        }
 
-        if (GetFlyingKeyword() == null && m_gameTile != null)
-        {
-            int terrainDamageReduction = m_gameTile.GetTerrain().m_damageReduction;
-
-            if (terrainDamageReduction > 0)
+            if (GetFlyingKeyword() == null)
             {
-                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-                {
-                    terrainDamageReduction += terrainDamageReduction * 2;
-                }
+                int terrainDamageReduction = m_gameTile.GetTerrain().m_damageReduction;
 
-                toReturn.AddKeyword(new GameDamageReductionKeyword(terrainDamageReduction));
+                if (terrainDamageReduction > 0)
+                {
+                    if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+                    {
+                        terrainDamageReduction += terrainDamageReduction * 2;
+                    }
+
+                    toReturn.AddKeyword(new GameDamageReductionKeyword(terrainDamageReduction));
+                }
             }
         }
 
@@ -1211,15 +1219,47 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += 15;
             }
 
-            if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>() && m_gameTile != null)
+            if (GameHelper.IsUnitInWorld(this))
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>())
                 {
-                    if (adjacentTiles[i].GetTerrain().IsWater())
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        toReturn += 3;
-                        break;
+                        if (adjacentTiles[i].GetTerrain().IsWater())
+                        {
+                            toReturn += 3;
+                            break;
+                        }
+                    }
+                }
+
+                if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile.GetTerrain().IsForest())
+                {
+                    toReturn += 10;
+                }
+
+                if (GameHelper.HasRelic<ContentBondOfFamilyRelic>())
+                {
+                    if (GetGameTile() != null)
+                    {
+                        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 3);
+
+                        for (int i = 0; i < surroundingTiles.Count; i++)
+                        {
+                            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
+                                surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+                            {
+                                if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                                {
+                                    toReturn += 4;
+                                }
+                                else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                                {
+                                    toReturn -= 4;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1243,38 +1283,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 toReturn += 5;
             }
 
-            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
-            {
-                toReturn += 10;
-            }
-
             if (GetRange() > 1)
             {
                 toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
-            }
-
-            if (GameHelper.HasRelic<ContentBondOfFamilyRelic>())
-            {
-                if (GetGameTile() != null)
-                {
-                    List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 3);
-
-                    for (int i = 0; i < surroundingTiles.Count; i++)
-                    {
-                        if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                            surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
-                        {
-                            if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
-                            {
-                                toReturn += 4;
-                            }
-                            else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
-                            {
-                                toReturn -= 4;
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -1338,22 +1349,25 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>() && m_gameTile != null)
+            if (GameHelper.IsUnitInWorld(this))
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentNectarOfTheSeaGodRelic>())
                 {
-                    if (adjacentTiles[i].GetTerrain().IsWater())
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        toReturn += 3;
-                        break;
+                        if (adjacentTiles[i].GetTerrain().IsWater())
+                        {
+                            toReturn += 3;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile != null && m_gameTile.GetTerrain().IsForest())
-            {
-                toReturn += 10;
+                if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile.GetTerrain().IsForest())
+                {
+                    toReturn += 10;
+                }
             }
         }
 
@@ -1974,30 +1988,33 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 evilRelic.AddKillCount();
             }
 
-            if (GameHelper.HasRelic<ContentCanvasOfHistoryRelic>() && m_gameTile != null)
+            if (GameHelper.IsUnitInWorld(this))
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentCanvasOfHistoryRelic>())
                 {
-                    if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        adjacentTiles[i].m_occupyingUnit.Heal(15);
+                        if (adjacentTiles[i].IsOccupied() &&
+                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        {
+                            adjacentTiles[i].m_occupyingUnit.Heal(15);
+                        }
                     }
                 }
-            }
 
-            if (GameHelper.HasRelic<ContentBeadsOfProphecyRelic>() && m_gameTile != null)
-            {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentBeadsOfProphecyRelic>())
                 {
-                    if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        adjacentTiles[i].m_occupyingUnit.GainStamina(1);
+                        if (adjacentTiles[i].IsOccupied() &&
+                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        {
+                            adjacentTiles[i].m_occupyingUnit.GainStamina(1);
+                        }
                     }
                 }
             }
@@ -2040,43 +2057,46 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.HasRelic<ContentCursedAmuletRelic>() && m_gameTile != null)
+            if (GameHelper.IsUnitInWorld(this))
             {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentCursedAmuletRelic>())
                 {
-                    if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
+                        if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        {
+                            adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
+                        }
                     }
                 }
-            }
 
-            if (GameHelper.HasRelic<ContentTokenOfTheUprisingRelic>() && m_gameTile != null && GetTypeline() == Typeline.Humanoid)
-            {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentTokenOfTheUprisingRelic>() && GetTypeline() == Typeline.Humanoid)
                 {
-                    if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 2);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                        if (adjacentTiles[i].IsOccupied() &&
+                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                            !adjacentTiles[i].m_occupyingUnit.m_isDead &&
+                            adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                        {
+                            adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                        }
                     }
                 }
-            }
 
-            if (GameHelper.HasRelic<ContentTotemOfRevengeRelic>() && m_gameTile != null)
-            {
-                List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
-                for (int i = 0; i < adjacentTiles.Count; i++)
+                if (GameHelper.HasRelic<ContentTotemOfRevengeRelic>())
                 {
-                    if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                    List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 3);
+                    for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        adjacentTiles[i].m_occupyingUnit.FillStamina();
+                        if (adjacentTiles[i].IsOccupied() &&
+                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
+                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        {
+                            adjacentTiles[i].m_occupyingUnit.FillStamina();
+                        }
                     }
                 }
             }
@@ -2162,11 +2182,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             GetHit(Constants.LavaFieldDamageDealt);
         }
 
-        if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            if (m_gameTile != null && m_gameTile.GetTerrain().IsWater())
+            if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
             {
-                Die();
+                if (m_gameTile.GetTerrain().IsWater())
+                {
+                    Die();
+                }
             }
         }
     }

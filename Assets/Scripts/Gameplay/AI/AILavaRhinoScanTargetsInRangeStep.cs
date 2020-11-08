@@ -6,11 +6,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.XR.WSA;
 
-public class AISiegebreakerScanTargetsInRangeStep : AIStep
+public class AILavaRhinoScanTargetsInRangeStep : AIStep
 {
     private int m_scanRadius = 4;
     
-    public AISiegebreakerScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AILavaRhinoScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
     
     public override IEnumerator TakeStep(bool shouldYield)
     {

@@ -38,9 +38,12 @@ public class ContentGroundskeeper : GameUnit
             return returnPower;
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
+        if (GameHelper.IsUnitInWorld(this))
         {
-            returnPower += m_powerBoost;
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                returnPower += m_powerBoost;
+            }
         }
 
         return returnPower;
@@ -55,9 +58,12 @@ public class ContentGroundskeeper : GameUnit
             return returnStaminaRegen;
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
+        if (GameHelper.IsUnitInWorld(this))
         {
-            returnStaminaRegen += m_staminaRegenBoost;
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                returnStaminaRegen += m_staminaRegenBoost;
+            }
         }
 
         return returnStaminaRegen;

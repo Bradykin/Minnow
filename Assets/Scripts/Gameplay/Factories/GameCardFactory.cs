@@ -170,7 +170,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentSandWyvernEnemyCard());
         m_enemyCards.Add(new ContentSandVortexEnemyCard());
         m_enemyCards.Add(new ContentScorchingSerpentEnemyCard());
-        m_enemyCards.Add(new ContentSiegebreakerCard());
+        m_enemyCards.Add(new ContentLavaRhinoCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
@@ -569,7 +569,7 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
-            if (m_cards[i].GetBaseName() == name)
+            if (m_cards[i].GetBaseName().ToLower() == name.ToLower())
             {
                 return GetCardClone(m_cards[i]);
             }

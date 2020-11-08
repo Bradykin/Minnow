@@ -32,6 +32,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     public void TriggerCheat(string msg)
     {
+        msg = msg.ToLower();
         string cheat = "";
         int indexOfSpace = msg.IndexOf(" ");
         if (indexOfSpace > 0)
@@ -54,93 +55,99 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     private void HandleCheats(string cheat, string param)
     {
-        if (cheat == "AddRelic")
+        if (cheat == "addrelic")
         {
             HandleAddRelic(param);
             return;
         }
 
-        if (cheat == "AddCard")
+        if (cheat == "addcard")
         {
             HandleAddCard(param);
             return;
         }
 
-        if (cheat == "ClearPlayerAccountData")
+        if (cheat == "clearplayeraccountdata")
         {
             HandleClearPlayerAccountData();
             return;
         }
 
-        if (cheat == "ToggleFog")
+        if (cheat == "togglefog")
         {
             ToggleFog();
             return;
         }
 
-        if (cheat == "SetRandomStarterCardLevels")
+        if (cheat == "setrandomstartercardlevels")
         {
             SetRandomStarterCardLevels(param);
             return;
         }
 
-        if (cheat == "SetCurrentWave")
+        if (cheat == "setcurrentwave")
         {
             SetCurrentWave(param);
             return;
         }
 
-        if (cheat == "SetCurrentTurn")
+        if (cheat == "setcurrentturn")
         {
             SetCurrentTurn(param);
             return;
         }
 
-        if (cheat == "AddEnemy")
+        if (cheat == "addenemy")
         {
             HandleAddEnemy(param);
             return;
         }
 
-        if (cheat == "EndWave")
+        if (cheat == "endwave")
         {
             HandleEndWave();
             return;
         }
 
-        if (cheat == "AddGold")
+        if (cheat == "addgold")
         {
             HandleAddGold(param);
             return;
         }
 
-        if (cheat == "AddEnergy")
+        if (cheat == "addenergy")
         {
             HandleAddEnergy(param);
             return;
         }
 
-        if (cheat == "AddActions")
+        if (cheat == "addactions")
         {
             HandleAddActions(param);
             return;
         }
 
-        if (cheat == "RemoveActions")
+        if (cheat == "removeactions")
         {
             HandleRemoveActions(param);
             return;
         }
 
-        if (cheat == "SetCastleHealth")
+        if (cheat == "setcastlehealth")
         {
             HandleSetCastleHealth(param);
             return;
         }
 
-        if (cheat == "Uber")
+        if (cheat == "uber")
         {
             HandleUber();
+            return;
+        }
+
+        if (cheat == "drawcard")
+        {
+            HandleDrawCard();
             return;
         }
 
@@ -261,6 +268,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     private void HandleRemoveActions(string param)
     {
         GameHelper.GetPlayer().SpendActions(int.Parse(param));
+    }
+
+    private void HandleDrawCard()
+    {
+        GameHelper.GetPlayer().DrawCard();
     }
 
     private void HandleSetCastleHealth(string param)
