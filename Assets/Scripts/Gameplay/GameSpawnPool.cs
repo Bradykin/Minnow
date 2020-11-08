@@ -10,7 +10,7 @@ public class GameSpawnPool
     {
         m_spawnPoolDatas = new Dictionary<int, List<GameSpawnPoolData>>();
         
-        for (int i = 0; i < 6; i++)
+        for (int i = 1; i < 7; i++)
         {
             m_spawnPoolDatas.Add(i, new List<GameSpawnPoolData>());
         }

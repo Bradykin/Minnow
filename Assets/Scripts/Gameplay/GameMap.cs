@@ -163,7 +163,10 @@ public abstract class GameMap : GameElementBase
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 1));
+
+        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolDatas);
     }
+
     protected abstract void FillExclusionCardPool();
     protected abstract void FillEventPool();
     protected abstract void FillExclusionRelicPool();
