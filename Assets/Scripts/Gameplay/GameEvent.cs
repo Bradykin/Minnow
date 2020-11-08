@@ -14,7 +14,6 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
 
     public GameEventOption m_optionOne;
     public GameEventOption m_optionTwo;
-    public GameEventOption m_optionThree;
 
     protected virtual void Init()
     {
@@ -32,12 +31,10 @@ public abstract class GameEvent : GameElementBase, ISave<JsonGameEventData>, ILo
         {
             m_optionTwo.Init();
         }
-        
-        if (m_optionThree != null)
-        {
-            m_optionThree.Init();
-        }
     }
+
+    public abstract string GetOptionOneTooltip();
+    public abstract string GetOptionTwoTooltip();
 
     //============================================================================================================//
 

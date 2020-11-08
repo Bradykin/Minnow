@@ -7,7 +7,7 @@ public class ContentTraditionOrProgressEvent : GameEvent
     public ContentTraditionOrProgressEvent(GameTile tile)
     {
         m_name = "Tradition or Progress";
-        m_eventDesc = "Sometimes life gives you a choice: you can honour the traditions of the past or forge forward for new opportunities. What kind of person are you?";
+        m_eventDesc = "Elders from various villages in the region gather here to decide future plans. The choice could greatly affect the path of the war.";
         m_tile = tile;
 
         Init();
@@ -17,8 +17,17 @@ public class ContentTraditionOrProgressEvent : GameEvent
     {
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentTraditionalMethodsRelic());
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentNewInvestmentsRelic());
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain the relic Traditional Methods.\n" + new ContentTraditionalMethodsRelic().GetDesc();
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Gain the relic New Investments.\n" + new ContentNewInvestmentsRelic().GetDesc();
     }
 }

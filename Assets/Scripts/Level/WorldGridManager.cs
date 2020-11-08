@@ -154,19 +154,19 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         int r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentTelloAltar(validTiles[r].GetGameTile()), true);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentTelloAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentDorphinAltar(validTiles[r].GetGameTile()), true);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentDorphinAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentMonAltar(validTiles[r].GetGameTile()), true);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentMonAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentSugoAltar(validTiles[r].GetGameTile()), true);
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentSugoAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
     }
 

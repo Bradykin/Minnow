@@ -7,7 +7,7 @@ public class ContentTimeTempleEvent : GameEvent
     public ContentTimeTempleEvent(GameTile tile)
     {
         m_name = "Time Temple";
-        m_eventDesc = "A strange temple appears, allowing some control over the flow of time!";
+        m_eventDesc = "At the midnight hour, a strange temple is said to appear here.";
         m_tile = tile;
 
         Init();
@@ -19,6 +19,16 @@ public class ContentTimeTempleEvent : GameEvent
         m_optionTwo = new GameEventSlowTimeOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Move the wave timer forward by 1 turn.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Move the wave timer backwards by 1 turn.";
     }
 }
 

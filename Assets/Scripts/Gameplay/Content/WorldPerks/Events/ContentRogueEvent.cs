@@ -7,7 +7,7 @@ public class ContentRogueEvent : GameEvent
     public ContentRogueEvent(GameTile tile)
     {
         m_name = "Wandering Rogue";
-        m_eventDesc = "A wandering rogue stops your troops on the side of the road, and offers you some wares of dubious origin.";
+        m_eventDesc = "A rogue is known to travel the roads around here, and he frequently offers wares of dubious origin.";
         m_tile = tile;
 
         Init();
@@ -17,8 +17,17 @@ public class ContentRogueEvent : GameEvent
     {
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Rare));
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Rare));
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain a random rare spell card.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Gain a random rare spell card.";
     }
 }

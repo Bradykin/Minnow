@@ -7,7 +7,7 @@ public class ContentRestorationBrickEvent : GameEvent
     public ContentRestorationBrickEvent(GameTile tile)
     {
         m_name = "Restoration Brick";
-        m_eventDesc = "You find a bizzare brick on the side of the road.  It seems to be magical!  You can use it to restore your castle, or take it with you to improve building capabilities!";
+        m_eventDesc = "Traders report a bizzare magical brick on the side of the road that is much heavier than expected can lift.";
         m_tile = tile;
 
         Init();
@@ -19,6 +19,16 @@ public class ContentRestorationBrickEvent : GameEvent
         m_optionTwo = new GameEventHealCastle(35);
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain the relic Restoration Brick.\n" + new ContentRestorationBrickRelic().GetDesc();
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Heal your castle for 35";
     }
 }
 

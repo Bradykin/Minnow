@@ -7,7 +7,7 @@ public class ContentLibraryOfDenumianEvent : GameEvent
     public ContentLibraryOfDenumianEvent(GameTile tile)
     {
         m_name = "Library of Denumian";
-        m_eventDesc = "A massive library erupts from the ground before your troops.  A large owl swoops out\n'I have watched your people since you came to this land, and wish to offer you aid. Select the aid of the Great Library of Denumian'.";
+        m_eventDesc = "The old library of Denumian lays abandoned except for a single large owl who offers gifts to those who stop by seeking knowledge.";
         m_tile = tile;
 
         Init();
@@ -17,8 +17,17 @@ public class ContentLibraryOfDenumianEvent : GameEvent
     {
         m_optionOne = new GameEventTakeSpecificRelicOption(new ContentDominerickRefrainRelic());
         m_optionTwo = new GameEventTakeSpecificRelicOption(new ContentTomeOfDuluhainRelic());
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain the relic Dominerick Refrain.\n" + new ContentDominerickRefrainRelic().GetDesc();
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Gain the relic Tome of Duluhain.\n" + new ContentTomeOfDuluhainRelic().GetDesc();
     }
 }

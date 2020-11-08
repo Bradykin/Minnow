@@ -7,7 +7,7 @@ public class ContentGoldenFruitEvent : GameEvent
     public ContentGoldenFruitEvent(GameTile tile)
     {
         m_name = "Golden Fruit";
-        m_eventDesc = "A golden fruit falls on the head of one of your troops.  It looks delicious, but just carrying it seems to have magical properties.";
+        m_eventDesc = "Legends tell of a golden fruit in this region. It looks delicious, but just carrying it is said to have magical properties.";
         m_tile = tile;
 
         Init();
@@ -15,11 +15,20 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameHealAction(m_tile.m_occupyingUnit, 3)));
+        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameGainDamageShieldAction(m_tile.m_occupyingUnit, 1)));
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 50);
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Give the unit that goes here '<b>Momentum</b>: gain <b>Damage Shield</b> 1'.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Give the unit that goes here +0/+50.";
     }
 }
 

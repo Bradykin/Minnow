@@ -654,11 +654,23 @@ public static class UIHelper
         }
         else if (perk.IsEvent())
         {
+            string optionOneString = perk.GetEvent().GetOptionOneTooltip();
+            string optionTwoString = perk.GetEvent().GetOptionTwoTooltip();
+
             UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetEvent().GetName(), perk.GetEvent().m_eventDesc));
+            if (optionOneString != "")
+            {
+                UITooltipController.Instance.AddTooltipToSecondStack(CreateSimpleTooltip("Option 1", perk.GetEvent().GetOptionOneTooltip()));
+            }
+            if (optionTwoString != "")
+            {
+                UITooltipController.Instance.AddTooltipToSecondStack(CreateSimpleTooltip("Option 2", perk.GetEvent().GetOptionTwoTooltip()));
+            }
         }
         else if (perk.IsAltar())
         {
             UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetAltar().GetName(), perk.GetAltar().m_eventDesc));
+            CreateRelicTooltip(perk.GetAltar().GetAltarRelic());
         }
     }
 

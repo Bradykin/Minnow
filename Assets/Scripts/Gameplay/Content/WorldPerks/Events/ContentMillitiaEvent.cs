@@ -7,7 +7,7 @@ public class ContentMillitiaEvent : GameEvent
     public ContentMillitiaEvent(GameTile tile)
     {
         m_name = "Millitia";
-        m_eventDesc = "A band of millitia is fighting off some enemies here.  Looks like you could help!";
+        m_eventDesc = "A band of millitia is fighting off some enemies here.";
         m_tile = tile;
 
         Init();
@@ -16,9 +16,18 @@ public class ContentMillitiaEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
-        m_optionTwo = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Sacrifice the unit that goes here for the wave, but gain a random rare unit permanently.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "";
     }
 }
 

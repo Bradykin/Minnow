@@ -20,7 +20,7 @@ public class GameWorldPerk
     private GameEvent m_event;
 
     //For Altar
-    private GameEvent m_altar;
+    private GameAltar m_altar;
 
     public GameWorldPerk(GameElementBase.GameRarity chestRarity)
     {
@@ -28,18 +28,16 @@ public class GameWorldPerk
         m_chestRarity = chestRarity;
     }
 
-    public GameWorldPerk(GameEvent gameEvent, bool isAltar)
+    public GameWorldPerk(GameEvent gameEvent)
     {
-        if (isAltar)
-        {
-            m_perkType = WorldPerkType.Altar;
-            m_altar = gameEvent;
-        }
-        else
-        {
-            m_perkType = WorldPerkType.Event;
-            m_event = gameEvent;
-        }
+        m_perkType = WorldPerkType.Event;
+        m_event = gameEvent;
+    }
+
+    public GameWorldPerk(GameAltar gameAltar)
+    {
+        m_perkType = WorldPerkType.Altar;
+        m_altar = gameAltar;
     }
 
     public void Trigger()
@@ -119,7 +117,7 @@ public class GameWorldPerk
         return m_event;
     }
 
-    public GameEvent GetAltar()
+    public GameAltar GetAltar()
     {
         return m_altar;
     }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIHUDNotificationController : Singleton<UIHUDNotificationController>
 {
+    public GameObject m_moreNotificationIndicator;
+
     private List<string> m_titles = new List<string>();
     private List<string> m_descs = new List<string>();
 
@@ -27,6 +29,8 @@ public class UIHUDNotificationController : Singleton<UIHUDNotificationController
         {
             m_titleText.text = m_titles[0];
             m_descText.text = m_descs[0];
+
+            m_moreNotificationIndicator.SetActive(m_titles.Count > 1);
         }
     }
 

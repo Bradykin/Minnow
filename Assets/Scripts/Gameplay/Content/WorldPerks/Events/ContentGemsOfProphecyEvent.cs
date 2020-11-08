@@ -8,7 +8,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
     public ContentGemsOfProphecyEvent(GameTile tile)
     {
         m_name = "Gems of Prophecy";
-        m_eventDesc = "You find a set of prophetic gems. Which one shall tell your fate?";
+        m_eventDesc = "A fortune teller wanders the lands offering to tell fate with gems.";
         m_tile = tile;
 
         Init();
@@ -18,9 +18,18 @@ public class ContentGemsOfProphecyEvent : GameEvent
     {
         m_optionOne = new GameEventProphecyOfAdventureOption(m_tile);
         m_optionTwo = new GameEventDamageReductionOption(m_tile);
-        m_optionThree = new GameEventProphecyTakeGoldOption(75);
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Give the unit that goes here '<b>Victorious</b>: +5/+0'.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Give the unit that goes here <b>Damage Reduction</b> 3.";
     }
 }
 
@@ -50,7 +59,7 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 public class GameEventDamageReductionOption : GameEventOption
 {
     private GameTile m_tile;
-    private int m_heal = 5;
+    private int m_damageReduction = 3;
 
     public GameEventDamageReductionOption(GameTile tile)
     {
@@ -59,12 +68,12 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingUnit.GetName() + " gains 'Enrage: heal for " + m_heal + " health.'";
+        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingUnit.GetName() + " gains <b>Damage Reduction</b> " + m_damageReduction;
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingUnit.AddKeyword(new GameEnrageKeyword(new GameHealAction(m_tile.m_occupyingUnit, m_heal)));
+        m_tile.m_occupyingUnit.AddKeyword(new GameDamageReductionKeyword(m_damageReduction));
 
         EndEvent();
     }

@@ -7,7 +7,7 @@ public class ContentAngelicGiftEvent : GameEvent
     public ContentAngelicGiftEvent(GameTile tile)
     {
         m_name = "Angelic Gift";
-        m_eventDesc = "An angel comes down from the sky and offers you an angelic choice:";
+        m_eventDesc = "An angel from the Caverns has taken up residence here.";
         m_tile = tile;
 
         Init();
@@ -17,9 +17,18 @@ public class ContentAngelicGiftEvent : GameEvent
     {
         m_optionOne = new GameEventTakeRandomRelicOption(GameElementBase.GameRarity.Rare);
         m_optionTwo = new GameEventAngelicWings(m_tile);
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain a random rare relic.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Give the unit that goes here <b>Flying</b>.";
     }
 }
 

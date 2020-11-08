@@ -13,7 +13,6 @@ public class UIEventController : Singleton<UIEventController>
 
     public UIEventButton m_firstButton;
     public UIEventButton m_secondButton;
-    public UIEventButton m_thirdButton;
 
     private GameEvent m_event;
 
@@ -52,16 +51,6 @@ public class UIEventController : Singleton<UIEventController>
         else
         {
             m_secondButton.gameObject.SetActive(false);
-        }
-
-        if (m_event.m_optionThree != null)
-        {
-            m_thirdButton.gameObject.SetActive(true);
-            m_thirdButton.Init(m_event.m_optionThree);
-        }
-        else
-        {
-            m_thirdButton.gameObject.SetActive(false);
         }
 
         m_holder.SetActive(true);

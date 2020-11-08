@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDorphinAltar : GameEvent
+public class ContentDorphinAltar : GameAltar
 {
     public ContentDorphinAltar(GameTile tile)
     {
@@ -11,12 +11,14 @@ public class ContentDorphinAltar : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Special;
 
+        m_altarRelic = new ContentGreedOfDorphinRelic();
+
         Init();
     }
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeSpecificRelicOption(new ContentGreedOfDorphinRelic());
+        m_optionOne = new GameEventTakeSpecificRelicOption(m_altarRelic);
 
         WorldGridManager.Instance.ClearAltars();
 
