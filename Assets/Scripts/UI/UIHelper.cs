@@ -463,6 +463,7 @@ public static class UIHelper
 
         UnselectAll();
         Globals.m_selectedTile = tile;
+        UIHelper.SetDefensiveBuildingTiles();
     }
 
     public static void ReselectUnit()
@@ -532,6 +533,8 @@ public static class UIHelper
         Globals.m_selectedTile = null;
         Globals.m_selectedCard = null;
         UnselectUnit();
+
+        UIHelper.ClearDefensiveBuildingTiles();
     }
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, GameObject positionObj)

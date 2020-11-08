@@ -36,6 +36,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     private GameTile m_gameTile;
 
+    private bool m_isShowingTooltip;
+
     void Start()
     {
         if (!Constants.FogOfWar)
@@ -450,11 +452,22 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
+        if (!m_isShowingTooltip && GetGameTile().HasBuilding())
+        {
+            HandleTooltip();
+
+            m_isShowingTooltip = true;
+        }
+
         m_isHovered = true;
     }
 
     void OnMouseExit()
     {
+        UITooltipController.Instance.ClearTooltipStack();
+
+        m_isShowingTooltip = false;
+
         m_isHovered = false;
 
         Globals.m_hoveredTile = null;
@@ -633,5 +646,17 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_isHovered = false;
         m_isMoveable = false;
         m_isAttackable = false;
+    }
+
+    public void HandleTooltip()
+    {
+        GameBuildingBase building = GetGameTile().GetBuilding();
+
+        if (building == null)
+        {
+            return;
+        }
+
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(building.GetName(), building.GetDesc()));
     }
 }
