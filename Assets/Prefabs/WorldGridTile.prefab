@@ -256,7 +256,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1602261057
+  m_SortingLayerID: 1166923795
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &460653736
@@ -1067,6 +1067,7 @@ MonoBehaviour:
   m_titleHolder: {fileID: 549068398}
   m_nameText: {fileID: 1807150668}
   m_healthText: {fileID: 1040204857}
+  m_shouldAlertTint: 0
 --- !u!210 &187385668
 SortingGroup:
   m_ObjectHideFlags: 0
