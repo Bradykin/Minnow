@@ -5,14 +5,14 @@ using UnityEngine;
 public class ContentFlameImpEnemy : GameEnemyUnit
 {
     int m_range = 3;
-    int m_damageShieldCount = 2;
+    int m_damageShieldCount = 1;
     int m_powerIncreaseCount = 5;
     
     public ContentFlameImpEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 6;
+        m_maxHealth = 4;
         m_maxStamina = 7;
         m_staminaRegen = 5;
         m_power = 2;
