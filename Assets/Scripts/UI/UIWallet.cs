@@ -29,6 +29,6 @@ public class UIWallet : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Resources", "These are your current resources; gain them in the wave stage and spend them in the intermission phase!"));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Gold", "Gain gold in the wave stage and spend it in the intermission phase!"));
     }
 }

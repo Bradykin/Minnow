@@ -460,7 +460,10 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             }
         }
 
-        PlaceCrystals();
+        if (WorldController.Instance.m_gameController.GetCurMap().GetShouldSpawnCrystals())
+        {
+            PlaceCrystals();
+        }
         PlaceChests();
 
         /*int eventCount = 0;
