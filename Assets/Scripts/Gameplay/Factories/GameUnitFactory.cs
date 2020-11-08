@@ -89,9 +89,29 @@ public class GameUnitFactory
             return null;
         }
 
-        int r = UnityEngine.Random.Range(0, list.Count);
+        float sumPriorityWeights = 0.0f;
 
-        //TODO: add checking priority weights
+        for (int i = 0; i < list.Count; i++)
+        {
+            sumPriorityWeights += list[i].m_priorityWeight;
+        }
+
+        float priorityRandomValue = UnityEngine.Random.Range(0.0f, sumPriorityWeights);
+
+        float priorityValueIterator = 0.0f;
+        for (int i = 0; i < list.Count; i++)
+        {
+            priorityValueIterator += list[i].m_priorityWeight;
+
+            if (priorityValueIterator >= priorityRandomValue)
+            {
+                return list[i];
+            }
+        }
+
+        Debug.LogError("Went past the priority value iterator's max point, something broke in the math");
+
+        int r = UnityEngine.Random.Range(0, list.Count);
         return list[r];
     }
 
@@ -139,9 +159,29 @@ public class GameUnitFactory
             return null;
         }
 
-        int r = UnityEngine.Random.Range(0, list.Count);
+        float sumPriorityWeights = 0.0f;
 
-        //TODO: add checking priority weights
+        for (int i = 0; i < list.Count; i++)
+        {
+            sumPriorityWeights += list[i].m_priorityWeight;
+        }
+
+        float priorityRandomValue = UnityEngine.Random.Range(0.0f, sumPriorityWeights);
+
+        float priorityValueIterator = 0.0f;
+        for (int i = 0; i < list.Count; i++)
+        {
+            priorityValueIterator += list[i].m_priorityWeight;
+
+            if (priorityValueIterator >= priorityRandomValue)
+            {
+                return list[i];
+            }
+        }
+
+        Debug.LogError("Went past the priority value iterator's max point, something broke in the math");
+
+        int r = UnityEngine.Random.Range(0, list.Count);
         return list[r];
     }
 
