@@ -14,7 +14,7 @@ public abstract class GameMap : GameElementBase
     protected List<List<GameEnemyUnit>> m_specificSpawnPools = new List<List<GameEnemyUnit>>();
 
     protected List<GameEnemyUnit> m_totalEnemiesOnMap = new List<GameEnemyUnit>();
-    protected GameSpawnPool m_fogSpawnPool;
+    protected GameSpawnPool m_defaultSpawnPool;
     protected List<GameSpawnPool> m_spawnPointSpawnPools = new List<GameSpawnPool>();
 
     protected List<GameCard> m_exclusionCardPool = new List<GameCard>();
