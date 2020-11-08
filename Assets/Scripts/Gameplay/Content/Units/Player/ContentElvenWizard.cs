@@ -14,7 +14,7 @@ public class ContentElvenWizard : GameUnit
         m_power = 9;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Rare;
 
         AddKeyword(new GameRangeKeyword(3), false);
         AddKeyword(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)), false);
