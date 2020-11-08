@@ -63,17 +63,18 @@ public class WorldController : Singleton<WorldController>
 
         if (UIHelper.GetKeyDown(KeyCode.Q))
         {
-            FocusPrevPlayerUnit();
-
-            for (int i = 0; i < m_gameController.m_gameOpponent.m_controlledUnits.Count; i++)
+            if (GameHelper.IsPlayerTurn())
             {
-                GameUnit unit = m_gameController.m_gameOpponent.m_controlledUnits[i];
+                FocusPrevPlayerUnit();
             }
         }
 
         if (UIHelper.GetKeyDown(KeyCode.E))
         {
-            FocusNextPlayerUnit();
+            if (GameHelper.IsPlayerTurn())
+            {
+                FocusNextPlayerUnit();
+            }
         }
     }
 
