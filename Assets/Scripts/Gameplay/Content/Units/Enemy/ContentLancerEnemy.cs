@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSpinnerEnemy : GameEnemyUnit
+public class ContentLancerEnemy : GameEnemyUnit
 {
-    public ContentSpinnerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentLancerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 7;
         m_maxStamina = 6;
@@ -14,7 +14,7 @@ public class ContentSpinnerEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Spinner";
+        m_name = "Lancer";
         m_desc = "";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

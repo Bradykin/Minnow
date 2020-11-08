@@ -22,7 +22,7 @@ public static class GameRelicFactory
         m_relics.Add(new ContentLoadedChestRelic());
         m_relics.Add(new ContentWolvenFangRelic());
 
-        //General Relics (67)
+        //General Relics
         m_relics.Add(new ContentBestialWrathRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
         m_relics.Add(new ContentMorlemainsSkullRelic());
@@ -50,13 +50,11 @@ public static class GameRelicFactory
         m_relics.Add(new ContentMaskOfSpeedRelic());
         m_relics.Add(new ContentSackOfSoulsRelic());
         m_relics.Add(new ContentMarkOfTordrimRelic());
-        //m_relics.Add(new ContentFearOfTheShakinaRelic());
         m_relics.Add(new ContentGoldenKnotRelic());
         m_relics.Add(new ContentNamelessFlaskRelic());
         m_relics.Add(new ContentTheGreatestGiftRelic());
         m_relics.Add(new ContentSporetechRelic());
         m_relics.Add(new ContentTokenOfFriendshipRelic());
-        //m_relics.Add(new ContentTheReminderRelic());
         m_relics.Add(new ContentJugOfTordrimRelic());
         m_relics.Add(new ContentAlterOfTordrimRelic());
         m_relics.Add(new ContentInstructionsRelic());
@@ -75,7 +73,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentAncientRitualRelic());
         m_relics.Add(new ContentTokenOfTheUprisingRelic());
         m_relics.Add(new ContentSecretTiesRelic());
-        //m_relics.Add(new ContentEvolvedMembraneRelic());
         m_relics.Add(new ContentRelicOfVictoryRelic());
         m_relics.Add(new ContentStarOfDenumainRelic());
         m_relics.Add(new ContentTalonOfTheCruelRelic());

@@ -117,7 +117,7 @@ public abstract class GameMap : GameElementBase
         m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSlimeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSpinnerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentWerewolfEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentYetiEnemy(null));
@@ -130,17 +130,17 @@ public abstract class GameMap : GameElementBase
 
         //Wave 2
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
 
         //Wave 3
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 3, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 3, 1, 1));
 
         //Wave 4
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSpinnerEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 4, 1, 1));
