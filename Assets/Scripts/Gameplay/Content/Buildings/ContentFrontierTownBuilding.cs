@@ -9,7 +9,7 @@ public class ContentFrontierTownBuilding : GameBuildingBase
         m_name = "Frontier Town";
         m_desc = "A base for explorers on the frontier. Very durable to enemy attacks.";
         m_rarity = GameRarity.Common;
-        m_buildingType = BuildingType.Defensive;
+        m_buildingType = BuildingType.Wall;
 
         m_maxHealth = 40;
         m_cost = new GameWallet(50);

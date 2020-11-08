@@ -8,7 +8,8 @@ public enum BuildingType
 {
     Critical,
     Economic,
-    Defensive
+    Defensive,
+    Wall
 }
 
 public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGameBuildingData>, ILoad<JsonGameBuildingData>
