@@ -16,9 +16,6 @@ public class ContentBlindBeastEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 1;
-        m_maxWave = 2;
-
         m_name = "Blind Beast";
         m_desc = $"Can only detect targets within range 1 of itself.";
 

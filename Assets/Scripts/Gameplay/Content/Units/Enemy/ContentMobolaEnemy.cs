@@ -19,9 +19,6 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_name = "Mobola";
         m_desc = "";
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), false);
         AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

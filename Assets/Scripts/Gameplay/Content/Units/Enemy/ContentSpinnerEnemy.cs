@@ -14,9 +14,6 @@ public class ContentSpinnerEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_minWave = 2;
-        m_maxWave = 4;
-
         m_name = "Spinner";
         m_desc = "";
 

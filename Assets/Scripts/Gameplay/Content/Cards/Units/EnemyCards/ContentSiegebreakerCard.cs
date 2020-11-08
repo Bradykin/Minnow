@@ -6,7 +6,7 @@ public class ContentSiegebreakerCard : GameUnitCard
 {
     public ContentSiegebreakerCard()
     {
-        m_unit = new ContentSiegebreakerUnit(null);
+        m_unit = new ContentSiegebreakerEnemy(null);
 
         InitEnemyCard();
     }

@@ -18,9 +18,6 @@ public class ContentAngryBirdEnemy : GameEnemyUnit
         m_name = "Angry Bird";
         m_desc = "";
 
-        m_minWave = 3;
-        m_maxWave = 4;
-
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

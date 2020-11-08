@@ -4,10 +4,32 @@ using UnityEngine;
 
 public class GameSpawnPool
 {
-    public List<GameSpawnPoolData> m_spawnPoolDatas;
+    private Dictionary<int, List<GameSpawnPoolData>> m_spawnPoolDatas;
 
     public GameSpawnPool(List<GameSpawnPoolData> spawnPoolDatas)
     {
-        m_spawnPoolDatas = spawnPoolDatas;
+        m_spawnPoolDatas = new Dictionary<int, List<GameSpawnPoolData>>();
+        
+        for (int i = 0; i < 6; i++)
+        {
+            m_spawnPoolDatas.Add(i, new List<GameSpawnPoolData>());
+        }
+
+        for (int i = 0; i < spawnPoolDatas.Count; i++)
+        {
+            m_spawnPoolDatas[spawnPoolDatas[i].m_wave].Add(spawnPoolDatas[i]);
+        }
+    }
+
+    public bool TryGetSpawnPoolForWave(int wave, out List<GameSpawnPoolData> spawnPoolDatas)
+    {
+        if (m_spawnPoolDatas.ContainsKey(wave))
+        {
+            spawnPoolDatas = m_spawnPoolDatas[wave];
+            return true;
+        }
+
+        spawnPoolDatas = new List<GameSpawnPoolData>();
+        return false;
     }
 }

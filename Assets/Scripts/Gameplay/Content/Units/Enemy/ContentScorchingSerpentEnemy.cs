@@ -19,9 +19,6 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_name = "Scorching Serpent";
         m_desc = "When this unit attacks another, it knocks that unit 1 tile away from itself.";
 
-        m_minWave = 1;
-        m_maxWave = 1;
-
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

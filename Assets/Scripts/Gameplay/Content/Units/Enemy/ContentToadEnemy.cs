@@ -28,9 +28,6 @@ public class ContentToadEnemy : GameEnemyUnit
             AddKeyword(new GameMomentumKeyword(new GameFullHealAction(this)), false);
         }
 
-        m_minWave = 2;
-        m_maxWave = 2;
-
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);

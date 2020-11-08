@@ -22,9 +22,6 @@ public class ContentWerewolfEnemy : GameEnemyUnit
         m_name = "Werewolf";
         m_desc = "";
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);

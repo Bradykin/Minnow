@@ -16,9 +16,6 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         m_name = "Sand Wyvern";
         m_desc = "";
 

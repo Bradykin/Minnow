@@ -14,9 +14,6 @@ public class ContentOrcShamanEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
-        m_minWave = 3;
-        m_maxWave = 4;
-
         m_name = "Orc Shaman";
         m_desc = "";
 

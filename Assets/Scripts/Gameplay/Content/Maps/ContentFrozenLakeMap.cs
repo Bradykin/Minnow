@@ -42,46 +42,4 @@ public class ContentFrozenLakeMap : GameMap
     {
 
     }
-
-    protected override void FillSpawnPool()
-    {
-        m_spawnPool.Add(new ContentAngryBirdEnemy(null));
-        m_spawnPool.Add(new ContentDarkWarriorEnemy(null));
-        m_spawnPool.Add(new ContentLichEnemy(null));
-        m_spawnPool.Add(new ContentLizardmanEnemy(null));
-        m_spawnPool.Add(new ContentMobolaEnemy(null));
-        m_spawnPool.Add(new ContentOrcEnemy(null));
-        m_spawnPool.Add(new ContentSiegebreakerUnit(null));
-        m_spawnPool.Add(new ContentSlimeEnemy(null));
-        m_spawnPool.Add(new ContentShadeEnemy(null));
-        m_spawnPool.Add(new ContentSnakeEnemy(null));
-        m_spawnPool.Add(new ContentSpinnerEnemy(null));
-        m_spawnPool.Add(new ContentToadEnemy(null));
-        m_spawnPool.Add(new ContentWerewolfEnemy(null));
-        m_spawnPool.Add(new ContentZombieEnemy(null));
-        m_spawnPool.Add(new ContentOrcShamanEnemy(null));
-        m_spawnPool.Add(new ContentYetiEnemy(null));
-
-
-        List<GameEnemyUnit> specificSpawnPool1 = new List<GameEnemyUnit>();
-        specificSpawnPool1.AddRange(m_spawnPool);
-
-        List<GameEnemyUnit> specificSpawnPool2 = new List<GameEnemyUnit>();
-        specificSpawnPool2.AddRange(m_spawnPool);
-
-        List<GameEnemyUnit> specificSpawnPool3 = new List<GameEnemyUnit>();
-        specificSpawnPool3.AddRange(m_spawnPool);
-
-        List<GameEnemyUnit> specificSpawnPool4 = new List<GameEnemyUnit>();
-        specificSpawnPool4.AddRange(m_spawnPool);
-
-        List<GameEnemyUnit> specificSpawnPool5 = new List<GameEnemyUnit>();
-        specificSpawnPool5.AddRange(m_spawnPool);
-
-        m_specificSpawnPools.Add(specificSpawnPool1);
-        m_specificSpawnPools.Add(specificSpawnPool2);
-        m_specificSpawnPools.Add(specificSpawnPool3);
-        m_specificSpawnPools.Add(specificSpawnPool4);
-        m_specificSpawnPools.Add(specificSpawnPool5);
-    }
 }

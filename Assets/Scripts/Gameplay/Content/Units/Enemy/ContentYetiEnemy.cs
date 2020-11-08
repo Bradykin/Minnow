@@ -21,9 +21,6 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_name = "Yeti";
         m_desc = "";
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         AddKeyword(new GameRangeKeyword(4), false);
         AddKeyword(new GameMountainwalkKeyword(), false);
 

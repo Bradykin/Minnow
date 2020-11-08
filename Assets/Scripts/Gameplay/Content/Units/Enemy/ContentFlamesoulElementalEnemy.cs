@@ -25,9 +25,6 @@ public class ContentFlamesoulElementalEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
 
-        m_minWave = Constants.FinalWaveNum;
-        m_maxWave = Constants.FinalWaveNum;
-
         m_name = "Flamesoul Elemental";
         m_desc = "The final boss.  Kill it, and win.\n";
 

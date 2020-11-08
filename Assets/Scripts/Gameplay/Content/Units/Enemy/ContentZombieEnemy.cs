@@ -24,9 +24,6 @@ public class ContentZombieEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;
 
-        m_minWave = 5;
-        m_maxWave = 6;
-
         m_name = "Zombie";
         m_desc = "On hit, turns the other unit into a zombie!\nZombies can't attack zombies.\n";
         m_typeline = Typeline.Creation;

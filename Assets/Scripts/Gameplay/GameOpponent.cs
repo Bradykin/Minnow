@@ -150,14 +150,14 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-                TrySpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge, ref enemyCapToSpawn);
+                TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
                 m_hasSpawnedBoss = true;
             }
 
             if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !m_hasSpawnedEliteThisWave)
             {
                 GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
-                TrySpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge, ref enemyCapToSpawn);
+                TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
                 m_hasSpawnedEliteThisWave = true;
             }
         }
@@ -181,7 +181,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                         continue;
                     }
                     
-                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i], ref enemyCapToSpawn))
+                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;
                     }
@@ -199,7 +199,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                         continue;
                     }
 
-                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i], ref enemyCapToSpawn))
+                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
                     {
                         break;
                     }
@@ -243,7 +243,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             int numTries = 10;
             while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0 && numTries > 0)
             {
-                if (TrySpawnAtEdgeOfFog(null, tilesAtFogEdge, ref enemyCapToSpawn))
+                if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
                 {
                     numTries = 10;
                 }
@@ -271,17 +271,19 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         for (int i = 0; i < tiles.Count; i++)
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetCurrentWaveNum());
+            GameSpawnPoolData newSpawnPoolData = GameUnitFactory.GetRandomEnemyFromDefaultSpawnPool(this, GameHelper.GetCurrentWaveNum());
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(newSpawnPoolData.m_gameEnemy);
+
             if (!tiles[i].IsPassable(newEnemyUnit, false))
             {
                 continue;
             }
 
-            if (newEnemyUnit.m_spawningWeight > enemyCapToSpawn)
+            if (newSpawnPoolData.m_spawnWeight > enemyCapToSpawn)
             {
                 continue;
             }
-            enemyCapToSpawn -= newEnemyUnit.m_spawningWeight;
+            enemyCapToSpawn -= newSpawnPoolData.m_spawnWeight;
 
             tiles[i].PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);
@@ -310,30 +312,29 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
-            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetCurrentWaveNum(), spawnPoint);
+            GameSpawnPoolData newSpawnPoolData = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetCurrentWaveNum(), spawnPoint);
+            GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(newSpawnPoolData.m_gameEnemy);
 
             if (newEnemyUnit == null)
             {
                 return false;
             }
 
-            if (newEnemyUnit.m_spawningWeight > enemyCapToSpawn)
+            if (newSpawnPoolData.m_spawnWeight > enemyCapToSpawn)
             {
                 return false;
             }
-
-            enemyCapToSpawn -= newEnemyUnit.m_spawningWeight;
+            enemyCapToSpawn -= newSpawnPoolData.m_spawnWeight;
 
             spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
             m_controlledUnits.Add(newEnemyUnit);
-            //Debug.Log("SPAWN " + newEnemyUnit + " AT SPAWN POINT");
             return true;
         }
 
         return false;
     }
 
-    private bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint, ref float enemyCapToSpawn)
+    private bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
     {
         if (spawnPoint.m_tile.m_occupyingUnit != null)
         {
@@ -350,31 +351,28 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             return false;
         }
 
-        if ((enemyCapToSpawn < newEnemyUnit.m_spawningWeight && newEnemyUnit.m_spawningWeight > 1) || (enemyCapToSpawn <= 0 && newEnemyUnit.m_spawningWeight > 0))
-        {
-            return false;
-        }
-        enemyCapToSpawn -= newEnemyUnit.m_spawningWeight;
-
         spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
         m_controlledUnits.Add(newEnemyUnit);
 
         return true;
     }
 
-    private bool TrySpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge, ref float enemyCapToSpawn)
+    private bool TrySpawnAtEdgeOfFog(List<GameTile> tilesAtFogEdge, ref float enemyCapToSpawn)
     {
-        if (newEnemyUnit == null)
-        {
-            newEnemyUnit = GameUnitFactory.GetRandomEnemy(this, GameHelper.GetCurrentWaveNum());
-        }
+        GameSpawnPoolData newSpawnPoolData = GameUnitFactory.GetRandomEnemyFromDefaultSpawnPool(this, GameHelper.GetCurrentWaveNum());
+        GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(newSpawnPoolData.m_gameEnemy);
 
-        if ((enemyCapToSpawn < newEnemyUnit.m_spawningWeight) || (enemyCapToSpawn <= 0 && newEnemyUnit.m_spawningWeight > 0))
+        if ((enemyCapToSpawn < newSpawnPoolData.m_spawnWeight) || (enemyCapToSpawn <= 0 && newSpawnPoolData.m_spawnWeight > 0))
         {
             return false;
         }
-        enemyCapToSpawn -= newEnemyUnit.m_spawningWeight;
+        enemyCapToSpawn -= newSpawnPoolData.m_spawnWeight;
 
+        return TryForceSpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
+    }
+
+    private bool TryForceSpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
+    {
         while (tilesAtFogEdge.Count > 0)
         {
             int curTileIndex = UnityEngine.Random.Range(0, tilesAtFogEdge.Count);
