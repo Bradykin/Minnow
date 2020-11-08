@@ -32,6 +32,31 @@ public static class GameCardFactory
     {
         m_hasInit = true;
 
+        Debug.LogWarning("Card Factory Init");
+
+        m_cards = new List<GameCard>();
+        m_unitCards = new List<GameCard>();
+        m_enemyCards = new List<GameCard>();
+        m_standardCards = new List<GameCard>();
+        m_standardSpellCards = new List<GameCard>();
+        m_standardUnitCards = new List<GameCard>();
+
+        m_rareCards = new List<GameCard>();
+        m_uncommonCards = new List<GameCard>();
+        m_commonCards = new List<GameCard>();
+
+        m_rareUnitCards = new List<GameCard>();
+        m_uncommonUnitCards = new List<GameCard>();
+        m_commonUnitCards = new List<GameCard>();
+
+        m_rareSpellCards = new List<GameCard>();
+        m_uncommonSpellCards = new List<GameCard>();
+        m_commonSpellCards = new List<GameCard>();
+
+        m_tribalCards = new List<GameCard>();
+
+
+
         //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
@@ -468,10 +493,12 @@ public static class GameCardFactory
         for (int i = 0; i < finalList.Count; i++)
         {
             int tagWeight = GameTag.GetTagValueFor(finalList[i]);
+            //Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
             if (tagWeight > 0)
             {
-                finalList[i].m_storedTagWeight = tagWeight + totalWeight;
                 totalWeight += tagWeight;
+                finalList[i].m_storedTagWeight = totalWeight;
+                //Debug.Log($"{finalList[i].GetBaseName()} with total weight {finalList[i].m_storedTagWeight}");
             }
             else
             {
@@ -481,11 +508,14 @@ public static class GameCardFactory
         }
 
         int r = UnityEngine.Random.Range(0, totalWeight);
+        //Debug.Log($"Value roll = {r}");
 
         for (int i = 0; i < finalList.Count; i++)
         {
+            //Debug.Log($"Comparing {finalList[i].GetBaseName()} with comparing Value roll {r} to tag weight {finalList[i].m_storedTagWeight}");
             if (r <= finalList[i].m_storedTagWeight)
             {
+                //Debug.Log($"Choosing {finalList[i].GetBaseName()} with comparing Value roll {r} to tag weight {finalList[i].m_storedTagWeight}");
                 return GetCardClone(finalList[i]);
             }
         }
