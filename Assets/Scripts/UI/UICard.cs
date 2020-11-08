@@ -29,6 +29,7 @@ public class UICard : MonoBehaviour
     public Text m_powerText;
     public Text m_healthText;
     public UIStaminaContainer m_staminaContainer;
+    public GameObject m_skullIndicator;
 
     public CardDisplayType m_displayType;
 
@@ -129,9 +130,21 @@ public class UICard : MonoBehaviour
 
         m_image.sprite = m_card.m_icon;
         m_nameText.text = m_card.GetName();
-        if (m_costText != null)
+        if (m_costText != null && m_unitCard != null && m_unitCard.GetUnit().GetTeam() == Team.Enemy)
+        {
+            if (m_skullIndicator != null)
+            {
+                m_skullIndicator.SetActive(true);
+            }
+            m_costText.text = "";
+        }
+        else if (m_costText != null)
         {
             m_costText.text = m_card.GetCost() + "";
+            if (m_skullIndicator != null)
+            {
+                m_skullIndicator.SetActive(false);
+            }
         }
         m_typelineText.text = m_card.GetTypeline();
         m_descText.text = m_card.GetDesc();
