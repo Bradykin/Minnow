@@ -9,6 +9,8 @@ public static class GameRelicFactory
 
     public static void Init()
     {
+        m_relics.Clear();
+        
         //Starter Relics
         m_relics.Add(new ContentLivingStoneRelic());
         m_relics.Add(new ContentMaskOfAgesRelic());
