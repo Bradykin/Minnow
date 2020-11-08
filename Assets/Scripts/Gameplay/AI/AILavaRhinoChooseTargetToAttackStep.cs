@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AISiegebreakerChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
+public class AILavaRhinoChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
-    public AISiegebreakerChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AILavaRhinoChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep(bool shouldYield)
     {

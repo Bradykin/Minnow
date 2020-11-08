@@ -51,7 +51,7 @@ public class ContentFrozenLakeMap : GameMap
         m_spawnPool.Add(new ContentLizardmanEnemy(null));
         m_spawnPool.Add(new ContentMobolaEnemy(null));
         m_spawnPool.Add(new ContentOrcEnemy(null));
-        m_spawnPool.Add(new ContentSiegebreakerUnit(null));
+        m_spawnPool.Add(new ContentLavaRhinoUnit(null));
         m_spawnPool.Add(new ContentSlimeEnemy(null));
         m_spawnPool.Add(new ContentShadeEnemy(null));
         m_spawnPool.Add(new ContentSnakeEnemy(null));

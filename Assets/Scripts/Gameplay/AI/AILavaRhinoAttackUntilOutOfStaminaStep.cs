@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AISiegebreakerAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStaminaStandardStep
+public class AILavaRhinoAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStaminaStandardStep
 {
-    public AISiegebreakerAttackUntilOutOfStaminaStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AILavaRhinoAttackUntilOutOfStaminaStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep(bool shouldYield)
     {

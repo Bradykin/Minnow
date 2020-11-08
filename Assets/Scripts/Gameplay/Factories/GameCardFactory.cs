@@ -170,7 +170,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentSandWyvernEnemyCard());
         m_enemyCards.Add(new ContentSandVortexEnemyCard());
         m_enemyCards.Add(new ContentScorchingSerpentEnemyCard());
-        m_enemyCards.Add(new ContentSiegebreakerCard());
+        m_enemyCards.Add(new ContentLavaRhinoCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
