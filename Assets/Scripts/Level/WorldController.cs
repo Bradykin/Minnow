@@ -219,6 +219,7 @@ public class WorldController : Singleton<WorldController>
         {
             if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && !(WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit is ContentRoyalCaravan))
             {
+                WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit.SetGameTile(null);
                 WorldGridManager.Instance.m_gridArray[i].RecycleUnit();
             }
         }

@@ -29,11 +29,10 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
 
     private List<GameCard> m_deck;
     public DeckViewType m_viewType;
-    
 
-    void Update()
+    public void CloseDeckView()
     {
-        m_holder.SetActive(Globals.m_inDeckView);
+        m_holder.SetActive(false);
     }
 
     public void Init(List<GameCard> deck, DeckViewType viewType, string displayString)
