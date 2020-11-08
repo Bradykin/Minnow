@@ -30,14 +30,14 @@ public class GameSubtractKeywordAction : GameAction
     {
         GameSubtractKeywordAction tempAction = (GameSubtractKeywordAction)toAdd;
 
-        m_keyword.AddKeyword(tempAction.GetKeywordToSubtract());
+        m_keyword.AddKeyword(tempAction.GetKeyword());
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
         GameSubtractKeywordAction tempAction = (GameSubtractKeywordAction)toSubtract;
 
-        m_keyword.SubtractKeyword(tempAction.GetKeywordToSubtract());
+        m_keyword.SubtractKeyword(tempAction.GetKeyword());
     }
 
     public override bool ShouldBeRemoved()
@@ -45,7 +45,7 @@ public class GameSubtractKeywordAction : GameAction
         return m_keyword.ShouldBeRemoved();
     }
 
-    public GameKeywordBase GetKeywordToSubtract()
+    public GameKeywordBase GetKeyword()
     {
         return m_keyword;
     }

@@ -35,13 +35,13 @@ public class ContentRoyalCaravan : GameUnit
     {
         base.OnMoveBegin();
 
-        GetWorldTile().ReducePlaceRange(m_sightRange - 1);
+        GetWorldTile().ReducePlaceRange(2);
     }
 
     public override void OnMoveEnd()
     {
         base.OnMoveEnd();
 
-        GetWorldTile().ExpandPlaceRange(m_sightRange - 1);
+        GetWorldTile().ExpandPlaceRange(2);
     }
 }

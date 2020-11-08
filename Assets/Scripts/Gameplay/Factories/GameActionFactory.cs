@@ -21,6 +21,7 @@ public class GameActionFactory
         m_actions.Add(new GameFullHealRangeAction(null, 0));
         m_actions.Add(new GameHealAction(null, 0));
         m_actions.Add(new GameGainStatsAction(null, 0, 0));
+        m_actions.Add(new GameGainStatsRangeAction(null, 0, 0, 0));
         m_actions.Add(new GameLoseStaminaAction(null, 0));
         m_actions.Add(new GameLoseStatsAction(null, 0, 0));
         m_actions.Add(new GameLoseTempMagicPowerAction(0));
@@ -37,6 +38,7 @@ public class GameActionFactory
         m_actions.Add(new GameShivNearbyAction(null, 0, 0));
         m_actions.Add(new GameSpellcraftAttackAction(null, 0));
         m_actions.Add(new GameSubtractKeywordAction(null, null));
+        m_actions.Add(new GameGainKeywordRangeAction(null, 0, null));
 
         m_hasInit = true;
     }
@@ -77,8 +79,14 @@ public class GameActionFactory
             case GameAction.ActionParamType.UnitIntListIntParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intListValue1);
                 break;
+            case GameAction.ActionParamType.UnitTwoIntListIntParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2, jsonData.intListValue1);
+                break;
             case GameAction.ActionParamType.UnitKeywordParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, GameKeywordFactory.GetKeywordsFromJson(jsonData.keywordValue, gameUnit));
+                break;
+            case GameAction.ActionParamType.UnitListIntKeywordParam:
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intListValue1, GameKeywordFactory.GetKeywordsFromJson(jsonData.keywordValue, gameUnit));
                 break;
             case GameAction.ActionParamType.GameWalletParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));

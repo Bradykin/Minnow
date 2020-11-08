@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ContentFlameImpEnemy : GameEnemyUnit
 {
+    int m_range = 3;
+    int m_damageShieldCount = 2;
+    int m_powerIncreaseCount = 5;
+    
     public ContentFlameImpEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
@@ -23,10 +27,10 @@ public class ContentFlameImpEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameLavawalkKeyword(), false);
-        AddKeyword(new GameMomentumKeyword(new GameFullHealRangeAction(this, 3)), false);
+        AddKeyword(new GameMomentumKeyword(new GameGainKeywordRangeAction(this, m_range, new GameDamageShieldKeyword(m_damageShieldCount))), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStaminaRangeAction(this, 4, 3)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsRangeAction(this, m_powerIncreaseCount, 0, m_range)), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

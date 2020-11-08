@@ -23,7 +23,7 @@ public class ContentForestLodgeBuilding : GameBuildingBase
     {
         base.TriggerEndOfWave();
 
-        m_gameTile.GetWorldTile().ExpandPlaceRange(2);
+        //m_gameTile.GetWorldTile().ExpandPlaceRange(2);
     }
 
     public override void Die()

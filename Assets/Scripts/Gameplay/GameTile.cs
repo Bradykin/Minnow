@@ -20,7 +20,8 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool m_isFog;
     public bool m_isSoftFog;
     public bool m_isFogBorder;
-    public bool m_canPlace;
+
+    public int m_numAllowPlacement = 0;
 
     public GameWorldPerk m_gameWorldPerk;
     
@@ -356,6 +357,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         }
 
         return true;
+    }
+
+    public bool CanPlace()
+    {
+        return m_numAllowPlacement > 0;
     }
 
     //============================================================================================================//

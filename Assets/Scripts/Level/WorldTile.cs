@@ -32,6 +32,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private int m_inSpellcraftRange;
     private int m_inDefensiveBuildingRange;
 
+    public bool m_shouldAlertTint;
+
     private GameTile m_gameTile;
 
     void Start()
@@ -182,7 +184,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else
             {
-                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
+                if (m_shouldAlertTint)
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(false);
+                }
+                else if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card.IsValidToPlay(GetGameTile()) && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
@@ -348,7 +354,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 if (selectedCard.m_unitCard != null)
                 {
-                    if (!GetGameTile().m_canPlace)
+                    if (!GetGameTile().CanPlace())
                     {
                         UIHelper.CreateWorldElementNotification("Out of placement range.", false, gameObject);
                     }
@@ -501,7 +507,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         for (int i = 0; i < toExpand.Count; i++)
         {
-            toExpand[i].GetGameTile().m_canPlace = true;
+            toExpand[i].GetGameTile().m_numAllowPlacement++;
         }
     }
 
@@ -511,7 +517,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         for (int i = 0; i < toReduce.Count; i++)
         {
-            toReduce[i].GetGameTile().m_canPlace = false;
+            toReduce[i].GetGameTile().m_numAllowPlacement--;
         }
     }
 

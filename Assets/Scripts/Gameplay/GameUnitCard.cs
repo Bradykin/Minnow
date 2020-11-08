@@ -122,7 +122,7 @@ public class GameUnitCard : GameCard
             return false;
         }
 
-        if (!targetTile.m_canPlace)
+        if (!targetTile.CanPlace())
         {
             return false;
         }

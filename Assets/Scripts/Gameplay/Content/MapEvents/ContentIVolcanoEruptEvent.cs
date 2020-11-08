@@ -1,15 +1,27 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ContentVolcanoEruptionEvent : GameMapEvent
 {
     private int m_markerToCheck;
+    private bool m_onlyVolcano;
 
-    public ContentVolcanoEruptionEvent(int markerToCheck)
+    public ContentVolcanoEruptionEvent(int markerToCheck, bool onlyVolcano)
     {
         m_name = "Volcano Eruption";
-        m_desc = "Volcanoes erupt, burning the terrain and covering it with active lava. Run!";
+
+        if (onlyVolcano)
+        {
+            m_desc = "Loud noises are coming from a volcano. An eruption is coming soon!";
+        }
+        else
+        {
+            m_desc = "Volcanoes erupt, burning the terrain and covering it with lava. Run!";
+        }
+
+        m_onlyVolcano = onlyVolcano;
 
         m_markerToCheck = markerToCheck;
     }
@@ -27,15 +39,79 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
                     gameTile.GetBuilding().Die();
                 }
 
-                if (gameTile.GetTerrain().IsVolcano())
+                if (m_onlyVolcano)
                 {
-                    gameTile.SetTerrain(GameTerrainFactory.GetVolcanoEruptTerrainClone(gameTile.GetTerrain()));
+                    if (gameTile.GetTerrain().IsVolcano())
+                    {
+                        gameTile.SetTerrain(GameTerrainFactory.GetVolcanoEruptTerrainClone(gameTile.GetTerrain()));
+
+                        List<WorldTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingWorldTiles(gameTile.GetWorldTile(), 2, 0);
+                        for (int k = 0; k < surroundingTiles.Count; k++)
+                        {
+                            surroundingTiles[k].ClearFog();
+                        }
+                    }
                 }
-                else
+                else if (!m_onlyVolcano)
                 {
                     gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
                 }
             }
         }
+
+        if (m_onlyVolcano)
+        {
+            FactoryManager.Instance.StartCoroutine(AlertVolcanoTintCoroutine());
+        }
+    }
+
+    public IEnumerator AlertVolcanoTintCoroutine()
+    {
+        List<WorldTile> tilesToAlert = new List<WorldTile>();
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            WorldTile worldTile = WorldGridManager.Instance.m_gridArray[i];
+
+            if (worldTile.GetGameTile().m_gameEventMarkers.Contains(m_markerToCheck))
+            {
+                worldTile.m_shouldAlertTint = true;
+            }
+        }
+
+        float timer = 0.0f;
+        bool tintOn = false;
+        while (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1.0f)
+            {
+                timer -= 1.0f;
+
+                tintOn = !tintOn;
+                for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+                {
+                    WorldTile worldTile = WorldGridManager.Instance.m_gridArray[i];
+
+                    if (worldTile.GetGameTile().m_gameEventMarkers.Contains(m_markerToCheck))
+                    {
+                        worldTile.m_shouldAlertTint = tintOn;
+                    }
+                }
+            }
+            yield return null;
+        }
+
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            WorldTile worldTile = WorldGridManager.Instance.m_gridArray[i];
+
+            if (worldTile.GetGameTile().m_gameEventMarkers.Contains(m_markerToCheck))
+            {
+                worldTile.m_shouldAlertTint = false;
+            }
+        }
+
+        yield return null;
     }
 }
