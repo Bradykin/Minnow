@@ -7,8 +7,12 @@ public static class GameRelicFactory
 {
     private static List<GameRelic> m_relics = new List<GameRelic>();
 
+    private static bool m_hasInit = false;
+
     public static void Init()
     {
+        m_hasInit = true;
+        
         m_relics.Clear();
         
         //Starter Relics
@@ -149,6 +153,11 @@ public static class GameRelicFactory
 
     public static GameRelic GetRandomRelic(GameRelic exclusionRelic =  null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         return GetRandomRelicAtRarity(GetRandomRarity(), exclusionRelic);
     }
 
@@ -172,6 +181,11 @@ public static class GameRelicFactory
 
     public static GameRelic GetRandomRelicAtRarity(GameElementBase.GameRarity rarity, GameRelic exclusionRelic = null)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameRelic> relicList = GetListWithoutPlayerRelics();
 
         int curLevel = PlayerDataManager.GetCurLevel();
@@ -239,6 +253,11 @@ public static class GameRelicFactory
 
     private static List<GameRelic> GetListWithoutPlayerRelics()
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         List<GameRelic> newList = new List<GameRelic>();
 
         List<GameRelic> playerRelics = GameHelper.GetPlayer().GetRelics().GetRelicListForRead();
@@ -276,6 +295,11 @@ public static class GameRelicFactory
 
     public static GameRelic GetRelicByName(string name)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+
         for (int i = 0; i < m_relics.Count; i++)
         {
             if (m_relics[i].GetName().ToLower() == name.ToLower())
