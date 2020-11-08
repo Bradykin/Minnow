@@ -34,11 +34,6 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
 
             if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
             {
-                if (gameTile.HasBuilding() && gameTile.GetBuilding().GetTeam() == Team.Player)
-                {
-                    gameTile.GetBuilding().Die();
-                }
-
                 if (m_onlyVolcano)
                 {
                     if (gameTile.GetTerrain().IsVolcano())
@@ -54,6 +49,11 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
                 }
                 else if (!m_onlyVolcano)
                 {
+                    if (gameTile.HasBuilding() && gameTile.GetBuilding().GetTeam() == Team.Player)
+                    {
+                        gameTile.GetBuilding().Die();
+                    }
+
                     gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
                 }
             }
@@ -82,7 +82,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
         bool tintOn = false;
         while (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
-            timer += Time.deltaTime;
+            /*timer += Time.deltaTime;
 
             if (timer >= 1.0f)
             {
@@ -98,7 +98,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
                         worldTile.m_shouldAlertTint = tintOn;
                     }
                 }
-            }
+            }*/
             yield return null;
         }
 
