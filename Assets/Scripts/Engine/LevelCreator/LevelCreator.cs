@@ -27,7 +27,7 @@ public class LevelCreator : MonoBehaviour
     private void Start()
     {
         dataPaths = new List<string>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             dataPaths.Add(Files.MAP_DATA_PATH + i + ".txt");
         }
@@ -211,62 +211,9 @@ public class LevelCreator : MonoBehaviour
             Globals.m_levelCreatorEraserMode = !Globals.m_levelCreatorEraserMode;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ProcessSaveFileKey(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ProcessSaveFileKey(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ProcessSaveFileKey(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ProcessSaveFileKey(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ProcessSaveFileKey(4);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            ProcessSaveFileKey(5);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            ProcessSaveFileKey(6);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            ProcessSaveFileKey(7);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ProcessSaveFileKey(8);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            ProcessSaveFileKey(9);
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneLoader.ActivateScene("LevelSelectScene", "LevelCreatorScene");
-        }
-    }
-
-    public void ProcessSaveFileKey(int pathIndex)
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            SaveGrid(pathIndex);
-        }
-        else
-        {
-            LoadGrid(pathIndex);
         }
     }
 

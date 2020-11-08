@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UICheatConsoleController : Singleton<UICheatConsoleController>
 {
@@ -151,6 +152,19 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "loadgrid" || cheat == "loadmap")
+        {
+            LoadGrid(param);
+            return;
+        }
+
+        if (cheat == "savegrid" || cheat == "savemap")
+        {
+            SaveGrid(param);
+            return;
+        }
+
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -293,5 +307,45 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     private void HandleEndWave()
     {
         WorldController.Instance.m_gameController.StartIntermissionCheat();
+    }
+
+    private void LoadGrid(string param)
+    {
+        if (SceneManager.GetActiveScene().name == "LevelCreatorScene")
+        {
+            LevelCreator levelCreator = FindObjectOfType<LevelCreator>();
+            if (levelCreator != null)
+            {
+                levelCreator.LoadGrid(int.Parse(param));
+            }
+            else
+            {
+                Debug.LogWarning("Can't find LevelCreator");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Wrong scene");
+        }
+    }
+
+    private void SaveGrid(string param)
+    {
+        if (SceneManager.GetActiveScene().name == "LevelCreatorScene")
+        {
+            LevelCreator levelCreator = FindObjectOfType<LevelCreator>();
+            if (levelCreator != null)
+            {
+                levelCreator.SaveGrid(int.Parse(param));
+            }
+            else
+            {
+                Debug.LogWarning("Can't find LevelCreator");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Wrong scene");
+        }
     }
 }

@@ -78,8 +78,8 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
             }
         }
 
-        float timer = 0.0f;
-        bool tintOn = false;
+        //float timer = 0.0f;
+        //bool tintOn = false;
         while (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
         {
             /*timer += Time.deltaTime;
