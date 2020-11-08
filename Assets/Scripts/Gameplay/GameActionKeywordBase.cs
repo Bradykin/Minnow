@@ -78,6 +78,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
                         case GameAction.ActionParamType.UnitListIntParam:
                         case GameAction.ActionParamType.UnitIntListIntParam:
                         case GameAction.ActionParamType.UnitKeywordParam:
+                        case GameAction.ActionParamType.UnitListIntKeywordParam:
                         case GameAction.ActionParamType.GameWalletParam:
                             m_actions[c].SubtractAction(tempKeyword.m_actions[i]);
 

@@ -134,7 +134,7 @@ public class ContentVolcanoRunMap : GameMap
         //Wave 3
         desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
         desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.75f));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 3, 1, 0.5f));
+        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 3, 1, 0.25f));
 
         //Wave 4
         desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 1));

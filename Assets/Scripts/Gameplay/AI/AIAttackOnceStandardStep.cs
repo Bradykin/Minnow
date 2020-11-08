@@ -39,7 +39,7 @@ public class AIAttackOnceStandardStep : AIStep
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyUnit.m_doSteps = true;
+                            //m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         yield break;
                     }
@@ -66,7 +66,7 @@ public class AIAttackOnceStandardStep : AIStep
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            m_AIGameEnemyUnit.m_doSteps = true;
+                            //m_AIGameEnemyUnit.m_doSteps = true;
                         }
                         yield break;
                     }
