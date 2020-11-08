@@ -30,7 +30,14 @@ public class UIRelic : UIElementBase
             }
             else
             {
-                m_tintImage.color = UIHelper.GetDefaultTintColor();
+                if (m_isShowingTooltip)
+                {
+                    m_tintImage.color = UIHelper.GetValidTintColor(true);
+                }
+                else
+                {
+                    m_tintImage.color = UIHelper.GetDefaultTintColor();
+                }
             }
         }
     }

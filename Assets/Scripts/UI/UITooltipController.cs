@@ -124,7 +124,7 @@ public class UITooltipController : Singleton<UITooltipController>
             float flipSize = 3.0f;
             if (m_tooltipStack.Count > 0)
             {
-                flipSize = m_tooltipStack[0].m_height - 2.5f;
+                flipSize = 1.5f;
             }
 
             worldPoint.y = worldPoint.y + flipSize;
