@@ -32,8 +32,6 @@ public static class GameCardFactory
     {
         m_hasInit = true;
 
-        Debug.LogWarning("Card Factory Init");
-
         m_cards = new List<GameCard>();
         m_unitCards = new List<GameCard>();
         m_enemyCards = new List<GameCard>();
