@@ -15,6 +15,8 @@ public class ContentVolcanoRunMap : GameMap
 
         m_playerUnlockLevel = 1;
 
+        m_spawnCrystals = false;
+
         Init();
     }
 

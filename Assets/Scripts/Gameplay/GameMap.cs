@@ -19,6 +19,7 @@ public abstract class GameMap : GameElementBase
     protected int m_playerUnlockLevel;
     protected bool m_fogSpawningActive = true;
 
+    protected bool m_spawnCrystals = true;
     protected int m_destroyedCrystals;
 
     public AudioClip m_backgroundMusic;
@@ -69,6 +70,11 @@ public abstract class GameMap : GameElementBase
 
     public virtual bool AllCrystalsDestroyed()
     {
+        if (!m_spawnCrystals)
+        {
+            return true;
+        }
+
         if (m_destroyedCrystals == GetNumCrystals())
         {
             return true;
@@ -144,5 +150,10 @@ public abstract class GameMap : GameElementBase
         }
 
         return 1;
+    }
+
+    public bool GetShouldSpawnCrystals()
+    {
+        return m_spawnCrystals;
     }
 }

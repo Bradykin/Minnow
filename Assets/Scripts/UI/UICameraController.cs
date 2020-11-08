@@ -42,10 +42,6 @@ public class UICameraController : Singleton<UICameraController>
         if (UIHelper.CanControlCamera())
         {
             HandleMovement();
-        }
-
-        if (Constants.CheatsOn)
-        {
             HandleScrolling();
         }
 
