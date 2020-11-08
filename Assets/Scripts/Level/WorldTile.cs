@@ -464,9 +464,12 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     void OnMouseExit()
     {
-        UITooltipController.Instance.ClearTooltipStack();
+        if (m_isShowingTooltip)
+        {
+            UITooltipController.Instance.ClearTooltipStack();
 
-        m_isShowingTooltip = false;
+            m_isShowingTooltip = false;
+        }
 
         m_isHovered = false;
 

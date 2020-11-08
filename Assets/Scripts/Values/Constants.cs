@@ -37,7 +37,7 @@ public static class Constants
     public static int GridSizeY = 30;
 
     //UI Data
-    public static float TooltipWidth = 5.5f;
+    public static float TooltipWidth = 120.0f;
 
     //Error Handling
     public static int NoPathVal = 99999;

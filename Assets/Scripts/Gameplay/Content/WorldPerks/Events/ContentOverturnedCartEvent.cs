@@ -7,7 +7,7 @@ public class ContentOverturnedCartEvent : GameEvent
     public ContentOverturnedCartEvent(GameTile tile)
     {
         m_name = "Overturned Cart";
-        m_eventDesc = "You find an overturned cart by the side of the road.  You should be able to grab some resources before the cart collapses!";
+        m_eventDesc = "A cart lies by the side of the road here.";
         m_tile = tile;
         m_rarity = GameRarity.Common;
 
@@ -17,9 +17,18 @@ public class ContentOverturnedCartEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventTakeGoldOption(50);
-        m_optionTwo = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain 50 gold";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "";
     }
 }
 

@@ -7,7 +7,7 @@ public class ContentStablesEvent : GameEvent
     public ContentStablesEvent(GameTile tile)
     {
         m_name = "Stables";
-        m_eventDesc = "You come across some abandoned stables in this wartorn land.  The troops could take the horses left behind, or you could sell them.";
+        m_eventDesc = "Intelligence reports that stables in this area have been left empty. Either using or selling the abandoned horses would be a boon.";
         m_tile = tile;
 
         Init();
@@ -17,9 +17,18 @@ public class ContentStablesEvent : GameEvent
     {
         m_optionOne = new GameEventTakeHorsesOption(m_tile);
         m_optionTwo = new GameEventTakeGoldOption(50);
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Give the unit that goes here +1 maximum stamina and +1 stamina regen.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Gain 50 gold.";
     }
 }
 

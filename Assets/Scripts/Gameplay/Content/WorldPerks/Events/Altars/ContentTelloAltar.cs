@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentTelloAltar : GameEvent
+public class ContentTelloAltar : GameAltar
 {
     public ContentTelloAltar(GameTile tile)
     {
@@ -11,12 +11,14 @@ public class ContentTelloAltar : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Special;
 
+        m_altarRelic = new ContentEyeOfTelloRelic();
+
         Init();
     }
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeSpecificRelicOption(new ContentEyeOfTelloRelic());
+        m_optionOne = new GameEventTakeSpecificRelicOption(m_altarRelic);
 
         WorldGridManager.Instance.ClearAltars();
 

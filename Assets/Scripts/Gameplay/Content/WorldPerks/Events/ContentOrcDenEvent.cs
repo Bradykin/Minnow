@@ -8,7 +8,7 @@ public class ContentOrcDenEvent : GameEvent
     public ContentOrcDenEvent(GameTile tile)
     {
         m_name = "Orc Den";
-        m_eventDesc = "You see a nest of sleeping orcs. There's a couple orcs away from the group with a small treasure chest, but you can see far more lucrative treasure at the center of the group. What will you do?";
+        m_eventDesc = "Scouts report tribes of Orcs in this region. While they have not yet joined the fray, they may soon. Striking first would allow some much needed plunder for the war.";
         m_tile = tile;
 
         Init();
@@ -18,8 +18,17 @@ public class ContentOrcDenEvent : GameEvent
     {
         m_optionOne = new GameEventOrcGoldOption(m_tile);
         m_optionTwo = new GameEventOrcRelicOption(m_tile);
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Gain 100 gold, but spawn 2 Orc enemy units nearby.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Gain a random rare relic, but spawn 4 Orc enemy units nearby.";
     }
 }

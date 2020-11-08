@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSugoAltar : GameEvent
+public class ContentSugoAltar : GameAltar
 {
     public ContentSugoAltar(GameTile tile)
     {
@@ -11,12 +11,14 @@ public class ContentSugoAltar : GameEvent
         m_tile = tile;
         m_rarity = GameRarity.Special;
 
+        m_altarRelic = new ContentMightOfSugoRelic();
+
         Init();
     }
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeSpecificRelicOption(new ContentMightOfSugoRelic());
+        m_optionOne = new GameEventTakeSpecificRelicOption(m_altarRelic);
 
         WorldGridManager.Instance.ClearAltars();
 

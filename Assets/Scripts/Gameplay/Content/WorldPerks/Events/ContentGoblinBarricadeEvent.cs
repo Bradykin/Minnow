@@ -7,7 +7,7 @@ public class ContentGoblinBarricadeEvent : GameEvent
     public ContentGoblinBarricadeEvent(GameTile tile)
     {
         m_name = "Goblin Barricade";
-        m_eventDesc = "A goblin barricade stands before you!  Breaking it may cost some troops, but it'd help the trade in the region.";
+        m_eventDesc = "A rebellious goblin barricade has formed on these roads! Breaking it may cost some troops, but it'd help the trade in the region.";
         m_tile = tile;
 
         Init();
@@ -16,9 +16,18 @@ public class ContentGoblinBarricadeEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventBreakBarricadeOption(m_tile);
-        m_optionTwo = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Sacrifice the unit that goes here for the wave, but gain 100 gold.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "";
     }
 }
 
@@ -31,6 +40,8 @@ public class GameEventBreakBarricadeOption : GameEventOption
     {
         m_tile = tile;
         m_wallet = new GameWallet(100);
+
+        m_hasTooltip = true;
     }
 
     public override string GetMessage()
@@ -54,5 +65,15 @@ public class GameEventBreakBarricadeOption : GameEventOption
         player.m_wallet.AddResources(m_wallet);
 
         EndEvent();
+    }
+
+    public override void BuildTooltip()
+    {
+        if (m_tile.m_occupyingUnit == null)
+        {
+            return;
+        }
+        
+        UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit, true);
     }
 }

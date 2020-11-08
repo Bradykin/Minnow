@@ -7,7 +7,7 @@ public class ContentDemonicFireEvent : GameEvent
     public ContentDemonicFireEvent(GameTile tile)
     {
         m_name = "Demonic Fire";
-        m_eventDesc = "A ghostly fire flies before you. Will you consume it, or let it fly?";
+        m_eventDesc = "Reports of a mysterious ghostly fire flying around this region flood in.";
         m_tile = tile;
 
         Init();
@@ -17,9 +17,18 @@ public class ContentDemonicFireEvent : GameEvent
     {
         m_optionOne = new GameEventConsumeFireOption(m_tile, 3);
         m_optionTwo = new GameEventFirestormOption(2, 4);
-        m_optionThree = new GameEventLeaveOption();
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Give the unit that goes here '<b>Enrage</b>: +3/+0'.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Hit <b>all</b> units on the map for 2 damage 4 times.";
     }
 }
 

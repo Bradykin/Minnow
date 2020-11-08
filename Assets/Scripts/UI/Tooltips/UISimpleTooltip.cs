@@ -21,21 +21,11 @@ public class UISimpleTooltip : UITooltipBase
 
         m_titleText.text = title;
 
-        if (desc == null)
-        {
-            m_descBox.SetActive(false);
-            m_descText.gameObject.SetActive(false);
+        m_descBox.SetActive(true);
+        m_descText.gameObject.SetActive(true);
+        m_descText.text = desc;
 
-            m_height = 1.0f;
-        }
-        else
-        {
-            m_descBox.SetActive(true);
-            m_descText.gameObject.SetActive(true);
-            m_descText.text = desc;
-
-            m_height = 4.0f;
-        }
+        m_height = 120.0f;
 
         m_widthLeft = 1.72f;
         m_widthRight = 1.74f;

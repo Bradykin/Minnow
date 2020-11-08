@@ -7,7 +7,7 @@ public class ContentCombatTrainingEvent : GameEvent
     public ContentCombatTrainingEvent(GameTile tile)
     {
         m_name = "Combat Training";
-        m_eventDesc = "An old human man approaches your troops.  You recognize him as one of the master swordsmen of the region, the legendary Alduo.  He offers to train some of your troops on the style of your choice.";
+        m_eventDesc = "The master swordsman Alduo lives here. He often offers to train visitors in the combat style of their choice.";
         m_tile = tile;
 
         Init();
@@ -19,5 +19,15 @@ public class ContentCombatTrainingEvent : GameEvent
         m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameVictoriousKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, 5, 0)));
 
         base.LateInit();
+    }
+
+    public override string GetOptionOneTooltip()
+    {
+        return "Give the unit that goes here '<b>Enrage</b>: +0/+3'.";
+    }
+
+    public override string GetOptionTwoTooltip()
+    {
+        return "Give the unit that goes here '<b>Victorious</b>: +5/+0'.";
     }
 }
