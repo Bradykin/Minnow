@@ -167,7 +167,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 else if (Globals.m_selectedUnit != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedUnit.CanMoveToWorldTileFromCurPosition(GetGameTile()));
-                } 
+                }
                 else if (Globals.m_selectedCard != null)
                 {
                     if (GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
@@ -212,9 +212,16 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(true);
                 }
-                else if (Globals.m_selectedTile != null && 
-                    Globals.m_selectedTile.m_gameTile.HasBuilding() && 
+                else if (Globals.m_selectedTile != null &&
+                    Globals.m_selectedTile.m_gameTile.HasBuilding() &&
                     Globals.m_selectedTile.m_gameTile.GetBuilding().m_buildingType == BuildingType.Defensive &&
+                    m_inDefensiveBuildingRange > 0)
+                {
+                    m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
+                }
+                else if (Globals.m_hoveredTile != null &&
+                    Globals.m_hoveredTile.m_gameTile.HasBuilding() &&
+                    Globals.m_hoveredTile.m_gameTile.GetBuilding().m_buildingType == BuildingType.Defensive &&
                     m_inDefensiveBuildingRange > 0)
                 {
                     m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
@@ -457,9 +464,16 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             HandleTooltip();
 
             m_isShowingTooltip = true;
+
+            if (GetGameTile().GetBuilding().m_buildingType == BuildingType.Defensive)
+            {
+                UIHelper.SetDefensiveBuildingTiles();
+            }
         }
 
         m_isHovered = true;
+
+        Globals.m_hoveredTile = this;
     }
 
     void OnMouseExit()
@@ -469,6 +483,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             UITooltipController.Instance.ClearTooltipStack();
 
             m_isShowingTooltip = false;
+        }
+
+        if (GetGameTile().HasBuilding())
+        {
+            UIHelper.ClearDefensiveBuildingTiles();
         }
 
         m_isHovered = false;
