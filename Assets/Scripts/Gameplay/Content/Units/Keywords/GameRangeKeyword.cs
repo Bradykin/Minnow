@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameRangeKeyword : GameKeywordBase
 {
     public int m_range;
+    public bool m_buffedByTerrain;
 
     public GameRangeKeyword(int range)
     {
@@ -18,7 +19,14 @@ public class GameRangeKeyword : GameKeywordBase
 
     public override string GetDesc()
     {
-        return "" + m_range;
+        if (m_buffedByTerrain)
+        {
+            return m_range + " (terrain buffed)";
+        }
+        else
+        {
+            return "" + m_range;
+        }
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
@@ -26,6 +34,11 @@ public class GameRangeKeyword : GameKeywordBase
         GameRangeKeyword tempKeyword = (GameRangeKeyword)toAdd;
 
         m_range += tempKeyword.m_range;
+
+        if (tempKeyword.m_buffedByTerrain)
+        {
+            m_buffedByTerrain = true;
+        }
     }
 
     public override void SubtractKeyword(GameKeywordBase toSubtract)

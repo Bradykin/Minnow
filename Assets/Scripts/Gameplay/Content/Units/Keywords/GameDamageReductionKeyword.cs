@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameDamageReductionKeyword : GameKeywordBase
 {
     public int m_damageReduction;
+    public bool m_buffedByTerrain;
 
     public GameDamageReductionKeyword(int damageReduction)
     {
@@ -18,7 +19,14 @@ public class GameDamageReductionKeyword : GameKeywordBase
 
     public override string GetDesc()
     {
-        return "" + m_damageReduction;
+        if (m_buffedByTerrain)
+        {
+            return m_damageReduction + " (terrain buffed)";
+        }
+        else
+        {
+            return "" + m_damageReduction;
+        }
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
@@ -26,6 +34,11 @@ public class GameDamageReductionKeyword : GameKeywordBase
         GameDamageReductionKeyword tempKeyword = (GameDamageReductionKeyword)toAdd;
 
         m_damageReduction += tempKeyword.m_damageReduction;
+
+        if (tempKeyword.m_buffedByTerrain)
+        {
+            m_buffedByTerrain = true;
+        }
     }
 
     public override void SubtractKeyword(GameKeywordBase toSubtract)

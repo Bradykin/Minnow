@@ -1115,7 +1115,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (toReturn != null && toReturn.m_range > 0)
                 {
-                    toReturn.AddKeyword(new GameRangeKeyword(terrainRange));
+
+                    GameRangeKeyword terrainRangeKeyword = new GameRangeKeyword(terrainRange);
+                    terrainRangeKeyword.m_buffedByTerrain = true;
+
+                    toReturn.AddKeyword(terrainRangeKeyword);
                 }
             }
         }
@@ -1179,7 +1183,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                         terrainDamageReduction += terrainDamageReduction * 2;
                     }
 
-                    toReturn.AddKeyword(new GameDamageReductionKeyword(terrainDamageReduction));
+                    GameDamageReductionKeyword terrainDamageReductionKeyword = new GameDamageReductionKeyword(terrainDamageReduction);
+                    terrainDamageReductionKeyword.m_buffedByTerrain = true;
+
+                    toReturn.AddKeyword(terrainDamageReductionKeyword);
                 }
             }
         }
