@@ -380,6 +380,11 @@ public static class UIHelper
 
     public static void SetDefensiveBuildingTiles()
     {
+        if (GameHelper.IsInLevelBuilder())
+        {
+            return;
+        }
+
         List<GameBuildingBase> m_playerDefensiveBuildings = new List<GameBuildingBase>();
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
