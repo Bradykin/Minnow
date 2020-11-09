@@ -189,6 +189,7 @@ public static class GameHelper
 
         WorldController.Instance.EndLevel(runEndType);
         WorldGridManager.Instance.RecycleGrid();
+        UIRelicController.Instance.ClearRelics();
     }
 
     public static void ReturnToLevelSelectFromLevelScene()

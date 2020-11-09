@@ -19,4 +19,14 @@ public class UIRelicController : Singleton<UIRelicController>
             m_relics[i].transform.localPosition = new Vector3(160.0f + i * 60.0f, -25.0f, 0.0f);
         }
     }
+
+    public void ClearRelics()
+    {
+        for (int i = m_relics.Count-1; i >= 0; i--)
+        {
+            Recycler.Recycle<UIRelic>(m_relics[i]);
+        }
+
+        m_relics = new List<UIRelic>();
+    }
 }

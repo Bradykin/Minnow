@@ -176,6 +176,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "temp")
+        {
+            TempTest();
+            return;
+        }
 
         Debug.Log(cheat + " is an invalid cheat command.");
     }
@@ -380,5 +385,10 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     {
         GameHelper.EndLevel(RunEndType.Loss);
         GameHelper.ReturnToLevelSelectFromLevelScene();
+    }
+
+    private void TempTest()
+    {
+        UIRelicController.Instance.ClearRelics();
     }
 }
