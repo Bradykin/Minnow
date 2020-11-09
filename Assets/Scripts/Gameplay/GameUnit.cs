@@ -1752,9 +1752,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GainStamina(staminaToRegen, true);
     }
 
-    public void AddStats(int powerToAdd, int healthToAdd)
+    public void AddStats(int powerToAdd, int healthToAdd, bool showWorldNotification = true)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
+        if (showWorldNotification == true)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
+        }
 
         m_power += powerToAdd;
         m_maxHealth += healthToAdd;

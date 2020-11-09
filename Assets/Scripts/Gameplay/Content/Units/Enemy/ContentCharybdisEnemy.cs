@@ -18,7 +18,7 @@ public class ContentCharybdisEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Charybdis";
-        m_desc = "";
+        m_desc = "Can use its full turn to smash all adjacent ice.";
 
         AddKeyword(new GameWaterboundKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

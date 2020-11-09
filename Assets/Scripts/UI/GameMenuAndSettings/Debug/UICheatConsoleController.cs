@@ -196,6 +196,15 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     private void HandleAddCard(string param)
     {
+        if (param == "uberboar")
+        {
+            GameUnit uberBoar = new ContentNaturalScout();
+            uberBoar.AddStats(9998, 9998, false);
+            GameCard uberBoarCard = GameCardFactory.GetCardFromUnit(uberBoar);
+            GameHelper.GetPlayer().AddCardToHand(uberBoarCard, true);
+            return;
+        }
+        
         GameCard newCard = GameCardFactory.GetCardByName(param);
         if (newCard == null)
         {
