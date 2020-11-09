@@ -39,8 +39,6 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHit(GetSpellValue());
-
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
@@ -58,6 +56,8 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
             }
 
             unit.Heal(GetSpellValue());
+
+            targetUnit.GetHit(GetSpellValue());
         }
     }
 }
