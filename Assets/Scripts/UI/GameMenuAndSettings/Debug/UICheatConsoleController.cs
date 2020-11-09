@@ -342,11 +342,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             LevelCreator levelCreator = FindObjectOfType<LevelCreator>();
             if (levelCreator != null)
             {
-                if (param == "" && levelCreator.m_curPathIndex >= 0)
-                {
-                    levelCreator.LoadGrid(levelCreator.m_curPathIndex);
-                }
-                
                 levelCreator.LoadGrid(int.Parse(param));
             }
             else
