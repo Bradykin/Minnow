@@ -124,6 +124,7 @@ public static class PlayerDataManager
 
             if (firstTimeCompleteChaosLevel)
             {
+                GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos);
                 if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
                 {
                     PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;

@@ -53,9 +53,9 @@ public class ContentLichEnemy : GameEnemyUnit
 
     public override void Die(bool canRevive = true)
     {
-        WorldController.Instance.WinGame();
-
         base.Die(canRevive);
+
+        GameHelper.ReturnToLevelSelectFromLevelScene(RunEndType.Win);
     }
 
     public override bool IsInvulnerable()

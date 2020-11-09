@@ -369,15 +369,6 @@ public class WorldController : Singleton<WorldController>
 
     }
 
-    public void WinGame()
-    {
-        Debug.Log("The player has won!");
-
-        //Do Cleanup
-
-        SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
-    }
-
     public void FocusNextPlayerUnit()
     {
         List<GameUnit> validUnits = GetValidFocusUnits();

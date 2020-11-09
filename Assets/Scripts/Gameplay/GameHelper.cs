@@ -183,11 +183,11 @@ public static class GameHelper
         return deckOfSpells;
     }
 
-    public static void ReturnToLevelSelectFromLevelScene()
+    public static void ReturnToLevelSelectFromLevelScene(RunEndType runEndType)
     {
         FactoryManager.Instance.StopAllCoroutines();
 
-        WorldController.Instance.EndLevel(RunEndType.Loss);
+        WorldController.Instance.EndLevel(runEndType);
         WorldGridManager.Instance.RecycleGrid();
 
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
