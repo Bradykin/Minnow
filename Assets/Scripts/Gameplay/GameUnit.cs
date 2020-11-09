@@ -224,19 +224,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth -= damage;
 
-        if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
+        if (GetTeam() == Team.Player)
         {
-            AddKeyword(new GameDamageShieldKeyword(3));
-        }
+            if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
+            {
+                AddKeyword(new GameDamageShieldKeyword(3), false);
+            }
 
-        if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
-        {
-            AddStats(10, 0);
-        }
+            if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
+            {
+                AddStats(10, 0);
+            }
 
-        if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
-        {
-            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(5));
+            if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
+            {
+                GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(5));
+            }
         }
 
         AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
@@ -338,15 +341,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
-        if (GameHelper.HasRelic<ContentSachelOfDeceptionRelic>())
+        if (GetTeam() == Team.Player)
         {
-            if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+            if (GameHelper.HasRelic<ContentSachelOfDeceptionRelic>())
             {
-                AddKeyword(new GameDeathKeyword(new GameGainStatsAction(this, 3, 3)));
-                m_isDead = false;
-                m_curHealth = GetMaxHealth();
-                UIHelper.CreateWorldElementNotification(GetName() + " deceives the foe and survives.", true, m_gameTile.GetWorldTile().gameObject);
-                return;
+                if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+                {
+                    AddKeyword(new GameDeathKeyword(new GameGainStatsAction(this, 3, 3)));
+                    m_isDead = false;
+                    m_curHealth = GetMaxHealth();
+                    UIHelper.CreateWorldElementNotification(GetName() + " deceives the foe and survives.", true, m_gameTile.GetWorldTile().gameObject);
+                    return;
+                }
             }
         }
 

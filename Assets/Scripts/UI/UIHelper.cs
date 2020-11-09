@@ -726,9 +726,16 @@ public static class UIHelper
         UIHUDNotificationController.Instance.AddNotification(title, desc);
     }
 
-    public static void CreateRelicTooltip(GameRelic relic)
+    public static void CreateRelicTooltip(GameRelic relic, bool secondStack = false)
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.GetName(), relic.GetDesc()));
+        if (secondStack)
+        {
+            UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip(relic.GetName(), relic.GetDesc()));
+        }
+        else
+        {
+            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(relic.GetName(), relic.GetDesc()));
+        }
     }
 
     public static string GetDifficultyText(MapDifficulty difficulty)
