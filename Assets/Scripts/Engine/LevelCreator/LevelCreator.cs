@@ -24,6 +24,8 @@ public class LevelCreator : MonoBehaviour
 
     private List<string> dataPaths;
 
+    public int m_curPathIndex = -1;
+
     private void Start()
     {
         dataPaths = new List<string>();
@@ -224,7 +226,8 @@ public class LevelCreator : MonoBehaviour
 
     public void LoadGrid(int pathIndex)
     {
-        m_saveFileNotifier.text = "Save File: " + (pathIndex + 1);
+        m_curPathIndex = pathIndex;
+        m_saveFileNotifier.text = $"Save File: {pathIndex}";
 
 #if UNITY_EDITOR
         string path = Path.Combine(Files.EDITOR_PATH, dataPaths[pathIndex]);
@@ -246,6 +249,7 @@ public class LevelCreator : MonoBehaviour
 
     public void SaveGrid(int pathIndex)
     {
+        m_curPathIndex = -1;
         JsonMapData jsonMapData = WorldGridManager.Instance.SaveToJson();
         var export = JsonConvert.SerializeObject(jsonMapData);
 #if UNITY_EDITOR
