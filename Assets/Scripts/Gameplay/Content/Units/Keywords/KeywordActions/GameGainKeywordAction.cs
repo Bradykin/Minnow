@@ -2,40 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSubtractKeywordAction : GameAction
+public class GameGainKeywordAction : GameAction
 {
     private GameUnit m_unit;
     private GameKeywordBase m_keyword;
 
-    public GameSubtractKeywordAction(GameUnit unit, GameKeywordBase keyword)
+    public GameGainKeywordAction(GameUnit unit, GameKeywordBase keyword)
     {
         m_unit = unit;
         m_keyword = keyword;
 
-        m_name = "Subtract Keyword";
+        m_name = "Lose Keyword";
         m_actionParamType = ActionParamType.UnitKeywordParam;
     }
 
     public override string GetDesc()
     {
-        return $"Remove {m_keyword.GetDesc()} {m_keyword.GetName()} from {m_unit.GetName()}";
+        return $"Add {m_keyword.GetDesc()} {m_keyword.GetName()} to {m_unit.GetName()}";
     }
 
     public override void DoAction()
     {
-        m_unit.SubtractKeyword(m_keyword);
+        m_unit.AddKeyword(m_keyword);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameSubtractKeywordAction tempAction = (GameSubtractKeywordAction)toAdd;
+        GameGainKeywordAction tempAction = (GameGainKeywordAction)toAdd;
 
         m_keyword.AddKeyword(tempAction.GetKeyword());
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameSubtractKeywordAction tempAction = (GameSubtractKeywordAction)toSubtract;
+        GameGainKeywordAction tempAction = (GameGainKeywordAction)toSubtract;
 
         m_keyword.SubtractKeyword(tempAction.GetKeyword());
     }

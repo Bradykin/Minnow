@@ -41,6 +41,6 @@ public class ContentRunicBladeCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1))));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1))));
     }
 }

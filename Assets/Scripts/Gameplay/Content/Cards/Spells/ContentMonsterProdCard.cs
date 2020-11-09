@@ -43,6 +43,6 @@ public class ContentMonsterProdCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1))));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1))));
     }
 }

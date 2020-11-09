@@ -9,7 +9,7 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_name = "Blood Money";
         m_desc = "Target allied unit gains '<b>Enrage</b>: Gain gold equal to the damage taken.' until the end of the wave.";
         m_targetType = Target.Ally;
-        m_cost = 5;
+        m_cost = 2;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
@@ -37,6 +37,6 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1))));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1))));
     }
 }

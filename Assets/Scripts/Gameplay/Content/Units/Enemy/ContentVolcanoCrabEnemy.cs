@@ -31,7 +31,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
         AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), false);
         AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), false);
-        AddKeyword(new GameEnrageKeyword(new GameSubtractKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), false);
+        AddKeyword(new GameEnrageKeyword(new GameLoseKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), false);
         AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), false);
         AddKeyword(new GameLavawalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
