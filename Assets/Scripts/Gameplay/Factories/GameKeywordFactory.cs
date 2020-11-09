@@ -33,6 +33,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameTauntKeyword());
         m_keywords.Add(new GameThornsKeyword(0));
         m_keywords.Add(new GameVictoriousKeyword(null));
+        m_keywords.Add(new GameWaterboundKeyword());
         m_keywords.Add(new GameWaterwalkKeyword());
 
         m_hasInit = true;

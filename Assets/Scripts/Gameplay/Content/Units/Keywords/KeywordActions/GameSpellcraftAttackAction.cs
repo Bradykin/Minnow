@@ -30,6 +30,7 @@ public class GameSpellcraftAttackAction : GameAction
     public override void DoAction()
     {
         GamePlayer player = GameHelper.GetPlayer();
+        GameOpponent opponent = GameHelper.GetOpponent();
 
         if (player == null)
         {
@@ -39,6 +40,7 @@ public class GameSpellcraftAttackAction : GameAction
         for (int i = 0; i < m_numSpellcraft; i++)
         {
             player.TriggerSpellcraft(GameCard.Target.Unit, m_gameUnit.GetGameTile());
+            opponent.TriggerSpellcraft(GameCard.Target.Unit, m_gameUnit.GetGameTile());
 
             //If we have Impalium, do it again
             if (GameHelper.HasRelic<ContentImpaliumRelic>())

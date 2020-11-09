@@ -2,33 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentValgulaEnemy : GameEnemyUnit
+//Todo ashulman: Make the AI work
+public class ContentCharybdisEnemy : GameEnemyUnit
 {
-    public ContentValgulaEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentCharybdisEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 6;
-        m_maxStamina = 4;
-        m_staminaRegen = 3;
-        m_power = 3;
+        m_maxHealth = 80;
+        m_maxStamina = 6;
+        m_staminaRegen = 6;
+        m_power = 28;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Valgula";
+        m_name = "Charybdis";
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameWaterboundKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 2, 2)), false);
+            AddKeyword(new GameDamageReductionKeyword(2), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AICharybdisIcebreakStep(m_AIGameEnemyUnit), false);
 
         LateInit();
     }

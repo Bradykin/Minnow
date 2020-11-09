@@ -42,6 +42,16 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     //============================================================================================================//
 
+    public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            m_controlledUnits[i].SpellCast(targetType, targetTile);
+        }
+    }
+
+    //============================================================================================================//
+
     private void TakeUnitTurns()
     {
         FactoryManager.Instance.StartCoroutine(TakeUnitTurnsCoroutine());
@@ -320,6 +330,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                 return false;
             }
 
+            if (!spawnPoint.m_tile.IsPassable(newEnemyUnit, false))
+            {
+                return false;
+            }
+
             if (newSpawnPoolData.m_spawnWeight > enemyCapToSpawn)
             {
                 return false;
@@ -347,6 +362,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         if (newEnemyUnit == null)
+        {
+            return false;
+        }
+
+        if (!spawnPoint.m_tile.IsPassable(newEnemyUnit, false))
         {
             return false;
         }

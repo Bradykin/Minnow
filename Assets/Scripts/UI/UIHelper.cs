@@ -343,19 +343,28 @@ public static class UIHelper
 
     public static void SetSpellcraftTiles()
     {
-        List<GameUnit> m_playerUnitsWithSpellcraft = new List<GameUnit>();
+        List<GameUnit> m_unitsWithSpellcraft = new List<GameUnit>();
         GamePlayer player = GameHelper.GetPlayer();
+        GameOpponent opponent = GameHelper.GetOpponent();
         for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
             if (player.m_controlledUnits[i].GetSpellcraftKeyword() != null)
             {
-                m_playerUnitsWithSpellcraft.Add(player.m_controlledUnits[i]);
+                m_unitsWithSpellcraft.Add(player.m_controlledUnits[i]);
             }
         }
 
-        for (int i = 0; i < m_playerUnitsWithSpellcraft.Count; i++)
+        for (int i = 0; i < opponent.m_controlledUnits.Count; i++)
         {
-            List<GameTile> tilesInSpellcraftRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_playerUnitsWithSpellcraft[i].GetGameTile(), 3, 0);
+            if (opponent.m_controlledUnits[i].GetSpellcraftKeyword() != null)
+            {
+                m_unitsWithSpellcraft.Add(opponent.m_controlledUnits[i]);
+            }
+        }
+
+        for (int i = 0; i < m_unitsWithSpellcraft.Count; i++)
+        {
+            List<GameTile> tilesInSpellcraftRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_unitsWithSpellcraft[i].GetGameTile(), 3, 0);
 
             if (tilesInSpellcraftRange == null)
             {
