@@ -194,6 +194,10 @@ public static class GameHelper
     public static void ReturnToLevelSelectFromLevelScene()
     {
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
+
+        UILevelSelectController.Instance.SetSelectedLevel(null);
+
+        AudioBackgroundController.Instance.StopBackgroundMusic();
     }
 
     public static bool IsInLevelSelect()
