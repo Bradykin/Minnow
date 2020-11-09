@@ -171,7 +171,7 @@ public class WorldUnit : MonoBehaviour
                 }
                 else if (!Globals.m_selectedUnit.GetUnit().HasStaminaToAttack())
                 {
-                    UIHelper.CreateWorldElementNotification("Requires " + GetUnit().GetStaminaToAttack() + " Stamina to attack.", false, GetUnit().m_worldUnit.gameObject);
+                    UIHelper.CreateWorldElementNotification("Requires " + Globals.m_selectedUnit.GetUnit().GetStaminaToAttack() + " Stamina to attack.", false, GetUnit().m_worldUnit.gameObject);
                 }
             }
             else
