@@ -222,6 +222,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             if (newTerrain.IsEventTerrain())
             {
                 m_gameWorldPerk = new GameWorldPerk(GameEventFactory.GetRandomEvent(this));
+                m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
             }
         }
     }

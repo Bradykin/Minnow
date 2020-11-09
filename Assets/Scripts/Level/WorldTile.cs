@@ -56,14 +56,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 m_worldPerkIndicator.SetActive(true); 
                 m_worldPerkIndicator.GetComponent<UIWorldPerkIndicator>().Init(GetGameTile().m_gameWorldPerk, this);
-
-                if (!GameHelper.IsInLevelBuilder())
-                {
-                    if (GetGameTile().m_gameWorldPerk.IsEvent())
-                    {
-                        GetGameTile().SetTerrain(GameTerrainFactory.GetCompletedEventTerrainClone(GetGameTile().GetTerrain()));
-                    }
-                }
             }
         }
         else
