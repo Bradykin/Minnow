@@ -124,13 +124,16 @@ public static class PlayerDataManager
                 GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos, out int bonusExpAmount);
                 experienceAmount += bonusExpAmount;
 
-                if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+                if (Globals.m_curChaos <= 4 && mapID != 0)
                 {
-                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
-                }
-                else
-                {
-                    PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+                    if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
+                    {
+                        PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
+                    }
+                    else
+                    {
+                        PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.Add(mapID, Globals.m_curChaos + 1);
+                    }
                 }
             }
         }
