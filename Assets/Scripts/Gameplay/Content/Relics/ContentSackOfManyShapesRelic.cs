@@ -8,7 +8,7 @@ public class ContentSackOfManyShapesRelic : GameRelic
     {
         m_name = "Sack of Many Shapes";
         m_desc = "Draw 3 extra cards, and gain 2 extra energy on the first turn of each wave.";
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 

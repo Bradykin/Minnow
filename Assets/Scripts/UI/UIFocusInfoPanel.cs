@@ -33,10 +33,6 @@ public class UIFocusInfoPanel : UIElementBase
         {
             UpdateFocusData(Globals.m_selectedTile);
         }
-        else if (Globals.m_hoveredTile != null)
-        {
-            UpdateFocusData(Globals.m_hoveredTile);
-        }
         else if (Globals.m_hoveredCard != null)
         {
             UpdateFocusData(Globals.m_hoveredCard);
