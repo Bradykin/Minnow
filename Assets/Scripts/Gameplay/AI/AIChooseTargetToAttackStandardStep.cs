@@ -9,11 +9,14 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 
     public override IEnumerator TakeStep(bool shouldYield)
     {
-        GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
-        if (closestTauntUnitInRange != null)
+        if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isBoss)
         {
-            m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
-            yield break;
+            GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
+            if (closestTauntUnitInRange != null)
+            {
+                m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
+                yield break;
+            }
         }
 
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
