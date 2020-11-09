@@ -8,13 +8,14 @@ public class GameRangeKeyword : GameKeywordBase
     public int m_range;
     public bool m_buffedByTerrain;
 
-    public GameRangeKeyword(int range)
+    public GameRangeKeyword(int range, bool buffedByTerrain = false)
     {
         m_range = range;
+        m_buffedByTerrain = buffedByTerrain;
 
         m_name = "Ranged";
         m_focusInfoText = "Can attack at range.";
-        m_keywordParamType = KeywordParamType.IntParam;
+        m_keywordParamType = KeywordParamType.IntBoolParam;
     }
 
     public override string GetDesc()
@@ -58,7 +59,8 @@ public class GameRangeKeyword : GameKeywordBase
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            intValue = m_range
+            intValue = m_range,
+            boolValue = m_buffedByTerrain
         };
 
         return jsonData;

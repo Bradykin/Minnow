@@ -11,5 +11,6 @@ public class JsonKeywordData
 
     //Json Keyword parsing data
     public int intValue;
+    public bool boolValue;
     public List<JsonActionData> actionJson;
 }

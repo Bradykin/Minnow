@@ -8,13 +8,14 @@ public class GameDamageReductionKeyword : GameKeywordBase
     public int m_damageReduction;
     public bool m_buffedByTerrain;
 
-    public GameDamageReductionKeyword(int damageReduction)
+    public GameDamageReductionKeyword(int damageReduction, bool buffedByTerrain = false)
     {
         m_damageReduction = damageReduction;
+        m_buffedByTerrain = buffedByTerrain;
 
         m_name = "Damage Reduction";
         m_focusInfoText = "Takes less damage from all sources.";
-        m_keywordParamType = KeywordParamType.IntParam;
+        m_keywordParamType = KeywordParamType.IntBoolParam;
     }
 
     public override string GetDesc()
@@ -58,7 +59,8 @@ public class GameDamageReductionKeyword : GameKeywordBase
         JsonKeywordData jsonData = new JsonKeywordData
         {
             name = m_name,
-            intValue = m_damageReduction
+            intValue = m_damageReduction,
+            boolValue = m_buffedByTerrain
         };
 
         return jsonData;

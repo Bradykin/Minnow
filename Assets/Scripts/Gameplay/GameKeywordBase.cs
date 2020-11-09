@@ -9,7 +9,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>,
     {
         NoParams,
         IntParam,
-        TwoIntParam,
+        IntBoolParam,
         ActionParam
     }
 
