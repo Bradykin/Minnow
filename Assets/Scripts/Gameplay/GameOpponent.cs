@@ -87,9 +87,9 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
             units.Remove(unit);
 
-            if (PlayerDataManager.PlayerAccountData.m_followEnemy && !unit.GetGameTile().m_isFog)
+            if (!unit.m_isDead && unit.GetGameTile() != null)
             {
-                if (!unit.m_isDead && unit.GetGameTile() != null)
+                if (PlayerDataManager.PlayerAccountData.m_followEnemy && !unit.GetGameTile().m_isFog)
                 {
                     measureTo = unit.GetGameTile();
                 }

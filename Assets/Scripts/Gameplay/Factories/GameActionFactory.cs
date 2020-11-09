@@ -40,6 +40,7 @@ public class GameActionFactory
         m_actions.Add(new GameSpellcraftAttackAction(null, 0));
         m_actions.Add(new GameGainKeywordAction(null, null));
         m_actions.Add(new GameLoseKeywordAction(null, null));
+        m_actions.Add(new GameGainKeywordUntilEndOfTurnAction(null, null));
         m_actions.Add(new GameGainKeywordRangeAction(null, 0, null));
 
         m_hasInit = true;

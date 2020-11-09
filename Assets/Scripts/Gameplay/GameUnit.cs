@@ -496,16 +496,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual bool IsInRangeOfUnit(GameUnit other)
     {
-        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.m_gameTile, true, false, false);
+        int distance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_gameTile, other.m_gameTile);
 
-        if (tiles == null)
-        {
-            return false;
-        }
-
-        int distance = tiles.Count;
-
-        if ((distance - 1) > GetRange())
+        if (distance > GetRange())
         {
             return false;
         }
@@ -515,16 +508,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
     {
-        List<GameTile> tiles = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, other.GetGameTile(), true, false, false);
+        int distance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_gameTile, other.GetGameTile());
 
-        if (tiles == null)
-        {
-            return false;
-        }
-
-        int distance = tiles.Count;
-
-        if ((distance - 1) > GetRange())
+        if (distance > GetRange())
         {
             return false;
         }
@@ -953,6 +939,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual GameForestwalkKeyword GetForestwalkKeyword()
     {
         return m_keywordHolder.GetKeyword<GameForestwalkKeyword>();
+    }
+
+    public virtual GameRootedKeyword GetRootedKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameRootedKeyword>();
     }
 
     public virtual GameTauntKeyword GetTauntKeyword()
@@ -1658,6 +1649,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (forestwalkKeyword != null)
         {
             returnDesc += forestwalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameRootedKeyword rootedKeyword = GetRootedKeyword();
+        if (rootedKeyword != null)
+        {
+            returnDesc += rootedKeyword.GetDisplayString() + "\n";
         }
 
         GameTauntKeyword tauntKeyword = GetTauntKeyword();

@@ -27,6 +27,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameMountainwalkKeyword());
         m_keywords.Add(new GameRangeKeyword(0));
         m_keywords.Add(new GameRegenerateKeyword(0));
+        m_keywords.Add(new GameRootedKeyword());
         m_keywords.Add(new GameShivKeyword());
         m_keywords.Add(new GameSpellcraftKeyword(null));
         m_keywords.Add(new GameSummonKeyword(null));

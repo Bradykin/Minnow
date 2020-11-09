@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AIAttackOnceStandardStep : AIStep
 {
+    protected bool repeatAI;
+    
     public AIAttackOnceStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
     public override IEnumerator TakeStep(bool shouldYield)
@@ -31,17 +33,16 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (shouldYield)
                     {
-                        //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameUnit == null || gameUnit.m_isDead)
+                    if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            //m_AIGameEnemyUnit.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        yield break;
+                        //yield break;
                     }
                     break;
                 case GameBuildingBase gameBuilding:
@@ -58,17 +59,16 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (shouldYield)
                     {
-                        //UIHelper.CreateWorldElementNotification("Does AI step: " + GetType(), true, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameBuilding.m_isDestroyed)
+                    if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
-                            //m_AIGameEnemyUnit.m_doSteps = true;
+                            m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        yield break;
+                        //yield break;
                     }
                     break;
             }

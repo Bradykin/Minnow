@@ -218,7 +218,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             RecycleGrid();
         }
 
-        SetupSquareGrid(parent, gridSizeX, gridSizeY);
+        SetupGrid(parent, gridSizeX, gridSizeY);
         m_setup = true;
     }
 
@@ -235,7 +235,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
-    private void SetupSquareGrid(Transform parent, int gridSizeX, int gridSizeY)
+    private void SetupGrid(Transform parent, int gridSizeX, int gridSizeY)
     {
         m_gridRoot = parent;
         m_gridSizeX = gridSizeX;
@@ -466,32 +466,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
         PlaceChests();
 
-        /*int eventCount = 0;
-        for (int i = 0; i < m_gridArray.Length; i++)
-        {
-            if (m_gridArray[i].GetGameTile().GetTerrain().IsEventTerrain())
-            {
-                eventCount++;
-            }
-        }
-
-        print("Events on map: " + eventCount);*/
-
         UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.GetCastleWorldTile().gameObject);
     }
-
-    /*public void SetupEnemies(GameOpponent gameOpponent)
-    {
-        StartCoroutine(AddEnemiesToGrid(gameOpponent));
-    }    
-
-    private IEnumerator AddEnemiesToGrid(GameOpponent gameOpponent)
-    {
-        while (!WorldGridManager.Instance.m_setup)
-            yield return null;
-
-        WorldController.Instance.StartWaveEnemySpawn();
-    }*/
 
     //============================================================================================================//
 
@@ -518,7 +494,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public int CalculateAbsoluteDistanceBetweenPositions(GameTile startingGameTile, GameTile targetGameTile)
     {
-        Vector2Int currentPosition = startingGameTile.m_gridPosition;
+        /*Vector2Int currentPosition = startingGameTile.m_gridPosition;
         Vector2Int targetPosition = targetGameTile.m_gridPosition;
         int distance = 0;
 
@@ -541,11 +517,28 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             distance++;
         }
 
-        return distance + Math.Abs(currentPosition.x - targetPosition.y);
+        return distance + Math.Abs(currentPosition.x - targetPosition.x);*/
+
+        for (int i = 0; i < 30; i++)
+        {
+            List<GameTile> tilesAtRange = GetSurroundingGameTiles(startingGameTile, i, Mathf.Min(i, 1));
+            if (tilesAtRange.Contains(targetGameTile))
+            {
+                return i;
+            }
+        }
+
+        Debug.LogError("Failed to find Distance");
+        return 30;
     }
 
     public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
     {
+        if (startingGridTile.IsOccupied() && !startingGridTile.m_occupyingUnit.m_isDead && startingGridTile.m_occupyingUnit.GetRootedKeyword() != null)
+        {
+            return null;
+        }
+
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
         var target = new Location(targetGridTile);
@@ -627,6 +620,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies)
     {
+        if (startingGridTile.IsOccupied() && !startingGridTile.m_occupyingUnit.m_isDead && startingGridTile.m_occupyingUnit.GetRootedKeyword() != null)
+        {
+            return null;
+        }
+
         Location current = null;
         var start = new Location(startingGridTile, targetGridTile, 0, null);
         var target = new Location(targetGridTile);
@@ -795,6 +793,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     private List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, int currentStamina, bool ignoreTerrainDifferences, bool letPassEnemies)
     {
+        if (startingGridTile.IsOccupied() && !startingGridTile.m_occupyingUnit.m_isDead && startingGridTile.m_occupyingUnit.GetRootedKeyword() != null)
+        {
+            return null;
+        }
+
         Location current = null;
         var start = new Location(startingGridTile, 0);
         var openList = new List<Location>();
