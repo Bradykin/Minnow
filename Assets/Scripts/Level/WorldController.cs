@@ -40,7 +40,7 @@ public class WorldController : Singleton<WorldController>
     {
         m_isInGame = false;
 
-        m_gameController.OnEndRun(endType);
+        m_gameController.EndLevel(endType);
         m_gameController = null;
         for(int i = 0; i < m_playerHand.Count; i++)
         {

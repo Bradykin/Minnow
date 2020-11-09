@@ -190,7 +190,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_runExperienceAmount += experienceAmount;
     }
 
-    public void OnEndRun(RunEndType endType)
+    public void EndLevel(RunEndType endType)
     {
         if (endType != RunEndType.Quit)
         {

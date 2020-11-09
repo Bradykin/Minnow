@@ -311,7 +311,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     private void LoadGrid(string param)
     {
-        if (SceneManager.GetActiveScene().name == "LevelCreatorScene")
+        if (GameHelper.IsInLevelBuilder())
         {
             LevelCreator levelCreator = FindObjectOfType<LevelCreator>();
             if (levelCreator != null)
@@ -331,7 +331,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     private void SaveGrid(string param)
     {
-        if (SceneManager.GetActiveScene().name == "LevelCreatorScene")
+        if (GameHelper.IsInLevelBuilder())
         {
             LevelCreator levelCreator = FindObjectOfType<LevelCreator>();
             if (levelCreator != null)

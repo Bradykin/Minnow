@@ -50,7 +50,7 @@ public class GameTag
 
     public static int GetTagValueFor(GameElementBase checkElement)
     {
-        int tagValue = 8;
+        int tagValue = 12;
 
         for (int i = 0; i < checkElement.m_tags.m_tagTypes.Count; i++)
         {

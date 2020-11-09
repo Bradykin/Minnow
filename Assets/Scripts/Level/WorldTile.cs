@@ -283,7 +283,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return;
         }
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LevelCreatorScene"))
+        if (GameHelper.IsInLevelBuilder())
         {
             if (Globals.m_levelCreatorEraserMode)
             {

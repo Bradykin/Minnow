@@ -482,6 +482,11 @@ public static class UIHelper
             return;
         }
 
+        if (!WorldController.Instance.m_isInGame)
+        {
+            return;
+        }
+
         WorldGridManager.Instance.ClearAllTilesMovementRange();
 
         SetMoveableTileForUnit(Globals.m_selectedUnit);
