@@ -185,7 +185,7 @@ public static class GameHelper
 
     public static void EndLevel(RunEndType runEndType)
     {
-        UIWinLossController.Instance.Init(runEndType, WorldController.Instance.m_gameController.GetRunExperienceNum());
+        UIWinLossController.Instance.Init(runEndType);
 
         FactoryManager.Instance.StopAllCoroutines();
 
