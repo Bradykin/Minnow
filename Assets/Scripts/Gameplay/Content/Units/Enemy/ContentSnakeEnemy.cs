@@ -10,7 +10,7 @@ public class ContentSnakeEnemy : GameEnemyUnit
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 2;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 2;
 

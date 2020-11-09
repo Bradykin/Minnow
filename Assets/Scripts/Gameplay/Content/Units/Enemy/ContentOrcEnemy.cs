@@ -6,8 +6,8 @@ public class ContentOrcEnemy : GameEnemyUnit
 {
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 22;
-        m_maxStamina = 6;
+        m_maxHealth = 28;
+        m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 6;
 

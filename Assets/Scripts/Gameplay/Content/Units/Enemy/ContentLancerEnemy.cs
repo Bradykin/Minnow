@@ -7,7 +7,7 @@ public class ContentLancerEnemy : GameEnemyUnit
     public ContentLancerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 7;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 4;
 

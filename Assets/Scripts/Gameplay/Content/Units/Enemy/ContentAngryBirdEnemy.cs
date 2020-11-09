@@ -8,7 +8,7 @@ public class ContentAngryBirdEnemy : GameEnemyUnit
     public ContentAngryBirdEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 4;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 3;
 

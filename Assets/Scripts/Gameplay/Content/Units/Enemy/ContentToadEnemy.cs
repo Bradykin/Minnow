@@ -11,7 +11,7 @@ public class ContentToadEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, -1f, 0);
 
         m_maxHealth = 7;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 2;
 

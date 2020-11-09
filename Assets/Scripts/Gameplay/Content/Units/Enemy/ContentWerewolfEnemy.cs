@@ -12,7 +12,7 @@ public class ContentWerewolfEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_maxHealth = 60;
-        m_maxStamina = 6;
+        m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 12;
 
