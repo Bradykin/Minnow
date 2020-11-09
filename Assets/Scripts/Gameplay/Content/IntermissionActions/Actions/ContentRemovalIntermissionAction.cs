@@ -6,7 +6,7 @@ public class ContentRemovalIntermissionAction : GameActionIntermission
 {
     public ContentRemovalIntermissionAction()
     {
-        m_actionCost = 2;
+        m_actionCost = 1;
         m_name = "Purge";
         m_desc = "Remove a card from your deck!";
 
