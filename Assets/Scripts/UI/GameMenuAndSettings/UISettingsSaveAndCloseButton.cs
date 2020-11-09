@@ -12,7 +12,6 @@ public class UISettingsSaveAndCloseButton : UIElementBase
     {
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
 
-        //TODO: alex - Save all settings data here
         m_settingsMenu.SetActive(false);
     }
 

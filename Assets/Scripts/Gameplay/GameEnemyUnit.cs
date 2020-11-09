@@ -47,6 +47,39 @@ public class GameEnemyUnit : GameUnit
 
     //============================================================================================================//
 
+
+    public override void SpellCast(GameCard.Target targetType, GameTile targetTile)
+    {
+        GameSpellcraftKeyword spellcraftKeyword = GetSpellcraftKeyword();
+
+        if (spellcraftKeyword == null)
+        {
+            return;
+        }
+
+        if (Constants.UseLocationalSpellcraft)
+        {
+            if (targetType == GameCard.Target.None)
+            {
+                return;
+            }
+
+            if (targetTile == null)
+            {
+                Debug.LogError("Spellcast that isn't target none received null target tile");
+                return;
+            }
+
+            int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), targetTile, true, false, true);
+            if (distanceBetween > GameSpellcraftKeyword.m_spellcraftRange)
+            {
+                return;
+            }
+        }
+
+        spellcraftKeyword.DoAction();
+    }
+
     public override void Die(bool canRevive = true)
     {
         GameHelper.GetGameController().AddRunExperience(m_experienceAmount);

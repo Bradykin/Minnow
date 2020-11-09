@@ -381,7 +381,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
                     surroundingTiles[i].m_occupyingUnit.GetFlyingKeyword() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetWaterwalkKeyword() == null)
+                    surroundingTiles[i].m_occupyingUnit.GetWaterwalkKeyword() == null && 
+                    surroundingTiles[i].m_occupyingUnit.GetWaterboundKeyword() == null)
                 {
                     surroundingTiles[i].m_occupyingUnit.Die();
                 }
@@ -531,7 +532,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
-    public void SpellCast(GameCard.Target targetType, GameTile targetTile)
+    public virtual void SpellCast(GameCard.Target targetType, GameTile targetTile)
     {
         GameSpellcraftKeyword spellcraftKeyword = GetSpellcraftKeyword();
 
@@ -942,6 +943,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         return m_keywordHolder.GetKeyword<GameWaterwalkKeyword>();
+    }
+
+    public virtual GameWaterboundKeyword GetWaterboundKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameWaterboundKeyword>();
     }
 
     public virtual GameForestwalkKeyword GetForestwalkKeyword()
@@ -1635,6 +1641,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             returnDesc += waterwalkKeyword.GetDisplayString() + "\n";
         }
 
+        GameWaterboundKeyword waterboundKeyword = GetWaterboundKeyword();
+        if (waterboundKeyword != null)
+        {
+            returnDesc += waterboundKeyword.GetDisplayString() + "\n";
+        }
+
         GameForestwalkKeyword forestwalkKeyword = GetForestwalkKeyword();
         if (forestwalkKeyword != null)
         {
@@ -1829,7 +1841,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 return 0;
             }
         }
-        //TODO: alex - Hook this up to player save data.
 
         return 0;
     }

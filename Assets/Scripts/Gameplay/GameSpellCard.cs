@@ -185,6 +185,7 @@ public class GameCardSpellBase : GameCard
     protected void TriggerSpellcraft(GameTile tileCastAt)
     {
         GamePlayer player = GameHelper.GetPlayer();
+        GameOpponent opponent = GameHelper.GetOpponent();
 
         if (player == null)
         {
@@ -192,6 +193,7 @@ public class GameCardSpellBase : GameCard
         }
 
         player.TriggerSpellcraft(m_targetType, tileCastAt);
+        opponent.TriggerSpellcraft(m_targetType, tileCastAt);
 
         //If we have Impalium, do it again
         if (GameHelper.HasRelic<ContentImpaliumRelic>())

@@ -168,6 +168,7 @@ public static class GameCardFactory
 
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());
+        m_enemyCards.Add(new ContentCharybdisEnemyCard());
         m_enemyCards.Add(new ContentValgulaEnemyCard());
         m_enemyCards.Add(new ContentBasiliskEnemyCard());
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
