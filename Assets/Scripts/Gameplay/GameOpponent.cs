@@ -105,7 +105,10 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             }
         }
 
-        WorldController.Instance.m_gameController.MoveToNextTurn();
+        if (WorldController.Instance.m_isInGame)
+        {
+            WorldController.Instance.m_gameController.MoveToNextTurn();
+        }
     }
 
     public void StartTurn()

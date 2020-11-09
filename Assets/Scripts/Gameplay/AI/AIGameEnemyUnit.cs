@@ -87,6 +87,11 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
             m_doSteps = false;
             for (int i = 0; i < m_activeAISteps.Count; i++)
             {
+                if (!WorldController.Instance.m_isInGame)
+                {
+                    break;
+                }
+                
                 if (GameHelper.GetGameController().m_runStateType == RunStateType.None)
                 {
                     break;
