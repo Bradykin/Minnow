@@ -310,10 +310,13 @@ public class WorldController : Singleton<WorldController>
 
         m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
 
-        if (m_gameController.m_currentWaveNumber == Constants.AltarWave)
+        if (PlayerDataManager.PlayerAccountData.m_altarsUnlockedOnAccount)
         {
-            WorldGridManager.Instance.PlaceAltars();
-            UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
+            if (m_gameController.m_currentWaveNumber == Constants.AltarWave)
+            {
+                WorldGridManager.Instance.PlaceAltars();
+                UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
+            }
         }
     }
 

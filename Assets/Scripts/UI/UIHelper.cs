@@ -679,7 +679,7 @@ public static class UIHelper
         else if (perk.IsAltar())
         {
             UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetAltar().GetName(), perk.GetAltar().m_eventDesc));
-            CreateRelicTooltip(perk.GetAltar().GetAltarRelic());
+            CreateRelicTooltip(perk.GetAltar().GetAltarRelic(), true);
         }
     }
 

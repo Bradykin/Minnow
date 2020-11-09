@@ -8,7 +8,7 @@ public class ContentToolOfTheDeadmanRelic : GameRelic
     {
         m_name = "Tool of the Deadman";
         m_desc = "When an enemy unit dies add a <b>Shiv</b> to your hand.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Rare;
 
         LateInit();
 
