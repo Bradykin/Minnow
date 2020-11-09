@@ -44,6 +44,8 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
+        m_experienceAmount = 50;
+
         LateInit();
     }
 

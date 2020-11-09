@@ -11,7 +11,7 @@ public class UIWinLossController : Singleton<UIWinLossController>
     public Text m_winLossText;
     public Text m_reputationText;
 
-    public void Init(RunEndType runEndType, int reputationGained)
+    public void Init(RunEndType runEndType)
     {
         UIWorldElementNotificationController.Instance.ClearAllWorldElementNotifications();
 
@@ -25,7 +25,13 @@ public class UIWinLossController : Singleton<UIWinLossController>
             m_winLossText.text = "Victory!";
         }
 
-        m_reputationText.text = "Reputation Gained: " + reputationGained;
+        GameController gameController = WorldController.Instance.m_gameController;
+
+        m_reputationText.text = "Reputation Gained Total: " + gameController.GetRunExperienceNum() + "\n" +
+            "\tBase - " + gameController.GetBaseExpNum() + "\n" +
+            "\tElite Kills - " + gameController.GetEliteExpNum() + "\n" +
+            "\tEnemy Kills - " + gameController.GetKillExpNum() + "\n" +
+            "\tEvent Discovery - " + gameController.GetEventExpNum();
 
         m_holder.SetActive(true);
     }

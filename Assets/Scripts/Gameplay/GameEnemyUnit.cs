@@ -82,7 +82,14 @@ public class GameEnemyUnit : GameUnit
 
     public override void Die(bool canRevive = true)
     {
-        GameHelper.GetGameController().AddRunExperience(m_experienceAmount);
+        if (m_isElite)
+        {
+            GameHelper.GetGameController().AddEliteExp(m_experienceAmount);
+        }
+        else
+        {
+            GameHelper.GetGameController().AddKillExp(m_experienceAmount);
+        }
 
         base.Die(canRevive);
         m_gameOpponentController.m_controlledUnits.Remove(this);

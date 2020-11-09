@@ -37,7 +37,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public GameMap m_map;
 
-    private int m_runExperienceAmount;
+    private int m_killExpAmount;
+    private int m_killEliteExpAmount;
+    private int m_eventExpAmount;
+    private int m_baseExpAmount = 50;
+
     public int m_randomSeed;
 
     //Variables used for unit card offerings in intermissions
@@ -185,9 +189,19 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         return toReturn;
     }
 
-    public void AddRunExperience(int experienceAmount)
+    public void AddKillExp(int experienceAmount)
     {
-        m_runExperienceAmount += experienceAmount;
+        m_killExpAmount += experienceAmount;
+    }
+
+    public void AddEventExp(int experienceAmount)
+    {
+        m_eventExpAmount += experienceAmount;
+    }
+
+    public void AddEliteExp(int experienceAmount)
+    {
+        m_killEliteExpAmount += experienceAmount;
     }
 
     public void EndLevel(RunEndType endType)
@@ -199,9 +213,29 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         }
     }
 
+    public int GetKillExpNum()
+    {
+        return m_killExpAmount;
+    }
+
+    public int GetEventExpNum()
+    {
+        return m_eventExpAmount;
+    }
+
+    public int GetBaseExpNum()
+    {
+        return m_baseExpAmount;
+    }
+
+    public int GetEliteExpNum()
+    {
+        return m_killEliteExpAmount;
+    }
+
     public int GetRunExperienceNum()
     {
-        return Mathf.Max(50, m_runExperienceAmount);
+        return m_baseExpAmount + m_killExpAmount + m_eventExpAmount + m_killEliteExpAmount;
     }
 
     //============================================================================================================//
@@ -213,7 +247,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             currentWave = m_currentWaveNumber,
             currentTurn = m_currentTurnNumber,
             mapId = GetCurMap().m_id,
-            runExperienceAMount = m_runExperienceAmount,
+            runBaseExp = m_baseExpAmount,
+            runKillExp = m_killExpAmount,
+            runEventExp = m_eventExpAmount,
+            runEliteExp = m_killEliteExpAmount,
             randomSeed = m_randomSeed,
 
             numRareUnitOptionsOffered = m_numRareUnitOptionsOffered,
@@ -238,7 +275,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
-        m_runExperienceAmount = jsonData.runExperienceAMount;
+        m_baseExpAmount = jsonData.runBaseExp;
+        m_killExpAmount = jsonData.runKillExp;
+        m_eventExpAmount = jsonData.runEventExp;
+        m_killEliteExpAmount = jsonData.runEliteExp;
 
         m_numRareUnitOptionsOffered = jsonData.numRareUnitOptionsOffered;
         m_previousRareUnitOptionWave = jsonData.previousRareUnitOptionWave;
