@@ -625,19 +625,22 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
-        if (GameHelper.HasRelic<ContentLastHopeRelic>())
-        {
-            DrawCard();
-        }
-
-        if (GameHelper.HasRelic<ContentProclamationOfSurrenderRelic>())
-        {
-            AddEnergy(1);
-        }
-
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].SpellCast(targetType, targetTile);
+
+            if (m_controlledUnits[i].GetSpellcraftKeyword() != null)
+            {
+                if (GameHelper.HasRelic<ContentLastHopeRelic>())
+                {
+                    DrawCard();
+                }
+
+                if (GameHelper.HasRelic<ContentProclamationOfSurrenderRelic>())
+                {
+                    AddEnergy(1);
+                }
+            }
         }
     }
 
