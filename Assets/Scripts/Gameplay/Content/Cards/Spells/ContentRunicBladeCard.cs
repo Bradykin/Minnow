@@ -8,7 +8,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
     {
         m_name = "Runic Blade";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 1;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
@@ -28,7 +28,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b>.'";
+        return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b> until end of wave.'";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -41,5 +41,6 @@ public class ContentRunicBladeCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1)));
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameSubtractKeywordAction(targetUnit, new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1))));
     }
 }
