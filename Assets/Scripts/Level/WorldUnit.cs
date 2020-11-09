@@ -73,12 +73,10 @@ public class WorldUnit : MonoBehaviour
         if (this == Globals.m_selectedUnit || this == Globals.m_selectedEnemy || (m_isHovered && GetUnit().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetUnit().GetTeam() == Team.Player))
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            m_collider.size = new Vector2(2.5f, 3.5f);
         }
         else
         {
             transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            m_collider.size = new Vector2(3f, 4.3f);
         }
 
         if (!m_isHovered)
