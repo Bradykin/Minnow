@@ -48,4 +48,9 @@ public class PlayerAccountData
         m_playerRunData = new PlayerRunData();
         m_playerRunData.SaveRunData();
     }
+
+    public void ClearRunData()
+    {
+        m_playerRunData = null;
+    }
 }

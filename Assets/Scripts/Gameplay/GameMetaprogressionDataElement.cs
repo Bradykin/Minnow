@@ -68,4 +68,19 @@ public class GameMetaprogressionDataElement
     {
         return m_chaosNum;
     }
+
+    public GameCard GetCard()
+    {
+        return m_card;
+    }
+
+    public int GetLevel()
+    {
+        return m_level;
+    }
+
+    public int GetBonusExp()
+    {
+        return m_bonusExp;
+    }
 }

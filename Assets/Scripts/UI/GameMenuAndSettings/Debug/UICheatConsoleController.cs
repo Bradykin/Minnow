@@ -164,6 +164,18 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "wingame")
+        {
+            WinGame();
+            return;
+        }
+
+        if (cheat == "losegame")
+        {
+            LoseGame();
+            return;
+        }
+
 
         Debug.Log(cheat + " is an invalid cheat command.");
     }
@@ -347,5 +359,17 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         {
             Debug.LogWarning("Wrong scene");
         }
+    }
+
+    private void WinGame()
+    {
+        GameHelper.EndLevel(RunEndType.Win);
+        GameHelper.ReturnToLevelSelectFromLevelScene();
+    }
+
+    private void LoseGame()
+    {
+        GameHelper.EndLevel(RunEndType.Loss);
+        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 }

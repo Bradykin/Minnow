@@ -82,13 +82,34 @@ public static class GameMetaprogressionUnlocksDataManager
         return null;
     }
 
-    public static void CompleteMapAtChaosFirstTime(int mapId, int chaosNum)
+    public static void CompleteMapAtChaosFirstTime(int mapId, int chaosNum, out int bonusExpAmount)
     {
+        bonusExpAmount = 0;
+        PlayerAccountData accountData = PlayerDataManager.PlayerAccountData;
+
+        if (mapId == 0 && chaosNum == 0)
+        {
+            accountData.m_altarsUnlockedOnAccount = true;
+        }
+        
         for (int i = 0; i < m_dataElements.Count; i++)
         {
             if (m_dataElements[i].GetMapId() == mapId && m_dataElements[i].GetChaosLevel() == chaosNum)
             {
-                //TODO: Alex, unlock the m_dataElements[i] in player data.
+                bonusExpAmount += m_dataElements[i].GetBonusExp();
+
+                GameCard card = m_dataElements[i].GetCard();
+                if (card != null)
+                {
+                    if (accountData.m_starterCardUnlockLevels.ContainsKey(card.GetBaseName()))
+                    {
+                        accountData.m_starterCardUnlockLevels[card.GetBaseName()] = Mathf.Max(accountData.m_starterCardUnlockLevels[card.GetBaseName()], m_dataElements[i].GetLevel());
+                    }
+                    else
+                    {
+                        accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), m_dataElements[i].GetLevel());
+                    }
+                }
             }
         }
     }

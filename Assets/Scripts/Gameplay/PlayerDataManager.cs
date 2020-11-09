@@ -104,9 +104,6 @@ public static class PlayerDataManager
     {
         int previousLevel = GetCurLevel();
 
-        PlayerAccountData.m_playerExperience += experienceAmount;
-        PlayerAccountData.m_numPlaySessions++;
-
         if (endType == RunEndType.Win)
         {
             bool firstTimeCompleteChaosLevel = false;
@@ -124,7 +121,9 @@ public static class PlayerDataManager
 
             if (firstTimeCompleteChaosLevel)
             {
-                GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos);
+                GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos, out int bonusExpAmount);
+                experienceAmount += bonusExpAmount;
+
                 if (PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset.ContainsKey(mapID))
                 {
                     PlayerDataManager.PlayerAccountData.m_mapChaosUIAutoset[mapID] = Globals.m_curChaos + 1;
@@ -135,6 +134,10 @@ public static class PlayerDataManager
                 }
             }
         }
+
+        PlayerAccountData.m_playerExperience += experienceAmount;
+        PlayerAccountData.m_numPlaySessions++;
+        PlayerAccountData.ClearRunData();
 
         int curLevel = GetCurLevel();
 
