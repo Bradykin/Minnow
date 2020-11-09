@@ -34,7 +34,6 @@ public class ContentCastleBuilding : GameBuildingBase
         base.Die();
 
         GameHelper.EndLevel(RunEndType.Loss);
-        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

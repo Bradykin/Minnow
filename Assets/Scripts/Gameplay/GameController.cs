@@ -194,11 +194,15 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         if (endType != RunEndType.Quit)
         {
-            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, Mathf.Max(50, m_runExperienceAmount), m_map.m_id, Globals.m_curChaos);
+            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(), m_map.m_id, Globals.m_curChaos);
             Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }
     }
 
+    public int GetRunExperienceNum()
+    {
+        return Mathf.Max(50, m_runExperienceAmount);
+    }
 
     //============================================================================================================//
 

@@ -56,7 +56,6 @@ public class ContentLichEnemy : GameEnemyUnit
         base.Die(canRevive);
 
         GameHelper.EndLevel(RunEndType.Win);
-        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
     public override bool IsInvulnerable()

@@ -29,7 +29,6 @@ public class ContentRoyalCaravan : GameUnit
         base.Die(canRevive);
 
         GameHelper.EndLevel(RunEndType.Loss);
-        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
     public override void OnMoveBegin()

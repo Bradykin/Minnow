@@ -185,9 +185,12 @@ public static class GameHelper
 
     public static void EndLevel(RunEndType runEndType)
     {
+        UIWinLossController.Instance.Init(runEndType, WorldController.Instance.m_gameController.GetRunExperienceNum());
+
         FactoryManager.Instance.StopAllCoroutines();
 
         WorldController.Instance.EndLevel(runEndType);
+
         WorldGridManager.Instance.RecycleGrid();
         UIRelicController.Instance.ClearRelics();
     }
@@ -209,6 +212,11 @@ public static class GameHelper
     public static bool IsInLevelBuilder()
     {
         return SceneLoader.CurrentScene == "LevelCreatorScene";
+    }
+
+    public static bool IsInWinLoss()
+    {
+        return UIWinLossController.Instance.IsActive();
     }
 
     public static bool IsBossOrElite(GameUnit toCheck)

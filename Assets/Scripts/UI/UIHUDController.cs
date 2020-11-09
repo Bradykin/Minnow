@@ -21,6 +21,15 @@ public class UIHUDController : Singleton<UIHUDController>
 
     void Update()
     {
+        if (GameHelper.IsInWinLoss())
+        {
+            m_intermissionHUD.SetActive(false);
+            m_waveHUD.SetActive(false);
+            m_globalHUD.SetActive(false);
+            m_levelSelectHUD.SetActive(false);
+            return;
+        }
+
         if (GameHelper.IsInLevelBuilder())
         {
             m_intermissionHUD.SetActive(false);

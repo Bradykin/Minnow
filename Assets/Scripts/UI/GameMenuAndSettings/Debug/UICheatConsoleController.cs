@@ -378,13 +378,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     private void WinGame()
     {
         GameHelper.EndLevel(RunEndType.Win);
-        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
     private void LoseGame()
     {
         GameHelper.EndLevel(RunEndType.Loss);
-        GameHelper.ReturnToLevelSelectFromLevelScene();
     }
 
     private void TempTest()
