@@ -46,6 +46,7 @@ public class ContentFrozenLakeMap : GameMap
     protected override void FillSpawnPool()
     {
         m_totalEnemiesOnMap.Add(new ContentCharybdisEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFrozenGuardianEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentFrozenImpEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentIcefisherEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGriffonEnemy(null));

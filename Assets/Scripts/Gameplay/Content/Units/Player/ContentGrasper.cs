@@ -24,12 +24,24 @@ public class ContentGrasper : GameUnit
 
     public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
     {
+        int staminaToDrain = other.GetCurStamina();
+
         int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 
-        if (damageTaken > 0)
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            this.GainStamina(other.GetCurStamina());
-            other.EmptyStamina();
+            if (damageTaken > 0)
+            {
+                if (!other.m_isDead)
+                {
+                    GainStamina(other.GetCurStamina());
+                    other.EmptyStamina();
+                }
+                else if (staminaToDrain >= 0)
+                {
+                    GainStamina(staminaToDrain);
+                }
+            }
         }
 
         return damageTaken;
