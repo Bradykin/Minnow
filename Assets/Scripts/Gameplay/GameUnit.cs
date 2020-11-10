@@ -2195,7 +2195,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (GameHelper.HasRelic<ContentPriceOfFreedomRelic>() && GetTeam() == Team.Player && GetCurStamina() == GetMaxStamina())
         {
-            AddStats(GetCurStamina(), GetCurStamina());
+            AddStats(2, 2);
             EmptyStamina();
         }
 
