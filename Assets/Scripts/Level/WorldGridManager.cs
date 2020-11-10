@@ -494,7 +494,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public int CalculateAbsoluteDistanceBetweenPositions(GameTile startingGameTile, GameTile targetGameTile)
     {
-        /*Vector2Int currentPosition = startingGameTile.m_gridPosition;
+        Vector2Int currentPosition = startingGameTile.m_gridPosition;
         Vector2Int targetPosition = targetGameTile.m_gridPosition;
         int distance = 0;
 
@@ -502,14 +502,22 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         {
             if (currentPosition.y > targetPosition.y)
             {
-                if (currentPosition.x >= targetPosition.x)
+                if (currentPosition.x > targetPosition.x)
+                    currentPosition = currentPosition.DownLeftCoordinate();
+                else if (currentPosition.x < targetPosition.x)
+                    currentPosition = currentPosition.DownRightCoordinate();
+                else if (currentPosition.y % 2 != 0)
                     currentPosition = currentPosition.DownLeftCoordinate();
                 else
                     currentPosition = currentPosition.DownRightCoordinate();
             }
             else
             {
-                if (currentPosition.x >= targetPosition.x)
+                if (currentPosition.x > targetPosition.x)
+                    currentPosition = currentPosition.UpLeftCoordinate();
+                else if (currentPosition.x < targetPosition.x)
+                    currentPosition = currentPosition.UpRightCoordinate();
+                else if (currentPosition.y % 2 != 0)
                     currentPosition = currentPosition.UpLeftCoordinate();
                 else
                     currentPosition = currentPosition.UpRightCoordinate();
@@ -517,19 +525,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             distance++;
         }
 
-        return distance + Math.Abs(currentPosition.x - targetPosition.x);*/
-
-        for (int i = 0; i < 30; i++)
-        {
-            List<GameTile> tilesAtRange = GetSurroundingGameTiles(startingGameTile, i, Mathf.Min(i, 1));
-            if (tilesAtRange.Contains(targetGameTile))
-            {
-                return i;
-            }
-        }
-
-        Debug.LogError("Failed to find Distance");
-        return 30;
+        return distance + Math.Abs(currentPosition.x - targetPosition.x);
     }
 
     public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)

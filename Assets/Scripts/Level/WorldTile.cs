@@ -385,6 +385,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             {
                 selectedUnit.GetUnit().HitBuilding(GetGameTile().GetBuilding());
             }
+            else if (selectedUnit.GetUnit().GetRootedKeyword() != null)
+            {
+                UIHelper.CreateWorldElementNotification("Unit is Rooted.", false, gameObject);
+            }
             else if (selectedUnit.GetUnit().CanMoveTo(GetGameTile()))
             {
                 selectedUnit.MoveTo(GetGameTile());
