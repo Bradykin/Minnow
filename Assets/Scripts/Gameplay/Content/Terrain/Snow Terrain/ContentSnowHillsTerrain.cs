@@ -7,12 +7,10 @@ public class ContentSnowHillsTerrain : GameTerrainBase
     public ContentSnowHillsTerrain()
     {
         m_rangeModifier = Constants.HillsRangeModifier;
-        m_damageReduction = Constants.HillsDamageReduction;
-        m_costToPass = Constants.HillsMovementCost;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "SnowHills";
-        m_desc = GenerateDescription();
-        m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

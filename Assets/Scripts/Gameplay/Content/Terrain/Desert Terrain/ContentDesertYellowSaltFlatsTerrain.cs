@@ -6,11 +6,10 @@ public class ContentDesertYellowSaltFlatsTerrain : GameTerrainBase
 {
     public ContentDesertYellowSaltFlatsTerrain()
     {
-        m_damageReduction = Constants.RuinsDamageReduction;
-        m_costToPass = Constants.RuinsMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Normal;
 
         m_name = "DesertYellowSaltFlats";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

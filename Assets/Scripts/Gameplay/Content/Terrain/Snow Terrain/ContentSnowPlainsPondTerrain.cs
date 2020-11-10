@@ -6,11 +6,10 @@ public class ContentSnowPlainsPondTerrain : GameTerrainBase
 {
     public ContentSnowPlainsPondTerrain()
     {
-        m_damageReduction = Constants.PlainsDamageReduction;
-        m_costToPass = Constants.PlainsMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Normal;
 
         m_name = "SnowPlainsPond";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

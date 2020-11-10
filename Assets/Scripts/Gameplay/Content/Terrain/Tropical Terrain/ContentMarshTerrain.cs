@@ -6,12 +6,11 @@ public class ContentMarshTerrain : GameTerrainBase
 {
     public ContentMarshTerrain()
     {
-        m_damageReduction = Constants.MarshDamageReduction;
-        m_costToPass = Constants.MarshMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Difficult;
         m_staminaRegenLoss = Constants.MarshStaminaRegenLoss;
 
         m_name = "Marsh";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

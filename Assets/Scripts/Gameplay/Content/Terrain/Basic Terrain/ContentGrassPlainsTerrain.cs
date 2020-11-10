@@ -6,11 +6,10 @@ public class ContentGrassPlainsTerrain : GameTerrainBase
 {
     public ContentGrassPlainsTerrain()
     {
-        m_damageReduction = Constants.PlainsDamageReduction;
-        m_costToPass = Constants.PlainsMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Normal;
 
         m_name = "GrassPlains";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

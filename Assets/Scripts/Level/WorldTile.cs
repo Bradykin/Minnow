@@ -400,7 +400,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     int pathLength = WorldGridManager.Instance.GetPathLength(selectedUnit.GetUnit().GetGameTile(), GetGameTile(), true, false, true);
                     if (pathLength == 1 && GetGameTile().m_occupyingUnit == null)
                     {
-                        UIHelper.CreateWorldElementNotification("Can't move, " + GetGameTile().GetName() + " requires " + GetGameTile().GetCostToPass(selectedUnit.GetUnit()) + " Stamina.", false, gameObject);
+                        UIHelper.CreateWorldElementNotification("Can't move, difficult terrain requires " + GetGameTile().GetCostToPass(selectedUnit.GetUnit()) + " Stamina.", false, gameObject);
                     }
                     else
                     {

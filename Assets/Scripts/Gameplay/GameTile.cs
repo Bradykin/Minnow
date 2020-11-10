@@ -156,18 +156,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         }
     }
 
-    public string GetFocusPanelText()
-    {
-        if (HasBuilding())
-        {
-            return m_building.GetDesc();
-        }
-        else
-        {
-            return GetTerrain().GetFocusPanelText();
-        }
-    }
-
     public Sprite GetIcon()
     {
         if (m_terrain == null)
@@ -273,13 +261,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 }
                 else
                 {
-                    tileValue = 1;
+                    tileValue = GetTerrain().GetCostToPass();
                 }
                 buildingOverrideValue = false;
             }
             else if (GetTerrain().IsMountain() && checkerUnit.GetMountainwalkKeyword() != null)
             {
-                tileValue =  2;
+                tileValue = GetTerrain().GetCostToPass();
                 buildingOverrideValue = false;
             }
             else if (GetTerrain().IsHill() && checkerUnit.GetMountainwalkKeyword() != null)
@@ -299,7 +287,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (HasBuilding() && buildingOverrideValue)
         {
-            tileValue = Mathf.Max(tileValue, 2);
+            tileValue = 1;
         }
 
         return tileValue;
@@ -307,54 +295,62 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
     public bool IsPassable(GameUnit checkerUnit, bool letPassEnemies)
     {
-        if (checkerUnit != null && checkerUnit.m_shouldAlwaysPassEnemies)
+        if (checkerUnit == null)
         {
-            letPassEnemies = true;
+            if (!m_terrain.IsPassable(checkerUnit))
+            {
+                return false;
+            }
         }
-        
-        bool terrainImpassable = !m_terrain.IsPassable(checkerUnit);
 
         if (checkerUnit != null)
         {
-            bool canFly = checkerUnit.GetFlyingKeyword() != null;
-
-            if (canFly)
+            if (checkerUnit.GetFlyingKeyword() != null)
             {
                 return true;
             }
 
-            bool isOccupiedOpposingTeam = IsOccupied();
-            if (isOccupiedOpposingTeam)
+            if (!m_terrain.IsPassable(checkerUnit))
             {
+                return false;
+            }
+
+            if (HasBuilding() && checkerUnit.GetTeam() == GetBuilding().GetTeam())
+            {
+                return true;
+            }
+
+            if (HasBuilding() && checkerUnit.GetTeam() != GetBuilding().GetTeam())
+            {
+                return false;
+            }
+
+            if (IsOccupied() && checkerUnit.GetTeam() == m_occupyingUnit.GetTeam())
+            {
+                return true;
+            }
+
+            if (IsOccupied() && checkerUnit.GetTeam() != m_occupyingUnit.GetTeam())
+            {
+                if (letPassEnemies)
+                {
+                    return true;
+                }
+
+                if (checkerUnit.m_shouldAlwaysPassEnemies)
+                {
+                    return true;
+                }
+
                 bool isZombiePass = (checkerUnit is ContentZombie || checkerUnit is ContentZombieEnemy) && (m_occupyingUnit is ContentZombie || m_occupyingUnit is ContentZombieEnemy);
-                
-                isOccupiedOpposingTeam = !isZombiePass && checkerUnit.GetTeam() != m_occupyingUnit.GetTeam();
-            }
 
-            bool hasNotDestroyedBuilding = HasBuilding();
-            bool hasCastleBuilding = false;
-            if (hasNotDestroyedBuilding)
-            {
-                hasNotDestroyedBuilding = m_building.m_isDestroyed;
-                hasCastleBuilding = m_building is ContentCastleBuilding;
-            }
+                if (isZombiePass)
+                {
+                    return true;
+                }
 
-
-            if (!letPassEnemies && isOccupiedOpposingTeam)
-            {
                 return false;
             }
-
-
-            if (hasNotDestroyedBuilding || hasCastleBuilding)
-            {
-                return false;
-            }
-        }
-
-        if (terrainImpassable)
-        {
-            return false;
         }
 
         return true;

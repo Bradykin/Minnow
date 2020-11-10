@@ -6,11 +6,10 @@ public class ContentTundraForestRuinsTerrain : GameTerrainBase
 {
     public ContentTundraForestRuinsTerrain()
     {
-        m_damageReduction = Mathf.Max(Constants.ForestDamageReduction, Constants.RuinsDamageReduction);
-        m_costToPass = Mathf.Max(Constants.ForestMovementCost, Constants.RuinsMovementCost);
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "TundraForestRuins";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

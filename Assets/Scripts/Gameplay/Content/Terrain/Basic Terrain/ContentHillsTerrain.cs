@@ -7,8 +7,8 @@ public class ContentHillsTerrain : GameTerrainBase
     public ContentHillsTerrain()
     {
         m_rangeModifier = Constants.HillsRangeModifier;
-        m_damageReduction = Constants.HillsDamageReduction;
-        m_costToPass = Constants.HillsMovementCost;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "Hills";
         m_maxTerrainImageNumber = 4;

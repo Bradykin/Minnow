@@ -18,14 +18,26 @@ using UnityEngine;
 //Add new class to the appropriate lists in GameTerrainFactory.Init
 public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainData>, ILoad<JsonGameTerrainData>
 {
-    public int m_damageReduction { get; protected set; }
+    public enum CoverType
+    {
+        None,
+        Cover
+    }
+
+    public enum TerrainMovementType
+    {
+        Normal,
+        Difficult
+    }
+
+    protected CoverType m_coverType;
+    protected TerrainMovementType m_movementType;
+
     public int m_rangeModifier { get; protected set; }
     public int m_staminaRegenLoss { get; protected set; }
 
-    protected int m_costToPass;
     protected int m_terrainImageNumber;
     protected int m_maxTerrainImageNumber;
-    protected string m_focusPanelText;
 
     protected bool m_isPassable = true;
     protected bool m_isPlains;
@@ -58,12 +70,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
     public Sprite m_iconWhite;
 
-    public GameTerrainBase()
-    {
-        m_desc = GenerateDescription();
-        m_focusPanelText = GenerateFocusText();
-    }
-
     //Only call these from the GameTile.  If you want these from outside, grab them from the GameTile functions instead of here.
     public bool IsPassable(GameUnit checkerUnit)
     {
@@ -90,7 +96,24 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
     public int GetCostToPass()
     {
-        return m_costToPass;
+        if (m_movementType == TerrainMovementType.Normal)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+
+    public TerrainMovementType GetMovementType()
+    {
+        return m_movementType;
+    }
+
+    public CoverType GetCoverType()
+    {
+        return m_coverType;
     }
 
     public bool IsPlains()
@@ -198,11 +221,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
         return m_marshTideLowerTerrainType;
     }
 
-    public string GetFocusPanelText()
-    {
-        return m_focusPanelText;
-    }
-
     protected void LateInit()
     {
         m_icon = UIHelper.GetIconTerrain(m_name + m_terrainImageNumber);
@@ -234,55 +252,28 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
         return m_terrainImageNumber;
     }
 
-    //In GameTerrainBase this appears to be not needed. Investigate whether this can be removed or combined into the FocusText later on
-    public virtual string GenerateDescription()
-    {
-        string description = "";
-
-        if (m_isPassable)
-        {
-            description += m_costToPass + " Stamina movement.";
-        }
-        else
-        {
-            description += "Impassable.";
-        }
-
-        if (m_damageReduction > 0)
-        {
-            description += "\nUnits on this tile take " + m_damageReduction + " less damage.";
-        }
-
-        if (m_rangeModifier > 0)
-        {
-            description += "\nRanged units on this tile get +" + m_rangeModifier + " increased range.";
-        }
-
-        return description;
-    }
-
-    public virtual string GenerateFocusText()
+    public virtual string GetDesc()
     {
         string description = "";
 
         if (m_rangeModifier > 0)
         {
-            description += "Ranged units on this tile get +" + m_rangeModifier + " increased range.\n";
+            description += "\n\nRanged units on this tile get +" + m_rangeModifier + " increased range.\n";
         }
 
         if (this is ContentIceTerrain)
         {
-            description += "If an adjacent cracked tile breaks, this tile will break into cracked ice.\n";
+            description += "\n\nIf an adjacent cracked tile breaks, this tile will break into cracked ice.\n";
         }
 
         if (this is ContentIceCrackedTerrain)
         {
-            description += "If any unit dies while on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
+            description += "\n\nIf any unit dies while on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
         }
 
         if (this is ContentLavaFieldActiveTerrain)
         {
-            description += $"Units standing on this tile take {Constants.LavaFieldDamageDealt} damage at the end of their turn.";
+            description += $"\n\nUnits standing on this tile take {Constants.LavaFieldDamageDealt} damage at the end of their turn.";
         }
 
         return description;

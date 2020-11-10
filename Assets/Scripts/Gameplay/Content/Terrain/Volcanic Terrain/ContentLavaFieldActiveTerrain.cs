@@ -6,11 +6,10 @@ public class ContentLavaFieldActiveTerrain : GameTerrainBase
 {
     public ContentLavaFieldActiveTerrain()
     {
-        m_damageReduction = Constants.LavaFieldDamageReduction;
-        m_costToPass = Constants.LavaFieldMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Normal;
 
         m_name = "LavaFieldActive";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

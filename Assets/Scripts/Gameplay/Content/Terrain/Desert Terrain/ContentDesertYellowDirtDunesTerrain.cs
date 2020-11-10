@@ -6,11 +6,10 @@ public class ContentDesertYellowDirtDunesTerrain : GameTerrainBase
 {
     public ContentDesertYellowDirtDunesTerrain()
     {
-        m_damageReduction = Constants.HalfDunesDamageReduction;
-        m_costToPass = Constants.HalfDunesMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "DesertYellowDirtDunes";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

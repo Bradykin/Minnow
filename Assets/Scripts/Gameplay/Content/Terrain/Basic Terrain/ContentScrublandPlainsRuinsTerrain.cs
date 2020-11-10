@@ -6,11 +6,10 @@ public class ContentScrublandPlainsRuinsTerrain : GameTerrainBase
 {
     public ContentScrublandPlainsRuinsTerrain()
     {
-        m_damageReduction = Mathf.Max(Constants.PlainsDamageReduction, Constants.RuinsDamageReduction);
-        m_costToPass = Mathf.Max(Constants.PlainsMovementCost, Constants.RuinsMovementCost);
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "ScrublandPlainsRuins";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 3;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber);
 

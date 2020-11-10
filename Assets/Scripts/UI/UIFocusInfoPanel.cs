@@ -118,18 +118,34 @@ public class UIFocusInfoPanel : UIElementBase
     {
         m_shouldShow = true;
 
-        m_titleText.text = worldTile.GetGameTile().GetName();
-        m_descText.text = "Damage Reduction: " + worldTile.GetGameTile().GetTerrain().m_damageReduction;
-        if (!worldTile.GetGameTile().IsPassable(null, false))
+        GameTile gameTile = worldTile.GetGameTile();
+
+        m_titleText.text = gameTile.GetName();
+
+        if (gameTile.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover ||
+            gameTile.HasBuilding())
+        {
+            m_descText.text = "Cover: " + Constants.CoverProtectionPercent + "% reduced damage.\n";
+        }
+
+        if (!gameTile.IsPassable(null, false))
         {
             m_descText.text += "\n\nNot Passable" + "\n";
         }
         else
         {
-            m_descText.text += "\n\nStamina Cost: " + worldTile.GetGameTile().GetCostToPass(null) + "\n\n";
+            if (gameTile.GetTerrain().GetMovementType() == GameTerrainBase.TerrainMovementType.Difficult)
+            {
+                m_descText.text += "\nMovement Cost: Difficult (2)";
+            }
         }
 
-        m_descText.text += worldTile.GetGameTile().GetFocusPanelText() + "\n";
+        m_descText.text += gameTile.GetTerrain().GetDesc();
+        
+        if (gameTile.HasBuilding())
+        {
+            m_descText.text += "\n\n" + gameTile.GetBuilding().GetDesc();
+        }
     }
 
     public override void HandleTooltip()

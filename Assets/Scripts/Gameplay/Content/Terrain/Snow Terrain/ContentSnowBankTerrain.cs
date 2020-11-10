@@ -6,13 +6,10 @@ public class ContentSnowBankTerrain : GameTerrainBase
 {
     public ContentSnowBankTerrain()
     {
-        m_rangeModifier = Constants.SnowBankRangeModifier;
-        m_damageReduction = Constants.SnowBankDamageReduction;
-        m_costToPass = Constants.SnowBankMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "SnowBank";
-        m_desc = GenerateDescription();
-        m_focusPanelText = GenerateFocusText();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

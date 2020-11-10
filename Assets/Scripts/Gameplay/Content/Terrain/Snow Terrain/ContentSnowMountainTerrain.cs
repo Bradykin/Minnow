@@ -6,12 +6,11 @@ public class ContentSnowMountainTerrain : GameTerrainBase
 {
     public ContentSnowMountainTerrain()
     {
-        m_damageReduction = Constants.MountainsDamageReduction;
-        m_costToPass = Constants.MountainsMovementCost;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
         m_name = "SnowMountain";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
