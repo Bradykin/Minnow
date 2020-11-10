@@ -19,7 +19,6 @@ public class ContentFrozenImpEnemy : GameEnemyUnit
         m_name = "Frozen Imp";
         m_desc = "When this unit hits another, the target gets Rooted until end of turn.";
 
-
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_staminaToAttack = 1;

@@ -583,6 +583,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_cardsInExile.Clear();
 
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i].GetBleedKeyword() != null)
+            {
+                m_controlledUnits[i].SubtractKeyword(m_controlledUnits[i].GetBleedKeyword());
+            }
+        }
+
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].TriggerEndOfWave();

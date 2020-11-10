@@ -12,6 +12,7 @@ public class GameActionFactory
 
     public static void Init()
     {
+        m_actions.Add(new GameApplyKeywordToOtherOnMomentumAction(null, null));
         m_actions.Add(new GameDrawCardAction(0));
         m_actions.Add(new GameGainShivAction(0));
         m_actions.Add(new GameDeathAction(null));
