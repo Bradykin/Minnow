@@ -6,11 +6,10 @@ public class ContentForestBurnedRuinsTerrain : GameTerrainBase
 {
     public ContentForestBurnedRuinsTerrain()
     {
-        m_damageReduction = Mathf.Max(Constants.BurnedForestDamageReduction, Constants.RuinsDamageReduction);
-        m_costToPass = Mathf.Max(Constants.BurnedForestMovementCost, Constants.RuinsMovementCost);
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "ForestBurnedRuins";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

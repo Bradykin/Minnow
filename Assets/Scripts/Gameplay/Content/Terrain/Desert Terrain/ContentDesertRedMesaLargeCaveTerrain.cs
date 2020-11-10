@@ -6,12 +6,11 @@ public class ContentDesertRedMesaLargeCaveTerrain : GameTerrainBase
 {
     public ContentDesertRedMesaLargeCaveTerrain()
     {
-        m_damageReduction = Constants.MountainsDamageReduction;
-        m_costToPass = Constants.MountainsMovementCost;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
         m_name = "DesertRedMesaLargeCave";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

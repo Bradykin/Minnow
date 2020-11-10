@@ -6,11 +6,10 @@ public class ContentRubbleTerrain : GameTerrainBase
 {
     public ContentRubbleTerrain()
     {
-        m_damageReduction = Constants.RuinsDamageReduction;
-        m_costToPass = Constants.RuinsMovementCost;
+        m_coverType = CoverType.None;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "Rubble";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

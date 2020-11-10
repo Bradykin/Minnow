@@ -6,14 +6,13 @@ public class ContentWoodlandsForestTerrain : GameTerrainBase
 {
     public ContentWoodlandsForestTerrain()
     {
-        m_damageReduction = 1;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
 
         m_name = "WoodlandsForest";
-        m_desc = "1 Stamina movement.\nUnits on this tile take " + m_damageReduction + " less damage.";
         m_terrainImageNumber = Random.Range(1, 5);
 
         m_isPassable = true;
-        m_costToPass = 2;
 
         m_isForest = true;
 

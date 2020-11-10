@@ -79,8 +79,15 @@ public static class Constants
     public static int SteppedOutEnemyTurnsCameraFollowThreshold = 3;
     public static bool UseLocationalSpellcraft = true;
 
+    public static float CoverProtectionPercent = 50.0f;
+
+
+    public static int HillsRangeModifier = 1;
+    public static int MarshStaminaRegenLoss = 0;
+    public static int LavaFieldDamageDealt = 10;
+
     //Terrain Data
-    public static int ForestDamageReduction = 1;
+    /*public static int ForestDamageReduction = 1;
     public static int ForestMovementCost = 2;
     public static int BurnedForestDamageReduction = 0;
     public static int BurnedForestMovementCost = 2;
@@ -88,7 +95,6 @@ public static class Constants
     public static int PlainsMovementCost = 1;
     public static int HillsDamageReduction = 2;
     public static int HillsMovementCost = 3;
-    public static int HillsRangeModifier = 1;
     public static int MountainsDamageReduction = 4;
     public static int MountainsMovementCost = 2;
     public static int WaterDamageReduction = 0;
@@ -107,7 +113,6 @@ public static class Constants
     //Volcano unique tiles
     public static int LavaFieldDamageReduction = 0;
     public static int LavaFieldMovementCost = 2;
-    public static int LavaFieldDamageDealt = 10;
 
     //Snow unique tiles
     public static int SnowBankDamageReduction = 0;
@@ -119,10 +124,9 @@ public static class Constants
     //Tropical unique tiles
     public static int MarshDamageReduction = 0;
     public static int MarshMovementCost = 2;
-    public static int MarshStaminaRegenLoss = 0;
     public static int BogDamageReduction = 0;
     public static int BogMovementCost = 3;
-    public static int BogStaminaRegenLoss = 0;
+    public static int BogStaminaRegenLoss = 0;*/
 
     public static int GetWaveLength (int waveNum)
     {

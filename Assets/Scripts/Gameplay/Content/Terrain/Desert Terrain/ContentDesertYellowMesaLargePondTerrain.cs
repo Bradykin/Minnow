@@ -6,12 +6,11 @@ public class ContentDesertYellowMesaLargePondTerrain : GameTerrainBase
 {
     public ContentDesertYellowMesaLargePondTerrain()
     {
-        m_damageReduction = Constants.MountainsDamageReduction;
-        m_costToPass = Constants.MountainsMovementCost;
+        m_coverType = CoverType.Cover;
+        m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
         m_name = "DesertYellowMesaLargePond";
-        m_desc = GenerateDescription();
         m_maxTerrainImageNumber = 2;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

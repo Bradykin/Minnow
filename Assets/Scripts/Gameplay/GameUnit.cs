@@ -290,6 +290,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage += brittleKeyword.m_damageIncrease;
         }
 
+        if (IsInCover())
+        {
+            damage = Mathf.FloorToInt((float)damage / (100.0f/Constants.CoverProtectionPercent));
+        }
+
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
         if (damageReductionKeyword != null)
         {
@@ -1124,7 +1129,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (toReturn != null && toReturn.m_range > 0)
                 {
-
                     GameRangeKeyword terrainRangeKeyword = new GameRangeKeyword(terrainRange);
                     terrainRangeKeyword.m_buffedByTerrain = true;
 
@@ -1180,24 +1184,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     }
                 }
             }
-
-            if (GetFlyingKeyword() == null)
-            {
-                int terrainDamageReduction = m_gameTile.GetTerrain().m_damageReduction;
-
-                if (terrainDamageReduction > 0)
-                {
-                    if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-                    {
-                        terrainDamageReduction += terrainDamageReduction * 2;
-                    }
-
-                    GameDamageReductionKeyword terrainDamageReductionKeyword = new GameDamageReductionKeyword(terrainDamageReduction);
-                    terrainDamageReductionKeyword.m_buffedByTerrain = true;
-
-                    toReturn.AddKeyword(terrainDamageReductionKeyword);
-                }
-            }
         }
 
         //If the return keyword is still blank, set it to null
@@ -1208,6 +1194,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         //Return it
         return toReturn;
+    }
+
+    public bool IsInCover()
+    {
+        if (m_gameTile == null)
+        {
+            return false;
+        }
+
+        if (!GameHelper.IsUnitInWorld(this))
+        {
+            return false;
+        }
+
+        if (GetFlyingKeyword() != null)
+        {
+            return false;
+        }
+
+        if (m_gameTile.HasBuilding())
+        {
+            return true;
+        }
+
+        return m_gameTile.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover;
     }
 
     public GameKeywordHolder GetKeywordHolderForRead()
@@ -1765,6 +1776,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (summonKeyword != null)
         {
             returnDesc += summonKeyword.GetDisplayString() + "\n";
+        }
+
+        if (IsInCover())
+        {
+            returnDesc += "<b>Cover</b>: 50% damage taken. (rounded down)\n";
         }
 
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
