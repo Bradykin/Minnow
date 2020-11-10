@@ -29,12 +29,12 @@ public class ContentDwarvenSoldier : GameUnit
 
         if (level >= 1)
         {
-            m_power = 7;
+            m_power = 6;
         }
 
         if (level >= 2)
         {
-            m_maxHealth = 15;
+            m_maxHealth = 12;
         }
     }
 }

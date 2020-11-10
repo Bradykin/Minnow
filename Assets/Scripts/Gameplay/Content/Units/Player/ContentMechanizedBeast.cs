@@ -31,12 +31,12 @@ public class ContentMechanizedBeast : GameUnit
 
         if (level >= 1)
         {
-            m_maxStamina = 10;
+            m_maxStamina = 7;
         }
 
         if (level >= 2)
         {
-            AddKeyword(new GameMountainwalkKeyword(), false);
+            m_maxStamina = 8;
         }
     }
 }

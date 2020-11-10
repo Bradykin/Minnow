@@ -37,7 +37,7 @@ public class ContentLizardSoldier : GameUnit
 
         if (level >= 2)
         {
-            m_power = 22;
+            m_maxHealth = 15;
         }
     }
 }

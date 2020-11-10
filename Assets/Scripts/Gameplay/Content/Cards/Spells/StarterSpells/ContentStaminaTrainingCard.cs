@@ -56,11 +56,11 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 2;
+        m_spellEffect = 1;
 
         if (level >= 1)
         {
-            m_spellEffect = 3;
+            m_spellEffect = 2;
         }
 
         if (level >= 2)

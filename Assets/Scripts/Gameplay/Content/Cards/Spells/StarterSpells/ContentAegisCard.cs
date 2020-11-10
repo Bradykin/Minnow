@@ -52,7 +52,7 @@ public class ContentAegisCard : GameCardSpellBase
 
     public override void InitializeWithLevel(int level)
     {
-        m_cost = 1;
+        m_cost = 2;
 
         if (level >= 1)
         {
@@ -61,7 +61,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         if (level >= 2)
         {
-            m_cost = 0;
+            m_cost = 1;
         }
 
         m_desc = "Give target allied unit " + m_amount + " <b>Damage Shield</b>.";

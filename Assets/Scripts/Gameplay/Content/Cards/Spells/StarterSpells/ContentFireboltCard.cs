@@ -53,7 +53,7 @@ public class ContentFireboltCard : GameCardSpellBase
 
         if (level >= 1)
         {
-            m_spellEffect += 5;
+            m_spellEffect += 3;
         }
         
         if (level >= 2)

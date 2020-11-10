@@ -50,7 +50,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 3;
+        m_spellEffect = 1;
 
         if (level >= 1)
         {
@@ -59,7 +59,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
         if (level >= 2)
         {
-            m_spellEffect = 5;
+            m_spellEffect = 3;
         }
     }
 }

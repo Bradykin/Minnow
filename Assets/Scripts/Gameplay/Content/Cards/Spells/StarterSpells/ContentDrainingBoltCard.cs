@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentDrainingBoltCard : GameCardSpellBase
 {
-    private int m_staminaToDrain = 2;
+    private int m_staminaToDrain = 1;
 
     public ContentDrainingBoltCard()
     {
@@ -53,16 +53,16 @@ public class ContentDrainingBoltCard : GameCardSpellBase
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 2;
+        m_spellEffect = 1;
 
         if (level >= 1)
         {
-            m_spellEffect = 4;
+            m_spellEffect = 2;
         }
 
         if (level >= 2)
         {
-            m_staminaToDrain = 3;
+            m_staminaToDrain = 2;
         }
     }
 }

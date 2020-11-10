@@ -61,7 +61,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 
         if (level >= 1)
         {
-            m_spellEffect = 4;
+            m_spellEffect = 3;
         }
 
         if (level >= 2)

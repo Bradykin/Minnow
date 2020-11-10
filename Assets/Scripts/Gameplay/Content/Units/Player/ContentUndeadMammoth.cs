@@ -29,7 +29,7 @@ public class ContentUndeadMammoth : GameUnit
     public override void InitializeWithLevel(int level)
     {
         m_powerBuff = 3;
-        m_healthBuff = 10;
+        m_healthBuff = 7;
 
         m_maxHealth = 12;
         m_maxStamina = 5;
@@ -38,13 +38,12 @@ public class ContentUndeadMammoth : GameUnit
 
         if (level >= 1)
         {
-            m_powerBuff = 8;
+            m_powerBuff = 5;
         }
 
         if (level >= 2)
         {
-            m_maxStamina = 6;
-            m_staminaRegen = 6;
+            m_healthBuff = 10;
         }
     }
 }

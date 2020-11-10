@@ -74,11 +74,11 @@ public class ContentCureWoundsCard : GameCardSpellBase
     public override void InitializeWithLevel(int level)
     {
         m_cost = 1;
-        m_spellEffect = 8;
+        m_spellEffect = 6;
 
         if (level >= 1)
         {
-            m_spellEffect = 20;
+            m_spellEffect = 10;
         }
 
         if (level >= 2)

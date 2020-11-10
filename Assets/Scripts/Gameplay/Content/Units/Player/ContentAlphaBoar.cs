@@ -32,15 +32,11 @@ public class ContentAlphaBoar : GameUnit
         if (level >= 1)
         {
             m_maxHealth = 30;
-            AddKeyword(new GameThornsKeyword(4), false);
         }
 
         if (level >= 2)
         {
-            m_power = 10;
-            m_maxStamina = 4;
-            m_staminaRegen = 4;
-            AddKeyword(new GameDamageReductionKeyword(1), false);
+            AddKeyword(new GameThornsKeyword(2), false);
         }
     }
 }

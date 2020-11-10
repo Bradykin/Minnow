@@ -48,7 +48,7 @@ public class ContentJoltCard : GameCardSpellBase
 
     public override void InitializeWithLevel(int level)
     {
-        m_cost = 1;
+        m_cost = 2;
         m_spellEffect = 1;
 
         if (level >= 1)
@@ -58,7 +58,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         if (level >= 2)
         {
-            m_cost = 0;
+            m_cost = 1;
         }
     }
 }

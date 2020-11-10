@@ -31,12 +31,12 @@ public class ContentSandwalker : GameUnit
 
         if (level >= 1)
         {
-            m_maxHealth = 8;
+            m_power = 4;
         }
 
         if (level >= 2)
         {
-            AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 2)), false);
+            m_maxHealth = 8;
         }
     }
 }

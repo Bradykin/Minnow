@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentOptimizeCard : GameCardSpellBase
 {
-    private int m_cardDraw = 3;
-    private int m_energyGain = 3;
+    private int m_cardDraw = 2;
+    private int m_energyGain = 2;
 
     public ContentOptimizeCard()
     {
@@ -59,8 +59,8 @@ public class ContentOptimizeCard : GameCardSpellBase
 
         if (level >= 2)
         {
-            m_cardDraw = 5;
-            m_energyGain = 5;
+            m_cardDraw = 3;
+            m_energyGain = 3;
         }
     }
 }
