@@ -393,6 +393,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GetBleedKeyword() != null)
+        {
+            SubtractKeyword(GetBleedKeyword());
+        }
+
         if (m_worldUnit == Globals.m_selectedUnit)
         {
             WorldGridManager.Instance.ClearAllTilesMovementRange();
@@ -421,7 +426,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_curHealth += toHeal;
 
-        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>() || !(GetTeam() == Team.Player))
         {
             if (m_curHealth >= maxHealth)
             {
@@ -436,6 +441,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentLifebringerRelic>())
             {
                 GainStamina(1);
+            }
+        }
+
+        if (m_curHealth == maxHealth)
+        {
+            if (GetBleedKeyword() != null)
+            {
+                m_keywordHolder.SubtractKeyword(GetBleedKeyword());
             }
         }
 
@@ -660,7 +673,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (momentumKeyword != null)
         { 
-            momentumKeyword.DoAction();
+            momentumKeyword.DoAction(other);
 
             //If the player has Bestial Wrath relic, repeat the action
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
@@ -709,7 +722,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (momentumKeyword != null)
         {
-            momentumKeyword.DoAction();
+            momentumKeyword.DoAction(null);
 
             //Repeat the action if the player has the Bestial Wrath Relic
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
@@ -997,6 +1010,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual GameDamageShieldKeyword GetDamageShieldKeyword()
     {
         return m_keywordHolder.GetKeyword<GameDamageShieldKeyword>();
+    }
+
+    public virtual GameBleedKeyword GetBleedKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameBleedKeyword>();
     }
 
     public virtual GameBrittleKeyword GetBrittleKeyword()
@@ -1381,9 +1399,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        if (m_curHealth > toReturn)
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>() || !(GetTeam() == Team.Player))
         {
-            m_curHealth = toReturn;
+            if (m_curHealth >= toReturn)
+            {
+                m_curHealth = toReturn;
+            }
         }
 
         return toReturn;
@@ -1684,6 +1705,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (damageShieldKeyword != null)
         {
             returnDesc += damageShieldKeyword.GetDisplayString() + "\n";
+        }
+
+        GameBleedKeyword bleedKeyword = GetBleedKeyword();
+        if (bleedKeyword != null)
+        {
+            returnDesc += bleedKeyword.GetDisplayString() + "\n";
         }
 
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
@@ -2201,9 +2228,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         RegenStamina();
 
+        if (GetBleedKeyword() != null)
+        {
+            GetHit(GetBleedKeyword().m_bleedAmount);
+            if (m_isDead)
+            {
+                return;
+            }
+        }
+
         if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
             GetHit(Constants.LavaFieldDamageDealt);
+            if (m_isDead)
+            {
+                return;
+            }
         }
 
         if (GameHelper.IsUnitInWorld(this))

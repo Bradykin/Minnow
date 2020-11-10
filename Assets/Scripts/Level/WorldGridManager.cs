@@ -528,6 +528,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return distance + Math.Abs(currentPosition.x - targetPosition.x);
     }
 
+
+    //What is this function?
     public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
     {
         if (startingGridTile.IsOccupied() && !startingGridTile.m_occupyingUnit.m_isDead && startingGridTile.m_occupyingUnit.GetRootedKeyword() != null)

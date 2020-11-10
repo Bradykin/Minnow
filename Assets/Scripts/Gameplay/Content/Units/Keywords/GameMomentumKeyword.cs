@@ -13,4 +13,29 @@ public class GameMomentumKeyword : GameActionKeywordBase
         m_shortDesc = "On hit";
         m_keywordParamType = KeywordParamType.ActionParam;
     }
+
+    public override void DoAction()
+    {
+        Debug.LogError("GameMomentumKeyword is using the wrong DoAction - Use DoAction(GameUnit gameUnit) instead");
+    }
+
+    public void DoAction(GameUnit targetUnit)
+    {
+        for (int i = 0; i < m_actions.Count; i++)
+        {
+            if (m_actions[i] == null)
+            {
+                continue;
+            }
+
+            if (m_actions[i] is GameApplyKeywordToOtherOnMomentumAction applyKeywordToOtherOnMomentumAction)
+            {
+                applyKeywordToOtherOnMomentumAction.DoAction(targetUnit);
+            }
+            else
+            {
+                m_actions[i].DoAction();
+            }
+        }
+    }
 }
