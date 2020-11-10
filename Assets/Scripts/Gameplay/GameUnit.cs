@@ -1381,6 +1381,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (m_curHealth > toReturn)
+        {
+            m_curHealth = toReturn;
+        }
+
         return toReturn;
     }
 
