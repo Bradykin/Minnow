@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentImmolationCard : GameCardSpellBase
 {
-    private int m_multiple = 4;
+    private int m_multiple = 8;
     
     public ContentImmolationCard()
     {

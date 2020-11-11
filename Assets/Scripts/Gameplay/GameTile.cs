@@ -290,6 +290,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue = 1;
         }
 
+        if (checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+        {
+            tileValue = 1;
+        }
+
         return tileValue;
     }
 

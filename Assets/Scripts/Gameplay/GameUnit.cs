@@ -1128,11 +1128,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (terrainRange > 0)
             {
-                if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-                {
-                    terrainRange += terrainRange * 2;
-                }
-
                 if (toReturn != null && toReturn.m_range > 0)
                 {
                     GameRangeKeyword terrainRangeKeyword = new GameRangeKeyword(terrainRange);
