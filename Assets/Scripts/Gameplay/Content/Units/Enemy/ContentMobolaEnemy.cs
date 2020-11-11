@@ -11,7 +11,7 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_maxHealth = 85;
         m_maxStamina = 8;
         m_staminaRegen = 2;
-        m_power = 2;
+        m_power = 6;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
@@ -19,11 +19,11 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_name = "Mobola";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), false);
-        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 5, 0)), false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 5, 0)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameRegenerateKeyword(15), false);
+            AddKeyword(new GameRegenerateKeyword(30), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

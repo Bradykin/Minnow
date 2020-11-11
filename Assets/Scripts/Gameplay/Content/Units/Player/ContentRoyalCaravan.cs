@@ -17,7 +17,7 @@ public class ContentRoyalCaravan : GameUnit
         AddKeyword(new GameRangeKeyword(2), false);
 
         m_name = "Royal Caravan";
-        m_desc = "With the castle gone, this caravan holds the royal court. Lose this, and it's game over!";
+        m_desc = "With the castle gone, this caravan holds the royal court. Lose this, and it's game over!\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 

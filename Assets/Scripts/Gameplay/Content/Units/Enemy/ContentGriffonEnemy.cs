@@ -20,13 +20,13 @@ public class ContentGriffonEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Griffon";
-        m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.";
+        m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.\n";
 
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_statBoostAmount += 5;
-            m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount} and are fully healed.";
+            m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount} and are fully healed.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

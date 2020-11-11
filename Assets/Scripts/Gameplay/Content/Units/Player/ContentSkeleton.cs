@@ -24,7 +24,7 @@ public class ContentSkeleton : GameUnit
         AddKeyword(new GameRegenerateKeyword(5), false);
 
         m_name = "Skeleton";
-        m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.";
+        m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

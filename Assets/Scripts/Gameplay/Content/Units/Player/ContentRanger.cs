@@ -22,7 +22,7 @@ public class ContentRanger : GameUnit
         AddKeyword(new GameRangeKeyword(2), false);
 
         m_name = "Ranger";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.";
+        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 

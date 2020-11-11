@@ -30,7 +30,7 @@ public class ContentLivingBombCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target unit explodes on death, dealing " + GetSpellValue() + mpString + " damage to all units in range " + m_range + ".\n" + GetModifiedByMagicPowerString();
+        return "Target unit explodes on death, dealing " + m_spellEffect + mpString + " damage to all units in range " + m_range + ".\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

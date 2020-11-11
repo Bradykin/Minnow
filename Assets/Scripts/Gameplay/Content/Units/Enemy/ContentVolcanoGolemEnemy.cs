@@ -27,7 +27,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
             m_effectRange = 3;
         }
 
-        m_desc = $"When this unit dies, all plains and forest tiles within {m_effectRange} range are turned to lava.";
+        m_desc = $"When this unit dies, all plains and forest tiles within {m_effectRange} range are turned to lava.\n";
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

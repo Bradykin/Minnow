@@ -260,11 +260,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        string coverReducDesc = "";
+        if (IsInCover())
+        {
+            coverReducDesc = " (" + Constants.CoverProtectionPercent + "% Cover)";
+        }
+
         string damageReducDesc = "";
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
         if (damageReductionKeyword != null)
         {
-            damageReducDesc = " (Reduced by " + damageReductionKeyword.m_damageReduction + " from <b>Damage Reduction</b>)";
+            damageReducDesc = "\n(" + damageReductionKeyword.m_damageReduction + " <b>Damage Reduction</b>)";
         }
 
         if (m_curHealth <= 0)
@@ -275,7 +281,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (!GetGameTile().m_isFog)
             {
-                UIHelper.CreateWorldElementNotification(GetName() + " takes " + damage + " damage!" + damageReducDesc, false, m_gameTile.GetWorldTile().gameObject);
+                UIHelper.CreateWorldElementNotification(damage + " damage!" + damageReducDesc + coverReducDesc, false, m_gameTile.GetWorldTile().gameObject);
             }
         }
 

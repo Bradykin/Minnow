@@ -17,14 +17,14 @@ public class ContentFrozenImpEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Frozen Imp";
-        m_desc = "When this unit hits another, the target gets Rooted until end of turn.";
+        m_desc = "When this unit hits another, the target gets Rooted until end of turn.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_staminaToAttack = 1;
             m_maxStamina++;
             m_staminaRegen++;
-            m_desc += " Only takes 1 Stamina to attack.";
+            m_desc += " Only takes 1 Stamina to attack.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

@@ -17,12 +17,12 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Scorching Serpent";
-        m_desc = "When this unit attacks another, it knocks that unit 1 tile away from itself.";
+        m_desc = "When this unit attacks another, it knocks that unit 1 tile away from itself.\n";
 
         AddKeyword(new GameFlyingKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc = "Only takes 1 stamina to attack. When this unit attacks another, it knocks that unit 1 tile away from itself.";
+            m_desc = "Only takes 1 stamina to attack. When this unit attacks another, it knocks that unit 1 tile away from itself.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

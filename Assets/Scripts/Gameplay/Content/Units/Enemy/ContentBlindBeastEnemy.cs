@@ -17,7 +17,7 @@ public class ContentBlindBeastEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Blind Beast";
-        m_desc = $"Can only detect targets within range 1 of itself.";
+        m_desc = $"Can only detect targets within range 1 of itself.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

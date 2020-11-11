@@ -19,7 +19,7 @@ public class ContentInjuredTroll : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Injured Troll";
-        m_desc = "Starts at 1 health and 0 Stamina.";
+        m_desc = "Starts at 1 health and 0 Stamina.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 

@@ -20,7 +20,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Demon Magician";
-        m_desc = "This unit is immune to all spells.";
+        m_desc = "This unit is immune to all spells.\n";
 
         AddKeyword(new GameRangeKeyword(m_range), false);
         AddKeyword(new GameLavawalkKeyword(), false);

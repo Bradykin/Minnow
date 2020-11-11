@@ -20,7 +20,7 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Hellhound";
-        m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_effectRange} range.";
+        m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_effectRange} range.\n";
 
         AddKeyword(new GameLavawalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

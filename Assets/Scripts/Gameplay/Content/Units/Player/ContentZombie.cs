@@ -18,7 +18,7 @@ public class ContentZombie : GameUnit
         m_rarity = GameRarity.Special;
 
         m_name = "Zombie";
-        m_desc = "On hit, turn them into a zombie.\nZombies can't attack zombies.";
+        m_desc = "On hit, turn them into a zombie.\nZombies can't attack zombies.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

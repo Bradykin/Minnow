@@ -11,7 +11,7 @@ public class ContentLichEnemy : GameEnemyUnit
             m_maxHealth = 700;
             m_maxStamina = 8;
             m_staminaRegen = 8;
-            m_power = 30;
+            m_power = 40;
         }
         else
         {

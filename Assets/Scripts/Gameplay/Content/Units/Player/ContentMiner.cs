@@ -23,7 +23,7 @@ public class ContentMiner : GameUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Miner";
-        m_desc = "At the end of each turn, gain " + m_miningVal + " gold for each mountain in range " + m_miningRange + ".";
+        m_desc = "At the end of each turn, gain " + m_miningVal + " gold for each mountain in range " + m_miningRange + ".\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 

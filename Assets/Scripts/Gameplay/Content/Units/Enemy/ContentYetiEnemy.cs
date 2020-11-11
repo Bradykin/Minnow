@@ -13,7 +13,7 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_maxHealth = 35;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 9;
+        m_power = 15;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

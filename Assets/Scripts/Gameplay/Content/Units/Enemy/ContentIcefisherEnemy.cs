@@ -17,7 +17,7 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Icefisher";
-        m_desc = "Can use its full turn to smash a hole in the ice.";
+        m_desc = "Can use its full turn to smash a hole in the ice.\n";
 
         AddKeyword(new GameWaterwalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

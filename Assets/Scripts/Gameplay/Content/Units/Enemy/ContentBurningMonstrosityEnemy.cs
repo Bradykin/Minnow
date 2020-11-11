@@ -27,7 +27,7 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
         AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc  = $"All player units in the explosion radius are drained of all Stamina on death.";
+            m_desc  = $"All player units in the explosion radius are drained of all Stamina on death.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

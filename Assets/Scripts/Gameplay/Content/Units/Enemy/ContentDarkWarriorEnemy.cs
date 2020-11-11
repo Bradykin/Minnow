@@ -9,14 +9,14 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         m_maxHealth = 10 + GetHealthModByWave();
         m_maxStamina = 6;
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
-        m_power = 4 + GetPowerModByWave();
+        m_power = 6 + GetPowerModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isElite = true;
 
         m_name = "Dark Warrior";
-        m_desc = "An elite foe.  Defeat it and gain a relic!";
+        m_desc = "An elite foe.  Defeat it and gain a relic!\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
@@ -80,6 +80,6 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 
-        return waveNum * 3;
+        return waveNum * 4;
     }
 }

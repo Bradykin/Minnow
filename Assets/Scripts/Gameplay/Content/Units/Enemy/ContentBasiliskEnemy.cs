@@ -19,7 +19,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Basilisk";
-        m_desc = $"When this unit hits another, it gives them Brittle {m_brittleAmount}.";
+        m_desc = $"When this unit hits another, it gives them Brittle {m_brittleAmount}.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

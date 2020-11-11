@@ -16,7 +16,7 @@ public class ContentDwarfShivcaster : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Shivcaster";
-        m_desc = "Shivs no longer trigger <b>Spellcraft</b>.";
+        m_desc = "Shivs no longer trigger <b>Spellcraft</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 

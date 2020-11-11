@@ -24,7 +24,7 @@ public class ContentSabobot : GameUnit
         AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
 
         m_name = "Sabobot";
-        m_desc = "Starts at full Stamina.";
+        m_desc = "Starts at full Stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

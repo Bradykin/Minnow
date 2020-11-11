@@ -13,7 +13,7 @@ public class ContentMechanizedBeast : GameUnit
         m_startWithMaxStamina = true;
 
         m_name = "Mechanized Beast";
-        m_desc = "Starts at full Stamina.";
+        m_desc = "Starts at full Stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

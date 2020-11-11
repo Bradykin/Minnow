@@ -19,7 +19,7 @@ public class ContentNaturalScout : GameUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Natural Scout";
-        m_desc = "Has sight range of " + m_sightRange + ".\nTakes 5 Stamina to attack.";
+        m_desc = "Has sight range of " + m_sightRange + ".\nTakes 5 Stamina to attack.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 

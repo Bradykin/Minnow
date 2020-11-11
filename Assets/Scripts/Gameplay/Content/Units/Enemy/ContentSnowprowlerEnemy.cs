@@ -25,7 +25,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(m_bleedAmount))), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc += $"When this hits a unit, it drains {m_staminaDrainAmount} Stamina from it.";
+            m_desc += $"When this hits a unit, it drains {m_staminaDrainAmount} Stamina from it.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

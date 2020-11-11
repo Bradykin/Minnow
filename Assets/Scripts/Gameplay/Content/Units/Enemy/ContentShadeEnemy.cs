@@ -9,7 +9,7 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 7;
+        m_power = 12;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;

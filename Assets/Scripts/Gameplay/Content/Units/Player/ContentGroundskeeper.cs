@@ -20,7 +20,7 @@ public class ContentGroundskeeper : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Groundskeeper";
-        m_desc = "Gains +" + m_powerBoost + "/+0 and +" + m_staminaRegenBoost + " Stamina regen while in a forest.";
+        m_desc = "Gains +" + m_powerBoost + "/+0 and +" + m_staminaRegenBoost + " Stamina regen while in a forest.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
