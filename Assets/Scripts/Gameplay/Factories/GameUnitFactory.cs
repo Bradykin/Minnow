@@ -211,7 +211,7 @@ public class GameUnitFactory
 
     public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
-        int i = m_playerUnits.FindIndex(t => t.GetName() == jsonData.baseName);
+        int i = m_playerUnits.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());
         newPlayerUnit.LoadFromJson(jsonData);

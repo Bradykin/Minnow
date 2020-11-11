@@ -109,7 +109,7 @@ public abstract class GameMap : GameElementBase
     {
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLordOfShadowsEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLordOfChaosEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));

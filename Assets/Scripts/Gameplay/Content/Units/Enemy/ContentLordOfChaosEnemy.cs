@@ -114,6 +114,13 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         return chaosWarpString;
     }
 
+    public override void EndTurn()
+    {
+        base.EndTurn();
+
+        m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+    }
+
     public override void Die(bool canRevive = true)
     {
         base.Die(canRevive);
