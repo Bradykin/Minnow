@@ -916,15 +916,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
-            int numFogCleared = player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
-
-            if (numFogCleared > 0)
-            {
-                if (player.m_controlledUnits[i].GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
-                {
-                    player.m_controlledUnits[i].GetHitByAbility(2);
-                }
-            }
+            player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
         }
     }
 

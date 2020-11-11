@@ -456,15 +456,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
             for (int i = 0; i < m_controlledUnits.Count; i++)
             {
-                int numFogCleared = m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(m_controlledUnits[i].GetSightRange());
-
-                if (numFogCleared > 0)
-                {
-                    if (m_controlledUnits[i].GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
-                    {
-                        m_controlledUnits[i].GetHitByAbility(2);
-                    }
-                }
+                m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(m_controlledUnits[i].GetSightRange());
             }
         }
 
