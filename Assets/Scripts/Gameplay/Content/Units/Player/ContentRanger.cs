@@ -20,6 +20,7 @@ public class ContentRanger : GameUnit
         m_rarity = GameRarity.Common;
 
         AddKeyword(new GameRangeKeyword(2), false);
+        AddKeyword(new GameForestwalkKeyword(), false);
 
         m_name = "Ranger";
         m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
