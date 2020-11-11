@@ -213,6 +213,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentFlameDemonEnemyCard());
         m_enemyCards.Add(new ContentLordOfShadowsEnemyCard());
         m_enemyCards.Add(new ContentLordOfChaosEnemyCard());
+        m_enemyCards.Add(new ContentHuskEnemyCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)

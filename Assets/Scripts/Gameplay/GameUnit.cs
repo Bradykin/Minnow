@@ -502,12 +502,54 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = willSetDead;
+
+        if (GetTeam() == Team.Player)
+        {
+            bool lichAuraInRange = false;
+            for (int i = 0; i < activeBossUnits.Count; i++)
+            {
+                if (activeBossUnits[i] is ContentLichEnemy lichEnemy && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
+                {
+                    lichAuraInRange = true;
+                    break;
+                }
+            }
+
+            if (lichAuraInRange)
+            {
+                UIHelper.CreateWorldElementNotification("The Lich reanimates the fallen unit!", true, m_worldUnit.gameObject);
+                GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentHuskEnemy(null), WorldController.Instance.m_gameController.m_gameOpponent);
+                GetGameTile().PlaceUnit(newEnemyUnit);
+                ((ContentHuskEnemy)newEnemyUnit).SetStatsEqualToUnit(this);
+                newEnemyUnit.OnSummon();
+                WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
+            }
+        }
+
         SetGameTile(null);
     }
 
     //Returns the amount actually healed
     public virtual int Heal(int toHeal)
     {
+        bool lichAuraInRange = false;
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLichEnemy lichEnemy && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
+            {
+                lichAuraInRange = true;
+                break;
+            }
+        }
+
+        if (lichAuraInRange)
+        {
+            UIHelper.CreateWorldElementNotification("The Lich converts healing into damage!", true, m_worldUnit.gameObject);
+            GetHitByAbility(toHeal);
+            return 0;
+        }
+
         int maxHealth = GetMaxHealth();
 
         int realHealVal = toHeal;
@@ -520,7 +562,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        m_curHealth += toHeal;
+        m_curHealth += realHealVal;
 
         if (!GameHelper.HasRelic<ContentPrimeRibRelic>() || !(GetTeam() == Team.Player))
         {

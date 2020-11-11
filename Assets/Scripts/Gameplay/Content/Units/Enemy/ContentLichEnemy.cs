@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContentLichEnemy : GameEnemyUnit
 {
+    public int m_auraRange = 4;
+    
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
@@ -16,8 +18,8 @@ public class ContentLichEnemy : GameEnemyUnit
         else
         {
             m_maxHealth = 350;
-            m_maxStamina = 8;
-            m_staminaRegen = 6;
+            m_maxStamina = 5;
+            m_staminaRegen = 5;
             m_power = 15;
         }
 
@@ -26,9 +28,9 @@ public class ContentLichEnemy : GameEnemyUnit
         m_isBoss = true;
 
         m_name = "Lich";
-        m_desc = "The final boss.  Kill it, and win.\n";
+        m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_auraRange} is instead converted into damage.\n";
 
-        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameRangeKeyword(2), false);
         AddKeyword(new GameFlyingKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
@@ -39,9 +41,25 @@ public class ContentLichEnemy : GameEnemyUnit
         LateInit();
     }
 
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        GameHelper.GetGameController().m_activeBossUnits.Add(this);
+    }
+
     public override string GetDesc()
     {
         string descString = m_desc;
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
+        {
+            descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
+        }
+        else
+        {
+            descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats.";
+        }
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {

@@ -52,7 +52,7 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
         return listOfKeyword;
     }
 
-    public List<GameKeywordBase> GetKeywordsForRead()
+    public IReadOnlyList<GameKeywordBase> GetKeywordsForRead()
     {
         return m_keywords;
     }

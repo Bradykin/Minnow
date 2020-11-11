@@ -61,7 +61,7 @@ public class UIFocusInfoPanel : UIElementBase
             m_shouldShow = true;
 
             m_titleText.text = unitCard.GetName();
-            List<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
+            IReadOnlyList<GameKeywordBase> keywords = unitCard.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
                 m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
@@ -85,7 +85,7 @@ public class UIFocusInfoPanel : UIElementBase
                 m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.\n\n";
             }
 
-            List<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().GetKeywordsForRead();
+            IReadOnlyList<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().GetKeywordsForRead();
             for (int i = 0; i < keywords.Count; i++)
             {
                 m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";
@@ -107,7 +107,7 @@ public class UIFocusInfoPanel : UIElementBase
         }
 
         m_titleText.text = unitData.GetUnit().GetName();
-        List<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
+        IReadOnlyList<GameKeywordBase> keywords = unitData.GetUnit().GetKeywordHolderForRead().GetKeywordsForRead();
         for (int i = 0; i < keywords.Count; i++)
         {
             m_descText.text += "<b>" + keywords[i].GetName() + "</b>: " + keywords[i].GetFocusInfoText() + "\n\n";

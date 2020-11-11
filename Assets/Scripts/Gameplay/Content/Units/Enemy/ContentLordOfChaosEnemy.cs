@@ -18,9 +18,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         None // 8
     }
 
-    public List<ChaosWarpAbility> m_possibleChaosWarpAbilities = new List<ChaosWarpAbility>();
-
-    public ChaosWarpAbility m_currentChaosWarpAbility;
+    public ChaosWarpAbility m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
 
     public ContentLordOfChaosEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
