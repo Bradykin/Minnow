@@ -447,6 +447,27 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_relics.AddRelic(toAdd);
 
+        if (toAdd is ContentTheGreatestGiftRelic)
+        {
+            for (int i = 0; i < m_controlledBuildings.Count; i++)
+            {
+                m_controlledBuildings[i].GetWorldTile().ClearSurroundingFog(m_controlledBuildings[i].GetSightRange());
+            }
+
+            for (int i = 0; i < m_controlledUnits.Count; i++)
+            {
+                int numFogCleared = m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(m_controlledUnits[i].GetSightRange());
+
+                if (numFogCleared > 0)
+                {
+                    if (m_controlledUnits[i].GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
+                    {
+                        m_controlledUnits[i].GetHitByAbility(2);
+                    }
+                }
+            }
+        }
+
         WorldController.Instance.UpdateHand();
     }
 
