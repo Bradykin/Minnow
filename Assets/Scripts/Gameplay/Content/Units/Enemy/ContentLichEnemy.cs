@@ -52,14 +52,14 @@ public class ContentLichEnemy : GameEnemyUnit
     {
         string descString = m_desc;
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
-        {
+        /*if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
+        {*/
             descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
-        }
+        /*}
         else
         {
             descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats.";
-        }
+        }*/
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {
