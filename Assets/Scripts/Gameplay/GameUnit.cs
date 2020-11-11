@@ -1995,6 +1995,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void AddStats(int powerToAdd, int healthToAdd, bool showWorldNotification = true)
     {
+        if (powerToAdd == 0 && healthToAdd == 0)
+        {
+            return;
+        }
+
         if (showWorldNotification == true)
         {
             UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
