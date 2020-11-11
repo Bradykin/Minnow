@@ -9,7 +9,7 @@ public class ContentVolcanoRunMap : GameMap
         m_name = "Volcano Run";
         m_desc = "The valley seems so idyllic and perfect. I'm sure nothing will go wrong...";
 
-        m_difficulty = MapDifficulty.Hard;
+        m_difficulty = MapDifficulty.Easy;
 
         m_id = 8;
 
