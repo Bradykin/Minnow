@@ -907,6 +907,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             m_gridArray[i].GetGameTile().m_isFogBorder = false;
         }
 
+        GameController gameController = GameHelper.GetGameController();
         GamePlayer player = GameHelper.GetPlayer();
 
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
@@ -917,6 +918,14 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
             player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
+        }
+
+        for (int i = 0; i < gameController.m_activeBossUnits.Count; i++)
+        {
+            if (gameController.m_activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+            {
+                lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
+            }
         }
     }
 

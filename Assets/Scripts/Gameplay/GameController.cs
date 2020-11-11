@@ -44,6 +44,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public int m_randomSeed;
 
+    public List<GameEnemyUnit> m_activeBossUnits;
+
     //Variables used for unit card offerings in intermissions
     public int m_numRareUnitOptionsOffered = 0;
     public int m_previousRareUnitOptionWave = 0;
@@ -62,6 +64,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_teamActor.Add(m_player);
         m_teamActor.Add(m_gameOpponent);
 
+        m_activeBossUnits = new List<GameEnemyUnit>();
         m_currentWaveNumber = 1;
         m_currentTurnNumber = 1;
         m_endOfWaveTurnNumber = Constants.GetWaveLength(m_currentWaveNumber);

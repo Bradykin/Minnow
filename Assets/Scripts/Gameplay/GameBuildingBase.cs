@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum BuildingType
@@ -118,6 +119,15 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentTheGreatestGiftRelic>())
         {
             toReturn += 1;
+        }
+
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+            {
+                toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
+            }
         }
 
         return toReturn;

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,7 +55,14 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (m_occupyingUnit.GetTeam() == Team.Player)
         {
-            m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
+            if (GameHelper.GetGameController().m_activeBossUnits.Any(b => b is ContentLordOfShadowsEnemy))
+            {
+                WorldGridManager.Instance.EndIntermissionFogUpdate();
+            }
+            else
+            {
+                m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
+            }
 
             if (m_gameWorldPerk != null)
             {

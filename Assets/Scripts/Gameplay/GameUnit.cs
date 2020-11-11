@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -694,6 +695,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentBeaconOfSanityRelic>())
         {
             toReturn -= 1;
+        }
+
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+            {
+                toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
+            }
         }
 
         if (toReturn < 0)
