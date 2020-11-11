@@ -22,7 +22,11 @@ public class ContentCrimsonIslandsMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
-            //AddMapEvent(new ContentDrySeasonMapEvent(), 2); //nmartino - Needs High/Low tide map events.
+            AddMapEvent(new ContentDrySeasonMapEvent(0), 2);
+            AddMapEvent(new ContentFloodingMapEvent(0), 3);
+            AddMapEvent(new ContentDrySeasonMapEvent(0), 4);
+            AddMapEvent(new ContentFloodingMapEvent(0), 5);
+            AddMapEvent(new ContentDrySeasonMapEvent(0), 6);
         }
     }
 
