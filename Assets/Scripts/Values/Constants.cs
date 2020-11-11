@@ -7,6 +7,7 @@ public static class Constants
     //Game Data
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
+
     public static int StartingActions = 3;
     public static int MaxHandSize = 10;
     public static int MaxTotalStamina = 12;

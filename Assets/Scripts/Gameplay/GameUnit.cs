@@ -2021,14 +2021,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void RemoveStats(int powerToRemove, int healthToRemove)
     {
-        UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
+        if (!m_isDead)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
+        }
 
         m_power -= powerToRemove;
         m_maxHealth -= healthToRemove;
 
         if (m_maxHealth < 1)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
+            if (!m_isDead)
+            {
+                UIHelper.CreateWorldElementNotification(GetName() + " can't be reduced below 1 Max Health.", GetTeam() == Team.Player, m_gameTile.GetWorldTile().gameObject);
+            }
             m_maxHealth = 1;
         }
 
