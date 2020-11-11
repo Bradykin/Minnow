@@ -69,7 +69,7 @@ public static class Constants
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
     public static bool DebugSeeAllThroughFog = false;
-    public static bool DebugRandomStarterLevels = false;
+    public static bool DebugRandomStarterLevels = true;
 #else
     public static bool CheatsOn = false;
     public static bool DebugSeeAllThroughFog = false;
@@ -83,8 +83,8 @@ public static class Constants
 
 
     public static int HillsRangeModifier = 1;
-    public static int MarshStaminaRegenLoss = 0;
     public static int LavaFieldDamageDealt = 10;
+    public static int SandDuneMagicDamageReductionPercentage = 50;
 
     //Terrain Data
     /*public static int ForestDamageReduction = 1;

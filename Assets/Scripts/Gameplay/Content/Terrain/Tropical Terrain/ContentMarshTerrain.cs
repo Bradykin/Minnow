@@ -8,7 +8,6 @@ public class ContentMarshTerrain : GameTerrainBase
     {
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Difficult;
-        m_staminaRegenLoss = Constants.MarshStaminaRegenLoss;
 
         m_name = "Marsh";
         m_maxTerrainImageNumber = 4;

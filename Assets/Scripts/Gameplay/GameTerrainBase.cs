@@ -27,7 +27,8 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public enum TerrainMovementType
     {
         Normal,
-        Difficult
+        Difficult,
+        Extreme
     }
 
     protected CoverType m_coverType;
@@ -100,9 +101,13 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
         {
             return 1;
         }
-        else
+        else if (m_movementType == TerrainMovementType.Difficult)
         {
             return 2;
+        }
+        else
+        {
+            return 3;
         }
     }
 
