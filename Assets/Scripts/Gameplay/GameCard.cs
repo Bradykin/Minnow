@@ -34,7 +34,7 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     {
         int toReturn = m_cost + m_costTempModifier;
 
-        if (GameHelper.HasRelic<ContentGoldenKnotRelic>())
+        if (GameHelper.HasRelic<ContentGoldenKnotRelic>() && this is GameCardSpellBase)
         {
             toReturn += 3;
         }

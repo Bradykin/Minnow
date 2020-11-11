@@ -7,7 +7,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
     public int m_brightnessLevel = 0;
     public int m_visionReductionAmount = 1;
     public int m_brightnessExplosionAmount = 20;
-    private int m_brightnessExplosionBreakpoint = 5;
+    //private int m_brightnessExplosionBreakpoint = 5;
     
     public ContentLordOfShadowsEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

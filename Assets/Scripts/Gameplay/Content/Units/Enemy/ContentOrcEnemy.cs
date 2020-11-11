@@ -6,10 +6,10 @@ public class ContentOrcEnemy : GameEnemyUnit
 {
     public ContentOrcEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 28;
+        m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 12;
+        m_power = 9;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
