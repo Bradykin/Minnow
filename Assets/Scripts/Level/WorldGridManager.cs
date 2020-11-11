@@ -928,7 +928,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < gameController.m_activeBossUnits.Count; i++)
         {
-            if (gameController.m_activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+            if (gameController.m_activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy && lordOfShadowsEnemy.m_brightnessLevel > 0)
             {
                 lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
             }
