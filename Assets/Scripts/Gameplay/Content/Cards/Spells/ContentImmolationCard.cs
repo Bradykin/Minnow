@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentImmolationCard : GameCardSpellBase
 {
-    private int m_multiple = 8;
+    private int m_multiple = 5;
     
     public ContentImmolationCard()
     {
@@ -30,7 +30,6 @@ public class ContentImmolationCard : GameCardSpellBase
     {
         string startingDesc = GetDamageDescString();
         startingDesc += "If they are on a non-burned forest tile, multiply that amount by " + m_multiple + " and burn down the forest.";
-        //startingDesc += "If they are on a non-burned forest tile, multiply that amount by " + m_multiple + " (" + GetSpellValue() * m_multiple + ") and burn down the forest.";
 
         return startingDesc;
     }
