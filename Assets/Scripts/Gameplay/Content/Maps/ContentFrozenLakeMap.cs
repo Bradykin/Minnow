@@ -54,10 +54,6 @@ public class ContentFrozenLakeMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentSabertoothWyvernEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSnowprowlerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentValgulaEnemy(null));
-
-
-        m_totalEnemiesOnMap.Add(new ContentFireServantEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentFlameDemonEnemy(null));
         
 
 
