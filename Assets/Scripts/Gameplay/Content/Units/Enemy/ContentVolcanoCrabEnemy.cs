@@ -36,7 +36,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         AddKeyword(new GameLavawalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_desc += " When this unit steps on a lava tile, it regains all Damage Reduction.\n";
+            m_desc += "When this unit steps on a lava tile, it regains all Damage Reduction.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

@@ -48,7 +48,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
             {
                 if (hasStaminaToDrain)
                 {
-                    this.GainStamina(m_staminaDrainAmount);
+                    GainStamina(m_staminaDrainAmount);
                     if (!other.m_isDead)
                     {
                         other.SpendStamina(m_staminaDrainAmount);
