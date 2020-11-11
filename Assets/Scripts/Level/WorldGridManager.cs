@@ -757,6 +757,12 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         List<GameTile> tilesInMovementRangeWithStaminaToAttack = GetTilesInMovementRangeWithStaminaToAttack(startingGridTile, ignoreTerrainDifferences, letPassEnemies);
+        if (tilesInMovementRangeWithStaminaToAttack == null)
+        {
+            tilesInMovementRangeWithStaminaToAttack = new List<GameTile>();
+            tilesInMovementRangeWithStaminaToAttack.Add(startingGridTile);
+        }
+
         for (int i = tilesInMovementRangeWithStaminaToAttack.Count - 1; i >= 0; i--)
         {
             if (tilesInMovementRangeWithStaminaToAttack[i].IsOccupied() && !tilesInMovementRangeWithStaminaToAttack[i].m_occupyingUnit.m_isDead && tilesInMovementRangeWithStaminaToAttack[i] != startingGridTile)

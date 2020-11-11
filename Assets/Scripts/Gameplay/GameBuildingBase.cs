@@ -135,6 +135,15 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
 
     public virtual int GetHit(int damage)
     {
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
+            {
+                damage = 0;
+            }
+        }
+
         m_curHealth -= damage;
 
         if (m_curHealth <= 0)

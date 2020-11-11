@@ -295,6 +295,15 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue = 1;
         }
 
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
+            {
+                tileValue++;
+            }
+        }
+
         return tileValue;
     }
 

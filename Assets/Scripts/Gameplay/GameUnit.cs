@@ -242,7 +242,25 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage = damage * 2;
         }
 
-        m_curHealth -= damage;
+        bool lordOfChaosDamageApplyBleedsActive = false;
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.DamageAppliesBleeds)
+            {
+                lordOfChaosDamageApplyBleedsActive = true;
+                break;
+            }
+        }
+
+        if (lordOfChaosDamageApplyBleedsActive)
+        {
+            AddKeyword(new GameBleedKeyword(damage));
+        }
+        else
+        {
+            m_curHealth -= damage;
+        }
 
         if (GetTeam() == Team.Player)
         {
@@ -319,6 +337,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int CalculateDamageAmount(int damage, DamageType damageType)
     {
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
+            {
+                return 0;
+            }
+        }
+
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
         if (brittleKeyword != null)
         {
@@ -327,7 +354,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (IsInCover())
         {
-            damage = Mathf.FloorToInt((float)damage / (100.0f/Constants.CoverProtectionPercent));
+            bool lordOfChaosCoverSwapActive = false;
+            for (int i = 0; i < activeBossUnits.Count; i++)
+            {
+                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.CoverTakesMoreDamage)
+                {
+                    lordOfChaosCoverSwapActive = true;
+                    damage += Mathf.FloorToInt((float)damage / (100.0f / (100.0f - Constants.CoverProtectionPercent)));
+                    break;
+                }
+            }
+
+            if (!lordOfChaosCoverSwapActive)
+            {
+                damage = Mathf.FloorToInt((float)damage / (100.0f / Constants.CoverProtectionPercent));
+            }
         }
 
         if (damageType == DamageType.Spell && GetGameTile().GetTerrain().IsDunes())
@@ -441,6 +482,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetBleedKeyword() != null)
         {
             SubtractKeyword(GetBleedKeyword());
+        }
+
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllUnitsDeathExplode)
+            {
+                GameExplodeAction gameExplodeAction = new GameExplodeAction(this, this.GetPower(), 3);
+                gameExplodeAction.DoAction();
+            }
         }
 
         if (m_worldUnit == Globals.m_selectedUnit)
@@ -867,6 +918,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
+            {
+                staminaToAttack--;
+            }
+        }
+
         return Mathf.Max(1, staminaToAttack);
     }
 
@@ -1010,7 +1070,26 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameRootedKeyword GetRootedKeyword()
     {
-        return m_keywordHolder.GetKeyword<GameRootedKeyword>();
+        GameRootedKeyword rootedKeyword = m_keywordHolder.GetKeyword<GameRootedKeyword>();
+
+        if (rootedKeyword != null)
+        {
+            return rootedKeyword;
+        }
+
+        if (GameHelper.IsInGame())
+        {
+            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+            for (int i = 0; i < activeBossUnits.Count; i++)
+            {
+                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
+                {
+                    return new GameRootedKeyword();
+                }
+            }
+        }
+
+        return rootedKeyword;
     }
 
     public virtual GameTauntKeyword GetTauntKeyword()
@@ -1272,10 +1351,34 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int GetRange()
     {
+        bool lordOfChaosRangeSwapActive = false;
+        if (GameHelper.IsInGame())
+        {
+            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+            for (int i = 0; i < activeBossUnits.Count; i++)
+            {
+                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.RangedNotRangedSwap)
+                {
+                    lordOfChaosRangeSwapActive = true;
+                    break;
+                }
+            }
+        }
+
         GameRangeKeyword rangeKeyword = GetRangeKeyword();
         if (rangeKeyword != null)
         {
+            if (lordOfChaosRangeSwapActive)
+            {
+                return 1;
+            }
+            
             return rangeKeyword.m_range;
+        }
+
+        if (lordOfChaosRangeSwapActive)
+        {
+            return 2;
         }
 
         return 1;

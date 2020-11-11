@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentLordOfChaosEnemy : GameEnemyUnit
@@ -43,7 +44,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         m_isBoss = true;
 
         m_name = "Lord Of Chaos";
-        m_desc = $"The final boss. Kill it, and win.\n";
+        m_desc = $"The final boss. Kill it, and win.\nEach turn, this unit will cause a new Chaos Warp, changing the rules of the game.\nAt the end of this unit's turn, it will scramble the terrain in range 4 around it.\n";
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -60,13 +61,14 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
 
         m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+        UIHelper.CreateHUDNotification("Chaos Warp", GetChaosWarpString());
     }
 
     public override string GetDesc()
     {
         string descString = m_desc;
 
-        descString += GetChaosWarpString();
+        descString += $"<b>Chaos Warp:</b> {GetChaosWarpString()}";
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {
@@ -95,10 +97,10 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
                 chaosWarpString = "All ranged units only have one range. All non-ranged units have ranged 2.\n";
                 break;
             case ChaosWarpAbility.AllUnitsDeathExplode:
-                chaosWarpString = "All units explode on death for damage equal to their power.\n";
+                chaosWarpString = "All units explode on death for damage equal to their power to all target in range 3.\n";
                 break;
             case ChaosWarpAbility.DamageAppliesBleeds:
-                chaosWarpString = "Attacks apply bleeds instead of damage.\n";
+                chaosWarpString = "Damage applies bleeds instead of damage.\n";
                 break;
             case ChaosWarpAbility.NobodyCanDealDamage:
                 chaosWarpString = "Attacks deal no damage this turn.\n";
@@ -118,7 +120,29 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
     {
         base.EndTurn();
 
-        m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+        int prevValue = (int)m_currentChaosWarpAbility;
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 4).Where(t => !t.IsOccupied() && !t.HasBuilding()).ToList();
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            GameTile terrain1 = surroundingTiles[i];
+            GameTile terrain2 = surroundingTiles[Random.Range(i, surroundingTiles.Count)];
+
+            GameTerrainBase terrainBase1 = terrain1.GetTerrain();
+            GameTerrainBase terrainBase2 = terrain2.GetTerrain();
+
+            if (terrainBase1.GetType() != terrainBase2.GetType())
+            {
+                terrain1.SetTerrain(terrainBase2);
+                terrain2.SetTerrain(terrainBase1);
+            }
+        }
+
+        while ((int)m_currentChaosWarpAbility == prevValue)
+        {
+            m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+        }
+        UIHelper.CreateHUDNotification("Chaos Warp", GetChaosWarpString());
     }
 
     public override void Die(bool canRevive = true)
