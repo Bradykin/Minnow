@@ -47,11 +47,11 @@ public class ContentImmolationCard : GameCardSpellBase
         if (targetUnit.GetGameTile().GetTerrain().IsForest() && targetUnit.GetGameTile().GetTerrain().CanBurn())
         {
             targetUnit.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(targetUnit.GetGameTile().GetTerrain()));
-            targetUnit.GetHit(GetSpellValue() * m_multiple);
+            targetUnit.GetHitBySpell(GetSpellValue() * m_multiple, this);
         }
         else
         {
-            targetUnit.GetHit(GetSpellValue());
+            targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
     }
 }

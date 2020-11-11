@@ -53,6 +53,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isLava;
     protected bool m_isIce;
     protected bool m_isIceCracked;
+    protected bool m_isDunes;
     protected bool m_isWaterSource; // Not currently used
 
     protected bool m_isHot; // Not currently used
@@ -164,6 +165,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public bool IsIceCracked()
     {
         return m_isIceCracked;
+    }
+
+    public bool IsDunes()
+    {
+        return m_isDunes;
     }
 
     public bool IsWaterSource()
@@ -281,6 +287,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
             description += $"\n\nUnits standing on this tile take {Constants.LavaFieldDamageDealt} damage at the end of their turn.";
         }
 
+        if (IsDunes())
+        {
+            description += $"\n\nUnits standing on this tile take {Constants.SandDuneMagicDamageReductionPercentage}% less damage from spells.";
+        }
+        
         return description;
     }
 

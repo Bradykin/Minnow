@@ -47,7 +47,7 @@ public class ContentFortressBuilding : GameBuildingBase
                 continue;
             }
 
-            unit.GetHit(m_power);
+            unit.GetHitByAbility(m_power);
         }
     }
 

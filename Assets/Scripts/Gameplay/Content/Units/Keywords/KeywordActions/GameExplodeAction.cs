@@ -52,7 +52,7 @@ public class GameExplodeAction : GameAction
 
             if (unit != null && !unit.m_isDead)
             {
-                unit.GetHit(m_explodePower);
+                unit.GetHitByAbility(m_explodePower);
             }
         }
     }

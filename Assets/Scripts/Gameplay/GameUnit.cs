@@ -19,6 +19,13 @@ public enum Typeline : int
     Count // = 3
 }
 
+public enum DamageType : int
+{
+    Unit,
+    Spell,
+    Ability
+}
+
 public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData>, ILoad<JsonGameUnitData>
 {
     //General data.  This should be set for every unit
@@ -151,17 +158,29 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_gameTile = worldTile.GetGameTile();
     }
 
-    public virtual int GetHit(int damage, GameUnit gameUnit = null, bool shouldThorns = true)
+    public int GetHitByUnit(int damage, GameUnit gameUnit)
     {
-        if (gameUnit != null)
+        GameThornsKeyword thornsKeyword = GetThornsKeyword();
+        if (thornsKeyword != null)
         {
-            GameThornsKeyword thornsKeyword = GetThornsKeyword();
-            if (thornsKeyword != null)
-            {
-                HitUnit(gameUnit, thornsKeyword.m_thornsDamage, false, false);
-            }
+            HitUnit(gameUnit, thornsKeyword.m_thornsDamage, false, false);
         }
 
+        return GetHitImpl(damage, DamageType.Unit);
+    }
+
+    public int GetHitBySpell(int damage, GameCardSpellBase gameCardSpellBase)
+    {
+        return GetHitImpl(damage, DamageType.Spell);
+    }
+
+    public int GetHitByAbility(int damage)
+    {
+        return GetHitImpl(damage, DamageType.Ability);
+    }
+
+    protected virtual int GetHitImpl(int damage, DamageType damageType)
+    {
         if (m_isDead)
         {
             return 0;
@@ -176,7 +195,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return 0;
         }
 
-        damage = CalculateDamageAmount(damage);
+        damage = CalculateDamageAmount(damage, damageType);
 
         if (damage <= 0)
         {
@@ -263,7 +282,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         string coverReducDesc = "";
         if (IsInCover())
         {
-            coverReducDesc = " (" + Constants.CoverProtectionPercent + "% Cover)";
+            coverReducDesc += $" ({Constants.CoverProtectionPercent}% Cover)";
+        }
+
+        if (damageType == DamageType.Spell && GetGameTile().GetTerrain().IsDunes())
+        {
+            if (IsInCover())
+            {
+                coverReducDesc += ",";
+            }
+            coverReducDesc += $" ({Constants.SandDuneMagicDamageReductionPercentage}% Magic Cover";
         }
 
         string damageReducDesc = "";
@@ -288,7 +316,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return damage;
     }
 
-    public virtual int CalculateDamageAmount(int damage)
+    public virtual int CalculateDamageAmount(int damage, DamageType damageType)
     {
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
         if (brittleKeyword != null)
@@ -299,6 +327,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (IsInCover())
         {
             damage = Mathf.FloorToInt((float)damage / (100.0f/Constants.CoverProtectionPercent));
+        }
+
+        if (damageType == DamageType.Spell && GetGameTile().GetTerrain().IsDunes())
+        {
+            damage = Mathf.FloorToInt((float)damage / (100.0f / Constants.CoverProtectionPercent));
         }
 
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
@@ -678,7 +711,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             SpendStamina(GetStaminaToAttack());
         }
 
-        int damageTaken = other.GetHit(damageAmount, this, shouldThorns);
+        int damageTaken = other.GetHitByUnit(damageAmount, this);
 
         GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
 
@@ -2252,7 +2285,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetBleedKeyword() != null)
         {
-            GetHit(GetBleedKeyword().m_bleedAmount);
+            GetHitByAbility(GetBleedKeyword().m_bleedAmount);
             if (m_isDead)
             {
                 return;
@@ -2261,7 +2294,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {
-            GetHit(Constants.LavaFieldDamageDealt);
+            GetHitByAbility(Constants.LavaFieldDamageDealt);
             if (m_isDead)
             {
                 return;

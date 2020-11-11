@@ -57,7 +57,7 @@ public class GameEventFirestormOption : GameEventOption
             {
                 if (!playerUnits[i].m_isDead)
                 {
-                    playerUnits[i].GetHit(m_damage);
+                    playerUnits[i].GetHitByAbility(m_damage);
                 }
             }
         }
@@ -69,7 +69,7 @@ public class GameEventFirestormOption : GameEventOption
             {
                 if (enemyUnits[i].m_isDead)
                 {
-                    enemyUnits[i].GetHit(m_damage);
+                    enemyUnits[i].GetHitByAbility(m_damage);
                 }
             }
         }

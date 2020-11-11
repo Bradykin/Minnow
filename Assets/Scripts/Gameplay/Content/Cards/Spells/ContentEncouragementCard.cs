@@ -37,7 +37,7 @@ public class ContentEncouragementCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHit(1);
+        targetUnit.GetHitBySpell(1, this);
 
         if (targetUnit.m_isDead)
         {

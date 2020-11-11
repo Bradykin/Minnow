@@ -36,7 +36,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHit(GetSpellValue());
+        targetUnit.GetHitBySpell(GetSpellValue(), this);
     }
 
     protected override int GetSpellValue()

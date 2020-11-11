@@ -38,7 +38,7 @@ public class ContentFireboltCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHit(GetSpellValue());
+        targetUnit.GetHitBySpell(GetSpellValue(), this);
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

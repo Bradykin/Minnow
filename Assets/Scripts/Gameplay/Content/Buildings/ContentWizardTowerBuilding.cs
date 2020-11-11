@@ -53,7 +53,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
             magicPower = player.GetMagicPower();
         }
 
-        highestHealthTile.m_occupyingUnit.GetHit(m_power + magicPower * m_magicPowerMultiplier);
+        highestHealthTile.m_occupyingUnit.GetHitByAbility(m_power + magicPower * m_magicPowerMultiplier);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

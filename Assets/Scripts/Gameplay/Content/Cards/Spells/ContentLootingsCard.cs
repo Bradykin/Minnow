@@ -43,7 +43,7 @@ public class ContentLootingsCard : GameCardSpellBase
         }
         else if (GameHelper.GetPlayer().GetCastleGameElement() is ContentRoyalCaravan castleUnit)
         {
-            castleUnit.GetHit(m_damageVal);
+            castleUnit.GetHitBySpell(m_damageVal, this);
         }
 
         GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(m_lootVal));

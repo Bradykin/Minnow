@@ -30,7 +30,7 @@ public class AIScanTargetsInRangeStep : AIStep
         {
             if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.m_occupyingUnit, false))
             {
-                int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower());
+                int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower(), DamageType.Unit);
                 if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.m_occupyingUnit.GetTauntKeyword() == null)
                 {
                     continue;

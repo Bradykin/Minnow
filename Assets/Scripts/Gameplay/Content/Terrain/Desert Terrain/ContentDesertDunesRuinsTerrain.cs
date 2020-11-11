@@ -16,6 +16,7 @@ public class ContentDesertDunesRuinsTerrain : GameTerrainBase
         m_isPassable = true;
         m_canBurn = false;
         m_isHot = true;
+        m_isDunes = true;
         m_isEventTerrain = true;
 
         m_completedEventTerrainType = typeof(ContentDesertDunesTerrain);
