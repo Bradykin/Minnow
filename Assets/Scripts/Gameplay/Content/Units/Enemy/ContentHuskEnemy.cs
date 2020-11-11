@@ -17,7 +17,7 @@ public class ContentHuskEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
 
         m_name = "Husk";
-        m_desc = "";
+        m_desc = "This unit is damaged by healing effects.";
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -25,6 +25,14 @@ public class ContentHuskEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override int Heal(int toHeal)
+    {
+        UIHelper.CreateWorldElementNotification("The Husk is burned by healing power!", true, m_worldUnit.gameObject);
+        GetHitByAbility(toHeal);
+
+        return 0;
     }
 
     public void SetStatsEqualToUnit(GameUnit deadUnit)
