@@ -15,6 +15,7 @@ public class ContentDesertDunesTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_canBurn = false;
+        m_isDunes = true;
         m_isHot = true;
 
         LateInit();

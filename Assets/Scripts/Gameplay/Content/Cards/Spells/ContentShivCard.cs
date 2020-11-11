@@ -45,14 +45,14 @@ public class ContentShivCard : GameCardSpellBase
                 if (!targetUnit.m_isDead)
                 {
                     base.PlayCard(targetUnit);
-                    targetUnit.GetHit(GetSpellValue());
+                    targetUnit.GetHitBySpell(GetSpellValue(), this);
                 }
             }
         }
         else
         {
             base.PlayCard(targetUnit);
-            targetUnit.GetHit(GetSpellValue());
+            targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
 
         if (targetUnit.m_isDead && Globals.m_goldPerShivKill > 0)

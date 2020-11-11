@@ -36,7 +36,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameUnit == null || gameUnit.m_isDead || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
+                    if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && (gameUnit == null || gameUnit.m_isDead || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement)))
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
@@ -63,7 +63,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
-                    if (gameBuilding.m_isDestroyed)
+                    if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && gameBuilding.m_isDestroyed)
                     {
                         if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {

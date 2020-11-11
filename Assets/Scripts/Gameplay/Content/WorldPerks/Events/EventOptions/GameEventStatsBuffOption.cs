@@ -71,7 +71,7 @@ public class GameEventStatsBuffOption : GameEventOption
             {
                 if (nearbyTiles[i].IsOccupied())
                 {
-                    nearbyTiles[i].m_occupyingUnit.GetHit(m_blastDamage);
+                    nearbyTiles[i].m_occupyingUnit.GetHitByAbility(m_blastDamage);
                 }
 
                 if (nearbyTiles[i].GetTerrain().CanBurn())

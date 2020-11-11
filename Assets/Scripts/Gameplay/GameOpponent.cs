@@ -66,13 +66,9 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         while (units.Count > 0)
         {
+            units.RemoveAll(u => u == null || u.m_isDead);
+            
             GameEnemyUnit unit = units.OrderBy(e => Vector3.Distance(e.GetWorldTile().transform.position, measureTo.GetWorldTile().transform.position)).First();
-
-            if (unit.m_isDead)
-            {
-                units.Remove(unit);
-                continue;
-            }
 
             unit.m_AIGameEnemyUnit.SetupTurn();
 

@@ -60,7 +60,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             {
                 if (m_occupyingUnit.GetEnrageKeyword() != null && GameHelper.HasRelic<ContentVowOfTheShakinaRelic>())
                 {
-                    m_occupyingUnit.GetHit(2);
+                    m_occupyingUnit.GetHitByAbility(2);
                 }
             }
 

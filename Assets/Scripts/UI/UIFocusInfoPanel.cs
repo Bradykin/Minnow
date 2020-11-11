@@ -138,6 +138,10 @@ public class UIFocusInfoPanel : UIElementBase
             {
                 m_descText.text += "\nMovement Cost: Difficult (2)";
             }
+            else if (gameTile.GetTerrain().GetMovementType() == GameTerrainBase.TerrainMovementType.Extreme)
+            {
+                m_descText.text += "\nMovement Cost: Extreme (3)";
+            }
         }
 
         m_descText.text += gameTile.GetTerrain().GetDesc();

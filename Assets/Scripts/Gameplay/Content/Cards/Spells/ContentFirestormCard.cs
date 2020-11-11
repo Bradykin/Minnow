@@ -48,7 +48,7 @@ public class ContentFirestormCard : GameCardSpellBase
             {
                 break;
             }
-            targetUnit.GetHit(GetSpellValue());
+            targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
     }
 }

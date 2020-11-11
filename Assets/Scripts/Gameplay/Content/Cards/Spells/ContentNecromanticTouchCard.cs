@@ -57,7 +57,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
             unit.Heal(GetSpellValue());
 
-            targetUnit.GetHit(GetSpellValue());
+            targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
     }
 }

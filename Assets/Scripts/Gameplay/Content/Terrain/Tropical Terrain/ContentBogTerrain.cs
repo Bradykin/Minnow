@@ -7,8 +7,7 @@ public class ContentBogTerrain : GameTerrainBase
     public ContentBogTerrain()
     {
         m_coverType = CoverType.None;
-        m_movementType = TerrainMovementType.Difficult;
-        //m_staminaRegenLoss = Constants.BogStaminaRegenLoss;
+        m_movementType = TerrainMovementType.Extreme;
 
         m_name = "Bog";
         m_maxTerrainImageNumber = 4;
