@@ -208,6 +208,9 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentYetiEnemyCard());
         m_enemyCards.Add(new ContentZombieEnemyCard());
         m_enemyCards.Add(new ContentFrozenGuardianEnemyCard());
+        m_enemyCards.Add(new ContentSabertoothWyvernEnemyCard());
+        m_enemyCards.Add(new ContentFireServantEnemyCard());
+        m_enemyCards.Add(new ContentFlameDemonEnemyCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)
