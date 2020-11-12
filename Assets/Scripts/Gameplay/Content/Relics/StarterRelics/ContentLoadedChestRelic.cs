@@ -7,7 +7,7 @@ public class ContentLoadedChestRelic : GameRelic
     public ContentLoadedChestRelic()
     {
         m_name = "Loaded Chest";
-        m_desc = "On pickup, gain " + (75 * (GetRelicLevel() + 1)) + " gold.";
+        m_desc = "Start with +" + (75 * (GetRelicLevel() + 1)) + " gold.";
         m_rarity = GameRarity.Starter;
 
         LateInit();

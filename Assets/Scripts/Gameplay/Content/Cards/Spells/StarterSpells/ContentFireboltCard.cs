@@ -7,7 +7,7 @@ public class ContentFireboltCard : GameCardSpellBase
     public ContentFireboltCard()
     {
         m_name = "Firebolt";
-        m_targetType = Target.Unit;
+        m_targetType = Target.Enemy;
         m_rarity = GameRarity.Starter;
 
         InitializeWithLevel(GetCardLevel());

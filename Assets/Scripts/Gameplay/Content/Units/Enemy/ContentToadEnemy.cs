@@ -19,7 +19,7 @@ public class ContentToadEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Toad";
-        m_desc = "On hit, drains Stamina to 1!\n";
+        m_desc = "On hit, drains Stamina to 2!\n";
 
         AddKeyword(new GameDamageShieldKeyword(1), false);
 
@@ -42,7 +42,7 @@ public class ContentToadEnemy : GameEnemyUnit
 
         if (damageTaken > 0)
         {
-            other.SpendStamina(other.GetCurStamina() - 1);
+            other.SpendStamina(other.GetCurStamina() - 2);
         }
 
         return damageTaken;
