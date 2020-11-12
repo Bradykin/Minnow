@@ -12,7 +12,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
-    private int m_eliteSpawnWaveModifier;
+    public int m_eliteSpawnWaveModifier { get; private set; }
     private bool m_hasSpawnedEliteThisWave;
     private bool m_hasSpawnedBoss;
 
@@ -154,67 +154,13 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         //handle spawning of bosses and elites
-        if (fogSpawningActive)
+        if (!m_hasSpawnedBoss)
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-                TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                m_hasSpawnedBoss = true;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !m_hasSpawnedEliteThisWave)
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
-                TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                m_hasSpawnedEliteThisWave = true;
-            }
+            m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
         }
-        else
+        if (!m_hasSpawnedEliteThisWave)
         {
-            for (int i = 0; i < m_spawnPoints.Count; i++)
-            {
-                GameSpawnPoint temp = m_spawnPoints[i];
-                int randomIndex = UnityEngine.Random.Range(i, m_spawnPoints.Count);
-                m_spawnPoints[i] = m_spawnPoints[randomIndex];
-                m_spawnPoints[randomIndex] = temp;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(this);
-                for (int i = 0; i < m_spawnPoints.Count; i++)
-                {
-                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                    {
-                        continue;
-                    }
-                    
-                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
-                    {
-                        break;
-                    }
-                }
-                m_hasSpawnedBoss = true;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn) && !m_hasSpawnedEliteThisWave)
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(this);
-                for (int i = 0; i < m_spawnPoints.Count; i++)
-                {
-                    if (!m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                    {
-                        continue;
-                    }
-
-                    if (TryForceSpawnAtSpawnPoint(gameEnemyUnit, m_spawnPoints[i]))
-                    {
-                        break;
-                    }
-                }
-                m_hasSpawnedEliteThisWave = true;
-            }
+            m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
         }
 
         //Try spawning at any monster dens
@@ -348,7 +294,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return false;
     }
 
-    private bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
+    public bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
     {
         if (spawnPoint.m_tile.m_occupyingUnit != null)
         {
@@ -390,7 +336,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return TryForceSpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
     }
 
-    private bool TryForceSpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
+    public bool TryForceSpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
     {
         while (tilesAtFogEdge.Count > 0)
         {

@@ -18,6 +18,11 @@ public class ContentLakesideMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        return 6;
+    }
+
     protected override void FillMapEvents()
     {
         //No events, left blank by default.  No Chaos on this map.
@@ -50,7 +55,7 @@ public class ContentLakesideMap : GameMap
         //Wave 2
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 2, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 0.5f));
 
         //Wave 3
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
