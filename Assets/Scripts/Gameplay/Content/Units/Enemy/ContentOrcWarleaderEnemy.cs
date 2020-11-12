@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentOrcWarleaderEnemy : GameEnemyUnit
 {
-    public int m_spawnRange = 3;
+    public int m_spawnRange = 2;
     public int m_orcsSpawned = 8;
 
     public List<GameEnemyUnit> m_survivingOrcs = new List<GameEnemyUnit>();
@@ -48,6 +48,14 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         base.OnSummon();
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_spawnRange);
+
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            GameTile temp = surroundingTiles[i];
+            int randomIndex = UnityEngine.Random.Range(i, surroundingTiles.Count);
+            surroundingTiles[i] = surroundingTiles[randomIndex];
+            surroundingTiles[randomIndex] = temp;
+        }
 
         int numOrcsSpawned = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)
