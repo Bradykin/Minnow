@@ -10,7 +10,8 @@ public class ContentFireboltCard : GameCardSpellBase
         m_targetType = Target.Enemy;
         m_rarity = GameRarity.Starter;
 
-        InitializeWithLevel(GetCardLevel());
+        m_cost = 1;
+        m_spellEffect = 4;
 
         SetupBasicData();
 
@@ -43,22 +44,6 @@ public class ContentFireboltCard : GameCardSpellBase
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-        m_spellEffect = 4;
-
-        if (level >= 1)
-        {
-            m_spellEffect += 3;
-        }
-        
-        if (level >= 2)
-        {
-            m_cost = 0;
         }
     }
 }

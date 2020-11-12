@@ -10,7 +10,8 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
         m_targetType = Target.Unit;
         m_rarity = GameRarity.Starter;
 
-        InitializeWithLevel(GetCardLevel());
+        m_cost = 1;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
@@ -44,22 +45,6 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-        m_spellEffect = 1;
-
-        if (level >= 1)
-        {
-            m_cost = 0;
-        }
-
-        if (level >= 2)
-        {
-            m_spellEffect = 3;
         }
     }
 }

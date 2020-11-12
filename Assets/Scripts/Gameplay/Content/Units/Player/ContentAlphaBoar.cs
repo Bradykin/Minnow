@@ -15,28 +15,14 @@ public class ContentAlphaBoar : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameTauntKeyword(), false);
-
-        InitializeWithLevel(GetUnitLevel());
-
-        LateInit();
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
         m_maxHealth = 20;
         m_maxStamina = 3;
         m_staminaRegen = 2;
         m_power = 5;
 
-        if (level >= 1)
-        {
-            m_maxHealth = 30;
-        }
+        AddKeyword(new GameTauntKeyword(), false);
+        AddKeyword(new GameThornsKeyword(4), false);
 
-        if (level >= 2)
-        {
-            AddKeyword(new GameThornsKeyword(2), false);
-        }
+        LateInit();
     }
 }

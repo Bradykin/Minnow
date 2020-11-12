@@ -16,13 +16,14 @@ public static class GameRelicFactory
         m_relics.Clear();
         
         //Starter Relics
-        m_relics.Add(new ContentLivingStoneRelic());
         m_relics.Add(new ContentMaskOfAgesRelic());
         m_relics.Add(new ContentOrbOfEnergyRelic());
         m_relics.Add(new ContentLoadedChestRelic());
         m_relics.Add(new ContentWolvenFangRelic());
+        m_relics.Add(new ContentHoovesOfProductionRelic());
 
         //General Relics
+        m_relics.Add(new ContentLivingStoneRelic());
         m_relics.Add(new ContentBestialWrathRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
         m_relics.Add(new ContentMorlemainsSkullRelic());
@@ -32,7 +33,6 @@ public static class GameRelicFactory
         m_relics.Add(new ContentSoulTrapRelic());
         m_relics.Add(new ContentSpiritCatcherRelic());
         m_relics.Add(new ContentSackOfManyShapesRelic());
-        m_relics.Add(new ContentHoovesOfProductionRelic());
         m_relics.Add(new ContentDestinyRelic());
         m_relics.Add(new ContentUrbanTacticsRelic());
         m_relics.Add(new ContentPinnacleOfFearRelic());

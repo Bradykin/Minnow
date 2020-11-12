@@ -211,7 +211,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         {
             if (GameHelper.HasRelic<ContentLivingStoneRelic>())
             {
-                int toIncrease = (new ContentLivingStoneRelic().GetRelicLevel() + 1);
+                int toIncrease = 1;
                 m_maxHealth += toIncrease;
                 GetHealed(toIncrease);
             }

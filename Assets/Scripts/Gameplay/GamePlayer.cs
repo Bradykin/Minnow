@@ -392,7 +392,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         if (toAdd is ContentLoadedChestRelic)
         {
-            m_wallet.AddResources(new GameWallet(75 * (1 + toAdd.GetRelicLevel())));
+            m_wallet.AddResources(new GameWallet(75));
         }
 
         if (toAdd is ContentGreedOfDorphinRelic)
@@ -482,7 +482,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.HasRelic<ContentOrbOfEnergyRelic>())
         {
-            toReturn += (new ContentOrbOfEnergyRelic().GetRelicLevel() + 1);
+            toReturn += 1;
         }
 
         return toReturn;
@@ -507,7 +507,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
-            toReturn += (new ContentMaskOfAgesRelic().GetRelicLevel() + 1);
+            toReturn += 1;
         }
 
         if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())

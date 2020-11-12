@@ -10,7 +10,8 @@ public class ContentJoltCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
 
-        InitializeWithLevel(GetCardLevel());
+        m_cost = 2;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
@@ -43,22 +44,6 @@ public class ContentJoltCard : GameCardSpellBase
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 2;
-        m_spellEffect = 1;
-
-        if (level >= 1)
-        {
-            m_spellEffect = 2;
-        }
-
-        if (level >= 2)
-        {
-            m_cost = 1;
         }
     }
 }

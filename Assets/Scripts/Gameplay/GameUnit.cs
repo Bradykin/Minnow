@@ -1434,7 +1434,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentWolvenFangRelic>())
             {
-                toReturn += (4 * (1 + new ContentWolvenFangRelic().GetRelicLevel()));
+                toReturn += 1;
             }
 
             if (GameHelper.HasRelic<ContentSigilOfTheSwordsmanRelic>() && GetTypeline() == Typeline.Humanoid)
@@ -2083,23 +2083,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public virtual int GetUnitLevel()
-    {
-        if (m_rarity == GameRarity.Starter)
-        {
-            if (PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels.ContainsKey(GetBaseName()))
-            {
-                return PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels[GetBaseName()];
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        return 0;
-    }
-
     public virtual bool IsInvulnerable()
     {
         return false;
@@ -2385,8 +2368,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
     }
-
-    public virtual void InitializeWithLevel(int level) { }
 
     //============================================================================================================//
 

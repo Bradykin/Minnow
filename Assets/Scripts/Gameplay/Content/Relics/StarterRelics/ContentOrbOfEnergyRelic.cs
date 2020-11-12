@@ -7,7 +7,7 @@ public class ContentOrbOfEnergyRelic : GameRelic
     public ContentOrbOfEnergyRelic()
     {
         m_name = "Orb of Energy";
-        m_desc = "Increase max energy by " + (GetRelicLevel() + 1) + ".";
+        m_desc = "Increase max energy by 1.";
         m_rarity = GameRarity.Starter;
 
         LateInit();

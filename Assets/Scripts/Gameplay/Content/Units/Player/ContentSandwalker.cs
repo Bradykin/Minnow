@@ -17,26 +17,11 @@ public class ContentSandwalker : GameUnit
 
         AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 1, 0)), false);
 
-        InitializeWithLevel(GetUnitLevel());
-
-        LateInit();
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
         m_maxHealth = 5;
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 3;
 
-        if (level >= 1)
-        {
-            m_power = 4;
-        }
-
-        if (level >= 2)
-        {
-            m_maxHealth = 8;
-        }
+        LateInit();
     }
 }

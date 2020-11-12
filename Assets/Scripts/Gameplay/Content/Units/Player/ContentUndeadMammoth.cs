@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 
 public class ContentUndeadMammoth : GameUnit
 {
-    private int m_powerBuff;
-    private int m_healthBuff;
+    private int m_powerBuff = 3;
+    private int m_healthBuff = 7;
 
     public ContentUndeadMammoth()
     {
@@ -19,31 +19,13 @@ public class ContentUndeadMammoth : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        InitializeWithLevel(GetUnitLevel());
-
-        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), false);
-
-        LateInit();
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_powerBuff = 3;
-        m_healthBuff = 7;
-
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 4;
 
-        if (level >= 1)
-        {
-            m_powerBuff = 5;
-        }
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), false);
 
-        if (level >= 2)
-        {
-            m_healthBuff = 10;
-        }
+        LateInit();
     }
 }

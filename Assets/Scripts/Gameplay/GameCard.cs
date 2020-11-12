@@ -225,26 +225,6 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
         return false;
     }
 
-    public virtual void InitializeWithLevel(int level) { }
-
-    public virtual int GetCardLevel()
-    {
-        if (m_rarity == GameRarity.Starter)
-        {
-            if (PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels.ContainsKey(GetBaseName()))
-            {
-                return PlayerDataManager.PlayerAccountData.m_starterCardUnlockLevels[GetBaseName()];
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        //TODO: alex - Hook this up to player save data.
-
-        return 0;
-    }
-
     //============================================================================================================//
 
     public virtual JsonGameCardData SaveToJson()

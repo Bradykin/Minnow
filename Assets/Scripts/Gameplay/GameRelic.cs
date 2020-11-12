@@ -15,11 +15,4 @@ public abstract class GameRelic : GameElementBase
     {
         return m_desc;
     }
-
-    public virtual int GetRelicLevel()
-    {
-        //TODO: alex - Hook this up to player save data.
-
-        return 0;
-    }
 }

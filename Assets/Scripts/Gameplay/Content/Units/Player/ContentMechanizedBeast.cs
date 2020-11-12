@@ -17,26 +17,11 @@ public class ContentMechanizedBeast : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        InitializeWithLevel(GetUnitLevel());
-
-        LateInit();
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
         m_maxHealth = 5;
         m_maxStamina = 6;
         m_staminaRegen = 2;
         m_power = 5;
 
-        if (level >= 1)
-        {
-            m_maxStamina = 7;
-        }
-
-        if (level >= 2)
-        {
-            m_maxStamina = 8;
-        }
+        LateInit();
     }
 }

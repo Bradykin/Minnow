@@ -12,9 +12,10 @@ public class ContentAegisCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
 
-        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
+        m_cost = 1;
+        m_desc = "Give target allied unit <b>Damage Shield</b> " + m_amount + ".\n";
 
-        InitializeWithLevel(GetCardLevel());
+        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
 
         SetupBasicData();
 
@@ -44,44 +45,9 @@ public class ContentAegisCard : GameCardSpellBase
 
         targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false);
 
-        if (GetCardLevel() >= 2)
-        {
-            if (targetUnit.GetBleedKeyword() != null)
-            {
-                targetUnit.SubtractKeyword(targetUnit.GetBleedKeyword());
-            }
-
-            if (targetUnit.GetBrittleKeyword() != null)
-            {
-                targetUnit.SubtractKeyword(targetUnit.GetBrittleKeyword());
-            }
-
-            if (targetUnit.GetRootedKeyword() != null)
-            {
-                targetUnit.RemoveKeyword(targetUnit.GetRootedKeyword());
-            }
-        }
-
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-
-        if (level >= 1)
-        {
-            m_amount = 2;
-        }
-
-        m_desc = "Give target allied unit " + m_amount + " <b>Damage Shield</b>.\n";
-
-        if (level >= 2)
-        {
-            m_desc += "Removes all <b>Brittle</b>, <b>Bleed</b>, and <b>Rooted</b> effects from the target.\n";
         }
     }
 }

@@ -34,8 +34,6 @@ public class GameUnitCard : GameCard
         {
             AddBasicTags();
         }
-
-        InitializeWithLevel(GetCardLevel());
     }
 
     private void AddBasicTags()
