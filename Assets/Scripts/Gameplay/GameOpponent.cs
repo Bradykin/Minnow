@@ -13,8 +13,8 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
     public int m_eliteSpawnWaveModifier { get; private set; }
-    private bool m_hasSpawnedEliteThisWave;
-    private bool m_hasSpawnedBoss;
+    public bool m_hasSpawnedEliteThisWave { get; private set; }
+    public bool m_hasSpawnedBoss { get; private set; }
 
     public GameOpponent()
     {
@@ -25,8 +25,6 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     public void LateInit()
     {
-        //Debug.Log("GameOpponent LateInit");
-
         HandleSpawn();
     }
 
@@ -154,14 +152,8 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         //handle spawning of bosses and elites
-        if (!m_hasSpawnedBoss)
-        {
-            m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
-        }
-        if (!m_hasSpawnedEliteThisWave)
-        {
-            m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
-        }
+        m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
+        m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
 
         //Try spawning at any monster dens
         for (int i = 0; i < m_monsterDens.Count; i++)

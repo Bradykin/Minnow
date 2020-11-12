@@ -224,6 +224,11 @@ public abstract class GameMap : GameElementBase
     {
         GameOpponent gameOpponent = GameHelper.GetOpponent();
 
+        if (gameOpponent.m_hasSpawnedEliteThisWave)
+        {
+            return true;
+        }
+
         if (GetFogSpawningActive())
         {
             if (GameHelper.GetGameController().m_currentTurnNumber >= (gameOpponent.m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn))
@@ -265,8 +270,13 @@ public abstract class GameMap : GameElementBase
     }
 
     public virtual bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)
-    {
+    {        
         GameOpponent gameOpponent = GameHelper.GetOpponent();
+
+        if (gameOpponent.m_hasSpawnedBoss)
+        {
+            return true;
+        }
 
         if (GetFogSpawningActive())
         {
