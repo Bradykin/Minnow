@@ -16,30 +16,11 @@ public class UIEnergy : UIElementBase
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        if (player == null)
-        {
-            return;
-        }
-
-        if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
-        {
-            m_countText.text = player.GetCurActions() + "/" + player.GetMaxActions();
-        }
-        else
-        {
-            m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
-        }
+        m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
     }
 
     public override void HandleTooltip()
     {
-        if (GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Actions", "Use these action points to take various actions during the intermission phase!"));
-        }
-        else
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
-        }
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Energy", "This is your current energy!  It is used to play cards, and refreshes every turn."));
     }
 }

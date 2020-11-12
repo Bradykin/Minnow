@@ -247,6 +247,19 @@ public static class GameHelper
         return WorldController.Instance.m_isInGame;
     }
 
+    public static bool CardInPlayerDeck(GameCard card)
+    {
+        for (int i = 0; i < GetPlayer().m_deckBase.Count(); i++)
+        {
+            if (card == GetPlayer().m_deckBase.GetCardByIndex(i))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static bool HasAllTypelines()
     {
         Dictionary<int, int> numCreatureTypes = new Dictionary<int, int>();
