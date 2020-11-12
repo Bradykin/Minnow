@@ -18,6 +18,11 @@ public class ContentLakesideMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        return 6;
+    }
+
     protected override void FillMapEvents()
     {
         //No events, left blank by default.  No Chaos on this map.

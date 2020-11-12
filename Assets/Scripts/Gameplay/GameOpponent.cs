@@ -12,7 +12,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     public List<GameBuildingBase> m_monsterDens { get; private set; }
     public List<GameSpawnPoint> m_spawnPoints { get; private set; }
 
-    private int m_eliteSpawnWaveModifier;
+    public int m_eliteSpawnWaveModifier { get; private set; }
     private bool m_hasSpawnedEliteThisWave;
     private bool m_hasSpawnedBoss;
 
@@ -154,6 +154,16 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         //handle spawning of bosses and elites
+        if (!m_hasSpawnedBoss)
+        {
+            m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
+        }
+        if (!m_hasSpawnedEliteThisWave)
+        {
+            m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
+        }
+
+
         if (fogSpawningActive)
         {
             if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum && !m_hasSpawnedBoss)
@@ -348,7 +358,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return false;
     }
 
-    private bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
+    public bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
     {
         if (spawnPoint.m_tile.m_occupyingUnit != null)
         {
@@ -390,7 +400,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return TryForceSpawnAtEdgeOfFog(newEnemyUnit, tilesAtFogEdge);
     }
 
-    private bool TryForceSpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
+    public bool TryForceSpawnAtEdgeOfFog(GameEnemyUnit newEnemyUnit, List<GameTile> tilesAtFogEdge)
     {
         while (tilesAtFogEdge.Count > 0)
         {
