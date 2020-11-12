@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ContentLichEnemy : GameEnemyUnit
 {
-    public int m_auraRange = 4;
+    public int m_auraRange = 3;
     
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_maxHealth = 700;
-            m_maxStamina = 8;
-            m_staminaRegen = 8;
-            m_power = 40;
+            m_maxHealth = 1000;
+            m_maxStamina = 7;
+            m_staminaRegen = 7;
+            m_power = 30;
         }
         else
         {
-            m_maxHealth = 350;
+            m_maxHealth = 600;
             m_maxStamina = 5;
             m_staminaRegen = 5;
             m_power = 15;

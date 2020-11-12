@@ -6,23 +6,28 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
 {
     public ContentImmortalBannerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
-
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 4;
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
+        {
+            m_maxHealth = 350;
+            m_maxStamina = 7;
+            m_staminaRegen = 7;
+            m_power = 25;
+        }
+        else
+        {
+            m_maxHealth = 4;
+            m_maxStamina = 5;
+            m_staminaRegen = 5;
+            m_power = 15;
+        }
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Special;
+        m_isBoss = true;
 
         m_name = "Immortal Banner";
-        m_desc = "";
+        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
-        }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -30,5 +35,36 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        GameHelper.GetGameController().m_activeBossUnits.Add(this);
+    }
+
+    public override void Die(bool canRevive = true)
+    {
+        base.Die(canRevive);
+
+        if (m_isDead)
+        {
+            GameController gameController = GameHelper.GetGameController();
+            gameController.m_activeBossUnits.Remove(this);
+
+            List<GameEnemyUnit> activeBossUnits = gameController.m_activeBossUnits;
+            for (int i = 0; i < activeBossUnits.Count; i++)
+            {
+                if (activeBossUnits[i] is ContentImmortalBladeEnemy || activeBossUnits[i] is ContentImmortalBowEnemy)
+                {
+                    //At least one other immortal is alive, the game is not over
+                    return;
+                }
+            }
+
+            //The other members of the Immortals are dead, player has won
+            GameHelper.EndLevel(RunEndType.Win);
+        }
     }
 }
