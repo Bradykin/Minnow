@@ -32,8 +32,7 @@ public class ContentLakesideMap : GameMap
     {
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLichEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentHuskEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentOrcWarleaderEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
