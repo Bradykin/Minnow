@@ -90,7 +90,7 @@ public class GameCardSpellBase : GameCard
         }
         else
         {
-            return " (" + GetSpellValue() + ")";
+            return "(" + GetSpellValue() + ")";
         }
     }
 

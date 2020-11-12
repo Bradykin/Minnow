@@ -9,8 +9,9 @@ public class ContentCureWoundsCard : GameCardSpellBase
         m_name = "Cure Wounds";
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Starter;
-
-        InitializeWithLevel(GetCardLevel());
+        
+        m_cost = 1;
+        m_spellEffect = 6;
 
         SetupBasicData();
 
@@ -20,11 +21,6 @@ public class ContentCureWoundsCard : GameCardSpellBase
     public override string GetDesc()
     {
         string description = GetHealDescString();
-
-        if (GetCardLevel() >= 2)
-        {
-            description += "\nTrigger <b>Enrage</b> on the target.\n";
-        }
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
@@ -45,45 +41,10 @@ public class ContentCureWoundsCard : GameCardSpellBase
 
         targetUnit.Heal(GetSpellValue());
 
-        if (GetCardLevel() >= 2)
-        {
-            GameEnrageKeyword enrageKeyword = targetUnit.GetEnrageKeyword();
-
-            if (enrageKeyword != null)
-            {
-                enrageKeyword.DoAction(0);
-
-                //Trigger again if the player has the Bestial Wrath relic
-                if (targetUnit.GetTypeline() == Typeline.Monster && targetUnit.GetTeam() == Team.Player)
-                {
-                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
-                    {
-                        enrageKeyword.DoAction(0);
-                    }
-                }
-            }
-        }
-
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
             GameHelper.GetPlayer().DrawCard();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-        m_spellEffect = 6;
-
-        if (level >= 1)
-        {
-            m_spellEffect = 10;
-        }
-
-        if (level >= 2)
-        {
-            //Triggers enrage on the unit
         }
     }
 }

@@ -11,7 +11,8 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 
-        InitializeWithLevel(GetCardLevel());
+        m_cost = 1;
+        m_spellEffect = 2;
 
         SetupBasicData();
 
@@ -26,14 +27,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        if (GetCardLevel() >= 2)
-        {
-            return "Give an allied unit +" + m_spellEffect + mpString + "/+" + m_spellEffect + mpString + ".\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
-        }
-        else
-        {
-            return "Give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
-        }
+        return "Give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -46,27 +40,6 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         int powerToAdd = GetSpellValue();
-        int healthToAdd = 0;
-        if (GetCardLevel() >= 2)
-        {
-            healthToAdd = GetSpellValue();
-        }
-        targetUnit.AddStats(powerToAdd, healthToAdd);
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-        m_spellEffect = 2;
-
-        if (level >= 1)
-        {
-            m_spellEffect = 3;
-        }
-
-        if (level >= 2)
-        {
-            //Also buff health
-        }
+        targetUnit.AddStats(powerToAdd, 0);
     }
 }

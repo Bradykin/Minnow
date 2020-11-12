@@ -11,7 +11,8 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
         m_rarity = GameRarity.Starter;
         m_shouldExile = true;
 
-        InitializeWithLevel(GetCardLevel());
+        m_cost = 1;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
@@ -26,14 +27,7 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        if (GetCardLevel() >= 2)
-        {
-            return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\nFill the target's Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
-        }
-        else
-        {
-            return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
-        }
+        return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -46,26 +40,5 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddMaxStamina(GetSpellValue());
-
-        if (GetCardLevel() >= 2)
-        {
-            targetUnit.FillStamina();
-        }
-    }
-
-    public override void InitializeWithLevel(int level)
-    {
-        m_cost = 1;
-        m_spellEffect = 1;
-
-        if (level >= 1)
-        {
-            m_spellEffect = 2;
-        }
-
-        if (level >= 2)
-        {
-            //Also fill curStamina
-        }
     }
 }
