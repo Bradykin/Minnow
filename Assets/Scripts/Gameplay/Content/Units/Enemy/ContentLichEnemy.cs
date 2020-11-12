@@ -10,14 +10,14 @@ public class ContentLichEnemy : GameEnemyUnit
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_maxHealth = 700;
+            m_maxHealth = 1000;
             m_maxStamina = 7;
             m_staminaRegen = 7;
             m_power = 30;
         }
         else
         {
-            m_maxHealth = 400;
+            m_maxHealth = 600;
             m_maxStamina = 5;
             m_staminaRegen = 5;
             m_power = 15;
