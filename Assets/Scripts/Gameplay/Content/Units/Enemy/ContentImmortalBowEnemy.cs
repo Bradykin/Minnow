@@ -15,7 +15,7 @@ public class ContentImmortalBowEnemy : GameEnemyUnit
         }
         else
         {
-            m_maxHealth = 4;
+            m_maxHealth = 100;
             m_maxStamina = 5;
             m_staminaRegen = 5;
             m_power = 15;

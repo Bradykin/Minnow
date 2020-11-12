@@ -98,7 +98,10 @@ public class WorldController : Singleton<WorldController>
 
     public void PostPlayCard()
     {
-        WorldController.Instance.UpdateHand();
+        if (GameHelper.IsInGame())
+        {
+            WorldController.Instance.UpdateHand();
+        }
     }
 
     private void HandlePlayerHand()

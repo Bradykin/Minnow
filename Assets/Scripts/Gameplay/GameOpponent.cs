@@ -233,6 +233,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             enemyCapToSpawn -= newSpawnPoolData.m_spawnWeight;
 
             tiles[i].PlaceUnit(newEnemyUnit);
+            newEnemyUnit.OnSummon();
             m_controlledUnits.Add(newEnemyUnit);
             numEnemiesSpawned++;
 
@@ -279,6 +280,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             enemyCapToSpawn -= newSpawnPoolData.m_spawnWeight;
 
             spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
+            newEnemyUnit.OnSummon();
             m_controlledUnits.Add(newEnemyUnit);
             return true;
         }
@@ -309,6 +311,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         spawnPoint.m_tile.PlaceUnit(newEnemyUnit);
+        newEnemyUnit.OnSummon();
         m_controlledUnits.Add(newEnemyUnit);
 
         return true;
@@ -347,6 +350,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             }
 
             tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
+            newEnemyUnit.OnSummon();
             m_controlledUnits.Add(newEnemyUnit);
             return true;
         }
