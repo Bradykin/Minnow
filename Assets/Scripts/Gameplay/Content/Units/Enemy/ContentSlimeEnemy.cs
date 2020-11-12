@@ -11,12 +11,13 @@ public class ContentSlimeEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 4;
+        m_power = 3;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Slime";
+        
         m_desc = "";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
