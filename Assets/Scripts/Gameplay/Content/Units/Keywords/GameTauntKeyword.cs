@@ -8,6 +8,7 @@ public class GameTauntKeyword : GameKeywordBase
     public GameTauntKeyword()
     {
         m_name = "Taunt";
+        m_shortDesc = "Enemies always attack this";
         m_focusInfoText = "Non-Boss Enemies will choose to attack this unit over any other possible targets.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
