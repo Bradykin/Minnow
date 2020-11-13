@@ -15,7 +15,7 @@ public class ContentImmortalBladeEnemy : GameEnemyUnit
         }
         else
         {
-            m_maxHealth = 4;
+            m_maxHealth = 150;
             m_maxStamina = 5;
             m_staminaRegen = 5;
             m_power = 15;
