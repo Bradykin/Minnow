@@ -70,7 +70,6 @@ public static class Constants
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
     public static bool DebugSeeAllThroughFog = false;
-    public static bool DebugRandomStarterLevels = false;
 #else
     public static bool CheatsOn = false;
     public static bool DebugSeeAllThroughFog = false;

@@ -80,12 +80,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
-        if (cheat == "setrandomstartercardlevels")
-        {
-            SetRandomStarterCardLevels(param);
-            return;
-        }
-
         if (cheat == "setcurrentwave")
         {
             SetCurrentWave(param);
@@ -226,34 +220,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
         Files.ClearPlayerAccountData();
 
-        if (Constants.DebugRandomStarterLevels)
-        {
-            PlayerDataManager.RandomizeStarterCardLevels();
-        }
-
         UIStarterCardSelectionController.Instance.ResetStarterCardInit();
     }
 
     private void ToggleFog()
     {
         Constants.DebugSeeAllThroughFog = !Constants.DebugSeeAllThroughFog;
-    }
-
-    private void SetRandomStarterCardLevels(string param)
-    {
-        if (param == "True")
-        {
-            Constants.DebugRandomStarterLevels = true;
-            return;
-        }
-
-        if (param == "False")
-        {
-            Constants.DebugRandomStarterLevels = false;
-            return;
-        }
-
-        Debug.Log($"{param} is an invalid input, must be True or False");
     }
 
     private void SetCurrentWave(string param)

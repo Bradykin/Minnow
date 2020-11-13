@@ -29,7 +29,7 @@ public class UIMapRewardController : MonoBehaviour
             return;
         }
 
-        bool hasReward = false;
+        bool hasReward = PlayerDataManager.PlayerAccountData.HasPreviouslyBeatenMapChaosLevel(UILevelSelectController.Instance.m_curMap.m_id, 2);
         if (hasReward)
         {
             m_rewardCard.gameObject.SetActive(false);

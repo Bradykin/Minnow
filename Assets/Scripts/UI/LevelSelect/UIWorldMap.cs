@@ -6,14 +6,6 @@ public class UIWorldMap : MonoBehaviour
 {
     public List<UILevelSelectButton> m_levelSelectButtons = new List<UILevelSelectButton>();
 
-    private void Start()
-    {
-        if (Constants.DebugRandomStarterLevels)
-        {
-            PlayerDataManager.RandomizeStarterCardLevels();
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
