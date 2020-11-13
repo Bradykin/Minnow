@@ -33,9 +33,9 @@ public class GameWaterwalkKeyword : GameKeywordBase
         return false;
     }
 
-    public override JsonKeywordData SaveToJson()
+    public override JsonGameKeywordData SaveToJson()
     {
-        JsonKeywordData jsonData = new JsonKeywordData
+        JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name
         };
@@ -43,7 +43,7 @@ public class GameWaterwalkKeyword : GameKeywordBase
         return jsonData;
     }
 
-    public override void LoadFromJson(JsonKeywordData jsonData)
+    public override void LoadFromJson(JsonGameKeywordData jsonData)
     {
         //Nothing currently needs to be done here.
     }

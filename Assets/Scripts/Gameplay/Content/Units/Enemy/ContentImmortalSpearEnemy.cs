@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentImmortalBladeEnemy : GameEnemyUnit
+public class ContentImmortalSpearEnemy : GameEnemyUnit
 {
-    public ContentImmortalBladeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    private int m_thornsAmount = 10;
+    
+    public ContentImmortalSpearEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
@@ -25,8 +27,10 @@ public class ContentImmortalBladeEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
 
-        m_name = "Immortal Blade";
+        m_name = "Immortal Spear";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";
+
+        AddKeyword(new GameThornsKeyword(m_thornsAmount), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

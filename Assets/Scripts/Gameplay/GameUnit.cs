@@ -1349,6 +1349,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     }
                 }
             }
+
+            if (GetTeam() == Team.Enemy)
+            {
+                if (!(this is ContentImmortalBannerEnemy))
+                {
+                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    {
+                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
+                        {
+                            toReturn.AddKeyword(new GameDamageReductionKeyword(3));
+                        }
+                    }
+                }
+            }
         }
 
         //If the return keyword is still blank, set it to null
@@ -1514,6 +1529,24 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GetRange() > 1)
             {
                 toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
+            }
+        }
+
+        if (GameHelper.IsUnitInWorld(this))
+        {
+            if (GetTeam() == Team.Enemy)
+            {
+                if (!(this is ContentImmortalBannerEnemy))
+                {
+                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    {
+                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
+                        {
+                            toReturn += 5;
+                        }
+                    }
+                }
             }
         }
 
@@ -2464,7 +2497,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public JsonGameUnitData SaveToJson()
     {
-        JsonKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
+        JsonGameKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
 
         JsonGameUnitData jsonData = new JsonGameUnitData
         {
@@ -2478,7 +2511,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             maxStamina = m_maxStamina,
             power = m_power,
             typeline = (int)m_typeline,
-            keywordHolderJson = keywordHolderJson,
+            jsonGameKeywordHolderData = keywordHolderJson,
             staminaToAttack = m_staminaToAttack,
             sightRange = m_sightRange,
             guid = GetGuid()
@@ -2505,6 +2538,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_sightRange = jsonData.sightRange;
         m_guid = jsonData.guid;
 
-        m_keywordHolder.LoadFromJson((jsonData.keywordHolderJson, this));
+        m_keywordHolder.LoadFromJson((jsonData.jsonGameKeywordHolderData, this));
     }
 }

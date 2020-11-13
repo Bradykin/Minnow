@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>, ILoad<JsonKeywordData>
+public abstract class GameKeywordBase : GameElementBase, ISave<JsonGameKeywordData>, ILoad<JsonGameKeywordData>
 {
     public enum KeywordParamType : int
     {
@@ -53,7 +53,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonKeywordData>,
         return m_focusInfoText;
     }
 
-    public abstract JsonKeywordData SaveToJson();
+    public abstract JsonGameKeywordData SaveToJson();
 
-    public abstract void LoadFromJson(JsonKeywordData jsonData);
+    public abstract void LoadFromJson(JsonGameKeywordData jsonData);
 }

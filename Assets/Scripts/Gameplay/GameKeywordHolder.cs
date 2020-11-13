@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywordHolderData, GameUnit)>
+public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGameKeywordHolderData, GameUnit)>
 {
     private List<GameKeywordBase> m_keywords;
 
@@ -169,24 +169,24 @@ public class GameKeywordHolder : ISave<JsonKeywordHolderData>, ILoad<(JsonKeywor
         return numVisibleKeywords;
     }
 
-    public JsonKeywordHolderData SaveToJson()
+    public JsonGameKeywordHolderData SaveToJson()
     {
-        JsonKeywordHolderData jsonData = new JsonKeywordHolderData
+        JsonGameKeywordHolderData jsonData = new JsonGameKeywordHolderData
         {
-            keywordJson = new List<JsonKeywordData>()
+            gameKeywordData = new List<JsonGameKeywordData>()
         };
 
         foreach (GameKeywordBase keyword in m_keywords)
         {
-            jsonData.keywordJson.Add(keyword.SaveToJson());
+            jsonData.gameKeywordData.Add(keyword.SaveToJson());
         }
 
         return jsonData;
     }
 
-    public void LoadFromJson((JsonKeywordHolderData, GameUnit) tuple)
+    public void LoadFromJson((JsonGameKeywordHolderData, GameUnit) tuple)
     {
-        foreach (JsonKeywordData keywordJson in tuple.Item1.keywordJson)
+        foreach (JsonGameKeywordData keywordJson in tuple.Item1.gameKeywordData)
         {
             m_keywords.Add(GameKeywordFactory.GetKeywordsFromJson(keywordJson, tuple.Item2));
         }

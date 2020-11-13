@@ -50,9 +50,9 @@ public class GameDamageShieldKeyword : GameKeywordBase
         return m_numShields <= 0;
     }
 
-    public override JsonKeywordData SaveToJson()
+    public override JsonGameKeywordData SaveToJson()
     {
-        JsonKeywordData jsonData = new JsonKeywordData
+        JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
             intValue = m_numShields
@@ -61,7 +61,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
         return jsonData;
     }
 
-    public override void LoadFromJson(JsonKeywordData jsonData)
+    public override void LoadFromJson(JsonGameKeywordData jsonData)
     {
         //Currently nothing needs to be done here
     }

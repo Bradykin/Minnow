@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameAction : GameElementBase, ISave<JsonActionData>, ILoad<JsonActionData>
+public abstract class GameAction : GameElementBase, ISave<JsonGameActionData>, ILoad<JsonGameActionData>
 {
     public enum ActionParamType : int
     {
@@ -35,7 +35,7 @@ public abstract class GameAction : GameElementBase, ISave<JsonActionData>, ILoad
 
     public abstract GameUnit GetGameUnit();
 
-    public abstract JsonActionData SaveToJson();
+    public abstract JsonGameActionData SaveToJson();
 
-    public abstract void LoadFromJson(JsonActionData jsonData);
+    public abstract void LoadFromJson(JsonGameActionData jsonData);
 }

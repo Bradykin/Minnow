@@ -18,6 +18,8 @@ public struct JsonGamePlayerData
 
     public List<JsonGameScheduledActionData> jsonGameScheduledActionData;
 
+    public JsonGameRelicHolderData jsonGameRelicHolderData;
+
     public int goldAmount;
 
     public int spellsPlayedPreviousTurn;

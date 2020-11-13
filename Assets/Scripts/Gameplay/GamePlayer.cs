@@ -761,6 +761,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             jsonGameCardsInDiscardData = new List<JsonGameCardData>(),
             jsonGameCardsInExileData = new List<JsonGameCardData>(),
             jsonGameScheduledActionData = new List<JsonGameScheduledActionData>(),
+            jsonGameRelicHolderData = m_relics.SaveToJson(),
 
             goldAmount = m_wallet.m_gold,
 
@@ -905,6 +906,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 }
             }
         }
+
+        m_relics.LoadFromJson(jsonData.jsonGameRelicHolderData);
 
         m_spellsPlayedPreviousTurn = jsonData.spellsPlayedPreviousTurn;
         m_spellsPlayedThisTurn = jsonData.spellsPlayedThisTurn;

@@ -386,7 +386,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         JsonGameTileData jsonData = new JsonGameTileData
         {
             gridPositionX = m_gridPosition.x,
-            gridPositionY = m_gridPosition.y
+            gridPositionY = m_gridPosition.y,
+            isFog = m_isFog,
+            isSoftFog = m_isSoftFog,
+            isFogBorder = m_isFogBorder
         };
 
         if (m_occupyingUnit != null)
@@ -416,6 +419,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public void LoadFromJson(JsonGameTileData jsonData)
     {
         m_gridPosition = new Vector2Int(jsonData.gridPositionX, jsonData.gridPositionY);
+        //m_isFog = jsonData.isFog;
+        //m_isSoftFog = jsonData.isSoftFog;
+        //m_isFogBorder = jsonData.isFogBorder;
 
         if (jsonData.gameTerrainData != null)
         {

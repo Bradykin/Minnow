@@ -51,9 +51,9 @@ public class GameGainStaminaAction : GameAction
         return m_unit;
     }
 
-    public override JsonActionData SaveToJson()
+    public override JsonGameActionData SaveToJson()
     {
-        JsonActionData jsonData = new JsonActionData
+        JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
             intValue1 = m_toGain
@@ -62,7 +62,7 @@ public class GameGainStaminaAction : GameAction
         return jsonData;
     }
 
-    public override void LoadFromJson(JsonActionData jsonData)
+    public override void LoadFromJson(JsonGameActionData jsonData)
     {
         //Currently nothing needs to be done here
     }

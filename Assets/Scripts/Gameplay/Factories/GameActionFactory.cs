@@ -47,7 +47,7 @@ public class GameActionFactory
         m_hasInit = true;
     }
 
-    public static GameAction GetActionFromJson(JsonActionData jsonData, GameUnit gameUnit)
+    public static GameAction GetActionFromJson(JsonGameActionData jsonData, GameUnit gameUnit)
     {
         if (!m_hasInit)
             Init();
@@ -87,10 +87,10 @@ public class GameActionFactory
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intValue1, jsonData.intValue2, jsonData.intListValue1);
                 break;
             case GameAction.ActionParamType.UnitKeywordParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, GameKeywordFactory.GetKeywordsFromJson(jsonData.keywordValue, gameUnit));
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, GameKeywordFactory.GetKeywordsFromJson(jsonData.gameKeywordData, gameUnit));
                 break;
             case GameAction.ActionParamType.UnitListIntKeywordParam:
-                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intListValue1, GameKeywordFactory.GetKeywordsFromJson(jsonData.keywordValue, gameUnit));
+                newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), gameUnit, jsonData.intListValue1, GameKeywordFactory.GetKeywordsFromJson(jsonData.gameKeywordData, gameUnit));
                 break;
             case GameAction.ActionParamType.GameWalletParam:
                 newAction = (GameAction)Activator.CreateInstance(m_actions[i].GetType(), JsonConvert.DeserializeObject<GameWallet>(jsonData.gameWalletJsonValue));
@@ -103,7 +103,7 @@ public class GameActionFactory
         return newAction;
     }
 
-    public static GameAction GetActionFromJson(JsonActionData jsonData)
+    public static GameAction GetActionFromJson(JsonGameActionData jsonData)
     {
         if (!m_hasInit)
             Init();

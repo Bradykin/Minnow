@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct JsonActionData
+public struct JsonGameActionData
 {
     //GameElementBase values
     public string name;
@@ -12,6 +12,6 @@ public struct JsonActionData
     public int intValue2;
     public List<int> intListValue1;
 
-    public JsonKeywordData keywordValue;
+    public JsonGameKeywordData gameKeywordData;
     public string gameWalletJsonValue;
 }

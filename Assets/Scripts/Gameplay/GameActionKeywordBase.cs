@@ -134,23 +134,23 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         return toReturn;
     }
 
-    public override JsonKeywordData SaveToJson()
+    public override JsonGameKeywordData SaveToJson()
     {
-        JsonKeywordData jsonData = new JsonKeywordData
+        JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
-            actionJson = new List<JsonActionData>()
+            gameActionData = new List<JsonGameActionData>()
         };
 
         for (int i = 0; i < m_actions.Count; i++)
         {
-            jsonData.actionJson.Add(m_actions[i].SaveToJson());
+            jsonData.gameActionData.Add(m_actions[i].SaveToJson());
         }
 
         return jsonData;
     }
 
-    public override void LoadFromJson(JsonKeywordData jsonData)
+    public override void LoadFromJson(JsonGameKeywordData jsonData)
     {
         //Currently nothing needs to be done here
     }
