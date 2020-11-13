@@ -43,6 +43,20 @@ public class PlayerAccountData
         m_starterCardUnlockLevels = new Dictionary<string, int>();
     }
 
+    public bool HasPreviouslyBeatenMapChaosLevel(int mapID, int chaos)
+    {
+        if (!m_mapChaosLevels.ContainsKey(mapID))
+        {
+            return false;
+        }
+        else if (m_mapChaosLevels[mapID] < chaos)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public void SaveRunData()
     {
         m_playerRunData = new PlayerRunData();
