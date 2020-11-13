@@ -16,11 +16,14 @@ public class GameWallet
         m_gold = gold;
     }
 
-    public void AddGold(int toAdd)
+    public void AddGold(int toAdd, bool showUINotification = true)
     {
         m_gold += toAdd;
 
-        UIHelper.CreateWalletWorldElementNotification(toAdd);
+        if (showUINotification)
+        {
+            UIHelper.CreateWalletWorldElementNotification(toAdd);
+        }
     }
 
     public void AddResources(GameWallet toAdd)

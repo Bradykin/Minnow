@@ -248,6 +248,11 @@ public static class UIHelper
         return Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
     }
 
+    public static Sprite GetIconGold()
+    {
+        return Resources.Load<Sprite>("UI/GoldIcon") as Sprite;
+    }
+
     public static Sprite GetWIconChest(GameElementBase.GameRarity chestRarity)
     {
         if (chestRarity == GameElementBase.GameRarity.Common)
@@ -675,6 +680,10 @@ public static class UIHelper
         {
             UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetAltar().GetName(), perk.GetAltar().m_eventDesc));
             CreateRelicTooltip(perk.GetAltar().GetAltarRelic(), true);
+        }
+        else if (perk.IsGold())
+        {
+            UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip("Gold", "Send troops here to pick up " + perk.GetGoldVal() + " gold."));
         }
     }
 

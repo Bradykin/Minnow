@@ -17,10 +17,10 @@ public class ContentMechanizedBeast : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_maxHealth = 5;
+        m_maxHealth = 12;
         m_maxStamina = 6;
         m_staminaRegen = 2;
-        m_power = 5;
+        m_power = 8;
 
         LateInit();
     }

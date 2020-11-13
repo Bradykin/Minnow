@@ -67,7 +67,7 @@ public class GameEventFirestormOption : GameEventOption
         {
             for (int c = 0; c < m_numTimes; c++)
             {
-                if (enemyUnits[i].m_isDead)
+                if (!enemyUnits[i].m_isDead)
                 {
                     enemyUnits[i].GetHitByAbility(m_damage);
                 }

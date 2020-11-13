@@ -15,10 +15,10 @@ public class ContentDwarvenSoldier : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_maxHealth = 8;
-        m_maxStamina = 4;
+        m_maxHealth = 20;
+        m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 4;
+        m_power = 6;
 
         LateInit();
     }

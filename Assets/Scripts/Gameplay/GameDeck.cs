@@ -14,7 +14,7 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 
     public void FillStartingDeck()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName)));
         }
@@ -24,7 +24,7 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName)));
         }
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName)));
         }

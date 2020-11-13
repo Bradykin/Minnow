@@ -8,7 +8,8 @@ public class GameWorldPerk
     { 
         Chest,
         Event,
-        Altar
+        Altar,
+        Gold
     }
 
     private WorldPerkType m_perkType;
@@ -21,6 +22,9 @@ public class GameWorldPerk
 
     //For Altar
     private GameAltar m_altar;
+
+    //For Gold
+    private int m_goldVal;
 
     public GameWorldPerk(GameElementBase.GameRarity chestRarity)
     {
@@ -40,6 +44,12 @@ public class GameWorldPerk
         m_altar = gameAltar;
     }
 
+    public GameWorldPerk(int goldVal)
+    {
+        m_perkType = WorldPerkType.Gold;
+        m_goldVal = goldVal;
+    }
+
     public void Trigger()
     {
         if (m_perkType == WorldPerkType.Chest)
@@ -53,6 +63,10 @@ public class GameWorldPerk
         else if (m_perkType == WorldPerkType.Altar)
         {
             UIEventController.Instance.Init(m_altar);
+        }
+        else if (m_perkType == WorldPerkType.Gold)
+        {
+            GameHelper.GetPlayer().m_wallet.AddGold(m_goldVal, false);
         }
     }
 
@@ -71,6 +85,11 @@ public class GameWorldPerk
         return m_perkType == WorldPerkType.Altar;
     }
 
+    public bool IsGold()
+    {
+        return m_perkType == WorldPerkType.Gold;
+    }
+
     public Sprite GetIcon()
     {
         if (IsChest())
@@ -84,6 +103,10 @@ public class GameWorldPerk
         else if (IsEvent())
         {
             return UIHelper.GetIconEvent();
+        }
+        else if (IsGold())
+        {
+            return UIHelper.GetIconGold();
         }
 
         return null;
@@ -103,6 +126,10 @@ public class GameWorldPerk
         {
             return UIHelper.GetWIconEvent();
         }
+        else if (IsGold())
+        {
+            return UIHelper.GetIconGold();
+        }
 
         return null;
     }
@@ -120,5 +147,10 @@ public class GameWorldPerk
     public GameAltar GetAltar()
     {
         return m_altar;
+    }
+
+    public int GetGoldVal()
+    {
+        return m_goldVal;
     }
 }

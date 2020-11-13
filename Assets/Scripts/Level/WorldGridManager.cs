@@ -81,7 +81,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForCommon.Count; i++)
         {
-            if (TileValidForChestAltar(tilesInRangeForCommon[i].GetGameTile()))
+            if (TileValidForWorldPerk(tilesInRangeForCommon[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForCommon[i]);
             }
@@ -102,7 +102,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForUncommon.Count; i++)
         {
-            if (TileValidForChestAltar(tilesInRangeForUncommon[i].GetGameTile()))
+            if (TileValidForWorldPerk(tilesInRangeForUncommon[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForUncommon[i]);
             }
@@ -123,7 +123,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRangeForRare.Count; i++)
         {
-            if (TileValidForChestAltar(tilesInRangeForRare[i].GetGameTile()))
+            if (TileValidForWorldPerk(tilesInRangeForRare[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRangeForRare[i]);
             }
@@ -138,6 +138,51 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
+    private void PlaceGold()
+    {
+        //Place close gold
+        List<WorldTile> validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRangeForCloseGold = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), 7, 3);
+
+        for (int i = 0; i < tilesInRangeForCloseGold.Count; i++)
+        {
+            if (TileValidForWorldPerk(tilesInRangeForCloseGold[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRangeForCloseGold[i]);
+            }
+        }
+
+        for (int i = 0; i < Constants.NumCloseGold; i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(Constants.CloseGoldVal);
+
+            validTiles.RemoveAt(r);
+        }
+
+        //Place farther gold
+        validTiles = new List<WorldTile>();
+
+        List<WorldTile> tilesInRangeForFarGold = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), 16, 8);
+
+        for (int i = 0; i < tilesInRangeForFarGold.Count; i++)
+        {
+            if (TileValidForWorldPerk(tilesInRangeForFarGold[i].GetGameTile()))
+            {
+                validTiles.Add(tilesInRangeForFarGold[i]);
+            }
+        }
+
+        for (int i = 0; i < Constants.NumFarGold; i++)
+        {
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(Constants.FarGoldVal);
+
+            validTiles.RemoveAt(r);
+        }
+    }
+
     public void PlaceAltars()
     {
         //Place 
@@ -147,7 +192,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (TileValidForChestAltar(tilesInRange[i].GetGameTile()))
+            if (TileValidForWorldPerk(tilesInRange[i].GetGameTile()))
             {
                 validTiles.Add(tilesInRange[i]);
             }
@@ -181,7 +226,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
-    private bool TileValidForChestAltar(GameTile toCheck)
+    private bool TileValidForWorldPerk(GameTile toCheck)
     {
         if (!toCheck.IsPassable(null, false))
         {
@@ -465,6 +510,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             PlaceCrystals();
         }
         PlaceChests();
+        PlaceGold();
 
         UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.GetCastleWorldTile().gameObject);
     }
