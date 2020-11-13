@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ContentImmortalBannerEnemy : GameEnemyUnit
 {
+    private int m_powerIncreaseAmount = 5;
+    private int m_damageReductionIncrease = 3;
+
     public ContentImmortalBannerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
@@ -26,7 +29,7 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
         m_isBoss = true;
 
         m_name = "Immortal Banner";
-        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";
+        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range 2 get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";
 
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
@@ -56,7 +59,7 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
             List<GameEnemyUnit> activeBossUnits = gameController.m_activeBossUnits;
             for (int i = 0; i < activeBossUnits.Count; i++)
             {
-                if (activeBossUnits[i] is ContentImmortalBladeEnemy || activeBossUnits[i] is ContentImmortalBowEnemy)
+                if (activeBossUnits[i] is ContentImmortalSpearEnemy || activeBossUnits[i] is ContentImmortalBowEnemy)
                 {
                     //At least one other immortal is alive, the game is not over
                     return;

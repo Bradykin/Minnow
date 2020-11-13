@@ -21,7 +21,7 @@ public class ContentMountainPassMap : GameMap
     {
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentImmortalBladeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentImmortalSpearEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalBowEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalBannerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
@@ -85,7 +85,7 @@ public class ContentMountainPassMap : GameMap
     {
         GameOpponent gameOpponent = GameHelper.GetOpponent();
         List<GameEnemyUnit> immortalEnemyUnits = new List<GameEnemyUnit>();
-        immortalEnemyUnits.Add(new ContentImmortalBladeEnemy(null));
+        immortalEnemyUnits.Add(new ContentImmortalSpearEnemy(null));
         immortalEnemyUnits.Add(new ContentImmortalBowEnemy(null));
         immortalEnemyUnits.Add(new ContentImmortalBannerEnemy(null));
         List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
