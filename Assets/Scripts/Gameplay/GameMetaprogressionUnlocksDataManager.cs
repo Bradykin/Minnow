@@ -106,4 +106,9 @@ public static class GameMetaprogressionUnlocksDataManager
             }
         }
     }
+
+    public static bool HasUnlocked(GameRelic toCheck)
+    {
+        return false;
+    }
 }

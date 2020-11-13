@@ -20,6 +20,8 @@ public class UIRelic : UIElementBase
     public Image m_image;
     public Image m_rarityTint;
 
+    public bool m_isLocked;
+
     void Update()
     {
         if (m_selectionType == RelicSelectionType.SelectStarter)
@@ -51,6 +53,15 @@ public class UIRelic : UIElementBase
 
         m_image.sprite = m_relic.m_icon;
         m_rarityTint.color = UIHelper.GetRarityColor(m_relic.m_rarity);
+
+        if (m_relic.m_rarity == GameElementBase.GameRarity.Starter)
+        {
+            m_isLocked = GameMetaprogressionUnlocksDataManager.HasUnlocked(m_relic);
+        }
+        else
+        {
+            m_isLocked = false;
+        }
     }
 
     public override void HandleTooltip()
