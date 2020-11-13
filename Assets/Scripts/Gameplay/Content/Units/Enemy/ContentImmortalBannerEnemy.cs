@@ -6,6 +6,7 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
 {
     private int m_powerIncreaseAmount = 5;
     private int m_damageReductionIncrease = 3;
+    public int m_auraRange = 3;
 
     public ContentImmortalBannerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
