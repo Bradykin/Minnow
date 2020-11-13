@@ -59,6 +59,8 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
 
         m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+        GetWorldTile().ClearSurroundingFog(2);
+        UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Chaos has arrived and sown disorder!");
         UIHelper.CreateHUDNotification("Chaos Warp", GetChaosWarpString());
     }
 
