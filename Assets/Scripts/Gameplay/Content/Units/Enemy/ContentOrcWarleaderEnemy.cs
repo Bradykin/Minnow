@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentOrcWarleaderEnemy : GameEnemyUnit
 {
-    public int m_spawnRange = 2;
-    public int m_orcsSpawned = 8;
+    public int m_spawnRange = 3;
+    public int m_orcsSpawned = 6;
 
     public List<GameEnemyUnit> m_survivingOrcs = new List<GameEnemyUnit>();
     
@@ -20,9 +20,9 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         }
         else
         {
-            m_maxHealth = 300;
+            m_maxHealth = 250;
             m_maxStamina = 6;
-            m_staminaRegen = 6;
+            m_staminaRegen = 5;
             m_power = 15;
         }
 
