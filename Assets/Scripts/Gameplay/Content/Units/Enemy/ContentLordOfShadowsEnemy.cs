@@ -50,6 +50,8 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
 
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
         WorldGridManager.Instance.EndIntermissionFogUpdate();
+
+        UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Shadows has arrived and plunged the world into darkness!");
     }
 
     public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)

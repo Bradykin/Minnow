@@ -46,6 +46,9 @@ public class ContentLichEnemy : GameEnemyUnit
         base.OnSummon();
 
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
+
+        GetWorldTile().ClearSurroundingFog(2);
+        UIHelper.CreateHUDNotification("Boss Arrived", "The Lich has arrived and brought death to the world!");
     }
 
     public override string GetDesc()
