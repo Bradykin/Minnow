@@ -41,7 +41,7 @@ public class GameKeywordFactory
         m_hasInit = true;
     }
 
-    public static GameKeywordBase GetKeywordsFromJson(JsonKeywordData jsonData, GameUnit gameUnit)
+    public static GameKeywordBase GetKeywordsFromJson(JsonGameKeywordData jsonData, GameUnit gameUnit)
     {
         if (!m_hasInit)
             Init();
@@ -61,13 +61,13 @@ public class GameKeywordFactory
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue, jsonData.boolValue);
                 break;
             case GameKeywordBase.KeywordParamType.ActionParam:
-                JsonActionData jsonActionData = jsonData.actionJson[0];
+                JsonGameActionData jsonActionData = jsonData.gameActionData[0];
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionFromJson(jsonActionData, gameUnit));
-                if (jsonData.actionJson.Count > 1)
+                if (jsonData.gameActionData.Count > 1)
                 {
-                    for (int k = 1; k < jsonData.actionJson.Count; k++)
+                    for (int k = 1; k < jsonData.gameActionData.Count; k++)
                     {
-                        GameKeywordBase anotherKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionFromJson(jsonData.actionJson[k], gameUnit));
+                        GameKeywordBase anotherKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), GameActionFactory.GetActionFromJson(jsonData.gameActionData[k], gameUnit));
                         newKeyword.AddKeyword(anotherKeyword);
                     }
                 }

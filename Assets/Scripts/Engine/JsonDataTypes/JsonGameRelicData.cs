@@ -4,13 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class JsonKeywordData
+public class JsonGameRelicData
 {
     //GameElementBase values
     public string name;
-
-    //Json Keyword parsing data
-    public int intValue;
-    public bool boolValue;
-    public List<JsonActionData> actionJson;
 }

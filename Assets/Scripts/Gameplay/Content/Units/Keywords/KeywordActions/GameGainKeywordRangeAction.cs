@@ -79,19 +79,19 @@ public class GameGainKeywordRangeAction : GameAction
         return m_unit;
     }
 
-    public override JsonActionData SaveToJson()
+    public override JsonGameActionData SaveToJson()
     {
-        JsonActionData jsonData = new JsonActionData
+        JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
             intListValue1 = m_ranges,
-            keywordValue = m_keyword.SaveToJson()
+            gameKeywordData = m_keyword.SaveToJson()
         };
 
         return jsonData;
     }
 
-    public override void LoadFromJson(JsonActionData jsonData)
+    public override void LoadFromJson(JsonGameActionData jsonData)
     {
         //Currently nothing needs to be done here
     }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Game.Util;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameRelicHolder
+public class GameRelicHolder : ISave<JsonGameRelicHolderData>, ILoad<JsonGameRelicHolderData>
 {
     private List<GameRelic> m_relics;
 
@@ -47,5 +48,28 @@ public class GameRelicHolder
     public List<GameRelic> GetRelicListForRead()
     {
         return m_relics;
+    }
+
+    public JsonGameRelicHolderData SaveToJson()
+    {
+        JsonGameRelicHolderData jsonData = new JsonGameRelicHolderData
+        {
+            jsonGameRelicDatas = new List<JsonGameRelicData>()
+        };
+
+        foreach (GameRelic relic in m_relics)
+        {
+            jsonData.jsonGameRelicDatas.Add(relic.SaveToJson());
+        }
+
+        return jsonData;
+    }
+
+    public void LoadFromJson(JsonGameRelicHolderData jsonData)
+    {
+        foreach (JsonGameRelicData jsonGameRelic in jsonData.jsonGameRelicDatas)
+        {
+            AddRelic(GameRelicFactory.GetRelicFromJson(jsonGameRelic));
+        }
     }
 }

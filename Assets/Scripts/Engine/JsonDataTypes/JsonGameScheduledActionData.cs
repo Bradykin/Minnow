@@ -5,7 +5,7 @@ using UnityEngine;
 public struct JsonGameScheduledActionData
 {
     public int scheduledActionTime;
-    public JsonActionData jsonActionData;
+    public JsonGameActionData jsonActionData;
 
     public JsonGameUnitData jsonTargetUnitData;
 }

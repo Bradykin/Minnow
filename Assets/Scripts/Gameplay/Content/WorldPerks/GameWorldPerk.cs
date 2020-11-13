@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameWorldPerk
 {
-    public enum WorldPerkType
+    public enum WorldPerkType : int
     { 
         Chest,
         Event,

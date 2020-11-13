@@ -309,5 +309,22 @@ public static class GameRelicFactory
 
         return null;
     }
+
+    public static GameRelic GetRelicFromJson(JsonGameRelicData jsonData)
+    {
+        if (!m_hasInit)
+            Init();
+
+        GameRelic gameRelic = GetRelicByName(jsonData.name);
+
+        if (gameRelic == null)
+        {
+            Debug.LogError("Missing Relic class for " + jsonData.name + " in GameRelicFactory");
+            return null;
+        }
+
+        gameRelic.LoadFromJson(jsonData);
+        return gameRelic;
+    }
 }
 

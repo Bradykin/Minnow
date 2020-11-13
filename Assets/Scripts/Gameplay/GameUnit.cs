@@ -2464,7 +2464,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public JsonGameUnitData SaveToJson()
     {
-        JsonKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
+        JsonGameKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
 
         JsonGameUnitData jsonData = new JsonGameUnitData
         {
@@ -2478,7 +2478,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             maxStamina = m_maxStamina,
             power = m_power,
             typeline = (int)m_typeline,
-            keywordHolderJson = keywordHolderJson,
+            jsonGameKeywordHolderData = keywordHolderJson,
             staminaToAttack = m_staminaToAttack,
             sightRange = m_sightRange,
             guid = GetGuid()
@@ -2505,6 +2505,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_sightRange = jsonData.sightRange;
         m_guid = jsonData.guid;
 
-        m_keywordHolder.LoadFromJson((jsonData.keywordHolderJson, this));
+        m_keywordHolder.LoadFromJson((jsonData.jsonGameKeywordHolderData, this));
     }
 }
