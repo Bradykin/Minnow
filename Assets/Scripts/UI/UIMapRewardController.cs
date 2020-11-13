@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIMapRewardController : MonoBehaviour
 {
-    public Image m_otherRewardImage;
     public UICard m_rewardCard;
     public UIRelic m_rewardRelic;
 
@@ -15,7 +14,7 @@ public class UIMapRewardController : MonoBehaviour
     {
         m_rewardCard.gameObject.SetActive(false);
         m_rewardRelic.gameObject.SetActive(false);
-        m_otherRewardImage.gameObject.SetActive(false);
+        m_unlockHintText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -24,6 +23,8 @@ public class UIMapRewardController : MonoBehaviour
 
         if (reward == null)
         {
+            m_rewardCard.gameObject.SetActive(false);
+            m_rewardRelic.gameObject.SetActive(false);
             m_unlockHintText.gameObject.SetActive(false);
             return;
         }
@@ -33,18 +34,17 @@ public class UIMapRewardController : MonoBehaviour
         {
             m_rewardCard.gameObject.SetActive(false);
             m_rewardRelic.gameObject.SetActive(false);
-            m_otherRewardImage.gameObject.SetActive(false);
             m_unlockHintText.gameObject.SetActive(false);
             return;
         }
-
-        m_unlockHintText.gameObject.SetActive(true);
 
         if (reward.GetCard() != null)
         {
             m_rewardCard.gameObject.SetActive(true);
             m_rewardRelic.gameObject.SetActive(false);
-            m_otherRewardImage.gameObject.SetActive(false);
+            m_unlockHintText.gameObject.SetActive(true);
+
+            m_unlockHintText.text = "Beat Chaos 2 to unlock a new starter Card option:";
 
             m_rewardCard.Init(reward.GetCard(), UICard.CardDisplayType.Deck);
         }
@@ -52,17 +52,11 @@ public class UIMapRewardController : MonoBehaviour
         {
             m_rewardCard.gameObject.SetActive(false);
             m_rewardRelic.gameObject.SetActive(true);
-            m_otherRewardImage.gameObject.SetActive(false);
+            m_unlockHintText.gameObject.SetActive(true);
+
+            m_unlockHintText.text = "Beat Chaos 2 to unlock a new starter Relic option:";
 
             m_rewardRelic.Init(reward.GetRelic(), UIRelic.RelicSelectionType.View);
-        }
-        else
-        {
-            m_rewardCard.gameObject.SetActive(false);
-            m_rewardRelic.gameObject.SetActive(false);
-            m_otherRewardImage.gameObject.SetActive(true);
-
-            m_otherRewardImage.sprite = reward.GetIcon();
         }
     }
 }
