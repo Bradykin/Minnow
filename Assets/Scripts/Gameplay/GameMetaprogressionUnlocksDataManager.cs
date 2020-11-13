@@ -28,13 +28,18 @@ public static class GameMetaprogressionUnlocksDataManager
         GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
 
         GameCard cureWoundsCard = new ContentCureWoundsCard();
-        GameCard joltCard= new ContentJoltCard();
+        GameCard joltCard = new ContentJoltCard(); //nmartino - still needs a map
 
         GameCard drainingBoltCard = new ContentDrainingBoltCard();
-        GameCard weakeningBoltCard = new ContentWeakeningBoltCard();
+        GameCard weakeningBoltCard = new ContentWeakeningBoltCard(); //nmartino - still needs a map
 
         GameCard staminaTrainingCard = new ContentStaminaTrainingCard();
-        GameCard optimizeCard = new ContentOptimizeCard(); //nmartino add optimize to a map (need 5 more maps + final map)
+        GameCard optimizeCard = new ContentOptimizeCard(); //nmartino - still needs a map
+
+        GameRelic wolvenFangRelic = new ContentWolvenFangRelic();
+        GameRelic orbOfEnergyRelic = new ContentOrbOfEnergyRelic();
+        GameRelic loadedChestRelic = new ContentLoadedChestRelic();  //nmartino - still needs a map
+        GameRelic hoovesOfProductionRelic = new ContentHoovesOfProductionRelic(); //nmartino - still needs a map
 
         FillMapData(deltaMap.m_id, lizardSoldierCard);
         FillMapData(mountainPass.m_id, sandwalkerCard);
@@ -43,28 +48,23 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(desertPassMap.m_id, staminaTrainingCard);
         FillMapData(volcanoRun.m_id, undeadMammothCard);
         FillMapData(lakesideHardMap.m_id, mechanizedBeastCard);
-        FillMapData(themarshlands.m_id, joltCard);
-        FillMapData(frozenLake.m_id, weakeningBoltCard);
+        FillMapData(themarshlands.m_id, wolvenFangRelic);
+        FillMapData(frozenLake.m_id, orbOfEnergyRelic);
 
         m_isInit = true;
     }
 
     private static void FillMapData(int mapId, GameCard rewardCard)
     {
-        int unlockReward = 1;
-        int bonusExp1 = 2;
-        int upgradeReward1 = 3;
-        int bonusExp2 = 4;
-        int upgradeReward2 = 5;
-
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, unlockReward, rewardCard, 0));
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, bonusExp1, 250));
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, upgradeReward1, rewardCard, 1));
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, bonusExp2, 500));
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, upgradeReward2, rewardCard, 2));
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, rewardCard));
     }
 
-    public static Sprite GetIconForMapAndChaos(int mapId, int chaosNum)
+    private static void FillMapData(int mapId, GameRelic rewardRelic)
+    {
+        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, rewardRelic));
+    }
+
+    public static GameMetaprogressionDataElement GetReward(int mapId)
     {
         if (!m_isInit)
         {
@@ -73,9 +73,9 @@ public static class GameMetaprogressionUnlocksDataManager
 
         for (int i = 0; i < m_dataElements.Count; i++)
         {
-            if (m_dataElements[i].GetMapId() == mapId && m_dataElements[i].GetChaosLevel() == chaosNum)
+            if (m_dataElements[i].GetMapId() == mapId)
             {
-                return m_dataElements[i].GetIcon();
+                return m_dataElements[i];
             }
         }
 
@@ -94,21 +94,14 @@ public static class GameMetaprogressionUnlocksDataManager
         
         for (int i = 0; i < m_dataElements.Count; i++)
         {
-            if (m_dataElements[i].GetMapId() == mapId && m_dataElements[i].GetChaosLevel() == chaosNum)
+            if (m_dataElements[i].GetMapId() == mapId)
             {
                 bonusExpAmount += m_dataElements[i].GetBonusExp();
 
                 GameCard card = m_dataElements[i].GetCard();
                 if (card != null)
                 {
-                    if (accountData.m_starterCardUnlockLevels.ContainsKey(card.GetBaseName()))
-                    {
-                        accountData.m_starterCardUnlockLevels[card.GetBaseName()] = Mathf.Max(accountData.m_starterCardUnlockLevels[card.GetBaseName()], m_dataElements[i].GetLevel());
-                    }
-                    else
-                    {
-                        accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), m_dataElements[i].GetLevel());
-                    }
+                    accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), 0);
                 }
             }
         }
