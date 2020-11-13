@@ -15,13 +15,13 @@ public class ContentAlphaBoar : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_maxHealth = 20;
+        m_maxHealth = 35;
         m_maxStamina = 3;
         m_staminaRegen = 2;
         m_power = 5;
 
         AddKeyword(new GameTauntKeyword(), false);
-        AddKeyword(new GameThornsKeyword(4), false);
+        AddKeyword(new GameThornsKeyword(2), false);
 
         LateInit();
     }

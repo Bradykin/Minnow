@@ -54,7 +54,14 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (m_worldPerkIndicator.activeSelf == false)
             {
-                m_worldPerkIndicator.SetActive(true); 
+                if (GetGameTile().m_gameWorldPerk.IsGold() && (GetGameTile().m_isFog && !GetGameTile().m_isSoftFog))
+                {
+                    m_worldPerkIndicator.SetActive(false);
+                }
+                else
+                {
+                    m_worldPerkIndicator.SetActive(true);
+                }
                 m_worldPerkIndicator.GetComponent<UIWorldPerkIndicator>().Init(GetGameTile().m_gameWorldPerk, this);
             }
         }
