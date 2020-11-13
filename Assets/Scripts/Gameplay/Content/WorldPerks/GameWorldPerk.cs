@@ -106,7 +106,7 @@ public class GameWorldPerk
         }
         else if (IsGold())
         {
-            return UIHelper.GetIconGold();
+            return UIHelper.GetIconGold(GetGoldVal());
         }
 
         return null;
@@ -128,7 +128,7 @@ public class GameWorldPerk
         }
         else if (IsGold())
         {
-            return UIHelper.GetIconGold();
+            return UIHelper.GetIconGold(GetGoldVal());
         }
 
         return null;

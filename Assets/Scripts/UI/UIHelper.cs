@@ -248,8 +248,12 @@ public static class UIHelper
         return Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
     }
 
-    public static Sprite GetIconGold()
+    public static Sprite GetIconGold(int goldVal)
     {
+        if (goldVal == Constants.FarGoldVal)
+        {
+            return Resources.Load<Sprite>("UI/MultipleGoldIcon") as Sprite;
+        }
         return Resources.Load<Sprite>("UI/GoldIcon") as Sprite;
     }
 
