@@ -36,13 +36,18 @@ public class AIAttackOnceStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
+                    if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
+                    {
+                        yield break;
+                    }
+
                     if (repeatAI)
                     {
-                        if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        //yield break;
+                        yield break;
                     }
                     break;
                 case GameBuildingBase gameBuilding:
@@ -62,13 +67,18 @@ public class AIAttackOnceStandardStep : AIStep
                         yield return new WaitForSeconds(0.5f);
                     }
 
+                    if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
+                    {
+                        yield break;
+                    }
+
                     if (repeatAI)
                     {
-                        if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
-                        //yield break;
+                        yield break;
                     }
                     break;
             }
