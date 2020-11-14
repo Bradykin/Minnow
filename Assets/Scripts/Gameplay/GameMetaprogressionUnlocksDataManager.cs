@@ -56,21 +56,84 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(frozenLake.m_id, orbOfEnergyRelic);
 
         //2
+        AddCardRewards();
+        AddRelicRewards();
+
+        m_mapRewards.Add(2, CreateMapLevelReward(deltaMap.GetBaseName(),
+            deltaMap.GetDesc(),
+            deltaMap));
+
+        m_mapRewards.Add(3, CreateMapLevelReward(mountainPass.GetBaseName(),
+            mountainPass.GetDesc(),
+            mountainPass));
+
+        m_mapRewards.Add(6, CreateMapLevelReward(volcanoRun.GetBaseName(),
+            volcanoRun.GetDesc(),
+            volcanoRun));
+
+        m_mapRewards.Add(10, CreateMapLevelReward(snowmeltMap.GetBaseName(),
+            snowmeltMap.GetDesc(),
+            snowmeltMap));
+
+        m_mapRewards.Add(15, CreateMapLevelReward(crimsonIslandsMap.GetBaseName(),
+            crimsonIslandsMap.GetDesc(),
+            crimsonIslandsMap));
+
+        m_mapRewards.Add(21, CreateMapLevelReward(frozenLake.GetBaseName(),
+            frozenLake.GetDesc(),
+            frozenLake));
+
+        m_mapRewards.Add(28, CreateMapLevelReward(themarshlands.GetBaseName(),
+            themarshlands.GetDesc(),
+            themarshlands));
+
+        m_mapRewards.Add(38, CreateMapLevelReward(desertPassMap.GetBaseName(),
+            desertPassMap.GetDesc(),
+            desertPassMap));
+
+        m_mapRewards.Add(45, CreateMapLevelReward(lakesideHardMap.GetBaseName(),
+            lakesideHardMap.GetDesc(),
+            lakesideHardMap));
+
+        m_isInit = true;
+    }
+
+    private static void AddCardRewards()
+    {
+        /*Default Unlocks
+        //Units (4, 3, 3)
+        ContentElvenWizardCard, ContentElvenRogueCard, ContentGladiatorCard, 
+        ContentHeroCard, ContentInjuredTrollCard, ContentNaturalScoutCard, 
+        ContentRangerCard, ContentShadowWarlockCard, ContentWandererCard,
+        ContentCyclopsCard
+
+        //Spells (4, 3, 3)
+        ContentArcaneBoltCard, ContentAssassinationContractCard, ContentCosmicPactCard, 
+        ContentDreamCard, ContentEnergizeCard, ContentImmolationCard,
+        ContentLootingsCard, ContentNightWingsCard, ContentNecromanticTouchCard,
+        ContentPhalanxCard
+        */
+
         m_cardRewards.Add(2, CreateCardLevelReward("Enrage",
             "<b>Enrage</b> triggers whenever the unit gets hit by anything!",
             new ContentDevourerCard(), new ContentHeroCard(), new ContentFuryCard()));
+    }
+
+    private static void AddRelicRewards()
+    {
+        /*Default Unlocks (9, 5, 4)
+        ContentHourglassOfSpeedRelic, ContentMorlemainsSkullRelic, ContentOrbOfHealthRelic,
+        ContentSoulTrapRelic, ContentSpiritCatcherRelic, ContentSackOfManyShapesRelic,
+        ContentLegendaryFragmentRelic, ContentCallOfTheSeaRelic, ContentTheGreatestGiftRelic,
+        ContentImpaliumRelic, ContentStarOfDenumainRelic, ContentHarvestOfTelumRelic,
+        ContentTailOfLifeRelic, ContentSecretsOfNatureRelic, ContentEyeOfDorosonRelic,
+        ContentTalonOfTheMeradominRelic, ContentHealthFlaskRelic, ContentToolOfTheDeadmanRelic
+
+        */
+
         m_relicRewards.Add(2, CreateRelicLevelReward("Stamina",
             "Normally, units regenerate Stamina each turn equal to the number of green dots on their card!",
             new ContentIotalRelic(), new ContentLegacyOfMonstersRelic(), new ContentLegendaryFragmentRelic()));
-        m_mapRewards.Add(2, CreateMapLevelReward(deltaMap.GetBaseName(), 
-            deltaMap.GetDesc(), 
-            deltaMap));
-
-        m_cardRewards.Add(3, CreateCardLevelReward("Taunt",
-            "A unit with <b>Taunt</b> will be targetted by enemies over anything else they can hit with their full movement!",
-            new ContentGladiatorCard(), new ContentMetalGolemCard(), new ContentAlphaBoarCard()));
-
-        m_isInit = true;
     }
 
     private static void FillMapData(int mapId, GameCard rewardCard)

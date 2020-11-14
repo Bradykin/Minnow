@@ -8,16 +8,16 @@ public class ContentWanderer : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 20;
+        m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 9;
+        m_power = 15;
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         m_name = "Wanderer";
-        m_desc = "At beginning of each turn, add a shiv to your hand.\n";
+        m_desc = "At beginning of each turn, add 2 <b>Shivs</b> to your hand.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -30,6 +30,7 @@ public class ContentWanderer : GameUnit
     {
         base.StartTurn();
 
+        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
         GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
     }
 }

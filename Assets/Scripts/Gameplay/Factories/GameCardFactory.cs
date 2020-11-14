@@ -53,8 +53,6 @@ public static class GameCardFactory
 
         m_tribalCards = new List<GameCard>();
 
-
-
         //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());

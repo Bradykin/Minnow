@@ -7,7 +7,7 @@ public class ContentToolOfTheDeadmanRelic : GameRelic
     public ContentToolOfTheDeadmanRelic()
     {
         m_name = "Tool of the Deadman";
-        m_desc = "When an enemy unit dies add a <b>Shiv</b> to your hand.";
+        m_desc = "When an enemy unit dies from an allied unit attacking it, add a <b>Shiv</b> to your hand.";
         m_rarity = GameRarity.Rare;
 
         LateInit();
@@ -16,5 +16,6 @@ public class ContentToolOfTheDeadmanRelic : GameRelic
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 }

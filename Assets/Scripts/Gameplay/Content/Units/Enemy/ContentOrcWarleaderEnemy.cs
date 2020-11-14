@@ -135,9 +135,9 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         return descString;
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
 
         GameHelper.EndLevel(RunEndType.Win);
     }

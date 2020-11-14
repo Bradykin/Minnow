@@ -37,7 +37,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_statBoostRange);
 
@@ -53,6 +53,6 @@ public class ContentGriffonEnemy : GameEnemyUnit
             }
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
     }
 }
