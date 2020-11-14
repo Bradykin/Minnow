@@ -100,14 +100,10 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public int GetCostToPass()
     {
         bool lordOfChaosDifficultTerrainSwapActive = false;
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NormalDifficultTerrainCostReversal)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NormalDifficultTerrainCostReversal)
-            {
-                lordOfChaosDifficultTerrainSwapActive = true;
-                break;
-            }
+            lordOfChaosDifficultTerrainSwapActive = true;
         }
 
         if (m_movementType == TerrainMovementType.Normal)

@@ -55,7 +55,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (m_occupyingUnit.GetTeam() == Team.Player)
         {
-            if (GameHelper.GetGameController().m_activeBossUnits.Any(b => b is ContentLordOfShadowsEnemy))
+
+            ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
+            if (lordOfShadowsEnemy != null)
             {
                 WorldGridManager.Instance.EndIntermissionFogUpdate();
             }
@@ -300,13 +302,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue = 1;
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackDecreaseMoveCostIncrease)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
-            {
-                tileValue++;
-            }
+            tileValue++;
         }
 
         return tileValue;

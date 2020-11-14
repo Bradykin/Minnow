@@ -121,16 +121,10 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
             toReturn += 1;
         }
 
-        if (GameHelper.IsInGame())
+        ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
+        if (lordOfShadowsEnemy != null)
         {
-            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
-            {
-                if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
-                {
-                    toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
-                }
-            }
+            toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
         }
 
         return toReturn;
@@ -138,13 +132,10 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
 
     public virtual int GetHit(int damage)
     {
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
-            {
-                damage = 0;
-            }
+            damage = 0;
         }
 
         m_curHealth -= damage;

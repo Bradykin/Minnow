@@ -973,12 +973,10 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
         }
 
-        for (int i = 0; i < gameController.m_activeBossUnits.Count; i++)
+        ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
+        if (lordOfShadowsEnemy != null && lordOfShadowsEnemy.m_brightnessLevel > 0)
         {
-            if (gameController.m_activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy && lordOfShadowsEnemy.m_brightnessLevel > 0)
-            {
-                lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
-            }
+            lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
         }
     }
 

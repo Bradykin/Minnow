@@ -56,14 +56,10 @@ public class ContentImmortalSpearEnemy : GameEnemyUnit
             GameController gameController = GameHelper.GetGameController();
             gameController.m_activeBossUnits.Remove(this);
 
-            List<GameEnemyUnit> activeBossUnits = gameController.m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            if (GameHelper.GetBoss<ContentImmortalSpearEnemy>() != null || GameHelper.GetBoss<ContentImmortalBowEnemy>() != null)
             {
-                if (activeBossUnits[i] is ContentImmortalBowEnemy || activeBossUnits[i] is ContentImmortalBannerEnemy)
-                {
-                    //At least one other immortal is alive, the game is not over
-                    return;
-                }
+                //At least one other immortal is alive, the game is not over
+                return;
             }
 
             //The other members of the Immortals are dead, player has won
