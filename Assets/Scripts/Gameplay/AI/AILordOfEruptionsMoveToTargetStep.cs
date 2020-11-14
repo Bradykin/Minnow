@@ -117,7 +117,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
-        List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange + 1, 0).Where(t => t.GetTerrain() is ContentVolcanoInactiveTerrain).ToList();
+        List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange, 0).Where(t => WorldGridManager.Instance.GetSurroundingGameTiles(t, 1, 0).Any(ter => ter.GetTerrain() is ContentVolcanoInactiveTerrain)).ToList();
 
         List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.m_occupyingUnit.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
         List<GameTile> tilesToMoveToNearVolcanoes = tilesToMoveTo.Where(t => tilesInMoveAdjacentRangeThatAreVolcanoes.Contains(t)).ToList();
@@ -157,14 +157,18 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             return possibleTiles[0];
         }
 
-        int minNumThreats = possibleTiles.Min(t => FindNumThreatsInAreaAroundTile(t, 2));
-
-        if (minNumThreats == 0)
+        for (int i = 2; i > 0; i--)
         {
-            List<GameTile> noThreatTiles = possibleTiles.Where(t => FindNumThreatsInAreaAroundTile(t, 2) == 0).ToList();
-            return noThreatTiles[Random.Range(0, noThreatTiles.Count)];
+            int minNumThreats = possibleTiles.Min(t => FindNumThreatsInAreaAroundTile(t, i));
+
+            if (minNumThreats == 0 || i == 1)
+            {
+                List<GameTile> noThreatTiles = possibleTiles.Where(t => FindNumThreatsInAreaAroundTile(t, i) == 0).ToList();
+                return noThreatTiles[Random.Range(0, noThreatTiles.Count)];
+            }
         }
 
+        Debug.LogError("Code reached a point it never should.");
         return possibleTiles[0];
     }
 
