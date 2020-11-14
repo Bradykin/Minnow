@@ -11,7 +11,7 @@ public class AIScanTargetsInRangeStandardStep : AIStep
 
     public override IEnumerator TakeStepCoroutine()
     {
-        Debug.LogError("AIScanTargetsInRangeStandardStep not set up to run in coroutine, as this should never happen");
+        TakeStepInstant();
         yield break;
     }
 

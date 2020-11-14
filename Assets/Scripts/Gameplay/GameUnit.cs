@@ -1789,7 +1789,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false)
     {
         if (this == Globals.m_focusedDebugEnemyUnit)
         {
@@ -1801,7 +1801,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return m_gameTile;
         }
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {

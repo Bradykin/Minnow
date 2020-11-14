@@ -232,6 +232,9 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
     public int GetCostToPass(GameUnit checkerUnit)
     {
+        int tileValue;
+        bool buildingOverrideValue = true;
+
         if (checkerUnit != null)
         {
             bool canFly = checkerUnit.GetFlyingKeyword() != null;
@@ -240,14 +243,17 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             {
                 return 1;
             }
-        }
 
-        int tileValue;
-        bool buildingOverrideValue = true;
+            if (checkerUnit is ContentLordOfEruptionsEnemy)
+            {
+                return 1;
+            }
 
-        if (checkerUnit != null)
-        {
-            if (GetTerrain().IsForest() && checkerUnit.GetForestwalkKeyword() != null)
+            if (checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
+            {
+                tileValue = 1;
+            }
+            else if (GetTerrain().IsForest() && checkerUnit.GetForestwalkKeyword() != null)
             {
                 tileValue = 1;
                 buildingOverrideValue = false;
@@ -294,11 +300,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue = 1;
         }
 
-        if (checkerUnit.GetTeam() == Team.Player && GameHelper.HasRelic<ContentNaturalProtectionRelic>())
-        {
-            tileValue = 1;
-        }
-
         List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
         for (int i = 0; i < activeBossUnits.Count; i++)
         {
@@ -320,9 +321,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 return false;
             }
         }
-
-        if (checkerUnit != null)
+        else
         {
+            if (checkerUnit is ContentLordOfEruptionsEnemy && !GetTerrain().IsWater())
+            {
+                return true;
+            }
+
             if (checkerUnit.GetFlyingKeyword() != null)
             {
                 return true;

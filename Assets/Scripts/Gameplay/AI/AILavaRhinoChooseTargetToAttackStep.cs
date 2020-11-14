@@ -31,10 +31,10 @@ public class AILavaRhinoChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
+        m_AIGameEnemyUnit.m_targetGameTile = null;
 
-
-        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
-        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
+        //GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+        //m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 
     protected GameBuildingBase FindClosestDefensiveBuildingInRange()

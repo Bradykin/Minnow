@@ -59,7 +59,14 @@ public class AILordOfEruptionsTryIgniteVolcanoStep : AIStep
                         gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
                     }
                 }
+
+                if (!GameHelper.IsInGame())
+                {
+                    yield break;
+                }
             }
+
+            m_AIGameEnemyUnit.m_exitSteps = true;
 
             yield return new WaitForSeconds(0.5f);
             yield break;
@@ -114,7 +121,14 @@ public class AILordOfEruptionsTryIgniteVolcanoStep : AIStep
                         gameTile.SetTerrain(GameTerrainFactory.GetTerrainClone(new ContentLavaFieldActiveTerrain()));
                     }
                 }
+
+                if (!GameHelper.IsInGame())
+                {
+                    return;
+                }
             }
+
+            m_AIGameEnemyUnit.m_exitSteps = true;
 
             return;
         }

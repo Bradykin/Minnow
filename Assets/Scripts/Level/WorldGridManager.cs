@@ -243,10 +243,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             return false;
         }
 
-        if (toCheck.m_gameEventMarkers.Count != 0)
+        //Removing this means that tiles can be both worldperks and affected by map events, such as flooding. If this proves not to be fun, re-evaluate
+        /*if (toCheck.m_gameEventMarkers.Count != 0)
         {
             return false;
-        }
+        }*/
 
         if (toCheck.m_spawnPoint != null)
         {

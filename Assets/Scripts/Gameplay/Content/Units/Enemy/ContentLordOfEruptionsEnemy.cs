@@ -36,7 +36,7 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsChooseTargetToAttackStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsTryIgniteVolcanoStep(m_AIGameEnemyUnit), false);
-        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsMoveToTargetStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
