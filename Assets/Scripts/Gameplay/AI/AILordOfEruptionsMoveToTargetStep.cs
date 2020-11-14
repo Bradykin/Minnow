@@ -190,8 +190,6 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
     protected override IEnumerator MoveTowardsCastleCoroutine()
     {
-        int amountStaminaToSpend = lordOfEruptionsEnemy.m_teleportRange;
-
         if (GameHelper.GetPlayer() == null || GameHelper.GetPlayer().GetCastleGameElement() == null)
         {
             yield break;
@@ -199,7 +197,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         if (m_AIGameEnemyUnit.m_targetGameTile == null)
         {
-            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend, true);
+            SetTargetGameTileInMoveTowardsCastle();
         }
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
@@ -231,8 +229,6 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
     protected override void MoveTowardsCastleInstant()
     {
-        int amountStaminaToSpend = lordOfEruptionsEnemy.m_teleportRange;
-
         if (GameHelper.GetPlayer() == null || GameHelper.GetPlayer().GetCastleGameElement() == null)
         {
             return;
@@ -240,7 +236,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         if (m_AIGameEnemyUnit.m_targetGameTile == null)
         {
-            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend, true);
+            SetTargetGameTileInMoveTowardsCastle();
         }
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
@@ -248,5 +244,27 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
         {
             m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination, false);
         }
+    }
+
+    private void SetTargetGameTileInMoveTowardsCastle()
+    {
+        List<GameTile> nearbyInactiveVolcanoes = FindNearbyInactiveVolcanoes();
+        int amountDistanceToMove = lordOfEruptionsEnemy.m_teleportRange;
+
+        if (nearbyInactiveVolcanoes.Count > 0)
+        {
+            int minDistanceToVolcano = nearbyInactiveVolcanoes.Min(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(lordOfEruptionsEnemy.GetGameTile(), t));
+            GameTile targetVolcano = nearbyInactiveVolcanoes.FirstOrDefault(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(lordOfEruptionsEnemy.GetGameTile(), t) == minDistanceToVolcano);
+            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(targetVolcano, amountDistanceToMove, true);
+        }
+        else
+        {
+            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountDistanceToMove, true);
+        }
+    }
+
+    private List<GameTile> FindNearbyInactiveVolcanoes()
+    {
+        return WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), 7, 0).Where(t => t.GetTerrain() is ContentVolcanoInactiveTerrain).ToList();
     }
 }
