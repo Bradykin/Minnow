@@ -132,12 +132,20 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
+        List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange + 1, 0).Where(t => t.GetTerrain() is ContentVolcanoInactiveTerrain).ToList();
 
         List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.m_occupyingUnit.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
+        List<GameTile> tilesToMoveToNearVolcanoes = tilesToMoveTo.Where(t => tilesInMoveAdjacentRangeThatAreVolcanoes.Contains(t)).ToList();
 
-        if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile()))
+        if (tilesToMoveTo.Count == 0)
         {
             return;
+        }
+
+        if (tilesToMoveToNearVolcanoes.Count > 0)
+        {
+            tilesToMoveTo.Clear();
+            tilesToMoveTo = tilesToMoveToNearVolcanoes;
         }
 
         int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, true, false, false));
@@ -161,6 +169,45 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         int moveDistance = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), moveDestination, true, false, true);
         m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination, false);
+    }
+
+    private GameTile FindDestinationTileFarthestFromThreats(List<GameTile> possibleTiles)
+    {
+        if (possibleTiles.Count == 0)
+        {
+            return null;
+        }
+
+        if (possibleTiles.Count == 1)
+        {
+            return possibleTiles[0];
+        }
+
+        int minNumThreats = possibleTiles.Min(t => FindNumThreatsInAreaAroundTile(t, 2));
+
+        if (minNumThreats == 0)
+        {
+            List<GameTile> noThreatTiles = possibleTiles.Where(t => FindNumThreatsInAreaAroundTile(t, 2) == 0).ToList();
+            return noThreatTiles[Random.Range(0, noThreatTiles.Count)];
+        }
+
+        return possibleTiles[0];
+    }
+
+    private int FindNumThreatsInAreaAroundTile(GameTile tile, int range)
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, range);
+        int numThreats = 0;
+
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+            {
+                numThreats++;
+            }
+        }
+
+        return numThreats;
     }
 
     protected override IEnumerator MoveTowardsCastleCoroutine()
