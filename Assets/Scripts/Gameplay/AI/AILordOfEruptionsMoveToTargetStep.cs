@@ -43,39 +43,30 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             yield break;
         }
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfTile(targetTile))
-        {
-            //Already in range, don't need to move
-            yield break;
-        }
-
         List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
+        List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange, 0).Where(t => WorldGridManager.Instance.GetSurroundingGameTiles(t, 1, 0).Any(ter => ter.GetTerrain() is ContentVolcanoInactiveTerrain)).ToList();
 
         List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.m_occupyingUnit.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
+        List<GameTile> tilesToMoveToNearVolcanoes = tilesToMoveTo.Where(t => tilesInMoveAdjacentRangeThatAreVolcanoes.Contains(t)).ToList();
 
-        if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile()))
+        if (tilesToMoveTo.Count == 0)
         {
             yield break;
         }
 
-        int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, true, false, false));
-        GameTile moveDestination;
-        List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, true, false, false) == closestTileDistance).ToList();
+        if (tilesToMoveToNearVolcanoes.Count > 0)
+        {
+            tilesToMoveTo.Clear();
+            tilesToMoveTo = tilesToMoveToNearVolcanoes;
+        }
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
-        {
-            moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
-        }
-        else
-        {
-            moveDestination = closestGameTiles[Random.Range(0, closestGameTiles.Count)];
-        }
+        GameTile moveDestination = FindDestinationTileFarthestFromThreats(tilesToMoveTo);
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
 
-        if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
+        if (moveDestination == null || moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
         {
-            yield break;
+            yield break; ;
         }
 
         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
@@ -124,12 +115,6 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             return;
         }
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfTile(targetTile))
-        {
-            //Already in range, don't need to move
-            return;
-        }
-
         List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange);
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
         List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange + 1, 0).Where(t => t.GetTerrain() is ContentVolcanoInactiveTerrain).ToList();
@@ -148,21 +133,10 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             tilesToMoveTo = tilesToMoveToNearVolcanoes;
         }
 
-        int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, true, false, false));
-        GameTile moveDestination;
-        List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, true, false, false) == closestTileDistance).ToList();
-
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
-        {
-            moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
-        }
-        else
-        {
-            moveDestination = closestGameTiles[Random.Range(0, closestGameTiles.Count)];
-        }
+        GameTile moveDestination = FindDestinationTileFarthestFromThreats(tilesToMoveTo);
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
 
-        if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
+        if (moveDestination == null || moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
         {
             return;
         }
