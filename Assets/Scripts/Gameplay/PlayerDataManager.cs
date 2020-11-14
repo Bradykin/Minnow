@@ -102,8 +102,6 @@ public static class PlayerDataManager
 
     public static void UpdatePlayerAccountDataOnEndRun(RunEndType endType, int experienceAmount, int mapID, int curChaos)
     {
-        int previousLevel = GetCurLevel();
-
         if (endType == RunEndType.Win)
         {
             bool firstTimeCompleteChaosLevel = false;
@@ -138,9 +136,16 @@ public static class PlayerDataManager
             }
         }
 
-        PlayerAccountData.m_playerExperience += experienceAmount;
+        HandleEXPGain(experienceAmount);
         PlayerAccountData.m_numPlaySessions++;
         PlayerAccountData.ClearRunData();
+    }
+
+    public static void HandleEXPGain(int toGain)
+    {
+        int previousLevel = GetCurLevel();
+
+        PlayerAccountData.m_playerExperience += toGain;
 
         int curLevel = GetCurLevel();
 
@@ -148,9 +153,12 @@ public static class PlayerDataManager
         {
             for (int i = previousLevel + 1; i <= curLevel; i++)
             {
-                //Do levelup things
+                List<GameMetaprogressionReward> rewards = GameMetaprogressionUnlocksDataManager.GetRewardsForLevel(i);
 
-                List<GameCard> newCardUnlocks = GameCardFactory.GetTotalCardList().Where(c => c.GetPlayerUnlockLevel() == i).ToList();
+                for (int c = 0; c < rewards.Count; c++)
+                {
+                    UIMetaprogressionNotificationController.AddReward(rewards[c]);
+                }
             }
         }
     }

@@ -176,6 +176,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "addrep")
+        {
+            HandleAddRep(param);
+            return;
+        }
+
         Debug.Log(cheat + " is an invalid cheat command.");
     }
 
@@ -305,6 +311,11 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     private void HandleEndWave()
     {
         WorldController.Instance.m_gameController.StartIntermissionCheat();
+    }
+
+    private void HandleAddRep(string param)
+    {
+        PlayerDataManager.HandleEXPGain(int.Parse(param));
     }
 
     private void LoadGrid(string param)

@@ -8,6 +8,10 @@ public static class GameMetaprogressionUnlocksDataManager
 
     private static List<GameMetaprogressionDataElement> m_dataElements = new List<GameMetaprogressionDataElement>();
 
+    private static Dictionary<int, GameMetaprogressionReward> m_cardRewards = new Dictionary<int, GameMetaprogressionReward>();
+    private static Dictionary<int, GameMetaprogressionReward> m_relicRewards = new Dictionary<int, GameMetaprogressionReward>();
+    private static Dictionary<int, GameMetaprogressionReward> m_mapRewards = new Dictionary<int, GameMetaprogressionReward>();
+
     public static void InitData()
     {
         GameMap lakesideMap = new ContentLakesideMap(); //Tutorial map
@@ -51,6 +55,21 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(themarshlands.m_id, wolvenFangRelic);
         FillMapData(frozenLake.m_id, orbOfEnergyRelic);
 
+        //2
+        m_cardRewards.Add(2, CreateCardLevelReward("Enrage",
+            "<b>Enrage</b> triggers whenever the unit gets hit by anything!",
+            new ContentDevourerCard(), new ContentHeroCard(), new ContentFuryCard()));
+        m_relicRewards.Add(2, CreateRelicLevelReward("Stamina",
+            "Normally, units regenerate Stamina each turn equal to the number of green dots on their card!",
+            new ContentIotalRelic(), new ContentLegacyOfMonstersRelic(), new ContentLegendaryFragmentRelic()));
+        m_mapRewards.Add(2, CreateMapLevelReward(deltaMap.GetBaseName(), 
+            deltaMap.GetDesc(), 
+            deltaMap));
+
+        m_cardRewards.Add(3, CreateCardLevelReward("Taunt",
+            "A unit with <b>Taunt</b> will be targetted by enemies over anything else they can hit with their full movement!",
+            new ContentGladiatorCard(), new ContentMetalGolemCard(), new ContentAlphaBoarCard()));
+
         m_isInit = true;
     }
 
@@ -62,6 +81,31 @@ public static class GameMetaprogressionUnlocksDataManager
     private static void FillMapData(int mapId, GameRelic rewardRelic)
     {
         m_dataElements.Add(new GameMetaprogressionDataElement(mapId, rewardRelic));
+    }
+
+    private static GameMetaprogressionReward CreateCardLevelReward(string title, string desc, GameCard card1, GameCard card2, GameCard card3)
+    {
+        List<GameCard> cards = new List<GameCard>();
+        cards.Add(card1);
+        cards.Add(card2);
+        cards.Add(card3);
+
+        return new GameMetaprogressionReward(title, desc, cards);
+    }
+
+    private static GameMetaprogressionReward CreateRelicLevelReward(string title, string desc, GameRelic relic1, GameRelic relic2, GameRelic relic3)
+    {
+        List<GameRelic> relics = new List<GameRelic>();
+        relics.Add(relic1);
+        relics.Add(relic2);
+        relics.Add(relic3);
+
+        return new GameMetaprogressionReward(title, desc, relics);
+    }
+
+    private static GameMetaprogressionReward CreateMapLevelReward(string title, string desc, GameMap map)
+    {
+        return new GameMetaprogressionReward(title, desc, map);
     }
 
     public static GameMetaprogressionDataElement GetReward(int mapId)
@@ -98,10 +142,27 @@ public static class GameMetaprogressionUnlocksDataManager
             {
                 bonusExpAmount += m_dataElements[i].GetBonusExp();
 
-                GameCard card = m_dataElements[i].GetCard();
-                if (card != null)
+                if (chaosNum == 2)
                 {
-                    accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), 0);
+                    GameCard card = m_dataElements[i].GetCard();
+                    if (card != null)
+                    {
+                        accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), 0);
+                        UIMetaprogressionNotificationController.AddReward(
+                            new GameMetaprogressionReward("Starter Card",
+                            "A new card option for use in your starter deck.",
+                            card));
+                    }
+
+                    GameRelic relic = m_dataElements[i].GetRelic();
+                    if (relic != null)
+                    {
+                        accountData.m_starterRelicUnlockLevels.Add(relic.GetBaseName(), 0);
+                        UIMetaprogressionNotificationController.AddReward(
+                            new GameMetaprogressionReward("Starter Relic",
+                            "A new relic option you can start with.",
+                            relic));
+                    }
                 }
             }
         }
@@ -110,5 +171,27 @@ public static class GameMetaprogressionUnlocksDataManager
     public static bool HasUnlocked(GameRelic toCheck)
     {
         return false;
+    }
+
+    public static List<GameMetaprogressionReward> GetRewardsForLevel(int level)
+    {
+        List<GameMetaprogressionReward> rewards = new List<GameMetaprogressionReward>();
+
+        if (m_cardRewards.ContainsKey(level))
+        {
+            rewards.Add(m_cardRewards[level]);
+        }
+
+        if (m_relicRewards.ContainsKey(level))
+        {
+            rewards.Add(m_relicRewards[level]);
+        }
+
+        if (m_mapRewards.ContainsKey(level))
+        {
+            rewards.Add(m_mapRewards[level]);
+        }
+        
+        return rewards;
     }
 }

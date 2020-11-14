@@ -19,13 +19,14 @@ public class PlayerAccountData
     public Dictionary<int, int> m_mapChaosUIAutoset;
 
     public Dictionary<string, int> m_starterCardUnlockLevels;
+    public Dictionary<string, int> m_starterRelicUnlockLevels;
 
-    public string StarterSimpleUnitName = "Dwarven Soldier";
-    public string StarterAdvancedUnitName = "Alpha Boar";
-    public string StarterDamageSpellName = "Firebolt";
-    public string StarterDefensiveSpellName = "Aegis";
-    public string StarterExileSpellName = "Grow Talons";
-    public string StarterRelicName = "Mask of Ages";
+    public string StarterSimpleUnitName = new ContentDwarvenSoldier().GetBaseName();
+    public string StarterAdvancedUnitName = new ContentAlphaBoar().GetBaseName();
+    public string StarterDamageSpellName = new ContentFireboltCard().GetBaseName();
+    public string StarterDefensiveSpellName = new ContentAegisCard().GetBaseName();
+    public string StarterExileSpellName = new ContentGrowTalonsCard().GetBaseName();
+    public string StarterRelicName = new ContentMaskOfAgesRelic().GetBaseName();
 
     public int m_playerExperience;
     public int m_numPlaySessions;
@@ -41,6 +42,7 @@ public class PlayerAccountData
         m_mapChaosLevels = new Dictionary<int, int>();
         m_mapChaosUIAutoset = new Dictionary<int, int>();
         m_starterCardUnlockLevels = new Dictionary<string, int>();
+        m_starterRelicUnlockLevels = new Dictionary<string, int>();
     }
 
     public bool HasPreviouslyBeatenMapChaosLevel(int mapID, int chaos)

@@ -120,6 +120,11 @@ public class UIFocusInfoPanel : UIElementBase
 
         GameTile gameTile = worldTile.GetGameTile();
 
+        if (gameTile == null)
+        {
+            return;
+        }
+
         m_titleText.text = gameTile.GetName();
 
         if (gameTile.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover ||

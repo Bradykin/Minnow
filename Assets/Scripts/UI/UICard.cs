@@ -15,7 +15,8 @@ public class UICard : MonoBehaviour
         Select,
         Tooltip,
         StarterSelect,
-        StarterTypeSelect
+        StarterTypeSelect,
+        RewardDisplay
     }
 
     public Image m_tintImage;

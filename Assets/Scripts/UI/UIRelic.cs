@@ -11,7 +11,8 @@ public class UIRelic : UIElementBase
     {
         View,
         Select,
-        SelectStarter
+        SelectStarter,
+        ViewNoTooltip
     }
 
     private GameRelic m_relic;

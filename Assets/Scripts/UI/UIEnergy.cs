@@ -16,6 +16,11 @@ public class UIEnergy : UIElementBase
     {
         GamePlayer player = GameHelper.GetPlayer();
 
+        if (player == null)
+        {
+            return;
+        }
+
         m_countText.text = player.m_curEnergy + "/" + player.GetMaxEnergy();
     }
 
