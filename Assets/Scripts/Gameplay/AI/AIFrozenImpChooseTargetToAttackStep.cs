@@ -7,7 +7,7 @@ public class AIFrozenImpChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 {
     public AIFrozenImpChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override void TakeStepInstant()
     {
         if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isBoss)
         {
@@ -15,7 +15,7 @@ public class AIFrozenImpChooseTargetToAttackStep : AIChooseTargetToAttackStandar
             if (closestTauntUnitInRange != null)
             {
                 m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
-                yield break;
+                return;
             }
         }
 
@@ -23,55 +23,10 @@ public class AIFrozenImpChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         if (closestNotRootedUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestNotRootedUnitInRange;
-            yield break;
+            return;
         }
 
-        GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
-        if (closestVulnerableUnitInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
-            yield break;
-        }
-
-        GameBuildingBase castleInRange = FindCastleInRange();
-        if (castleInRange != null && m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(castleInRange))
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
-        }
-
-        GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
-        if (closestVulnerableBuildingInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            yield break;
-        }
-
-        GameUnit closestUnitInRange = FindClosestUnitInRange();
-        if (closestUnitInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
-            yield break;
-        }
-
-        if (castleInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
-        }
-
-        GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
-        if (closestBuildingInRange != null)
-        {
-            m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            yield break;
-        }
-
-        m_AIGameEnemyUnit.m_targetGameElement = null;
-
-
-        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
-        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
+        base.TakeStepInstant();
     }
 
     protected GameUnit FindClosestNotRootedUnitInRange()

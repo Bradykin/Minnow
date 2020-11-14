@@ -7,27 +7,27 @@ public class AILavaRhinoChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 {
     public AILavaRhinoChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override void TakeStepInstant()
     {
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestDefensiveBuildingInRange = FindClosestDefensiveBuildingInRange();
         if (closestDefensiveBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestDefensiveBuildingInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            yield break;
+            return;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;

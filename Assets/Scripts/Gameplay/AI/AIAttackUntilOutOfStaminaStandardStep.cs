@@ -6,7 +6,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 {
     public AIAttackUntilOutOfStaminaStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override IEnumerator TakeStepCoroutine()
     {
         if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
         {
@@ -19,22 +19,16 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
                 case GameUnit gameUnit:
-                    if (shouldYield)
+                    UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                    while (UICameraController.Instance.IsCameraSmoothing())
                     {
-                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
-                        while (UICameraController.Instance.IsCameraSmoothing())
-                        {
-                            yield return null;
-                        }
+                        yield return null;
                     }
 
                     didAttack = true;
                     m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit, m_AIGameEnemyUnit.m_gameEnemyUnit.GetDamageToDealTo(gameUnit));
 
-                    if (shouldYield)
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                    }
+                    yield return new WaitForSeconds(0.5f);
 
                     if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
                     {
@@ -51,22 +45,16 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
                     }
                     break;
                 case GameBuildingBase gameBuilding:
-                    if (shouldYield)
+                    UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+                    while (UICameraController.Instance.IsCameraSmoothing())
                     {
-                        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
-                        while (UICameraController.Instance.IsCameraSmoothing())
-                        {
-                            yield return null;
-                        }
+                        yield return null;
                     }
 
                     didAttack = true;
                     m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuilding);
 
-                    if (shouldYield)
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                    }
+                    yield return new WaitForSeconds(0.5f);
 
                     if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
                     {
@@ -85,7 +73,66 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
             }
 
             if (!didAttack)
+            {
                 yield break;
+            }
+        }
+    }
+
+    public override void TakeStepInstant()
+    {
+        if (m_AIGameEnemyUnit.m_targetGameElement == null || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
+        {
+            return;
+        }
+
+        while (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+        {
+            bool didAttack = false;
+            switch (m_AIGameEnemyUnit.m_targetGameElement)
+            {
+                case GameUnit gameUnit:
+                    didAttack = true;
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit, m_AIGameEnemyUnit.m_gameEnemyUnit.GetDamageToDealTo(gameUnit));
+
+                    if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
+                    {
+                        return;
+                    }
+
+                    if (gameUnit == null || gameUnit.m_isDead || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
+                    {
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        {
+                            m_AIGameEnemyUnit.m_doSteps = true;
+                        }
+                        return;
+                    }
+                    break;
+                case GameBuildingBase gameBuilding:
+                    didAttack = true;
+                    m_AIGameEnemyUnit.m_gameEnemyUnit.HitBuilding(gameBuilding);
+
+                    if (m_AIGameEnemyUnit.m_gameEnemyUnit.m_isDead)
+                    {
+                        return;
+                    }
+
+                    if (gameBuilding.m_isDestroyed)
+                    {
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        {
+                            m_AIGameEnemyUnit.m_doSteps = true;
+                        }
+                        return;
+                    }
+                    break;
+            }
+
+            if (!didAttack)
+            {
+                return;
+            }
         }
     }
 }

@@ -647,19 +647,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual bool IsInRangeOfUnit(GameUnit other)
     {
-        int distance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_gameTile, other.m_gameTile);
-
-        if (distance > GetRange())
-        {
-            return false;
-        }
-
-        return true;
+        return IsInRangeOfTile(other.GetGameTile());
     }
 
     public virtual bool IsInRangeOfBuilding(GameBuildingBase other)
     {
-        int distance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_gameTile, other.GetGameTile());
+        return IsInRangeOfTile(other.GetGameTile());
+    }
+
+    public virtual bool IsInRangeOfTile(GameTile tile)
+    {
+        int distance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(m_gameTile, tile);
 
         if (distance > GetRange())
         {

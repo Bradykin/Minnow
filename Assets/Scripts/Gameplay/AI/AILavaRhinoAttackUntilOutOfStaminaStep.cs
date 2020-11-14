@@ -7,18 +7,25 @@ public class AILavaRhinoAttackUntilOutOfStaminaStep : AIAttackUntilOutOfStaminaS
 {
     public AILavaRhinoAttackUntilOutOfStaminaStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override IEnumerator TakeStepCoroutine()
     {
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() == m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() < m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
         {
-            if (shouldYield)
-            {
-                yield return FactoryManager.Instance.StartCoroutine(base.TakeStep(shouldYield));
-            }
-            else
-            {
-                FactoryManager.Instance.StartCoroutine(base.TakeStep(shouldYield));
-            }
+            UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} is charging up to attack!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            yield break;
         }
+
+        yield return FactoryManager.Instance.StartCoroutine(base.TakeStepCoroutine());
+    }
+
+    public override void TakeStepInstant()
+    {
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() < m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
+        {
+            UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} is charging up to attack!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+            return;
+        }
+
+        base.TakeStepInstant();
     }
 }

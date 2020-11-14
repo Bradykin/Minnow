@@ -7,7 +7,13 @@ public class AIChooseTargetToAttackStandardStep : AIStep
 {
     public AIChooseTargetToAttackStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override IEnumerator TakeStepCoroutine()
+    {
+        Debug.LogError("AIChooseTargetToAttackStandardStep not set up to run in coroutine, as this should never happen");
+        yield break;
+    }
+
+    public override void TakeStepInstant()
     {
         if (!m_AIGameEnemyUnit.m_gameEnemyUnit.m_isBoss)
         {
@@ -15,7 +21,7 @@ public class AIChooseTargetToAttackStandardStep : AIStep
             if (closestTauntUnitInRange != null)
             {
                 m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
-                yield break;
+                return;
             }
         }
 
@@ -23,45 +29,44 @@ public class AIChooseTargetToAttackStandardStep : AIStep
         if (closestVulnerableUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null && m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfBuilding(castleInRange))
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            yield break;
+            return;
         }
 
         GameUnit closestUnitInRange = FindClosestUnitInRange();
         if (closestUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
-            yield break;
+            return;
         }
 
         if (castleInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            yield break;
+            return;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
-
 
         GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
         m_AIGameEnemyUnit.m_targetGameTile = moveDestination;

@@ -27,7 +27,7 @@ public class ContentFrozenImpEnemy : GameEnemyUnit
             m_desc += " Only takes 1 Stamina to attack.\n";
         }
 
-        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIFrozenImpChooseTargetToAttackStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackOnceRepeatStep(m_AIGameEnemyUnit), false);

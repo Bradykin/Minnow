@@ -7,48 +7,48 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
 {
     public AILizardmanChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override void TakeStepInstant()
     {
         GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
         if (closestTauntUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
-            yield break;
+            return;
         }
 
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            yield break;
+            return;
         }
 
         GameUnit closestUnitInRange = FindClosestUnitInRangeToWater();
         if (closestUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase castleInRange = FindCastleInRange();
         if (castleInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = castleInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRangeToWater();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            yield break;
+            return;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
@@ -136,7 +136,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         }
     }
 
-    //Trying two different approaches - first one being the distance on the path, second one being distance in general to a body of water
+    //Todo ashulman: decide between below. Trying two different approaches - first one being the distance on the path, second one being distance in general to a body of water
     protected int DistanceToWaterOnPath(GameTile gameTile)
     {
         List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), gameTile, false, true, false);

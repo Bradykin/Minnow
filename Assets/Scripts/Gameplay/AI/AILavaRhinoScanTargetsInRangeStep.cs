@@ -6,30 +6,22 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.XR.WSA;
 
-public class AILavaRhinoScanTargetsInRangeStep : AIStep
+public class AILavaRhinoScanTargetsInRangeStep : AIScanTargetsInRangeStandardStep
 {
-    private int m_scanRadius = 4;
-    
     public AILavaRhinoScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
     
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override void TakeStepInstant()
     {
-        List<GameTile> tilesInScanRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), m_scanRadius);
+        List<GameTile> tilesInAttackRange = GetTilesToScan();
 
-        if (tilesInScanRange == null)
+        if (tilesInAttackRange == null)
         {
-            yield break;
+            return;
         }
 
-        for (int i = 0; i < tilesInScanRange.Count; i++)
-        {
-            m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInScanRange[i].m_gridPosition.ToString());
-        }
-
-        List<GameUnit> possibleUnitTargets = new List<GameUnit>();
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
-        foreach (var tile in tilesInScanRange)
+        foreach (var tile in tilesInAttackRange)
         {
             if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().GetTeam() == Team.Player)
             {
@@ -49,7 +41,7 @@ public class AILavaRhinoScanTargetsInRangeStep : AIStep
             }
         }
 
-        m_AIGameEnemyUnit.m_possibleUnitTargets = possibleUnitTargets;
+        m_AIGameEnemyUnit.m_possibleUnitTargets = new List<GameUnit>();
         m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
     }
 }

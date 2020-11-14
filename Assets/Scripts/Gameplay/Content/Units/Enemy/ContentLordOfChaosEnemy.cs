@@ -44,7 +44,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         m_name = "Lord Of Chaos";
         m_desc = $"The final boss. Kill it, and win.\nEach turn, this unit will cause a new Chaos Warp, changing the rules of the game.\nAt the end of this unit's turn, it will scramble the terrain in range 4 around it.\n";
 
-        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
