@@ -48,9 +48,9 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
 
         if (m_isDead)
         {

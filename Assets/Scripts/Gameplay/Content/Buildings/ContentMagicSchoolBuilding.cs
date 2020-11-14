@@ -15,8 +15,8 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_rarity = GameRarity.Uncommon;
         m_buildingType = BuildingType.Economic;
 
-        m_maxHealth = 12;
-        m_cost = new GameWallet(95);
+        m_maxHealth = 5;
+        m_cost = new GameWallet(40);
 
         m_expandsPlaceRange = false;
 

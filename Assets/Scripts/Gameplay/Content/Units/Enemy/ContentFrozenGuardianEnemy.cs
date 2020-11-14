@@ -68,7 +68,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         }
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -87,7 +87,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
             player.m_wallet.AddResources(new GameWallet(75));
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
     }
 
     private int GetHealthModByWave()

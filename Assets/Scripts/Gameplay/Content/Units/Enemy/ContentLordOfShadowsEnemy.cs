@@ -145,9 +145,9 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
         return descString;
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
 
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 

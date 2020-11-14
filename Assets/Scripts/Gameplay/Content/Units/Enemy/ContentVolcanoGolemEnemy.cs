@@ -37,7 +37,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange, 0);
         for (int i = 0; i < surroundingTiles.Count; i++)
@@ -48,6 +48,6 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
             }
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
     }
 }

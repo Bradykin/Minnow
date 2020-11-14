@@ -56,7 +56,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         SpendStamina(GetCurStamina() - 1);
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -75,7 +75,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
             player.m_wallet.AddResources(new GameWallet(75));
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
     }
 
     public override void OnMoveEnd()

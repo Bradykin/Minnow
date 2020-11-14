@@ -7,7 +7,7 @@ public class ContentTombOfTheDefenderRelic : GameRelic
     public ContentTombOfTheDefenderRelic()
     {
         m_name = "Tomb of the Defender";
-        m_desc = "When an allied unit dies, add a <b>Shiv</b> to your hand.";
+        m_desc = "When an allied unit dies, add 3 <b>Shivs</b> to your hand.";
         m_rarity = GameRarity.Common;
 
         LateInit();

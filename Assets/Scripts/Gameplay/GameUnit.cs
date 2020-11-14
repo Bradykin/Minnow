@@ -22,6 +22,7 @@ public enum Typeline : int
 
 public enum DamageType : int
 {
+    None,
     Unit,
     Spell,
     Ability
@@ -322,7 +323,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (m_curHealth <= 0)
         {
-            Die();
+            Die(true, damageType);
         }
         else
         {
@@ -406,7 +407,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return shouldRevive;
     }
 
-    public virtual void Die(bool canRevive = true)
+    public virtual void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         if (m_isDead)
         {
@@ -450,7 +451,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             deathKeyword.DoAction();
         }
 
-        TriggerDeathRelics();
+        TriggerDeathRelics(damageType);
 
         if (GetTeam() == Team.Player)
         {
@@ -2236,7 +2237,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public virtual void TriggerDeathRelics()
+    public virtual void TriggerDeathRelics(DamageType damageType = DamageType.None)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -2302,13 +2303,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentToolOfTheDeadmanRelic>())
             {
-                if (GameHelper.GetGameController().CurrentActor == player)
+                if (damageType == DamageType.Unit)
                 {
-                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
-                }
-                else
-                {
-                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                    if (GameHelper.GetGameController().CurrentActor == player)
+                    {
+                        player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                    }
+                    else
+                    {
+                        player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                    }
                 }
             }
         }
@@ -2331,10 +2335,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.GetGameController().CurrentActor == player)
                 {
                     player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+                    player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
                 }
                 else
                 {
-                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+                    player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(3));
                 }
             }
 

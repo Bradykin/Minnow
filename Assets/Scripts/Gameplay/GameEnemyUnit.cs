@@ -80,7 +80,7 @@ public class GameEnemyUnit : GameUnit
         spellcraftKeyword.DoAction();
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         if (m_isElite)
         {
@@ -91,7 +91,7 @@ public class GameEnemyUnit : GameUnit
             GameHelper.GetGameController().AddKillExp(m_experienceAmount);
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
         m_gameOpponentController.m_controlledUnits.Remove(this);
     }
 }

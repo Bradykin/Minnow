@@ -6,12 +6,12 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 {
     public ContentArcaneBoltCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 6;
 
         m_name = "Arcane Bolt";
         m_targetType = Target.Enemy;
-        m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_cost = 0;
+        m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
 

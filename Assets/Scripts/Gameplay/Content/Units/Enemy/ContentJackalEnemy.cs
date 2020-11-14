@@ -63,7 +63,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         }
     }
 
-    public override void Die(bool canRevive = true)
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_range);
 
@@ -75,6 +75,6 @@ public class ContentJackalEnemy : GameEnemyUnit
             }
         }
 
-        base.Die(canRevive);
+        base.Die(canRevive, damageType);
     }
 }
