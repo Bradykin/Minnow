@@ -84,7 +84,7 @@ public class ContentVolcanoRunMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentPhoenixEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLavaHellionEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDemonMagicianEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentFlamesoulElementalEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLordOfEruptionsEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentVolcanoCrabEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentJackalEnemy(null));

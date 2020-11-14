@@ -72,11 +72,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
             if (unit.m_AIGameEnemyUnit.UseSteppedOutTurn)
             {
-                yield return FactoryManager.Instance.StartCoroutine(unit.m_AIGameEnemyUnit.TakeTurn(true));
+                yield return FactoryManager.Instance.StartCoroutine(unit.m_AIGameEnemyUnit.TakeTurnCoroutine());
             }
             else
             {
-                FactoryManager.Instance.StartCoroutine(unit.m_AIGameEnemyUnit.TakeTurn(false));
+                unit.m_AIGameEnemyUnit.TakeTurnInstant();
             }
 
             units.Remove(unit);

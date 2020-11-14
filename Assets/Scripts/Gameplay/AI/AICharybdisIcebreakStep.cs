@@ -7,7 +7,7 @@ public class AICharybdisIcebreakStep : AIStep
 {
     public AICharybdisIcebreakStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override IEnumerator TakeStepCoroutine()
     {
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() < m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
         {
@@ -20,13 +20,10 @@ public class AICharybdisIcebreakStep : AIStep
             yield break;
         }    
 
-        if (shouldYield)
+        UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+        while (UICameraController.Instance.IsCameraSmoothing())
         {
-            UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
-            while (UICameraController.Instance.IsCameraSmoothing())
-            {
-                yield return null;
-            }
+            yield return null;
         }
 
         UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} smashes nearby ice!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
@@ -40,9 +37,31 @@ public class AICharybdisIcebreakStep : AIStep
             }
         }
 
-        if (shouldYield)
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    public override void TakeStepInstant()
+    {
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina() < m_AIGameEnemyUnit.m_gameEnemyUnit.GetMaxStamina())
         {
-            yield return new WaitForSeconds(0.5f);
+            return;
+        }
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 1);
+        if (!surroundingTiles.Any(t => t.GetTerrain().IsIce()))
+        {
+            return;
+        }
+
+        UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} smashes nearby ice!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
+        m_AIGameEnemyUnit.m_gameEnemyUnit.SpendStamina(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
+
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            if (surroundingTiles[i].GetTerrain().IsIce())
+            {
+                surroundingTiles[i].SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(surroundingTiles[i].GetTerrain()));
+            }
         }
     }
 }

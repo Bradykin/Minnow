@@ -29,7 +29,7 @@ public class ContentJackalEnemy : GameEnemyUnit
             m_desc = $"When this unit dies, it gives all allied units in {m_range} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/{m_maxHealth - m_baseMaxHealth})\n";
         }
 
-        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);

@@ -3,24 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIScanTargetsInRangeStep : AIStep
+public class AIScanTargetsInRangeStandardStep : AIStep
 {
     protected bool ignoreTargetsCantDamage = true;
 
-    public AIScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AIScanTargetsInRangeStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override IEnumerator TakeStepCoroutine()
     {
-        List<GameTile> tilesInAttackRange = WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, false);
+        Debug.LogError("AIScanTargetsInRangeStandardStep not set up to run in coroutine, as this should never happen");
+        yield break;
+    }
+
+    public override void TakeStepInstant()
+    {
+        List<GameTile> tilesInAttackRange = GetTilesToScan();
 
         if (tilesInAttackRange == null)
         {
-            yield break;
-        }
-
-        for (int i = 0; i < tilesInAttackRange.Count; i++)
-        {
-            m_AIGameEnemyUnit.m_newAIDebugLog.m_tilesScannedForTargets.Add(tilesInAttackRange[i].m_gridPosition.ToString());
+            return;
         }
 
         List<GameUnit> possibleUnitTargets = new List<GameUnit>();
@@ -81,5 +82,10 @@ public class AIScanTargetsInRangeStep : AIStep
 
         m_AIGameEnemyUnit.m_possibleUnitTargets = possibleUnitTargets;
         m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
+    }
+
+    protected virtual List<GameTile> GetTilesToScan()
+    {
+        return WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, false);
     }
 }

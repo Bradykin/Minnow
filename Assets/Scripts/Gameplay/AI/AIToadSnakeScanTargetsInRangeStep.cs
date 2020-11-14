@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIToadSnakeScanTargetsInRangeStep : AIScanTargetsInRangeStep
+public class AIToadSnakeScanTargetsInRangeStep : AIScanTargetsInRangeStandardStep
 {
     public AIToadSnakeScanTargetsInRangeStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) 
     {

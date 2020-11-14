@@ -6,17 +6,13 @@ using UnityEngine;
 
 public class AILavaRhinoMoveToTargetStep : AIMoveToTargetStandardStep
 {
-    public AILavaRhinoMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
-
-    public override IEnumerator TakeStep(bool shouldYield)
+    public AILavaRhinoMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) 
     {
-        if (shouldYield)
-        {
-            yield return FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true));
-        }
-        else
-        {
-            FactoryManager.Instance.StartCoroutine(MoveToTarget(shouldYield, m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), true));
-        }
+        letPassEnemies = true;
+    }
+
+    protected override int GetStaminaToUseToMoveToCastle()
+    {
+        return m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina();
     }
 }

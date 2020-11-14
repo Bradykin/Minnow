@@ -177,7 +177,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
         m_enemyCards.Add(new ContentDemonMagicianEnemyCard());
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
-        m_enemyCards.Add(new ContentFlamesoulElementalEnemyCard());
+        m_enemyCards.Add(new ContentLordOfEruptionsEnemyCard());
         m_enemyCards.Add(new ContentFrozenImpEnemyCard());
         m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());

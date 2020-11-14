@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
+public class AIGameEnemyUnit
 {
     private List<AIStep> m_setupAISteps;
     private List<AIStep> m_activeAISteps;
@@ -28,8 +28,6 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
     public bool m_doSteps = true;
 
     public List<string> m_AIDebugLogs = new List<string>();
-
-    public AIDebugTurnLog m_newAIDebugLog = null;
 
     public bool UseSteppedOutTurn =>
         PlayerDataManager.PlayerAccountData.m_followEnemy &&
@@ -62,8 +60,6 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
 
     public void SetupTurn()
     {
-        m_newAIDebugLog = new AIDebugTurnLog();
-
         if (GameHelper.GetGameController() == null)
         {
             return;
@@ -76,11 +72,11 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
                 break;
             }
 
-            FactoryManager.Instance.StartCoroutine(m_setupAISteps[i].TakeStep(false));
+            m_setupAISteps[i].TakeStepInstant();
         }
     }
 
-    public IEnumerator TakeTurn(bool shouldYield)
+    public IEnumerator TakeTurnCoroutine()
     {
         while (!m_gameEnemyUnit.m_isDead && m_doSteps)
         {
@@ -97,14 +93,37 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
                     break;
                 }
 
-                if (shouldYield)
+                 yield return FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStepCoroutine());
+            }
+
+            if (m_doSteps)
+            {
+                CleanupTurn();
+                SetupTurn();
+            }
+        }
+
+        CleanupTurn();
+    }
+
+    public void TakeTurnInstant()
+    {
+        while (!m_gameEnemyUnit.m_isDead && m_doSteps)
+        {
+            m_doSteps = false;
+            for (int i = 0; i < m_activeAISteps.Count; i++)
+            {
+                if (!WorldController.Instance.m_isInGame)
                 {
-                    yield return FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStep(shouldYield));
+                    break;
                 }
-                else
+
+                if (GameHelper.GetGameController().m_runStateType == RunStateType.None)
                 {
-                    FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStep(shouldYield));
+                    break;
                 }
+
+                m_activeAISteps[i].TakeStepInstant();
             }
 
             if (m_doSteps)
@@ -123,49 +142,6 @@ public class AIGameEnemyUnit : ITakeTurnInCoroutineAI
         {
             return;
         }
-
-        m_newAIDebugLog.m_waveNumber = GameHelper.GetCurrentWaveNum();
-        m_newAIDebugLog.m_turnNumber = GameHelper.GetGameController().m_currentTurnNumber;
-        if (m_targetGameElement == null)
-        {
-            m_newAIDebugLog.m_targetGameElementName = "Null";
-        }
-        else
-        {
-            m_newAIDebugLog.m_targetGameElementName = m_targetGameElement.GetName();
-        }
-
-        if (m_targetGameTile == null)
-        {
-            m_newAIDebugLog.m_targetGameTileLocation = "Null";
-        }
-        else
-        {
-            m_newAIDebugLog.m_targetGameTileLocation = m_targetGameTile.m_gridPosition.ToString();
-        }
-
-        for (int i = 0; i < m_possibleUnitTargets.Count; i++)
-        {
-            m_newAIDebugLog.m_possibleUnitTargets.Add(m_possibleUnitTargets[i].GetName());
-        }
-
-        for (int i = 0; i < m_possibleBuildingTargets.Count; i++)
-        {
-            m_newAIDebugLog.m_possibleBuildingTargets.Add(m_possibleBuildingTargets[i].GetName());
-        }
-
-        for (int i = 0; i < m_vulnerableUnitTargets.Count; i++)
-        {
-            m_newAIDebugLog.m_vulnerableUnitTargets.Add(m_vulnerableUnitTargets[i].GetName());
-        }
-
-        for (int i = 0; i < m_vulnerableBuildingTargets.Count; i++)
-        {
-            m_newAIDebugLog.m_vulnerableBuildingTargets.Add(m_vulnerableBuildingTargets[i].GetName());
-        }
-
-        m_AIDebugLogs.Add(JsonConvert.SerializeObject(m_newAIDebugLog));
-        m_newAIDebugLog = null;
 
         m_possibleUnitTargets.Clear();
         m_possibleBuildingTargets.Clear();

@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFlamesoulElementalEnemy : GameEnemyUnit
+public class ContentLordOfEruptionsEnemy : GameEnemyUnit
 {
-    public ContentFlamesoulElementalEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public int m_teleportRange = 3;
+    
+    public ContentLordOfEruptionsEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = 700;
-            m_maxStamina = 8;
-            m_staminaRegen = 8;
+            m_maxStamina = 6;
+            m_staminaRegen = 6;
             m_power = 30;
         }
         else
         {
-            m_maxHealth = 350;
-            m_maxStamina = 8;
+            m_maxHealth = 500;
+            m_maxStamina = 6;
             m_staminaRegen = 6;
             m_power = 15;
         }
@@ -25,14 +27,15 @@ public class ContentFlamesoulElementalEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
 
-        m_name = "Flamesoul Elemental";
-        m_desc = "The final boss.  Kill it, and win.\n";
+        m_name = "Lord of Eruptions";
+        m_desc = $"The final boss.  Kill it, and win.\nThis boss moves up to {m_teleportRange} tiles per turn, but uses no stamina to move. This unit can use its full turn to ignite an adjacent volcano.";
 
         AddKeyword(new GameRangeKeyword(3), false);
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameLavawalkKeyword(), false);
 
-        m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
-        m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsChooseTargetToAttackStep(m_AIGameEnemyUnit), true);
+        m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsTryIgniteVolcanoStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 

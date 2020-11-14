@@ -7,41 +7,41 @@ public class AIYetiChooseTargetToAttackStep : AIChooseTargetToAttackStandardStep
 {
     public AIYetiChooseTargetToAttackStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    public override IEnumerator TakeStep(bool shouldYield)
+    public override void TakeStepInstant()
     {
         GameUnit closestTauntUnitInRange = FindClosestTauntUnitInRange();
         if (closestTauntUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestTauntUnitInRange;
-            yield break;
+            return;
         }
 
         GameUnit closestVulnerableUnitInRange = FindClosestVulnerableUnitInRange();
         if (closestVulnerableUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableUnitInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestVulnerableBuildingInRange = FindClosestVulnerableBuildingInRange();
         if (closestVulnerableBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestVulnerableBuildingInRange;
-            yield break;
+            return;
         }
 
         GameUnit closestUnitInRange = FindClosestUnitInRange();
         if (closestUnitInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestUnitInRange;
-            yield break;
+            return;
         }
 
         GameBuildingBase closestBuildingInRange = FindClosestBuildingInRange();
         if (closestBuildingInRange != null)
         {
             m_AIGameEnemyUnit.m_targetGameElement = closestBuildingInRange;
-            yield break;
+            return;
         }
 
         m_AIGameEnemyUnit.m_targetGameElement = null;
