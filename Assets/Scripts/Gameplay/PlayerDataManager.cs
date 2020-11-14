@@ -153,7 +153,12 @@ public static class PlayerDataManager
         {
             for (int i = previousLevel + 1; i <= curLevel; i++)
             {
-                UIMetaprogressionNotificationController.AddReward(GameMetaprogressionUnlocksDataManager.GetRewardForLevel(i));
+                List<GameMetaprogressionReward> rewards = GameMetaprogressionUnlocksDataManager.GetRewardsForLevel(i);
+
+                for (int c = 0; c < rewards.Count; c++)
+                {
+                    UIMetaprogressionNotificationController.AddReward(rewards[c]);
+                }
             }
         }
     }
