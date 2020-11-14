@@ -58,6 +58,32 @@ public class ContentVolcanoRunMap : GameMap
         }
     }
 
+    public override bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)
+    {
+        GameOpponent gameOpponent = GameHelper.GetOpponent();
+
+        if (gameOpponent.m_hasSpawnedBoss)
+        {
+            return true;
+        }
+
+        if (GameHelper.GetGameController().m_currentTurnNumber < Constants.SpawnBossTurn || GameHelper.GetCurrentWaveNum() != Constants.FinalWaveNum)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_gameEventMarkers.Contains(10))
+            {
+                return gameOpponent.ForceSpawnNearPosition(GameUnitFactory.GetRandomBossEnemy(gameOpponent), WorldGridManager.Instance.m_gridArray[i].GetGameTile());
+            }
+        }
+
+        Debug.LogError("No event tiles with marker 10 to spawn Lord of Eruptions");
+        return false;
+    }
+
     protected override void FillExclusionCardPool()
     {
         

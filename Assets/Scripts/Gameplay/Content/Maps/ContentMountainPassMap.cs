@@ -90,6 +90,10 @@ public class ContentMountainPassMap : GameMap
         immortalEnemyUnits.Add(new ContentImmortalBannerEnemy(null));
         List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
 
+        if (GameHelper.GetGameController().m_currentTurnNumber < Constants.SpawnBossTurn || GameHelper.GetCurrentWaveNum() != Constants.FinalWaveNum)
+        {
+            return false;
+        }
 
         bool allSpawned = true;
         for (int k = 0; k < immortalEnemyUnits.Count; k++)
@@ -111,13 +115,10 @@ public class ContentMountainPassMap : GameMap
             
             if (GetFogSpawningActive())
             {
-                if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum)
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
+                if (!gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
                 {
-                    GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
-                    if (!gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
-                    {
-                        allSpawned = false;
-                    }
+                    allSpawned = false;
                 }
             }
             else
@@ -130,28 +131,25 @@ public class ContentMountainPassMap : GameMap
                     gameOpponent.m_spawnPoints[randomIndex] = temp;
                 }
 
-                if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum)
+                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
+                bool immortalSpawned = false;
+                for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
                 {
-                    GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
-                    bool immortalSpawned = false;
-                    for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+                    if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
                     {
-                        if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                        {
-                            continue;
-                        }
-
-                        if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
-                        {
-                            immortalSpawned = true;
-                            break;
-                        }
+                        continue;
                     }
 
-                    if (!immortalSpawned)
+                    if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
                     {
-                        allSpawned = false;
+                        immortalSpawned = true;
+                        break;
                     }
+                }
+
+                if (!immortalSpawned)
+                {
+                    allSpawned = false;
                 }
             }
         }

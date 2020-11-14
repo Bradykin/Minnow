@@ -959,12 +959,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        if (GameHelper.IsInGame())
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
+            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+            for (int i = 0; i < activeBossUnits.Count; i++)
             {
-                staminaToAttack--;
+                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
+                {
+                    staminaToAttack--;
+                }
             }
         }
 

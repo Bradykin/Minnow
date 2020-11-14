@@ -121,12 +121,15 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
             toReturn += 1;
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        if (GameHelper.IsInGame())
         {
-            if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+            for (int i = 0; i < activeBossUnits.Count; i++)
             {
-                toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
+                if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
+                {
+                    toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
+                }
             }
         }
 
