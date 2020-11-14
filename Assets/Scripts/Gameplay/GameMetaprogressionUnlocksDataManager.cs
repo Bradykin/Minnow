@@ -98,10 +98,27 @@ public static class GameMetaprogressionUnlocksDataManager
             {
                 bonusExpAmount += m_dataElements[i].GetBonusExp();
 
-                GameCard card = m_dataElements[i].GetCard();
-                if (card != null)
+                if (chaosNum == 2)
                 {
-                    accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), 0);
+                    GameCard card = m_dataElements[i].GetCard();
+                    if (card != null)
+                    {
+                        accountData.m_starterCardUnlockLevels.Add(card.GetBaseName(), 0);
+                        UIMetaprogressionNotificationController.AddReward(
+                            new GameMetaprogressionReward("Starter Card",
+                            "A new card option for use in your starter deck.",
+                            card));
+                    }
+
+                    GameRelic relic = m_dataElements[i].GetRelic();
+                    if (relic != null)
+                    {
+                        accountData.m_starterRelicUnlockLevels.Add(relic.GetBaseName(), 0);
+                        UIMetaprogressionNotificationController.AddReward(
+                            new GameMetaprogressionReward("Starter Relic",
+                            "A new relic option you can start with.",
+                            relic));
+                    }
                 }
             }
         }
@@ -110,5 +127,14 @@ public static class GameMetaprogressionUnlocksDataManager
     public static bool HasUnlocked(GameRelic toCheck)
     {
         return false;
+    }
+
+    public static GameMetaprogressionReward GetRewardForLevel(int level)
+    {
+        GameRelic toAdd = new ContentSecretTiesRelic();
+
+        return new GameMetaprogressionReward("Starter Relic",
+            "Come equipped with extra gold to kickstart your early setup",
+            toAdd);
     }
 }
