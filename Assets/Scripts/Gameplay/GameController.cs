@@ -209,6 +209,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public void EndLevel(RunEndType endType)
     {
+        GameUnitFactory.DeInit();
+        GameEventFactory.DeInit();
+        
         if (endType != RunEndType.Quit)
         {
             PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(), m_map.m_id, Globals.m_curChaos);

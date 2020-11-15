@@ -7,7 +7,7 @@ public abstract class AIMoveStep : AIStep
 {
     public AIMoveStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
 
-    protected IEnumerator MoveTowardsCastleCoroutine()
+    protected virtual IEnumerator MoveTowardsCastleCoroutine()
     {
         int amountStaminaToSpend = GetStaminaToUseToMoveToCastle();
         
@@ -48,7 +48,7 @@ public abstract class AIMoveStep : AIStep
         yield return new WaitForSeconds(0.5f);
     }
 
-    protected void MoveTowardsCastleInstant()
+    protected virtual void MoveTowardsCastleInstant()
     {
         int amountStaminaToSpend = GetStaminaToUseToMoveToCastle();
         

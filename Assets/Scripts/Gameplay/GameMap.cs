@@ -264,7 +264,7 @@ public abstract class GameMap : GameElementBase
     }
 
     public virtual bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)
-    {        
+    {
         GameOpponent gameOpponent = GameHelper.GetOpponent();
 
         if (gameOpponent.m_hasSpawnedBoss)
@@ -272,14 +272,16 @@ public abstract class GameMap : GameElementBase
             return true;
         }
 
+        if (GameHelper.GetGameController().m_currentTurnNumber < Constants.SpawnBossTurn || GameHelper.GetCurrentWaveNum() != Constants.FinalWaveNum)
+        {
+            return false;
+        }
+
         if (GetFogSpawningActive())
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum)
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
-                gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                return true;
-            }
+            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
+            gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
+            return true;
         }
         else
         {
@@ -291,20 +293,17 @@ public abstract class GameMap : GameElementBase
                 gameOpponent.m_spawnPoints[randomIndex] = temp;
             }
 
-            if (GameHelper.GetGameController().m_currentTurnNumber <= Constants.SpawnBossTurn && GameHelper.GetCurrentWaveNum() == Constants.FinalWaveNum)
+            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
+            for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
             {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
-                for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+                if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
                 {
-                    if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
-                    {
-                        return true;
-                    }
+                if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
+                {
+                    return true;
                 }
             }
         }

@@ -9,7 +9,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
     {
         CoverTakesMoreDamage, // 0
         NormalDifficultTerrainCostReversal, // 1
-        StaminaCostAttackIncreaseMoveDecrease, // 2
+        StaminaCostAttackDecreaseMoveCostIncrease, // 2
         RangedNotRangedSwap, // 3
         AllUnitsDeathExplode, // 4
         DamageAppliesBleeds, // 5
@@ -27,14 +27,14 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             m_maxHealth = 1000;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 100;
+            m_power = 50;
         }
         else
         {
             m_maxHealth = 700;
             m_maxStamina = 4;
             m_staminaRegen = 4;
-            m_power = 60;
+            m_power = 30;
         }
 
         m_team = Team.Enemy;
@@ -90,7 +90,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             case ChaosWarpAbility.NormalDifficultTerrainCostReversal:
                 chaosWarpString = "Normal terrain costs 2 to move through, and Difficult terrain costs 1 to move through.\n";
                 break;
-            case ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease:
+            case ChaosWarpAbility.StaminaCostAttackDecreaseMoveCostIncrease:
                 chaosWarpString = "Attacking costs 1 less stamina (minimum of 1), and movement costs 1 more stamina.\n";
                 break;
             case ChaosWarpAbility.RangedNotRangedSwap:
@@ -138,6 +138,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             }
         }
 
+        GetWorldTile().ClearSurroundingFog(2);
         while ((int)m_currentChaosWarpAbility == prevValue)
         {
             m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);

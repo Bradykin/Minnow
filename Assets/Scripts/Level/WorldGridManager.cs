@@ -243,10 +243,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             return false;
         }
 
-        if (toCheck.m_gameEventMarkers.Count != 0)
+        //Removing this means that tiles can be both worldperks and affected by map events, such as flooding. If this proves not to be fun, re-evaluate
+        /*if (toCheck.m_gameEventMarkers.Count != 0)
         {
             return false;
-        }
+        }*/
 
         if (toCheck.m_spawnPoint != null)
         {
@@ -972,12 +973,10 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             player.m_controlledUnits[i].GetWorldTile().ClearSurroundingFog(player.m_controlledUnits[i].GetSightRange());
         }
 
-        for (int i = 0; i < gameController.m_activeBossUnits.Count; i++)
+        ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
+        if (lordOfShadowsEnemy != null && lordOfShadowsEnemy.m_brightnessLevel > 0)
         {
-            if (gameController.m_activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy && lordOfShadowsEnemy.m_brightnessLevel > 0)
-            {
-                lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
-            }
+            lordOfShadowsEnemy.GetWorldTile().ClearSurroundingFog(lordOfShadowsEnemy.m_brightnessLevel);
         }
     }
 

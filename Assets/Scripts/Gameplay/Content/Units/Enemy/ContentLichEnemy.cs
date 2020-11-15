@@ -76,6 +76,8 @@ public class ContentLichEnemy : GameEnemyUnit
     {
         base.Die(canRevive, damageType);
 
+        GameHelper.GetGameController().m_activeBossUnits.Remove(this);
+
         GameHelper.EndLevel(RunEndType.Win);
     }
 

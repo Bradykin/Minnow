@@ -128,6 +128,30 @@ public static class GameHelper
         return false;
     }
 
+    public static T GetBoss<T>() where T : GameEnemyUnit
+    {
+        if (!GameHelper.IsInGame())
+        {
+            return null;
+        }
+
+        if (GameHelper.GetGameController() == null)
+        {
+            return null;
+        }
+
+        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
+        for (int i = 0; i < activeBossUnits.Count; i++)
+        {
+            if (activeBossUnits[i] is T matchingBoss)
+            {
+                return matchingBoss;
+            }
+        }
+
+        return null;
+    }
+
     public static bool IsValidChaosLevel(Globals.ChaosLevels toCheck)
     {
         if (WorldController.Instance.m_gameController == null)

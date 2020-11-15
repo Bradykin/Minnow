@@ -359,6 +359,28 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         return false;
     }
 
+    public bool ForceSpawnNearPosition(GameEnemyUnit newEnemyUnit, GameTile tileToSpawnAtOrNear)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            List<GameTile> tilesAtRange = WorldGridManager.Instance.GetSurroundingGameTiles(tileToSpawnAtOrNear, i, Mathf.Min(i, 1)).Where(t => !t.IsOccupied() && t.IsPassable(newEnemyUnit, false)).ToList();
+
+            if (tilesAtRange.Count == 0)
+            {
+                continue;
+            }
+
+            GameTile tileToSpawnAt = tilesAtRange[UnityEngine.Random.Range(0, tilesAtRange.Count)];
+            tileToSpawnAt.PlaceUnit(newEnemyUnit);
+            newEnemyUnit.OnSummon();
+            m_controlledUnits.Add(newEnemyUnit);
+            return true;
+        }
+
+        Debug.LogError("No positions able to spawn anywhere near tile at " + tileToSpawnAtOrNear.m_gridPosition);
+        return false;
+    }
+
     //============================================================================================================//
 
     public JsonGameOpponentData SaveToJson()

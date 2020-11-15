@@ -10,17 +10,17 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_maxHealth = 700;
+            m_maxHealth = 900;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 30;
+            m_power = 25;
         }
         else
         {
-            m_maxHealth = 500;
+            m_maxHealth = 600;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 15;
+            m_power = 12;
         }
 
         m_team = Team.Enemy;
@@ -28,7 +28,7 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         m_isBoss = true;
 
         m_name = "Lord of Eruptions";
-        m_desc = $"The final boss.  Kill it, and win.\nThis boss moves up to {m_teleportRange} tiles per turn, but uses no stamina to move. This unit can use its full turn to ignite an adjacent volcano.";
+        m_desc = $"The final boss.  Kill it, and win.\nThis boss moves up to {m_teleportRange} tiles per turn, but uses no stamina to move. This unit can traverse any terrain type except for water.\nThis unit can use its full turn to ignite an adjacent volcano.";
 
         AddKeyword(new GameRangeKeyword(3), false);
         AddKeyword(new GameLavawalkKeyword(), false);
@@ -36,10 +36,20 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsChooseTargetToAttackStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsTryIgniteVolcanoStep(m_AIGameEnemyUnit), false);
-        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsMoveToTargetStep(m_AIGameEnemyUnit), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        GameHelper.GetGameController().m_activeBossUnits.Add(this);
+
+        GetWorldTile().ClearSurroundingFog(2);
+        UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Eruptions has emerged from the lava to spread his domain!");
     }
 
     public override string GetDesc()
@@ -52,6 +62,13 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         }
 
         return descString;
+    }
+
+    public override void EndTurn()
+    {
+        base.EndTurn();
+
+        GetWorldTile().ClearSurroundingFog(2);
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)

@@ -46,6 +46,8 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
         base.OnSummon();
 
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
+
+        GetWorldTile().ClearSurroundingFog(1);
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
@@ -57,14 +59,10 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
             GameController gameController = GameHelper.GetGameController();
             gameController.m_activeBossUnits.Remove(this);
 
-            List<GameEnemyUnit> activeBossUnits = gameController.m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            if (GameHelper.GetBoss<ContentImmortalSpearEnemy>() != null || GameHelper.GetBoss<ContentImmortalBowEnemy>() != null)
             {
-                if (activeBossUnits[i] is ContentImmortalSpearEnemy || activeBossUnits[i] is ContentImmortalBowEnemy)
-                {
-                    //At least one other immortal is alive, the game is not over
-                    return;
-                }
+                //At least one other immortal is alive, the game is not over
+                return;
             }
 
             //The other members of the Immortals are dead, player has won

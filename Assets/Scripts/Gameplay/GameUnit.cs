@@ -244,14 +244,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         bool lordOfChaosDamageApplyBleedsActive = false;
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.DamageAppliesBleeds)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.DamageAppliesBleeds)
-            {
-                lordOfChaosDamageApplyBleedsActive = true;
-                break;
-            }
+            lordOfChaosDamageApplyBleedsActive = true;
         }
 
         if (lordOfChaosDamageApplyBleedsActive)
@@ -338,13 +334,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int CalculateDamageAmount(int damage, DamageType damageType)
     {
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.NobodyCanDealDamage)
-            {
-                return 0;
-            }
+            damage = 0;
         }
 
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
@@ -355,18 +348,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (IsInCover())
         {
-            bool lordOfChaosCoverSwapActive = false;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.CoverTakesMoreDamage)
             {
-                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.CoverTakesMoreDamage)
-                {
-                    lordOfChaosCoverSwapActive = true;
-                    damage += Mathf.FloorToInt((float)damage / (100.0f / (100.0f - Constants.CoverProtectionPercent)));
-                    break;
-                }
+                damage += Mathf.FloorToInt((float)damage / (100.0f / (100.0f - Constants.CoverProtectionPercent)));
             }
-
-            if (!lordOfChaosCoverSwapActive)
+            else
             {
                 damage = Mathf.FloorToInt((float)damage / (100.0f / Constants.CoverProtectionPercent));
             }
@@ -485,14 +471,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             SubtractKeyword(GetBleedKeyword());
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllUnitsDeathExplode)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllUnitsDeathExplode)
-            {
-                GameExplodeAction gameExplodeAction = new GameExplodeAction(this, this.GetPower(), 3);
-                gameExplodeAction.DoAction();
-            }
+            GameExplodeAction gameExplodeAction = new GameExplodeAction(this, this.GetPower(), 3);
+            gameExplodeAction.DoAction();
         }
 
         if (m_worldUnit == Globals.m_selectedUnit)
@@ -507,13 +490,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetTeam() == Team.Player)
         {
             bool lichAuraInRange = false;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            ContentLichEnemy lichEnemy = GameHelper.GetBoss<ContentLichEnemy>();
+            if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
             {
-                if (activeBossUnits[i] is ContentLichEnemy lichEnemy && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
-                {
-                    lichAuraInRange = true;
-                    break;
-                }
+                lichAuraInRange = true;
             }
 
             if (lichAuraInRange)
@@ -533,18 +513,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     //Returns the amount actually healed
     public virtual int Heal(int toHeal)
     {
-        bool lichAuraInRange = false;
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
-        {
-            if (activeBossUnits[i] is ContentLichEnemy lichEnemy && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
-            {
-                lichAuraInRange = true;
-                break;
-            }
-        }
-
-        if (lichAuraInRange)
+        ContentLichEnemy lichEnemy = GameHelper.GetBoss<ContentLichEnemy>();
+        if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
         {
             UIHelper.CreateWorldElementNotification("The Lich converts healing into damage!", true, m_worldUnit.gameObject);
             GetHitByAbility(toHeal);
@@ -789,13 +759,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn -= 1;
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
+        if (lordOfShadowsEnemy != null)
         {
-            if (activeBossUnits[i] is ContentLordOfShadowsEnemy lordOfShadowsEnemy)
-            {
-                toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
-            }
+            toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
         }
 
         if (toReturn < 0)
@@ -959,13 +926,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-        for (int i = 0; i < activeBossUnits.Count; i++)
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackDecreaseMoveCostIncrease)
         {
-            if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.StaminaCostAttackIncreaseMoveDecrease)
-            {
-                staminaToAttack--;
-            }
+            staminaToAttack--;
         }
 
         return Mathf.Max(1, staminaToAttack);
@@ -1120,13 +1084,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.IsInGame())
         {
-            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
             {
-                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
-                {
-                    return new GameRootedKeyword();
-                }
+                return new GameRootedKeyword();
             }
         }
 
@@ -1353,13 +1314,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (!(this is ContentImmortalBannerEnemy))
                 {
-                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
-                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
-                        {
-                            toReturn.AddKeyword(new GameDamageReductionKeyword(3));
-                        }
+                        toReturn.AddKeyword(new GameDamageReductionKeyword(3));
                     }
                 }
             }
@@ -1410,14 +1368,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         bool lordOfChaosRangeSwapActive = false;
         if (GameHelper.IsInGame())
         {
-            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.RangedNotRangedSwap)
             {
-                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.RangedNotRangedSwap)
-                {
-                    lordOfChaosRangeSwapActive = true;
-                    break;
-                }
+                lordOfChaosRangeSwapActive = true;
             }
         }
 
@@ -1537,13 +1491,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (!(this is ContentImmortalBannerEnemy))
                 {
-                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
-                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
-                        {
-                            toReturn += 5;
-                        }
+                        toReturn += 5;
                     }
                 }
             }
@@ -1790,7 +1741,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false)
     {
         if (this == Globals.m_focusedDebugEnemyUnit)
         {
@@ -1802,7 +1753,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return m_gameTile;
         }
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {

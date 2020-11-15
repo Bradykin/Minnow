@@ -89,7 +89,7 @@ public class LevelCreator : MonoBehaviour
             else if (Globals.m_currentlyPaintingType == typeof(int))
             {
                 Globals.m_currentlyPaintingNumberIndex++;
-                if (Globals.m_currentlyPaintingNumberIndex > 5)
+                if (Globals.m_currentlyPaintingNumberIndex > 10)
                 {
                     Globals.m_currentlyPaintingNumberIndex = 0;
                 }
@@ -124,7 +124,7 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingNumberIndex--;
                 if (Globals.m_currentlyPaintingNumberIndex < 0)
                 {
-                    Globals.m_currentlyPaintingNumberIndex = 5;
+                    Globals.m_currentlyPaintingNumberIndex = 10;
                 }
 
                 if (Globals.m_currentlyPaintingNumberIndex == 0)
@@ -141,7 +141,7 @@ public class LevelCreator : MonoBehaviour
                 Globals.m_currentlyPaintingNumberIndex--;
                 if (Globals.m_currentlyPaintingNumberIndex < 0)
                 {
-                    Globals.m_currentlyPaintingNumberIndex = 5;
+                    Globals.m_currentlyPaintingNumberIndex = 10;
                 }
 
                 if (Globals.m_currentlyPaintingNumberIndex == 0)
