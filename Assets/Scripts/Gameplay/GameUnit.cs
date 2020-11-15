@@ -1084,13 +1084,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.IsInGame())
         {
-            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
             {
-                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
-                {
-                    return new GameRootedKeyword();
-                }
+                return new GameRootedKeyword();
             }
         }
 
@@ -1317,13 +1314,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (!(this is ContentImmortalBannerEnemy))
                 {
-                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
-                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
-                        {
-                            toReturn.AddKeyword(new GameDamageReductionKeyword(3));
-                        }
+                        toReturn.AddKeyword(new GameDamageReductionKeyword(3));
                     }
                 }
             }
@@ -1374,14 +1368,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         bool lordOfChaosRangeSwapActive = false;
         if (GameHelper.IsInGame())
         {
-            List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-            for (int i = 0; i < activeBossUnits.Count; i++)
+            ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.RangedNotRangedSwap)
             {
-                if (activeBossUnits[i] is ContentLordOfChaosEnemy lordOfChaosEnemy && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.RangedNotRangedSwap)
-                {
-                    lordOfChaosRangeSwapActive = true;
-                    break;
-                }
+                lordOfChaosRangeSwapActive = true;
             }
         }
 
@@ -1501,13 +1491,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (!(this is ContentImmortalBannerEnemy))
                 {
-                    List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
-                    for (int i = 0; i < activeBossUnits.Count; i++)
+                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
-                        if (activeBossUnits[i] is ContentImmortalBannerEnemy immortalBannerRange && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerRange.GetGameTile()) <= immortalBannerRange.m_auraRange)
-                        {
-                            toReturn += 5;
-                        }
+                        toReturn += 5;
                     }
                 }
             }

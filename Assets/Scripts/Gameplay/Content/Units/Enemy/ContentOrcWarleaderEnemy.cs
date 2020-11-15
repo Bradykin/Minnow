@@ -139,6 +139,8 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
     {
         base.Die(canRevive, damageType);
 
+        GameHelper.GetGameController().m_activeBossUnits.Remove(this);
+
         GameHelper.EndLevel(RunEndType.Win);
     }
 
