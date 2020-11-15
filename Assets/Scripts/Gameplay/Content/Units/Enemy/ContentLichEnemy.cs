@@ -5,7 +5,8 @@ using UnityEngine;
 public class ContentLichEnemy : GameEnemyUnit
 {
     public int m_auraRange = 3;
-    
+    public bool m_hasReanimated = false;
+
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
@@ -48,21 +49,18 @@ public class ContentLichEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
 
         GetWorldTile().ClearSurroundingFog(2);
-        UIHelper.CreateHUDNotification("Boss Arrived", "The Lich has arrived and brought death to the world!");
+
+        if (!m_hasReanimated)
+        {
+            UIHelper.CreateHUDNotification("Boss Arrived", "The Lich has arrived and brought death to the world!");
+        }
     }
 
     public override string GetDesc()
     {
         string descString = m_desc;
 
-        /*if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
-        {*/
-            descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
-        /*}
-        else
-        {
-            descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats.";
-        }*/
+        descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {
@@ -78,7 +76,51 @@ public class ContentLichEnemy : GameEnemyUnit
 
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
-        GameHelper.EndLevel(RunEndType.Win);
+        if (m_hasReanimated)
+        {
+            GameHelper.EndLevel(RunEndType.Win);
+        }
+        else
+        {
+            List<WorldTile> validTiles = new List<WorldTile>();
+            List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 12);
+
+            ContentLichCastleBuilding lichCastle = new ContentLichCastleBuilding();
+
+            for (int i = 0; i < tilesInRange.Count; i++)
+            {
+                if (!tilesInRange[i].GetGameTile().IsOccupied() && !tilesInRange[i].GetGameTile().HasBuilding() && lichCastle.IsValidTerrainToPlace(tilesInRange[i].GetGameTile().GetTerrain(), tilesInRange[i].GetGameTile()))
+                {
+                    validTiles.Add(tilesInRange[i]);
+                }
+            }
+
+            int r = UnityEngine.Random.Range(0, validTiles.Count);
+
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(validTiles[r].GetGameTile(), 3, 0);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                if (surroundingTiles[i].GetTerrain().IsMountain() || surroundingTiles[i].GetTerrain().IsWater())
+                {
+                    continue;
+                }
+                
+                float random = Random.Range(0.0f, 1.0f);
+                if (random >= 0.33f)
+                {
+                    surroundingTiles[i].SetTerrain(new ContentAshPlainsTerrain(), true);
+                }
+                else
+                {
+                    surroundingTiles[i].SetTerrain(new ContentAshForestBurnedTerrain(), true);
+                }
+            }
+
+            validTiles[r].GetGameTile().PlaceBuilding(lichCastle);
+            validTiles[r].ClearSurroundingFog(3);
+            UIHelper.CreateHUDNotification("Lich Escaped", "The Lich has retreated to his ancient necropolis that stores his phylactery. You'll need to hunt him down and destroy the phylactery to defeat him once and for all!");
+        }
     }
 
     public override bool IsInvulnerable()
