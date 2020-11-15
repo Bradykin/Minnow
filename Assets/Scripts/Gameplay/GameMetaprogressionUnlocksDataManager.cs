@@ -505,4 +505,72 @@ public static class GameMetaprogressionUnlocksDataManager
 
         return false;
     }
+
+    public static int GetNumStarterCardsUnlocked()
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        List<GameCard> starterCards = new List<GameCard>();
+
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetCard() != null)
+            {
+                starterCards.Add(m_dataElements[i].GetCard());
+            }
+        }
+
+        if (Constants.UnlockAllContent)
+        {
+            return starterCards.Count;
+        }
+
+        int toReturn = 0;
+        for (int i = 0; i < starterCards.Count; i++)
+        {
+            if (HasUnlockedStarterCard(starterCards[i]))
+            {
+                toReturn++;
+            }
+        }
+
+        return toReturn;
+    }
+
+    public static int GetNumStarterRelicsUnlocked()
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        List<GameRelic> starterRelics = new List<GameRelic>();
+
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetRelic() != null)
+            {
+                starterRelics.Add(m_dataElements[i].GetRelic());
+            }
+        }
+
+        if (Constants.UnlockAllContent)
+        {
+            return starterRelics.Count;
+        }
+
+        int toReturn = 0;
+        for (int i = 0; i < starterRelics.Count; i++)
+        {
+            if (HasUnlockedStarterRelic(starterRelics[i]))
+            {
+                toReturn++;
+            }
+        }
+
+        return toReturn;
+    }
 }

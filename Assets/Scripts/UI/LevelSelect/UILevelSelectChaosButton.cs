@@ -69,7 +69,7 @@ public class UILevelSelectChaosButton : UIElementBase
             return false;
         }
 
-        if (!Constants.CheatsOn && m_isIncrease && 
+        if (!Constants.UnlockAllContent && m_isIncrease && 
             (!PlayerDataManager.PlayerAccountData.m_mapChaosLevels.ContainsKey(UILevelSelectController.Instance.m_curMap.m_id) || 
             PlayerDataManager.PlayerAccountData.m_mapChaosLevels[UILevelSelectController.Instance.m_curMap.m_id] < Globals.m_curChaos))
         {
