@@ -13,8 +13,6 @@ public class ContentInsightCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
-        m_playerUnlockLevel = 1;
-
         m_keywordHolder.AddKeyword(new GameSpellcraftKeyword(null));
 
         SetupBasicData();

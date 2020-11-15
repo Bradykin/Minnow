@@ -12,8 +12,6 @@ public class ContentEncouragementCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
-        m_playerUnlockLevel = 2;
-
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Monster);

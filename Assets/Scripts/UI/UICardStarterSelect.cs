@@ -19,6 +19,11 @@ public class UICardStarterSelect : MonoBehaviour
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (m_uiCard.IsLocked())
+        {
+            return;
+        }
+
         UIStarterCardSelectionController.Instance.SetStarterCard(m_cardType, m_uiCard.m_card);
         
         AudioHelper.PlaySFX(AudioHelper.UICardClick);

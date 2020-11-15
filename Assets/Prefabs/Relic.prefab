@@ -126,6 +126,8 @@ MonoBehaviour:
   m_tintImage: {fileID: 3571551141680600083}
   m_image: {fileID: 6180159291116876669}
   m_rarityTint: {fileID: 1904548704206758378}
+  m_isLocked: 0
+  m_lockIcon: {fileID: 0}
 --- !u!1 &613022060638090764
 GameObject:
   m_ObjectHideFlags: 0

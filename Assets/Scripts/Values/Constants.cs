@@ -75,10 +75,11 @@ public static class Constants
 #if UNITY_EDITOR
     public static bool CheatsOn = true;
     public static bool DebugSeeAllThroughFog = false;
+    public static bool UnlockAllContent = true;
 #else
     public static bool CheatsOn = false;
     public static bool DebugSeeAllThroughFog = false;
-    public static bool DebugRandomStarterLevels = false;
+    public static bool UnlockAllContent = false;
 #endif
     public static bool SteppedOutEnemyTurnsCameraFollowMovement = true;
     public static int SteppedOutEnemyTurnsCameraFollowThreshold = 3;

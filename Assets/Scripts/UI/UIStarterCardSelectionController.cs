@@ -117,29 +117,17 @@ public class UIStarterCardSelectionController : Singleton<UIStarterCardSelection
                 return;
             }
 
-            bool optionOneActive = PlayerDataManager.IsCardUnlocked(cardOne);
-            m_optionOne.gameObject.SetActive(optionOneActive);
-            if (optionOneActive)
-            {
-                m_optionOne.Init(cardOne, UICard.CardDisplayType.StarterSelect);
-                m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
-            }
+            m_optionOne.Init(cardOne, UICard.CardDisplayType.StarterSelect);
+            m_optionOne.GetCardStarterSelect().Init(m_curSelectedType);
+            m_optionOne.gameObject.SetActive(true);
 
-            bool optionTwoActive = PlayerDataManager.IsCardUnlocked(cardTwo);
-            m_optionTwo.gameObject.SetActive(optionTwoActive);
-            if (optionTwoActive)
-            {
-                m_optionTwo.Init(cardTwo, UICard.CardDisplayType.StarterSelect);
-                m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
-            }
+            m_optionTwo.Init(cardTwo, UICard.CardDisplayType.StarterSelect);
+            m_optionTwo.GetCardStarterSelect().Init(m_curSelectedType);
+            m_optionTwo.gameObject.SetActive(true);
 
-            bool optionThreeActive = PlayerDataManager.IsCardUnlocked(cardThree);
-            m_optionThree.gameObject.SetActive(optionThreeActive);
-            if (optionThreeActive)
-            {
-                m_optionThree.Init(cardThree, UICard.CardDisplayType.StarterSelect);
-                m_optionThree.GetCardStarterSelect().Init(m_curSelectedType);
-            }
+            m_optionThree.Init(cardThree, UICard.CardDisplayType.StarterSelect);
+            m_optionThree.GetCardStarterSelect().Init(m_curSelectedType);
+            m_optionThree.gameObject.SetActive(true);
         }
     }
 

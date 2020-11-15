@@ -9,7 +9,6 @@ public class ContentGroundskeeperCard : GameUnitCard
         m_unit = new ContentGroundskeeper();
 
         m_cost = 1;
-        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

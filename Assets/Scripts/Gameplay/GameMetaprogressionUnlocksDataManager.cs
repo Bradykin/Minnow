@@ -12,8 +12,14 @@ public static class GameMetaprogressionUnlocksDataManager
     private static Dictionary<int, GameMetaprogressionReward> m_relicRewards = new Dictionary<int, GameMetaprogressionReward>();
     private static Dictionary<int, GameMetaprogressionReward> m_mapRewards = new Dictionary<int, GameMetaprogressionReward>();
 
+    private static List<GameCard> m_initialCards = new List<GameCard>();
+    private static List<GameRelic> m_initialRelics = new List<GameRelic>();
+    private static List<GameMap> m_initialMaps = new List<GameMap>();
+
     public static void InitData()
     {
+        FillInitialUnlocks();
+
         GameMap lakesideMap = new ContentLakesideMap(); //Tutorial map
         GameMap deltaMap = new ContentDeltaMap();
         GameMap mountainPass = new ContentMountainPassMap();
@@ -45,15 +51,15 @@ public static class GameMetaprogressionUnlocksDataManager
         GameRelic loadedChestRelic = new ContentLoadedChestRelic();  //nmartino - still needs a map
         GameRelic hoovesOfProductionRelic = new ContentHoovesOfProductionRelic(); //nmartino - still needs a map
 
-        FillMapData(deltaMap.m_id, lizardSoldierCard);
-        FillMapData(mountainPass.m_id, sandwalkerCard);
-        FillMapData(crimsonIslandsMap.m_id, cureWoundsCard);
-        FillMapData(snowmeltMap.m_id, drainingBoltCard);
-        FillMapData(desertPassMap.m_id, staminaTrainingCard);
-        FillMapData(volcanoRun.m_id, undeadMammothCard);
-        FillMapData(lakesideHardMap.m_id, mechanizedBeastCard);
-        FillMapData(themarshlands.m_id, wolvenFangRelic);
-        FillMapData(frozenLake.m_id, orbOfEnergyRelic);
+        FillMapData(deltaMap, lizardSoldierCard);
+        FillMapData(mountainPass, sandwalkerCard);
+        FillMapData(crimsonIslandsMap, cureWoundsCard);
+        FillMapData(snowmeltMap, drainingBoltCard);
+        FillMapData(desertPassMap, staminaTrainingCard);
+        FillMapData(volcanoRun, undeadMammothCard);
+        FillMapData(lakesideHardMap, mechanizedBeastCard);
+        FillMapData(themarshlands, wolvenFangRelic);
+        FillMapData(frozenLake, orbOfEnergyRelic);
 
         //2
         AddCardRewards();
@@ -100,50 +106,26 @@ public static class GameMetaprogressionUnlocksDataManager
 
     private static void AddCardRewards()
     {
-        /*Default Unlocks
-        //Units (4, 3, 3)
-        ContentElvenWizardCard, ContentElvenRogueCard, ContentGladiatorCard, 
-        ContentHeroCard, ContentInjuredTrollCard, ContentNaturalScoutCard, 
-        ContentRangerCard, ContentShadowWarlockCard, ContentWandererCard,
-        ContentCyclopsCard
-
-        //Spells (4, 3, 3)
-        ContentArcaneBoltCard, ContentAssassinationContractCard, ContentCosmicPactCard, 
-        ContentDreamCard, ContentEnergizeCard, ContentImmolationCard,
-        ContentLootingsCard, ContentNightWingsCard, ContentNecromanticTouchCard,
-        ContentPhalanxCard
-        */
-
         m_cardRewards.Add(2, CreateCardLevelReward("Enrage",
             "<b>Enrage</b> triggers whenever the unit gets hit by anything!",
-            new ContentDevourerCard(), new ContentHeroCard(), new ContentFuryCard()));
+            new ContentBloodSacrificeCard(), new ContentAncientTextsCard(), new ContentFuryCard()));
     }
 
     private static void AddRelicRewards()
     {
-        /*Default Unlocks (9, 5, 4)
-        ContentHourglassOfSpeedRelic, ContentMorlemainsSkullRelic, ContentOrbOfHealthRelic,
-        ContentSoulTrapRelic, ContentSpiritCatcherRelic, ContentSackOfManyShapesRelic,
-        ContentLegendaryFragmentRelic, ContentCallOfTheSeaRelic, ContentTheGreatestGiftRelic,
-        ContentImpaliumRelic, ContentStarOfDenumainRelic, ContentHarvestOfTelumRelic,
-        ContentTailOfLifeRelic, ContentSecretsOfNatureRelic, ContentEyeOfDorosonRelic,
-        ContentTalonOfTheMeradominRelic, ContentHealthFlaskRelic, ContentToolOfTheDeadmanRelic
-
-        */
-
         m_relicRewards.Add(2, CreateRelicLevelReward("Stamina",
             "Normally, units regenerate Stamina each turn equal to the number of green dots on their card!",
             new ContentIotalRelic(), new ContentLegacyOfMonstersRelic(), new ContentLegendaryFragmentRelic()));
     }
 
-    private static void FillMapData(int mapId, GameCard rewardCard)
+    private static void FillMapData(GameMap map, GameCard rewardCard)
     {
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, rewardCard));
+        m_dataElements.Add(new GameMetaprogressionDataElement(map, rewardCard));
     }
 
-    private static void FillMapData(int mapId, GameRelic rewardRelic)
+    private static void FillMapData(GameMap map, GameRelic rewardRelic)
     {
-        m_dataElements.Add(new GameMetaprogressionDataElement(mapId, rewardRelic));
+        m_dataElements.Add(new GameMetaprogressionDataElement(map, rewardRelic));
     }
 
     private static GameMetaprogressionReward CreateCardLevelReward(string title, string desc, GameCard card1, GameCard card2, GameCard card3)
@@ -180,7 +162,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         for (int i = 0; i < m_dataElements.Count; i++)
         {
-            if (m_dataElements[i].GetMapId() == mapId)
+            if (m_dataElements[i].GetMap().m_id == mapId)
             {
                 return m_dataElements[i];
             }
@@ -201,7 +183,7 @@ public static class GameMetaprogressionUnlocksDataManager
         
         for (int i = 0; i < m_dataElements.Count; i++)
         {
-            if (m_dataElements[i].GetMapId() == mapId)
+            if (m_dataElements[i].GetMap().m_id == mapId)
             {
                 bonusExpAmount += m_dataElements[i].GetBonusExp();
 
@@ -230,10 +212,240 @@ public static class GameMetaprogressionUnlocksDataManager
             }
         }
     }
+    
+    private static void FillInitialUnlocks()
+    {
+        //Starter Cards
+        m_initialCards.Add(new ContentDwarvenSoldierCard());
+        m_initialCards.Add(new ContentAlphaBoarCard());
+        m_initialCards.Add(new ContentFireboltCard());
+        m_initialCards.Add(new ContentAegisCard());
+        m_initialCards.Add(new ContentGrowTalonsCard());
+
+        //Starter Relics
+        m_initialRelics.Add(new ContentMaskOfAgesRelic());
+
+        //Initial Maps
+        m_initialMaps.Add(new ContentLakesideMap());
+
+        //Initial Cards
+        //Units
+        m_initialCards.Add(new ContentElvenWizardCard());
+        m_initialCards.Add(new ContentElvenRogueCard());
+        m_initialCards.Add(new ContentGladiatorCard());
+        m_initialCards.Add(new ContentHeroCard());
+        m_initialCards.Add(new ContentInjuredTrollCard());
+        m_initialCards.Add(new ContentNaturalScoutCard());
+        m_initialCards.Add(new ContentRangerCard());
+        m_initialCards.Add(new ContentShadowWarlockCard());
+        m_initialCards.Add(new ContentWandererCard());
+        m_initialCards.Add(new ContentCyclopsCard());
+
+        //Spells
+        m_initialCards.Add(new ContentArcaneBoltCard());
+        m_initialCards.Add(new ContentAssassinationContractCard());
+        m_initialCards.Add(new ContentCosmicPactCard());
+        m_initialCards.Add(new ContentDreamCard());
+        m_initialCards.Add(new ContentEnergizeCard());
+        m_initialCards.Add(new ContentImmolationCard());
+        m_initialCards.Add(new ContentLootingsCard());
+        m_initialCards.Add(new ContentNightWingsCard());
+        m_initialCards.Add(new ContentNecromanticTouchCard());
+        m_initialCards.Add(new ContentPhalanxCard());
+
+        //Initial Relics
+        m_initialRelics.Add(new ContentHourglassOfSpeedRelic());
+        m_initialRelics.Add(new ContentMorlemainsSkullRelic());
+        m_initialRelics.Add(new ContentOrbOfHealthRelic());
+        m_initialRelics.Add(new ContentSoulTrapRelic());
+        m_initialRelics.Add(new ContentSpiritCatcherRelic());
+        m_initialRelics.Add(new ContentSackOfManyShapesRelic());
+        m_initialRelics.Add(new ContentLegendaryFragmentRelic());
+        m_initialRelics.Add(new ContentCallOfTheSeaRelic());
+        m_initialRelics.Add(new ContentTheGreatestGiftRelic());
+        m_initialRelics.Add(new ContentImpaliumRelic());
+        m_initialRelics.Add(new ContentStarOfDenumainRelic());
+        m_initialRelics.Add(new ContentHarvestOfTelumRelic());
+        m_initialRelics.Add(new ContentTailOfLifeRelic());
+        m_initialRelics.Add(new ContentSecretsOfNatureRelic());
+        m_initialRelics.Add(new ContentEyeOfDorosonRelic());
+        m_initialRelics.Add(new ContentTalonOfTheMeradominRelic());
+        m_initialRelics.Add(new ContentHealthFlaskRelic());
+        m_initialRelics.Add(new ContentToolOfTheDeadmanRelic());
+    }
 
     public static bool HasUnlocked(GameRelic toCheck)
     {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        if (IsInitialUnlock(toCheck))
+        {
+            return true;
+        }
+
+        List<GameMetaprogressionReward> obtainedRewards = new List<GameMetaprogressionReward>();
+        for (int i = 0; i < PlayerDataManager.GetCurLevel() + 1; i++)
+        {
+            if (m_relicRewards.ContainsKey(i))
+            {
+                obtainedRewards.Add(m_relicRewards[i]);
+            }
+        }
+
+        for (int i = 0; i < obtainedRewards.Count; i++)
+        {
+            if (obtainedRewards[i].HasRelic(toCheck))
+            {
+                return true;
+            }
+        }
+
         return false;
+    }
+
+    public static bool HasUnlocked(GameCard toCheck)
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        if (IsInitialUnlock(toCheck))
+        {
+            return true;
+        }
+
+        List<GameMetaprogressionReward> obtainedRewards = new List<GameMetaprogressionReward>();
+        for (int i = 0; i < PlayerDataManager.GetCurLevel() + 1; i++)
+        {
+            if (m_cardRewards.ContainsKey(i))
+            {
+                obtainedRewards.Add(m_cardRewards[i]);
+            }
+        }
+
+        for (int i = 0; i < obtainedRewards.Count; i++)
+        {
+            if (obtainedRewards[i].HasCard(toCheck))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool HasUnlocked(GameMap toCheck)
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        if (IsInitialUnlock(toCheck))
+        {
+            return true;
+        }
+
+        List<GameMetaprogressionReward> obtainedRewards = new List<GameMetaprogressionReward>();
+        for (int i = 0; i < PlayerDataManager.GetCurLevel()+1; i++)
+        {
+            if (m_mapRewards.ContainsKey(i))
+            {
+                obtainedRewards.Add(m_mapRewards[i]);
+            }
+        }
+
+        for (int i = 0; i < obtainedRewards.Count; i++)
+        {
+            if (obtainedRewards[i].HasMap(toCheck))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool HasUnlockedStarterCard(GameCard toCheck)
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        if (IsInitialUnlock(toCheck))
+        {
+            return true;
+        }
+
+        GameMap map = GetMapForStarterCard(toCheck);
+
+        if (map == null)
+        {
+            return false;
+        }
+
+        if (PlayerDataManager.PlayerAccountData.HasPreviouslyBeatenMapChaosLevel(map.m_id, 2))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool HasUnlockedStarterRelic(GameRelic toCheck)
+    {
+        if (!m_isInit)
+        {
+            InitData();
+        }
+
+        if (IsInitialUnlock(toCheck))
+        {
+            return true;
+        }
+
+        GameMap map = GetMapForStarterRelic(toCheck);
+
+        if (map == null)
+        {
+            return false;
+        }
+
+        if (PlayerDataManager.PlayerAccountData.HasPreviouslyBeatenMapChaosLevel(map.m_id, 2))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static GameMap GetMapForStarterCard(GameCard toCheck)
+    {
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetCard() != null && m_dataElements[i].GetCard().GetBaseName() == toCheck.GetBaseName())
+            {
+                return m_dataElements[i].GetMap();
+            }
+        }
+        return null;
+    }
+
+    public static GameMap GetMapForStarterRelic(GameRelic toCheck)
+    {
+        for (int i = 0; i < m_dataElements.Count; i++)
+        {
+            if (m_dataElements[i].GetRelic() != null && m_dataElements[i].GetRelic().GetBaseName() == toCheck.GetBaseName())
+            {
+                return m_dataElements[i].GetMap();
+            }
+        }
+        return null;
     }
 
     public static List<GameMetaprogressionReward> GetRewardsForLevel(int level)
@@ -256,5 +468,44 @@ public static class GameMetaprogressionUnlocksDataManager
         }
         
         return rewards;
+    }
+    
+    private static bool IsInitialUnlock(GameCard toCheck)
+    {
+        for (int i = 0; i < m_initialCards.Count; i++)
+        {
+            if (m_initialCards[i].GetBaseName() == toCheck.GetBaseName())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool IsInitialUnlock(GameRelic toCheck)
+    {
+        for (int i = 0; i < m_initialRelics.Count; i++)
+        {
+            if (m_initialRelics[i].GetBaseName() == toCheck.GetBaseName())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool IsInitialUnlock(GameMap toCheck)
+    {
+        for (int i = 0; i < m_initialMaps.Count; i++)
+        {
+            if (m_initialMaps[i].m_id == toCheck.m_id)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

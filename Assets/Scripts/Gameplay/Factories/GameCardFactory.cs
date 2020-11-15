@@ -454,7 +454,7 @@ public static class GameCardFactory
         {
             for (int i = 0; i < list.Count; i++)
             {
-                if (!Constants.CheatsOn && !list[i].PlayerHasUnlockedCard())
+                if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(list[i]))
                 {
                     continue;
                 }
@@ -466,7 +466,7 @@ public static class GameCardFactory
         {
             for (int i = 0; i < list.Count; i++)
             {
-                if (!Constants.CheatsOn && !list[i].PlayerHasUnlockedCard())
+                if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(list[i]))
                 {
                     continue;
                 }

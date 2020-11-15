@@ -137,4 +137,40 @@ public class GameMetaprogressionReward
     {
         return m_desc;
     }
+
+    public bool HasCard(GameCard toCheck)
+    {
+        for (int i = 0; i < m_cards.Count; i++)
+        {
+            if (m_cards[i].GetBaseName() == toCheck.GetBaseName())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasRelic(GameRelic toCheck)
+    {
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i].GetBaseName() == toCheck.GetBaseName())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasMap(GameMap toCheck)
+    {
+        if (m_map.m_id == toCheck.m_id)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

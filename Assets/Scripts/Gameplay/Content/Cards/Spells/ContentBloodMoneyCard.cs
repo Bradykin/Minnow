@@ -13,8 +13,6 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
-        m_playerUnlockLevel = 2;
-
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
         SetupBasicData();

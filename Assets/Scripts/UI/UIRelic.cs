@@ -22,6 +22,7 @@ public class UIRelic : UIElementBase
     public Image m_rarityTint;
 
     public bool m_isLocked;
+    public GameObject m_lockIcon;
 
     void Update()
     {
@@ -57,17 +58,34 @@ public class UIRelic : UIElementBase
 
         if (m_relic.m_rarity == GameElementBase.GameRarity.Starter)
         {
-            m_isLocked = GameMetaprogressionUnlocksDataManager.HasUnlocked(m_relic);
+            m_isLocked = (!GameMetaprogressionUnlocksDataManager.HasUnlockedStarterRelic(m_relic) && !Constants.UnlockAllContent);
         }
         else
         {
             m_isLocked = false;
         }
+
+        if (m_lockIcon != null)
+        {
+            m_lockIcon.SetActive(m_isLocked);
+        }
     }
 
     public override void HandleTooltip()
     {
-        if (m_selectionType == RelicSelectionType.View || m_selectionType == RelicSelectionType.SelectStarter)
+        if (m_isLocked && m_selectionType == RelicSelectionType.SelectStarter)
+        {
+            GameMap neededMap = GameMetaprogressionUnlocksDataManager.GetMapForStarterRelic(m_relic);
+            if (neededMap == null)
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("WIP", "Relic not yet available in this version of the game"));
+            }
+            else
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Locked Relic", "Unlock this relic by beating Chaos 2 on " + neededMap.GetBaseName()));
+            }
+        }
+        else if (m_selectionType == RelicSelectionType.View || m_selectionType == RelicSelectionType.SelectStarter)
         {
             UIHelper.CreateRelicTooltip(m_relic);
         }
@@ -76,6 +94,11 @@ public class UIRelic : UIElementBase
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
+        if (m_isLocked)
         {
             return;
         }

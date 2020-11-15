@@ -14,8 +14,6 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
-        m_playerUnlockLevel = 3;
-
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
         m_keywordHolder.AddKeyword(new GameBrittleKeyword(-1));
 

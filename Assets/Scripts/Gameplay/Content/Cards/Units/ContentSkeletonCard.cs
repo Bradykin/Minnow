@@ -9,7 +9,6 @@ public class ContentSkeletonCard : GameUnitCard
         m_unit = new ContentSkeleton();
 
         m_cost = 1;
-        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

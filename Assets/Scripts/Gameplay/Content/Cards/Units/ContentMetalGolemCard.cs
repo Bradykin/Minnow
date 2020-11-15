@@ -9,7 +9,6 @@ public class ContentMetalGolemCard : GameUnitCard
         m_unit = new ContentMetalGolem();
 
         m_cost = 3;
-        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

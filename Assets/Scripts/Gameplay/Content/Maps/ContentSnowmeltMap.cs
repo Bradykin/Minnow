@@ -13,8 +13,6 @@ public class ContentSnowmeltMap : GameMap
 
         m_id = 3;
 
-        m_playerUnlockLevel = 2;
-
         Init();
     }
 

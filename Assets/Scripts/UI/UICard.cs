@@ -31,6 +31,7 @@ public class UICard : MonoBehaviour
     public Text m_healthText;
     public UIStaminaContainer m_staminaContainer;
     public GameObject m_skullIndicator;
+    public GameObject m_lockIcon;
 
     public CardDisplayType m_displayType;
 
@@ -45,6 +46,8 @@ public class UICard : MonoBehaviour
     private UICardStarterSelect m_cardStarterSelect;
 
     private bool m_hasSetDisplayType;
+    private bool m_isLocked;
+    private bool m_isShowingTooltip;
 
     public GameUnitCard m_unitCard;
 
@@ -57,7 +60,7 @@ public class UICard : MonoBehaviour
     }
 
     public void Init(GameCard card, CardDisplayType displayType)
-    {
+    { 
         m_card = card;
         m_displayType = displayType;
 
@@ -68,6 +71,15 @@ public class UICard : MonoBehaviour
         else
         {
             m_unitCard = null;
+        }
+
+        if (m_displayType == CardDisplayType.StarterSelect)
+        {
+            m_isLocked = !GameMetaprogressionUnlocksDataManager.HasUnlockedStarterCard(m_card) && !Constants.UnlockAllContent;
+        }
+        else
+        {
+            m_isLocked = false;
         }
 
         SetCardData();
@@ -96,6 +108,11 @@ public class UICard : MonoBehaviour
             }
 
             m_hasSetDisplayType = true;
+        }
+
+        if (m_lockIcon != null)
+        {
+            m_lockIcon.SetActive(m_isLocked);
         }
     }
 
@@ -176,6 +193,12 @@ public class UICard : MonoBehaviour
         Globals.m_canScroll = false;
         m_isHovered = true;
 
+        if (!m_isShowingTooltip)
+        {
+            HandleTooltip();
+            m_isShowingTooltip = true;
+        }
+
         AudioHelper.PlaySFX(AudioHelper.UICardHover);
 
         if (!ShouldShowSelectedTint())
@@ -203,6 +226,13 @@ public class UICard : MonoBehaviour
     {
         Globals.m_canScroll = true;
         m_isHovered = false;
+
+        if (m_isShowingTooltip)
+        {
+            UITooltipController.Instance.ClearTooltipStack();
+
+            m_isShowingTooltip = false;
+        }
 
         if (!ShouldShowSelectedTint())
         {
@@ -240,6 +270,22 @@ public class UICard : MonoBehaviour
         return m_cardStarterSelect;
     }
 
+    public void HandleTooltip()
+    {
+        if (m_displayType == CardDisplayType.StarterSelect && IsLocked())
+        {
+            GameMap neededMap = GameMetaprogressionUnlocksDataManager.GetMapForStarterCard(m_card);
+            if (neededMap == null)
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("WIP", "Card not yet available in this version of the game"));
+            }
+            else
+            {
+                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Locked Card", "Unlock this starter card by beating Chaos 2 on " + neededMap.GetBaseName()));
+            }
+        }
+    }
+
     private bool ShouldShowSelectedTint()
     {
         bool isSelected = Globals.m_selectedCard == this;
@@ -250,5 +296,10 @@ public class UICard : MonoBehaviour
         }
 
         return isSelected;
+    }
+
+    public bool IsLocked()
+    {
+        return m_isLocked;
     }
 }

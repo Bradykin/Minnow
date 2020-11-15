@@ -12,8 +12,6 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_cost = 0;
         m_rarity = GameRarity.Common;
 
-        m_playerUnlockLevel = 2;
-
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Creation);

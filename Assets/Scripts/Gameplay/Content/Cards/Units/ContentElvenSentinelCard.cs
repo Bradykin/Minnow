@@ -9,7 +9,6 @@ public class ContentElvenSentinelCard : GameUnitCard
         m_unit = new ContentElvenSentinel();
 
         m_cost = 2;
-        m_playerUnlockLevel = 2;
 
         FillBasicData();
 

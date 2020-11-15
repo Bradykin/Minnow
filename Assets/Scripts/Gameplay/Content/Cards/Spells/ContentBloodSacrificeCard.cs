@@ -13,8 +13,6 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_cost = 0;
         m_rarity = GameRarity.Rare;
 
-        m_playerUnlockLevel = 2;
-
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.Reanimate);

@@ -13,8 +13,6 @@ public class ContentDeltaMap : GameMap
 
         m_id = 5;
 
-        m_playerUnlockLevel = 3;
-
         Init();
     }
 

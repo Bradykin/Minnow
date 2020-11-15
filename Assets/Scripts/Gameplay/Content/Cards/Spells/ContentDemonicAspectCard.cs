@@ -12,8 +12,6 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_cost = 1;
         m_shouldExile = true;
 
-        m_playerUnlockLevel = 1;
-
         m_rarity = GameRarity.Rare;
 
         m_keywordHolder.AddKeyword(new GameVictoriousKeyword(null));

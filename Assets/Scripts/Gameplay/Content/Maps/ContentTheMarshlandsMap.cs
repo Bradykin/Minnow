@@ -13,8 +13,6 @@ public class ContentTheMarshlandsMap : GameMap
 
         m_id = 9;
 
-        m_playerUnlockLevel = 1;
-
         Init();
     }
 

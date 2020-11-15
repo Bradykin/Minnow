@@ -16,8 +16,6 @@ public class ContentFossilizeCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Rare;
 
-        m_playerUnlockLevel = 3;
-
         m_keywordHolder.AddKeyword(new GameBrittleKeyword(-1));
 
         SetupBasicData();

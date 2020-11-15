@@ -12,8 +12,6 @@ public class ContentRunicBladeCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
-        m_playerUnlockLevel = 1;
-
         m_keywordHolder.AddKeyword(new GameVictoriousKeyword(null));
         m_keywordHolder.AddKeyword(new GameSpellcraftKeyword(null));
 

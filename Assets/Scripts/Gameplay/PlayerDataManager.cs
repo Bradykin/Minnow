@@ -58,48 +58,6 @@ public static class PlayerDataManager
         return PlayerAccountData.m_mapChaosLevels[mapId] >= chaosLevel;
     }
 
-    public static bool IsMapUnlocked(int mapId)
-    {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
-        if (mapId == 0)
-        {
-            return GetCurLevel() >= 1;
-        }
-        else if (mapId == 1 || mapId == 2)
-        {
-            return GetCurLevel() >= 2;
-        }
-        else if (mapId == 3 || mapId == 4)
-        {
-            return GetCurLevel() >= 5;
-        }
-        else if (mapId == 5 || mapId == 6)
-        {
-            return GetCurLevel() >= 8;
-        }
-
-        return false;
-    }
-
-    public static bool IsCardUnlocked(GameCard card)
-    {
-        if (!m_hasInit)
-        {
-            Init();
-        }
-
-        if (card.PlayerHasUnlockedCard())
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     public static void UpdatePlayerAccountDataOnEndRun(RunEndType endType, int experienceAmount, int mapID, int curChaos)
     {
         if (endType == RunEndType.Win)

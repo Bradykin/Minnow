@@ -9,7 +9,6 @@ public class ContentHeroCard : GameUnitCard
         m_unit = new ContentHero();
 
         m_cost = 4;
-        m_playerUnlockLevel = 1;
 
         FillBasicData();
 

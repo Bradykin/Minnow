@@ -9,7 +9,6 @@ public class ContentGrasperCard : GameUnitCard
         m_unit = new ContentGrasper();
 
         m_cost = 1;
-        m_playerUnlockLevel = 2;
 
         FillBasicData();
 

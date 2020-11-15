@@ -16,7 +16,7 @@ public class UIWorldMap : MonoBehaviour
                 continue;
             }
 
-            m_levelSelectButtons[i].gameObject.SetActive(Constants.CheatsOn || PlayerDataManager.GetCurLevel() >= m_levelSelectButtons[i].GetMap().GetPlayerUnlockLevel());
+            m_levelSelectButtons[i].gameObject.SetActive(Constants.UnlockAllContent || GameMetaprogressionUnlocksDataManager.HasUnlocked(m_levelSelectButtons[i].GetMap()));
         }
     }
 }

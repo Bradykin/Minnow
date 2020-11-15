@@ -13,8 +13,6 @@ public class ContentCrimsonIslandsMap : GameMap
 
         m_id = 4;
 
-        m_playerUnlockLevel = 1;
-
         Init();
     }
 

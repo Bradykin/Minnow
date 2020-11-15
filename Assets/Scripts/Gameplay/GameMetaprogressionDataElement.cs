@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class GameMetaprogressionDataElement
 {
-    private int m_mapId;
+    private GameMap m_map;
 
     private GameRelic m_relic;
     private GameCard m_card;
     private int m_bonusExp;
 
-    public GameMetaprogressionDataElement(int mapId, GameRelic relic)
+    public GameMetaprogressionDataElement(GameMap map, GameRelic relic)
     {
         m_relic = relic;
 
-        m_mapId = mapId;
+        m_map = map;
     }
 
-    public GameMetaprogressionDataElement(int mapId, GameCard card)
+    public GameMetaprogressionDataElement(GameMap map, GameCard card)
     {
         m_card = card;
 
-        m_mapId = mapId;
+        m_map = map;
     }
 
-    public GameMetaprogressionDataElement(int mapId, int exp)
+    public GameMetaprogressionDataElement(GameMap map, int exp)
     {
         m_bonusExp = exp;
 
-        m_mapId = mapId;
+        m_map = map;
     }
 
-    public int GetMapId()
+    public GameMap GetMap()
     {
-        return m_mapId;
+        return m_map;
     }
 
     public GameCard GetCard()

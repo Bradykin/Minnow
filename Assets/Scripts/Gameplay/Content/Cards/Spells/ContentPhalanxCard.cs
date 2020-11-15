@@ -14,8 +14,6 @@ public class ContentPhalanxCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Common;
 
-        m_playerUnlockLevel = 1;
-
         SetupBasicData();
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;

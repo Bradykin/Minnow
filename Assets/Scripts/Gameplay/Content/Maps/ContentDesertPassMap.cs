@@ -13,8 +13,6 @@ public class ContentDesertPassMap : GameMap
 
         m_id = 2;
 
-        m_playerUnlockLevel = 3;
-
         Init();
     }
 

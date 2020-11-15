@@ -9,7 +9,6 @@ public class ContentCyclopsCard : GameUnitCard
         m_unit = new ContentCyclops();
 
         m_cost = 1;
-        m_playerUnlockLevel = 2;
 
         FillBasicData();
 

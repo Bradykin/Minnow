@@ -23,8 +23,6 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     public bool m_shouldExile;
     public int m_storedTagWeight;
 
-    protected int m_playerUnlockLevel;
-
     public virtual string GetTypeline()
     {
         return m_typeline;
@@ -92,16 +90,6 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     public void SetDesc(string desc)
     {
         m_desc = desc;
-    }
-
-    public virtual bool PlayerHasUnlockedCard()
-    {
-        return Constants.CheatsOn || (PlayerDataManager.GetCurLevel() >= GetPlayerUnlockLevel());
-    }
-
-    public int GetPlayerUnlockLevel()
-    {
-        return m_playerUnlockLevel;
     }
 
     public virtual void PlayCard() 

@@ -18,7 +18,6 @@ public abstract class GameMap : GameElementBase
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
-    protected int m_playerUnlockLevel;
     protected bool m_fogSpawningActive = true;
 
     protected bool m_spawnCrystals = true;
@@ -198,11 +197,6 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentMonAltar(null));
         m_eventPool.Add(new ContentDorphinAltar(null));
         m_eventPool.Add(new ContentSugoAltar(null));
-    }
-
-    public int GetPlayerUnlockLevel()
-    {
-        return m_playerUnlockLevel;
     }
 
     public virtual int GetNumCrystals()

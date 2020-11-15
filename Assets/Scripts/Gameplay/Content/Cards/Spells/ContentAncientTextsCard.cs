@@ -13,8 +13,6 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Uncommon;
 
-        m_playerUnlockLevel = 2;
-
         SetupBasicData();
 
         m_keywordHolder.AddKeyword(new GameKnowledgeableKeyword(null));

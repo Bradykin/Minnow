@@ -12,8 +12,6 @@ public class ContentSummoningCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Rare;
 
-        m_playerUnlockLevel = 3;
-
         SetupBasicData();
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
