@@ -886,11 +886,69 @@ public static class UIHelper
 
     private static bool IsKeyValid()
     {
-        if (Constants.CheatsOn && UICheatConsoleController.Instance.m_consoleHolder.activeSelf)
+        if (Constants.DevMode && UICheatConsoleController.Instance.m_consoleHolder.activeSelf)
         {
             return false;
         }
 
         return true;
+    }
+
+    public static string GetHintText()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        int endWave = WorldController.Instance.m_gameController.m_currentWaveNumber;
+        int numRelics = player.GetRelics().GetRelicListForRead().Count;
+        int gold = player.m_wallet.m_gold;
+        int maxPower = 0;
+        int maxHealth = 0;
+
+        for (int i = 0; i < player.m_deckBase.Count(); i++)
+        {
+            if (player.m_deckBase.GetCardByIndex(i) is GameUnitCard)
+            {
+                GameUnitCard unitCard = (GameUnitCard)player.m_deckBase.GetCardByIndex(i);
+                if (unitCard.GetUnit().GetMaxHealth() > maxHealth)
+                {
+                    maxHealth = unitCard.GetUnit().GetMaxHealth();
+                }
+                if (unitCard.GetUnit().GetPower() > maxPower)
+                {
+                    maxPower = unitCard.GetUnit().GetPower();
+                }
+            }
+        }
+
+        if (endWave >= 4)
+        {
+            if (numRelics <= 3)
+            {
+                return "Holding key chokepoints with strong units will allow you to explore outwards in the early game.\n" +
+                    "This can help power you up with Relics, Gold, and Events for later waves!";
+            }
+            else if (numRelics <= 5)
+            {
+                return "Taking down the elite gives more relics; which are a big power boost!";
+            }
+            else if (gold >= 250)
+            {
+                return "Buying buildings with gold can help turn the tide of the battle!";
+            }
+            else if (maxPower <= 30)
+            {
+                return "Use events, spells, and ability triggers like <b>Spellcraft</b> or <b>Enrage</b> to create more powerful units to take on the hordes!";
+            }
+            else if (maxHealth <= 40)
+            {
+                return "A set of units with high health can be invaluable in protecting your strong damage dealers!";
+            }
+        }
+        else if (endWave <= 3)
+        {
+            return "Focus on holding key chokepoints with strong units; while allowing others to go exploring for treasure!";
+        }
+
+        return "";
     }
 }

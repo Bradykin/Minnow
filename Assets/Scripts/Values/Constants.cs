@@ -73,11 +73,11 @@ public static class Constants
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;
 #if UNITY_EDITOR
-    public static bool CheatsOn = true;
+    public static bool DevMode = true;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = true;
 #else
-    public static bool CheatsOn = false;
+    public static bool DevMode = false;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
 #endif

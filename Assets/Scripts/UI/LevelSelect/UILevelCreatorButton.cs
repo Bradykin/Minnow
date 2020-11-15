@@ -11,7 +11,7 @@ public class UILevelCreatorButton : UIElementBase
 {
     void Start()
     {
-        gameObject.SetActive(Constants.CheatsOn);
+        gameObject.SetActive(Constants.DevMode);
     }
 
     public void OnPointerClick(PointerEventData eventData)

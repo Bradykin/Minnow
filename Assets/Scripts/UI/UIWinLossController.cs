@@ -10,6 +10,7 @@ public class UIWinLossController : Singleton<UIWinLossController>
 
     public Text m_winLossText;
     public Text m_reputationText;
+    public Text m_hintText;
 
     public void Init(RunEndType runEndType)
     {
@@ -19,10 +20,12 @@ public class UIWinLossController : Singleton<UIWinLossController>
             runEndType == RunEndType.Quit)
         {
             m_winLossText.text = "Defeat...";
+            m_hintText.text = UIHelper.GetHintText();
         }
         else
         {
             m_winLossText.text = "Victory!";
+            m_hintText.text = "";
         }
 
         m_holder.SetActive(true);
