@@ -93,7 +93,10 @@ public static class PlayerDataManager
             }
         }
 
-        HandleEXPGain(experienceAmount);
+        if ((endType == RunEndType.Win && Globals.m_curChaos == 0) || Globals.m_curChaos > 0)
+        {
+            HandleEXPGain(experienceAmount);
+        }
         PlayerAccountData.m_numPlaySessions++;
         PlayerAccountData.ClearRunData();
     }

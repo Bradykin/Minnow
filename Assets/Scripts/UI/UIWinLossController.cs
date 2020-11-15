@@ -25,6 +25,14 @@ public class UIWinLossController : Singleton<UIWinLossController>
             m_winLossText.text = "Victory!";
         }
 
+        m_holder.SetActive(true);
+
+        if (Globals.m_curChaos == 0 && runEndType != RunEndType.Win)
+        {
+            m_reputationText.text = "";
+            return;
+        }
+
         GameController gameController = WorldController.Instance.m_gameController;
 
         bool isVictory = runEndType == RunEndType.Win;
@@ -49,8 +57,6 @@ public class UIWinLossController : Singleton<UIWinLossController>
                 m_reputationText.text += "\n\tFirst Map Clear " + gameController.GetFirstChaosNum();
             }
         }
-
-        m_holder.SetActive(true);
     }
 
     public void End()
