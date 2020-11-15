@@ -27,14 +27,14 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             m_maxHealth = 1000;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 100;
+            m_power = 50;
         }
         else
         {
             m_maxHealth = 700;
             m_maxStamina = 4;
             m_staminaRegen = 4;
-            m_power = 60;
+            m_power = 30;
         }
 
         m_team = Team.Enemy;
@@ -138,6 +138,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             }
         }
 
+        GetWorldTile().ClearSurroundingFog(2);
         while ((int)m_currentChaosWarpAbility == prevValue)
         {
             m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
