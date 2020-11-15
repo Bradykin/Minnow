@@ -87,7 +87,14 @@ public class WorldUnit : MonoBehaviour
             }
             else
             {
-                m_tintRenderer.color = UIHelper.GetDefaultTintColor();
+                if (Globals.m_selectedCard != null && Globals.m_selectedCard.m_card is GameCardSpellBase)
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()));
+                }
+                else
+                {
+                    m_tintRenderer.color = UIHelper.GetDefaultTintColor();
+                }
             }
         }
 
@@ -133,6 +140,13 @@ public class WorldUnit : MonoBehaviour
                 card.m_card.PlayCard(GetUnit());
                 m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetUnit().GetTeam());
                 WorldController.Instance.PostPlayCard();
+            }
+            else
+            {
+                if (Globals.m_selectedCard.m_card is GameCardSpellBase)
+                {
+                    UIHelper.CreateWorldElementNotification("Invalid target for " + Globals.m_selectedCard.m_card.GetBaseName(), false, gameObject);
+                }
             }
         }
         else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))

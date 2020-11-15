@@ -377,7 +377,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else
                 {
-                    UIHelper.CreateWorldElementNotification("Invalid target.", false, gameObject);
+                    UIHelper.CreateWorldElementNotification("This doesn't target tiles.", false, gameObject);
                 }
             }
         }
