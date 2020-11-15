@@ -120,7 +120,17 @@ public class ContentDeltaMap : GameMap
 
     protected override void FillEventPool()
     {
-        FillBasicEventPool();
+        m_eventPool.Add(new ContentMagicianEvent(null));
+        m_eventPool.Add(new ContentStablesEvent(null));
+        m_eventPool.Add(new ContentGoldenFruitEvent(null));
+        m_eventPool.Add(new ContentTraditionOrProgressEvent(null));
+        m_eventPool.Add(new ContentAngelicGiftEvent(null));
+        m_eventPool.Add(new ContentGemsOfProphecyEvent(null));
+        m_eventPool.Add(new ContentOverturnedCartEvent(null));
+        m_eventPool.Add(new ContentMillitiaEvent(null));
+        m_eventPool.Add(new ContentLibraryOfDenumianEvent(null));
+
+        FillAltars();
     }
 
     protected override void FillExclusionRelicPool()

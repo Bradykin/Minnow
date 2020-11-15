@@ -192,7 +192,11 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentRestorationBrickEvent(null));
         m_eventPool.Add(new ContentAngelicGiftEvent(null));
 
-        //Altars
+        FillAltars();
+    }
+
+    protected virtual void FillAltars()
+    {
         m_eventPool.Add(new ContentTelloAltar(null));
         m_eventPool.Add(new ContentMonAltar(null));
         m_eventPool.Add(new ContentDorphinAltar(null));

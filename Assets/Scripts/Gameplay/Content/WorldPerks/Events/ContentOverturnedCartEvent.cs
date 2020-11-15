@@ -16,14 +16,14 @@ public class ContentOverturnedCartEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventTakeGoldOption(50);
+        m_optionOne = new GameEventTakeGoldOption(75);
 
         base.LateInit();
     }
 
     public override string GetOptionOneTooltip()
     {
-        return "Gain 50 gold";
+        return "Gain 75 gold";
     }
 
     public override string GetOptionTwoTooltip()
