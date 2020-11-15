@@ -42,6 +42,16 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         LateInit();
     }
 
+    public override void OnSummon()
+    {
+        base.OnSummon();
+
+        GameHelper.GetGameController().m_activeBossUnits.Add(this);
+
+        GetWorldTile().ClearSurroundingFog(2);
+        UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Eruptions has emerged from the lava to spread his domain!");
+    }
+
     public override string GetDesc()
     {
         string descString = m_desc;
@@ -52,6 +62,13 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         }
 
         return descString;
+    }
+
+    public override void EndTurn()
+    {
+        base.EndTurn();
+
+        GetWorldTile().ClearSurroundingFog(2);
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)

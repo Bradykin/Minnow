@@ -45,6 +45,8 @@ public class ContentImmortalSpearEnemy : GameEnemyUnit
         base.OnSummon();
 
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
+
+        GetWorldTile().ClearSurroundingFog(1);
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)

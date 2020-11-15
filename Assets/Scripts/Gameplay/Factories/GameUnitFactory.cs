@@ -77,6 +77,16 @@ public class GameUnitFactory
         }
     }
 
+    public static void DeInit()
+    {
+        m_playerUnits.Clear();
+        m_enemies.Clear();
+        m_defaultSpawnPool = null;
+        m_spawnPointSpawnPools.Clear();
+        m_bossEnemies.Clear();
+        m_eliteEnemies.Clear();
+    }
+
     public static GameSpawnPoolData GetRandomEnemyFromDefaultSpawnPool(GameOpponent gameOpponent, int curWave)
     {
         if (!m_defaultSpawnPool.TryGetSpawnPoolForWave(curWave, out List<GameSpawnPoolData> list))

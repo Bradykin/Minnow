@@ -15,6 +15,12 @@ public static class GameEventFactory
         m_events = events;
     }
 
+    public static void DeInit()
+    {
+        m_events.Clear();
+
+    }
+
     public static GameEvent GetRandomEvent(GameTile tile)
     {
         List<GameEvent> availableEvents = new List<GameEvent>();

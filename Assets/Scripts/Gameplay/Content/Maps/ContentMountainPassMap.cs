@@ -95,6 +95,7 @@ public class ContentMountainPassMap : GameMap
             return false;
         }
 
+        int numSpawned = 0;
         bool allSpawned = true;
         for (int k = 0; k < immortalEnemyUnits.Count; k++)
         {
@@ -119,6 +120,10 @@ public class ContentMountainPassMap : GameMap
                 if (!gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
                 {
                     allSpawned = false;
+                }
+                else
+                {
+                    numSpawned++;
                 }
             }
             else
@@ -151,7 +156,20 @@ public class ContentMountainPassMap : GameMap
                 {
                     allSpawned = false;
                 }
+                else
+                {
+                    numSpawned++;
+                }
             }
+        }
+
+        if (numSpawned == 3)
+        {
+            UIHelper.CreateHUDNotification("Boss Arrived", "The Immortals has arrived to lead the legions of your enemies!"); 
+        }
+        else if (numSpawned > 0)
+        {
+            UIHelper.CreateHUDNotification("Immortals Respawned", "The Immortals have respawned their fallen ranks");
         }
 
         return allSpawned;
