@@ -27,11 +27,24 @@ public class UIWinLossController : Singleton<UIWinLossController>
 
         GameController gameController = WorldController.Instance.m_gameController;
 
-        m_reputationText.text = "Reputation Gained Total: " + gameController.GetRunExperienceNum() + "\n" +
+        bool isVictory = runEndType == RunEndType.Win;
+        bool isFirstChaosClear = !PlayerDataManager.IsChaosLevelAchieved(gameController.GetCurMap().m_id, Globals.m_curChaos);
+
+        m_reputationText.text = "Reputation Gained Total: " + gameController.GetRunExperienceNum(isVictory, isFirstChaosClear) + "\n" +
             "\tBase - " + gameController.GetBaseExpNum() + "\n" +
             "\tElite Kills - " + gameController.GetEliteExpNum() + "\n" +
             "\tEnemy Kills - " + gameController.GetKillExpNum() + "\n" +
             "\tEvent Discovery - " + gameController.GetEventExpNum();
+
+        if (isVictory)
+        {
+            m_reputationText.text += "\n\tVictory - " + gameController.GetVictoryNum();
+            
+            if (isFirstChaosClear)
+            {
+                m_reputationText.text += "\n\tFirst " + gameController.GetCurMap().GetBaseName() + " Chaos " + Globals.m_curChaos + " Clear - " + gameController.GetFirstChaosNum();
+            }
+        }
 
         m_holder.SetActive(true);
     }

@@ -77,8 +77,7 @@ public static class PlayerDataManager
 
             if (firstTimeCompleteChaosLevel)
             {
-                GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos, out int bonusExpAmount);
-                experienceAmount += bonusExpAmount;
+                GameMetaprogressionUnlocksDataManager.CompleteMapAtChaosFirstTime(mapID, curChaos);
 
                 if (Globals.m_curChaos <= 4 && mapID != 0)
                 {

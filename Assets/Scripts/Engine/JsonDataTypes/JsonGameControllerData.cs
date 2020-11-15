@@ -7,10 +7,13 @@ public struct JsonGameControllerData
     public int currentWave;
     public int currentTurn;
     public int mapId;
+
     public int runKillExp;
     public int runEventExp;
     public int runBaseExp;
     public int runEliteExp;
+    public int runVictoryExp;
+    public int runFirstChaosExp;
 
     public int randomSeed;
 

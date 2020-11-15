@@ -41,6 +41,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     private int m_killEliteExpAmount;
     private int m_eventExpAmount;
     private int m_baseExpAmount = 50;
+    private int m_victoryAmount = 200;
+    private int m_firstChaosClearAmount = 500;
 
     public int m_randomSeed;
 
@@ -214,7 +216,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         
         if (endType != RunEndType.Quit)
         {
-            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(), m_map.m_id, Globals.m_curChaos);
+            bool isVictory = endType == RunEndType.Win;
+            bool firstChaosClear = !PlayerDataManager.IsChaosLevelAchieved(GetCurMap().m_id, Globals.m_curChaos);
+            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(isVictory, firstChaosClear), m_map.m_id, Globals.m_curChaos);
             Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }
     }
@@ -234,14 +238,36 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         return m_baseExpAmount;
     }
 
+    public int GetVictoryNum()
+    {
+        return m_victoryAmount;
+    }
+
+    public int GetFirstChaosNum()
+    {
+        return m_firstChaosClearAmount;
+    }
+
     public int GetEliteExpNum()
     {
         return m_killEliteExpAmount;
     }
 
-    public int GetRunExperienceNum()
+    public int GetRunExperienceNum(bool victory, bool firstChaos)
     {
-        return m_baseExpAmount + m_killExpAmount + m_eventExpAmount + m_killEliteExpAmount;
+        int toReturn = m_baseExpAmount + m_killExpAmount + m_eventExpAmount + m_killEliteExpAmount;
+        
+        if (victory)
+        {
+            toReturn += m_victoryAmount;
+
+            if (firstChaos)
+            {
+                toReturn += m_firstChaosClearAmount;
+            }
+        }
+
+        return toReturn;
     }
 
     //============================================================================================================//
@@ -253,10 +279,14 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             currentWave = m_currentWaveNumber,
             currentTurn = m_currentTurnNumber,
             mapId = GetCurMap().m_id,
+
             runBaseExp = m_baseExpAmount,
             runKillExp = m_killExpAmount,
             runEventExp = m_eventExpAmount,
             runEliteExp = m_killEliteExpAmount,
+            runVictoryExp = m_victoryAmount,
+            runFirstChaosExp = m_firstChaosClearAmount,
+
             randomSeed = m_randomSeed,
 
             numRareUnitOptionsOffered = m_numRareUnitOptionsOffered,
@@ -281,10 +311,13 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
+
         m_baseExpAmount = jsonData.runBaseExp;
         m_killExpAmount = jsonData.runKillExp;
         m_eventExpAmount = jsonData.runEventExp;
         m_killEliteExpAmount = jsonData.runEliteExp;
+        m_victoryAmount = jsonData.runVictoryExp;
+        m_firstChaosClearAmount = jsonData.runFirstChaosExp;
 
         m_numRareUnitOptionsOffered = jsonData.numRareUnitOptionsOffered;
         m_previousRareUnitOptionWave = jsonData.previousRareUnitOptionWave;

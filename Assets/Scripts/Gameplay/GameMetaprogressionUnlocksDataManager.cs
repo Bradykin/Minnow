@@ -171,9 +171,8 @@ public static class GameMetaprogressionUnlocksDataManager
         return null;
     }
 
-    public static void CompleteMapAtChaosFirstTime(int mapId, int chaosNum, out int bonusExpAmount)
+    public static void CompleteMapAtChaosFirstTime(int mapId, int chaosNum)
     {
-        bonusExpAmount = 0;
         PlayerAccountData accountData = PlayerDataManager.PlayerAccountData;
 
         if (mapId == 0 && chaosNum == 0)
@@ -185,8 +184,6 @@ public static class GameMetaprogressionUnlocksDataManager
         {
             if (m_dataElements[i].GetMap().m_id == mapId)
             {
-                bonusExpAmount += m_dataElements[i].GetBonusExp();
-
                 if (chaosNum == 2)
                 {
                     GameCard card = m_dataElements[i].GetCard();
