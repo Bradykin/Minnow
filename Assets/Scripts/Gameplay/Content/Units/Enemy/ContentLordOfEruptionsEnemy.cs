@@ -10,17 +10,17 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_maxHealth = 700;
+            m_maxHealth = 900;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 30;
+            m_power = 25;
         }
         else
         {
-            m_maxHealth = 500;
+            m_maxHealth = 600;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 15;
+            m_power = 12;
         }
 
         m_team = Team.Enemy;
