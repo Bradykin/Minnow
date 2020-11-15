@@ -886,7 +886,7 @@ public static class UIHelper
 
     private static bool IsKeyValid()
     {
-        if (Constants.CheatsOn && UICheatConsoleController.Instance.m_consoleHolder.activeSelf)
+        if (Constants.DevMode && UICheatConsoleController.Instance.m_consoleHolder.activeSelf)
         {
             return false;
         }

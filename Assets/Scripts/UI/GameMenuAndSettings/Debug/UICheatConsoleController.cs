@@ -12,7 +12,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     void Start()
     {
-        if (!Constants.CheatsOn)
+        if (!Constants.DevMode)
         {
             gameObject.SetActive(false);
         }
