@@ -40,9 +40,13 @@ public class UIWinLossController : Singleton<UIWinLossController>
         {
             m_reputationText.text += "\n\tVictory - " + gameController.GetVictoryNum();
             
-            if (isFirstChaosClear)
+            if (isFirstChaosClear && Globals.m_curChaos > 0)
             {
                 m_reputationText.text += "\n\tFirst " + gameController.GetCurMap().GetBaseName() + " Chaos " + Globals.m_curChaos + " Clear - " + gameController.GetFirstChaosNum();
+            }
+            else if (isFirstChaosClear && Globals.m_curChaos == 0) //This is Lakeside bonus clear
+            {
+                m_reputationText.text += "\n\tFirst Map Clear " + gameController.GetFirstChaosNum();
             }
         }
 

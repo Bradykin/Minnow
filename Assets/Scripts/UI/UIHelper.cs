@@ -693,7 +693,7 @@ public static class UIHelper
 
     public static void CreateChaosTooltipStack()
     {
-        for (int i = 1; i < Globals.m_curChaos; i++)
+        for (int i = 1; i < Globals.m_curChaos+1; i++)
         {
             CreateChaosTooltip(i);
         }
@@ -709,7 +709,7 @@ public static class UIHelper
 
         string descText = GetChaosDesc(chaosVal);
 
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Chaos Level " + chaosVal, descText));
+        UITooltipController.Instance.AddTooltipToSecondStack(UIHelper.CreateSimpleTooltip("Chaos Level " + chaosVal, descText));
     }
 
     public static string GetChaosDesc(int chaosVal)
