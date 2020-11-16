@@ -68,11 +68,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
             if (m_gameWorldPerk != null)
             {
-                m_gameWorldPerk.Trigger();
                 if (m_gameWorldPerk.IsGold())
                 {
                     UIHelper.CreateWorldElementNotification("+" + m_gameWorldPerk.GetGoldVal() + " gold!", true, m_worldTile.gameObject);
                 }
+
+                m_gameWorldPerk.Trigger();
 
                 m_gameWorldPerk = null;
             }

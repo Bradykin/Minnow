@@ -11,7 +11,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
         m_name = "Assassination Contract";
         m_desc = "Add " + m_shivAmount + " shivs to your hand.";
         m_targetType = Target.None;
-        m_cost = 2;
+        m_cost = 3;
         m_rarity = GameRarity.Common;
 
         m_keywordHolder.AddKeyword(new GameShivKeyword());
