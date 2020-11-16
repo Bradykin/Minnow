@@ -949,6 +949,11 @@ public static class UIHelper
             return "Focus on holding key chokepoints with strong units; while allowing others to go exploring for treasure!";
         }
 
-        return "";
+        return GetRandomGenericHintTextString();
+    }
+
+    private static string GetRandomGenericHintTextString()
+    {
+        return "There are only so many turns in a run; each one is a resource, so use them wisely!";
     }
 }
