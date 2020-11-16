@@ -59,7 +59,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentDevourerCard());
         m_cards.Add(new ContentDwarfArchitectCard());
         m_cards.Add(new ContentDwarfShivcasterCard());
-        m_cards.Add(new ContentDwarvenSoldierCard());
         m_cards.Add(new ContentElvenRogueCard());
         m_cards.Add(new ContentElvenSentinelCard());
         m_cards.Add(new ContentElvenWizardCard());
@@ -85,12 +84,17 @@ public static class GameCardFactory
         m_cards.Add(new ContentStoneGolemCard());
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
+
+        //Enemy Related Cards
         m_cards.Add(new ContentZombieCard());
+
+        //Starter Cards
         m_cards.Add(new ContentLizardSoldierCard());
         m_cards.Add(new ContentUndeadMammothCard());
         m_cards.Add(new ContentSandwalkerCard());
         m_cards.Add(new ContentMechanizedBeastCard());
         m_cards.Add(new ContentAlphaBoarCard());
+        m_cards.Add(new ContentDwarvenSoldierCard());
 
         //Building Unit Cards
         m_cards.Add(new ContentRoyalCaravanCard());
@@ -144,6 +148,8 @@ public static class GameCardFactory
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentWeakeningBoltCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
+
+        //Event Cards
         m_cards.Add(new ContentLivingBombCard());
 
         //Tribal cards, for exclusion list
