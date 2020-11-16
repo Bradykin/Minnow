@@ -53,9 +53,28 @@ public class ContentDeltaMap : GameMap
 
     protected override void FillSpawnPool()
     {
+        /*m_totalEnemiesOnMap.Add(new ContentLordOfChaosEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSandWyvernEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentBasiliskEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentJackalEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentCrumblingAncientEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSandVortexEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentDjinnEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentMummyEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentRiverlurkerEnemy(null));
+
+
+        m_totalEnemiesOnMap.Add(new ContentScorchingSerpentEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentDemonMagicianEnemy(null));
+
+
+        m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));*/
+
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLordOfChaosEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
