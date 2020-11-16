@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentMountainPassMap : GameMap
@@ -95,6 +96,58 @@ public class ContentMountainPassMap : GameMap
             return false;
         }
 
+        if (!gameOpponent.m_hasSpawnedBoss)
+        {
+            List<WorldTile> validTiles = new List<WorldTile>();
+            List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 12);
+
+            for (int i = 0; i < tilesInRange.Count; i++)
+            {
+                if (!tilesInRange[i].GetGameTile().IsOccupied() && !tilesInRange[i].GetGameTile().HasBuilding() && tilesInRange[i].GetGameTile().IsPassable(null, false))
+                {
+                    validTiles.Add(tilesInRange[i]);
+                }
+            }
+
+            while (true)
+            {
+
+                int r = UnityEngine.Random.Range(0, validTiles.Count);
+
+                List<GameTile> surroundingValidSpawnTiles = WorldGridManager.Instance.GetSurroundingGameTiles(validTiles[r].GetGameTile(), 2, 2).Where(t => t.IsPassable(null, false)).ToList();
+
+                if (surroundingValidSpawnTiles.Count < 2)
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < surroundingValidSpawnTiles.Count; i++)
+                {
+                    GameTile temp = surroundingValidSpawnTiles[i];
+                    int randomIndex = UnityEngine.Random.Range(i, surroundingValidSpawnTiles.Count);
+                    surroundingValidSpawnTiles[i] = surroundingValidSpawnTiles[randomIndex];
+                    surroundingValidSpawnTiles[randomIndex] = temp;
+                }
+
+                GameTile gameTile1 = validTiles[r].GetGameTile();
+                GameTile gameTile2 = surroundingValidSpawnTiles[0];
+                GameTile gameTile3 = surroundingValidSpawnTiles[1];
+
+                gameOpponent.ForceSpawnNearPosition(new ContentImmortalSpearEnemy(gameOpponent), gameTile1);
+                gameOpponent.ForceSpawnNearPosition(new ContentImmortalBowEnemy(gameOpponent), gameTile2);
+                gameOpponent.ForceSpawnNearPosition(new ContentImmortalBannerEnemy(gameOpponent), gameTile3);
+                gameTile1.GetWorldTile().ClearSurroundingFog(2);
+                gameTile2.GetWorldTile().ClearSurroundingFog(2);
+                gameTile3.GetWorldTile().ClearSurroundingFog(2);
+
+                break;
+            }
+
+            UIHelper.CreateHUDNotification("Boss Arrived", "The Immortals has arrived to lead the legions of your enemies!");
+
+            return true;
+        }
+
         int numSpawned = 0;
         bool allSpawned = true;
         for (int k = 0; k < immortalEnemyUnits.Count; k++)
@@ -163,11 +216,7 @@ public class ContentMountainPassMap : GameMap
             }
         }
 
-        if (numSpawned == 3)
-        {
-            UIHelper.CreateHUDNotification("Boss Arrived", "The Immortals has arrived to lead the legions of your enemies!"); 
-        }
-        else if (numSpawned > 0)
+        if (numSpawned > 0)
         {
             UIHelper.CreateHUDNotification("Immortals Respawned", "The Immortals have respawned their fallen ranks");
         }

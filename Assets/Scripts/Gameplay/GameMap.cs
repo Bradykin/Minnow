@@ -20,7 +20,7 @@ public abstract class GameMap : GameElementBase
 
     protected bool m_fogSpawningActive = true;
 
-    protected bool m_spawnCrystals = true;
+    protected bool m_spawnCrystals = false;
     protected int m_destroyedCrystals;
 
     public AudioClip m_backgroundMusic;
