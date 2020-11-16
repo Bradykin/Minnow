@@ -111,6 +111,24 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cards.Add(new ContentCurseOfInactionCard());
          */
 
+        //Monsters - 2
+        //Spellcraft- 3
+        //Shivs - 4
+        //Creations - 5
+        //Max Stamina - 6
+        //Knowledgeable - 7
+        //Humanoids - 8
+        //Stamina Regen - 9
+        //Terrain - 10
+        //Tanks - 11
+        //Reanimation - 12
+        //Enrage - 13
+        //Gold - 14
+        //Buffs - 15
+        //Buff Target - 16
+        //Silver Bullets - 17
+        //Flexible - 18
+
         m_cardRewards.Add(2, CreateCardLevelReward("Monsters",
             "<b>Monster<b> units are generally larger, and they like <b>Enrage</b>, <b>Momentum</b>, and <b>Victorious</b>!",
             new ContentDevourerCard(), new ContentGoblinCard(), new ContentFuryCard())); //nmartino - rework goblin to use keywords
@@ -178,24 +196,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cardRewards.Add(18, CreateCardLevelReward("Flexible",
             "Flexibility has a value of it's own!",
             new ContentFirestormCard(), new ContentPurgeCard(), new ContentWisdomOfThePastCard()));
-
-        //Monsters - 2
-        //Spellcraft- 3
-        //Shivs - 4
-        //Creations - 5
-        //Max Stamina - 6
-        //Knowledgeable - 7
-        //Humanoids - 8
-        //Stamina Regen - 9
-        //Terrain - 10
-        //Tanks - 11
-        //Reanimation - 12
-        //Enrage - 13
-        //Gold - 14
-        //Buffs - 15
-        //Buff Target - 16
-        //Silver Bullets - 17
-        //Flexible - 18
     }
 
     private static void AddRelicRewards()
