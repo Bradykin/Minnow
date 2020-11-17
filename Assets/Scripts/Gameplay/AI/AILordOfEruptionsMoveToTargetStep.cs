@@ -195,10 +195,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             yield break;
         }
 
-        if (m_AIGameEnemyUnit.m_targetGameTile == null)
-        {
-            SetTargetGameTileInMoveTowardsCastle();
-        }
+        SetTargetGameTileInMoveTowardsCastle();
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
@@ -234,10 +231,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
             return;
         }
 
-        if (m_AIGameEnemyUnit.m_targetGameTile == null)
-        {
-            SetTargetGameTileInMoveTowardsCastle();
-        }
+        SetTargetGameTileInMoveTowardsCastle();
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())

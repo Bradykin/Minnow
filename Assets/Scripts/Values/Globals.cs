@@ -44,7 +44,6 @@ public static class Globals
 
     //Temp testing value
     public static GameEnemyUnit m_testSpawnEnemyUnit = null;
-    public static GameEnemyUnit m_focusedDebugEnemyUnit = null;
 
     //Values that will be moved into player save data
     public static int m_goldPerShivKill = 0;

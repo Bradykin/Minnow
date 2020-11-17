@@ -1741,19 +1741,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false, bool letPassEnemies = true)
     {
-        if (this == Globals.m_focusedDebugEnemyUnit)
-        {
-            Debug.Log("IS FOCUSED ENEMY");
-        }
-
         if (tile == m_gameTile || staminaToUse <= 0)
         {
             return m_gameTile;
         }
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, letPassEnemies);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {
@@ -1795,7 +1790,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     return path[i];
                 }
             }
-            return m_gameTile;
+
+            if (letPassEnemies)
+            {
+                return GetMoveTowardsDestination(tile, staminaToUse, ignoreTerrainDifference, false);
+            }
+            else
+            {
+                return m_gameTile;
+            }
         }
         else
         {

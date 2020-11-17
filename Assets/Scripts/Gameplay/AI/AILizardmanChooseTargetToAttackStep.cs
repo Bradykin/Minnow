@@ -54,8 +54,8 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
         m_AIGameEnemyUnit.m_targetGameElement = null;
         m_AIGameEnemyUnit.m_targetGameTile = null;
 
-        //GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
-        //m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
+        GameTile moveDestination = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen()));
+        m_AIGameEnemyUnit.m_targetGameTile = moveDestination;
     }
 
     protected GameUnit FindClosestUnitInRangeToWater()
@@ -140,6 +140,11 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
     protected int DistanceToWaterOnPath(GameTile gameTile)
     {
         List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), gameTile, false, true, false);
+
+        if (pathToTile.Count == 0)
+        {
+            return 9999;
+        }
 
         int distance = 0;
         for (int i = pathToTile.Count - 1; i >= 0; i--)
