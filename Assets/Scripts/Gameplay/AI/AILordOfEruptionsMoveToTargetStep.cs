@@ -8,7 +8,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 {
     private ContentLordOfEruptionsEnemy lordOfEruptionsEnemy;
 
-    public AILordOfEruptionsMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit)
+    public AILordOfEruptionsMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit, int numTurnsDelayMovement = 0) : base(AIGameEnemyUnit, numTurnsDelayMovement)
     {
         if (!(m_AIGameEnemyUnit.m_gameEnemyUnit is ContentLordOfEruptionsEnemy))
         {

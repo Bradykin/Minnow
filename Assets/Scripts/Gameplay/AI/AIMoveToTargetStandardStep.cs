@@ -8,7 +8,7 @@ public class AIMoveToTargetStandardStep : AIMoveStep
 {
     protected bool letPassEnemies = false;
 
-    public AIMoveToTargetStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AIMoveToTargetStandardStep(AIGameEnemyUnit AIGameEnemyUnit, int numTurnsDelayMovement = 0) : base(AIGameEnemyUnit, numTurnsDelayMovement) { }
 
     public override IEnumerator TakeStepCoroutine()
     {
