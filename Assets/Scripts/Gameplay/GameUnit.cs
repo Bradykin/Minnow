@@ -1358,6 +1358,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_gameTile.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover;
     }
 
+    public bool IsInDunes()
+    {
+        if (m_gameTile == null)
+        {
+            return false;
+        }
+
+        if (!GameHelper.IsUnitInWorld(this))
+        {
+            return false;
+        }
+
+        if (GetFlyingKeyword() != null)
+        {
+            return false;
+        }
+
+        if (m_gameTile.HasBuilding())
+        {
+            return true;
+        }
+
+        return m_gameTile.GetTerrain().IsDunes();
+    }
+
     public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;
@@ -1956,6 +1981,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (IsInCover())
         {
             returnDesc += "<b>Cover</b>: 50% damage taken. (rounded down)\n";
+        }
+
+        if (IsInDunes())
+        {
+            returnDesc += $"<b>Spell Cover</b>: {Constants.SandDuneMagicDamageReductionPercentage}% less damage from spells.\n";
         }
 
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
