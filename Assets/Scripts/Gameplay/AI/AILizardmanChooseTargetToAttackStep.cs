@@ -141,7 +141,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
     {
         List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), gameTile, false, true, false);
 
-        if (pathToTile.Count == 0)
+        if (pathToTile == null || pathToTile.Count == 0)
         {
             return 9999;
         }
