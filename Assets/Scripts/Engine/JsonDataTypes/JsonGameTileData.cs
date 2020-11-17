@@ -17,7 +17,7 @@ public class JsonGameTileData
 
     public List<int> gameEventMarkers;
 
-    public bool isFog;
-    public bool isSoftFog;
-    public bool isFogBorder;
+    public bool isFog = true;
+    public bool isSoftFog = false;
+    public bool isFogBorder = false;
 }

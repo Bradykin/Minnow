@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentLordOfShadowsEnemy : GameEnemyUnit
@@ -102,7 +103,10 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
     public override void EndTurn()
     {
         TryExplodeBrightness();
-        
+
+        GameTile tileToFleeTo = FindDestinationTileFarthestFromThreats(WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2, 0).Where(t => t.m_isFog).ToList());
+        m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(tileToFleeTo, false);
+
         base.EndTurn();
     }
 
@@ -129,6 +133,49 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
             m_brightnessLevel = 0;
             WorldGridManager.Instance.EndIntermissionFogUpdate();
         }
+    }
+
+    private GameTile FindDestinationTileFarthestFromThreats(List<GameTile> possibleTiles)
+    {
+        if (possibleTiles.Count == 0)
+        {
+            return null;
+        }
+
+        if (possibleTiles.Count == 1)
+        {
+            return possibleTiles[0];
+        }
+
+        for (int i = 3; i > 0; i--)
+        {
+            int minNumThreats = possibleTiles.Min(t => FindNumThreatsInAreaAroundTile(t, i));
+
+            if (minNumThreats == 0 || i == 1)
+            {
+                List<GameTile> noThreatTiles = possibleTiles.Where(t => FindNumThreatsInAreaAroundTile(t, i) == 0).ToList();
+                return noThreatTiles[Random.Range(0, noThreatTiles.Count)];
+            }
+        }
+
+        Debug.LogError("Code reached a point it never should.");
+        return possibleTiles[0];
+    }
+
+    private int FindNumThreatsInAreaAroundTile(GameTile tile, int range)
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, range);
+        int numThreats = 0;
+
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+            {
+                numThreats++;
+            }
+        }
+
+        return numThreats;
     }
 
     public override string GetDesc()

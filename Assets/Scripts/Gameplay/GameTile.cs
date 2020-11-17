@@ -397,6 +397,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             isFogBorder = m_isFogBorder
         };
 
+        if (GameHelper.IsInLevelBuilder())
+        {
+            jsonData.isFog = true;
+            jsonData.isSoftFog = false;
+            jsonData.isFogBorder = false;
+        }
+
         if (m_occupyingUnit != null)
         {
             jsonData.gameUnitData = m_occupyingUnit.SaveToJson();
@@ -428,9 +435,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public void LoadFromJson(JsonGameTileData jsonData)
     {
         m_gridPosition = new Vector2Int(jsonData.gridPositionX, jsonData.gridPositionY);
-        m_isFog = jsonData.isFog;
-        m_isSoftFog = jsonData.isSoftFog;
-        m_isFogBorder = jsonData.isFogBorder;
+
+        if (Globals.loadingRun)
+        {
+            m_isFog = jsonData.isFog;
+            m_isSoftFog = jsonData.isSoftFog;
+            m_isFogBorder = jsonData.isFogBorder;
+        }
 
         if (jsonData.gameTerrainData != null)
         {
