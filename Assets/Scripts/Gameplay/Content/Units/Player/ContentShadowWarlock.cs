@@ -15,11 +15,11 @@ public class ContentShadowWarlock : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 2, 0)), false);
+        AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 1, 0)), false);
         AddKeyword(new GameRangeKeyword(3), false);
 
         m_name = "Shadow Warlock";
-        m_typeline = Typeline.Monster;
+        m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();

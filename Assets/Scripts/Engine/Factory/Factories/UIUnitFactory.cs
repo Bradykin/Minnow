@@ -53,11 +53,6 @@ namespace Game.Util
                 uiUnit.SetVisible(false);
             }
 
-            if (uiUnit.GetUnit().GetTeam() == Team.Player)
-            {
-                FactoryManager.Instance.GetFactory<UIBorderUnitFactory>().CreateObject<UIBorderUnit>(uiUnit);
-            }
-
             return obj.GetComponent<T>();
         }
 
