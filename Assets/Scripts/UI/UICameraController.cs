@@ -16,6 +16,7 @@ public class UICameraController : Singleton<UICameraController>
     private float m_cameraLimitRight = 3.0f * (Constants.GridSizeX - 3);
 
     public Vector3 m_startingTransform { get; private set; }
+    public Vector3 m_levelSelectReturnTransform;
 
     private Vector3 m_smoothTarget;
     private float m_smoothSpeed;
