@@ -13,6 +13,7 @@ public class JsonGameTileData
     public JsonGameBuildingData gameBuildingData;
     public JsonGameTerrainData gameTerrainData;
     public JsonGameSpawnPointData gameSpawnPointData;
+    public JsonGameWorldPerkData gameWorldPerkData;
 
     public List<int> gameEventMarkers;
 

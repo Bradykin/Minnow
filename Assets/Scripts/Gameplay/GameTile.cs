@@ -216,7 +216,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             if (newTerrain.IsEventTerrain())
             {
-                m_gameWorldPerk = new GameWorldPerk(GameEventFactory.GetRandomEvent(this));
+                m_gameWorldPerk = new GameWorldPerk(this, GameEventFactory.GetRandomEvent(this));
                 m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
             }
         }
@@ -417,6 +417,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             jsonData.gameEventMarkers = m_gameEventMarkers;
         }
+        if (m_gameWorldPerk != null)
+        {
+            jsonData.gameWorldPerkData = m_gameWorldPerk.SaveToJson();
+        }
 
         return jsonData;
     }
@@ -460,6 +464,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         else
         {
             m_gameEventMarkers = new List<int>();
+        }
+
+        if (jsonData.gameWorldPerkData != null)
+        {
+            m_gameWorldPerk = new GameWorldPerk(this);
+            m_gameWorldPerk.LoadFromJson(jsonData.gameWorldPerkData);
         }
     }
 

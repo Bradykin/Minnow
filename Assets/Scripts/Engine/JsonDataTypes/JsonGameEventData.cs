@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct JsonGameEventData
+public class JsonGameEventData
 {
     //GameElementBase values
     public string name;

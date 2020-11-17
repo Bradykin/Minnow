@@ -90,7 +90,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < Constants.NumCommonChests; i++)
         {
             int r = UnityEngine.Random.Range(0, validTiles.Count);
-            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Common);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), GameElementBase.GameRarity.Common);
 
             validTiles.RemoveAt(r);
         }
@@ -111,7 +111,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < Constants.NumUncommonChests; i++)
         {
             int r = UnityEngine.Random.Range(0, validTiles.Count);
-            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Uncommon);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), GameElementBase.GameRarity.Uncommon);
 
             validTiles.RemoveAt(r);
         }
@@ -132,7 +132,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < Constants.NumRareChests; i++)
         {
             int r = UnityEngine.Random.Range(0, validTiles.Count);
-            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(GameElementBase.GameRarity.Rare);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), GameElementBase.GameRarity.Rare);
 
             validTiles.RemoveAt(r);
         }
@@ -156,7 +156,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < Constants.NumCloseGold; i++)
         {
             int r = UnityEngine.Random.Range(0, validTiles.Count);
-            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(Constants.CloseGoldVal);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), Constants.CloseGoldVal);
 
             validTiles.RemoveAt(r);
         }
@@ -177,7 +177,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         for (int i = 0; i < Constants.NumFarGold; i++)
         {
             int r = UnityEngine.Random.Range(0, validTiles.Count);
-            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(Constants.FarGoldVal);
+            validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), Constants.FarGoldVal);
 
             validTiles.RemoveAt(r);
         }
@@ -199,19 +199,19 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         int r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentTelloAltar(validTiles[r].GetGameTile()));
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), new ContentTelloAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentDorphinAltar(validTiles[r].GetGameTile()));
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), new ContentDorphinAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentMonAltar(validTiles[r].GetGameTile()));
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), new ContentMonAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
 
         r = UnityEngine.Random.Range(0, validTiles.Count);
-        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(new ContentSugoAltar(validTiles[r].GetGameTile()));
+        validTiles[r].GetGameTile().m_gameWorldPerk = new GameWorldPerk(validTiles[r].GetGameTile(), new ContentSugoAltar(validTiles[r].GetGameTile()));
         validTiles.RemoveAt(r);
     }
 
@@ -506,12 +506,15 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             }
         }
 
-        if (WorldController.Instance.m_gameController.GetCurMap().GetShouldSpawnCrystals())
+        if (!Globals.loadingRun)
         {
-            PlaceCrystals();
+            if (WorldController.Instance.m_gameController.GetCurMap().GetShouldSpawnCrystals())
+            {
+                PlaceCrystals();
+            }
+            PlaceChests();
+            PlaceGold();
         }
-        PlaceChests();
-        PlaceGold();
 
         UICameraController.Instance.SnapToGameObject(WorldController.Instance.m_gameController.m_player.GetCastleWorldTile().gameObject);
     }

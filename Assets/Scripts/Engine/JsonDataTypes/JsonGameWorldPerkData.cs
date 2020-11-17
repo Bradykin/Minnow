@@ -11,5 +11,13 @@ public class JsonGameWorldPerkData
 
     //For chests
     public int chestRarity;
+
+    //For events
     public JsonGameEventData gameEventData;
+
+    //For altars
+    public JsonGameEventData gameAltarData;
+
+    //For gold
+    public int goldValue;
 }
