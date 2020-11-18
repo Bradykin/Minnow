@@ -33,7 +33,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int GetStaminaToAttack()
+    public override int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
@@ -41,11 +41,11 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         }
         else
         {
-            return base.GetStaminaToAttack();
+            return base.GetStaminaToAttack(targetToAttack);
         }
     }
 
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         int amount = base.HitUnit(other, damageAmount, spendStamina, shouldThorns);
 

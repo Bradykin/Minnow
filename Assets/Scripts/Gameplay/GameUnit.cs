@@ -507,7 +507,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
+        GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
+
         SetGameTile(null);
+    }
+
+    public virtual void OnOtherDie(GameUnit other, GameTile deathLocation)
+    {
+
     }
 
     //Returns the amount actually healed
@@ -571,7 +579,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (!HasStaminaToAttack())
+        if (!HasStaminaToAttack(other))
         {
             return false;
         }
@@ -591,7 +599,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (!HasStaminaToAttack())
+        if (!HasStaminaToAttack(building))
         {
             return false;
         }
@@ -682,9 +690,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public virtual bool HasStaminaToAttack()
+    public virtual bool HasStaminaToAttack(GameElementBase targetToAttack)
     {
-        if (m_curStamina < GetStaminaToAttack())
+        if (m_curStamina < GetStaminaToAttack(targetToAttack))
         {
             return false;
         }
@@ -773,11 +781,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return toReturn;
     }
 
-    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         if (spendStamina)
         {
-            SpendStamina(GetStaminaToAttack());
+            SpendStamina(GetStaminaToAttack(other));
+        }
+
+        List<GameTile> tilesToCleave = new List<GameTile>();
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
+            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
         }
 
         int damageTaken = other.GetHitByUnit(damageAmount, this);
@@ -819,14 +835,37 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             UIHelper.ReselectUnit();
         }
 
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            for (int i = 0; i < tilesToCleave.Count; i++)
+            {
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].m_occupyingUnit.GetTeam() != GetTeam())
+                {
+                    damageTaken += HitUnit(tilesToCleave[i].m_occupyingUnit, GetDamageToDealTo(tilesToCleave[i].m_occupyingUnit), spendStamina: false, canCleave: false);
+                }
+                else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitBuilding(tilesToCleave[i].GetBuilding(), spendStamina: false, canCleave: false);
+                }
+            }
+        }
+
         return damageTaken;
     }
 
-    public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true)
+    public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
     {
         if (spendStamina)
         {
-            SpendStamina(GetStaminaToAttack());
+            SpendStamina(GetStaminaToAttack(other));
+        }
+
+        List<GameTile> tilesToCleave = new List<GameTile>();
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
+            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -866,6 +905,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            for (int i = 0; i < tilesToCleave.Count; i++)
+            {
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].m_occupyingUnit.GetTeam() != GetTeam())
+                {
+                    damageTaken += HitUnit(tilesToCleave[i].m_occupyingUnit, GetDamageToDealTo(tilesToCleave[i].m_occupyingUnit), spendStamina: false, canCleave: false);
+                }
+                else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitBuilding(tilesToCleave[i].GetBuilding(), spendStamina: false, canCleave: false);
+                }
+            }
+        }
+
         return 0;
     }
 
@@ -894,7 +948,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_curStamina;
     }
 
-    public virtual int GetStaminaToAttack()
+    public virtual int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         int staminaToAttack = m_staminaToAttack;
         if (GetTeam() == Team.Player)
@@ -1036,6 +1090,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         //Return it
         return toReturn;
+    }
+
+    public virtual GameCleaveKeyword GetCleaveKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameCleaveKeyword>();
     }
 
     public virtual GameFlyingKeyword GetFlyingKeyword()
@@ -1898,6 +1957,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (tauntKeyword != null)
         {
             returnDesc += tauntKeyword.GetDisplayString() + "\n";
+        }
+
+        GameCleaveKeyword cleaveKeyword = GetCleaveKeyword();
+        if (cleaveKeyword != null)
+        {
+            returnDesc += cleaveKeyword.GetDisplayString() + "\n";
         }
 
         GameLavawalkKeyword lavawalkKeyword = GetLavawalkKeyword();

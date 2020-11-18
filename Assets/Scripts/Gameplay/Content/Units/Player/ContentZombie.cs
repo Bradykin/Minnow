@@ -40,7 +40,7 @@ public class ContentZombie : GameUnit
         return base.CanHitUnit(other, checkRange);
     }
 
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 

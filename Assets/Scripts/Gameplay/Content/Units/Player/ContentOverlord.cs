@@ -11,7 +11,7 @@ public class ContentOverlord : GameUnit
         m_maxHealth = 12;
         m_maxStamina = 6;
         m_staminaRegen = 3;
-        m_power = 2;
+        m_power = 4;
         m_staminaToAttack = 1;
 
         m_team = Team.Player;
@@ -29,17 +29,20 @@ public class ContentOverlord : GameUnit
 
     public override int GetDamageToDealTo(GameUnit target)
     {
-        int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
-        this.SpendStamina(GetCurStamina());
+        int damage = GetPower() * GetCurStamina();
 
         return damage;
     }
 
     public override int GetDamageToDealTo(GameBuildingBase target)
     {
-        int damage = GetPower() * (GetCurStamina() + m_staminaToAttack);
-        this.SpendStamina(GetCurStamina());
+        int damage = GetPower() * GetCurStamina();
 
         return damage;
+    }
+
+    public override int GetStaminaToAttack(GameElementBase targetToAttack)
+    {
+        return Mathf.Max(1, GetCurStamina());
     }
 }

@@ -37,7 +37,7 @@ public class GameGainStatsRangeAction : GameAction
 
     public override string GetDesc()
     {
-        return $"All friendly units within range {m_ranges.Max()} gain +{m_powerToGain}/+{m_healthToGain} Stamina";
+        return $"All friendly units within range {m_ranges.Max()} gain +{m_powerToGain}/+{m_healthToGain}";
     }
 
     public override void DoAction()

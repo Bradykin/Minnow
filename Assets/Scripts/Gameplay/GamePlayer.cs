@@ -356,6 +356,19 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         }
     }
 
+    public void InformHasDied(GameUnit deadUnit, GameTile deathLocation)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i] == deadUnit)
+            {
+                continue;
+            }
+
+            m_controlledUnits[i].OnOtherDie(deadUnit, deathLocation);
+        }
+    }
+
     public void AddCardToHand(GameCard card, bool addToDeckPermanent)
     {
         if (m_hand.Count >= Constants.MaxHandSize)

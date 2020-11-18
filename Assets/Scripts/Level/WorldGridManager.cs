@@ -792,7 +792,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             Debug.Log("NO UNIT ON TILE");
             return null;
         }
-        int movementStamina = startingGridTile.m_occupyingUnit.GetCurStamina() - startingGridTile.m_occupyingUnit.GetStaminaToAttack();
+        int movementStamina = startingGridTile.m_occupyingUnit.GetCurStamina() - startingGridTile.m_occupyingUnit.GetStaminaToAttack(null);
 
         List<GameTile> tilesInMovementRangeWithStaminaToAttack = GetTilesInMovementRange(startingGridTile, movementStamina, ignoreTerrainDifferences, letPassEnemies);
         return tilesInMovementRangeWithStaminaToAttack;

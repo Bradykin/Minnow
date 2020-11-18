@@ -40,6 +40,21 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     //============================================================================================================//
 
+    public void InformHasDied(GameUnit deadUnit, GameTile deathLocation)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i] == deadUnit)
+            {
+                continue;
+            }
+
+            m_controlledUnits[i].OnOtherDie(deadUnit, deathLocation);
+        }
+    }
+
+    //============================================================================================================//
+
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)

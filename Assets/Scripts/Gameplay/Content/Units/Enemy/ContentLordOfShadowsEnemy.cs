@@ -55,7 +55,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
         UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Shadows has arrived and plunged the world into darkness!");
     }
 
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         int hitAmount = base.HitUnit(other, damageAmount, spendStamina, shouldThorns);
 
@@ -70,7 +70,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
         return hitAmount;
     }
 
-    public override int HitBuilding(GameBuildingBase other, bool spendStamina = true)
+    public override int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
     {
         int hitAmount = base.HitBuilding(other, spendStamina);
 

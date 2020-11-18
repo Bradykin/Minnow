@@ -15,7 +15,7 @@ public class AIAttackOnceStandardStep : AIStep
             yield break;
         }
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(m_AIGameEnemyUnit.m_targetGameElement))
         {
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
@@ -37,7 +37,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -62,7 +62,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -80,7 +80,7 @@ public class AIAttackOnceStandardStep : AIStep
             return;
         }
 
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(m_AIGameEnemyUnit.m_targetGameElement))
         {
             switch (m_AIGameEnemyUnit.m_targetGameElement)
             {
@@ -94,7 +94,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -111,7 +111,7 @@ public class AIAttackOnceStandardStep : AIStep
 
                     if (repeatAI)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }

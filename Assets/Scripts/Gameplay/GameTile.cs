@@ -309,6 +309,14 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue++;
         }
 
+        if (checkerUnit != null)
+        {
+            if (checkerUnit is ContentRiverlurkerEnemy && !GetTerrain().IsWater())
+            {
+                tileValue *= 2;
+            }
+        }
+        
         return tileValue;
     }
 

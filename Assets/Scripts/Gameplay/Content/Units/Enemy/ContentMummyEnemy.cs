@@ -4,31 +4,18 @@ using UnityEngine;
 
 public class ContentMummyEnemy : GameEnemyUnit
 {
-    int m_range = 2;
-    int m_magicPowerLoseAmount = 1;
-    
     public ContentMummyEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
-
-        m_maxHealth = 24;
-        m_maxStamina = 5;
-        m_staminaRegen = 4;
-        m_power = 8;
+        m_maxHealth = 3 + GetHealthModByWave();
+        m_maxStamina = 3 + GetStaminaRegenModByWave();
+        m_staminaRegen = 3 + GetStaminaRegenModByWave();
+        m_power = 1 + GetPowerModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Mummy";
-        m_desc = "This unit is immune to all spells.\n";
-
-        AddKeyword(new GameRangeKeyword(m_range), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            AddKeyword(new GameMomentumKeyword(new GameLoseTempMagicPowerAction(m_magicPowerLoseAmount)), false);
-        }
+        m_desc = "Minion of the Pharaoh.\n";
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -36,5 +23,31 @@ public class ContentMummyEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+    private int GetHealthModByWave()
+    {
+        int waveNum = GameHelper.GetCurrentWaveNum();
+
+        int scalingValue = waveNum;
+        if (waveNum >= 3)
+        {
+            scalingValue += (waveNum - 2);
+        }
+
+        return scalingValue * 3;
+    }
+
+    private int GetStaminaRegenModByWave()
+    {
+        int waveNum = GameHelper.GetCurrentWaveNum();
+
+        return Mathf.FloorToInt((float)waveNum * 0.5f);
+    }
+
+    private int GetPowerModByWave()
+    {
+        int waveNum = GameHelper.GetCurrentWaveNum();
+
+        return waveNum * 2;
     }
 }

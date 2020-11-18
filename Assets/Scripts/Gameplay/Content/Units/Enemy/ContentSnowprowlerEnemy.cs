@@ -36,7 +36,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         bool hasStaminaToDrain = other.GetCurStamina() >= m_staminaDrainAmount;
 
