@@ -47,7 +47,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
         List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange, 0).Where(t => WorldGridManager.Instance.GetSurroundingGameTiles(t, 1, 0).Any(ter => ter.GetTerrain() is ContentVolcanoInactiveTerrain)).ToList();
 
-        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.m_occupyingUnit.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
+        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.GetOccupyingUnit().m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
         List<GameTile> tilesToMoveToNearVolcanoes = tilesToMoveTo.Where(t => tilesInMoveAdjacentRangeThatAreVolcanoes.Contains(t)).ToList();
 
         if (tilesToMoveTo.Count == 0)
@@ -119,7 +119,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
         List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_AIGameEnemyUnit.m_gameEnemyUnit.GetRange());
         List<GameTile> tilesInMoveAdjacentRangeThatAreVolcanoes = WorldGridManager.Instance.GetSurroundingGameTiles(lordOfEruptionsEnemy.GetGameTile(), lordOfEruptionsEnemy.m_teleportRange, 0).Where(t => WorldGridManager.Instance.GetSurroundingGameTiles(t, 1, 0).Any(ter => ter.GetTerrain() is ContentVolcanoInactiveTerrain)).ToList();
 
-        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.m_occupyingUnit.m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
+        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() || !t.IsOccupied() || t.GetOccupyingUnit().m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
         List<GameTile> tilesToMoveToNearVolcanoes = tilesToMoveTo.Where(t => tilesInMoveAdjacentRangeThatAreVolcanoes.Contains(t)).ToList();
 
         if (tilesToMoveTo.Count == 0)
@@ -179,7 +179,7 @@ public class AILordOfEruptionsMoveToTargetStep : AIMoveToTargetStandardStep
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player)
             {
                 numThreats++;
             }

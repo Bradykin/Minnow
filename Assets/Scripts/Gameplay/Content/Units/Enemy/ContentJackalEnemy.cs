@@ -69,9 +69,9 @@ public class ContentJackalEnemy : GameEnemyUnit
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead && surroundingTiles[i].m_occupyingUnit.GetTeam() == GetTeam())
+            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead && surroundingTiles[i].GetOccupyingUnit().GetTeam() == GetTeam())
             {
-                surroundingTiles[i].m_occupyingUnit.AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth));
+                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth));
             }
         }
 

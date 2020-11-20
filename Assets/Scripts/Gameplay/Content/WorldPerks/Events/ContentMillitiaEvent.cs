@@ -46,7 +46,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Sacrifice " + m_tile.m_occupyingUnit.GetName() + ", but gain a " + m_card.GetName() + " card.";
+        m_message = "Sacrifice " + m_tile.GetOccupyingUnit().GetName() + ", but gain a " + m_card.GetName() + " card.";
 
         return base.GetMessage();
     }
@@ -60,7 +60,7 @@ public class GameEventHelpMillitiaOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingUnit.Die();
+        m_tile.GetOccupyingUnit().Die();
 
         player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
 
@@ -69,16 +69,16 @@ public class GameEventHelpMillitiaOption : GameEventOption
 
     public override void BuildTooltip()
     {
-        if (m_tile.m_occupyingUnit == null)
+        if (m_tile.GetOccupyingUnit() == null)
         {
             return;
         }
 
         GameUnitCard toGainCard = (GameUnitCard)m_card;
 
-        if (m_tile.m_occupyingUnit.GetName() != toGainCard.GetUnit().GetName())
+        if (m_tile.GetOccupyingUnit().GetName() != toGainCard.GetUnit().GetName())
         {
-            UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit, true);
+            UIHelper.CreateUnitTooltip(m_tile.GetOccupyingUnit(), true);
         }
         UIHelper.CreateUnitTooltip(toGainCard.GetUnit());
     }

@@ -453,11 +453,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
-                    surroundingTiles[i].m_occupyingUnit.GetFlyingKeyword() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetWaterwalkKeyword() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetWaterboundKeyword() == null)
+                    surroundingTiles[i].GetOccupyingUnit().GetFlyingKeyword() == null && 
+                    surroundingTiles[i].GetOccupyingUnit().GetWaterwalkKeyword() == null && 
+                    surroundingTiles[i].GetOccupyingUnit().GetWaterboundKeyword() == null)
                 {
-                    surroundingTiles[i].m_occupyingUnit.Die();
+                    surroundingTiles[i].GetOccupyingUnit().Die();
                 }
                 else if (surroundingTiles[i].GetTerrain().IsIce())
                 {                    
@@ -735,11 +735,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
                     if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                        adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                        !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
+                        adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Monster)
                     {
-                        adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                        adjacentTiles[i].GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].GetOccupyingUnit(), 3, 3)));
                     }
                 }
             }
@@ -839,9 +839,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             for (int i = 0; i < tilesToCleave.Count; i++)
             {
-                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].m_occupyingUnit.GetTeam() != GetTeam())
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].GetOccupyingUnit().GetTeam() != GetTeam())
                 {
-                    damageTaken += HitUnit(tilesToCleave[i].m_occupyingUnit, GetDamageToDealTo(tilesToCleave[i].m_occupyingUnit), spendStamina: false, canCleave: false);
+                    damageTaken += HitUnit(tilesToCleave[i].GetOccupyingUnit(), GetDamageToDealTo(tilesToCleave[i].GetOccupyingUnit()), spendStamina: false, canCleave: false);
                 }
                 else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
                 {
@@ -909,9 +909,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             for (int i = 0; i < tilesToCleave.Count; i++)
             {
-                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].m_occupyingUnit.GetTeam() != GetTeam())
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].GetOccupyingUnit().GetTeam() != GetTeam())
                 {
-                    damageTaken += HitUnit(tilesToCleave[i].m_occupyingUnit, GetDamageToDealTo(tilesToCleave[i].m_occupyingUnit), spendStamina: false, canCleave: false);
+                    damageTaken += HitUnit(tilesToCleave[i].GetOccupyingUnit(), GetDamageToDealTo(tilesToCleave[i].GetOccupyingUnit()), spendStamina: false, canCleave: false);
                 }
                 else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
                 {
@@ -1527,14 +1527,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                         for (int i = 0; i < surroundingTiles.Count; i++)
                         {
-                            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                                surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+                            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
+                                surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player)
                             {
-                                if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                                if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Humanoid)
                                 {
                                     toReturn += 4;
                                 }
-                                else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                                else if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                                 {
                                     toReturn -= 4;
                                 }
@@ -2327,10 +2327,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.Heal(15);
+                            adjacentTiles[i].GetOccupyingUnit().Heal(15);
                         }
                     }
                 }
@@ -2341,10 +2341,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.GainStamina(1);
+                            adjacentTiles[i].GetOccupyingUnit().GainStamina(1);
                         }
                     }
                 }
@@ -2400,9 +2400,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Enemy && !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
+                            adjacentTiles[i].GetOccupyingUnit().SpendStamina(adjacentTiles[i].GetOccupyingUnit().GetCurStamina());
                         }
                     }
                 }
@@ -2413,11 +2413,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                            adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
+                            adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                         {
-                            adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth());
                         }
                     }
                 }
@@ -2428,10 +2428,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.FillStamina();
+                            adjacentTiles[i].GetOccupyingUnit().FillStamina();
                         }
                     }
                 }

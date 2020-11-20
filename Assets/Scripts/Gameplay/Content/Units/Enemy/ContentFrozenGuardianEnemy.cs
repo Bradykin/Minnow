@@ -51,11 +51,11 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         int numEnemiesHit = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit.GetTeam() != GetTeam())
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].GetOccupyingUnit().GetTeam() != GetTeam())
             {
-                if (surroundingTiles[i].m_occupyingUnit.GetCurStamina() > 0)
+                if (surroundingTiles[i].GetOccupyingUnit().GetCurStamina() > 0)
                 {
-                    surroundingTiles[i].m_occupyingUnit.SpendStamina(m_staminaLossAmount);
+                    surroundingTiles[i].GetOccupyingUnit().SpendStamina(m_staminaLossAmount);
                     UIHelper.CreateWorldElementNotification("Stamina Drained by Frozen Guardian", false, surroundingTiles[i].GetWorldTile().gameObject);
                     numEnemiesHit++;
                 }

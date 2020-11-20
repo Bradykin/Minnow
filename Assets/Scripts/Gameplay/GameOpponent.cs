@@ -263,7 +263,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     private bool TrySpawnAtSpawnPoint(GameSpawnPoint spawnPoint, ref float enemyCapToSpawn)
     {
-        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        if (spawnPoint.m_tile.GetOccupyingUnit() != null)
         {
             return false;
         }
@@ -305,7 +305,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     public bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
     {
-        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        if (spawnPoint.m_tile.GetOccupyingUnit() != null)
         {
             return false;
         }

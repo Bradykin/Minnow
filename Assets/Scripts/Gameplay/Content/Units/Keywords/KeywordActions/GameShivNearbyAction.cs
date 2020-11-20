@@ -42,9 +42,9 @@ public class GameShivNearbyAction : GameAction
 
         for (int i = 0; i < nearbyTiles.Count; i++)
         {
-            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].m_occupyingUnit.m_isDead && nearbyTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy)
+            if (nearbyTiles[i].IsOccupied() && !nearbyTiles[i].GetOccupyingUnit().m_isDead && nearbyTiles[i].GetOccupyingUnit().GetTeam() == Team.Enemy)
             {
-                nearbyEnemies.Add(nearbyTiles[i].m_occupyingUnit);
+                nearbyEnemies.Add(nearbyTiles[i].GetOccupyingUnit());
             }
         }
 

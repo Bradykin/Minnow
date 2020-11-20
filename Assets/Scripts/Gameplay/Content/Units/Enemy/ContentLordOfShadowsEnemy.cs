@@ -119,9 +119,9 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
 
             for (int i = 0; i < tilesInBrightnessRange.Count; i++)
             {
-                if (tilesInBrightnessRange[i].IsOccupied() && tilesInBrightnessRange[i].m_occupyingUnit.GetTeam() == Team.Player)
+                if (tilesInBrightnessRange[i].IsOccupied() && tilesInBrightnessRange[i].GetOccupyingUnit().GetTeam() == Team.Player)
                 {
-                    tilesInBrightnessRange[i].m_occupyingUnit.GetHitByAbility(m_brightnessExplosionAmount);
+                    tilesInBrightnessRange[i].GetOccupyingUnit().GetHitByAbility(m_brightnessExplosionAmount);
                 }
 
                 if (tilesInBrightnessRange[i].HasBuilding() && tilesInBrightnessRange[i].GetBuilding().GetTeam() == Team.Player)
@@ -169,7 +169,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player)
             {
                 numThreats++;
             }

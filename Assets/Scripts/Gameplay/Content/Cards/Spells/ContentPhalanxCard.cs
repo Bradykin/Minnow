@@ -42,8 +42,8 @@ public class ContentPhalanxCard : GameCardSpellBase
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                    surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player && surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
+                    surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player && surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Humanoid)
                 {
                     amount+=1;
                 }

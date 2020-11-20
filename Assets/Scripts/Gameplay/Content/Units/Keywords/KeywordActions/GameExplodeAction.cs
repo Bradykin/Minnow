@@ -43,7 +43,7 @@ public class GameExplodeAction : GameAction
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             GameBuildingBase building = surroundingTiles[i].GetBuilding();
-            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
+            GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
 
             if (building != null && !building.m_isDestroyed)
             {

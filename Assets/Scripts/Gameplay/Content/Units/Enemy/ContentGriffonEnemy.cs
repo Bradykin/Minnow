@@ -43,12 +43,12 @@ public class ContentGriffonEnemy : GameEnemyUnit
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].m_occupyingUnit is ContentGriffonEnemy)
+            if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].GetOccupyingUnit() is ContentGriffonEnemy)
             {
-                surroundingTiles[i].m_occupyingUnit.AddStats(m_statBoostAmount, m_statBoostAmount);
+                surroundingTiles[i].GetOccupyingUnit().AddStats(m_statBoostAmount, m_statBoostAmount);
                 if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
                 {
-                    surroundingTiles[i].m_occupyingUnit.Heal(surroundingTiles[i].m_occupyingUnit.GetMaxHealth());
+                    surroundingTiles[i].GetOccupyingUnit().Heal(surroundingTiles[i].GetOccupyingUnit().GetMaxHealth());
                 }
             }
         }

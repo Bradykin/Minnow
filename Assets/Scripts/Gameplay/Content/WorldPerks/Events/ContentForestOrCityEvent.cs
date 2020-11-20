@@ -16,7 +16,7 @@ public class ContentForestOrCityEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameForestwalkKeyword());
-        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameKnowledgeableKeyword(new GameGainStaminaAction(m_tile.m_occupyingUnit, 1)));
+        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameKnowledgeableKeyword(new GameGainStaminaAction(m_tile.GetOccupyingUnit(), 1)));
 
         base.LateInit();
     }

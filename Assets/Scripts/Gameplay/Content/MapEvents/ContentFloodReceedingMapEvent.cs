@@ -19,7 +19,7 @@ public class ContentFloodReceedingMapEvent : GameMapEvent
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
+            if (gameTile.HasEventMarker(m_markerToCheck))
             {
                 gameTile.SetTerrain(new ContentGrassPlainsTerrain(), true);
             }

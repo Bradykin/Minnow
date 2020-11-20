@@ -10,13 +10,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 {
     public Vector2Int m_gridPosition;
 
-    public GameUnit m_occupyingUnit { get; private set; } //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
+    private GameUnit m_occupyingUnit; //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
     private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
-    public GameSpawnPoint m_spawnPoint { get; private set; }
-    private WorldTile m_worldTile;
+    private GameSpawnPoint m_spawnPoint;
+    private List<int> m_gameEventMarkers = new List<int>();
 
-    public List<int> m_gameEventMarkers = new List<int>();
+    private WorldTile m_worldTile;
 
     public bool m_isFog;
     public bool m_isSoftFog;
@@ -222,10 +222,50 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         }
     }
 
+    public GameSpawnPoint GetSpawnPoint()
+    {
+        return m_spawnPoint;
+    }
+
+    public bool HasSpawnPoint()
+    {
+        return m_spawnPoint != null;
+    }
+
     public void SetSpawnPoint(GameSpawnPoint newSpawnPoint)
     {
         m_spawnPoint = newSpawnPoint;
         m_spawnPoint.m_tile = this;
+    }
+
+    public bool HasEventMarker(int toCheck)
+    {
+        return m_gameEventMarkers.Contains(toCheck);
+    }
+
+    public bool HasEventMarker()
+    {
+        return m_gameEventMarkers.Count > 0;
+    }
+
+    public List<int> GetEventMarkers()
+    {
+        return m_gameEventMarkers;
+    }
+
+    public void AddEventMarker(int toAdd)
+    {
+        m_gameEventMarkers.Add(toAdd);
+    }
+
+    public void ClearEventMarkers()
+    {
+        m_gameEventMarkers.Clear();
+    }
+
+    public GameUnit GetOccupyingUnit()
+    {
+        return m_occupyingUnit;
     }
 
     public GameBuildingBase GetBuilding()

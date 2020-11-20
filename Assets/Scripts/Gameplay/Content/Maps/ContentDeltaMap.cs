@@ -41,7 +41,7 @@ public class ContentDeltaMap : GameMap
 
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
-            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_gameEventMarkers.Contains(1))
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().HasEventMarker(1))
             {
                 return gameOpponent.ForceSpawnNearPosition(GameUnitFactory.GetRandomBossEnemy(gameOpponent), WorldGridManager.Instance.m_gridArray[i].GetGameTile());
             }

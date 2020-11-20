@@ -47,9 +47,9 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
             List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
             for (int i = 0; i < adjacentTiles.Count; i++)
             {
-                if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player && !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player && !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                 {
-                    adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
+                    adjacentTiles[i].GetOccupyingUnit().SpendStamina(adjacentTiles[i].GetOccupyingUnit().GetCurStamina());
                 }
             }
         }

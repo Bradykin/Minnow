@@ -89,9 +89,9 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         if (GameHelper.IsInLevelBuilder())
         {
-            bool hasSpawnPoint = GetGameTile().m_spawnPoint != null;
-            int numEventMarkers = GetGameTile().m_gameEventMarkers.Count;
-            bool hasEventMarker = numEventMarkers > 0;
+            bool hasSpawnPoint = GetGameTile().HasSpawnPoint();
+            int numEventMarkers = GetGameTile().GetEventMarkers().Count;
+            bool hasEventMarker = GetGameTile().HasEventMarker();
 
             m_spawnIndicator.SetActive(hasSpawnPoint);
             m_spawnText.gameObject.SetActive(hasSpawnPoint);
@@ -100,11 +100,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
             if (hasSpawnPoint)
             {
-                int numSpawnPoints = GetGameTile().m_spawnPoint.m_spawnPointMarkers.Count;
+                int numSpawnPoints = GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Count;
                 string desc = "";
                 for (int i = 0; i < numSpawnPoints; i++)
                 {
-                    desc += GetGameTile().m_spawnPoint.m_spawnPointMarkers[i];
+                    desc += GetGameTile().GetSpawnPoint().m_spawnPointMarkers[i];
                     if (i < numSpawnPoints - 1)
                     {
                         desc += ",";
@@ -119,7 +119,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 string desc = "";
                 for (int i = 0; i < numEventMarkers; i++)
                 {
-                    desc += GetGameTile().m_gameEventMarkers[i];
+                    desc += GetGameTile().GetEventMarkers()[i];
                     if (i < numEventMarkers - 1)
                     {
                         desc += ",";
@@ -155,7 +155,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (m_isHovered)
             {
-                if (Globals.m_testSpawnEnemyUnit != null && GetGameTile().m_occupyingUnit == null)
+                if (Globals.m_testSpawnEnemyUnit != null && !GetGameTile().IsOccupied())
                 {
                     GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(Globals.m_testSpawnEnemyUnit, WorldController.Instance.m_gameController.m_gameOpponent);
                     GetGameTile().PlaceUnit(newEnemyUnit);
@@ -294,13 +294,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             if (Globals.m_levelCreatorEraserMode)
             {
                 GameTile gameTile = GetGameTile();
-                if (gameTile.m_spawnPoint != null)
+                if (gameTile.HasSpawnPoint())
                 {
                     gameTile.ClearSpawnPoint();
                 }
-                else if (gameTile.m_gameEventMarkers.Count > 0)
+                else if (gameTile.HasSpawnPoint())
                 {
-                    gameTile.m_gameEventMarkers.Clear();
+                    gameTile.ClearEventMarkers();
                 }
                 else if (gameTile.GetBuilding() != null)
                 {
@@ -323,23 +323,23 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
                 {
-                    if (GetGameTile().m_spawnPoint == null)
+                    if (!GetGameTile().HasSpawnPoint())
                     {
                         GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
                         GetGameTile().SetSpawnPoint(gameSpawnPoint);
                     }
 
-                    if (!GetGameTile().m_spawnPoint.m_spawnPointMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
+                    if (!GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
                     {
-                        GetGameTile().m_spawnPoint.m_spawnPointMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
+                        GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
                         Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
                     }
                 }
                 else if (Globals.m_currentlyPaintingType == typeof(int))
                 {
-                    if (!GetGameTile().m_gameEventMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
+                    if (!GetGameTile().HasEventMarker(Globals.m_currentlyPaintingNumberIndex))
                     {
-                        GetGameTile().m_gameEventMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
+                        GetGameTile().AddEventMarker(Globals.m_currentlyPaintingNumberIndex);
                         Debug.Log("Add Event Tile index" + Globals.m_currentlyPaintingNumberIndex);
                     }
                 }
@@ -405,17 +405,17 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 if (GetGameTile().IsPassable(selectedUnit.GetUnit(), false))
                 {
                     int pathLength = WorldGridManager.Instance.GetPathLength(selectedUnit.GetUnit().GetGameTile(), GetGameTile(), true, false, true);
-                    if (pathLength == 1 && GetGameTile().m_occupyingUnit == null)
+                    if (pathLength == 1 && !GetGameTile().IsOccupied())
                     {
                         UIHelper.CreateWorldElementNotification("Can't move, difficult terrain requires " + GetGameTile().GetCostToPass(selectedUnit.GetUnit()) + " Stamina.", false, gameObject);
                     }
                     else
                     {
-                        if (GetGameTile().m_occupyingUnit == Globals.m_selectedUnit.GetUnit())
+                        if (GetGameTile().GetOccupyingUnit() == Globals.m_selectedUnit.GetUnit())
                         {
                             UIHelper.CreateWorldElementNotification("Already here.", false, gameObject);
                         }
-                        else if (GetGameTile().m_occupyingUnit != null)
+                        else if (GetGameTile().IsOccupied())
                         {
                             UIHelper.CreateWorldElementNotification("Already occupied.", false, gameObject);
                         }

@@ -16,7 +16,7 @@ public class ContentDevilishPowerEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventCardSelectOption(new ContentLivingBombCard());
-        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldEnrageAction(m_tile.m_occupyingUnit, 1)));
+        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldEnrageAction(m_tile.GetOccupyingUnit(), 1)));
 
         base.LateInit();
     }

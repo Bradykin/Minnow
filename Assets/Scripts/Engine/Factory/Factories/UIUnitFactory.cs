@@ -29,7 +29,7 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject();
             WorldUnit uiUnit = obj.GetComponent<WorldUnit>();
-            uiUnit.Init(tile.GetGameTile().m_occupyingUnit);
+            uiUnit.Init(tile.GetGameTile().GetOccupyingUnit());
             /*obj.transform.position = tile.GetScreenPositionForUnit();
 
             GameObject uiParent = GameObject.Find("UI");

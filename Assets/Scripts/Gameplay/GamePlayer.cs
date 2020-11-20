@@ -423,7 +423,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                     gameTile.SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(gameTile.GetTerrain()));
                     if (gameTile.IsOccupied())
                     {
-                        gameTile.m_occupyingUnit.Die();
+                        gameTile.GetOccupyingUnit().Die();
                     }
                 }
             }
@@ -845,9 +845,9 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetGuid() == jsonData.jsonGameCardsInExileData[i].jsonGameUnitData.guid)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().GetOccupyingUnit().GetGuid() == jsonData.jsonGameCardsInExileData[i].jsonGameUnitData.guid)
                 {
-                    m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    m_cardsInExile.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().GetOccupyingUnit()));
                     continue;
                 }
             }

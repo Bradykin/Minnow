@@ -20,7 +20,7 @@ public class AILizardmanFleeToWaterStep : AIStep
         List<GameTile> tilesToFleeInOpenWater = new List<GameTile>();
         for (int i = 0; i < tilesAtDistance.Count; i++)
         {
-            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingUnit.m_isDead))
+            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].GetOccupyingUnit().m_isDead))
             {
                 int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), tilesAtDistance[i], false, false, false);
 
@@ -91,7 +91,7 @@ public class AILizardmanFleeToWaterStep : AIStep
         List<GameTile> tilesToFleeInOpenWater = new List<GameTile>();
         for (int i = 0; i < tilesAtDistance.Count; i++)
         {
-            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].m_occupyingUnit.m_isDead))
+            if (tilesAtDistance[i].GetTerrain().IsWater() && (!tilesAtDistance[i].IsOccupied() || tilesAtDistance[i].GetOccupyingUnit().m_isDead))
             {
                 int pathLength = WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), tilesAtDistance[i], false, false, false);
 

@@ -35,15 +35,15 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_range, 0).Where(t => t.IsOccupied() && t.m_occupyingUnit.GetTeam() == Team.Enemy).ToList();
+        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_range, 0).Where(t => t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Enemy).ToList();
 
         if (surroundingTiles.Count == 0)
         {
             return;
         }
 
-        int highestHealthAmount = surroundingTiles.Max(t => t.m_occupyingUnit.GetCurHealth());
-        GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.m_occupyingUnit.GetCurHealth() == highestHealthAmount);
+        int highestHealthAmount = surroundingTiles.Max(t => t.GetOccupyingUnit().GetCurHealth());
+        GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.GetOccupyingUnit().GetCurHealth() == highestHealthAmount);
 
         GamePlayer player = GameHelper.GetPlayer();
         int magicPower = 0;
@@ -53,7 +53,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
             magicPower = player.GetMagicPower();
         }
 
-        highestHealthTile.m_occupyingUnit.GetHitByAbility(m_power + magicPower * m_magicPowerMultiplier);
+        highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_power + magicPower * m_magicPowerMultiplier);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

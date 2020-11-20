@@ -31,13 +31,13 @@ public class AILordOfEruptionsTryIgniteVolcanoStep : AIStep
             UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} ignites a nearby volcano!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             m_AIGameEnemyUnit.m_gameEnemyUnit.SpendStamina(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
 
-            int volcanoEventMarker = unitSurroundingTiles[i].m_gameEventMarkers[0];
+            int volcanoEventMarker = unitSurroundingTiles[i].GetEventMarkers()[0];
 
             for (int c = 0; c < WorldGridManager.Instance.m_gridArray.Length; c++)
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[c].GetGameTile();
 
-                if (gameTile.m_gameEventMarkers.Contains(volcanoEventMarker))
+                if (gameTile.HasEventMarker(volcanoEventMarker))
                 {
                     if (gameTile.GetTerrain().IsVolcano())
                     {
@@ -93,13 +93,13 @@ public class AILordOfEruptionsTryIgniteVolcanoStep : AIStep
             UIHelper.CreateWorldElementNotification($"{m_AIGameEnemyUnit.m_gameEnemyUnit.GetName()} ignites a nearby volcano!", false, m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
             m_AIGameEnemyUnit.m_gameEnemyUnit.SpendStamina(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina());
 
-            int volcanoEventMarker = unitSurroundingTiles[i].m_gameEventMarkers[0];
+            int volcanoEventMarker = unitSurroundingTiles[i].GetEventMarkers()[0];
 
             for (int c = 0; c < WorldGridManager.Instance.m_gridArray.Length; c++)
             {
                 GameTile gameTile = WorldGridManager.Instance.m_gridArray[c].GetGameTile();
 
-                if (gameTile.m_gameEventMarkers.Contains(volcanoEventMarker))
+                if (gameTile.HasEventMarker(volcanoEventMarker))
                 {
                     if (gameTile.GetTerrain().IsVolcano())
                     {

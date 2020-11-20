@@ -15,7 +15,7 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameGainDamageShieldAction(m_tile.m_occupyingUnit, 1)));
+        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameGainDamageShieldAction(m_tile.GetOccupyingUnit(), 1)));
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 50);
 
         base.LateInit();
@@ -48,7 +48,7 @@ public class GameEventGiveKeywordOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.m_occupyingUnit.GetName() + " gains " + m_keyword.GetDisplayString() + ".";
+        m_message = m_tile.GetOccupyingUnit().GetName() + " gains " + m_keyword.GetDisplayString() + ".";
 
         return base.GetMessage();
     }
@@ -62,13 +62,13 @@ public class GameEventGiveKeywordOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingUnit.AddKeyword(m_keyword);
+        m_tile.GetOccupyingUnit().AddKeyword(m_keyword);
 
         EndEvent();
     }
 
     public override void BuildTooltip()
     {
-        UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit);
+        UIHelper.CreateUnitTooltip(m_tile.GetOccupyingUnit());
     }
 }

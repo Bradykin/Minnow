@@ -32,7 +32,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
         {
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
 
-            if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
+            if (gameTile.HasEventMarker(m_markerToCheck))
             {
                 if (m_onlyVolcano)
                 {
@@ -72,7 +72,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
         {
             WorldTile worldTile = WorldGridManager.Instance.m_gridArray[i];
 
-            if (worldTile.GetGameTile().m_gameEventMarkers.Contains(m_markerToCheck))
+            if (worldTile.GetGameTile().HasEventMarker(m_markerToCheck))
             {
                 worldTile.m_shouldAlertTint = true;
             }
@@ -106,7 +106,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
         {
             WorldTile worldTile = WorldGridManager.Instance.m_gridArray[i];
 
-            if (worldTile.GetGameTile().m_gameEventMarkers.Contains(m_markerToCheck))
+            if (worldTile.GetGameTile().HasEventMarker(m_markerToCheck))
             {
                 worldTile.m_shouldAlertTint = false;
             }
