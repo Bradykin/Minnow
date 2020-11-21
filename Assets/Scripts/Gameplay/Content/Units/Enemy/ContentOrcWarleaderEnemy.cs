@@ -6,8 +6,6 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
 {
     public int m_spawnRange = 3;
     public int m_orcsSpawned = 6;
-
-    public List<GameEnemyUnit> m_survivingOrcs = new List<GameEnemyUnit>();
     
     public ContentOrcWarleaderEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -71,11 +69,13 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
                 {
                     newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentOrcShamanEnemy(null), WorldController.Instance.m_gameController.m_gameOpponent);
                 }
-                m_survivingOrcs.Add(newEnemyUnit);
                 surroundingTiles[i].PlaceUnit(newEnemyUnit);
                 newEnemyUnit.OnSummon();
                 WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
                 numOrcsSpawned++;
+
+                AddKeyword(new GameDamageReductionKeyword(1), false);
+
                 if (numOrcsSpawned >= m_orcsSpawned)
                 {
                     break;
@@ -89,38 +89,14 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
     }
 
-    public override GameDamageReductionKeyword GetDamageReductionKeyword()
+    public override void OnOtherDie(GameUnit other, GameTile deathLocation)
     {
-        GameDamageReductionKeyword gameDamageReductionKeyword = base.GetDamageReductionKeyword();
+        base.OnOtherDie(other, deathLocation);
 
-        if (m_survivingOrcs.Count == 0)
+        if (other is ContentOrcEnemy || other is ContentOrcShamanEnemy)
         {
-            return gameDamageReductionKeyword;
+            SubtractKeyword(new GameDamageReductionKeyword(1));
         }
-
-        for (int i = m_survivingOrcs.Count - 1; i >= 0; i--)
-        {
-            if (m_survivingOrcs[i] == null)
-            {
-                m_survivingOrcs.RemoveAt(i);
-                continue;
-            }
-
-            if (m_survivingOrcs[i].m_isDead)
-            {
-                m_survivingOrcs.RemoveAt(i);
-                continue;
-            }
-        }
-
-        if (gameDamageReductionKeyword == null)
-        {
-            return new GameDamageReductionKeyword(m_survivingOrcs.Count);
-        }
-
-        gameDamageReductionKeyword.AddKeyword(new GameDamageReductionKeyword(m_survivingOrcs.Count));
-
-        return gameDamageReductionKeyword;
     }
 
     public override string GetDesc()

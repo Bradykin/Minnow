@@ -276,6 +276,12 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         if (GameHelper.PercentChanceRoll(Constants.PercentChanceForMobToSpawn))
         {
             GameSpawnPoolData newSpawnPoolData = GameUnitFactory.GetRandomEnemyFromSpawnPoint(this, GameHelper.GetCurrentWaveNum(), spawnPoint);
+
+            if (newSpawnPoolData == null)
+            {
+                return false;
+            }
+
             GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(newSpawnPoolData.m_gameEnemy);
 
             if (newEnemyUnit == null)
@@ -335,6 +341,12 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     private bool TrySpawnAtEdgeOfFog(List<GameTile> tilesAtFogEdge, ref float enemyCapToSpawn)
     {
         GameSpawnPoolData newSpawnPoolData = GameUnitFactory.GetRandomEnemyFromDefaultSpawnPool(this, GameHelper.GetCurrentWaveNum());
+
+        if (newSpawnPoolData == null)
+        {
+            return false;
+        }
+
         GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(newSpawnPoolData.m_gameEnemy);
 
         if ((enemyCapToSpawn < newSpawnPoolData.m_spawnWeight) || (enemyCapToSpawn <= 0 && newSpawnPoolData.m_spawnWeight > 0))

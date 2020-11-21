@@ -163,7 +163,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
                     Globals.m_testSpawnEnemyUnit = null;
                 }
-                else if (Globals.m_selectedUnit != null)
+                else if (Globals.m_selectedUnit != null && !Globals.m_selectedUnit.GetUnit().m_isDead)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedUnit.CanMoveToWorldTileFromCurPosition(GetGameTile()));
                 }
