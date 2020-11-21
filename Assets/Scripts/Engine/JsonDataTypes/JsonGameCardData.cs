@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct JsonGameCardData
+public class JsonGameCardData
 {
     public string baseName;
 

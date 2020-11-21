@@ -34,11 +34,25 @@ public static class Files
         }
 
         var loaded = JsonConvert.DeserializeObject<PlayerAccountData>(File.ReadAllText(path));
+
+        if (loaded.JsonGameMetaProgressionRewardDatas != null)
+        {
+            for (int i = 0; i < loaded.JsonGameMetaProgressionRewardDatas.Count; i++)
+            {
+                GameMetaprogressionReward loadedReward = new GameMetaprogressionReward();
+                loadedReward.LoadFromJson(loaded.JsonGameMetaProgressionRewardDatas[i]);
+
+                UIMetaprogressionNotificationController.AddReward(loadedReward);
+            }
+        }
+
         return loaded;
     }
 
     public static string ExportPlayerAccountData(PlayerAccountData playerAccountData)
     {
+        playerAccountData.SaveGameMetaProgressionRewardDatas();
+
         var export = JsonConvert.SerializeObject(playerAccountData);
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH), export);

@@ -11,6 +11,11 @@ public class PlayerAccountData
     public PlayerRunData PlayerRunData => m_playerRunData;
     [JsonProperty]
     private PlayerRunData m_playerRunData = null;
+
+    [JsonIgnore]
+    public List<JsonGameMetaProgressionRewardData> JsonGameMetaProgressionRewardDatas => m_jsonGameMetaProgressionRewardDatas;
+    [JsonProperty]
+    private List<JsonGameMetaProgressionRewardData> m_jsonGameMetaProgressionRewardDatas;
     
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
@@ -57,6 +62,15 @@ public class PlayerAccountData
         }
 
         return true;
+    }
+
+    public void SaveGameMetaProgressionRewardDatas()
+    {
+        m_jsonGameMetaProgressionRewardDatas = new List<JsonGameMetaProgressionRewardData>();
+        for (int i = 0; i < UIMetaprogressionNotificationController.GetRewards().Count; i++)
+        {
+            m_jsonGameMetaProgressionRewardDatas.Add(UIMetaprogressionNotificationController.GetRewards()[i].SaveToJson());
+        }
     }
 
     public void SaveRunData()
