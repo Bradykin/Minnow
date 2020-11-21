@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIHUDNotificationController : Singleton<UIHUDNotificationController>
 {
@@ -12,8 +13,8 @@ public class UIHUDNotificationController : Singleton<UIHUDNotificationController
     private List<string> m_descs = new List<string>();
 
     public GameObject m_holder;
-    public Text m_titleText;
-    public Text m_descText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_descText;
 
     public void AddNotification(string name, string desc)
     {

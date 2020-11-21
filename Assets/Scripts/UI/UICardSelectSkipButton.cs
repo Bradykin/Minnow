@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UICardSelectSkipButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;
-    public Text m_skipText;
+    public TMP_Text m_skipText;
 
     private bool m_isActive;
 

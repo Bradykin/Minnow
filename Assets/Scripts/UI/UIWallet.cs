@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIWallet : UIElementBase
 {
-    public Text m_goldText;
+    public TMP_Text m_goldText;
 
     void Start()
     {

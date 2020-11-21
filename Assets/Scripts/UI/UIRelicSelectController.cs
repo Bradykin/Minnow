@@ -11,11 +11,6 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
     public UIRelic m_firstButton;
     public UIRelic m_secondButton;
 
-    public Text m_firstRelicText;
-    public Text m_firstRelicDescText;
-    public Text m_secondRelicText;
-    public Text m_secondRelicDescText;
-
     public Text m_skipText;
 
     private GameWallet m_skipWallet;
@@ -33,13 +28,9 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
 
         m_firstButton.gameObject.SetActive(true);
         m_firstButton.Init(relicOne, UIRelic.RelicSelectionType.Select);
-        m_firstRelicText.text = relicOne.GetName();
-        m_firstRelicDescText.text = relicOne.GetDesc();
 
         m_secondButton.gameObject.SetActive(true);
         m_secondButton.Init(relicTwo, UIRelic.RelicSelectionType.Select);
-        m_secondRelicText.text = relicTwo.GetName();
-        m_secondRelicDescText.text = relicTwo.GetDesc();
 
         m_skipText.text = "Skip: +" + m_skipWallet.m_gold + " gold.";
 

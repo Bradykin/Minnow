@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UICardSelectAcceptButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;
-    public Text m_acceptText;
+    public TMP_Text m_acceptText;
 
     private bool m_isActive;
 

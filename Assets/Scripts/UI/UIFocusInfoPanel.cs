@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Util;
+using TMPro;
 
 public class UIFocusInfoPanel : UIElementBase
 {
-    public Text m_titleText;
-    public Text m_descText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_descText;
     public GameObject m_holder;
 
     private bool m_shouldShow;

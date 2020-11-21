@@ -37,10 +37,55 @@ public static class UIHelper
     public static Color m_difficultyHard = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
-    public static Color m_commonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.1f);
-    public static Color m_uncommonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.7f);
-    public static Color m_rareRarity = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1.0f);
-    public static Color m_noRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.0f);
+    public static Color m_commonRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.1f);
+    public static Color m_uncommonRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.7f);
+    public static Color m_rareRarityTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1.0f);
+    public static Color m_noRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.0f);
+
+    public static Color m_commonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1f);
+    public static Color m_uncommonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1f);
+    public static Color m_rareRarity = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
+    public static Color m_noRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
+
+    public static Color GetRarityColorTint(GameElementBase.GameRarity rarity)
+    {
+        if (rarity == GameElementBase.GameRarity.Common)
+        {
+            return m_commonRarityTint;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return m_uncommonRarityTint;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Rare)
+        {
+            return m_rareRarityTint;
+        }
+
+        return m_noRarityTint;
+    }
+
+    public static Sprite GetRelicRarityFrame(GameElementBase.GameRarity rarity)
+    {
+        if (rarity == GameElementBase.GameRarity.Common || rarity == GameElementBase.GameRarity.Starter)
+        {
+            return Resources.Load<Sprite>("UI2/Icons/CommonRelicRarityFrame") as Sprite;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Uncommon)
+        {
+            return Resources.Load<Sprite>("UI2/Icons/UncommonRelicRarityFrame") as Sprite;
+        }
+
+        if (rarity == GameElementBase.GameRarity.Rare || rarity == GameElementBase.GameRarity.Special)
+        {
+            return Resources.Load<Sprite>("UI2/Icons/RareRelicRarityFrame") as Sprite;
+        }
+
+        return null;
+    }
 
     public static Color GetRarityColor(GameElementBase.GameRarity rarity)
     {

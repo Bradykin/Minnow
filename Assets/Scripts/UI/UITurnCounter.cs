@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UITurnCounter : UIElementBase
 {
-    public Text m_titleText;
-    public Text m_countText;
-    public Text m_chaosText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_countText;
+    public TMP_Text m_chaosText;
 
     void Start()
     {

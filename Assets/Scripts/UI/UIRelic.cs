@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIRelic : UIElementBase
     , IPointerClickHandler
@@ -19,10 +20,14 @@ public class UIRelic : UIElementBase
     private RelicSelectionType m_selectionType;
 
     public Image m_image;
-    public Image m_rarityTint;
+    public Image m_rarityFrame;
 
     public bool m_isLocked;
     public GameObject m_lockIcon;
+
+    public bool m_usesText = false;
+    public TMP_Text m_titleText;
+    public TMP_Text m_descText;
 
     void Update()
     {
@@ -54,7 +59,18 @@ public class UIRelic : UIElementBase
         m_selectionType = selectionType;
 
         m_image.sprite = m_relic.m_icon;
-        m_rarityTint.color = UIHelper.GetRarityColor(m_relic.m_rarity);
+        m_rarityFrame.sprite = UIHelper.GetRelicRarityFrame(m_relic.m_rarity);
+
+        if (m_usesText)
+        {
+            m_titleText.text = m_relic.GetName();
+            m_descText.text = m_relic.GetDesc();
+        }
+        else
+        {
+            m_titleText.text = "";
+            m_descText.text = "";
+        }
 
         if (m_relic.m_rarity == GameElementBase.GameRarity.Starter)
         {

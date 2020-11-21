@@ -21,7 +21,7 @@ public class ContentElvenSentinel : GameUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)), false);
 
         m_name = "Elven Sentinel";
-        m_desc = "Deal an extra point of damage per tile between " + m_name + " and the target unit.\n";
+        m_desc = "Multiply damage dealt by the distance between " + m_name + " and the target unit.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -32,7 +32,7 @@ public class ContentElvenSentinel : GameUnit
     {
         int toDeal = base.GetDamageToDealTo(other);
 
-        toDeal += WorldGridManager.Instance.GetPathLength(m_gameTile, other.GetGameTile(), true, false, true);
+        toDeal = toDeal * WorldGridManager.Instance.GetPathLength(m_gameTile, other.GetGameTile(), true, false, true);
 
         return toDeal;
     }

@@ -27,7 +27,7 @@ public class ContentImmolationCard : GameCardSpellBase
     public override string GetDesc()
     {
         string startingDesc = GetDamageDescString();
-        startingDesc += "If they are on a non-burned forest tile, multiply that amount by " + m_multiple + " and burn down the forest.";
+        startingDesc += "x" + m_multiple + " damage if the target is on a forest.";
 
         return startingDesc;
     }

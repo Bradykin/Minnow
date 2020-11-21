@@ -145,8 +145,8 @@ public class WorldController : Singleton<WorldController>
         float yPos = -320.0f;
         float yPosBigOffset = 125.0f;
         float zPos = 0.0f;
-        float smallCardScale = 0.75f;
-        float bigCardScale = 1.25f;
+        float smallCardScale = 0.2f;
+        float bigCardScale = 0.3f;
         float splitDif = 0.1f;
 
         if (bigCardIndex == -1)

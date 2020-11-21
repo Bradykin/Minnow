@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UICard : MonoBehaviour
     , IPointerEnterHandler
@@ -19,19 +20,22 @@ public class UICard : MonoBehaviour
         RewardDisplay
     }
 
+    public Image m_image;
     public Image m_tintImage;
 
-    public Text m_nameText;
-    public Text m_costText;
-    public Image m_image;
-    public Image m_rarityImage;
-    public Text m_typelineText;
-    public Text m_descText;
-    public Text m_powerText;
-    public Text m_healthText;
+    public GameObject m_lockedObj;
+    public GameObject m_enemyObj;
+
+    public GameObject m_unitObj;
+    public GameObject m_costCircle;
+
+    public TMP_Text m_nameText;
+    public TMP_Text m_costText;
+    public TMP_Text m_typelineText;
+    public TMP_Text m_descText;
+    public TMP_Text m_statsText;
+
     public UIStaminaContainer m_staminaContainer;
-    public GameObject m_skullIndicator;
-    public GameObject m_lockIcon;
 
     public CardDisplayType m_displayType;
 
@@ -110,10 +114,7 @@ public class UICard : MonoBehaviour
             m_hasSetDisplayType = true;
         }
 
-        if (m_lockIcon != null)
-        {
-            m_lockIcon.SetActive(m_isLocked);
-        }
+        m_lockedObj.SetActive(m_isLocked);
     }
 
     void Update()
@@ -148,43 +149,32 @@ public class UICard : MonoBehaviour
 
         m_image.sprite = m_card.m_icon;
         m_nameText.text = m_card.GetName();
-        if (m_costText != null && m_unitCard != null && m_unitCard.GetUnit().GetTeam() == Team.Enemy)
+        if (m_unitCard != null && m_unitCard.GetUnit().GetTeam() == Team.Enemy)
         {
-            if (m_skullIndicator != null)
-            {
-                m_skullIndicator.SetActive(true);
-            }
+            m_enemyObj.SetActive(true);
             m_costText.text = "";
         }
-        else if (m_costText != null)
+        else
         {
             m_costText.text = m_card.GetCost() + "";
-            if (m_skullIndicator != null)
-            {
-                m_skullIndicator.SetActive(false);
-            }
+            m_enemyObj.SetActive(false);
         }
         m_typelineText.text = m_card.GetTypeline();
         m_descText.text = m_card.GetDesc();
 
-        if (m_rarityImage != null)
-        {
-            m_rarityImage.color = UIHelper.GetRarityColor(m_card.m_rarity);
-        }
+        m_costCircle.GetComponent<Image>().color = UIHelper.GetRarityColor(m_card.m_rarity);
 
         if (m_unitCard != null)
         {
-            m_powerText.text = m_unitCard.m_unit.GetPower() + "";
-            m_healthText.text = m_unitCard.m_unit.GetMaxHealth() + "";
+            m_statsText.text = m_unitCard.m_unit.GetPower() + "/" + m_unitCard.m_unit.GetMaxHealth();
 
-            m_staminaContainer.gameObject.SetActive(true);
+            m_unitObj.gameObject.SetActive(true);
             m_staminaContainer.Init(m_unitCard.GetUnit().GetStaminaRegen(), m_unitCard.GetUnit().GetMaxStamina(), m_unitCard.GetUnit().GetTeam());
         }
         else
         {
-            m_powerText.text = "";
-            m_healthText.text = "";
-            m_staminaContainer.gameObject.SetActive(false);
+            m_statsText.text = "";
+            m_unitObj.SetActive(false);
         }
     }
 

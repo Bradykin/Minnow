@@ -12,6 +12,7 @@ public static class UIMetaprogressionNotificationController
     }
 
     public static bool HasAnyNotifications()
+
     {
         return m_rewardsToShow.Count > 0;
     }
