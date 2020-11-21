@@ -17,7 +17,7 @@ public abstract class GameRelic : GameElementBase, ISave<JsonGameRelicData>, ILo
         return m_desc;
     }
 
-    public JsonGameRelicData SaveToJson()
+    public virtual JsonGameRelicData SaveToJson()
     {
         JsonGameRelicData jsonData = new JsonGameRelicData
         {
@@ -27,7 +27,7 @@ public abstract class GameRelic : GameElementBase, ISave<JsonGameRelicData>, ILo
         return jsonData;
     }
 
-    public void LoadFromJson(JsonGameRelicData jsonData)
+    public virtual void LoadFromJson(JsonGameRelicData jsonData)
     {
         //Currently don't need to do anything here
     }

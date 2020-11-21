@@ -8,4 +8,8 @@ public class JsonGameRelicData
 {
     //GameElementBase values
     public string name;
+
+    //Unique case variables
+    public int intValue;
+    public bool boolValue;
 }

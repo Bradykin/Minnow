@@ -82,8 +82,6 @@ public class GameUnitFactory
                 m_eliteEnemies.Add(m_enemies[i]);
             }
         }
-
-        m_hasInit = true;
     }
 
     public static void DeInit()

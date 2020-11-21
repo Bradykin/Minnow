@@ -38,4 +38,22 @@ public class ContentAncientEvilRelic : GameRelic
     {
         return m_isTransformed;
     }
+
+    public override JsonGameRelicData SaveToJson()
+    {
+        JsonGameRelicData jsonData = base.SaveToJson();
+
+        jsonData.intValue = m_killCount;
+        jsonData.boolValue = m_isTransformed;
+
+        return jsonData;
+    }
+
+    public override void LoadFromJson(JsonGameRelicData jsonData)
+    {
+        base.LoadFromJson(jsonData);
+
+        m_killCount = jsonData.intValue;
+        m_isTransformed = jsonData.boolValue;
+    }
 }
