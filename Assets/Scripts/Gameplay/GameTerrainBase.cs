@@ -307,7 +307,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
         if (IsDunes())
         {
-            description += $"\n\nUnits standing on this tile take {Constants.SandDuneMagicDamageReductionPercentage}% less damage from spells.";
+            description += $"\n\n<b>Spell Cover</b> - Units standing on this tile take {Constants.SandDuneMagicDamageReductionPercentage}% less damage from spells.";
         }
         
         return description;

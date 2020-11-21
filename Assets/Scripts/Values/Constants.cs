@@ -136,6 +136,11 @@ public static class Constants
 
     public static int GetWaveLength (int waveNum)
     {
+        if (waveNum == 6)
+        {
+            return 9999;
+        }
+        
         return WaveLength[waveNum - 1];
     }
 }

@@ -7,10 +7,27 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
+    public PlayerRunData PlayerRunData
+    {
+        get
+        {
+            if (m_playerRunData == null)
+            {
+                m_playerRunData = Files.ImportPlayerRunData();
+            }
+            return m_playerRunData;
+        }
+        set
+        {
+            m_playerRunData = value;
+        }
+    }
+    private PlayerRunData m_playerRunData;
+
     [JsonIgnore]
-    public PlayerRunData PlayerRunData => m_playerRunData;
+    public List<JsonGameMetaProgressionRewardData> JsonGameMetaProgressionRewardDatas => m_jsonGameMetaProgressionRewardDatas;
     [JsonProperty]
-    private PlayerRunData m_playerRunData = null;
+    private List<JsonGameMetaProgressionRewardData> m_jsonGameMetaProgressionRewardDatas;
     
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
@@ -57,6 +74,15 @@ public class PlayerAccountData
         }
 
         return true;
+    }
+
+    public void SaveGameMetaProgressionRewardDatas()
+    {
+        m_jsonGameMetaProgressionRewardDatas = new List<JsonGameMetaProgressionRewardData>();
+        for (int i = 0; i < UIMetaprogressionNotificationController.GetRewards().Count; i++)
+        {
+            m_jsonGameMetaProgressionRewardDatas.Add(UIMetaprogressionNotificationController.GetRewards()[i].SaveToJson());
+        }
     }
 
     public void SaveRunData()

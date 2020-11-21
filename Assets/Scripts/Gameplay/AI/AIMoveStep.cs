@@ -5,10 +5,20 @@ using UnityEngine;
 
 public abstract class AIMoveStep : AIStep
 {
-    public AIMoveStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    private int m_numTurnsDelayMovement;
+
+    public AIMoveStep(AIGameEnemyUnit AIGameEnemyUnit, int numTurnsDelayMovement = 0) : base(AIGameEnemyUnit) 
+    {
+        m_numTurnsDelayMovement = numTurnsDelayMovement;
+    }
 
     protected virtual IEnumerator MoveTowardsCastleCoroutine()
     {
+        if (m_numTurnsDelayMovement > 0)
+        {
+            yield break;
+        }
+        
         int amountStaminaToSpend = GetStaminaToUseToMoveToCastle();
         
         if (GameHelper.GetPlayer() == null || GameHelper.GetPlayer().GetCastleGameElement() == null)
@@ -16,10 +26,7 @@ public abstract class AIMoveStep : AIStep
             yield break;
         }
 
-        if (m_AIGameEnemyUnit.m_targetGameTile == null)
-        {
-            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
-        }
+        m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
@@ -50,6 +57,11 @@ public abstract class AIMoveStep : AIStep
 
     protected virtual void MoveTowardsCastleInstant()
     {
+        if (m_numTurnsDelayMovement > 0)
+        {
+            return;
+        }
+
         int amountStaminaToSpend = GetStaminaToUseToMoveToCastle();
         
         if (GameHelper.GetPlayer() == null || GameHelper.GetPlayer().GetCastleGameElement() == null)
@@ -57,10 +69,7 @@ public abstract class AIMoveStep : AIStep
             return;
         }
 
-        if (m_AIGameEnemyUnit.m_targetGameTile == null)
-        {
-            m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
-        }
+        m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
@@ -72,5 +81,13 @@ public abstract class AIMoveStep : AIStep
     protected virtual int GetStaminaToUseToMoveToCastle()
     {
         return Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
+    }
+
+    public override void CleanupAIStep()
+    {
+        if (m_numTurnsDelayMovement > 0)
+        {
+            m_numTurnsDelayMovement -= 1;
+        }
     }
 }

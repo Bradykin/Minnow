@@ -221,9 +221,9 @@ public class WorldController : Singleton<WorldController>
     {
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
-            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && !(WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit is ContentRoyalCaravan))
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().IsOccupied() && !(WorldGridManager.Instance.m_gridArray[i].GetGameTile().GetOccupyingUnit() is ContentRoyalCaravan))
             {
-                WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_occupyingUnit.SetGameTile(null);
+                WorldGridManager.Instance.m_gridArray[i].GetGameTile().GetOccupyingUnit().SetGameTile(null);
                 WorldGridManager.Instance.m_gridArray[i].RecycleUnit();
             }
         }
@@ -278,6 +278,17 @@ public class WorldController : Singleton<WorldController>
 
             player.OnEndWave();
 
+            if (PlayerDataManager.PlayerAccountData.m_altarsUnlockedOnAccount)
+            {
+                if (m_gameController.m_currentWaveNumber == Constants.AltarWave)
+                {
+                    WorldGridManager.Instance.PlaceAltars();
+                    UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
+                }
+            }
+
+            m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
+
             //Choose unit rarity
             GameElementBase.GameRarity gameRarity = SelectIntermissionUnitRarity();
 
@@ -310,17 +321,6 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedUnit = null;
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
-
-        m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
-
-        if (PlayerDataManager.PlayerAccountData.m_altarsUnlockedOnAccount)
-        {
-            if (m_gameController.m_currentWaveNumber == Constants.AltarWave)
-            {
-                WorldGridManager.Instance.PlaceAltars();
-                UIHelper.CreateHUDNotification("Altars Rising", "Altars to great gods of the region have risen. Once you claim one, that god will declare you their champion!");
-            }
-        }
     }
 
     private GameElementBase.GameRarity SelectIntermissionUnitRarity()

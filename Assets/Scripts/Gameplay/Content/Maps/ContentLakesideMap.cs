@@ -102,6 +102,8 @@ public class ContentLakesideMap : GameMap
         m_eventPool.Add(new ContentGoldenFruitEvent(null));
         m_eventPool.Add(new ContentTraditionOrProgressEvent(null));
         m_eventPool.Add(new ContentAngelicGiftEvent(null));
+
+        FillAltars();
     }
 
     protected override void FillExclusionRelicPool()

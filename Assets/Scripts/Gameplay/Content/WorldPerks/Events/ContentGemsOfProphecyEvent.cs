@@ -45,12 +45,12 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of adventure: " + m_tile.m_occupyingUnit.GetName() + " gains 'Victorious: gain +" + m_powerGain + "/+0.'";
+        m_message = "Receive the prophecy of adventure: " + m_tile.GetOccupyingUnit().GetName() + " gains 'Victorious: gain +" + m_powerGain + "/+0.'";
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(m_tile.m_occupyingUnit, m_powerGain, 0)));
+        m_tile.GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_powerGain, 0)));
 
         EndEvent();
     }
@@ -68,12 +68,12 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.m_occupyingUnit.GetName() + " gains <b>Damage Reduction</b> " + m_damageReduction;
+        m_message = "Receive the prophecy of dangers: " + m_tile.GetOccupyingUnit().GetName() + " gains <b>Damage Reduction</b> " + m_damageReduction;
     }
 
     public override void AcceptOption()
     {
-        m_tile.m_occupyingUnit.AddKeyword(new GameDamageReductionKeyword(m_damageReduction));
+        m_tile.GetOccupyingUnit().AddKeyword(new GameDamageReductionKeyword(m_damageReduction));
 
         EndEvent();
     }

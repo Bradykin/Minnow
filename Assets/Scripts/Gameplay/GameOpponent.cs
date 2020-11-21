@@ -40,6 +40,21 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     //============================================================================================================//
 
+    public void InformHasDied(GameUnit deadUnit, GameTile deathLocation)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i] == deadUnit)
+            {
+                continue;
+            }
+
+            m_controlledUnits[i].OnOtherDie(deadUnit, deathLocation);
+        }
+    }
+
+    //============================================================================================================//
+
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)
@@ -121,11 +136,6 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             m_controlledUnits[i].EndTurn();
         }
 
-        if (GameHelper.GetGameController().m_currentTurnNumber >= GameHelper.GetGameController().GetEndWaveTurn())
-        {
-            return;
-        }
-
         HandleSpawn();
     }
 
@@ -154,6 +164,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         //handle spawning of bosses and elites
         m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
         m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
+
+        if (GameHelper.GetGameController().m_currentTurnNumber + 3 >= GameHelper.GetGameController().GetEndWaveTurn())
+        {
+            return;
+        }
 
         //Try spawning at any monster dens
         for (int i = 0; i < m_monsterDens.Count; i++)
@@ -248,7 +263,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     private bool TrySpawnAtSpawnPoint(GameSpawnPoint spawnPoint, ref float enemyCapToSpawn)
     {
-        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        if (spawnPoint.m_tile.GetOccupyingUnit() != null)
         {
             return false;
         }
@@ -290,7 +305,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     public bool TryForceSpawnAtSpawnPoint(GameEnemyUnit newEnemyUnit, GameSpawnPoint spawnPoint)
     {
-        if (spawnPoint.m_tile.m_occupyingUnit != null)
+        if (spawnPoint.m_tile.GetOccupyingUnit() != null)
         {
             return false;
         }

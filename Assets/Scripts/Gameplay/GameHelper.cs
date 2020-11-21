@@ -224,6 +224,7 @@ public static class GameHelper
         SceneLoader.ActivateScene("LevelSelectScene", "LevelScene");
 
         UILevelSelectController.Instance.SetSelectedLevel(null);
+        UICameraController.Instance.transform.position = UICameraController.Instance.m_levelSelectReturnTransform;
 
         AudioBackgroundController.Instance.StopBackgroundMusic();
     }

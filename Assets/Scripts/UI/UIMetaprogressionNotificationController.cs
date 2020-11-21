@@ -31,4 +31,9 @@ public static class UIMetaprogressionNotificationController
     {
         return m_rewardsToShow[0];
     }
+
+    public static List<GameMetaprogressionReward> GetRewards()
+    {
+        return m_rewardsToShow;
+    }
 }

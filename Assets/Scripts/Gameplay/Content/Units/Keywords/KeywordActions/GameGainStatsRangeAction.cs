@@ -37,7 +37,7 @@ public class GameGainStatsRangeAction : GameAction
 
     public override string GetDesc()
     {
-        return $"All friendly units within range {m_ranges.Max()} gain +{m_powerToGain}/+{m_healthToGain} Stamina";
+        return $"All friendly units within range {m_ranges.Max()} gain +{m_powerToGain}/+{m_healthToGain}";
     }
 
     public override void DoAction()
@@ -46,9 +46,9 @@ public class GameGainStatsRangeAction : GameAction
         
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].m_occupyingUnit.m_isDead && tilesInRange[i].m_occupyingUnit.GetTeam() == m_unit.GetTeam())
+            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].m_occupyingUnit.AddStats(m_powerToGain, m_healthToGain);
+                tilesInRange[i].GetOccupyingUnit().AddStats(m_powerToGain, m_healthToGain);
             }
         }
     }

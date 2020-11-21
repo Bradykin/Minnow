@@ -453,11 +453,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
-                    surroundingTiles[i].m_occupyingUnit.GetFlyingKeyword() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetWaterwalkKeyword() == null && 
-                    surroundingTiles[i].m_occupyingUnit.GetWaterboundKeyword() == null)
+                    surroundingTiles[i].GetOccupyingUnit().GetFlyingKeyword() == null && 
+                    surroundingTiles[i].GetOccupyingUnit().GetWaterwalkKeyword() == null && 
+                    surroundingTiles[i].GetOccupyingUnit().GetWaterboundKeyword() == null)
                 {
-                    surroundingTiles[i].m_occupyingUnit.Die();
+                    surroundingTiles[i].GetOccupyingUnit().Die();
                 }
                 else if (surroundingTiles[i].GetTerrain().IsIce())
                 {                    
@@ -507,7 +507,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
+        GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
+
         SetGameTile(null);
+    }
+
+    public virtual void OnOtherDie(GameUnit other, GameTile deathLocation)
+    {
+
     }
 
     //Returns the amount actually healed
@@ -571,7 +579,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (!HasStaminaToAttack())
+        if (!HasStaminaToAttack(other))
         {
             return false;
         }
@@ -591,7 +599,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (!HasStaminaToAttack())
+        if (!HasStaminaToAttack(building))
         {
             return false;
         }
@@ -682,9 +690,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public virtual bool HasStaminaToAttack()
+    public virtual bool HasStaminaToAttack(GameElementBase targetToAttack)
     {
-        if (m_curStamina < GetStaminaToAttack())
+        if (m_curStamina < GetStaminaToAttack(targetToAttack))
         {
             return false;
         }
@@ -727,11 +735,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 for (int i = 0; i < adjacentTiles.Count; i++)
                 {
                     if (adjacentTiles[i].IsOccupied() &&
-                        adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                        !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                        adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Monster)
+                        adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                        !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
+                        adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Monster)
                     {
-                        adjacentTiles[i].m_occupyingUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].m_occupyingUnit, 3, 3)));
+                        adjacentTiles[i].GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].GetOccupyingUnit(), 3, 3)));
                     }
                 }
             }
@@ -773,11 +781,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return toReturn;
     }
 
-    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         if (spendStamina)
         {
-            SpendStamina(GetStaminaToAttack());
+            SpendStamina(GetStaminaToAttack(other));
+        }
+
+        List<GameTile> tilesToCleave = new List<GameTile>();
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
+            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
         }
 
         int damageTaken = other.GetHitByUnit(damageAmount, this);
@@ -819,14 +835,37 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             UIHelper.ReselectUnit();
         }
 
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            for (int i = 0; i < tilesToCleave.Count; i++)
+            {
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].GetOccupyingUnit().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitUnit(tilesToCleave[i].GetOccupyingUnit(), GetDamageToDealTo(tilesToCleave[i].GetOccupyingUnit()), spendStamina: false, canCleave: false);
+                }
+                else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitBuilding(tilesToCleave[i].GetBuilding(), spendStamina: false, canCleave: false);
+                }
+            }
+        }
+
         return damageTaken;
     }
 
-    public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true)
+    public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
     {
         if (spendStamina)
         {
-            SpendStamina(GetStaminaToAttack());
+            SpendStamina(GetStaminaToAttack(other));
+        }
+
+        List<GameTile> tilesToCleave = new List<GameTile>();
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
+            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -866,6 +905,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (canCleave && GetCleaveKeyword() != null)
+        {
+            for (int i = 0; i < tilesToCleave.Count; i++)
+            {
+                if (tilesToCleave[i].IsOccupied() && tilesToCleave[i].GetOccupyingUnit().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitUnit(tilesToCleave[i].GetOccupyingUnit(), GetDamageToDealTo(tilesToCleave[i].GetOccupyingUnit()), spendStamina: false, canCleave: false);
+                }
+                else if (tilesToCleave[i].HasBuilding() && tilesToCleave[i].GetBuilding().GetTeam() != GetTeam())
+                {
+                    damageTaken += HitBuilding(tilesToCleave[i].GetBuilding(), spendStamina: false, canCleave: false);
+                }
+            }
+        }
+
         return 0;
     }
 
@@ -894,7 +948,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_curStamina;
     }
 
-    public virtual int GetStaminaToAttack()
+    public virtual int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         int staminaToAttack = m_staminaToAttack;
         if (GetTeam() == Team.Player)
@@ -1036,6 +1090,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         //Return it
         return toReturn;
+    }
+
+    public virtual GameCleaveKeyword GetCleaveKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameCleaveKeyword>();
     }
 
     public virtual GameFlyingKeyword GetFlyingKeyword()
@@ -1358,6 +1417,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_gameTile.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover;
     }
 
+    public bool IsInDunes()
+    {
+        if (m_gameTile == null)
+        {
+            return false;
+        }
+
+        if (!GameHelper.IsUnitInWorld(this))
+        {
+            return false;
+        }
+
+        if (GetFlyingKeyword() != null)
+        {
+            return false;
+        }
+
+        if (m_gameTile.HasBuilding())
+        {
+            return true;
+        }
+
+        return m_gameTile.GetTerrain().IsDunes();
+    }
+
     public GameKeywordHolder GetKeywordHolderForRead()
     {
         return m_keywordHolder;
@@ -1443,14 +1527,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                         for (int i = 0; i < surroundingTiles.Count; i++)
                         {
-                            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                                surroundingTiles[i].m_occupyingUnit.GetTeam() == Team.Player)
+                            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
+                                surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player)
                             {
-                                if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Humanoid)
+                                if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Humanoid)
                                 {
                                     toReturn += 4;
                                 }
-                                else if (surroundingTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                                else if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                                 {
                                     toReturn -= 4;
                                 }
@@ -1741,19 +1825,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false)
+    public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false, bool letPassEnemies = true)
     {
-        if (this == Globals.m_focusedDebugEnemyUnit)
-        {
-            Debug.Log("IS FOCUSED ENEMY");
-        }
-
         if (tile == m_gameTile || staminaToUse <= 0)
         {
             return m_gameTile;
         }
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, true);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, letPassEnemies);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {
@@ -1795,7 +1874,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     return path[i];
                 }
             }
-            return m_gameTile;
+
+            if (letPassEnemies)
+            {
+                return GetMoveTowardsDestination(tile, staminaToUse, ignoreTerrainDifference, false);
+            }
+            else
+            {
+                return m_gameTile;
+            }
         }
         else
         {
@@ -1870,6 +1957,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (tauntKeyword != null)
         {
             returnDesc += tauntKeyword.GetDisplayString() + "\n";
+        }
+
+        GameCleaveKeyword cleaveKeyword = GetCleaveKeyword();
+        if (cleaveKeyword != null)
+        {
+            returnDesc += cleaveKeyword.GetDisplayString() + "\n";
         }
 
         GameLavawalkKeyword lavawalkKeyword = GetLavawalkKeyword();
@@ -1953,6 +2046,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (IsInCover())
         {
             returnDesc += "<b>Cover</b>: 50% damage taken. (rounded down)\n";
+        }
+
+        if (IsInDunes())
+        {
+            returnDesc += $"<b>Spell Cover</b>: {Constants.SandDuneMagicDamageReductionPercentage}% less damage from spells.\n";
         }
 
         GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
@@ -2229,10 +2327,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.Heal(15);
+                            adjacentTiles[i].GetOccupyingUnit().Heal(15);
                         }
                     }
                 }
@@ -2243,10 +2341,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.GainStamina(1);
+                            adjacentTiles[i].GetOccupyingUnit().GainStamina(1);
                         }
                     }
                 }
@@ -2302,9 +2400,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     List<GameTile> adjacentTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, 1);
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
-                        if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Enemy && !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                        if (adjacentTiles[i].IsOccupied() && adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Enemy && !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.SpendStamina(adjacentTiles[i].m_occupyingUnit.GetCurStamina());
+                            adjacentTiles[i].GetOccupyingUnit().SpendStamina(adjacentTiles[i].GetOccupyingUnit().GetCurStamina());
                         }
                     }
                 }
@@ -2315,11 +2413,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead &&
-                            adjacentTiles[i].m_occupyingUnit.GetTypeline() == Typeline.Creation)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
+                            adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                         {
-                            adjacentTiles[i].m_occupyingUnit.AddStats(GetPower(), GetMaxHealth());
+                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth());
                         }
                     }
                 }
@@ -2330,10 +2428,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     for (int i = 0; i < adjacentTiles.Count; i++)
                     {
                         if (adjacentTiles[i].IsOccupied() &&
-                            adjacentTiles[i].m_occupyingUnit.GetTeam() == Team.Player &&
-                            !adjacentTiles[i].m_occupyingUnit.m_isDead)
+                            adjacentTiles[i].GetOccupyingUnit().GetTeam() == Team.Player &&
+                            !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
-                            adjacentTiles[i].m_occupyingUnit.FillStamina();
+                            adjacentTiles[i].GetOccupyingUnit().FillStamina();
                         }
                     }
                 }

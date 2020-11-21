@@ -29,26 +29,26 @@ public class AIScanTargetsInRangeStandardStep : AIStep
 
         foreach (var tile in tilesInAttackRange)
         {
-            if (tile.IsOccupied() && !tile.m_occupyingUnit.m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.m_occupyingUnit, false))
+            if (tile.IsOccupied() && !tile.GetOccupyingUnit().m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.GetOccupyingUnit(), false))
             {
-                int damageAmountPerHit = tile.m_occupyingUnit.CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower(), DamageType.Unit);
-                if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.m_occupyingUnit.GetTauntKeyword() == null)
+                int damageAmountPerHit = tile.GetOccupyingUnit().CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower(), DamageType.Unit);
+                if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.GetOccupyingUnit().GetTauntKeyword() == null)
                 {
                     continue;
                 }
 
-                possibleUnitTargets.Add(tile.m_occupyingUnit);
+                possibleUnitTargets.Add(tile.GetOccupyingUnit());
 
-                if (tile.m_occupyingUnit.GetTauntKeyword() != null)
+                if (tile.GetOccupyingUnit().GetTauntKeyword() != null)
                 {
-                    m_AIGameEnemyUnit.m_tauntUnitTargets.Add(tile.m_occupyingUnit);
+                    m_AIGameEnemyUnit.m_tauntUnitTargets.Add(tile.GetOccupyingUnit());
                 }
 
                 //Rough code - goal is to determine if the enemy could kill the target in two hits
                 int numHitsToRateVulnerable = 2;
-                if (tile.m_occupyingUnit.GetDamageShieldKeyword() != null)
+                if (tile.GetOccupyingUnit().GetDamageShieldKeyword() != null)
                 {
-                    numHitsToRateVulnerable -= tile.m_occupyingUnit.GetDamageShieldKeyword().GetShieldLevel();
+                    numHitsToRateVulnerable -= tile.GetOccupyingUnit().GetDamageShieldKeyword().GetShieldLevel();
                 }
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
@@ -56,9 +56,9 @@ public class AIScanTargetsInRangeStandardStep : AIStep
                     damageAmountInVulnerableRange += damageAmountPerHit;
                     numHitsToRateVulnerable--;
                 }
-                if (damageAmountInVulnerableRange >= tile.m_occupyingUnit.GetCurHealth())
+                if (damageAmountInVulnerableRange >= tile.GetOccupyingUnit().GetCurHealth())
                 {
-                    m_AIGameEnemyUnit.m_vulnerableUnitTargets.Add(tile.m_occupyingUnit);
+                    m_AIGameEnemyUnit.m_vulnerableUnitTargets.Add(tile.GetOccupyingUnit());
                 }
             }
 

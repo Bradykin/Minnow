@@ -168,7 +168,6 @@ public static class GameCardFactory
         m_tribalCards.Add(new ContentPhalanxCard());
         m_tribalCards.Add(new ContentReforgingCard());
         m_tribalCards.Add(new ContentRoarOfVictoryCard());
-        m_tribalCards.Add(new ContentRoarOfVictoryCard());
 
         //Enemy Cards
         m_enemyCards.Add(new ContentAngryBirdEnemyCard());
@@ -180,9 +179,11 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentCrumblingAncientEnemyCard());
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
         m_enemyCards.Add(new ContentDemonMagicianEnemyCard());
+        m_enemyCards.Add(new ContentDjinnEnemyCard());
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
         m_enemyCards.Add(new ContentLordOfEruptionsEnemyCard());
         m_enemyCards.Add(new ContentFrozenImpEnemyCard());
+        m_enemyCards.Add(new ContentGoblinWarriorEnemyCard());
         m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
@@ -191,6 +192,8 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentLichEnemyCard());
         m_enemyCards.Add(new ContentLizardmanEnemyCard());
         m_enemyCards.Add(new ContentMobolaEnemyCard());
+        m_enemyCards.Add(new ContentMummyEnemyCard());
+        m_enemyCards.Add(new ContentMummyPharaohEnemyCard());
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
         m_enemyCards.Add(new ContentPhoenixEnemyCard());
@@ -222,6 +225,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentImmortalBowEnemyCard());
         m_enemyCards.Add(new ContentImmortalBannerEnemyCard());
         m_enemyCards.Add(new ContentOrcWarleaderEnemyCard());
+        m_enemyCards.Add(new ContentRiverlurkerEnemyCard());
 
 
         for (int i = 0; i < m_cards.Count; i++)

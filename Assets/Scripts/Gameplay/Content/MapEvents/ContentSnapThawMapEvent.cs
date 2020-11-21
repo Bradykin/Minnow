@@ -19,7 +19,7 @@ public class ContentSnapThawMapEvent : GameMapEvent
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
             GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.m_gameEventMarkers.Contains(m_markerToCheck))
+            if (gameTile.HasEventMarker(m_markerToCheck))
             {
                 int r = Random.Range(0, 2);
                 if (r == 0)

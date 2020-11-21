@@ -72,7 +72,7 @@ public class ContentVolcanoRunMap : GameMap
 
         for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
         {
-            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().m_gameEventMarkers.Contains(10))
+            if (WorldGridManager.Instance.m_gridArray[i].GetGameTile().HasEventMarker(10))
             {
                 return gameOpponent.ForceSpawnNearPosition(GameUnitFactory.GetRandomBossEnemy(gameOpponent), WorldGridManager.Instance.m_gridArray[i].GetGameTile());
             }

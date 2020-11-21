@@ -36,7 +36,7 @@ public class ContentFarmlandBuilding : GameBuildingBase
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            GameUnit unit = surroundingTiles[i].m_occupyingUnit;
+            GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
 
             if (unit == null)
             {

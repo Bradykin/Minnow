@@ -193,9 +193,9 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetBaseName() == jsonData.jsonGameCardsInDeckData[i].baseName)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().GetOccupyingUnit().GetBaseName() == jsonData.jsonGameCardsInDeckData[i].baseName)
                 {
-                    m_cards.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    m_cards.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().GetOccupyingUnit()));
                     continue;
                 }
             }
@@ -214,9 +214,9 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
                     return;
                 }
 
-                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().m_occupyingUnit.GetBaseName() == jsonData.jsonGameCardsInDiscardData[i].baseName)
+                if (worldTile.GetGameTile().IsOccupied() && worldTile.GetGameTile().GetOccupyingUnit().GetBaseName() == jsonData.jsonGameCardsInDiscardData[i].baseName)
                 {
-                    m_discard.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().m_occupyingUnit));
+                    m_discard.Add(GameCardFactory.GetCardFromUnit(worldTile.GetGameTile().GetOccupyingUnit()));
                     continue;
                 }
             }

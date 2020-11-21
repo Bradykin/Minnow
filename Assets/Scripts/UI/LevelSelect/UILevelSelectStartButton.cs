@@ -18,6 +18,8 @@ public class UILevelSelectStartButton : UIElementBase
             return;
         }
 
+        UICameraController.Instance.m_levelSelectReturnTransform = UICameraController.Instance.transform.position;
+
         List<JsonMapMetaData> mapList = Globals.LoadMapMetaData();
         for (int i = 0; i < mapList.Count; i++)
         {

@@ -61,7 +61,7 @@ public class GameEventStatsBuffOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingUnit.AddStats(m_powerIncrease, m_maxHealthIncrease);
+        m_tile.GetOccupyingUnit().AddStats(m_powerIncrease, m_maxHealthIncrease);
 
         if (m_eventType == StatsBuffEventType.Blast)
         {
@@ -71,7 +71,7 @@ public class GameEventStatsBuffOption : GameEventOption
             {
                 if (nearbyTiles[i].IsOccupied())
                 {
-                    nearbyTiles[i].m_occupyingUnit.GetHitByAbility(m_blastDamage);
+                    nearbyTiles[i].GetOccupyingUnit().GetHitByAbility(m_blastDamage);
                 }
 
                 if (nearbyTiles[i].GetTerrain().CanBurn())

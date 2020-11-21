@@ -10,13 +10,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 {
     public Vector2Int m_gridPosition;
 
-    public GameUnit m_occupyingUnit { get; private set; } //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
+    private GameUnit m_occupyingUnit; //Always set this with PlaceUnit() or ClearUnit() to ensure proper data setup
     private GameBuildingBase m_building;
     private GameTerrainBase m_terrain;
-    public GameSpawnPoint m_spawnPoint { get; private set; }
-    private WorldTile m_worldTile;
+    private GameSpawnPoint m_spawnPoint;
+    private List<int> m_gameEventMarkers = new List<int>();
 
-    public List<int> m_gameEventMarkers = new List<int>();
+    private WorldTile m_worldTile;
 
     public bool m_isFog;
     public bool m_isSoftFog;
@@ -216,16 +216,56 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             if (newTerrain.IsEventTerrain())
             {
-                m_gameWorldPerk = new GameWorldPerk(GameEventFactory.GetRandomEvent(this));
+                m_gameWorldPerk = new GameWorldPerk(this, GameEventFactory.GetRandomEvent(this));
                 m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
             }
         }
+    }
+
+    public GameSpawnPoint GetSpawnPoint()
+    {
+        return m_spawnPoint;
+    }
+
+    public bool HasSpawnPoint()
+    {
+        return m_spawnPoint != null;
     }
 
     public void SetSpawnPoint(GameSpawnPoint newSpawnPoint)
     {
         m_spawnPoint = newSpawnPoint;
         m_spawnPoint.m_tile = this;
+    }
+
+    public bool HasEventMarker(int toCheck)
+    {
+        return m_gameEventMarkers.Contains(toCheck);
+    }
+
+    public bool HasEventMarker()
+    {
+        return m_gameEventMarkers.Count > 0;
+    }
+
+    public List<int> GetEventMarkers()
+    {
+        return m_gameEventMarkers;
+    }
+
+    public void AddEventMarker(int toAdd)
+    {
+        m_gameEventMarkers.Add(toAdd);
+    }
+
+    public void ClearEventMarkers()
+    {
+        m_gameEventMarkers.Clear();
+    }
+
+    public GameUnit GetOccupyingUnit()
+    {
+        return m_occupyingUnit;
     }
 
     public GameBuildingBase GetBuilding()
@@ -309,6 +349,14 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             tileValue++;
         }
 
+        if (checkerUnit != null)
+        {
+            if (checkerUnit is ContentRiverlurkerEnemy && !GetTerrain().IsWater())
+            {
+                tileValue *= 2;
+            }
+        }
+        
         return tileValue;
     }
 
@@ -397,6 +445,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             isFogBorder = m_isFogBorder
         };
 
+        if (GameHelper.IsInLevelBuilder())
+        {
+            jsonData.isFog = true;
+            jsonData.isSoftFog = false;
+            jsonData.isFogBorder = false;
+        }
+
         if (m_occupyingUnit != null)
         {
             jsonData.gameUnitData = m_occupyingUnit.SaveToJson();
@@ -417,6 +472,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         {
             jsonData.gameEventMarkers = m_gameEventMarkers;
         }
+        if (m_gameWorldPerk != null)
+        {
+            jsonData.gameWorldPerkData = m_gameWorldPerk.SaveToJson();
+        }
 
         return jsonData;
     }
@@ -424,9 +483,13 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public void LoadFromJson(JsonGameTileData jsonData)
     {
         m_gridPosition = new Vector2Int(jsonData.gridPositionX, jsonData.gridPositionY);
-        //m_isFog = jsonData.isFog;
-        //m_isSoftFog = jsonData.isSoftFog;
-        //m_isFogBorder = jsonData.isFogBorder;
+
+        if (Globals.loadingRun)
+        {
+            m_isFog = jsonData.isFog;
+            m_isSoftFog = jsonData.isSoftFog;
+            m_isFogBorder = jsonData.isFogBorder;
+        }
 
         if (jsonData.gameTerrainData != null)
         {
@@ -460,6 +523,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         else
         {
             m_gameEventMarkers = new List<int>();
+        }
+
+        if (jsonData.gameWorldPerkData != null)
+        {
+            m_gameWorldPerk = new GameWorldPerk(this);
+            m_gameWorldPerk.LoadFromJson(jsonData.gameWorldPerkData);
         }
     }
 

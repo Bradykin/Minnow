@@ -74,6 +74,7 @@ public class AIGameEnemyUnit
             }
 
             m_setupAISteps[i].TakeStepInstant();
+            m_setupAISteps[i].CleanupAIStep();
         }
     }
 
@@ -94,7 +95,9 @@ public class AIGameEnemyUnit
                     break;
                 }
 
-                 yield return FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStepCoroutine());
+                yield return FactoryManager.Instance.StartCoroutine(m_activeAISteps[i].TakeStepCoroutine());
+
+                m_activeAISteps[i].CleanupAIStep();
             }
 
             if (m_doSteps)
@@ -125,6 +128,7 @@ public class AIGameEnemyUnit
                 }
 
                 m_activeAISteps[i].TakeStepInstant();
+                m_activeAISteps[i].CleanupAIStep();
 
                 if (m_exitSteps)
                 {

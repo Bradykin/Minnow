@@ -14,4 +14,6 @@ public abstract class AIStep
     public abstract IEnumerator TakeStepCoroutine();
 
     public abstract void TakeStepInstant();
+
+    public virtual void CleanupAIStep() { }
 }

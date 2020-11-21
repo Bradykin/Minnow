@@ -8,10 +8,10 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 80;
+        m_maxHealth = 70;
         m_maxStamina = 7;
         m_staminaRegen = 4;
-        m_power = 25;
+        m_power = 15;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
@@ -23,7 +23,7 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageShieldKeyword(4), false);
+            AddKeyword(new GameDamageShieldKeyword(3), false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

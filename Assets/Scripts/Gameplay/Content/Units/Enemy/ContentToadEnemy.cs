@@ -36,7 +36,7 @@ public class ContentToadEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true)
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 

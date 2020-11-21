@@ -46,8 +46,8 @@ public class ContentHellhoundEnemy : GameEnemyUnit
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].m_occupyingUnit.m_isDead &&
-                    surroundingTiles[i].m_occupyingUnit is ContentHellhoundEnemy)
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
+                    surroundingTiles[i].GetOccupyingUnit() is ContentHellhoundEnemy)
                 {
                     basePower += m_effectIncrease;
                 }

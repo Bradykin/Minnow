@@ -43,9 +43,9 @@ public class GameGainStaminaRangeAction : GameAction
         
         for (int i = 0; i < tilesInRange.Count; i++)
         {
-            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].m_occupyingUnit.m_isDead && tilesInRange[i].m_occupyingUnit.GetTeam() == m_unit.GetTeam())
+            if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].m_occupyingUnit.GainStamina(m_toGain);
+                tilesInRange[i].GetOccupyingUnit().GainStamina(m_toGain);
             }
         }
     }

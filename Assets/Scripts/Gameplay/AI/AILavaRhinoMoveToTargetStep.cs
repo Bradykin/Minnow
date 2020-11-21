@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AILavaRhinoMoveToTargetStep : AIMoveToTargetStandardStep
 {
-    public AILavaRhinoMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) 
+    public AILavaRhinoMoveToTargetStep(AIGameEnemyUnit AIGameEnemyUnit, int numTurnsDelayMovement = 0) : base(AIGameEnemyUnit, numTurnsDelayMovement) 
     {
         letPassEnemies = true;
     }

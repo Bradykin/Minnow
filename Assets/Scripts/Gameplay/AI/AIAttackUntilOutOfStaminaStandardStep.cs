@@ -13,7 +13,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
             yield break;
         }
 
-        while(m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+        while(m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(m_AIGameEnemyUnit.m_targetGameElement))
         {
             bool didAttack = false;
             switch (m_AIGameEnemyUnit.m_targetGameElement)
@@ -37,7 +37,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 
                     if (gameUnit == null || gameUnit.m_isDead || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -63,7 +63,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 
                     if (gameBuilding.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -86,7 +86,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
             return;
         }
 
-        while (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+        while (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(m_AIGameEnemyUnit.m_targetGameElement))
         {
             bool didAttack = false;
             switch (m_AIGameEnemyUnit.m_targetGameElement)
@@ -102,7 +102,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 
                     if (gameUnit == null || gameUnit.m_isDead || !m_AIGameEnemyUnit.m_gameEnemyUnit.IsInRangeOfGameElement(m_AIGameEnemyUnit.m_targetGameElement))
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }
@@ -120,7 +120,7 @@ public class AIAttackUntilOutOfStaminaStandardStep : AIStep
 
                     if (gameBuilding.m_isDestroyed)
                     {
-                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack())
+                        if (m_AIGameEnemyUnit.m_gameEnemyUnit.HasStaminaToAttack(null))
                         {
                             m_AIGameEnemyUnit.m_doSteps = true;
                         }

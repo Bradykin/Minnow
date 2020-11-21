@@ -14,7 +14,7 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = 600;
-            m_maxStamina = 7;
+            m_maxStamina = 11;
             m_staminaRegen = 7;
             m_power = 30;
         }
@@ -31,13 +31,13 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         m_isBoss = true;
 
         m_name = "Orc Warleader";
-        m_desc = $"The final boss. Kill it, and win.\nThis boss arrives with a might warband to destroy you! This unit gets 1 Damage Reduction for each surviving orc in the warband.\n";
+        m_desc = $"The final boss. Kill it, and win.\nThis boss arrives with a mighty warband to destroy you! This unit gets 1 Damage Reduction for each surviving orc in the warband.\n";
 
         AddKeyword(new GameForestwalkKeyword(), false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
-        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);
+        m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit, 2), false);
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();

@@ -46,7 +46,7 @@ public class GameEventBreakBarricadeOption : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Sacrifice " + m_tile.m_occupyingUnit.GetName() + ", but gain " + m_wallet.m_gold + " gold.";
+        m_message = "Sacrifice " + m_tile.GetOccupyingUnit().GetName() + ", but gain " + m_wallet.m_gold + " gold.";
 
         return base.GetMessage();
     }
@@ -60,7 +60,7 @@ public class GameEventBreakBarricadeOption : GameEventOption
             return;
         }
 
-        m_tile.m_occupyingUnit.Die();
+        m_tile.GetOccupyingUnit().Die();
 
         player.m_wallet.AddResources(m_wallet);
 
@@ -69,11 +69,11 @@ public class GameEventBreakBarricadeOption : GameEventOption
 
     public override void BuildTooltip()
     {
-        if (m_tile.m_occupyingUnit == null)
+        if (m_tile.GetOccupyingUnit() == null)
         {
             return;
         }
         
-        UIHelper.CreateUnitTooltip(m_tile.m_occupyingUnit, true);
+        UIHelper.CreateUnitTooltip(m_tile.GetOccupyingUnit(), true);
     }
 }

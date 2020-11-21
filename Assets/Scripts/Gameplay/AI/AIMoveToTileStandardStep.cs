@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AIMoveToTileStandardStep : AIMoveStep
 {
-    public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit) : base(AIGameEnemyUnit) { }
+    public AIMoveToTileStandardStep(AIGameEnemyUnit AIGameEnemyUnit, int numTurnsDelayMovement = 0) : base(AIGameEnemyUnit, numTurnsDelayMovement) { }
 
     public override IEnumerator TakeStepCoroutine()
     {
