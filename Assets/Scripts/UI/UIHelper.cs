@@ -42,6 +42,20 @@ public static class UIHelper
     public static Color m_rareRarity = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1.0f);
     public static Color m_noRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 0.0f);
 
+    public static Dictionary<GameElementBase.GameRarity, Sprite> m_chestRarityDictionary = new Dictionary<GameElementBase.GameRarity, Sprite>();
+    public static Dictionary<int, Sprite> m_iconGoldDictionary = new Dictionary<int, Sprite>();
+    public static Dictionary<string, Sprite> m_altarDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_terrainDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_cardDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_unitDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_buildingDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_relicDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_mapDictionary = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> m_intermissionActionDictionary = new Dictionary<string, Sprite>();
+
+    public static Sprite m_eventSprite = null;
+    public static Sprite m_eventSpriteW = null;
+
     public static Color GetRarityColor(GameElementBase.GameRarity rarity)
     {
         if (rarity == GameElementBase.GameRarity.Common)
@@ -198,108 +212,210 @@ public static class UIHelper
 
     public static Sprite GetIconCard(string cardName)
     {
-        return Resources.Load<Sprite>("Cards/" + cardName) as Sprite;
+        if (m_cardDictionary.ContainsKey(cardName))
+        {
+            return m_cardDictionary[cardName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Cards/" + cardName) as Sprite;
+        m_cardDictionary.Add(cardName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconUnit(string unitName)
     {
-        return Resources.Load<Sprite>("Units/" + unitName) as Sprite;
+        if (m_unitDictionary.ContainsKey(unitName))
+        {
+            return m_unitDictionary[unitName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Units/" + unitName) as Sprite;
+        m_unitDictionary.Add(unitName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconBuilding(string buildingName)
     {
-        return Resources.Load<Sprite>("Buildings/" + buildingName) as Sprite;
+        if (m_buildingDictionary.ContainsKey(buildingName))
+        {
+            return m_buildingDictionary[buildingName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Buildings/" + buildingName) as Sprite;
+        m_buildingDictionary.Add(buildingName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconRelic(string relicName)
     {
-        return Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
+        if (m_relicDictionary.ContainsKey(relicName))
+        {
+            return m_relicDictionary[relicName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Relics/" + relicName) as Sprite;
+        m_relicDictionary.Add(relicName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconMap(string mapName)
     {
-        return Resources.Load<Sprite>("Maps/" + mapName) as Sprite;
+        if (m_mapDictionary.ContainsKey(mapName))
+        {
+            return m_mapDictionary[mapName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Maps/" + mapName) as Sprite;
+        m_mapDictionary.Add(mapName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconChest(GameElementBase.GameRarity chestRarity)
     {
+        if (m_chestRarityDictionary.ContainsKey(chestRarity))
+        {
+            return m_chestRarityDictionary[chestRarity];
+        }
+
+        Sprite loadedSprite;
         if (chestRarity == GameElementBase.GameRarity.Common)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Copper Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Copper Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Uncommon)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Silver Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Silver Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Rare)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Gold Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Gold Chest") as Sprite;
         }
-        return null;
+        else
+        {
+            Debug.LogError("GetIconChest received chestRarity value that is not handled");
+            return null;
+        }
+
+        m_chestRarityDictionary.Add(chestRarity, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconAltar(string altarName)
     {
-        return Resources.Load<Sprite>("UI/WorldPerks/" + altarName) as Sprite;
+        if (m_altarDictionary.ContainsKey(altarName))
+        {
+            return m_altarDictionary[altarName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/" + altarName) as Sprite;
+        m_altarDictionary.Add(altarName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconEvent()
     {
-        return Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
+        if (m_eventSprite == null)
+        {
+            m_eventSprite = Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
+        }
+
+        return m_eventSprite;
     }
 
     public static Sprite GetIconGold(int goldVal)
     {
+        if (m_iconGoldDictionary.ContainsKey(goldVal))
+        {
+            return m_iconGoldDictionary[goldVal];
+        }
+
+        Sprite loadedSprite;
         if (goldVal == Constants.FarGoldVal)
         {
-            return Resources.Load<Sprite>("UI/MultipleGoldIcon") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/MultipleGoldIcon") as Sprite;
         }
-        return Resources.Load<Sprite>("UI/GoldIcon") as Sprite;
+        else
+        {
+            loadedSprite = Resources.Load<Sprite>("UI/GoldIcon") as Sprite;
+        }
+
+        m_iconGoldDictionary.Add(goldVal, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetWIconChest(GameElementBase.GameRarity chestRarity)
     {
+        if (m_chestRarityDictionary.ContainsKey(chestRarity))
+        {
+            return m_chestRarityDictionary[chestRarity];
+        }
+
+        Sprite loadedSprite;
         if (chestRarity == GameElementBase.GameRarity.Common)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Copper ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Copper ChestW") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Uncommon)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Silver ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Silver ChestW") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Rare)
         {
-            return Resources.Load<Sprite>("UI/WorldPerks/Gold ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Gold ChestW") as Sprite;
         }
-        return null;
-    }
+        else
+        {
+            Debug.LogError("GetWIconChest received chestRarity value that is not handled");
+            return null;
+        }
 
-    public static Sprite GetWIconAltar(string altarName)
-    {
-        return Resources.Load<Sprite>("UI/WorldPerks/" + altarName + "W") as Sprite;
+        m_chestRarityDictionary.Add(chestRarity, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetWIconEvent()
     {
-        return Resources.Load<Sprite>("UI/WorldPerks/EventW") as Sprite;
+        if (m_eventSpriteW == null)
+        {
+            m_eventSpriteW = Resources.Load<Sprite>("UI/WorldPerks/EventW") as Sprite;
+        }
+
+        return m_eventSpriteW;
     }
-
-    //Unsafe and currently unused function. Will cause errors if used for tile types without 4 sprite variants
-    /*public static Sprite GetRandomIconTerrain(string terrainName)
-    {
-        int rand = Random.Range(1, 5);
-
-        return Resources.Load<Sprite>("Terrain/" + terrainName + rand) as Sprite;
-    }*/
 
     public static Sprite GetIconTerrain(string terrainName)
     {
-        return Resources.Load<Sprite>("Terrain/" + terrainName) as Sprite;
+        if (m_terrainDictionary.ContainsKey(terrainName))
+        {
+            return m_terrainDictionary[terrainName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Terrain/" + terrainName) as Sprite;
+        m_terrainDictionary.Add(terrainName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static Sprite GetIconIntermissionAction(string actionName)
     {
-        return Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
+        if (m_intermissionActionDictionary.ContainsKey(actionName))
+        {
+            return m_terrainDictionary[actionName];
+        }
+
+        Sprite loadedSprite = Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
+        m_intermissionActionDictionary.Add(actionName, loadedSprite);
+
+        return loadedSprite;
     }
 
     public static void SetMoveableTileForUnit(WorldUnit unit)

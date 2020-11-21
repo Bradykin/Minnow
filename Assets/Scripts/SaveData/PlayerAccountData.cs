@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
+    [JsonIgnore]
     public PlayerRunData PlayerRunData
     {
         get
@@ -22,7 +23,16 @@ public class PlayerAccountData
             m_playerRunData = value;
         }
     }
+    [JsonIgnore]
     private PlayerRunData m_playerRunData;
+
+    [JsonProperty]
+    private bool m_hasPlayerRunData;
+
+    public bool HasPlayerRunData()
+    {
+        return m_playerRunData != null || m_hasPlayerRunData;
+    }
 
     [JsonIgnore]
     public List<JsonGameMetaProgressionRewardData> JsonGameMetaProgressionRewardDatas => m_jsonGameMetaProgressionRewardDatas;
@@ -89,10 +99,14 @@ public class PlayerAccountData
     {
         m_playerRunData = new PlayerRunData();
         m_playerRunData.SaveRunData();
+        Files.ExportPlayerRunData(PlayerRunData);
+        m_hasPlayerRunData = true;
     }
 
     public void ClearRunData()
     {
         m_playerRunData = null;
+        Files.ClearPlayerRunData();
+        m_hasPlayerRunData = false;
     }
 }

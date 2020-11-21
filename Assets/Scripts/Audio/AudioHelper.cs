@@ -33,9 +33,19 @@ public static class AudioHelper
 
     public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;
 
+    private static Dictionary<string, AudioClip> m_backgroundMusicDictionary = new Dictionary<string, AudioClip>();
+
     public static AudioClip GetBackgroundMusic(string mapName)
     {
-        return Resources.Load<AudioClip>("Audio/MapBackground/" + mapName) as AudioClip;
+        if (m_backgroundMusicDictionary.ContainsKey(mapName))
+        {
+            return m_backgroundMusicDictionary[mapName];
+        }
+        
+        AudioClip loadedClip = Resources.Load<AudioClip>("Audio/MapBackground/" + mapName) as AudioClip;
+        m_backgroundMusicDictionary.Add(mapName, loadedClip);
+
+        return loadedClip;
     }
 
     public static void PlaySFX(AudioClip toPlay)

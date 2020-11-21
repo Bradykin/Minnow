@@ -16,8 +16,60 @@ public class GameUnitFactory
     private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_bossEnemies = new List<GameEnemyUnit>();
 
+    private static bool m_hasInit = false;
+
+    public static void Init()
+    {
+        DeInit();
+
+        //Player Units
+        m_playerUnits.Add(new ContentAlphaBoar());
+        m_playerUnits.Add(new ContentConjuredImp());
+        m_playerUnits.Add(new ContentCyclops());
+        //m_playerUnits.Add(new ContentDemonSoldier());
+        m_playerUnits.Add(new ContentDevourer());
+        m_playerUnits.Add(new ContentDwarfArchitect());
+        m_playerUnits.Add(new ContentDwarfShivcaster());
+        m_playerUnits.Add(new ContentDwarvenSoldier());
+        m_playerUnits.Add(new ContentElvenRogue());
+        m_playerUnits.Add(new ContentElvenSentinel());
+        m_playerUnits.Add(new ContentElvenWizard());
+        m_playerUnits.Add(new ContentFishOracle());
+        m_playerUnits.Add(new ContentGladiator());
+        m_playerUnits.Add(new ContentGoblin());
+        m_playerUnits.Add(new ContentGrasper());
+        m_playerUnits.Add(new ContentGroundskeeper());
+        m_playerUnits.Add(new ContentGuardCaptain());
+        m_playerUnits.Add(new ContentHero());
+        m_playerUnits.Add(new ContentHomonculus());
+        m_playerUnits.Add(new ContentInjuredTroll());
+        m_playerUnits.Add(new ContentMage());
+        m_playerUnits.Add(new ContentMetalGolem());
+        m_playerUnits.Add(new ContentMiner());
+        m_playerUnits.Add(new ContentNaturalScout());
+        m_playerUnits.Add(new ContentOverlord());
+        m_playerUnits.Add(new ContentRanger());
+        m_playerUnits.Add(new ContentRaptor());
+        m_playerUnits.Add(new ContentRoyalCaravan());
+        m_playerUnits.Add(new ContentSabobot());
+        m_playerUnits.Add(new ContentShadowWarlock());
+        m_playerUnits.Add(new ContentSkeleton());
+        m_playerUnits.Add(new ContentStoneGolem());
+        m_playerUnits.Add(new ContentWanderer());
+        m_playerUnits.Add(new ContentWildfolk());
+
+        m_playerUnits.Add(new ContentLizardSoldier());
+        m_playerUnits.Add(new ContentUndeadMammoth());
+        m_playerUnits.Add(new ContentSandwalker());
+        m_playerUnits.Add(new ContentMechanizedBeast());
+
+        m_hasInit = true;
+    }
+
     public static void Init(List<GameEnemyUnit> totalEnemiesOnMap, GameSpawnPool defaultSpawnPool, List<GameSpawnPool> spawnPointSpawnPools)
     {
+        Init();
+        
         //Player Units
         m_playerUnits.Add(new ContentAlphaBoar());
         m_playerUnits.Add(new ContentConjuredImp());
@@ -75,6 +127,8 @@ public class GameUnitFactory
                 m_eliteEnemies.Add(m_enemies[i]);
             }
         }
+
+        m_hasInit = true;
     }
 
     public static void DeInit()
@@ -82,7 +136,7 @@ public class GameUnitFactory
         m_playerUnits.Clear();
         m_enemies.Clear();
         m_defaultSpawnPool = null;
-        m_spawnPointSpawnPools.Clear();
+        m_spawnPointSpawnPools = null;
         m_bossEnemies.Clear();
         m_eliteEnemies.Clear();
     }
@@ -207,6 +261,12 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetRandomEliteEnemy(GameOpponent gameOpponent)
     {
+        if (!m_hasInit)
+        {
+            Debug.LogError("Has not init enemy side content");
+            return null;
+        }
+
         int r = UnityEngine.Random.Range(0, m_eliteEnemies.Count);
 
         return (GameEnemyUnit)Activator.CreateInstance(m_eliteEnemies[r].GetType(), gameOpponent);
@@ -214,6 +274,12 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetRandomBossEnemy(GameOpponent gameOpponent)
     {
+        if (!m_hasInit)
+        {
+            Debug.LogError("Has not init enemy side content");
+            return null;
+        }
+
         int r = UnityEngine.Random.Range(0, m_bossEnemies.Count);
 
         return (GameEnemyUnit)Activator.CreateInstance(m_bossEnemies[r].GetType(), gameOpponent);
@@ -221,6 +287,11 @@ public class GameUnitFactory
 
     public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+        
         int i = m_playerUnits.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());
@@ -231,6 +302,12 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetEnemyFromJson(JsonGameUnitData jsonData, GameOpponent gameOpponent)
     {
+        if (!m_hasInit)
+        {
+            Debug.LogError("Has not init enemy side content");
+            return null;
+        }
+
         int i = m_enemies.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameEnemyUnit newEnemy = (GameEnemyUnit)Activator.CreateInstance(m_enemies[i].GetType(), gameOpponent);
@@ -241,6 +318,12 @@ public class GameUnitFactory
 
     public static GameEnemyUnit GetEnemyFromName(string name)
     {
+        if (!m_hasInit)
+        {
+            Debug.LogError("Has not init enemy side content");
+            return null;
+        }
+
         for (int i = 0; i < m_enemies.Count; i++)
         {
             if (m_enemies[i].GetName().ToLower() == name.ToLower())

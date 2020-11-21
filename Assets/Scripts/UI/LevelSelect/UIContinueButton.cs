@@ -11,7 +11,7 @@ public class UIContinueButton : UIElementBase
 
     void Update()
     {
-        m_holdler.SetActive(PlayerDataManager.PlayerAccountData.PlayerRunData != null);
+        m_holdler.SetActive(PlayerDataManager.PlayerAccountData.HasPlayerRunData());
     }
 
     public void OnPointerClick(PointerEventData eventData)

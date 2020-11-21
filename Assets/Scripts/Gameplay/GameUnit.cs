@@ -1482,7 +1482,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         int toReturn = m_power;
 
-        if (GetTeam() == Team.Player)
+        if (GetTeam() == Team.Player && GameHelper.IsInGame())
         {
             if (GameHelper.HasRelic<ContentWolvenFangRelic>())
             {
