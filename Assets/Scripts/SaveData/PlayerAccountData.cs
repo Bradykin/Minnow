@@ -7,10 +7,22 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
-    [JsonIgnore]
-    public PlayerRunData PlayerRunData => m_playerRunData;
-    [JsonProperty]
-    private PlayerRunData m_playerRunData = null;
+    public PlayerRunData PlayerRunData
+    {
+        get
+        {
+            if (m_playerRunData == null)
+            {
+                m_playerRunData = Files.ImportPlayerRunData();
+            }
+            return m_playerRunData;
+        }
+        set
+        {
+            m_playerRunData = value;
+        }
+    }
+    private PlayerRunData m_playerRunData;
 
     [JsonIgnore]
     public List<JsonGameMetaProgressionRewardData> JsonGameMetaProgressionRewardDatas => m_jsonGameMetaProgressionRewardDatas;

@@ -14,6 +14,7 @@ public static class Files
     public const string MAP_META_DATA_PATH = "MapMetaData.txt";
     public const string DEFAULT_MAP_DATA_PATH = "MapData0.txt";
     public const string PLAYER_ACCOUNT_DATA_PATH = "PlayerAccountData.player";
+    public const string PLAYER_RUN_DATA_PATH = "PlayerRunData.player";
 
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
     public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
@@ -75,5 +76,51 @@ public static class Files
         File.Delete(path);
 
         return ImportPlayerAccountData();
+    }
+
+    public static PlayerRunData ImportPlayerRunData()
+    {
+        string path;
+#if UNITY_EDITOR
+        path = Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH);
+#else
+        path = Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH);
+#endif
+
+        if (!File.Exists(path))
+        {
+            PlayerRunData data = new PlayerRunData();
+            return data;
+        }
+
+        var loaded = JsonConvert.DeserializeObject<PlayerRunData>(File.ReadAllText(path));
+
+        return loaded;
+    }
+
+    public static string ExportPlayerAccountData(PlayerRunData playerAccountData)
+    {
+        var export = JsonConvert.SerializeObject(playerAccountData);
+#if UNITY_EDITOR
+        File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH), export);
+#else
+        File.WriteAllText(Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH), export);
+#endif
+
+        return export;
+    }
+
+    public static PlayerRunData ClearPlayerRunData()
+    {
+        string path;
+#if UNITY_EDITOR
+        path = Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH);
+#else
+        path = Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH);
+#endif
+
+        File.Delete(path);
+
+        return ImportPlayerRunData();
     }
 }
