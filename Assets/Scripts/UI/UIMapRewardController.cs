@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIMapRewardController : MonoBehaviour
 {
     public UICard m_rewardCard;
     public UIRelic m_rewardRelic;
 
-    public Text m_unlockHintText;
+    public TMP_Text m_unlockHintText;
 
     void Start()
     {

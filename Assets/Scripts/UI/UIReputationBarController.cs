@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIReputationBarController : MonoBehaviour
 {
-    public Text m_reputationLevelText;
-    public Text m_reputationValueText;
+    public TMP_Text m_reputationLevelText;
+    public TMP_Text m_reputationValueText;
 
     public GameObject m_holder;
 

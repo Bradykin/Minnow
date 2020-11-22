@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UILevelSelectController : Singleton<UILevelSelectController>, IReset
 {
     public GameMap m_curMap;
 
-    public Text m_nameText;
-    public Text m_descText;
+    public TMP_Text m_nameText;
+    public TMP_Text m_descText;
     public GameObject m_infoObj;
-    public Text m_difficultyText;
-    public Text m_chaosVal;
-    public Text m_chaosText;
-    public Text m_chaosTitleText;
+    public TMP_Text m_difficultyText;
+    public TMP_Text m_chaosVal;
+    public TMP_Text m_chaosText;
+    public TMP_Text m_chaosTitleText;
 
     public GameObject m_startGameButton;
 
