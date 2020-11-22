@@ -80,6 +80,11 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
             return;
         }
 
+        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) > m_mummyResurrectionRange)
+        {
+            return;
+        }
+
         GameOpponent gameOpponent = GameHelper.GetOpponent();
 
         GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentMummyEnemy(gameOpponent), WorldController.Instance.m_gameController.m_gameOpponent);

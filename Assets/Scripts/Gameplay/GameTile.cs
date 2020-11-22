@@ -393,7 +393,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
             if (HasBuilding() && checkerUnit.GetTeam() != GetBuilding().GetTeam())
             {
-                return false;
+                if (!letPassEnemies)
+                {
+                    return false;
+                }
             }
 
             if (IsOccupied() && checkerUnit.GetTeam() == m_occupyingUnit.GetTeam())
