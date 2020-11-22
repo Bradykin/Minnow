@@ -579,6 +579,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
+        if (m_isDead || other.m_isDead)
+        {
+            return false;
+        }
+
         if (!HasStaminaToAttack(other))
         {
             return false;
@@ -1482,7 +1487,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         int toReturn = m_power;
 
-        if (GetTeam() == Team.Player)
+        if (GetTeam() == Team.Player && GameHelper.IsInGame())
         {
             if (GameHelper.HasRelic<ContentWolvenFangRelic>())
             {
@@ -2548,7 +2553,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_guid;
     }
 
-    public JsonGameUnitData SaveToJson()
+    public virtual JsonGameUnitData SaveToJson()
     {
         JsonGameKeywordHolderData keywordHolderJson = m_keywordHolder.SaveToJson();
 
@@ -2573,7 +2578,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return jsonData;
     }
 
-    public void LoadFromJson(JsonGameUnitData jsonData)
+    public virtual void LoadFromJson(JsonGameUnitData jsonData)
     {
         m_keywordHolder.RemoveAllKeywords();
 

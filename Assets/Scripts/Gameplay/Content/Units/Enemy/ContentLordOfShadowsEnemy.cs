@@ -205,4 +205,22 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
     {
         return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
+
+    //============================================================================================================//
+
+    public override JsonGameUnitData SaveToJson()
+    {
+        JsonGameUnitData jsonData = base.SaveToJson();
+
+        jsonData.intValue = m_brightnessLevel;
+
+        return jsonData;
+    }
+
+    public override void LoadFromJson(JsonGameUnitData jsonData)
+    {
+        base.LoadFromJson(jsonData);
+
+        m_brightnessLevel = jsonData.intValue;
+    }
 }

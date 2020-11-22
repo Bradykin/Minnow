@@ -132,7 +132,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
         else if (IsAltar())
         {
-            return UIHelper.GetWIconAltar(m_altar.GetName());
+            return UIHelper.GetIconAltar(m_altar.GetName() + "W");
         }
         else if (IsEvent())
         {

@@ -98,9 +98,9 @@ public static class Files
         return loaded;
     }
 
-    public static string ExportPlayerAccountData(PlayerRunData playerAccountData)
+    public static string ExportPlayerRunData(PlayerRunData playerRunData)
     {
-        var export = JsonConvert.SerializeObject(playerAccountData);
+        var export = JsonConvert.SerializeObject(playerRunData);
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH), export);
 #else

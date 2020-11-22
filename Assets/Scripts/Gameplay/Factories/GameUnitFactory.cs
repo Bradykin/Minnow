@@ -16,7 +16,9 @@ public class GameUnitFactory
     private static List<GameEnemyUnit> m_eliteEnemies = new List<GameEnemyUnit>();
     private static List<GameEnemyUnit> m_bossEnemies = new List<GameEnemyUnit>();
 
-    public static void Init(List<GameEnemyUnit> totalEnemiesOnMap, GameSpawnPool defaultSpawnPool, List<GameSpawnPool> spawnPointSpawnPools)
+    private static bool m_hasInit = false;
+
+    public static void Init()
     {
         //Player Units 1-10 score (1 100% rework; 10 best)
         m_playerUnits.Add(new ContentOverlord()); //10
@@ -63,6 +65,11 @@ public class GameUnitFactory
         //Special Units
         m_playerUnits.Add(new ContentRoyalCaravan());
 
+        m_hasInit = true;
+    }
+
+    public static void Init(List<GameEnemyUnit> totalEnemiesOnMap, GameSpawnPool defaultSpawnPool, List<GameSpawnPool> spawnPointSpawnPools)
+    {
         //Enemy Units
         m_enemies = totalEnemiesOnMap;
         m_defaultSpawnPool = defaultSpawnPool;
@@ -83,10 +90,9 @@ public class GameUnitFactory
 
     public static void DeInit()
     {
-        m_playerUnits.Clear();
         m_enemies.Clear();
         m_defaultSpawnPool = null;
-        m_spawnPointSpawnPools.Clear();
+        m_spawnPointSpawnPools = null;
         m_bossEnemies.Clear();
         m_eliteEnemies.Clear();
     }
@@ -225,6 +231,11 @@ public class GameUnitFactory
 
     public static GameUnit GetUnitFromJson(JsonGameUnitData jsonData)
     {
+        if (!m_hasInit)
+        {
+            Init();
+        }
+        
         int i = m_playerUnits.FindIndex(t => t.GetBaseName() == jsonData.baseName);
 
         GameUnit newPlayerUnit = (GameUnit)Activator.CreateInstance(m_playerUnits[i].GetType());

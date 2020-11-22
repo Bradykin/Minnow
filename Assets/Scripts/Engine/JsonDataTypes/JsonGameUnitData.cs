@@ -20,4 +20,8 @@ public class JsonGameUnitData
     public int staminaToAttack;
     public int sightRange;
     public string guid;
+
+    //Unique case variables
+    public int intValue;
+    public bool boolValue;
 }

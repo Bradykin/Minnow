@@ -159,4 +159,22 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
     {
         return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
+
+    //============================================================================================================//
+
+    public override JsonGameUnitData SaveToJson()
+    {
+        JsonGameUnitData jsonData = base.SaveToJson();
+
+        jsonData.intValue = (int)m_currentChaosWarpAbility;
+
+        return jsonData;
+    }
+
+    public override void LoadFromJson(JsonGameUnitData jsonData)
+    {
+        base.LoadFromJson(jsonData);
+
+        m_currentChaosWarpAbility = (ChaosWarpAbility)jsonData.intValue;
+    }
 }
