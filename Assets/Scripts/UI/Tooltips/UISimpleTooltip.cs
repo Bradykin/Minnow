@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UISimpleTooltip : UITooltipBase
 {
@@ -11,8 +12,8 @@ public class UISimpleTooltip : UITooltipBase
     private Image m_titleImage;
     private Image m_descImage;
 
-    public Text m_titleText;
-    public Text m_descText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_descText;
 
     public void Init(string title, string desc)
     {

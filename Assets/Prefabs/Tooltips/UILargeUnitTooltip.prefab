@@ -422,7 +422,7 @@ RectTransform:
   m_GameObject: {fileID: 596973763979364293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.03214286, y: 0.03214286, z: 0.03214286}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4574305735975516329}
   - {fileID: 7943591023145967214}
@@ -448,18 +448,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b0d80bda69aa4486fa8d79db4924a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tintImage: {fileID: 0}
-  m_nameText: {fileID: 596973763813608294}
-  m_costText: {fileID: 0}
   m_image: {fileID: 8267984803587357344}
-  m_rarityImage: {fileID: 0}
-  m_typelineText: {fileID: 596973763975442558}
-  m_descText: {fileID: 596973765056916855}
-  m_powerText: {fileID: 201540893448824102}
-  m_healthText: {fileID: 201540892366862236}
+  m_tintImage: {fileID: 0}
+  m_lockedObj: {fileID: 0}
+  m_enemyObj: {fileID: 0}
+  m_unitObj: {fileID: 0}
+  m_costCircle: {fileID: 0}
+  m_nameText: {fileID: 0}
+  m_costText: {fileID: 0}
+  m_typelineText: {fileID: 0}
+  m_descText: {fileID: 0}
+  m_statsText: {fileID: 0}
   m_staminaContainer: {fileID: 201540893581814053}
-  m_skullIndicator: {fileID: 0}
-  m_lockIcon: {fileID: 0}
   m_displayType: 3
   m_isHovered: 0
 --- !u!1 &596973764035893052

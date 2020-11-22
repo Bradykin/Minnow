@@ -25,10 +25,14 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
+        public override GameObject CreateGameObject(Transform parent)
+        {
+            return Object.Instantiate(m_prefab, parent);
+        }
+
         public T CreateObject<T>(string title, string desc)
         {
-            GameObject obj = CreateGameObject();
-            obj.transform.SetParent(UITooltipController.Instance.transform);
+            GameObject obj = CreateGameObject(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc);
 
@@ -37,8 +41,7 @@ namespace Game.Util
 
         public T CreateObject<T>(string title, string desc, Team team)
         {
-            GameObject obj = CreateGameObject();
-            obj.transform.SetParent(UITooltipController.Instance.transform);
+            GameObject obj = CreateGameObject(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc, team);
 
@@ -47,8 +50,7 @@ namespace Game.Util
 
         public T CreateObject<T>(string title, string desc, bool isValid)
         {
-            GameObject obj = CreateGameObject();
-            obj.transform.SetParent(UITooltipController.Instance.transform);
+            GameObject obj = CreateGameObject(UITooltipController.Instance.transform);
 
             obj.GetComponent<UISimpleTooltip>().Init(title, desc, isValid);
 
