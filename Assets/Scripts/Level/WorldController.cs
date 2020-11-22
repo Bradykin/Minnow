@@ -140,14 +140,14 @@ public class WorldController : Singleton<WorldController>
             }
         }
 
-        float xPosBase = -500.0f;
-        float xPosMult = (120.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 5f));
+        float xPosBase = -400.0f;
+        float xPosMult = (140.0f - (Mathf.Max((m_playerHand.Count - Constants.InitialHandSize), 0) * 5f));
         float yPos = -320.0f;
         float yPosBigOffset = 125.0f;
         float zPos = 0.0f;
         float smallCardScale = 0.8f;
         float bigCardScale = 1.25f;
-        float splitDif = 0.1f;
+        float splitDif = 0f;
 
         if (bigCardIndex == -1)
         {

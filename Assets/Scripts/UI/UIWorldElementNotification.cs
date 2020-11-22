@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Util;
+using TMPro;
 
 public class UIWorldElementNotification : MonoBehaviour, IReset
 {
-    public Text m_notificationText;
+    public TMP_Text m_notificationText;
 
     private float m_displayTimer;
     private float m_displayTimerLimit = 1.5f; //In seconds

@@ -34,26 +34,19 @@ namespace Game.Util
         {
             GameObject obj = CreateGameObject(staminaContainer);
 
-            if (index < 6)
+            if (inWorld)
             {
-                if (inWorld)
-                {
-                    obj.transform.localPosition = new Vector3(0.35f * index, 0, 0.0f);
-                }
-                else
-                {
-                    obj.transform.localPosition = new Vector3(4.0f + index * 15f, -10.0f, 0.0f);
-                }
+                obj.transform.localPosition = new Vector3(-62.5f + (12.5f * index), 4.0f, 0.0f);
             }
             else
             {
-                if (inWorld)
+                if (index < 6)
                 {
-                    obj.transform.localPosition = new Vector3(0.35f * (index - 6f), -0.35f, 0.0f);
+                    obj.transform.localPosition = new Vector3(4.0f + index * 15f, -10.0f, 0.0f);
                 }
                 else
                 {
-                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 15f, 0.0f, 0.0f);
+                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 15f, 4.0f, 0.0f);
                 }
             }
 

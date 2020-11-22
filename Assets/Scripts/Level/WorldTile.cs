@@ -5,6 +5,7 @@ using Game.Util;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class WorldTile : MonoBehaviour, ICustomRecycle
 {
@@ -23,8 +24,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private WorldUnit m_occupyingUnitObj;
 
     public GameObject m_titleHolder;
-    public Text m_nameText;
-    public Text m_healthText;
+    public TMP_Text m_nameText;
+    public TMP_Text m_healthText;
 
     private bool m_isHovered;
     private bool m_isMoveable;
@@ -76,7 +77,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
             m_titleHolder.SetActive(true);
             m_nameText.text = building.GetName();
-            m_healthText.text = building.m_curHealth + "/" + building.m_maxHealth;
+            m_healthText.text = "" + building.m_curHealth;
         }
         else
         {

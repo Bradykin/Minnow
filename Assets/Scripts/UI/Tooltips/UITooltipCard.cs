@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UITooltipCard : UITooltipBase
 {
-    void Start()
+    void Awake()
     {
         m_height = 5.0f;
-        m_widthLeft = 6.0f;
-        m_widthRight = 1.74f;
+        m_widthLeft = 4.0f;
+        m_widthRight = 4.0f;
     }
 
     void Update()

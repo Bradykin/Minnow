@@ -4,15 +4,15 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class WorldUnit : MonoBehaviour
 {
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
     public UIStaminaContainer m_staminaContainer;
-    public Text m_healthText;
-    public Text m_powerText;
-    public Text m_titleText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_statsText;
     private BoxCollider2D m_collider;
 
     public GameObject m_holder;
@@ -114,8 +114,7 @@ public class WorldUnit : MonoBehaviour
         {
             m_titleText.text = GetUnit().GetName();
         }
-        m_healthText.text = GetUnit().GetCurHealth() + "/" + GetUnit().GetMaxHealth();
-        m_powerText.text = "" + GetUnit().GetPower();
+        m_statsText.text = GetUnit().GetPower() + "/" + GetUnit().GetCurHealth();
     }
 
     void OnMouseDown()
