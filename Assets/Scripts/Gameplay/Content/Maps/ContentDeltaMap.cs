@@ -84,7 +84,7 @@ public class ContentDeltaMap : GameMap
 
         //Wave 2
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 0.75f));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 2, 1, 0.25f));
 
         //Wave 3
@@ -124,7 +124,7 @@ public class ContentDeltaMap : GameMap
 
         //Wave 2
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 2, 1, 1));
-        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 0.75f));
+        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
 
         //Wave 3

@@ -126,7 +126,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
             scalingValue += (waveNum - 2);
         }
 
-        return scalingValue * 5;
+        return scalingValue * 9;
     }
 
     private int GetStaminaRegenModByWave()
