@@ -25,10 +25,14 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
+        public override GameObject CreateGameObject(Transform parent)
+        {
+            return Object.Instantiate(m_prefab, parent);
+        }
+
         public T CreateObject<T>(Transform staminaContainer, bool isActive, Team team, int index, bool inWorld)
         {
-            GameObject obj = CreateGameObject();
-            obj.transform.SetParent(staminaContainer);
+            GameObject obj = CreateGameObject(staminaContainer);
 
             if (index < 6)
             {
@@ -38,7 +42,7 @@ namespace Game.Util
                 }
                 else
                 {
-                    obj.transform.localPosition = new Vector3(4.0f + index * 10f, -10.0f, 0.0f);
+                    obj.transform.localPosition = new Vector3(4.0f + index * 15f, -10.0f, 0.0f);
                 }
             }
             else
@@ -49,7 +53,7 @@ namespace Game.Util
                 }
                 else
                 {
-                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 10f, 0.0f, 0.0f);
+                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 15f, 0.0f, 0.0f);
                 }
             }
 

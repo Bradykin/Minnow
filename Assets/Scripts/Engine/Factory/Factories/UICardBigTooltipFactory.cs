@@ -25,14 +25,14 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
+        public override GameObject CreateGameObject(Transform parent)
+        {
+            return Object.Instantiate(m_prefab, parent);
+        }
+
         public T CreateObject<T>(GameCard card, UICard.CardDisplayType displayType)
         {
-            GameObject obj = CreateGameObject();
-
-            if (displayType == UICard.CardDisplayType.Tooltip)
-            {
-                obj.transform.SetParent(UITooltipController.Instance.transform);
-            }
+            GameObject obj = CreateGameObject(UITooltipController.Instance.transform);
 
             obj.GetComponent<UICard>().Init(card, displayType);
 

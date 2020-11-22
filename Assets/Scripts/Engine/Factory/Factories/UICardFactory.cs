@@ -28,17 +28,31 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
+        public override GameObject CreateGameObject(Transform parent)
+        {
+            return Object.Instantiate(m_prefab, parent);
+        }
+
         public T CreateObject<T>(GameCard card, UICard.CardDisplayType displayType)
         {
-            GameObject obj = CreateGameObject();
-
+            Transform parent = null;
             if (displayType == UICard.CardDisplayType.Hand)
             {
-                obj.transform.SetParent(m_playerHandParent);
+                parent = m_playerHandParent;
             }
             else if (displayType == UICard.CardDisplayType.Tooltip)
             {
-                obj.transform.parent = UITooltipController.Instance.transform;
+                parent = UITooltipController.Instance.transform;
+            }
+
+            GameObject obj;
+            if (parent == null)
+            {
+                obj = CreateGameObject();
+            }
+            else
+            {
+                obj = CreateGameObject(parent);
             }
 
             obj.GetComponent<UICard>().Init(card, displayType);
