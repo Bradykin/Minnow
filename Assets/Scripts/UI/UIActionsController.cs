@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIActionsController : UIElementBase
 {
-    public Text m_countText;
+    public TMP_Text m_countText;
 
     void Update()
     {

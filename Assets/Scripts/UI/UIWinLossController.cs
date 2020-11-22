@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIWinLossController : Singleton<UIWinLossController>
 {
     public GameObject m_holder;
 
-    public Text m_winLossText;
-    public Text m_reputationText;
-    public Text m_hintText;
+    public TMP_Text m_winLossText;
+    public TMP_Text m_reputationText;
+    public TMP_Text m_hintText;
 
     public void Init(RunEndType runEndType)
     {

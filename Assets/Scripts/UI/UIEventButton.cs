@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIEventButton : UIElementBase
     , IPointerClickHandler
 {
     public GameEventOption m_eventOption { get; private set; }
-    public Text m_descText;
+    public TMP_Text m_descText;
 
     public void Init(GameEventOption gameEventOption)
     {

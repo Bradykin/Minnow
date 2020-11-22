@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIActionController : MonoBehaviour
     , IPointerEnterHandler
@@ -14,11 +15,11 @@ public class UIActionController : MonoBehaviour
     public Image m_iconActionImage;
     public Image m_terrainImage;
 
-    public Text m_titleText;
-    public Text m_descText;
+    public TMP_Text m_titleText;
+    public TMP_Text m_descText;
 
-    public Text m_actionCostText;
-    public Text m_goldCostText;
+    public TMP_Text m_actionCostText;
+    public TMP_Text m_goldCostText;
 
     public GameObject m_resourcesCostHolder;
 

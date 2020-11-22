@@ -25,11 +25,14 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
+        public override GameObject CreateGameObject(Transform parent)
+        {
+            return Object.Instantiate(m_prefab, parent);
+        }
+
         public T CreateObject<T>(GameRelic relic, Transform parent)
         {
-            GameObject obj = CreateGameObject();
-
-            obj.transform.SetParent(parent);
+            GameObject obj = CreateGameObject(parent);
 
             obj.GetComponent<UIRelic>().Init(relic, UIRelic.RelicSelectionType.View);
 

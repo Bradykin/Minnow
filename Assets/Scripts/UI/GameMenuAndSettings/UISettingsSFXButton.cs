@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UISettingsSFXButton : UIElementBase
         , IPointerClickHandler
 {
-    public Text m_sfxText;
+    public TMP_Text m_sfxText;
 
     void Start()
     {

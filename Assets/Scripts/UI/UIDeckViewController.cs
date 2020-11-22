@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIDeckViewController : Singleton<UIDeckViewController>
 {
@@ -24,7 +25,7 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     public UICard[] m_cards;
 
     public GameObject m_holder;
-    public Text m_deckViewText;
+    public TMP_Text m_deckViewText;
     public int m_index;
 
     private List<GameCard> m_deck;

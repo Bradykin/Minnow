@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UISettingMusicButton : UIElementBase
         , IPointerClickHandler
 {
-    public Text m_musicText;
+    public TMP_Text m_musicText;
 
     void Start()
     {

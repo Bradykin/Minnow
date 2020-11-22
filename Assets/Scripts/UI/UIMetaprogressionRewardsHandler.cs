@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIMetaprogressionRewardsHandler : MonoBehaviour
 {
     public GameObject m_holder;
     public GameObject m_moreIndicator;
 
-    public Text m_unlockTitle;
-    public Text m_unlockDesc;
+    public TMP_Text m_unlockTitle;
+    public TMP_Text m_unlockDesc;
 
     public UICard m_card1;
     public UICard m_card2;
@@ -19,21 +20,11 @@ public class UIMetaprogressionRewardsHandler : MonoBehaviour
     public UIRelic m_relic2;
     public UIRelic m_relic3;
 
-    public Text m_relic1Title;
-    public Text m_relic2Title;
-    public Text m_relic3Title;
-
-    public Text m_relic1Desc;
-    public Text m_relic2Desc;
-    public Text m_relic3Desc;
-
     public Image m_map;
 
     public UICard m_starterCard;
 
     public UIRelic m_starterRelic;
-    public Text m_starterRelicTitle;
-    public Text m_starterRelicDesc;
 
     void Update()
     {
@@ -101,14 +92,6 @@ public class UIMetaprogressionRewardsHandler : MonoBehaviour
         m_relic1.Init(relics[0], UIRelic.RelicSelectionType.ViewNoTooltip);
         m_relic2.Init(relics[1], UIRelic.RelicSelectionType.ViewNoTooltip);
         m_relic3.Init(relics[2], UIRelic.RelicSelectionType.ViewNoTooltip);
-
-        m_relic1Title.text = relics[0].GetName();
-        m_relic2Title.text = relics[1].GetName();
-        m_relic3Title.text = relics[2].GetName();
-
-        m_relic1Desc.text = relics[0].GetDesc();
-        m_relic2Desc.text = relics[1].GetDesc();
-        m_relic3Desc.text = relics[2].GetDesc();
     }
 
     private void UnlockMap(GameMap map)
@@ -145,9 +128,6 @@ public class UIMetaprogressionRewardsHandler : MonoBehaviour
         SetStarterCardVisibility(false);
 
         m_starterRelic.Init(relic, UIRelic.RelicSelectionType.ViewNoTooltip);
-
-        m_starterRelicTitle.text = relic.GetBaseName();
-        m_starterRelicDesc.text = relic.GetDesc();
     }
 
     private void SetCardVisibility(bool visible)
@@ -162,14 +142,6 @@ public class UIMetaprogressionRewardsHandler : MonoBehaviour
         m_relic1.gameObject.SetActive(visible);
         m_relic2.gameObject.SetActive(visible);
         m_relic3.gameObject.SetActive(visible);
-
-        m_relic1Title.gameObject.SetActive(visible);
-        m_relic2Title.gameObject.SetActive(visible);
-        m_relic3Title.gameObject.SetActive(visible);
-
-        m_relic1Desc.gameObject.SetActive(visible);
-        m_relic2Desc.gameObject.SetActive(visible);
-        m_relic3Desc.gameObject.SetActive(visible);
     }
 
     private void SetMapVisibility(bool visible)
@@ -185,8 +157,5 @@ public class UIMetaprogressionRewardsHandler : MonoBehaviour
     private void SetStarterRelicVisibility(bool visible)
     {
         m_starterRelic.gameObject.SetActive(visible);
-
-        m_starterRelicTitle.gameObject.SetActive(visible);
-        m_starterRelicDesc.gameObject.SetActive(visible);
     }
 }

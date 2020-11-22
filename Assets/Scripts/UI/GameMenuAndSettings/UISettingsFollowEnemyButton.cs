@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UISettingsFollowEnemyButton : UIElementBase
         , IPointerClickHandler
 {
-    public Text m_followText;
+    public TMP_Text m_followText;
 
     void Start()
     {

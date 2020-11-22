@@ -12,6 +12,11 @@ namespace Game.Util
         /// </summary>
         /// <returns></returns>
         public abstract GameObject CreateGameObject();
+        public virtual GameObject CreateGameObject(Transform parent) 
+        { 
+            Debug.LogWarning("Parent create function not built in expected factory");
+            return null;
+        }
         /// <summary>
         /// Create GameObject of preset prefab but return UnityEngine.Object of type T
         /// </summary>

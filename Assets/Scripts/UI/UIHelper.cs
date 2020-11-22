@@ -71,17 +71,17 @@ public static class UIHelper
     {
         if (rarity == GameElementBase.GameRarity.Common || rarity == GameElementBase.GameRarity.Starter)
         {
-            return Resources.Load<Sprite>("UI2/Icons/CommonRelicRarityFrame") as Sprite;
+            return Resources.Load<Sprite>("UI2/Icons/CommonRelicRarityFrame45x45") as Sprite;
         }
 
         if (rarity == GameElementBase.GameRarity.Uncommon)
         {
-            return Resources.Load<Sprite>("UI2/Icons/UncommonRelicRarityFrame") as Sprite;
+            return Resources.Load<Sprite>("UI2/Icons/UncommonRelicRarityFrame45x45") as Sprite;
         }
 
         if (rarity == GameElementBase.GameRarity.Rare || rarity == GameElementBase.GameRarity.Special)
         {
-            return Resources.Load<Sprite>("UI2/Icons/RareRelicRarityFrame") as Sprite;
+            return Resources.Load<Sprite>("UI2/Icons/RareRelicRarityFrame45x45") as Sprite;
         }
 
         return null;
@@ -384,11 +384,11 @@ public static class UIHelper
         Sprite loadedSprite;
         if (goldVal == Constants.FarGoldVal)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/MultipleGoldIcon") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/MultipleGold30x30") as Sprite;
         }
         else
         {
-            loadedSprite = Resources.Load<Sprite>("UI/GoldIcon") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/Gold30x30") as Sprite;
         }
 
         m_iconGoldDictionary.Add(goldVal, loadedSprite);

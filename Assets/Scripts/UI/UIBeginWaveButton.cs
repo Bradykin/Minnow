@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIBeginWaveButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;
-    public Text m_beginWaveText;
+    public TMP_Text m_beginWaveText;
     public GameObject m_holder;
 
     void Start()

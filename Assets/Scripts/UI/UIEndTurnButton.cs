@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIEndTurnButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;
-    public Text m_endTurnText;
+    public TMP_Text m_endTurnText;
 
     void Start()
     {

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIDiscard : UIElementBase
     , IPointerClickHandler
 {
-    public Text m_countText;
+    public TMP_Text m_countText;
 
     void Start()
     {
