@@ -299,11 +299,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     gameTile.ClearSpawnPoint();
                 }
-                else if (gameTile.HasSpawnPoint())
+                else if (gameTile.HasEventMarker())
                 {
                     gameTile.ClearEventMarkers();
                 }
-                else if (gameTile.GetBuilding() != null)
+                else if (gameTile.HasBuilding())
                 {
                     gameTile.ClearBuilding();
                 }
