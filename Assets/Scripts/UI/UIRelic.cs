@@ -63,6 +63,9 @@ public class UIRelic : UIElementBase
 
         if (m_usesText)
         {
+            m_titleText.gameObject.SetActive(true);
+            m_descText.gameObject.SetActive(true);
+
             m_titleText.text = m_relic.GetName();
             m_descText.text = m_relic.GetDesc();
         }
@@ -70,6 +73,9 @@ public class UIRelic : UIElementBase
         {
             m_titleText.text = "";
             m_descText.text = "";
+
+            m_titleText.gameObject.SetActive(false);
+            m_descText.gameObject.SetActive(false);
         }
 
         if (m_relic.m_rarity == GameElementBase.GameRarity.Starter)

@@ -384,11 +384,11 @@ public static class UIHelper
         Sprite loadedSprite;
         if (goldVal == Constants.FarGoldVal)
         {
-            loadedSprite = Resources.Load<Sprite>("UI2/MultipleGold30x30") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/Icons/MultipleGold30x30") as Sprite;
         }
         else
         {
-            loadedSprite = Resources.Load<Sprite>("UI2/Gold30x30") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/Icons/Gold30x30") as Sprite;
         }
 
         m_iconGoldDictionary.Add(goldVal, loadedSprite);
