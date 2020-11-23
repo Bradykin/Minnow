@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9002477150359922790}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 3599552122858822993}
   m_Layer: 0
   m_Name: UIWorldElementNotification
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 3599552123300286890}
   m_Layer: 0
   m_Name: Holder
-  m_TagString: Untagged
+  m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

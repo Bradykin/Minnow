@@ -79,6 +79,6 @@ public class UIEndTurnButton : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn", "<b>Hotkey: Space</b>\n\nThis will refresh your energy and regen some Stamina for your units.  You will also discard your hand a draw a new one.  Your enemies will all take their turns.", !PlayerHasActions()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn (Space)", "Refresh energy and regen allied units' stamina. Discard your hand a draw a new one.", !PlayerHasActions()));
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIAcceptMetaprogressionRewardButton : UIElementBase
         , IPointerClickHandler
 {
-    public Text m_acceptText;
+    public TMP_Text m_acceptText;
 
     void Update()
     {
