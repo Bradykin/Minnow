@@ -801,7 +801,7 @@ public static class UIHelper
     {
         UICardBigTooltipFactory fact = FactoryManager.Instance.GetFactory<UICardBigTooltipFactory>();
 
-        UICard obj = fact.CreateObject<UICard>(toShow, UICard.CardDisplayType.Tooltip);
+        UICard obj = fact.CreateObject<UICard>(toShow, UICard.CardDisplayType.LargeTooltip);
 
         if (secondStack)
         {

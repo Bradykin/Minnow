@@ -15,6 +15,7 @@ public class UICard : MonoBehaviour
         Deck,
         Select,
         Tooltip,
+        LargeTooltip,
         StarterSelect,
         StarterTypeSelect,
         RewardDisplay
@@ -102,9 +103,12 @@ public class UICard : MonoBehaviour
             {
                 m_cardDeck = gameObject.AddComponent<UICardDeckView>();
             }
-            else if (m_displayType == CardDisplayType.Tooltip)
+            else if (m_displayType == CardDisplayType.Tooltip ||
+                m_displayType == CardDisplayType.LargeTooltip)
             {
                 m_cardTooltip = gameObject.AddComponent<UITooltipCard>();
+
+                m_cardTooltip.Init(m_displayType == CardDisplayType.LargeTooltip);
             }
             else if (m_displayType == CardDisplayType.StarterSelect)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIRelicSelectController : Singleton<UIRelicSelectController>
 {
@@ -11,7 +12,7 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
     public UIRelic m_firstButton;
     public UIRelic m_secondButton;
 
-    public Text m_skipText;
+    public TMP_Text m_skipText;
 
     private GameWallet m_skipWallet;
 
