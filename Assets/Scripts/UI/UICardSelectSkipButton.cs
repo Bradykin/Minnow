@@ -16,17 +16,6 @@ public class UICardSelectSkipButton : UIElementBase
     void Update()
     {
         m_isActive = Globals.m_selectedCard == null;
-
-        if (m_isActive)
-        {
-            m_image.color = UIHelper.m_defaultColor;
-            m_skipText.color = UIHelper.m_defaultColor;
-        }
-        else
-        {
-            m_image.color = UIHelper.m_defaultFaded;
-            m_skipText.color = UIHelper.m_defaultFaded;
-        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

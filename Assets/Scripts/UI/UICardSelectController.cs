@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
+using TMPro;
 
 public class UICardSelectController : Singleton<UICardSelectController>
 {
@@ -12,7 +13,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
     public UICard m_secondButton;
     public UICard m_thirdButton;
 
-    public Text m_skipText;
+    public TMP_Text m_skipText;
 
     private GameWallet m_skipWallet;
 
