@@ -23,7 +23,7 @@ public class ContentStablesEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here +1 maximum stamina and +1 stamina regen.";
+        return "Give the unit that goes here +2 maximum stamina and +2 stamina regen.";
     }
 
     public override string GetOptionTwoTooltip()

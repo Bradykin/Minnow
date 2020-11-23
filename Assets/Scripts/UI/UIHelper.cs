@@ -330,15 +330,15 @@ public static class UIHelper
         Sprite loadedSprite;
         if (chestRarity == GameElementBase.GameRarity.Common)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Copper Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Copper Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Uncommon)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Silver Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Silver Chest") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Rare)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Gold Chest") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Gold Chest") as Sprite;
         }
         else
         {
@@ -358,7 +358,7 @@ public static class UIHelper
             return m_altarDictionary[altarName];
         }
 
-        Sprite loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/" + altarName) as Sprite;
+        Sprite loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/" + altarName) as Sprite;
         m_altarDictionary.Add(altarName, loadedSprite);
 
         return loadedSprite;
@@ -368,13 +368,13 @@ public static class UIHelper
     {
         if (m_eventSprite == null)
         {
-            m_eventSprite = Resources.Load<Sprite>("UI/WorldPerks/Event") as Sprite;
+            m_eventSprite = Resources.Load<Sprite>("UI2/WorldPerks/Event") as Sprite;
         }
 
         return m_eventSprite;
     }
 
-    public static Sprite GetIconGold(int goldVal)
+    public static Sprite GetIconWorldPerkGold(int goldVal)
     {
         if (m_iconGoldDictionary.ContainsKey(goldVal))
         {
@@ -384,11 +384,11 @@ public static class UIHelper
         Sprite loadedSprite;
         if (goldVal == Constants.FarGoldVal)
         {
-            loadedSprite = Resources.Load<Sprite>("UI2/Icons/MultipleGold30x30") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/MultipleGold") as Sprite;
         }
         else
         {
-            loadedSprite = Resources.Load<Sprite>("UI2/Icons/Gold30x30") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Gold") as Sprite;
         }
 
         m_iconGoldDictionary.Add(goldVal, loadedSprite);
@@ -406,15 +406,15 @@ public static class UIHelper
         Sprite loadedSprite;
         if (chestRarity == GameElementBase.GameRarity.Common)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Copper ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Copper ChestW") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Uncommon)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Silver ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Silver ChestW") as Sprite;
         }
         else if (chestRarity == GameElementBase.GameRarity.Rare)
         {
-            loadedSprite = Resources.Load<Sprite>("UI/WorldPerks/Gold ChestW") as Sprite;
+            loadedSprite = Resources.Load<Sprite>("UI2/WorldPerks/Gold ChestW") as Sprite;
         }
         else
         {
@@ -431,7 +431,7 @@ public static class UIHelper
     {
         if (m_eventSpriteW == null)
         {
-            m_eventSpriteW = Resources.Load<Sprite>("UI/WorldPerks/EventW") as Sprite;
+            m_eventSpriteW = Resources.Load<Sprite>("UI2/WorldPerks/EventW") as Sprite;
         }
 
         return m_eventSpriteW;

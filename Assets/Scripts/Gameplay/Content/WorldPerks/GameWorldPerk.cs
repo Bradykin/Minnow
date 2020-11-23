@@ -118,7 +118,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
         else if (IsGold())
         {
-            return UIHelper.GetIconGold(GetGoldVal());
+            return UIHelper.GetIconWorldPerkGold(GetGoldVal());
         }
 
         return null;
@@ -140,7 +140,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
         else if (IsGold())
         {
-            return UIHelper.GetIconGold(GetGoldVal());
+            return UIHelper.GetIconWorldPerkGold(GetGoldVal());
         }
 
         return null;
