@@ -114,7 +114,10 @@ public class UICard : MonoBehaviour
             m_hasSetDisplayType = true;
         }
 
-        m_lockedObj.SetActive(m_isLocked);
+        if (m_lockedObj != null)
+        {
+            m_lockedObj.SetActive(m_isLocked);
+        }
     }
 
     void Update()
@@ -151,30 +154,55 @@ public class UICard : MonoBehaviour
         m_nameText.text = m_card.GetName();
         if (m_unitCard != null && m_unitCard.GetUnit().GetTeam() == Team.Enemy)
         {
-            m_enemyObj.SetActive(true);
-            m_costText.text = "";
+            if (m_enemyObj != null)
+            {
+                m_enemyObj.SetActive(true);
+            }
+
+            if (m_costText != null)
+            {
+                m_costText.text = "";
+            }
         }
         else
         {
-            m_costText.text = m_card.GetCost() + "";
-            m_enemyObj.SetActive(false);
+            if (m_costText != null)
+            {
+                m_costText.text = m_card.GetCost() + "";
+            }
+
+            if (m_enemyObj != null)
+            {
+                m_enemyObj.SetActive(false);
+            }
         }
         m_typelineText.text = m_card.GetTypeline();
         m_descText.text = m_card.GetDesc();
 
-        m_costCircle.GetComponent<Image>().color = UIHelper.GetRarityColor(m_card.m_rarity);
+        if (m_costCircle != null)
+        {
+            m_costCircle.GetComponent<Image>().color = UIHelper.GetRarityColor(m_card.m_rarity);
+        }
 
         if (m_unitCard != null)
         {
             m_statsText.text = m_unitCard.m_unit.GetPower() + "/" + m_unitCard.m_unit.GetMaxHealth();
 
-            m_unitObj.gameObject.SetActive(true);
+            if (m_unitObj != null)
+            {
+                m_unitObj.gameObject.SetActive(true);
+            }
+
             m_staminaContainer.Init(m_unitCard.GetUnit().GetStaminaRegen(), m_unitCard.GetUnit().GetMaxStamina(), m_unitCard.GetUnit().GetTeam());
         }
         else
         {
             m_statsText.text = "";
-            m_unitObj.SetActive(false);
+
+            if (m_unitObj != null)
+            {
+                m_unitObj.SetActive(false);
+            }
         }
     }
 
