@@ -18,17 +18,6 @@ public class UIEndTurnButton : UIElementBase
 
     void Update()
     {
-        if (PlayerHasActions())
-        {
-            m_image.color = UIHelper.m_fadedColor;
-            m_endTurnText.color = UIHelper.m_fadedColor;
-        }
-        else
-        {
-            m_image.color = UIHelper.m_defaultColor;
-            m_endTurnText.color = UIHelper.m_defaultColor;
-        }
-
         if (UIHelper.GetKeyDown(KeyCode.Space))
         {
             EndTurn();
@@ -66,19 +55,8 @@ public class UIEndTurnButton : UIElementBase
         m_tintImage.color = UIHelper.GetDefaultTintColor();
     }
 
-    private bool PlayerHasActions()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-        if (player == null)
-        {
-            return false;
-        }
-
-        return player.HasUnitsThatWillOvercapStamina() || player.CanPlayAnythingInHand();
-    }
-
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn (Space)", "Refresh energy and regen allied units' stamina. Discard your hand a draw a new one.", !PlayerHasActions()));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("End Turn (Space)", "Refresh energy and regen allied units' stamina. Discard your hand a draw a new one."));
     }
 }
