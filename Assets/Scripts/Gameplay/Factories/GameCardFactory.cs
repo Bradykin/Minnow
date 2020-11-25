@@ -74,6 +74,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentInjuredTrollCard());
         m_cards.Add(new ContentMageCard());
         m_cards.Add(new ContentMetalGolemCard());
+        m_cards.Add(new ContentMetalProtectorCard());
         m_cards.Add(new ContentMinerCard());
         m_cards.Add(new ContentMountainBeastCard());
         m_cards.Add(new ContentNaturalScoutCard());
@@ -218,6 +219,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentSpikewolfEnemyCard());
         m_enemyCards.Add(new ContentLavaRhinoCard());
         m_enemyCards.Add(new ContentSandWurmEnemyCard());
+        m_enemyCards.Add(new ContentScytheBarbarianEnemyCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
