@@ -56,6 +56,7 @@ public static class GameCardFactory
         //Unit Cards
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
+        m_cards.Add(new ContentDesertDuelistCard());
         m_cards.Add(new ContentDevourerCard());
         m_cards.Add(new ContentDwarfArchitectCard());
         m_cards.Add(new ContentDwarfShivcasterCard());
@@ -69,6 +70,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentGrasperCard());
         m_cards.Add(new ContentGroundskeeperCard());
         m_cards.Add(new ContentGuardCaptainCard());
+        m_cards.Add(new ContentGuardianOfTheForestCard());
         m_cards.Add(new ContentHeroCard());
         m_cards.Add(new ContentHomonculusCard());
         m_cards.Add(new ContentInjuredTrollCard());
@@ -191,15 +193,19 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentFireLizardEnemyCard());
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
         m_enemyCards.Add(new ContentLordOfEruptionsEnemyCard());
+        m_enemyCards.Add(new ContentFlameNecromancerEnemyCard());
         m_enemyCards.Add(new ContentFrozenImpEnemyCard());
         m_enemyCards.Add(new ContentGilaLizardEnemyCard());
         m_enemyCards.Add(new ContentGoblinWarriorEnemyCard());
         m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
+        m_enemyCards.Add(new ContentIcebladeWarriorEnemyCard());
         m_enemyCards.Add(new ContentIceWurmEnemyCard());
+        m_enemyCards.Add(new ContentIfritEnemyCard());
         m_enemyCards.Add(new ContentJackalEnemyCard());
-        m_enemyCards.Add(new ContentLavaHellionCard());
+        m_enemyCards.Add(new ContentLavaGoblinEnemyCard());
+        m_enemyCards.Add(new ContentLavaHellionEnemyCard());
         m_enemyCards.Add(new ContentLichEnemyCard());
         m_enemyCards.Add(new ContentLizardmanEnemyCard());
         m_enemyCards.Add(new ContentMarshSerpentEnemyCard());
@@ -207,6 +213,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentMobolaEnemyCard());
         m_enemyCards.Add(new ContentMummyEnemyCard());
         m_enemyCards.Add(new ContentMummyPharaohEnemyCard());
+        m_enemyCards.Add(new ContentNagaWardenEnemyCard());
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
         m_enemyCards.Add(new ContentPhoenixEnemyCard());
@@ -221,9 +228,12 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentSandWurmEnemyCard());
         m_enemyCards.Add(new ContentScytheBarbarianEnemyCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
+        m_enemyCards.Add(new ContentSkeletalCaptainEnemyCard());
+        m_enemyCards.Add(new ContentSkeletalPirateEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
         m_enemyCards.Add(new ContentSpiralSerpentEnemyCard());
+        m_enemyCards.Add(new ContentStoneflingerEnemyCard());
         m_enemyCards.Add(new ContentIcefisherEnemyCard());
         m_enemyCards.Add(new ContentSnowprowlerEnemyCard());
         m_enemyCards.Add(new ContentLancerEnemyCard());
@@ -232,8 +242,11 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentVolcanoCrabEnemyCard());
         m_enemyCards.Add(new ContentVolcanoGolemEnemyCard());
         m_enemyCards.Add(new ContentWerewolfEnemyCard());
+        m_enemyCards.Add(new ContentWingedFlameImpEnemyCard());
         m_enemyCards.Add(new ContentWinterDragonEnemyCard());
         m_enemyCards.Add(new ContentYetiEnemyCard());
+        m_enemyCards.Add(new ContentWildOgreEnemyCard());
+        m_enemyCards.Add(new ContentWitchEnemyCard());
         m_enemyCards.Add(new ContentZombieEnemyCard());
         m_enemyCards.Add(new ContentZombieShipEnemyCard());
 

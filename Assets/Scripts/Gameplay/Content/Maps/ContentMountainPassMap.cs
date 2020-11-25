@@ -39,6 +39,21 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
+
+        m_totalEnemiesOnMap.Add(new ContentFlameDemonEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFireServantEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentIcebladeWarriorEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentStoneflingerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentIfritEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentNagaWardenEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFlameNecromancerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLavaGoblinEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentWildOgreEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentWingedFlameImpEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSkeletalPirateEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSkeletalCaptainEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentWitchEnemy(null));
+
         List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
         //Wave 1
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));

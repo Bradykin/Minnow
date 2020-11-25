@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentLavaHellionCard : GameUnitCard
+public class ContentLavaHellionEnemyCard : GameUnitCard
 {
-    public ContentLavaHellionCard()
+    public ContentLavaHellionEnemyCard()
     {
         m_unit = new ContentLavaHellionEnemy(null);
 
