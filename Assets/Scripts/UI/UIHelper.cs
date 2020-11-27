@@ -38,12 +38,12 @@ public static class UIHelper
     public static Color m_difficultyVeryHard = new Color(Color.red.r, Color.red.g, Color.red.b, 1f);
 
     public static Color m_commonRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.1f);
-    public static Color m_uncommonRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.7f);
+    public static Color m_uncommonRarityTint = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.7f);
     public static Color m_rareRarityTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1.0f);
     public static Color m_noRarityTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0.0f);
 
     public static Color m_commonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1f);
-    public static Color m_uncommonRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1f);
+    public static Color m_uncommonRarity = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 1f);
     public static Color m_rareRarity = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
     public static Color m_noRarity = new Color(Color.white.r, Color.white.g, Color.white.b, 1.0f);
 

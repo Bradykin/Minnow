@@ -9,7 +9,6 @@ public class UIBeginWaveButton : UIElementBase
     , IPointerClickHandler
 {
     public Image m_image;
-    public TMP_Text m_beginWaveText;
     public GameObject m_holder;
 
     void Start()
@@ -22,12 +21,10 @@ public class UIBeginWaveButton : UIElementBase
         if (PlayerHasActions())
         {
             m_image.color = UIHelper.m_fadedColor;
-            m_beginWaveText.color = UIHelper.m_fadedColor;
         }
         else
         {
             m_image.color = UIHelper.m_defaultColor;
-            m_beginWaveText.color = UIHelper.m_defaultColor;
         }
     }
 
