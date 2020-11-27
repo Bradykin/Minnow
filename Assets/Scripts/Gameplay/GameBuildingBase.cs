@@ -80,7 +80,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         }
     }
 
-    public string GetDesc()
+    public virtual string GetDesc()
     {
         return m_desc;
     }

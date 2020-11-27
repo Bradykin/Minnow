@@ -13,7 +13,6 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         m_range = 4;
 
         m_name = "Wizard Tower";
-        m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b> at the start of your turn.";
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 
@@ -24,6 +23,13 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         m_expandsPlaceRange = false;
 
         LateInit();
+    }
+
+    public override string GetDesc()
+    {
+        m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b>(+" + (m_magicPowerMultiplier * GameHelper.GetPlayer().GetMagicPower()) + ") at the start of your turn.";
+
+        return m_desc;
     }
 
     public override void StartTurn()
