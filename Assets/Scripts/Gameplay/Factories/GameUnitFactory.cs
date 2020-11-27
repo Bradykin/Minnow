@@ -157,7 +157,7 @@ public class GameUnitFactory
                 Debug.LogError("GameUnitFactory received Spawn Point Marker " + spawnPoolIndex + " on a " + spawnPoint.m_tile.GetTerrain().GetBaseName() + " at coordinates " + spawnPoint.m_tile.m_gridPosition + " That does not exist");
             }
 
-            if (!m_defaultSpawnPool.TryGetSpawnPoolForWave(curWave, out List<GameSpawnPoolData> spawnPoolAtWave))
+            if (!m_spawnPointSpawnPools[spawnPoolIndex].TryGetSpawnPoolForWave(curWave, out List<GameSpawnPoolData> spawnPoolAtWave))
             {
                 Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
             }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentMummyPharaohEnemy : GameEnemyUnit
@@ -20,11 +21,11 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         m_isElite = true;
 
         m_name = "Mummy Pharaoh";
-        m_desc = $"An elite foe. Defeat it and gain a relic!\n";
+        m_desc = $"An elite foe. Defeat it and gain a relic!\nAny non-Mummy units that die with range {m_mummyResurrectionRange} get resurrected as Mummies.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_desc += $"Any non-Mummy units that die with range {m_mummyResurrectionRange} get resurrected as Mummies.";
+            m_desc += $"This unit cannot be damaged if there are any mummies within range {m_mummyResurrectionRange} of it.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -92,6 +93,18 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         newEnemyUnit.OnSummon();
         gameOpponent.AddControlledUnit(newEnemyUnit);
         UIHelper.CreateWorldElementNotification("Resurrected by the Pharaoh", false, deathLocation.GetWorldTile().gameObject);
+    }
+
+    public override bool IsInvulnerable()
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_mummyResurrectionRange);
+
+        if (surroundingTiles.Any(t => t.IsOccupied() && t.GetOccupyingUnit() is ContentMummyEnemy))
+        {
+            return true;
+        }
+
+        return base.IsInvulnerable();
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
