@@ -99,17 +99,17 @@ public class ContentDeltaMap : GameMap
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 4, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.5f));
 
         //Wave 5
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 1));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.5f));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.5f));
+        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.33f));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 6, 1, 0.75f));
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
@@ -133,21 +133,21 @@ public class ContentDeltaMap : GameMap
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.5f));
 
         //Wave 4
+        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.5f));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 4, 1, 1));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
 
         //Wave 5
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
-        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 1));
+        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.5f));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
-        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.5f));
+        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.25f));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 1));
-        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 1));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
-        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 6, 1, 0.75f));
+        riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 6, 1, 0.5f));
         riverShoresSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
 
         //--------------------------------------------------------------------------------------------------------//
@@ -158,8 +158,8 @@ public class ContentDeltaMap : GameMap
         inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.25f));
 
         //Wave 3
-        inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 3, 2.0f, 0.75f));
-        inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.5f));
+        inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 3, 2.0f, 0.5f));
+        inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.25f));
 
         //Wave 4
         inRiverSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 4, 1.5f, 1));

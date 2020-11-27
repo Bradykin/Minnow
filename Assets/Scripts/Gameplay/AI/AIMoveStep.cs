@@ -29,7 +29,7 @@ public abstract class AIMoveStep : AIStep
         m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
-        if (moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
+        if (moveDestination == null || moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
         {
             yield break;
         }
@@ -72,7 +72,7 @@ public abstract class AIMoveStep : AIStep
         m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GameHelper.GetPlayer().GetCastleGameTile(), amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
-        if (moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
+        if (moveDestination != null && moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
         {
             m_AIGameEnemyUnit.m_gameEnemyUnit.m_worldUnit.MoveTo(moveDestination);
         }
