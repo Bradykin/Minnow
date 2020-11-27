@@ -26,8 +26,9 @@ public class WorldController : Singleton<WorldController>
 
         m_gameController = new GameController(map);
         map.TriggerStartMap();
+        map.TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
 
-            
+
         m_playerHand = new List<UICard>();
 
         m_playerUnitFocusIndex = 0;
