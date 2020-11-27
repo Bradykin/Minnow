@@ -78,7 +78,7 @@ public class UIRelic : UIElementBase
             m_descText.gameObject.SetActive(false);
         }
 
-        if (m_relic.m_rarity == GameElementBase.GameRarity.Starter)
+        if (m_selectionType == RelicSelectionType.SelectStarter)
         {
             m_isLocked = (!GameMetaprogressionUnlocksDataManager.HasUnlockedStarterRelic(m_relic) && !Constants.UnlockAllContent);
         }
