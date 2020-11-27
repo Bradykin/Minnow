@@ -28,19 +28,16 @@ public class ContentGrasper : GameUnit
 
         int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        if (damageTaken > 0)
         {
-            if (damageTaken > 0)
+            if (!other.m_isDead)
             {
-                if (!other.m_isDead)
-                {
-                    GainStamina(other.GetCurStamina());
-                    other.EmptyStamina();
-                }
-                else if (staminaToDrain >= 0)
-                {
-                    GainStamina(staminaToDrain);
-                }
+                GainStamina(other.GetCurStamina());
+                other.EmptyStamina();
+            }
+            else if (staminaToDrain >= 0)
+            {
+                GainStamina(staminaToDrain);
             }
         }
 
