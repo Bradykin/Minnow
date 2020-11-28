@@ -527,6 +527,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
         GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
 
+        GameHelper.GetGameController().KillEnemy();
+
         SetGameTile(null);
     }
 

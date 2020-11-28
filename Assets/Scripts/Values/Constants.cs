@@ -65,6 +65,16 @@ public static class Constants
         9
     };
 
+    private static List<int> WaveKillCount = new List<int>
+    {
+        8,
+        12,
+        16,
+        20,
+        25,
+        30
+    };
+
     public static int FinalWaveNum = 6;
     public static int GoldPerWave = 0;
 
@@ -142,5 +152,15 @@ public static class Constants
         }
         
         return WaveLength[waveNum - 1];
+    }
+
+    public static int GetWaveKillCount(int waveNum)
+    {
+        if (waveNum == 6)
+        {
+            return 9999;
+        }
+
+        return WaveKillCount[waveNum - 1];
     }
 }
