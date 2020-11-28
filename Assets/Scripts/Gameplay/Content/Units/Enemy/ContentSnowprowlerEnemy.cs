@@ -22,7 +22,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_name = "Snowprowler";
         m_desc = "";
 
-        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(m_bleedAmount))), false);
+        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(m_bleedAmount))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc += $"When this hits a unit, that unit loses {m_staminaDrainAmount} Stamina.\n";

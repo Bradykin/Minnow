@@ -61,8 +61,8 @@ public class GameEventTakeHorsesOption : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddStaminaRegen(m_staminaRegen);
-        m_tile.GetOccupyingUnit().AddMaxStamina(m_maxStamina);
+        m_tile.GetOccupyingUnit().AddStaminaRegen(m_staminaRegen, true);
+        m_tile.GetOccupyingUnit().AddMaxStamina(m_maxStamina, true);
 
         EndEvent();
     }

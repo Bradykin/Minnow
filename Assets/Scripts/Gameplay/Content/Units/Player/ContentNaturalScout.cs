@@ -8,10 +8,6 @@ public class ContentNaturalScout : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.3f, 0);
 
-        m_maxHealth = 10;
-        m_maxStamina = 6;
-        m_staminaRegen = 6;
-        m_power = 1;
         m_staminaToAttack = 5;
         m_sightRange = 5;
 
@@ -23,8 +19,18 @@ public class ContentNaturalScout : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameForestwalkKeyword(), false);
+        AddKeyword(new GameForestwalkKeyword(), true, false);
 
         LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 10;
+        m_maxStamina = 6;
+        m_staminaRegen = 6;
+        m_power = 1;
     }
 }

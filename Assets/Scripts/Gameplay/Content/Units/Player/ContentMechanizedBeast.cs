@@ -17,11 +17,16 @@ public class ContentMechanizedBeast : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
         m_maxHealth = 12;
         m_maxStamina = 6;
         m_staminaRegen = 2;
         m_power = 8;
-
-        LateInit();
     }
 }

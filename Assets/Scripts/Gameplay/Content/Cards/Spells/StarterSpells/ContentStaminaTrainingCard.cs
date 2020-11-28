@@ -27,7 +27,7 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+        return "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -39,6 +39,6 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddMaxStamina(GetSpellValue());
+        targetUnit.AddMaxStamina(GetSpellValue(), true);
     }
 }

@@ -19,7 +19,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_name = "Scorching Serpent";
         m_desc = "When this unit attacks another, it knocks that unit 1 tile away from itself.\n";
 
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc = "Only takes 1 stamina to attack. When this unit attacks another, it knocks that unit 1 tile away from itself.\n";

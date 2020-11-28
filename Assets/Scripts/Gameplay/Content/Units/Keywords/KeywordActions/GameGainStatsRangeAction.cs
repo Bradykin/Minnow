@@ -48,7 +48,7 @@ public class GameGainStatsRangeAction : GameAction
         {
             if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].GetOccupyingUnit().AddStats(m_powerToGain, m_healthToGain);
+                tilesInRange[i].GetOccupyingUnit().AddStats(m_powerToGain, m_healthToGain, false, false);
             }
         }
     }

@@ -45,7 +45,7 @@ public class GameGainKeywordRangeAction : GameAction
         {
             if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].GetOccupyingUnit().AddKeyword(m_keyword);
+                tilesInRange[i].GetOccupyingUnit().AddKeyword(m_keyword, false, false);
             }
         }
     }

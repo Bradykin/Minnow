@@ -15,11 +15,16 @@ public class ContentDwarvenSoldier : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
         m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 6;
-
-        LateInit();
     }
 }

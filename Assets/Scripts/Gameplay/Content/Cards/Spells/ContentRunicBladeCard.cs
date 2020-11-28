@@ -26,7 +26,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b>' until end of wave.";
+        return "Target allied unit gains '<b>Victorious</b>: Trigger <b>Spellcraft</b>'.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -38,7 +38,6 @@ public class ContentRunicBladeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1))));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameSpellcraftAttackAction(targetUnit, 1)), false, false);
     }
 }

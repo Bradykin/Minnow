@@ -38,6 +38,6 @@ public class ContentFossilizeCard : GameCardSpellBase
         targetUnit.RemoveStats(m_powerAmount, 0);
         targetUnit.SpendStamina(m_staminaDrainAmount);
 
-        targetUnit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false);
+        targetUnit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false, false);
     }
 }

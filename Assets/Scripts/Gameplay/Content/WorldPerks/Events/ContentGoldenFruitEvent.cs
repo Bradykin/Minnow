@@ -23,12 +23,12 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here '<b>Momentum</b>: gain <b>Damage Shield</b> 1'.";
+        return "Give the unit that goes here '<b>Momentum</b>: gain <b>Damage Shield</b> 1' <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here +0/+50.";
+        return "Give the unit that goes here +0/+50 <b>permanently</b>.";
     }
 }
 
@@ -62,7 +62,7 @@ public class GameEventGiveKeywordOption : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddKeyword(m_keyword);
+        m_tile.GetOccupyingUnit().AddKeyword(m_keyword, true, false);
 
         EndEvent();
     }

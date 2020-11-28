@@ -11,11 +11,6 @@ public class ContentConjuredImp : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 15;
-        m_maxStamina = 4;
-        m_staminaRegen = 3;
-        m_power = 6;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -58,5 +53,15 @@ public class ContentConjuredImp : GameUnit
             copyImpCard.SetDesc(copyImpCard.m_unit.GetDesc());
             GameHelper.GetPlayer().AddCardToHand(copyImpCard, false);
         }
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 15;
+        m_maxStamina = 4;
+        m_staminaRegen = 3;
+        m_power = 6;
     }
 }

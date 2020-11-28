@@ -103,9 +103,22 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
         }
     }
 
-    public void RemoveAllKeywords()
+    public void RemoveAllKeywords(bool ignorePerm)
     {
-        m_keywords.Clear();
+        if (!ignorePerm)
+        {
+            m_keywords.Clear();
+        }
+        else
+        {
+            for (int i = m_keywords.Count-1; i >= 0; i--)
+            {
+                if (!m_keywords[i].m_isPermanent)
+                {
+                    m_keywords.RemoveAt(i);
+                }
+            }
+        }
     }
 
     public void RemoveAllVisibleKeywords()

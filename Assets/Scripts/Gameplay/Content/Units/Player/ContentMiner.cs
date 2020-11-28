@@ -14,11 +14,6 @@ public class ContentMiner : GameUnit
         m_miningRange = 1;
         m_miningVal = 2;
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 1;
-        m_power = 1;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -48,5 +43,15 @@ public class ContentMiner : GameUnit
         }
 
         GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(numMountains * m_miningVal));
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 4;
+        m_maxStamina = 4;
+        m_staminaRegen = 1;
+        m_power = 1;
     }
 }

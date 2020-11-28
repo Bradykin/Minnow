@@ -23,7 +23,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         m_name = "Jackal";
         m_desc = "";
 
-        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 10, 10)), false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 10, 10)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc = $"When this unit dies, it gives all allied units in {m_range} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/{m_maxHealth - m_baseMaxHealth})\n";
@@ -71,7 +71,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         {
             if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead && surroundingTiles[i].GetOccupyingUnit().GetTeam() == GetTeam())
             {
-                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth));
+                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth), true, true);
             }
         }
 

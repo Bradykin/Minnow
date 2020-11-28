@@ -22,10 +22,10 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_name = "Crumbling Ancient";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(this, m_brittleAmount)), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(this, m_brittleAmount)), true, false);
         if (!GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameEnrageKeyword(new GameLoseStaminaAction(this, m_staminaLossAmount)), false);
+            AddKeyword(new GameEnrageKeyword(new GameLoseStaminaAction(this, m_staminaLossAmount)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

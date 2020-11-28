@@ -11,17 +11,22 @@ public class ContentLizardSoldier : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Starter;
 
-        AddKeyword(new GameWaterwalkKeyword(), false);
+        AddKeyword(new GameWaterwalkKeyword(), true, false);
 
         m_name = "Lizard Soldier";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
         m_maxHealth = 9;
         m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = 7;
-
-        LateInit();
     }
 }

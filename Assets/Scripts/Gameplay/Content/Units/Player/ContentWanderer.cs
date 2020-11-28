@@ -8,11 +8,6 @@ public class ContentWanderer : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 30;
-        m_maxStamina = 5;
-        m_staminaRegen = 4;
-        m_power = 15;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
@@ -21,7 +16,7 @@ public class ContentWanderer : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameShivKeyword(), false);
+        AddKeyword(new GameShivKeyword(), true, false);
 
         LateInit();
     }
@@ -32,5 +27,15 @@ public class ContentWanderer : GameUnit
 
         GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
         GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 30;
+        m_maxStamina = 5;
+        m_staminaRegen = 4;
+        m_power = 15;
     }
 }

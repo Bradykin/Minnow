@@ -31,8 +31,8 @@ public class ContentRiverlordEnemy : GameEnemyUnit
         m_name = "Riverlord";
         m_desc = $"The final boss. Kill it, and win.\n";
 
-        AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

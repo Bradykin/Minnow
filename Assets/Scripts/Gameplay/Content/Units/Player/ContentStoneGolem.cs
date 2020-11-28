@@ -11,11 +11,6 @@ public class ContentStoneGolem : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.4f, 0);
 
-        m_maxHealth = 20;
-        m_maxStamina = 3;
-        m_staminaRegen = 1;
-        m_power = 1;
-
         m_desc = "When at maximum stamina, Stone Golem has Damage Reduction 4.\n";
 
         m_team = Team.Player;
@@ -38,7 +33,7 @@ public class ContentStoneGolem : GameUnit
         {
             if (!m_staminaAdded)
             {
-                AddKeyword(m_drKeyword, false);
+                AddKeyword(m_drKeyword, true, false);
                 m_staminaAdded = true;
             }
         }
@@ -56,5 +51,15 @@ public class ContentStoneGolem : GameUnit
                 m_staminaAdded = false;
             }
         }
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 20;
+        m_maxStamina = 3;
+        m_staminaRegen = 1;
+        m_power = 1;
     }
 }

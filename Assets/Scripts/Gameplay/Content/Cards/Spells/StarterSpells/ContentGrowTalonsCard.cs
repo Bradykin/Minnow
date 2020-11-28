@@ -27,7 +27,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString() + "\n\n<i>(Buffs are permanent)</i>";
+        return "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -40,6 +40,6 @@ public class ContentGrowTalonsCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         int powerToAdd = GetSpellValue();
-        targetUnit.AddStats(powerToAdd, 0);
+        targetUnit.AddStats(powerToAdd, 0, true, true);
     }
 }

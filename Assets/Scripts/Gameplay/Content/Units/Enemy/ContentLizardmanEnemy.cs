@@ -20,12 +20,12 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_name = "Lizardman";
         m_desc = "Lizardmen move on water tiles without spending Stamina.\n";
 
-        AddKeyword(new GameWaterwalkKeyword(), false);
+        AddKeyword(new GameWaterwalkKeyword(), true, false);
         m_instantWaterMovement = true;
-        AddKeyword(new GameDamageShieldKeyword(2), false);
+        AddKeyword(new GameDamageShieldKeyword(2), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

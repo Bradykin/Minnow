@@ -52,7 +52,7 @@ public class GameEventSpeedTimeOption : GameEventOption
             return;
         }
 
-        WorldController.Instance.m_gameController.m_currentTurnNumber += m_timeIncrease;
+        //WorldController.Instance.m_gameController.m_currentTurnNumber += m_timeIncrease;
         WorldController.Instance.m_gameController.CheckStartIntermission();
 
         EndEvent();
@@ -79,12 +79,12 @@ public class GameEventSlowTimeOption : GameEventOption
             return;
         }
 
-        WorldController.Instance.m_gameController.m_currentTurnNumber -= m_timeDecrease;
+        /*WorldController.Instance.m_gameController.m_currentTurnNumber -= m_timeDecrease;
         if (WorldController.Instance.m_gameController.m_currentTurnNumber < 0)
         {
             WorldController.Instance.m_gameController.m_currentTurnNumber = 0;
         }
-        WorldController.Instance.m_gameController.CheckStartIntermission();
+        WorldController.Instance.m_gameController.CheckStartIntermission();*/
 
         EndEvent();
     }

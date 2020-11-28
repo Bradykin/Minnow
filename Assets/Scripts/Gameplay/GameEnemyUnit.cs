@@ -99,4 +99,9 @@ public class GameEnemyUnit : GameUnit
         }
         m_gameOpponentController.m_controlledUnits.Remove(this);
     }
+
+    protected override void ResetToBase()
+    {
+        //Left as stub; enemies don't reset to base.
+    }
 }

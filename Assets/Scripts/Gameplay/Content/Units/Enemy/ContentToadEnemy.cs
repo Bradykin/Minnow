@@ -21,11 +21,11 @@ public class ContentToadEnemy : GameEnemyUnit
         m_name = "Toad";
         m_desc = "On hit, drains Stamina to 2!\n";
 
-        AddKeyword(new GameDamageShieldKeyword(1), false);
+        AddKeyword(new GameDamageShieldKeyword(1), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameFullHealAction(this)), false);
+            AddKeyword(new GameMomentumKeyword(new GameFullHealAction(this)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

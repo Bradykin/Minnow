@@ -21,7 +21,7 @@ public class ContentGoblinWarriorEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 2, 2)), false);
+            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 2, 2)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

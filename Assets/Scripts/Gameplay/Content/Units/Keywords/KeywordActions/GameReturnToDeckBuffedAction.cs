@@ -31,7 +31,7 @@ public class GameReturnToDeckBuffedAction : GameAction
         }
         m_retuningUnit.m_returnedToDeckDeath = true;
 
-        m_retuningUnit.AddStats(m_powerBuff, m_healthBuff);
+        m_retuningUnit.AddStats(m_powerBuff, m_healthBuff, false, false);
 
         GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(m_retuningUnit);
         GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);

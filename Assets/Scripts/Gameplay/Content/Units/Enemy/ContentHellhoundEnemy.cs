@@ -22,10 +22,10 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_name = "Hellhound";
         m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_effectRange} range.\n";
 
-        AddKeyword(new GameLavawalkKeyword(), false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameVictoriousKeyword(new GameGainStaminaRangeAction(this, 1, 2)), false);
+            AddKeyword(new GameVictoriousKeyword(new GameGainStaminaRangeAction(this, 1, 2)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

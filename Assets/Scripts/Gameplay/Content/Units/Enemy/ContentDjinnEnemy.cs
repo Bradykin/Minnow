@@ -19,12 +19,12 @@ public class ContentDjinnEnemy : GameEnemyUnit
         m_name = "Djinn";
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), false);
-        AddKeyword(new GameDeathKeyword(new GameGainTempMagicPowerAction(1)), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
+        AddKeyword(new GameDeathKeyword(new GameGainTempMagicPowerAction(1)), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDeathKeyword(new GameGainStatsRangeAction(this, 5, 5, 3)), false);
+            AddKeyword(new GameDeathKeyword(new GameGainStatsRangeAction(this, 5, 5, 3)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

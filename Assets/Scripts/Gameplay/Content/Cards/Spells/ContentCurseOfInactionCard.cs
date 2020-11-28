@@ -40,6 +40,6 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetUnit, GetSpellValue())));
+        targetUnit.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetUnit, GetSpellValue())), false, false);
     }
 }

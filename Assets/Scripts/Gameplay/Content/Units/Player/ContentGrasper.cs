@@ -6,11 +6,6 @@ public class ContentGrasper : GameUnit
 {
     public ContentGrasper()
     {
-        m_maxHealth = 9;
-        m_maxStamina = 3;
-        m_staminaRegen = 2;
-        m_power = 1;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
@@ -42,5 +37,15 @@ public class ContentGrasper : GameUnit
         }
 
         return damageTaken;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 9;
+        m_maxStamina = 3;
+        m_staminaRegen = 2;
+        m_power = 1;
     }
 }

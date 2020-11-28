@@ -47,6 +47,6 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddMaxStamina(GetSpellValue());
+        targetUnit.AddMaxStamina(GetSpellValue(), false);
     }
 }

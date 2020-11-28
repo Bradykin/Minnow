@@ -42,6 +42,6 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameRoarOfVictoryAction(targetUnit, 1)));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameRoarOfVictoryAction(targetUnit, 1)), false, false);
     }
 }

@@ -31,7 +31,7 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         m_name = "Orc Warleader";
         m_desc = $"The final boss. Kill it, and win.\nThis boss arrives with a mighty warband to destroy you! This unit gets 1 Damage Reduction for each surviving orc in the warband.\n";
 
-        AddKeyword(new GameForestwalkKeyword(), false);
+        AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -74,7 +74,7 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
                 WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
                 numOrcsSpawned++;
 
-                AddKeyword(new GameDamageReductionKeyword(1), false);
+                AddKeyword(new GameDamageReductionKeyword(1), true, false);
 
                 if (numOrcsSpawned >= m_orcsSpawned)
                 {

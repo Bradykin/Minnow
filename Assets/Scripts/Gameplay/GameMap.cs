@@ -188,7 +188,7 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentLibraryOfDenumianEvent(null));
         m_eventPool.Add(new ContentTraditionOrProgressEvent(null));
         m_eventPool.Add(new ContentDevilishPowerEvent(null));
-        m_eventPool.Add(new ContentTimeTempleEvent(null));
+        //m_eventPool.Add(new ContentTimeTempleEvent(null));
         m_eventPool.Add(new ContentRestorationBrickEvent(null));
         m_eventPool.Add(new ContentAngelicGiftEvent(null));
 

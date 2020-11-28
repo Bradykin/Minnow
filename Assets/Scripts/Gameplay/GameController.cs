@@ -27,13 +27,12 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     public ITurns CurrentActor => m_teamActor[m_currentActorIterator];
     private int m_currentActorIterator = 0;
 
-    private bool ShouldStartIntermission => CurrentActor == m_player && m_currentTurnNumber > m_endOfWaveTurnNumber && m_currentWaveNumber != Constants.FinalWaveNum;
+    private bool ShouldStartIntermission => CurrentActor == m_player && m_curKillCount >= m_endWaveKillCount && m_currentWaveNumber != Constants.FinalWaveNum;
 
     public RunStateType m_runStateType = RunStateType.None;
 
     public int m_currentWaveNumber;
     public int m_currentTurnNumber;
-    private int m_endOfWaveTurnNumber;
 
     public GameMap m_map;
 
@@ -43,6 +42,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     private int m_baseExpAmount = 50;
     private int m_victoryAmount = 200;
     private int m_firstChaosClearAmount = 500;
+
+    public int m_curKillCount;
+    public int m_endWaveKillCount;
 
     public int m_randomSeed;
 
@@ -68,8 +70,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
         m_activeBossUnits = new List<GameEnemyUnit>();
         m_currentWaveNumber = 1;
+        m_endWaveKillCount = Constants.GetWaveKillCount(m_currentWaveNumber);
         m_currentTurnNumber = 1;
-        m_endOfWaveTurnNumber = Constants.GetWaveLength(m_currentWaveNumber);
 
         m_map = map;
     }
@@ -128,9 +130,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         CurrentActor.EndTurn();
 
+        m_currentTurnNumber++;
+
         if (m_currentActorIterator == m_teamActor.Count - 1)
         {
-            m_currentTurnNumber++;
             m_currentActorIterator = 0;
         }
         else
@@ -184,14 +187,18 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         GetCurMap().TriggerMapEvents(m_currentWaveNumber, ScheduledActionTime.EndOfWave);
         m_currentWaveNumber++;
         m_currentTurnNumber = 1;
-        m_endOfWaveTurnNumber = Constants.GetWaveLength(m_currentWaveNumber);
+        m_curKillCount = 0;
+        m_endWaveKillCount = Constants.GetWaveKillCount(m_currentWaveNumber);
     }
 
-    public int GetEndWaveTurn()
+    public void KillEnemy()
     {
-        int toReturn = m_endOfWaveTurnNumber;
+        m_curKillCount++;
 
-        return toReturn;
+        if (m_curKillCount >= m_endWaveKillCount)
+        {
+            CheckStartIntermission();
+        }
     }
 
     public void AddKillExp(int experienceAmount)

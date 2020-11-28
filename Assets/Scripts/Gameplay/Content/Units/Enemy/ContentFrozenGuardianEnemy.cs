@@ -29,7 +29,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionAmount))), false);
+            AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionAmount))), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -64,7 +64,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
 
         if (numEnemiesHit > 0)
         {
-            AddStats(m_statGain * numEnemiesHit, m_statGain * numEnemiesHit);
+            AddStats(m_statGain * numEnemiesHit, m_statGain * numEnemiesHit, false, true);
         }
     }
 
@@ -78,7 +78,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         {
             for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
             {
-                player.m_controlledUnits[i].AddStats(5, 5);
+                player.m_controlledUnits[i].AddStats(5, 5, true, true);
             }
         }
 

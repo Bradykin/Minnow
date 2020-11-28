@@ -34,7 +34,7 @@ public class GameDoublePowerAction : GameAction
     {
         for (int i = 0; i < m_numTimesToTrigger; i++)
         {
-            m_unit.AddStats(m_unit.GetPower(), 0);
+            m_unit.AddStats(m_unit.GetPower(), 0, false, true);
         }
     }
 

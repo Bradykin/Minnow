@@ -19,13 +19,18 @@ public class ContentUndeadMammoth : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), true, false);
+
+        LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 4;
-
-        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), false);
-
-        LateInit();
     }
 }

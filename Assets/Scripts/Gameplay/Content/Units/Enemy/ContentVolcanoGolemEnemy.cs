@@ -20,8 +20,8 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
 
         m_name = "Volcano Golem";
 
-        AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_effectRange = 3;

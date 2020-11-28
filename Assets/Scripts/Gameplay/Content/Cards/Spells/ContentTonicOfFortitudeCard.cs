@@ -10,7 +10,7 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
     public ContentTonicOfFortitudeCard()
     {
         m_name = "Tonic of Fortitude";
-        m_desc = "Target allied unit gains +0/+" + m_healthGain + " and +" + m_staminaGain + " Stamina.";
+        m_desc = "Target allied unit <b>permanently</b> gains +0/+" + m_healthGain + " and +" + m_staminaGain + " Stamina.";
         m_targetType = Target.Ally;
         m_cost = 3;
         m_rarity = GameRarity.Common;
@@ -33,7 +33,7 @@ public class ContentTonicOfFortitudeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddStats(0, m_healthGain);
+        targetUnit.AddStats(0, m_healthGain, true, true);
         targetUnit.GainStamina(m_staminaGain);
     }
 }

@@ -8,11 +8,6 @@ public class ContentGladiator : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 
-        m_maxHealth = 50;
-        m_maxStamina = 8;
-        m_staminaRegen = 1;
-        m_power = 6;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -20,9 +15,19 @@ public class ContentGladiator : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), false);
-        AddKeyword(new GameTauntKeyword(), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), true, false);
+        AddKeyword(new GameTauntKeyword(), true, false);
 
         LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 50;
+        m_maxStamina = 8;
+        m_staminaRegen = 1;
+        m_power = 6;
     }
 }

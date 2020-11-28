@@ -30,8 +30,8 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         m_name = "Lord of Eruptions";
         m_desc = $"The final boss.  Kill it, and win.\nThis boss moves up to {m_teleportRange} tiles per turn, but uses no stamina to move. This unit can traverse any terrain type except for water.\nThis unit can use its full turn to ignite an adjacent volcano.";
 
-        AddKeyword(new GameRangeKeyword(3), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
+        AddKeyword(new GameRangeKeyword(3), true, false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AILordOfEruptionsChooseTargetToAttackStep(m_AIGameEnemyUnit), true);

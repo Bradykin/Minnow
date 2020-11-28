@@ -30,7 +30,7 @@ public class GameApplyKeywordToOtherOnMomentumAction : GameAction
     {
         if (targetUnit != null && !targetUnit.m_isDead)
         {
-            targetUnit.AddKeyword(m_keyword);
+            targetUnit.AddKeyword(m_keyword, false, true);
         }
     }
 

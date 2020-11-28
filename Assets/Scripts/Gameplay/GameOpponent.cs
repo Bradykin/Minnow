@@ -165,11 +165,6 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         m_hasSpawnedBoss = curMap.TrySpawnBoss(tilesAtFogEdge);
         m_hasSpawnedEliteThisWave = curMap.TrySpawnElite(tilesAtFogEdge);
 
-        if (GameHelper.GetGameController().m_currentTurnNumber + 3 >= GameHelper.GetGameController().GetEndWaveTurn())
-        {
-            return;
-        }
-
         //Try spawning at any monster dens
         for (int i = 0; i < m_monsterDens.Count; i++)
         {

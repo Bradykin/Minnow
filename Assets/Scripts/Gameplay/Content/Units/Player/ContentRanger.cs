@@ -11,16 +11,11 @@ public class ContentRanger : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 15;
-        m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 9;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameForestwalkKeyword(), false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
+        AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_name = "Ranger";
         m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
@@ -62,5 +57,15 @@ public class ContentRanger : GameUnit
         }
 
         return returnStaminaRegen;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 15;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
+        m_power = 9;
     }
 }

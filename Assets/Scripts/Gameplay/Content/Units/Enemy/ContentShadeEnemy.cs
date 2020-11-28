@@ -17,12 +17,12 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_name = "Shade";
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), false);
-        AddKeyword(new GameDamageShieldKeyword(2), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
+        AddKeyword(new GameDamageShieldKeyword(2), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, 15, 2)), false);
+            AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, 15, 2)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

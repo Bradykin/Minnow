@@ -21,12 +21,12 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_name = "Yeti";
         m_desc = "";
 
-        AddKeyword(new GameRangeKeyword(4), false);
-        AddKeyword(new GameMountainwalkKeyword(), false);
+        AddKeyword(new GameRangeKeyword(4), true, false);
+        AddKeyword(new GameMountainwalkKeyword(), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
