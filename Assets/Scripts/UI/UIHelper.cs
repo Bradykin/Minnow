@@ -1117,4 +1117,18 @@ public static class UIHelper
     {
         return "There are only so many turns in a run; each one is a resource, so use them wisely!";
     }
+
+    public static void TriggerSpellCardSelction()
+    {
+        GameElementBase.GameRarity rarity = GameCardFactory.GetRandomRarity();
+
+        List<GameCard> exclusionCards = new List<GameCard>();
+        GameCard cardOne = GameCardFactory.GetRandomStandardSpellCard(rarity);
+        exclusionCards.Add(cardOne);
+        GameCard cardTwo = GameCardFactory.GetRandomStandardSpellCard(rarity, exclusionCards);
+        exclusionCards.Add(cardTwo);
+        GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(rarity, exclusionCards);
+
+        UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
+    }
 }
