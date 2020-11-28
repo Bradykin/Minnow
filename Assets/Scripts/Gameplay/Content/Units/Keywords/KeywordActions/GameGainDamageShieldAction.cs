@@ -23,7 +23,7 @@ public class GameGainDamageShieldAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameDamageShieldKeyword(m_damageShieldVal), false);
+        m_unit.AddKeyword(new GameDamageShieldKeyword(m_damageShieldVal), false, false);
     }
 
     public override void AddAction(GameAction toAdd)

@@ -19,7 +19,7 @@ public class ContentLancerEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameRangeKeyword(2), false);
+            AddKeyword(new GameRangeKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

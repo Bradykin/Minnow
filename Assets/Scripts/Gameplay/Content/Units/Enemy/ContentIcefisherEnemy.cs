@@ -19,10 +19,10 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         m_name = "Icefisher";
         m_desc = "Can use its full turn to smash a hole in the ice.\n";
 
-        AddKeyword(new GameWaterwalkKeyword(), false);
+        AddKeyword(new GameWaterwalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
+            AddKeyword(new GameDamageReductionKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

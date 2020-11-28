@@ -91,12 +91,12 @@ public class GameEventConsumeFireOption : GameEventOption
 
     public override void Init()
     {
-        m_message = m_tile.GetOccupyingUnit().GetName() + " gains '<b>Enrage</b>: Gain +" + m_toGrow + "/+0'";
+        m_message = m_tile.GetOccupyingUnit().GetName() + " <b>permanently</b> gains '<b>Enrage</b>: Gain +" + m_toGrow + "/+0'";
     }
 
     public override void AcceptOption()
     {
-        m_tile.GetOccupyingUnit().AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_toGrow, 0)));
+        m_tile.GetOccupyingUnit().AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_toGrow, 0)), true, false);
 
         EndEvent();
     }

@@ -9,16 +9,11 @@ public class ContentDwarfArchitect : GameUnit
 
     public ContentDwarfArchitect()
     {
-        m_maxHealth = 20;
-        m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 4;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Dwarf Architect";
-        m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.\n";
+        m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, <b>permanently</b> give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -34,9 +29,19 @@ public class ContentDwarfArchitect : GameUnit
             int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), other.GetGameTile(), true, false, true);
             if (distanceBetween <= m_effectRange)
             {
-                other.AddMaxStamina(m_maxStaminaIncrease);
+                other.AddMaxStamina(m_maxStaminaIncrease, true);
                 other.GainStamina(other.GetMaxStamina());
             }
         }
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 20;
+        m_maxStamina = 5;
+        m_staminaRegen = 3;
+        m_power = 4;
     }
 }

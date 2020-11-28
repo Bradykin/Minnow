@@ -40,6 +40,6 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetUnit, GetSpellValue())));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetUnit, GetSpellValue())), false, false);
     }
 }

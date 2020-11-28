@@ -7,7 +7,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
     public ContentDemonicAspectCard()
     {
         m_name = "Demonic Aspect";
-        m_desc = "Give target unit '<b>Victorious</b>: Gain 2 Stamina until end of wave.'";
+        m_desc = "Give target unit '<b>Victorious</b>: Gain 2 Stamina.'";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_shouldExile = true;
@@ -36,7 +36,6 @@ public class ContentDemonicAspectCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, 2)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, 2))));
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, 2)), false, false);
     }
 }

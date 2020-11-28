@@ -50,6 +50,6 @@ public class ContentPhalanxCard : GameCardSpellBase
             }
         }
 
-        targetUnit.AddStats(amount, amount);
+        targetUnit.AddStats(amount, amount, false, false);
     }
 }

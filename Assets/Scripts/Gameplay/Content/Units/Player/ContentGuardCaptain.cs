@@ -11,11 +11,6 @@ public class ContentGuardCaptain : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.2f, 0);
 
-        m_maxHealth = 12;
-        m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 4;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -54,5 +49,15 @@ public class ContentGuardCaptain : GameUnit
 
             unit.GainStamina(m_rallyValue);
         }
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true); 
+        
+        m_maxHealth = 12;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
+        m_power = 4;
     }
 }

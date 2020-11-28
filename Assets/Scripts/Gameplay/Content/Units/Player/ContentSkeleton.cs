@@ -14,21 +14,26 @@ public class ContentSkeleton : GameUnit
         m_chance = 75;
         m_healthBonus = 15;
 
-        m_maxHealth = 5;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 3;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
-        AddKeyword(new GameRegenerateKeyword(5), false);
+        AddKeyword(new GameRegenerateKeyword(5), true, false);
 
         m_name = "Skeleton";
-        m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it gains " + m_healthBonus + " max health.\n";
+        m_desc = m_chance + "% chance to survive a fatal hit with 1 health.  If it does, it <b>permanently</b> gains " + m_healthBonus + " max health.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 5;
+        m_maxStamina = 4;
+        m_staminaRegen = 2;
+        m_power = 3;
     }
 
     protected override bool ShouldRevive(out int healthSurvivedAt)
@@ -40,7 +45,7 @@ public class ContentSkeleton : GameUnit
 
         if (isReviving)
         {
-            this.AddStats(0, m_healthBonus);
+            this.AddStats(0, m_healthBonus, true, true);
         }
 
         return isReviving;

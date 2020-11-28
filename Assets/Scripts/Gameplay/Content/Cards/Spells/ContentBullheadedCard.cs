@@ -39,7 +39,6 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0))));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)), false, false);
     }
 }

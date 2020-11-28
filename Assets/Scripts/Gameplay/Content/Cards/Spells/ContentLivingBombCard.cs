@@ -51,7 +51,7 @@ public class ContentLivingBombCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameDeathKeyword(new GameExplodeAction(targetUnit, GetSpellValue(), m_range)));
+        targetUnit.AddKeyword(new GameDeathKeyword(new GameExplodeAction(targetUnit, GetSpellValue(), m_range)), false, false);
     }
 
     protected override void HandleAudio()

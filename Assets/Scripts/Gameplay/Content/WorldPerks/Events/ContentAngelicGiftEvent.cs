@@ -45,7 +45,7 @@ public class GameEventAngelicWings : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = m_tile.GetOccupyingUnit().GetName() + " gains Flying!.";
+        m_message = m_tile.GetOccupyingUnit().GetName() + " <b>permanently</b> gains Flying!.";
 
         return base.GetMessage();
     }
@@ -59,7 +59,7 @@ public class GameEventAngelicWings : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddKeyword(new GameFlyingKeyword());
+        m_tile.GetOccupyingUnit().AddKeyword(new GameFlyingKeyword(), true, false);
 
         EndEvent();
     }

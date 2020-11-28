@@ -9,16 +9,11 @@ public class ContentElvenSentinel : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 
-        m_maxHealth = 6;
-        m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 1;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        AddKeyword(new GameRangeKeyword(3), false);
-        AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 1)), false);
+        AddKeyword(new GameRangeKeyword(3), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainRangeAction(this, 2)), true, false);
 
         m_name = "Elven Sentinel";
         m_desc = "Multiply damage dealt by the distance between " + m_name + " and the target unit.\n";
@@ -35,5 +30,15 @@ public class ContentElvenSentinel : GameUnit
         toDeal = toDeal * WorldGridManager.Instance.GetPathLength(m_gameTile, other.GetGameTile(), true, false, true);
 
         return toDeal;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 6;
+        m_maxStamina = 5;
+        m_staminaRegen = 3;
+        m_power = 1;
     }
 }

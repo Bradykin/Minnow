@@ -11,11 +11,6 @@ public class ContentHomonculus : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.1f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 6;
-        m_staminaRegen = 2;
-        m_power = 2;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -23,8 +18,18 @@ public class ContentHomonculus : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_effectRange)), false);
+        AddKeyword(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_effectRange)), true, false);
 
         LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 4;
+        m_maxStamina = 6;
+        m_staminaRegen = 2;
+        m_power = 2;
     }
 }

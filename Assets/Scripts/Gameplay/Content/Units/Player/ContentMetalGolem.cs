@@ -13,11 +13,6 @@ public class ContentMetalGolem : GameUnit
 
         m_eatingRange = 1;
 
-        m_maxHealth = 25;
-        m_maxStamina = 4;
-        m_staminaRegen = 4;
-        m_power = 5;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
@@ -26,7 +21,7 @@ public class ContentMetalGolem : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameTauntKeyword(), false);
+        AddKeyword(new GameTauntKeyword(), true, false);
 
         LateInit();
     }
@@ -53,6 +48,16 @@ public class ContentMetalGolem : GameUnit
             return;
         }
 
-        AddKeyword(new GameDamageShieldKeyword(numMountains), false);
+        AddKeyword(new GameDamageShieldKeyword(numMountains), false, false);
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 25;
+        m_maxStamina = 4;
+        m_staminaRegen = 4;
+        m_power = 5;
     }
 }

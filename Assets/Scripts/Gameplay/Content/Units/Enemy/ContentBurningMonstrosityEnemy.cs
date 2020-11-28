@@ -22,9 +22,9 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
         m_name = "Burning Monstrosity";
         m_desc = "";
 
-        AddKeyword(new GameLavawalkKeyword(), false);
-        AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), false);
-        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc  = $"All player units in the explosion radius are drained of all Stamina on death.\n";

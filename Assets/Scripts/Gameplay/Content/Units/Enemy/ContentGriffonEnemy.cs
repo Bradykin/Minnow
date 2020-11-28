@@ -22,7 +22,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
         m_name = "Griffon";
         m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.\n";
 
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_statBoostAmount += 5;
@@ -45,7 +45,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
         {
             if (surroundingTiles[i].IsOccupied() && surroundingTiles[i].GetOccupyingUnit() is ContentGriffonEnemy)
             {
-                surroundingTiles[i].GetOccupyingUnit().AddStats(m_statBoostAmount, m_statBoostAmount);
+                surroundingTiles[i].GetOccupyingUnit().AddStats(m_statBoostAmount, m_statBoostAmount, true, true);
                 if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
                 {
                     surroundingTiles[i].GetOccupyingUnit().Heal(surroundingTiles[i].GetOccupyingUnit().GetMaxHealth());

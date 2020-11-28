@@ -44,11 +44,11 @@ public class GameEventStatsBuffOption : GameEventOption
     {
         if (m_eventType == StatsBuffEventType.Standard)
         {
-            m_message = "Gain +" + m_powerIncrease + "/+" + m_maxHealthIncrease + ".";
+            m_message = "<b>Permanently</b> gain +" + m_powerIncrease + "/+" + m_maxHealthIncrease + ".";
         }
         else if (m_eventType == StatsBuffEventType.Blast)
         {
-            m_message = "Blast all tiles within + " + m_blastRange + " range, damaging other nearby units for " + m_blastDamage + " damage and burning the tiles. Gain +" + m_powerIncrease + "/+" + m_maxHealthIncrease + ".";
+            m_message = "Blast all tiles within + " + m_blastRange + " range, damaging other nearby units for " + m_blastDamage + " damage and burning the tiles. <b>Permanently</b> gain +" + m_powerIncrease + "/+" + m_maxHealthIncrease + ".";
         }
 
         return base.GetMessage();
@@ -61,7 +61,7 @@ public class GameEventStatsBuffOption : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddStats(m_powerIncrease, m_maxHealthIncrease);
+        m_tile.GetOccupyingUnit().AddStats(m_powerIncrease, m_maxHealthIncrease, true, true);
 
         if (m_eventType == StatsBuffEventType.Blast)
         {

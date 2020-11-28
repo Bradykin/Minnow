@@ -34,10 +34,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     protected Team m_team;
     protected int m_curHealth;
     protected int m_maxHealth;
+    protected int m_permMaxHealth;
     protected int m_curStamina;
     protected int m_staminaRegen;
+    protected int m_permStaminaRegen;
     protected int m_maxStamina;
+    protected int m_permMaxStamina;
     protected int m_power;
+    protected int m_permPower;
     protected Typeline m_typeline;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the descrip so it shows up in the UI.
@@ -67,9 +71,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void CopyOff(GameUnit other)
     {
         m_maxHealth = other.m_maxHealth;
+        m_permMaxHealth = other.m_permMaxHealth;
         m_staminaRegen = other.m_staminaRegen;
+        m_permStaminaRegen = other.m_permStaminaRegen;
         m_maxStamina = other.m_maxStamina;
+        m_permMaxStamina = other.m_permMaxStamina;
         m_power = other.m_power;
+        m_permPower = other.m_permPower;
         m_typeline = other.m_typeline;
 
         m_keywordHolder = other.m_keywordHolder.Clone(other, this);
@@ -84,6 +92,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         m_icon = UIHelper.GetIconUnit(m_name);
         m_iconWhite = UIHelper.GetIconUnit(m_name + "W");
+
+        ResetToBase();
     }
 
     public void SetHealthStaminaValues()
@@ -139,6 +149,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
 
     }
+
+    public virtual void EndWave()
+    {
+        ResetToBase();
+    }
+
+    protected abstract void ResetToBase();
 
     public GameTile GetGameTile()
     {
@@ -252,7 +269,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (lordOfChaosDamageApplyBleedsActive)
         {
-            AddKeyword(new GameBleedKeyword(damage));
+            AddKeyword(new GameBleedKeyword(damage), false, false);
         }
         else
         {
@@ -263,12 +280,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
             {
-                AddKeyword(new GameDamageShieldKeyword(3), false);
+                AddKeyword(new GameDamageShieldKeyword(3), false, false);
             }
 
             if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
             {
-                AddStats(10, 0);
+                AddStats(10, 0, false, true);
             }
 
             if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
@@ -420,7 +437,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (m_keywordHolder.GetNumVisibleKeywords() == 0)
                 {
-                    AddKeyword(new GameDeathKeyword(new GameGainStatsAction(this, 3, 3)));
+                    AddKeyword(new GameDeathKeyword(new GameGainStatsAction(this, 3, 3)), false, false);
                     m_isDead = false;
                     m_curHealth = GetMaxHealth();
                     UIHelper.CreateWorldElementNotification(GetName() + " deceives the foe and survives.", true, m_gameTile.GetWorldTile().gameObject);
@@ -705,9 +722,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
-    public void AddStaminaRegen(int toAdd)
+    public void AddStaminaRegen(int toAdd, bool permanent)
     {
-        m_staminaRegen += toAdd;
+        if (permanent)
+        {
+            m_permStaminaRegen += toAdd;
+        }
+        else
+        {
+            m_staminaRegen += toAdd;
+        }
 
         if (!HasCustomName())
         {
@@ -715,7 +739,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public void AddMaxStamina(int toAdd)
+    public void AddMaxStamina(int toAdd, bool permanent)
     {
         if (toAdd == 0)
         {
@@ -744,13 +768,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                         !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
                         adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Monster)
                     {
-                        adjacentTiles[i].GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].GetOccupyingUnit(), 3, 3)));
+                        adjacentTiles[i].GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].GetOccupyingUnit(), 3, 3)), false, false);
                     }
                 }
             }
         }
 
-        m_maxStamina += toAdd;
+        if (permanent)
+        {
+            m_permMaxStamina += toAdd;
+        }
+        else
+        {
+            m_maxStamina += toAdd;
+        }
     }
 
     public int GetSightRange()
@@ -1044,12 +1075,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_isDead = false;
     }
 
-    public void AddKeyword(GameKeywordBase newKeyword, bool canChangeName = true)
+    public void AddKeyword(GameKeywordBase newKeyword, bool isPermanent, bool canChangeName)
     {
         if (canChangeName)
         {
             UIHelper.CreateWorldElementNotification(GetName() + " gains " + newKeyword.GetName() + ".", true, m_gameTile.GetWorldTile().gameObject);
         }
+
+        newKeyword.m_isPermanent = isPermanent;
 
         m_keywordHolder.AddKeyword(newKeyword);
 
@@ -1057,6 +1090,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             SetCustomName();
         }
+    }
+
+    public void ResetKeywords(bool ignorePerm)
+    {
+        m_keywordHolder.RemoveAllKeywords(ignorePerm);
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)
@@ -1187,12 +1225,34 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
         if (GameHelper.IsUnitInWorld(this))
         {
-            //Check relics and other effects to see if anything needs to be added to the return keyword
-            if (GameHelper.HasRelic<ContentHealthFlaskRelic>() &&
-            GetTeam() == Team.Player &&
-            m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth() / 2.0f)))
+            if (GetTeam() == Team.Player)
             {
-                toReturn.AddKeyword(new GameRegenerateKeyword(5));
+                //Check relics and other effects to see if anything needs to be added to the return keyword
+                if (GameHelper.HasRelic<ContentHealthFlaskRelic>() &&
+                m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth() / 2.0f)))
+                {
+                    toReturn.AddKeyword(new GameRegenerateKeyword(5));
+                }
+
+                if (GameHelper.HasRelic<ContentCallOfTheSeaRelic>())
+                {
+                    List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
+
+                    bool isNearWater = false;
+                    for (int i = 0; i < surroundingTiles.Count; i++)
+                    {
+                        if (surroundingTiles[i].GetTerrain().IsWater())
+                        {
+                            isNearWater = true;
+                            break;
+                        }
+                    }
+
+                    if (isNearWater)
+                    {
+                        toReturn.AddKeyword(new GameRegenerateKeyword(10));
+                    }
+                }
             }
         }
 
@@ -1486,6 +1546,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int GetPower()
     {
         int toReturn = m_power;
+        toReturn += m_permPower;
 
         if (GetTeam() == Team.Player && GameHelper.IsInGame())
         {
@@ -1627,6 +1688,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public int GetMaxHealth()
     {
         int toReturn = m_maxHealth;
+        toReturn += m_permMaxHealth;
 
         if (GetTeam() == Team.Player)
         {
@@ -1685,6 +1747,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public int GetMaxStamina()
     {
         int toReturn = m_maxStamina;
+        toReturn += m_permMaxStamina;
 
         if (GetTeam() == Team.Player)
         {
@@ -1710,6 +1773,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int GetStaminaRegen()
     {
         int toReturn = m_staminaRegen;
+        toReturn += m_permStaminaRegen;
 
         if (GetTeam() == Team.Player)
         {
@@ -2079,7 +2143,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GainStamina(staminaToRegen, true);
     }
 
-    public void AddStats(int powerToAdd, int healthToAdd, bool showWorldNotification = true)
+    public void AddStats(int powerToAdd, int healthToAdd, bool permanent, bool showWorldNotification)
     {
         if (powerToAdd == 0 && healthToAdd == 0)
         {
@@ -2091,17 +2155,25 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
         }
 
-        m_power += powerToAdd;
-        m_maxHealth += healthToAdd;
+        if (permanent)
+        {
+            m_permPower += powerToAdd;
+            m_permMaxHealth += healthToAdd;
+
+            if (!HasCustomName())
+            {
+                SetCustomName();
+            }
+        }
+        else
+        {
+            m_power += powerToAdd;
+            m_maxHealth += healthToAdd;
+        }
 
         if (healthToAdd > 0)
         {
             m_curHealth += healthToAdd;
-        }
-
-        if (!HasCustomName())
-        {
-            SetCustomName();
         }
     }
 
@@ -2194,7 +2266,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
 
                     int r = Random.Range(0, tordrimKeywords.Count);
-                    AddKeyword(tordrimKeywords[r]);
+                    AddKeyword(tordrimKeywords[r], false, false);
                 }
             }
 
@@ -2228,7 +2300,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 if (GameHelper.HasAllTypelines())
                 {
-                    AddKeyword(new GameDamageReductionKeyword(2));
+                    AddKeyword(new GameDamageReductionKeyword(2), false, false);
                 }
             }
 
@@ -2243,17 +2315,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
             {
-                AddKeyword(new GameTauntKeyword());
+                AddKeyword(new GameTauntKeyword(), false, false);
             }
 
             if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
             {
-                AddKeyword(new GameDamageReductionKeyword(1));
+                AddKeyword(new GameDamageReductionKeyword(1), true, false);
             }
 
             if (GameHelper.HasRelic<ContentStarOfDenumainRelic>())
             {
-                AddKeyword(new GameDamageShieldKeyword(1));
+                AddKeyword(new GameDamageShieldKeyword(1), false, false);
             }
 
             if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
@@ -2263,7 +2335,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (powerChange >= 0 && healthChange >= 0)
                 {
-                    AddStats(powerChange, healthChange);
+                    AddStats(powerChange, healthChange, false, true);
                 }
                 else if (powerChange < 0 && healthChange < 0)
                 {
@@ -2271,12 +2343,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
                 else if (powerChange >= 0 && healthChange < 0)
                 {
-                    AddStats(powerChange, 0);
+                    AddStats(powerChange, 0, false, true);
                     RemoveStats(0, -healthChange);
                 }
                 else if (powerChange < 0 && healthChange >= 0)
                 {
-                    AddStats(0, healthChange);
+                    AddStats(0, healthChange, false, true);
                     RemoveStats(-powerChange, 0);
                 }
             }
@@ -2422,7 +2494,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
                             adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                         {
-                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth());
+                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth(), false, true);
                         }
                     }
                 }
@@ -2449,13 +2521,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                AddStats(1, 3);
-                AddMaxStamina(1);
+                AddStats(1, 3, true, false);
+                AddMaxStamina(1, true);
             }
 
             if (GameHelper.HasRelic<ContentInstructionsRelic>() && GetTypeline() == Typeline.Creation)
             {
-                AddStats(GetMaxStamina(), GetMaxStamina());
+                AddStats(GetMaxStamina(), GetMaxStamina(), false, false);
             }
         }
     }
@@ -2483,34 +2555,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 Heal(healAmount);
             }
         }
-
-        if (GetTeam() == Team.Player && GameHelper.HasRelic<ContentCallOfTheSeaRelic>())
-        {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
-
-            bool isNearWater = false;
-            for (int i = 0; i < surroundingTiles.Count; i++)
-            {
-                if (surroundingTiles[i].GetTerrain().IsWater())
-                {
-                    isNearWater = true;
-                    break;
-                }
-            }
-            
-            if (isNearWater)
-            {
-                int healAmount = m_gameTile.GetCostToPass(this) * 10;
-                Heal(healAmount);
-            }
-        }
     }
 
     public virtual void EndTurn()
     {
         if (GameHelper.HasRelic<ContentPriceOfFreedomRelic>() && GetTeam() == Team.Player && GetCurStamina() == GetMaxStamina())
         {
-            AddStats(2, 2);
+            AddStats(2, 2, false, true);
             EmptyStamina();
         }
 
@@ -2565,9 +2616,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             curHealth = m_curHealth,
             curStamina = m_curStamina,
             maxHealth = m_maxHealth,
+            permMaxHealth = m_permMaxHealth,
             staminaRegen = m_staminaRegen,
+            permStaminaRegen = m_permStaminaRegen,
             maxStamina = m_maxStamina,
+            permMaxStamina = m_permMaxStamina,
             power = m_power,
+            permPower = m_permPower,
             typeline = (int)m_typeline,
             jsonGameKeywordHolderData = keywordHolderJson,
             staminaToAttack = m_staminaToAttack,
@@ -2580,7 +2635,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void LoadFromJson(JsonGameUnitData jsonData)
     {
-        m_keywordHolder.RemoveAllKeywords();
+        m_keywordHolder.RemoveAllKeywords(false);
 
         m_customName = jsonData.customName;
         
@@ -2588,9 +2643,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_team = (Team)jsonData.team;
         m_curStamina = jsonData.curStamina;
         m_maxHealth = jsonData.maxHealth;
+        m_permMaxHealth = jsonData.permMaxHealth;
         m_staminaRegen = jsonData.staminaRegen;
+        m_permStaminaRegen = jsonData.permStaminaRegen;
         m_maxStamina = jsonData.maxStamina;
+        m_permMaxStamina = jsonData.permMaxStamina;
         m_power = jsonData.power;
+        m_permPower = jsonData.permPower;
         m_typeline = (Typeline)jsonData.typeline;
         m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;

@@ -24,7 +24,7 @@ public class GameGainKeywordUntilEndOfTurnAction : GameAction
     public override void DoAction()
     {
         GameKeywordBase tempKeyword = GameKeywordFactory.GetKeywordClone(m_keyword, m_unit);
-        m_unit.AddKeyword(m_keyword);
+        m_unit.AddKeyword(m_keyword, false, false);
         GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(m_unit, tempKeyword));
     }
 

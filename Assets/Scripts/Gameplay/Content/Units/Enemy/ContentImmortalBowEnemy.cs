@@ -28,7 +28,7 @@ public class ContentImmortalBowEnemy : GameEnemyUnit
         m_name = "Immortal Bow";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";
 
-        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameRangeKeyword(3), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

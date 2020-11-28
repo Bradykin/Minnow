@@ -31,7 +31,7 @@ public class ContentNightWingsCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameFlyingKeyword());
+        targetUnit.AddKeyword(new GameFlyingKeyword(), false, false);
         GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(targetUnit, new GameFlyingKeyword()));
     }
 }

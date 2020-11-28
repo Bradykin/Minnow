@@ -24,7 +24,7 @@ public class GameGainBrittleAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false);
+        m_unit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false, false);
     }
 
     public override void AddAction(GameAction toAdd)

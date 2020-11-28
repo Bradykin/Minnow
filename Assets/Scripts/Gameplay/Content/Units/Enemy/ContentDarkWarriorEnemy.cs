@@ -44,7 +44,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         {
             for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
             {
-                player.m_controlledUnits[i].AddStats(5, 5);
+                player.m_controlledUnits[i].AddStats(5, 5, true, true);
             }
         }
 

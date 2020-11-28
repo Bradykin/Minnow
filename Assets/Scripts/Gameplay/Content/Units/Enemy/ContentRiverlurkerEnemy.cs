@@ -21,8 +21,8 @@ public class ContentRiverlurkerEnemy : GameEnemyUnit
         m_name = "Riverlurker";
         m_desc = "This unit uses double the stamina to move when not in water.\n";
 
-        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(4))), false);
-        AddKeyword(new GameWaterwalkKeyword(), false);
+        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(4))), true, false);
+        AddKeyword(new GameWaterwalkKeyword(), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

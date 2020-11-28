@@ -19,12 +19,12 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_name = "Lava Hellion";
         m_desc = "";
 
-        AddKeyword(new GameLavawalkKeyword(), false);
-        AddKeyword(new GameVictoriousKeyword(new GameDoublePowerAction(this, 1)), false);
-        AddKeyword(new GameDamageReductionKeyword(3), false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameDoublePowerAction(this, 1)), true, false);
+        AddKeyword(new GameDamageReductionKeyword(3), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), false);
+            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

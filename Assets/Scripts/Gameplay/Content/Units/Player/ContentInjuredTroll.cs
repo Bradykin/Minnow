@@ -8,12 +8,7 @@ public class ContentInjuredTroll : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 
-        m_maxHealth = 45;
-        m_maxStamina = 8;
-        m_staminaRegen = 4;
-        m_power = 12;
-
-        AddKeyword(new GameRegenerateKeyword(20), false);
+        AddKeyword(new GameRegenerateKeyword(20), true, false);
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
@@ -32,5 +27,15 @@ public class ContentInjuredTroll : GameUnit
 
         m_curHealth = 1;
         m_curStamina = 0;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 45;
+        m_maxStamina = 8;
+        m_staminaRegen = 4;
+        m_power = 12;
     }
 }

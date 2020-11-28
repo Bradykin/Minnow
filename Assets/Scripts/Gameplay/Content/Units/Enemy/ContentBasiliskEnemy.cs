@@ -23,7 +23,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameRangeKeyword(2), false);
+            AddKeyword(new GameRangeKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -40,7 +40,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
 
         if (!other.m_isDead)
         {
-            other.AddKeyword(new GameBrittleKeyword(m_brittleAmount));
+            other.AddKeyword(new GameBrittleKeyword(m_brittleAmount), true, true);
         }
 
         return amount;

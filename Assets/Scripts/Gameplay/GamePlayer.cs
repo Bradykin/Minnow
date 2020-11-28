@@ -617,6 +617,14 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             }
         }
 
+        for (int i = 0; i < m_deckBase.Count(); i++)
+        {
+            if (m_deckBase.GetCardByIndex(i) is GameUnitCard)
+            {
+                ((GameUnitCard)m_deckBase.GetCardByIndex(i)).m_unit.EndWave();
+            }
+        }
+
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].TriggerEndOfWave();

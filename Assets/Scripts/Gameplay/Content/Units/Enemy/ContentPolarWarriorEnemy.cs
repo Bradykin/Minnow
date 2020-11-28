@@ -24,11 +24,11 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_name = "Polar Warrior";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, m_healthIncrease)), false);
-        AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameRegenerateKeyword(m_regenIncrease))), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, m_healthIncrease)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameRegenerateKeyword(m_regenIncrease))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGetHitAction(this, m_enrageSelfDamageAmount)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGetHitAction(this, m_enrageSelfDamageAmount)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

@@ -11,11 +11,6 @@ public class ContentGroundskeeper : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 
-        m_maxHealth = 50;
-        m_maxStamina = 4;
-        m_staminaRegen = 1;
-        m_power = 5;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
@@ -24,7 +19,7 @@ public class ContentGroundskeeper : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameForestwalkKeyword(), false);
+        AddKeyword(new GameForestwalkKeyword(), true, false);
 
         LateInit();
     }
@@ -67,5 +62,15 @@ public class ContentGroundskeeper : GameUnit
         }
 
         return returnStaminaRegen;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 50;
+        m_maxStamina = 4;
+        m_staminaRegen = 1;
+        m_power = 5;
     }
 }

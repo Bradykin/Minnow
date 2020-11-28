@@ -21,7 +21,7 @@ public class ContentLavaRhinoEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameFlyingKeyword(), false);
+            AddKeyword(new GameFlyingKeyword(), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AILavaRhinoScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

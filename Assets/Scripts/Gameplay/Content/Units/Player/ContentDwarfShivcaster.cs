@@ -7,11 +7,6 @@ public class ContentDwarfShivcaster : GameUnit
 {
     public ContentDwarfShivcaster()
     {
-        m_maxHealth = 16;
-        m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 2;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
 
@@ -20,10 +15,20 @@ public class ContentDwarfShivcaster : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, 2)), false);
-        AddKeyword(new GameRangeKeyword(2), false);
-        AddKeyword(new GameShivKeyword(), false);
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, 2)), true, false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
+        AddKeyword(new GameShivKeyword(), true, false);
 
         LateInit();
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 16;
+        m_maxStamina = 5;
+        m_staminaRegen = 2;
+        m_power = 2;
     }
 }

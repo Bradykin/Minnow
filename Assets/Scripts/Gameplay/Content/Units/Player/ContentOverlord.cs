@@ -8,16 +8,12 @@ public class ContentOverlord : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 12;
-        m_maxStamina = 6;
-        m_staminaRegen = 3;
-        m_power = 4;
         m_staminaToAttack = 1;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
-        AddKeyword(new GameFlyingKeyword(), false);
-        AddKeyword(new GameRangeKeyword(3), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
+        AddKeyword(new GameRangeKeyword(3), true, false);
 
         m_name = "Overlord";
         m_desc = "Spends all Stamina to attack, deals damage equal to power times Stamina spent.\n";
@@ -44,5 +40,15 @@ public class ContentOverlord : GameUnit
     public override int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         return Mathf.Max(1, GetCurStamina());
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 12;
+        m_maxStamina = 6;
+        m_staminaRegen = 3;
+        m_power = 4;
     }
 }

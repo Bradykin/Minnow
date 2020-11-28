@@ -11,11 +11,6 @@ public class ContentGoblin : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(-0.3f, -0.5f, 0);
 
-        m_maxHealth = 18;
-        m_maxStamina = 4;
-        m_staminaRegen = 3;
-        m_power = 8;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
@@ -46,5 +41,15 @@ public class ContentGoblin : GameUnit
         }
 
         return basePower;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 18;
+        m_maxStamina = 4;
+        m_staminaRegen = 3;
+        m_power = 8;
     }
 }

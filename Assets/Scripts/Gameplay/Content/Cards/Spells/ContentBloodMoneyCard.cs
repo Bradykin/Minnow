@@ -34,7 +34,6 @@ public class ContentBloodMoneyCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1)));
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfWave, new GameLoseKeywordAction(targetUnit, new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1))));
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainGoldEnrageAction(targetUnit, 1)), false, false);
     }
 }

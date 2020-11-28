@@ -9,11 +9,6 @@ public class ContentZombie : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 35;
-        m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 1;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Special;
 
@@ -56,5 +51,15 @@ public class ContentZombie : GameUnit
         }
 
         return damageTaken;
+    }
+
+    protected override void ResetToBase()
+    {
+        ResetKeywords(true);
+
+        m_maxHealth = 35;
+        m_maxStamina = 5;
+        m_staminaRegen = 3;
+        m_power = 1;
     }
 }

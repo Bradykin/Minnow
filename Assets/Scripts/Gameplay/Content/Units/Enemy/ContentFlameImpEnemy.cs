@@ -23,11 +23,11 @@ public class ContentFlameImpEnemy : GameEnemyUnit
         m_name = "Flame Imp";
         m_desc = "";
 
-        AddKeyword(new GameLavawalkKeyword(), false);
-        AddKeyword(new GameMomentumKeyword(new GameGainKeywordRangeAction(this, m_range, new GameDamageShieldKeyword(m_damageShieldCount))), false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameGainKeywordRangeAction(this, m_range, new GameDamageShieldKeyword(m_damageShieldCount))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsRangeAction(this, m_powerIncreaseCount, 0, m_range)), false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsRangeAction(this, m_powerIncreaseCount, 0, m_range)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

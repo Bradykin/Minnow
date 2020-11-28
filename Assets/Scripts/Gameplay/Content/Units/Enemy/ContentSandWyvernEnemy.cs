@@ -19,11 +19,11 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         m_name = "Sand Wyvern";
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), false);
-        AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageShieldKeyword(3), false);
+            AddKeyword(new GameDamageShieldKeyword(3), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

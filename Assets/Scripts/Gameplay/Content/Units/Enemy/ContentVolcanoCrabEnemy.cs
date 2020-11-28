@@ -29,11 +29,11 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_name = "Volcano Crab";
         m_desc = $"An elite foe.  Defeat it and gain a relic!\n";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), false);
-        AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), false);
-        AddKeyword(new GameEnrageKeyword(new GameLoseKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), false);
-        AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), false);
-        AddKeyword(new GameLavawalkKeyword(), false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameLoseKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), true, false);
+        AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), true, false);
+        AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_desc += "When this unit steps on a lava tile, it regains all Damage Reduction.\n";
@@ -66,7 +66,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         {
             for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
             {
-                player.m_controlledUnits[i].AddStats(5, 5);
+                player.m_controlledUnits[i].AddStats(5, 5, true, true);
             }
         }
 
@@ -88,11 +88,11 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
             if (gameDamageReductionKeyword == null)
             {
-                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction));
+                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), true, false);
             }
             else
             {
-                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction - gameDamageReductionKeyword.m_damageReduction));
+                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction - gameDamageReductionKeyword.m_damageReduction), true, false);
             }
         }
     }
@@ -107,11 +107,11 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
 
             if (gameDamageReductionKeyword == null)
             {
-                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction));
+                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), true, false);
             }
             else
             {
-                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction - gameDamageReductionKeyword.m_damageReduction));
+                AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction - gameDamageReductionKeyword.m_damageReduction), true, false);
             }
         }
     }

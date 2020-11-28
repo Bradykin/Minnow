@@ -17,6 +17,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonGameKeywordDa
     public string m_focusInfoText = "Focus Info Text";
     public string m_shortDesc = string.Empty;
     public bool m_isVisible = true;
+    public bool m_isPermanent = false;
 
     public abstract string GetDesc();
 

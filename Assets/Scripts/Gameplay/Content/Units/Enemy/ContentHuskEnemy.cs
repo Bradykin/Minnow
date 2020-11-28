@@ -45,7 +45,7 @@ public class ContentHuskEnemy : GameEnemyUnit
         IReadOnlyList<GameKeywordBase> deadUnitKeywords = deadUnit.GetKeywordHolderForRead().GetKeywordsForRead();
         for (int i = 0; i < deadUnitKeywords.Count; i++)
         {
-            AddKeyword(deadUnitKeywords[i]);
+            AddKeyword(deadUnitKeywords[i], true, false);
         }
     }
 }

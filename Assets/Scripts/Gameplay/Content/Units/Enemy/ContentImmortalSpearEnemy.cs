@@ -30,7 +30,7 @@ public class ContentImmortalSpearEnemy : GameEnemyUnit
         m_name = "Immortal Spear";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";
 
-        AddKeyword(new GameThornsKeyword(m_thornsAmount), false);
+        AddKeyword(new GameThornsKeyword(m_thornsAmount), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

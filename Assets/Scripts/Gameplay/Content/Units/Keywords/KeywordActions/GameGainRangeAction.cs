@@ -23,7 +23,7 @@ public class GameGainRangeAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameRangeKeyword(m_toGain));
+        m_unit.AddKeyword(new GameRangeKeyword(m_toGain), false, false);
     }
 
     public override void AddAction(GameAction toAdd)

@@ -19,10 +19,10 @@ public class ContentValgulaEnemy : GameEnemyUnit
         m_name = "Valgula";
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), false);
+        AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 2, 2)), false);
+            AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 2, 2)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

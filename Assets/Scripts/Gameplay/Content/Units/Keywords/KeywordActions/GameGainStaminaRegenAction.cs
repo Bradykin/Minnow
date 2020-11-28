@@ -25,7 +25,7 @@ public class GameGainStaminaRegenAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddStaminaRegen(m_toGain);
+        m_unit.AddStaminaRegen(m_toGain, false);
     }
 
     public override void AddAction(GameAction toAdd)

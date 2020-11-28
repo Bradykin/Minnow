@@ -21,7 +21,7 @@ public class ContentFlameDemonEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), false);
+            AddKeyword(new GameDamageReductionKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

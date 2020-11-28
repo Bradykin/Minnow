@@ -12,9 +12,13 @@ public class JsonGameUnitData
     public int curHealth;
     public int curStamina;
     public int maxHealth;
+    public int permMaxHealth;
     public int staminaRegen;
+    public int permStaminaRegen;
     public int maxStamina;
+    public int permMaxStamina;
     public int power;
+    public int permPower;
     public int typeline;
     public JsonGameKeywordHolderData jsonGameKeywordHolderData;
     public int staminaToAttack;
