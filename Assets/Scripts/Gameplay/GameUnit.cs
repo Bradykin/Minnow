@@ -94,6 +94,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_iconWhite = UIHelper.GetIconUnit(m_name + "W");
 
         ResetToBase();
+        SetHealthStaminaValues();
     }
 
     public void SetHealthStaminaValues()
