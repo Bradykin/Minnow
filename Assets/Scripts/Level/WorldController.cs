@@ -120,7 +120,7 @@ public class WorldController : Singleton<WorldController>
             {
                 UICard obj = FactoryManager.Instance.GetFactory<UICardFactory>().CreateObject<UICard>(playerHand[i], UICard.CardDisplayType.Hand);
 
-                m_playerHand.Insert(i, obj);
+                m_playerHand.Add(obj);
             }
         }
 
