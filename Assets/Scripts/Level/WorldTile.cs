@@ -496,7 +496,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void TryAddOccupyingUnit()
     {
-        if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
+        if (GetGameTile().IsOccupied() && m_occupyingUnitObj == null)
         {
             m_occupyingUnitObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<WorldUnit>(this);
         }
