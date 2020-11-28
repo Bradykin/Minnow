@@ -137,8 +137,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             m_spawnText.gameObject.SetActive(false);
         }
 
-        TryAddOccupyingUnit();
-
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
         {
             GetGameTile().GetBuilding().SetGameTile(this.GetGameTile());
@@ -498,7 +496,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void TryAddOccupyingUnit()
     {
-        if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
+        if (GetGameTile().IsOccupied() && m_occupyingUnitObj == null)
         {
             m_occupyingUnitObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<WorldUnit>(this);
         }
