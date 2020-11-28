@@ -26,7 +26,7 @@ public class ContentChillflameBeastEnemy : GameEnemyUnit
         }
         m_desc = "When this unit dies, it overheats and melts all ice tiles in range {m_deathMeltRange}\n";
 
-        AddKeyword(new GameFrostwalkKeyword(), false);
+        AddKeyword(new GameFrostwalkKeyword(), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

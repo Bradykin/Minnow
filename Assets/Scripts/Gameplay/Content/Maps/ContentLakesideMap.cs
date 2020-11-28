@@ -49,9 +49,6 @@ public class ContentLakesideMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
-
-        m_totalEnemiesOnMap.Add(new ContentChillflameBeastEnemy(null));
-
         List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
         //Wave 1
         defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));

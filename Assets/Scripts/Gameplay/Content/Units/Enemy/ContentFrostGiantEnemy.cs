@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSabertoothWyvernEnemy : GameEnemyUnit
+public class ContentFrostGiantEnemy : GameEnemyUnit
 {
-    private int m_powerToGain = 3;
-    
-    public ContentSabertoothWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentFrostGiantEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 45;
-        m_maxStamina = 5;
-        m_staminaRegen = 4;
-        m_power = 16;
+        m_maxHealth = 4;
+        m_maxStamina = 4;
+        m_staminaRegen = 2;
+        m_power = 3;
 
         m_team = Team.Enemy;
-        m_rarity = GameRarity.Rare;
+        m_rarity = GameRarity.Common;
 
-        m_name = "Sabertooth Wyvern";
+        m_name = "Frost Giant";
+        
         m_desc = "";
 
-        AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, m_powerToGain, 0)), true, false);
+            AddKeyword(new GameDamageReductionKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

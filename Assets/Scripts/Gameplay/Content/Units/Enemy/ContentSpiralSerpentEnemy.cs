@@ -8,10 +8,10 @@ public class ContentSpiralSerpentEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
+        m_maxHealth = 25;
         m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 3;
+        m_staminaRegen = 4;
+        m_power = 14;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
@@ -20,9 +20,10 @@ public class ContentSpiralSerpentEnemy : GameEnemyUnit
         
         m_desc = "";
 
+        AddKeyword(new GameWaterboundKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), true, false);
+            AddKeyword(new GameRangeKeyword(2), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
