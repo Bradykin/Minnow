@@ -137,10 +137,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             m_spawnText.gameObject.SetActive(false);
         }
 
-        if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
-        {
-            m_occupyingUnitObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<WorldUnit>(this);
-        }
+        TryAddOccupyingUnit();
 
         if (GetGameTile().HasBuilding() && GetGameTile().GetBuilding().GetWorldTile() != this)
         {
@@ -497,6 +494,14 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_isHovered = false;
 
         Globals.m_hoveredTile = null;
+    }
+
+    public void TryAddOccupyingUnit()
+    {
+        if ((GetGameTile().IsOccupied() && m_occupyingUnitObj == null))
+        {
+            m_occupyingUnitObj = FactoryManager.Instance.GetFactory<UIUnitFactory>().CreateObject<WorldUnit>(this);
+        }
     }
 
     public bool ClearFog()

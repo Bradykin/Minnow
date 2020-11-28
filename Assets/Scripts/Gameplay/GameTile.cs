@@ -78,6 +78,8 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 m_gameWorldPerk = null;
             }
         }
+
+        GetWorldTile().TryAddOccupyingUnit();
     }
 
     public void PlaceBuilding(GameBuildingBase newBuilding)
