@@ -41,7 +41,7 @@ public class ContentFrozenImpEnemy : GameEnemyUnit
 
         if (!other.m_isDead && other.GetRootedKeyword() == null)
         {
-            other.AddKeyword(new GameRootedKeyword(), true, false);
+            other.AddKeyword(new GameRootedKeyword(), false, false);
             GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(other, new GameRootedKeyword()));
         }
 

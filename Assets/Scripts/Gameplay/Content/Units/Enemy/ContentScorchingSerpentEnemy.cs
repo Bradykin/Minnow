@@ -47,6 +47,8 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
 
     public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
+        GameTile gameTile = GetGameTile();
+
         int amount = base.HitUnit(other, damageAmount, spendStamina, shouldThorns);
 
         if (other.m_isDead)
@@ -54,7 +56,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
             return amount;
         }
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(gameTile, 1, 0);
         List<GameTile> surroundingTilesTarget = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1).Where(t => !surroundingTiles.Contains(t) && !t.IsOccupied() && t.IsPassable(other, false)).ToList();
 
         if (surroundingTilesTarget.Count > 1)

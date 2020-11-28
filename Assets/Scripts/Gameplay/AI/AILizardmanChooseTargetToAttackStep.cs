@@ -139,7 +139,7 @@ public class AILizardmanChooseTargetToAttackStep : AIChooseTargetToAttackStandar
     //Todo ashulman: decide between below. Trying two different approaches - first one being the distance on the path, second one being distance in general to a body of water
     protected int DistanceToWaterOnPath(GameTile gameTile)
     {
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), gameTile, false, true, false);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), gameTile, false, true, false, false);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {

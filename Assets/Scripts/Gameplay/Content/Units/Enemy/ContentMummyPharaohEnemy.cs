@@ -57,7 +57,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         int numMummiesSpawned = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            if (surroundingTiles[i].IsPassable(this, false))
+            if (!surroundingTiles[i].IsOccupied() && !surroundingTiles[i].HasBuilding() && surroundingTiles[i].IsPassable(this, false))
             {
                 GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentMummyEnemy(gameOpponent), WorldController.Instance.m_gameController.m_gameOpponent);
                 surroundingTiles[i].PlaceUnit(newEnemyUnit);

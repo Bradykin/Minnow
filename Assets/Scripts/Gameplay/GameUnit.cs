@@ -1897,7 +1897,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
-        List<GameTile> path = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, false, false);
+        List<GameTile> path = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, false, false, false);
 
         m_gameTile.ClearUnit();
         tile.PlaceUnit(this);
@@ -1926,7 +1926,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return m_gameTile;
         }
 
-        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, letPassEnemies);
+        List<GameTile> pathToTile = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, ignoreTerrainDifference, true, letPassEnemies, true);
 
         if (pathToTile == null || pathToTile.Count == 0)
         {

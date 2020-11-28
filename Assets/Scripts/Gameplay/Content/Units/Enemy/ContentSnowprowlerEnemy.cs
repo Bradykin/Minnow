@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ContentSnowprowlerEnemy : GameEnemyUnit
 {
-    private int m_bleedAmount = 3;
-    private int m_staminaDrainAmount = 1;
+    private int m_bleedAmount = 5;
 
     public ContentSnowprowlerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -14,7 +13,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_maxHealth = 14;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 1;
+        m_power = 6;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
@@ -22,10 +21,9 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_name = "Snowprowler";
         m_desc = "";
 
-        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(m_bleedAmount))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc += $"When this hits a unit, that unit loses {m_staminaDrainAmount} Stamina.\n";
+            AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword(m_bleedAmount))), false, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -34,29 +32,5 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
-    }
-
-    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
-    {
-        bool hasStaminaToDrain = other.GetCurStamina() >= m_staminaDrainAmount;
-
-        int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            if (damageTaken > 0)
-            {
-                if (hasStaminaToDrain)
-                {
-                    if (!other.m_isDead)
-                    {
-                        other.SpendStamina(m_staminaDrainAmount);
-                    }
-                }
-            }
-        }
-
-
-        return damageTaken;
     }
 }

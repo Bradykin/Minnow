@@ -523,7 +523,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile, bool letPassEnemies)
     {
-        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile, letPassEnemies);
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile, letPassEnemies, false);
 
         if (path == null)
         {
@@ -666,7 +666,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return null;
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible)
     {
         if (startingGridTile.IsOccupied() && !startingGridTile.GetOccupyingUnit().m_isDead && startingGridTile.GetOccupyingUnit().GetRootedKeyword() != null)
         {
@@ -749,6 +749,13 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             }
         }
 
+        //We can't reach the location. Find location we can reach with best F value and instead go towards that
+        if (getClosestPositionPossible)
+        {
+            Location newTarget = GetTileWithLowestHValue(closedList);
+            return CalculateAStarPath(startingGridTile, newTarget.GameTile, ignoreTerrainDifferences, false, letPassEnemies, false);
+        }
+
         return null;
     }
 
@@ -773,6 +780,29 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         return openList[indexToReturn];
+    }
+
+    private Location GetTileWithLowestHValue(List<Location> locationList)
+    {
+        if (locationList.Count == 0)
+        {
+            return null;
+        }
+
+        int indexToReturn = 0;
+        int curF = locationList[indexToReturn].F;
+        int curH = locationList[indexToReturn].H;
+        for (int i = 1; i < locationList.Count; i++)
+        {
+            if (locationList[i].H < curH || (locationList[i].H == curH && locationList[i].F < curF))
+            {
+                indexToReturn = i;
+                curF = locationList[indexToReturn].F;
+                curH = locationList[indexToReturn].H;
+            }
+        }
+
+        return locationList[indexToReturn];
     }
 
     public List<GameTile> GetTilesInMovementRange(GameTile startingGridTile, bool ignoreTerrainDifferences, bool letPassEnemies)
