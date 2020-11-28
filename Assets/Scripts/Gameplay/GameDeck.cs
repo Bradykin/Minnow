@@ -41,13 +41,17 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddCards))
         {
-            for (int i = 0; i < 2; i++)
-            {
-                m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Common, GameCardFactory.m_tribalCards));
-            }
+            GameCard cardOne = GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Common, GameCardFactory.m_tribalCards);
+            GameCard cardTwo = GameCardFactory.GetCardClone(cardOne);
+            GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards);
+            GameCard cardFour = GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards);
 
-            m_cards.Add(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards));
-            m_cards.Add(GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards));
+            m_cards.Add(cardOne);
+            m_cards.Add(cardTwo);
+            m_cards.Add(cardThree);
+            m_cards.Add(cardFour);
+
+            UIChaosCardPanelController.Instance.Init(cardOne, cardTwo, cardThree, cardFour);
         }
     }
 

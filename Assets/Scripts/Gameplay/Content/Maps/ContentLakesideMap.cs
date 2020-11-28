@@ -25,7 +25,9 @@ public class ContentLakesideMap : GameMap
 
     protected override void FillMapEvents()
     {
-        //No events, left blank by default.  No Chaos on this map.
+        //These events are used for light tutorialization
+        AddMapEvent(new ContentTutorialFirstWaveMapEvent(), 1);
+        AddMapEvent(new ContentTutorialBossMapEvent(), 5);
     }
 
     protected override void FillSpawnPool()

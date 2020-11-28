@@ -212,8 +212,20 @@ public static class GameRelicFactory
 
         if (relicList.Count == 0)
         {
-            Debug.LogError("No viable relics found");
-            return null;
+            Debug.LogWarning("No viable relics found at rarity: " + rarity + "\nSwapping rarity.");
+            
+            if (rarity == GameElementBase.GameRarity.Common)
+            {
+                return GetRandomRelicAtRarity(GameElementBase.GameRarity.Rare, exclusionRelic);
+            }
+            else if (rarity == GameElementBase.GameRarity.Uncommon)
+            {
+                return GetRandomRelicAtRarity(GameElementBase.GameRarity.Common, exclusionRelic);
+            }
+            else if (rarity == GameElementBase.GameRarity.Rare)
+            {
+                return GetRandomRelicAtRarity(GameElementBase.GameRarity.Uncommon, exclusionRelic);
+            }
         }
 
         List<GameRelic> relicListBeforeTagWeights = new List<GameRelic>();

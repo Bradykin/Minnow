@@ -22,9 +22,12 @@ public class ContentWisdomOfThePastCard : GameCardSpellBase
     public override string GetDesc()
     {
         string predictionString = "";
-        if (GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
+        if (GameHelper.GetGameController() != null)
         {
-            predictionString = "(" + GameHelper.GetPlayer().m_spellsPlayedPreviousTurn + ")";
+            if (GameHelper.GetGameController().m_runStateType != RunStateType.Intermission)
+            {
+                predictionString = "(" + GameHelper.GetPlayer().m_spellsPlayedPreviousTurn + ")";
+            }
         }
 
         return "Draw cards equal to the number of spells played last turn " + predictionString + ".";
