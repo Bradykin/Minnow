@@ -78,7 +78,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     {
         if (checkerUnit != null)
         {
-            if (IsWater() && (checkerUnit.GetWaterwalkKeyword() != null || checkerUnit.GetWaterboundKeyword() != null))
+            if (IsWater() && (checkerUnit.GetWaterwalkKeyword() != null || checkerUnit.GetWaterboundKeyword() != null || checkerUnit.GetFrostwalkKeyword() != null))
             {
                 return true;
             }

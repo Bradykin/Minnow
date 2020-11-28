@@ -20,9 +20,11 @@ public class GameKeywordFactory
         m_keywords.Add(new GameDamageReductionKeyword(0));
         m_keywords.Add(new GameDamageShieldKeyword(0));
         m_keywords.Add(new GameDeathKeyword(null));
+        m_keywords.Add(new GameDuneswalkKeyword());
         m_keywords.Add(new GameEnrageKeyword(null));
         m_keywords.Add(new GameForestwalkKeyword());
         m_keywords.Add(new GameFlyingKeyword());
+        m_keywords.Add(new GameFrostwalkKeyword());
         m_keywords.Add(new GameLavawalkKeyword());
         m_keywords.Add(new GameKnowledgeableKeyword(null));
         m_keywords.Add(new GameMomentumKeyword(null));

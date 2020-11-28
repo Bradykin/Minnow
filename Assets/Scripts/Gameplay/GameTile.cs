@@ -212,6 +212,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         m_terrain = newTerrain;
 
+        if (m_terrain.IsWater() && IsOccupied() && GetOccupyingUnit().GetFrostwalkKeyword() != null)
+        {
+            SetTerrain(new ContentIceTerrain(), clearBuilding);
+            return;
+        }
+
         if (!GameHelper.IsInLevelBuilder())
         {
             if (newTerrain.IsEventTerrain())
@@ -306,7 +312,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 tileValue = 1;
                 buildingOverrideValue = false;
             }
-            else if (GetTerrain().IsWater() && (checkerUnit.GetWaterwalkKeyword() != null || checkerUnit.GetWaterboundKeyword() != null))
+            else if (GetTerrain().IsWater() && (checkerUnit.GetWaterwalkKeyword() != null || checkerUnit.GetWaterboundKeyword() != null || checkerUnit.GetFrostwalkKeyword() != null))
             {
                 if (checkerUnit.m_instantWaterMovement)
                 {
@@ -326,6 +332,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             else if (GetTerrain().IsHill() && checkerUnit.GetMountainwalkKeyword() != null)
             {
                 tileValue =  1;
+                buildingOverrideValue = false;
+            }
+            else if (GetTerrain().IsDunes() && checkerUnit.GetDuneswalkKeyword() != null)
+            {
+                tileValue = 1;
                 buildingOverrideValue = false;
             }
             else

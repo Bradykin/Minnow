@@ -455,6 +455,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
                     surroundingTiles[i].GetOccupyingUnit().GetFlyingKeyword() == null && 
                     surroundingTiles[i].GetOccupyingUnit().GetWaterwalkKeyword() == null && 
+                    surroundingTiles[i].GetOccupyingUnit().GetFrostwalkKeyword() == null && 
                     surroundingTiles[i].GetOccupyingUnit().GetWaterboundKeyword() == null)
                 {
                     surroundingTiles[i].GetOccupyingUnit().Die();
@@ -1125,6 +1126,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         return m_keywordHolder.GetKeyword<GameWaterwalkKeyword>();
+    }
+
+    public virtual GameDuneswalkKeyword GetDuneswalkKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameDuneswalkKeyword>();
+    }
+
+    public virtual GameFrostwalkKeyword GetFrostwalkKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameFrostwalkKeyword>();
     }
 
     public virtual GameWaterboundKeyword GetWaterboundKeyword()
@@ -1820,6 +1831,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
+        List<GameTile> path = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, false, false);
 
         m_gameTile.ClearUnit();
         tile.PlaceUnit(this);
@@ -1827,6 +1839,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (spendStamina)
         {
             SpendStamina(pathCost);
+        }
+
+        if (GetFrostwalkKeyword() != null)
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                if (path[i].GetTerrain().IsWater())
+                {
+                    path[i].SetTerrain(new ContentIceTerrain(), true);
+                }
+            }
         }
     }
 
@@ -1938,6 +1961,18 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (waterwalkKeyword != null)
         {
             returnDesc += waterwalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameDuneswalkKeyword duneswalkKeyword = GetDuneswalkKeyword();
+        if (duneswalkKeyword != null)
+        {
+            returnDesc += duneswalkKeyword.GetDisplayString() + "\n";
+        }
+
+        GameFrostwalkKeyword frostwalkKeyword = GetFrostwalkKeyword();
+        if (frostwalkKeyword != null)
+        {
+            returnDesc += frostwalkKeyword.GetDisplayString() + "\n";
         }
 
         GameWaterboundKeyword waterboundKeyword = GetWaterboundKeyword();

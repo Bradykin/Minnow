@@ -21,6 +21,7 @@ public class ContentSandVortexEnemy : GameEnemyUnit
         m_name = "Sand Vortex";
         m_desc = $"Get +{dunesPowerIncrease}/+0 when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";
 
+        AddKeyword(new GameDuneswalkKeyword(), false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc = $"Get +{dunesPowerIncrease}/+0 and is invulnerable when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";

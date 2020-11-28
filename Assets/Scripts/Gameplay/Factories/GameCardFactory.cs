@@ -182,7 +182,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
         m_enemyCards.Add(new ContentBurningMonstrosityEnemyCard());
         m_enemyCards.Add(new ContentCharybdisEnemyCard());
-        //m_enemyCards.Add(new ContentChillflameBeastEnemyCard());
+        m_enemyCards.Add(new ContentChillflameBeastEnemyCard());
         m_enemyCards.Add(new ContentCrumblingAncientEnemyCard());
         m_enemyCards.Add(new ContentDarkWarriorEnemyCard());
         m_enemyCards.Add(new ContentDemonMagicianEnemyCard());
