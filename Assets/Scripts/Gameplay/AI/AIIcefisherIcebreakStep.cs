@@ -14,11 +14,17 @@ public class AIIcefisherIcebreakStep : AIStep
             yield break;
         }
 
-        List<GameTile> surroundingIceCrackedTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 1).Where(t => t.GetTerrain().IsIceCracked()).ToList();
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 1);
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater() || surroundingTiles.Any(t => t.GetTerrain().IsWater()))
+        {
+            yield break;
+        }
+
+        List<GameTile> surroundingIceCrackedTiles = surroundingTiles.Where(t => t.GetTerrain().IsIceCracked()).ToList();
         if (surroundingIceCrackedTiles.Count == 0)
         {
             yield break;
-        }    
+        }
 
         UICameraController.Instance.SmoothCameraTransitionToGameObject(m_AIGameEnemyUnit.m_gameEnemyUnit.GetWorldTile().gameObject);
         while (UICameraController.Instance.IsCameraSmoothing())
@@ -52,7 +58,13 @@ public class AIIcefisherIcebreakStep : AIStep
             return;
         }
 
-        List<GameTile> surroundingIceCrackedTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 1).Where(t => t.GetTerrain().IsIceCracked()).ToList();
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 0);
+        if (surroundingTiles.Any(t => t.GetTerrain().IsWater()))
+        {
+            return;
+        }
+
+        List<GameTile> surroundingIceCrackedTiles = surroundingTiles.Where(t => t.GetTerrain().IsIceCracked()).ToList();
         if (surroundingIceCrackedTiles.Count == 0)
         {
             return;

@@ -159,7 +159,8 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
                     Globals.m_testSpawnEnemyUnit = null;
                 }
-                else if (Globals.m_selectedUnit != null && !Globals.m_selectedUnit.GetUnit().m_isDead)
+                
+                if (Globals.m_selectedUnit != null && !Globals.m_selectedUnit.GetUnit().m_isDead)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedUnit.CanMoveToWorldTileFromCurPosition(GetGameTile()));
                 }
@@ -173,6 +174,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 else if (Globals.m_selectedIntermissionBuilding != null)
                 {
                     m_tintRenderer.color = UIHelper.GetSelectValidTintColor(Globals.m_selectedIntermissionBuilding.IsValidToPlay(GetGameTile()));
+                }
+                else if (m_gameTile.IsStorm())
+                {
+                    m_tintRenderer.color = UIHelper.GetStormTintColor();
                 }
                 else
                 {
@@ -220,6 +225,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     m_inDefensiveBuildingRange > 0)
                 {
                     m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
+                }
+                else if (m_gameTile.IsStorm())
+                {
+                    m_tintRenderer.color = UIHelper.GetStormTintColor();
                 }
                 else
                 {

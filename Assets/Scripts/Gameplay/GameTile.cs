@@ -23,6 +23,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool m_isFogBorder;
 
     public int m_numAllowPlacement = 0;
+    public int m_numCauseStorm = 0;
 
     public GameWorldPerk m_gameWorldPerk;
     
@@ -295,7 +296,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 return 1;
             }
 
-            if (checkerUnit is ContentLordOfEruptionsEnemy)
+            if (checkerUnit.m_alwaysIgnoreDifficultTerrain)
             {
                 return 1;
             }
@@ -446,6 +447,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool CanPlace()
     {
         return m_numAllowPlacement > 0;
+    }
+
+    public bool IsStorm()
+    {
+        return m_numCauseStorm > 0;
     }
 
     //============================================================================================================//

@@ -12,6 +12,7 @@ public static class UIHelper
     public static Color m_fadedColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
 
     public static Color m_defaultTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0f);
+    public static Color m_stormTint = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0f);
     public static Color m_defaultFaded = new Color(Color.white.r, Color.white.g, Color.white.b, 0.4f);
     public static Color m_selectedTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.3f);
     public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
@@ -229,6 +230,11 @@ public static class UIHelper
     public static Color GetDefaultTintColor()
     {
         return m_defaultTint;
+    }
+
+    public static Color GetStormTintColor()
+    {
+        return m_stormTint;
     }
 
     public static Color GetDefaultTintColorForTeam(Team team)

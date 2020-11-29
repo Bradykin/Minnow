@@ -26,6 +26,7 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_alwaysIgnoreDifficultTerrain = true;
 
         m_name = "Lord of Eruptions";
         m_desc = $"The final boss.  Kill it, and win.\nThis boss moves up to {m_teleportRange} tiles per turn, but uses no stamina to move. This unit can traverse any terrain type except for water.\nThis unit can use its full turn to ignite an adjacent volcano.";
