@@ -149,7 +149,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void OnMoveEnd()
     {
-
+        
     }
 
     public virtual void OnOtherMove(GameUnit other, GameTile startingTIle, GameTile endingTile, List<GameTile> pathBetweenTiles)
@@ -1950,6 +1950,28 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (path[i].GetTerrain().IsWater())
                 {
                     path[i].SetTerrain(new ContentIceTerrain(), true);
+                }
+            }
+        }
+
+        if (GetTeam() == Team.Player)
+        {
+            if (GetGameTile().IsStorm())
+            {
+                GetHitByAbility(Constants.WinterStormDamage);
+            }
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), GetSightRange(), 0);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                List<GameTile> neighbourTiles = WorldGridManager.Instance.GetSurroundingGameTiles(surroundingTiles[i], Constants.WinterStormVisionRange, 0);
+                bool keepRevealed = neighbourTiles.Any(t => (t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player) ||
+                                                            (t.HasBuilding() && t.GetBuilding().GetTeam() == Team.Player) ||
+                                                            !t.IsStorm());
+                if (!keepRevealed)
+                {
+                    surroundingTiles[i].m_isFog = true;
+                    surroundingTiles[i].m_isSoftFog = true;
                 }
             }
         }

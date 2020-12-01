@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentFrostGiantEnemy : GameEnemyUnit
 {
     private int m_stormRadius = 2;
-    private int m_stormDamage = 3;
-    private int m_sightReductionAmount = 2;
 
     public ContentFrostGiantEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -22,7 +21,7 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
 
         m_name = "Frost Giant";
 
-        m_desc = $"Emits a powerful storm around itself at range {m_stormRadius}. Whenever a player unit moves inside the storm, they take {m_stormDamage} damage. While inside the storm, they have {m_sightReductionAmount  } reduced sight range.\n";
+        m_desc = $"Emits a powerful storm around itself at range {m_stormRadius}. Whenever a player unit moves inside the storm, they take {Constants.WinterStormDamage} damage. While inside the storm, their vision range is reduce to {Constants.WinterStormVisionRange}.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
@@ -46,6 +45,8 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
         {
             surroundingTiles[i].m_numCauseStorm++;
         }
+
+        StormFogUpdate();
     }
 
     public override void OnMoveBegin()
@@ -68,23 +69,8 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
         {
             surroundingTiles[i].m_numCauseStorm++;
         }
-    }
 
-    public override void OnOtherMove(GameUnit other, GameTile startingTile, GameTile endingTile, List<GameTile> pathBetweenTiles)
-    {
-        base.OnOtherMove(other, startingTile, endingTile, pathBetweenTiles);
-
-        if (other.m_isDead)
-        {
-            return;
-        }
-
-        int distanceBetweenTiles = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), endingTile);
-
-        if (distanceBetweenTiles <= m_stormRadius)
-        {
-            other.GetHitByAbility(m_stormDamage);
-        }
+        StormFogUpdate();
     }
 
     public override int GetHitByUnit(int damage, GameUnit gameUnit)
@@ -100,5 +86,22 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
         }
 
         return toReturn;
+    }
+
+    private void StormFogUpdate()
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_stormRadius, 0);
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            List<GameTile> neighbourTiles = WorldGridManager.Instance.GetSurroundingGameTiles(surroundingTiles[i], 1, 0);
+            bool keepRevealed = neighbourTiles.Any(t => (t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player) ||
+                                                        (t.HasBuilding() && t.GetBuilding().GetTeam() == Team.Player) ||
+                                                        !t.IsStorm());
+            if (!keepRevealed)
+            {
+                surroundingTiles[i].m_isFog = true;
+                surroundingTiles[i].m_isSoftFog = true;
+            }
+        }
     }
 }

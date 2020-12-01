@@ -52,7 +52,7 @@ public class ContentFrozenLakeMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentFrozenImpEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGreatFrostlizardEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGriffonEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentIcefisherEnemy(null)); // not implemented
+        m_totalEnemiesOnMap.Add(new ContentIcefisherEnemy(null)); // not fully implemented
         m_totalEnemiesOnMap.Add(new ContentIceWurmEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLordOfWinterEnemy(null)); // not implemented
         m_totalEnemiesOnMap.Add(new ContentPolarWarriorEnemy(null));

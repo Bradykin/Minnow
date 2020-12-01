@@ -78,6 +78,20 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
                 m_gameWorldPerk = null;
             }
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(this, newUnit.GetSightRange(), 0);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                List<GameTile> neighbourTiles = WorldGridManager.Instance.GetSurroundingGameTiles(surroundingTiles[i], Constants.WinterStormVisionRange, 0);
+                bool keepRevealed = neighbourTiles.Any(t => (t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player) || 
+                                                            (t.HasBuilding() && t.GetBuilding().GetTeam() == Team.Player) ||
+                                                            !t.IsStorm());
+                if (!keepRevealed)
+                {
+                    surroundingTiles[i].m_isFog = true;
+                    surroundingTiles[i].m_isSoftFog = true;
+                }
+            }
         }
 
         GetWorldTile().TryAddOccupyingUnit();

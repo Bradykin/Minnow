@@ -6,6 +6,7 @@ using UnityEngine;
 public class ContentIcefisherEnemy : GameEnemyUnit
 {
     private int m_statIncrease = 10;
+    private int m_damageReductionAmount = 4;
     
     public ContentIcefisherEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -25,7 +26,7 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         AddKeyword(new GameWaterwalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc += $"Gets +{m_statIncrease}/+{m_statIncrease} while in or adjacent to a water tile.";
+            m_desc += $"Gets +{m_statIncrease}/+0 and Damage Reduction {m_damageReductionAmount} while in or adjacent to a water tile.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -58,21 +59,23 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         return toReturn;
     }
 
-    public override int GetMaxHealth()
+    public override GameDamageReductionKeyword GetDamageReductionKeyword()
     {
-        int toReturn = base.GetMaxHealth();
+        GameDamageReductionKeyword toReturn = base.GetDamageReductionKeyword();
 
-        if (!GameHelper.IsInGame() || GetGameTile() == null)
-        {
-            return toReturn;
-        }
-
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        if (GameHelper.IsUnitInWorld(this))
         {
             List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1, 0);
             if (surroundingTiles.Any(t => t.GetTerrain().IsWater()))
             {
-                toReturn += 10;
+                if (toReturn == null)
+                {
+                    toReturn = new GameDamageReductionKeyword(m_damageReductionAmount);
+                }
+                else
+                {
+                    toReturn.AddKeyword(new GameDamageReductionKeyword(m_damageReductionAmount));
+                }
             }
         }
 

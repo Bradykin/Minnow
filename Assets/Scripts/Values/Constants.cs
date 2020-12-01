@@ -35,6 +35,8 @@ public static class Constants
     public static int NumFarGold = 10;
 
     public static int AltarWave = 4;
+    public static int WinterStormDamage = 3;
+    public static int WinterStormVisionRange = 1;
 
     public static int MaxChaos = 5;
 
