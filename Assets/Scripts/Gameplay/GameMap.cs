@@ -123,47 +123,51 @@ public abstract class GameMap : GameElementBase
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
-        List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
+        //--------------------------------------------------------------------------------------------------------//
+
+        List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();
         //Wave 1
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));
 
         //Wave 2
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
 
         //Wave 3
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 3, 1, 1));
 
         //Wave 4
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 4, 1, 0.25f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentAngryBirdEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 4, 1, 0.25f));
 
         //Wave 5
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentWerewolfEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
 
-        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolDatas);
+        //--------------------------------------------------------------------------------------------------------//
+
+        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolData);
     }
 
     protected abstract void FillExclusionCardPool();

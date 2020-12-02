@@ -38,7 +38,7 @@ public class WorldUnit : MonoBehaviour
 
         m_staminaContainer.Init(GetUnit().GetCurStamina(), GetUnit().GetMaxStamina(), GetUnit().GetTeam());
 
-        if (GetUnit().GetTeam() == Team.Player)
+        if (GetUnit().GetTeam() == Team.Player && !Globals.loadingRun)
         {
             UIHelper.SelectUnit(this);
         }
