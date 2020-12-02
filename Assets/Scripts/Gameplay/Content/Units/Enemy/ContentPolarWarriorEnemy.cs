@@ -16,7 +16,7 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 2;
+        m_power = 3;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

@@ -10,10 +10,10 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 14;
+        m_maxHealth = 11;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_power = 4;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

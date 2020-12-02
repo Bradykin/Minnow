@@ -66,53 +66,64 @@ public class ContentFrozenLakeMap : GameMap
 
         List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();
         //Wave 1
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSlimeEnemy(null), 1, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnowprowlerEnemy(null), 1, 1.5f, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentValgulaEnemy(null), 1, 1.5f, 1));
 
         //Wave 2
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 2, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIcefisherEnemy(null), 2, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPolarWarriorEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIcefisherEnemy(null), 2, 2, 0.33f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPolarWarriorEnemy(null), 2, 1.25f, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnowprowlerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentValgulaEnemy(null), 2, 1, 1));
 
         //Wave 3
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentChillflameBeastEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentChillflameBeastEnemy(null), 3, 2, 0.33f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 3, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIcefisherEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGriffonEnemy(null), 3, 1.25f, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIcefisherEnemy(null), 3, 1.5f, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnowprowlerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPolarWarriorEnemy(null), 3, 1, 1));
 
         //Wave 4
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentChillflameBeastEnemy(null), 4, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentChillflameBeastEnemy(null), 4, 1, 0.66f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 4, 0.5f, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGriffonEnemy(null), 4, 1, 2));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIcefisherEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIceWurmEnemy(null), 4, 1, 1));
 
         //Wave 5
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentChillflameBeastEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrostGiantEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGreatFrostlizardEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIceWurmEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSabertoothWyvernEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
 
         //Wave 6
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrostGiantEnemy(null), 6, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGreatFrostlizardEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentIceWurmEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSabertoothWyvernEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
 
         //--------------------------------------------------------------------------------------------------------//
 
         List<GameSpawnPoolData> frozenWatersSpawnPoolData = new List<GameSpawnPoolData>();
 
         //Wave 1
-        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 1, 0.5f, 1));
 
         //Wave 2
         frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentCharybdisEnemy(null), 2, 0.5f, 0.5f));
-        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 2, 0.5f, 1));
+        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 2, 0.25f, 1));
 
         //Wave 3
         frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentCharybdisEnemy(null), 3, 0.5f, 0.75f));
-        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 3, 0.5f, 0.75f));
+        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 3, 0.25f, 0.75f));
 
         //Wave 4
         frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentCharybdisEnemy(null), 4, 0.5f, 1));
-        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 4, 0.5f, 0.5f));
+        frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentSpiralSerpentEnemy(null), 4, 0.25f, 0.5f));
 
         //Wave 5
         frozenWatersSpawnPoolData.Add(new GameSpawnPoolData(new ContentCharybdisEnemy(null), 5, 0.5f, 1));
