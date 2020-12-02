@@ -1031,6 +1031,16 @@ public static class UIHelper
         return true;
     }
 
+    public static bool LevelSelectHasMap()
+    {
+        if (UILevelSelectController.Instance == null)
+        {
+            return false;
+        }
+
+        return UILevelSelectController.Instance.m_curMap != null;
+    }
+
     public static bool GetKeyDown(KeyCode key)
     {
         if (!IsKeyValid())
