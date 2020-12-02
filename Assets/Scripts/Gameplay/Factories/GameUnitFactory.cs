@@ -147,6 +147,15 @@ public class GameUnitFactory
         {
             if (spawnPoint.m_spawnPointMarkers[i] == 0)
             {
+                if (!m_defaultSpawnPool.TryGetSpawnPoolForWave(curWave, out List<GameSpawnPoolData> defaultSpawnPool))
+                {
+                    Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
+                    continue;
+                }
+
+                List<GameSpawnPoolData> defaultSpawnPoolData = defaultSpawnPool;
+                list.AddRange(defaultSpawnPoolData);
+
                 continue;
             }
 
@@ -157,6 +166,11 @@ public class GameUnitFactory
                 Debug.LogError("GameUnitFactory received Spawn Point Marker " + spawnPoolIndex + " on a " + spawnPoint.m_tile.GetTerrain().GetBaseName() + " at coordinates " + spawnPoint.m_tile.m_gridPosition + " That does not exist");
             }
 
+            if (!m_spawnPointSpawnPools[spawnPoolIndex].CheckTrySpawn())
+            {
+                continue;
+            }
+
             if (!m_spawnPointSpawnPools[spawnPoolIndex].TryGetSpawnPoolForWave(curWave, out List<GameSpawnPoolData> spawnPoolAtWave))
             {
                 Debug.LogWarning("Spawning an enemy from an invalid wave: " + curWave);
@@ -164,14 +178,6 @@ public class GameUnitFactory
 
             List<GameSpawnPoolData> specificSpawnPool = spawnPoolAtWave;
             list.AddRange(spawnPoolAtWave);
-
-            for (int k = 0; k < specificSpawnPool.Count; k++)
-            {
-                if (!list.Any(u => u.GetType() == specificSpawnPool[k].GetType()))
-                {
-                    list.Add(specificSpawnPool[k]);
-                }
-            }
         }
 
         if (list.Count == 0)

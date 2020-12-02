@@ -196,11 +196,11 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentFrozenImpEnemyCard());
         //m_enemyCards.Add(new ContentGilaLizardEnemyCard());
         m_enemyCards.Add(new ContentGoblinWarriorEnemyCard());
-        //m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
+        m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
         //m_enemyCards.Add(new ContentIcebladeWarriorEnemyCard());
-        //m_enemyCards.Add(new ContentIcefisherEnemyCard());
+        m_enemyCards.Add(new ContentIcefisherEnemyCard());
         m_enemyCards.Add(new ContentIceWurmEnemyCard());
         //m_enemyCards.Add(new ContentIfritEnemyCard());
         m_enemyCards.Add(new ContentJackalEnemyCard());
