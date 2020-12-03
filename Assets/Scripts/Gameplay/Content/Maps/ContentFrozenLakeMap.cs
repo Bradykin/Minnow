@@ -134,7 +134,7 @@ public class ContentFrozenLakeMap : GameMap
         //--------------------------------------------------------------------------------------------------------//
 
         m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolData);
-        m_spawnPointSpawnPools.Add(new GameSpawnPool(frozenWatersSpawnPoolData, 0.1f));
+        m_spawnPointSpawnPools.Add(new GameSpawnPool(frozenWatersSpawnPoolData, 0.5f));
         m_spawnPointSpawnPools.Add(new GameSpawnPool(defaultSpawnPoolData));
         m_spawnPointSpawnPools.Add(new GameSpawnPool(defaultSpawnPoolData));
         m_spawnPointSpawnPools.Add(new GameSpawnPool(defaultSpawnPoolData));

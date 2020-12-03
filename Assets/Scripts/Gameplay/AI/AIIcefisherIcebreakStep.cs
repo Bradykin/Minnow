@@ -58,7 +58,7 @@ public class AIIcefisherIcebreakStep : AIStep
             return;
         }
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), 1, 0);
         if (surroundingTiles.Any(t => t.GetTerrain().IsWater()))
         {
             return;
