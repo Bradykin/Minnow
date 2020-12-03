@@ -18,6 +18,7 @@ public static class Files
 
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
     public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
+    public static string PERSISTENT_SAVE_BUILD_PATH = Application.persistentDataPath;
 
     public static PlayerAccountData ImportPlayerAccountData()
     {
@@ -25,7 +26,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #else
-        path = Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #endif
 
         if (!File.Exists(path))
@@ -58,7 +59,7 @@ public static class Files
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
 #else
-        File.WriteAllText(Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
+        File.WriteAllText(Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH), export);
 #endif
 
         return export;
@@ -70,7 +71,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #else
-        path = Path.Combine(Files.BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_ACCOUNT_DATA_PATH);
 #endif
 
         File.Delete(path);
@@ -84,7 +85,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH);
 #else
-        path = Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH);
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_RUN_DATA_PATH);
 #endif
 
         if (!File.Exists(path))
@@ -104,7 +105,7 @@ public static class Files
 #if UNITY_EDITOR
         File.WriteAllText(Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH), export);
 #else
-        File.WriteAllText(Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH), export);
+        File.WriteAllText(Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_RUN_DATA_PATH), export);
 #endif
 
         return export;
@@ -116,7 +117,7 @@ public static class Files
 #if UNITY_EDITOR
         path = Path.Combine(Files.EDITOR_PATH, PLAYER_RUN_DATA_PATH);
 #else
-        path = Path.Combine(Files.BUILD_PATH, PLAYER_RUN_DATA_PATH);
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, PLAYER_RUN_DATA_PATH);
 #endif
 
         File.Delete(path);
