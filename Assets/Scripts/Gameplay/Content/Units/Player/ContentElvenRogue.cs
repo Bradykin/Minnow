@@ -12,7 +12,7 @@ public class ContentElvenRogue : GameUnit
         m_rarity = GameRarity.Common;
 
         AddKeyword(new GameRangeKeyword(2), true, false);
-        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 1, 0)), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 3, 0)), true, false);
 
         m_name = "Elven Rogue";
         m_typeline = Typeline.Humanoid;
@@ -26,8 +26,8 @@ public class ContentElvenRogue : GameUnit
         ResetKeywords(true);
 
         m_maxHealth = 5;
-        m_maxStamina = 7;
-        m_staminaRegen = 7;
+        m_maxStamina = 6;
+        m_staminaRegen = 6;
         m_power = 1;
     }
 }

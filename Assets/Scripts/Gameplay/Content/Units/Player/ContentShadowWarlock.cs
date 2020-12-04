@@ -10,7 +10,7 @@ public class ContentShadowWarlock : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 1, 0)), true, false);
+        AddKeyword(new GameSpellcraftKeyword(new GameGainStatsAction(this, 2, 0)), true, false);
         AddKeyword(new GameRangeKeyword(3), true, false);
 
         m_name = "Shadow Warlock";
