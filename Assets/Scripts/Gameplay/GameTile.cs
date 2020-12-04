@@ -399,6 +399,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         }
         else
         {
+            if (checkerUnit.GetTeam() == Team.Player && GetTerrain().IsCorruption())
+            {
+                return false;
+            }
+            
             if (checkerUnit is ContentLordOfEruptionsEnemy && !GetTerrain().IsWater())
             {
                 return true;

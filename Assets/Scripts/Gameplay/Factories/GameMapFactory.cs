@@ -22,6 +22,7 @@ public static class GameMapFactory
         m_maps.Add(new ContentFrozenLakeMap());
         m_maps.Add(new ContentVolcanoRunMap());
         m_maps.Add(new ContentTheMarshlandsMap());
+        m_maps.Add(new ContentSpreadingCorruptionMap());
     }
 
     public static GameMap GetMapById(int id)
