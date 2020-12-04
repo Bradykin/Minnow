@@ -23,6 +23,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool m_isFogBorder;
 
     public int m_numAllowPlacement = 0;
+    public int m_numCauseStorm = 0;
 
     public GameWorldPerk m_gameWorldPerk;
     
@@ -76,6 +77,20 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 m_gameWorldPerk.Trigger();
 
                 m_gameWorldPerk = null;
+            }
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(this, newUnit.GetSightRange(), 0);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                List<GameTile> neighbourTiles = WorldGridManager.Instance.GetSurroundingGameTiles(surroundingTiles[i], Constants.WinterStormVisionRange, 0);
+                bool keepRevealed = neighbourTiles.Any(t => (t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player) || 
+                                                            (t.HasBuilding() && t.GetBuilding().GetTeam() == Team.Player) ||
+                                                            !t.IsStorm());
+                if (!keepRevealed)
+                {
+                    surroundingTiles[i].m_isFog = true;
+                    surroundingTiles[i].m_isSoftFog = true;
+                }
             }
         }
 
@@ -295,7 +310,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 return 1;
             }
 
-            if (checkerUnit is ContentLordOfEruptionsEnemy)
+            if (checkerUnit.m_alwaysIgnoreDifficultTerrain)
             {
                 return 1;
             }
@@ -446,6 +461,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public bool CanPlace()
     {
         return m_numAllowPlacement > 0;
+    }
+
+    public bool IsStorm()
+    {
+        return m_numCauseStorm > 0;
     }
 
     //============================================================================================================//

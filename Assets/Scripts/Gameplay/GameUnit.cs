@@ -49,6 +49,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
+    public bool m_alwaysIgnoreDifficultTerrain;
 
     //Functionality
     protected GameTile m_gameTile;
@@ -148,6 +149,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void OnMoveEnd()
     {
+        
+    }
+
+    public virtual void OnOtherMove(GameUnit other, GameTile startingTIle, GameTile endingTile, List<GameTile> pathBetweenTiles)
+    {
 
     }
 
@@ -178,7 +184,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_gameTile = worldTile.GetGameTile();
     }
 
-    public int GetHitByUnit(int damage, GameUnit gameUnit)
+    public virtual int GetHitByUnit(int damage, GameUnit gameUnit)
     {
         GameThornsKeyword thornsKeyword = GetThornsKeyword();
         if (thornsKeyword != null)
@@ -189,12 +195,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return GetHitImpl(damage, DamageType.Unit);
     }
 
-    public int GetHitBySpell(int damage, GameCardSpellBase gameCardSpellBase)
+    public virtual int GetHitBySpell(int damage, GameCardSpellBase gameCardSpellBase)
     {
         return GetHitImpl(damage, DamageType.Spell);
     }
 
-    public int GetHitByAbility(int damage)
+    public virtual int GetHitByAbility(int damage)
     {
         return GetHitImpl(damage, DamageType.Ability);
     }
@@ -755,7 +761,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             SetCustomName();
         }
 
-        if (m_maxStamina >= Constants.MaxTotalStamina)
+        if (GetMaxStamina() >= Constants.MaxTotalStamina)
         {
             return;
         }
@@ -785,6 +791,33 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         else
         {
             m_maxStamina += toAdd;
+        }
+    }
+
+    public void RemoveMaxStamina(int toRemove, bool permanent)
+    {
+        if (toRemove == 0)
+        {
+            return;
+        }
+
+        if (!HasCustomName())
+        {
+            SetCustomName();
+        }
+
+        if (GetMaxStamina() == 0)
+        {
+            return;
+        }
+
+        if (permanent)
+        {
+            m_permMaxStamina = Mathf.Max(0, GetMaxStamina() - toRemove);
+        }
+        else
+        {
+            m_maxStamina = Mathf.Max(0, GetMaxStamina() - toRemove);
         }
     }
 
@@ -1699,7 +1732,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_usesBigTooltip;
     }
 
-    public int GetMaxHealth()
+    public virtual int GetMaxHealth()
     {
         int toReturn = m_maxHealth;
         toReturn += m_permMaxHealth;
@@ -1897,6 +1930,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
+        GameTile startingTile = m_gameTile;
+
         int pathCost = WorldGridManager.Instance.GetPathLength(m_gameTile, tile, false, false, false);
         List<GameTile> path = WorldGridManager.Instance.CalculateAStarPath(m_gameTile, tile, false, false, false, false);
 
@@ -1918,6 +1953,31 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
         }
+
+        if (GetTeam() == Team.Player)
+        {
+            if (GetGameTile().IsStorm())
+            {
+                GetHitByAbility(Constants.WinterStormDamage);
+            }
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), GetSightRange(), 0);
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                List<GameTile> neighbourTiles = WorldGridManager.Instance.GetSurroundingGameTiles(surroundingTiles[i], Constants.WinterStormVisionRange, 0);
+                bool keepRevealed = neighbourTiles.Any(t => (t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player) ||
+                                                            (t.HasBuilding() && t.GetBuilding().GetTeam() == Team.Player) ||
+                                                            !t.IsStorm());
+                if (!keepRevealed)
+                {
+                    surroundingTiles[i].m_isFog = true;
+                    surroundingTiles[i].m_isSoftFog = true;
+                }
+            }
+        }
+
+        GameHelper.GetPlayer().InformHasMoved(this, startingTile, GetGameTile(), path);
+        GameHelper.GetOpponent().InformHasMoved(this, startingTile, GetGameTile(), path);
     }
 
     public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false, bool letPassEnemies = true)

@@ -20,7 +20,7 @@ public class AudioBackgroundController : Singleton<AudioBackgroundController>
     {
         m_audioSource.volume = PlayerDataManager.PlayerAccountData.m_musicVolume;
 
-        if (UILevelSelectController.Instance.m_curMap == null && !m_playingMenuMusic)
+        if (!UIHelper.LevelSelectHasMap() && !m_playingMenuMusic)
         {
             StartMenuMusic();
         }

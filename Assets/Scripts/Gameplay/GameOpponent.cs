@@ -40,6 +40,19 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     //============================================================================================================//
 
+    public void InformHasMoved(GameUnit movedUnit, GameTile startingTile, GameTile endingTile, List<GameTile> pathBetweenTiles)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i] == movedUnit)
+            {
+                continue;
+            }
+
+            m_controlledUnits[i].OnOtherMove(movedUnit, startingTile, endingTile, pathBetweenTiles);
+        }
+    }
+
     public void InformHasDied(GameUnit deadUnit, GameTile deathLocation)
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)

@@ -123,8 +123,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
                 {
                     tilesInBrightnessRange[i].GetOccupyingUnit().GetHitByAbility(m_brightnessExplosionAmount);
                 }
-
-                if (tilesInBrightnessRange[i].HasBuilding() && tilesInBrightnessRange[i].GetBuilding().GetTeam() == Team.Player)
+                else if (tilesInBrightnessRange[i].HasBuilding() && tilesInBrightnessRange[i].GetBuilding().GetTeam() == Team.Player)
                 {
                     tilesInBrightnessRange[i].GetBuilding().GetHit(m_brightnessExplosionAmount);
                 }

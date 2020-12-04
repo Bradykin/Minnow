@@ -13,7 +13,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_maxHealth = 14;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_power = 5;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

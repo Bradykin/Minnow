@@ -117,67 +117,72 @@ public class ContentVolcanoRunMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentFlameImpEnemy(null));
 
-        List<GameSpawnPoolData> defaultSpawnPoolDatas = new List<GameSpawnPoolData>();
+        //--------------------------------------------------------------------------------------------------------//
+
+        List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();
         //Wave 1
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 1, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 1, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.75f));
 
         //Wave 2
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 2, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 2, 1, 0.5f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 2, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 2, 1, 0.25f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBlindBeastEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 2, 1, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 2, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 2, 1, 0.25f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 0.75f));
 
         //Wave 3
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 3, 1, 2));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 3, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 3, 1, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 3, 1, 2));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 3, 1, 0.5f));
 
         //Wave 4
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 4, 0.75f, 1.25f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 4, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 4, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 4, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 4, 1.25f, 0.25f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 4, 0.75f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentHellhoundEnemy(null), 4, 0.75f, 1.25f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 4, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 4, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 4, 1.25f, 0.25f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 4, 0.75f, 0.5f));
 
         //Wave 5
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 5, 0.75f, 0.5f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 5, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 5, 1.25f, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaHellionEnemy(null), 5, 1.5f, 0.5f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 5, 0.5f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 5, 0.75f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 5, 1.25f, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaHellionEnemy(null), 5, 1.5f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 5, 0.5f, 0.5f));
 
         //Wave 6
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 6, 0.75f, 0.5f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 6, 1, 1));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 6, 1, 0.75f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentLavaHellionEnemy(null), 6, 1.25f, 0.5f));
-        defaultSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 5, 0.5f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBurningMonstrosityEnemy(null), 6, 0.75f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentVolcanoGolemEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPhoenixEnemy(null), 6, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaHellionEnemy(null), 6, 1.25f, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFlameImpEnemy(null), 5, 0.5f, 0.5f));
 
+        //--------------------------------------------------------------------------------------------------------//
 
-        List<GameSpawnPoolData> desertSpawnPoolDatas = new List<GameSpawnPoolData>();
-        desertSpawnPoolDatas.AddRange(defaultSpawnPoolDatas);
+        List<GameSpawnPoolData> desertSpawnPoolData = new List<GameSpawnPoolData>();
+        desertSpawnPoolData.AddRange(defaultSpawnPoolData);
 
         //Wave 3
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.75f));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 3, 1, 0.25f));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.75f));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnakeEnemy(null), 3, 1, 0.25f));
 
         //Wave 4
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 1));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 4, 1, 1));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 4, 2, 0.5f));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 4, 1, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 4, 2, 0.5f));
 
         //Wave 5
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 5, 0.75f, 1));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 5, 0.75f, 1));
-        desertSpawnPoolDatas.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 5, 1, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 5, 0.75f, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 5, 0.75f, 1));
+        desertSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 5, 1, 1));
 
-        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolDatas);
-        m_spawnPointSpawnPools.Add(new GameSpawnPool(desertSpawnPoolDatas));
+        //--------------------------------------------------------------------------------------------------------//
+
+        m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolData);
+        m_spawnPointSpawnPools.Add(new GameSpawnPool(desertSpawnPoolData));
     }
 }
