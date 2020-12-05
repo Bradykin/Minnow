@@ -5,11 +5,12 @@ using UnityEngine;
 public class ContentPhalanxCard : GameCardSpellBase
 {
     private int m_effectRange = 2;
+    private int m_buffNum = 2;
     
     public ContentPhalanxCard()
     {
         m_name = "Phalanx";
-        m_desc = "Target allied <b>Humanoid</b> unit gets +1/+1 for each allied <b>Humanoid</b> unit within " + m_effectRange + " tiles (including itself).";
+        m_desc = "Target allied <b>Humanoid</b> unit gets +" + m_buffNum + "/+" + m_buffNum + " for each allied <b>Humanoid</b> unit within " + m_effectRange + " tiles (including itself).";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -50,6 +51,6 @@ public class ContentPhalanxCard : GameCardSpellBase
             }
         }
 
-        targetUnit.AddStats(amount, amount, false, true);
+        targetUnit.AddStats(amount * m_buffNum, amount * m_buffNum, false, true);
     }
 }
