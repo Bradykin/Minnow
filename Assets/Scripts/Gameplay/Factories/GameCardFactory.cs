@@ -161,10 +161,11 @@ public static class GameCardFactory
         m_cards.Add(new ContentWillOfNatureCard());
         m_cards.Add(new ContentDrainPowerCard());
         m_cards.Add(new ContentBurningStormCard());
-
-        //New Cards
         m_cards.Add(new ContentDeadeyeCard());
         m_cards.Add(new ContentMarksmanCard());
+        m_cards.Add(new ContentSprintCard());
+
+        //New Cards
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
