@@ -163,6 +163,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentBurningStormCard());
 
         //New Cards
+        m_cards.Add(new ContentDeadeyeCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
