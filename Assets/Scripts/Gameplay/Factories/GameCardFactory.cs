@@ -168,6 +168,7 @@ public static class GameCardFactory
         //New Cards
         m_cards.Add(new ContentFadeCard());
         m_cards.Add(new ContentDrainingTalonsCard());
+        m_cards.Add(new ContentMageArmorCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
