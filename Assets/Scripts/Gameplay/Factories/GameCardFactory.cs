@@ -159,6 +159,8 @@ public static class GameCardFactory
         //New Cards
         m_cards.Add(new ContentMeteorCard());
         m_cards.Add(new ContentChainLightningCard());
+        m_cards.Add(new ContentTwinCard());
+        m_cards.Add(new ContentWillOfNatureCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
