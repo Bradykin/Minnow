@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentChainLightningCard : GameCardSpellBase
+public class ContentDrainPowerCard : GameCardSpellBase
 {
     private int m_range = 2;
+    private int m_powerGain = 3;
 
-    public ContentChainLightningCard()
+    public ContentDrainPowerCard()
     {
-        m_spellEffect = 3;
+        m_spellEffect = 4;
 
-        m_name = "Chain Lightning";
+        m_name = "Drain Power";
         m_targetType = Target.Enemy;
-        m_cost = 1;
+        m_cost = 2;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.MagicPower);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }
@@ -30,7 +32,7 @@ public class ContentChainLightningCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal "  + m_spellEffect + mpString + " damage to target enemy, and then chain to up to " + m_spellEffect + mpString + " enemies in range " + m_range + " of each other.";
+        return "Deal " + m_spellEffect + mpString + " damage to target enemy. If it dies, all allied units in range " + m_range + " get +" + m_powerGain + "/+0.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -46,18 +48,15 @@ public class ContentChainLightningCard : GameCardSpellBase
 
         targetUnit.GetHitBySpell(GetSpellValue(), this);
 
-        for (int c = 0; c < GetSpellValue(); c++)
+        if (targetUnit.m_isDead)
         {
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
 
-                if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
+                if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Player)
                 {
-                    targetUnit = unit;
-                    surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
-                    targetUnit.GetHitBySpell(GetSpellValue(), this);
-                    break;
+                    unit.AddStats(m_powerGain, 0, false, true);
                 }
             }
         }

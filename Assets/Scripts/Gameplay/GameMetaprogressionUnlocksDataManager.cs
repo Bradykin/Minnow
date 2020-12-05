@@ -108,7 +108,10 @@ public static class GameMetaprogressionUnlocksDataManager
     {
         /* NOT YET ADDED
         m_cards.Add(new ContentWildfolkCard());
-        m_cards.Add(new ContentCurseOfInactionCard());
+        m_cards.Add(new ContentDeadeyeCard());
+        m_cards.Add(new ContentMarksmanCard());
+        m_cards.Add(new ContentFadeCard());
+        m_cards.Add(new ContentDrainingTalonsCard());
          */
 
         //Creations - 2
@@ -183,7 +186,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_cardRewards.Add(15, CreateCardLevelReward("Buffs",
             "Use spells to augment your units natural abilities!",
-            new ContentNightWingsCard(), new ContentTonicOfFortitudeCard(), new ContentTonicOfStrengthCard()));
+            new ContentNightWingsCard(), new ContentDrainPowerCard(), new ContentCurseOfInactionCard()));
 
         m_cardRewards.Add(16, CreateCardLevelReward("Buff Targets",
             "Some units work great when given the right buff spell!",
@@ -458,6 +461,16 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentNightWingsCard());
         m_initialCards.Add(new ContentNecromanticTouchCard());
         m_initialCards.Add(new ContentPhalanxCard());
+        m_initialCards.Add(new ContentMeteorCard());
+        m_initialCards.Add(new ContentChainLightningCard());
+        m_initialCards.Add(new ContentTwinCard());
+        m_initialCards.Add(new ContentWillOfNatureCard());
+        m_initialCards.Add(new ContentBurningStormCard());
+        m_initialCards.Add(new ContentTonicOfFortitudeCard());
+        m_initialCards.Add(new ContentTonicOfStrengthCard());
+        m_initialCards.Add(new ContentSprintCard());
+        m_initialCards.Add(new ContentMageArmorCard());
+        m_initialCards.Add(new ContentGreedyKillCard());
 
         //Initial Relics
         m_initialRelics.Add(new ContentHourglassOfSpeedRelic());

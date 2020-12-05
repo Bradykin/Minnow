@@ -734,6 +734,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public void AddStaminaRegen(int toAdd, bool permanent)
     {
+        if (m_gameTile != null)
+        {
+            UIHelper.CreateWorldElementNotification(GetName() + " gains +" + toAdd + " stamina regen.", true, m_gameTile.GetWorldTile().gameObject);
+        }
+
         if (permanent)
         {
             m_permStaminaRegen += toAdd;
@@ -2347,7 +2352,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (HasCustomName())
         {
-            return m_customName + ", the " + m_name;
+            //return m_customName + ", the " + m_name;
+            return m_customName;
         }
         else
         {
