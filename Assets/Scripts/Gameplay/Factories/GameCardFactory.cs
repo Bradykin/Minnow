@@ -156,6 +156,10 @@ public static class GameCardFactory
         m_cards.Add(new ContentWeakeningBoltCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
 
+        //New Cards
+        m_cards.Add(new ContentMeteorCard());
+        m_cards.Add(new ContentChainLightningCard());
+
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
 
