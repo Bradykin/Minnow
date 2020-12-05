@@ -168,9 +168,12 @@ public static class GameCardFactory
         m_cards.Add(new ContentDrainingTalonsCard());
         m_cards.Add(new ContentMageArmorCard());
         m_cards.Add(new ContentGreedyKillCard());
+        m_cards.Add(new ContentToxicTonicCard());
+        m_cards.Add(new ContentDarkHeartCard());
+        m_cards.Add(new ContentBladesCard());
+        m_cards.Add(new ContentGrowthCard());
 
         //New Cards
-        m_cards.Add(new ContentToxicTonicCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());

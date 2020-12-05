@@ -13,6 +13,8 @@ public class ContentDrainingTalonsCard : GameCardSpellBase
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
+        m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
+
         m_cost = 3;
 
         SetupBasicData();
