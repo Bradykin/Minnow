@@ -110,6 +110,8 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cards.Add(new ContentWildfolkCard());
         m_cards.Add(new ContentDeadeyeCard());
         m_cards.Add(new ContentMarksmanCard());
+        m_cards.Add(new ContentFadeCard());
+        m_cards.Add(new ContentDrainingTalonsCard());
          */
 
         //Creations - 2
@@ -467,6 +469,8 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentTonicOfFortitudeCard());
         m_initialCards.Add(new ContentTonicOfStrengthCard());
         m_initialCards.Add(new ContentSprintCard());
+        m_initialCards.Add(new ContentMageArmorCard());
+        m_initialCards.Add(new ContentGreedyKillCard());
 
         //Initial Relics
         m_initialRelics.Add(new ContentHourglassOfSpeedRelic());
