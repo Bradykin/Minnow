@@ -184,12 +184,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_gameTile = worldTile.GetGameTile();
     }
 
-    public virtual int GetHitByUnit(int damage, GameUnit gameUnit)
+    public virtual int GetHitByUnit(int damage, GameUnit gameUnit, bool canReturnThorns)
     {
         GameThornsKeyword thornsKeyword = GetThornsKeyword();
-        if (thornsKeyword != null)
+        if (canReturnThorns && thornsKeyword != null)
         {
-            HitUnit(gameUnit, thornsKeyword.m_thornsDamage, false, false);
+            HitUnit(gameUnit, thornsKeyword.m_thornsDamage, spendStamina: false, isThornsAttack: true);
         }
 
         return GetHitImpl(damage, DamageType.Unit);
@@ -854,7 +854,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return toReturn;
     }
 
-    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
+    public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool isThornsAttack = false, bool canCleave = true)
     {
         if (spendStamina)
         {
@@ -869,20 +869,23 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
         }
 
-        int damageTaken = other.GetHitByUnit(damageAmount, this);
+        int damageTaken = other.GetHitByUnit(damageAmount, this, !isThornsAttack);
 
-        GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
+        if (!isThornsAttack)
+        {
+            GameMomentumKeyword momentumKeyword = GetMomentumKeyword();
 
-        if (momentumKeyword != null)
-        { 
-            momentumKeyword.DoAction(other);
-
-            //If the player has Bestial Wrath relic, repeat the action
-            if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
+            if (momentumKeyword != null)
             {
-                if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                momentumKeyword.DoAction(other);
+
+                //If the player has Bestial Wrath relic, repeat the action
+                if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
                 {
-                    momentumKeyword.DoAction();
+                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
+                    {
+                        momentumKeyword.DoAction();
+                    }
                 }
             }
         }
