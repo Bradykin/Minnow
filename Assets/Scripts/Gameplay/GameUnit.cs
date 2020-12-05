@@ -2344,7 +2344,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (HasCustomName())
         {
-            return m_customName + ", the " + m_name;
+            //return m_customName + ", the " + m_name;
+            return m_customName;
         }
         else
         {

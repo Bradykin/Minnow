@@ -20,7 +20,7 @@ public class ContentDeadeyeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target unit gains +1 range.";
+        return "Target allied unit gains +1 range.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

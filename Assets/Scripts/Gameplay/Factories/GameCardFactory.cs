@@ -164,6 +164,7 @@ public static class GameCardFactory
 
         //New Cards
         m_cards.Add(new ContentDeadeyeCard());
+        m_cards.Add(new ContentMarksmanCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
