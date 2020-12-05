@@ -518,6 +518,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             return false;
         }
 
+        if (GetGameTile().GetTerrain() != null && GetGameTile().GetTerrain().IsCorruption())
+        {
+            GetGameTile().m_isFog = true;
+            GetGameTile().m_isSoftFog = true;
+            return true;
+        }
+
         GetGameTile().m_isFog = false;
         GetGameTile().m_isFogBorder = false;
 

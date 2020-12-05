@@ -40,6 +40,7 @@ public class GameTerrainFactory
         m_basicTerrain.Add(new ContentScrublandPlainsRuinsTerrain());
         m_basicTerrain.Add(new ContentForestRuinsTerrain());
         m_basicTerrain.Add(new ContentRubbleTerrain());
+        m_basicTerrain.Add(new ContentCorruptionTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Basic Terrain", m_basicTerrain));
 
         //Plains Terrain
