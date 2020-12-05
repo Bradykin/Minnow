@@ -170,6 +170,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentGreedyKillCard());
 
         //New Cards
+        m_cards.Add(new ContentToxicTonicCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
