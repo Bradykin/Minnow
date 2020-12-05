@@ -40,7 +40,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.GetHitBySpell(m_spellEffect, this);
-        targetUnit.RemoveStats(m_spellEffect, 0);
+        targetUnit.RemoveStats(m_spellEffect, 0, false);
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

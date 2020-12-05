@@ -2275,15 +2275,28 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public void RemoveStats(int powerToRemove, int healthToRemove)
+    public void RemoveStats(int powerToRemove, int healthToRemove, bool permanent)
     {
         if (!m_isDead)
         {
             UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
         }
 
-        m_power -= powerToRemove;
-        m_maxHealth -= healthToRemove;
+        if (permanent)
+        {
+            m_permPower -= powerToRemove;
+            m_permMaxHealth -= healthToRemove;
+
+            if (!HasCustomName())
+            {
+                SetCustomName();
+            }
+        }
+        else
+        {
+            m_power -= powerToRemove;
+            m_maxHealth -= healthToRemove;
+        }
 
         if (m_maxHealth < 1)
         {
@@ -2437,17 +2450,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
                 else if (powerChange < 0 && healthChange < 0)
                 {
-                    RemoveStats(-powerChange, -healthChange);
+                    RemoveStats(-powerChange, -healthChange, false);
                 }
                 else if (powerChange >= 0 && healthChange < 0)
                 {
                     AddStats(powerChange, 0, false, true);
-                    RemoveStats(0, -healthChange);
+                    RemoveStats(0, -healthChange, false);
                 }
                 else if (powerChange < 0 && healthChange >= 0)
                 {
                     AddStats(0, healthChange, false, true);
-                    RemoveStats(-powerChange, 0);
+                    RemoveStats(-powerChange, 0, false);
                 }
             }
 
