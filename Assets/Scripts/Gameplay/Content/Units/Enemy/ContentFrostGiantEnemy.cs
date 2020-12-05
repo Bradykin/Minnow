@@ -73,9 +73,9 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
         StormFogUpdate();
     }
 
-    public override int GetHitByUnit(int damage, GameUnit gameUnit)
+    public override int GetHitByUnit(int damage, GameUnit gameUnit, bool canReturnThorns)
     {
-        int toReturn = base.GetHitByUnit(damage, gameUnit);
+        int toReturn = base.GetHitByUnit(damage, gameUnit, canReturnThorns);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
