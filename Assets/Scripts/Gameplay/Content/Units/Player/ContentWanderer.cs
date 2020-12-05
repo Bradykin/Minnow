@@ -12,21 +12,13 @@ public class ContentWanderer : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Wanderer";
-        m_desc = "At beginning of each turn, add 2 <b>Shivs</b> to your hand.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        AddKeyword(new GameMomentumKeyword(new GameGainShivAction(1)), true, false);
         AddKeyword(new GameShivKeyword(), true, false);
 
         LateInit();
-    }
-
-    public override void StartTurn()
-    {
-        base.StartTurn();
-
-        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
-        GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
     }
 
     protected override void ResetToBase()

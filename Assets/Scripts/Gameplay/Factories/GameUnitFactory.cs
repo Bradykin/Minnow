@@ -21,27 +21,27 @@ public class GameUnitFactory
     public static void Init()
     {
         //Player Units 1-10 score (1 100% rework; 10 best)
-        m_playerUnits.Add(new ContentOverlord()); //10
-        m_playerUnits.Add(new ContentShadowWarlock()); //10
-        m_playerUnits.Add(new ContentGladiator()); //10
-        m_playerUnits.Add(new ContentGrasper()); //10
-        m_playerUnits.Add(new ContentElvenWizard()); //9 - Maybe 4 energy cost
-        m_playerUnits.Add(new ContentHomonculus()); //9
-        m_playerUnits.Add(new ContentCyclops()); //9 - Big, bulky, obvious. Need to watch if players use it
-        m_playerUnits.Add(new ContentInjuredTroll()); //9 - Possible scaling
-        m_playerUnits.Add(new ContentHero()); //7 - Tweak Numbers
-        m_playerUnits.Add(new ContentDevourer()); //7 - Tweak Numbers
-        m_playerUnits.Add(new ContentDwarfArchitect()); //8 - Keep an eye on readability
-        m_playerUnits.Add(new ContentElvenRogue()); // 7 - Keep an eye on how fun
-        m_playerUnits.Add(new ContentElvenSentinel()); // 7 - Keep an eye on how fun
-        m_playerUnits.Add(new ContentRaptor()); //6 - Leave it; but it doesn't play nicely with monsters
+        m_playerUnits.Add(new ContentOverlord());
+        m_playerUnits.Add(new ContentShadowWarlock());
+        m_playerUnits.Add(new ContentGladiator());
+        m_playerUnits.Add(new ContentGrasper());
+        m_playerUnits.Add(new ContentElvenWizard());
+        m_playerUnits.Add(new ContentHomonculus()); //Rework without Knowledgeable
+        m_playerUnits.Add(new ContentCyclops());
+        m_playerUnits.Add(new ContentInjuredTroll());
+        m_playerUnits.Add(new ContentHero());
+        m_playerUnits.Add(new ContentDevourer());
+        m_playerUnits.Add(new ContentDwarfArchitect());
+        m_playerUnits.Add(new ContentElvenRogue());
+        m_playerUnits.Add(new ContentElvenSentinel());
+        m_playerUnits.Add(new ContentRaptor());
 
         m_playerUnits.Add(new ContentDwarfShivcaster()); //9 - It's shivs shouldn't trigger Spellcraft
-        m_playerUnits.Add(new ContentGuardCaptain()); //6 - Needs scaling in some way from other humanoids
+        m_playerUnits.Add(new ContentGuardCaptain());
         m_playerUnits.Add(new ContentNaturalScout()); // 6 - Blind Beast - it; tweak stamina regen, remove attack restriction
         m_playerUnits.Add(new ContentSabobot()); //5 - Remove start at max stam; add shuffle back in on death
         m_playerUnits.Add(new ContentSkeleton()); // 6 - Needs to go back into deck on death; not stay around
-        m_playerUnits.Add(new ContentWanderer()); //6 - Tweak how we get shivs (Maybe Momentum)
+        m_playerUnits.Add(new ContentWanderer());
 
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
         m_playerUnits.Add(new ContentMiner()); // 1 - Rework; bad concept (Mountain explorer?)

@@ -12,7 +12,7 @@ public class ContentHero : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), true, false);
         AddKeyword(new GameMomentumKeyword(new GameHealAction(this, 5)), true, false);
         AddKeyword(new GameVictoriousKeyword(new GameGainGoldAction(15)), true, false);
 

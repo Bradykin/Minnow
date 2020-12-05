@@ -23,6 +23,7 @@ public class GameActionFactory
         m_actions.Add(new GameHealAction(null, 0));
         m_actions.Add(new GameGainDamageShieldAction(null, 0));
         m_actions.Add(new GameGainStatsAction(null, 0, 0));
+        m_actions.Add(new GameGainStatsPermanentAction(null, 0, 0));
         m_actions.Add(new GameGainStatsRangeAction(null, 0, 0, 0));
         m_actions.Add(new GameLoseStaminaAction(null, 0));
         m_actions.Add(new GameLoseStatsAction(null, 0, 0));
