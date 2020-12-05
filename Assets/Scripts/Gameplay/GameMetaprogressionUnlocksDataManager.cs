@@ -109,6 +109,7 @@ public static class GameMetaprogressionUnlocksDataManager
         /* NOT YET ADDED
         m_cards.Add(new ContentWildfolkCard());
         m_cards.Add(new ContentCurseOfInactionCard());
+        m_cards.Add(new ContentDrainPowerCard());
          */
 
         //Creations - 2
@@ -458,6 +459,11 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentNightWingsCard());
         m_initialCards.Add(new ContentNecromanticTouchCard());
         m_initialCards.Add(new ContentPhalanxCard());
+        m_initialCards.Add(new ContentMeteorCard());
+        m_initialCards.Add(new ContentChainLightningCard());
+        m_initialCards.Add(new ContentTwinCard());
+        m_initialCards.Add(new ContentWillOfNatureCard());
+        m_initialCards.Add(new ContentBurningStormCard());
 
         //Initial Relics
         m_initialRelics.Add(new ContentHourglassOfSpeedRelic());

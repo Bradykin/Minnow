@@ -8,7 +8,7 @@ public class ContentTwinCard : GameCardSpellBase
     {
         m_name = "Twin";
         m_targetType = Target.Ally;
-        m_cost = 4;
+        m_cost = 2;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 

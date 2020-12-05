@@ -155,12 +155,14 @@ public static class GameCardFactory
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentWeakeningBoltCard());
         m_cards.Add(new ContentWisdomOfThePastCard());
-
-        //New Cards
         m_cards.Add(new ContentMeteorCard());
         m_cards.Add(new ContentChainLightningCard());
         m_cards.Add(new ContentTwinCard());
         m_cards.Add(new ContentWillOfNatureCard());
+        m_cards.Add(new ContentDrainPowerCard());
+        m_cards.Add(new ContentBurningStormCard());
+
+        //New Cards
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
