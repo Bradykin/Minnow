@@ -273,61 +273,53 @@ public static class GameMetaprogressionUnlocksDataManager
             "Hefty frontline troops can help prevent your enemies from reaching critical junctions!",
             new ContentThornsOfRayRelic(), new ContentFadingLightRelic(), new ContentDestinyRelic()));
 
-        m_relicRewards.Add(12, CreateRelicLevelReward("Feathers",
-            "A group of relics that rely on carefully manipulating the health of your troops!",
-            new ContentAngelicFeatherRelic(), new ContentBloodFeatherRelic(), new ContentGoldenFeatherRelic()));
-
-        m_relicRewards.Add(13, CreateRelicLevelReward("Full Types",
+        m_relicRewards.Add(12, CreateRelicLevelReward("Full Types",
             "If you can get all of the tribes together; the power is immense!",
             new ContentGrandPactRelic(), new ContentSymbolOfTheAllianceRelic(), new ContentToldiranMiracleRelic()));
 
-        m_relicRewards.Add(14, CreateRelicLevelReward("Gold",
+        m_relicRewards.Add(13, CreateRelicLevelReward("Gold",
             "Gaining enough money can allow you to power up with large kingdoms!",
             new ContentSackOfSoulsRelic(), new ContentDiscountTokenRelic(), new ContentLivingStoneRelic()));
 
-        m_relicRewards.Add(15, CreateRelicLevelReward("Buffs",
+        m_relicRewards.Add(14, CreateRelicLevelReward("Buffs",
             "Use spells to augment your units natural abilities!",
             new ContentBeadofJoyRelic(), new ContentNectarOfTheSeaGodRelic(), new ContentEverflowingCanteenRelic()));
 
-        m_relicRewards.Add(16, CreateRelicLevelReward("Easy Attacks",
+        m_relicRewards.Add(15, CreateRelicLevelReward("Easy Attacks",
             "Attacking is much easier when it costs 1 stamina instead of 2!",
             new ContentUrbanTacticsRelic(), new ContentNamelessFlaskRelic(), new ContentAncientRitualRelic()));
 
-        m_relicRewards.Add(17, CreateRelicLevelReward("Silver Bullets",
+        m_relicRewards.Add(16, CreateRelicLevelReward("Silver Bullets",
             "While these may be specific, when you can get good use out of them they pull far above their weight!",
             new ContentTalonOfTheCruelRelic(), new ContentAdvancedWeaponryRelic(), new ContentAncientEvilRelic()));
 
-        m_relicRewards.Add(18, CreateRelicLevelReward("Flexible",
+        m_relicRewards.Add(17, CreateRelicLevelReward("Flexible",
             "Flexibility has a value of it's own!",
             new ContentGoldenKnotRelic(), new ContentSporetechRelic(), new ContentHistoryInBloodRelic()));
 
-        m_relicRewards.Add(19, CreateRelicLevelReward("Random",
+        m_relicRewards.Add(18, CreateRelicLevelReward("Random",
             "Sometimes, fate just takes control.",
-            new ContentMarkOfTordrimRelic(), new ContentJugOfTordrimRelic(), new ContentAlterOfTordrimRelic()));
+            new ContentMysticRuneRelic(), new ContentJugOfTordrimRelic(), new ContentAlterOfTordrimRelic()));
 
-        m_relicRewards.Add(20, CreateRelicLevelReward("Elite Hunting",
+        m_relicRewards.Add(19, CreateRelicLevelReward("Elite Hunting",
             "For when just a new relic isn't enough.",
             new ContentRelicOfVictoryRelic(), new ContentHeroicTrophyRelic(), new ContentAncientCoinsRelic()));
 
-        m_relicRewards.Add(21, CreateRelicLevelReward("More Relics",
+        m_relicRewards.Add(20, CreateRelicLevelReward("More Relics",
             "",
             new ContentTokenOfTheUprisingRelic(), new ContentSecretTiesRelic(), new ContentSachelOfDeceptionRelic()));
 
-        m_relicRewards.Add(22, CreateRelicLevelReward("More Relics",
+        m_relicRewards.Add(21, CreateRelicLevelReward("More Relics",
             "",
             new ContentTauntingPipeRelic(), new ContentBondOfFamilyRelic(), new ContentChargingRingRelic()));
 
-        m_relicRewards.Add(23, CreateRelicLevelReward("More Tanks",
+        m_relicRewards.Add(22, CreateRelicLevelReward("More Tanks",
             "Even more toughness!",
             new ContentCarapaceOfTutuiun(), new ContentCanvasOfHistoryRelic(), new ContentPrimeRibRelic()));
 
         m_relicRewards.Add(24, CreateRelicLevelReward("More Relics",
             "",
-            new ContentNaturalProtectionRelic(), new ContentBeadsOfProphecyRelic(), new ContentMysticRuneRelic()));
-
-        m_relicRewards.Add(25, CreateRelicLevelReward("More Relics",
-            "",
-            new ContentCursedAmuletRelic(), new ContentMemoryOfTheDefenderRelic(), new ContentPrimeRibRelic()));
+            new ContentCursedAmuletRelic(), new ContentMemoryOfTheDefenderRelic(), new ContentBeadsOfProphecyRelic()));
     }
 
     private static void FillMapData(GameMap map, GameCard rewardCard)
@@ -490,6 +482,11 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialRelics.Add(new ContentTalonOfTheMeradominRelic());
         m_initialRelics.Add(new ContentHealthFlaskRelic());
         m_initialRelics.Add(new ContentToolOfTheDeadmanRelic());
+        m_initialRelics.Add(new ContentAngelicFeatherRelic());
+        m_initialRelics.Add(new ContentBloodFeatherRelic());
+        m_initialRelics.Add(new ContentGoldenFeatherRelic());
+        m_initialRelics.Add(new ContentNaturalProtectionRelic());
+        m_initialRelics.Add(new ContentMarkOfTordrimRelic());
     }
 
     public static bool HasUnlocked(GameRelic toCheck)
