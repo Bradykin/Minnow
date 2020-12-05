@@ -17,7 +17,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 35;
-        m_cost = new GameWallet(120);
+        m_cost = new GameWallet(100);
         m_sightRange = m_range;
 
         m_expandsPlaceRange = false;
