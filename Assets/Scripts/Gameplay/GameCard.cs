@@ -180,6 +180,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
             return false;
         }
 
+        if (targetUnit.GetFadeKeyword() != null && targetUnit.GetTeam() == Team.Enemy)
+        {
+            return false;
+        }
+
         if (m_targetType == Target.Ally && targetUnit.GetTeam() == Team.Player)
         {
             return true;

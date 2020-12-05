@@ -22,7 +22,7 @@ public class ContentPhalanxCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Humanoid;
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Humanoid;
     }
 
     public override void PlayCard(GameUnit targetUnit)

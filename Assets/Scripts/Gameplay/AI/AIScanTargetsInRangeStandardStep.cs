@@ -31,6 +31,11 @@ public class AIScanTargetsInRangeStandardStep : AIStep
         {
             if (tile.IsOccupied() && !tile.GetOccupyingUnit().m_isDead && m_AIGameEnemyUnit.m_gameEnemyUnit.CanHitUnit(tile.GetOccupyingUnit(), false))
             {
+                if (tile.GetOccupyingUnit().GetFadeKeyword() != null)
+                {
+                    continue;
+                }
+                
                 int damageAmountPerHit = tile.GetOccupyingUnit().CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower(), DamageType.Unit);
                 if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.GetOccupyingUnit().GetTauntKeyword() == null)
                 {

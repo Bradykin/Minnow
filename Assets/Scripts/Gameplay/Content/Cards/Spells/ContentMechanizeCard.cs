@@ -24,7 +24,7 @@ public class ContentMechanizeCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Creation;
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Creation;
     }
 
     public override void PlayCard(GameUnit targetUnit)

@@ -151,6 +151,10 @@ public class WorldUnit : MonoBehaviour
                 }
             }
         }
+        else if (GetUnit().GetTeam() == Team.Enemy && GetUnit().GetFadeKeyword() != null)
+        {
+            UIHelper.CreateWorldElementNotification(GetUnit().GetName() + " has Fade and cannot be targeted.", false, gameObject);
+        }
         else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))
         {
             Globals.m_selectedUnit.PlayHitAnim();

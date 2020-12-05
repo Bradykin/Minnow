@@ -30,7 +30,7 @@ public class ContentToxicTonicCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetCurHealth() <= m_healthBarrier;
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetCurHealth() <= m_healthBarrier;
     }
 
     public override void PlayCard(GameUnit targetUnit)

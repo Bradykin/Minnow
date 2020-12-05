@@ -29,7 +29,7 @@ public class ContentFuryCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetTypeline() == Typeline.Monster;
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
     public override void PlayCard(GameUnit targetUnit)

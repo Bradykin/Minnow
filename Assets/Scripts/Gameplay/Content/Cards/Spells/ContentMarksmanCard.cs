@@ -26,7 +26,7 @@ public class ContentMarksmanCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetRange() >= 2;
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetRange() >= 2;
     }
 
     public override void PlayCard(GameUnit targetUnit)

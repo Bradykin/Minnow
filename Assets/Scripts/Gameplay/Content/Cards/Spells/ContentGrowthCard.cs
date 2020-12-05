@@ -24,7 +24,7 @@ public class ContentGrowthCard : GameCardSpellBase
 
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
-        return base.IsValidToPlay() && targetUnit.GetGameTile().GetTerrain().IsForest();
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetGameTile().GetTerrain().IsForest();
     }
 
     public override void PlayCard(GameUnit targetUnit)

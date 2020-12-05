@@ -1185,6 +1185,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_keywordHolder.GetKeyword<GameCleaveKeyword>();
     }
 
+    public virtual GameFadeKeyword GetFadeKeyword()
+    {
+        return m_keywordHolder.GetKeyword<GameFadeKeyword>();
+    }
+
     public virtual GameFlyingKeyword GetFlyingKeyword()
     {
         return m_keywordHolder.GetKeyword<GameFlyingKeyword>();
@@ -2078,6 +2083,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (thornsKeyword != null)
         {
             returnDesc += thornsKeyword.GetDisplayString() + "\n";
+        }
+
+        GameFadeKeyword fadeKeyword = GetFadeKeyword();
+        if (fadeKeyword != null)
+        {
+            returnDesc += fadeKeyword.GetDisplayString() + "\n";
         }
 
         GameFlyingKeyword flyingKeyword = GetFlyingKeyword();
