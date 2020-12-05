@@ -24,7 +24,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "x5 benefits from <b>Magic Power</b>.";
+        return GetDamageDescString() + "x3 benefits from <b>Magic Power</b>.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -43,7 +43,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
     {
         int spellValueBase = base.GetSpellValue() - m_spellEffect;
 
-        spellValueBase = 5 * spellValueBase + m_spellEffect;
+        spellValueBase = 3 * spellValueBase + m_spellEffect;
 
         if (spellValueBase < 0)
         {
