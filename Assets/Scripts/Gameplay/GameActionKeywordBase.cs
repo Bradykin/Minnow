@@ -139,6 +139,7 @@ public abstract class GameActionKeywordBase : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
+            isPermanentValue = m_isPermanent,
             gameActionData = new List<JsonGameActionData>()
         };
 

@@ -12,7 +12,7 @@ public class ContentLizardmanEnemy : GameEnemyUnit
         m_maxHealth = 15;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 20;
+        m_power = 16;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

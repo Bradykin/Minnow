@@ -45,6 +45,7 @@ public class GameBleedKeyword : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
+            isPermanentValue = m_isPermanent,
             intValue = m_bleedAmount
         };
 

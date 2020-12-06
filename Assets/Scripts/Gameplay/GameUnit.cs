@@ -1559,11 +1559,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (m_gameTile.HasBuilding())
-        {
-            return true;
-        }
-
         return m_gameTile.GetTerrain().IsDunes();
     }
 
@@ -2383,22 +2378,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
             {
-                if (m_keywordHolder.GetNumVisibleKeywords() == 0)
-                {
+                //if (m_keywordHolder.GetNumVisibleKeywords() == 0)
+                //{
                     List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
-                    tordrimKeywords.Add(new GameVictoriousKeyword(new GameExplodeAction(this, 25, 3)));
-                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainGoldAction(10)));
+                    tordrimKeywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
+                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainGoldAction(5)));
                     tordrimKeywords.Add(new GameFlyingKeyword());
                     tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
                     tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
                     tordrimKeywords.Add(new GameRangeKeyword(2));
                     tordrimKeywords.Add(new GameRegenerateKeyword(10));
                     tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
-                    tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameFullHealAction(this)));
+                    tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameExplodeAction(this, 8, 2)));
 
                     int r = Random.Range(0, tordrimKeywords.Count);
                     AddKeyword(tordrimKeywords[r], false, false);
-                }
+                //}
             }
 
             if (GameHelper.HasRelic<ContentSporetechRelic>())

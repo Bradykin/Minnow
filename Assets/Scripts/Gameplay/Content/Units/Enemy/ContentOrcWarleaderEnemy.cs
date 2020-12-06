@@ -19,8 +19,8 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         else
         {
             m_maxHealth = 250;
-            m_maxStamina = 6;
-            m_staminaRegen = 5;
+            m_maxStamina = 8;
+            m_staminaRegen = 6;
             m_power = 15;
         }
 

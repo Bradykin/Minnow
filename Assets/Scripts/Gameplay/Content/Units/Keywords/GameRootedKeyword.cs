@@ -37,7 +37,8 @@ public class GameRootedKeyword : GameKeywordBase
     {
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
-            name = m_name
+            name = m_name,
+            isPermanentValue = m_isPermanent
         };
 
         return jsonData;
