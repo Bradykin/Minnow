@@ -10,7 +10,7 @@ public class ContentYetiEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 35;
+        m_maxHealth = 30;
         m_maxStamina = 4;
         m_staminaRegen = 3;
         m_power = 15;
@@ -21,7 +21,7 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_name = "Yeti";
         m_desc = "";
 
-        AddKeyword(new GameRangeKeyword(4), true, false);
+        AddKeyword(new GameRangeKeyword(3), true, false);
         AddKeyword(new GameMountainwalkKeyword(), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

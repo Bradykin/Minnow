@@ -6,7 +6,7 @@ public class ContentLavaRhinoEnemy : GameEnemyUnit
 {
     public ContentLavaRhinoEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 90;
+        m_maxHealth = 70;
         m_maxStamina = 4;
         m_staminaRegen = 2;
         m_power = 100;

@@ -8,7 +8,7 @@ public class GameShivKeyword : GameKeywordBase
     public GameShivKeyword()
     {
         m_name = "Shiv";
-        m_focusInfoText = "A <b>Shiv</b> is a 0 cost spell that deals 4 damage.";
+        m_focusInfoText = "A <b>Shiv</b> is a 0 cost exile spell that deals 4 damage.";
         m_keywordParamType = KeywordParamType.NoParams;
 
         m_isVisible = false;
