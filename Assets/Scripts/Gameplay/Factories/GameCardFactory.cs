@@ -180,6 +180,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentQuickStrikesCard());
 
         //New Cards
+        m_cards.Add(new ContentPathCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
