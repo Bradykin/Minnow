@@ -10,6 +10,7 @@ public class JsonGameKeywordData
     public string name;
 
     //Json Keyword parsing data
+    public bool isPermanentValue;
     public int intValue;
     public bool boolValue;
     public List<JsonGameActionData> gameActionData;

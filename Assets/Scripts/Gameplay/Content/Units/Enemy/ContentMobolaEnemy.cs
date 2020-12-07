@@ -19,8 +19,8 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_name = "Mobola";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 5, 0)), true, false);
-        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 5, 0)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 4, 0)), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 4, 0)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameRegenerateKeyword(30), true, false);

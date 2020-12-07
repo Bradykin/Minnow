@@ -80,6 +80,7 @@ public class GameKeywordFactory
                 return null;
         }
         newKeyword.LoadFromJson(jsonData);
+        newKeyword.m_isPermanent = jsonData.isPermanentValue;
 
         return newKeyword;
     }

@@ -13,7 +13,7 @@ public class ContentMageArmorCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
-        m_cost = 2;
+        m_cost = 1;
 
         SetupBasicData();
 
