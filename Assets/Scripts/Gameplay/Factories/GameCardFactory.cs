@@ -172,13 +172,13 @@ public static class GameCardFactory
         m_cards.Add(new ContentDarkHeartCard());
         m_cards.Add(new ContentBladesCard());
         m_cards.Add(new ContentGrowthCard());
+        m_cards.Add(new ContentMoonbeamCard());
+        m_cards.Add(new ContentProductionCard());
+        m_cards.Add(new ContentHeroismCard());
+        m_cards.Add(new ContentContellationsCard());
+        m_cards.Add(new ContentEndCard());
 
         //New Cards
-        m_cards.Add(new ContentMoonbeamCard());
-        m_cards.Add(new ContentContellationsCard());
-        m_cards.Add(new ContentHeroismCard());
-        m_cards.Add(new ContentEndCard());
-        m_cards.Add(new ContentProductionCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
