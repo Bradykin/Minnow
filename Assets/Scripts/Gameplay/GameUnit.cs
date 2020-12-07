@@ -1037,14 +1037,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         int staminaToAttack = m_staminaToAttack;
+
         if (GetTeam() == Team.Player)
         {
             if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
-            {
-                staminaToAttack--;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
                 staminaToAttack--;
             }
