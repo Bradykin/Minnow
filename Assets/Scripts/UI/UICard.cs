@@ -172,7 +172,14 @@ public class UICard : MonoBehaviour
         {
             if (m_costText != null)
             {
-                m_costText.text = m_card.GetCost() + "";
+                if (m_card.IsXSpell())
+                {
+                    m_costText.text = "X"; 
+                }
+                else
+                {
+                    m_costText.text = m_card.GetCost() + "";
+                }
             }
 
             if (m_enemyObj != null)

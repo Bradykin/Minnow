@@ -514,6 +514,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         return toReturn;
     }
 
+    public int GetCurEnergy()
+    {
+        return m_curEnergy;
+    }
+
     private int GetDrawHandSize()
     {
         int toReturn = Constants.InitialHandSize;
@@ -697,6 +702,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 }
             }
         }
+    }
+
+    public int GetXValue()
+    {
+        return m_curEnergy;
     }
 
     //============================================================================================================//
