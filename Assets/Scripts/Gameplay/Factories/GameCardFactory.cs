@@ -174,6 +174,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentGrowthCard());
 
         //New Cards
+        m_cards.Add(new ContentMoonbeamCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
