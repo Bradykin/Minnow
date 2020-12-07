@@ -184,6 +184,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentBrokenLinkCard());
         m_cards.Add(new ContentProtectionCard());
         m_cards.Add(new ContentExperienceCard());
+        m_cards.Add(new ContentFireworksCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
