@@ -178,13 +178,12 @@ public static class GameCardFactory
         m_cards.Add(new ContentContellationsCard());
         m_cards.Add(new ContentEndCard());
         m_cards.Add(new ContentQuickStrikesCard());
-
-        //New Cards
         m_cards.Add(new ContentPathCard());
         m_cards.Add(new ContentBrokenLinkCard());
         m_cards.Add(new ContentProtectionCard());
         m_cards.Add(new ContentExperienceCard());
         m_cards.Add(new ContentFireworksCard());
+        m_cards.Add(new ContentCometOfThePastCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
