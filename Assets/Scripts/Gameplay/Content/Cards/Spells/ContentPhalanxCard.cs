@@ -10,7 +10,7 @@ public class ContentPhalanxCard : GameCardSpellBase
     public ContentPhalanxCard()
     {
         m_name = "Phalanx";
-        m_desc = "Target allied <b>Humanoid</b> unit gets +" + m_buffNum + "/+" + m_buffNum + " for each allied <b>Humanoid</b> unit within " + m_effectRange + " tiles (including itself).";
+        m_desc = "Target allied unit gets +" + m_buffNum + "/+" + m_buffNum + " for each allied unit within " + m_effectRange + " tiles (including itself).";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -18,11 +18,6 @@ public class ContentPhalanxCard : GameCardSpellBase
         SetupBasicData();
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Humanoid;
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -44,7 +39,7 @@ public class ContentPhalanxCard : GameCardSpellBase
             for (int i = 0; i < surroundingTiles.Count; i++)
             {
                 if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
-                    surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player && surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Humanoid)
+                    surroundingTiles[i].GetOccupyingUnit().GetTeam() == Team.Player)
                 {
                     amount+=1;
                 }

@@ -7,7 +7,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
     public ContentMonsterProdCard()
     {
         m_name = "Monster Prod";
-        m_desc = "Target allied <b>Monster</b> unit gains '<b>Enrage</b>: Gain 1 Stamina until end of wave.'";
+        m_desc = "Target allied unit gains '<b>Enrage</b>: Gain 1 Stamina until end of wave.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
@@ -24,11 +24,6 @@ public class ContentMonsterProdCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Healing);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
     public override void PlayCard(GameUnit targetUnit)

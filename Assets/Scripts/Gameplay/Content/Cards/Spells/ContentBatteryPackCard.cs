@@ -30,12 +30,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied <b>Creation</b> unit gains " + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Creation;
+        return "Target allied unit gains " + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)

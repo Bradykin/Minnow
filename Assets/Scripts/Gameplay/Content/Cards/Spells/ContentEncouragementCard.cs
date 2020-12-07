@@ -7,7 +7,7 @@ public class ContentEncouragementCard : GameCardSpellBase
     public ContentEncouragementCard()
     {
         m_name = "Encouragement";
-        m_desc = "Deal 1 damage to target allied <b>Monster</b> unit, then give them +0/+3.";
+        m_desc = "Deal 1 damage to target allied unit, then give them +0/+3.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -19,11 +19,6 @@ public class ContentEncouragementCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Healing);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
     public override void PlayCard(GameUnit targetUnit)
