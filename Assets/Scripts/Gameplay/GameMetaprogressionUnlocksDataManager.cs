@@ -472,6 +472,7 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentMoonbeamCard());
         m_initialCards.Add(new ContentProductionCard());
         m_initialCards.Add(new ContentHeroismCard());
+        m_initialCards.Add(new ContentQuickStrikesCard());
 
         //Initial Relics
         m_initialRelics.Add(new ContentHourglassOfSpeedRelic());

@@ -177,6 +177,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentHeroismCard());
         m_cards.Add(new ContentContellationsCard());
         m_cards.Add(new ContentEndCard());
+        m_cards.Add(new ContentQuickStrikesCard());
 
         //New Cards
 

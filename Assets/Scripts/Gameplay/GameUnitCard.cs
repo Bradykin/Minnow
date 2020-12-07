@@ -190,6 +190,11 @@ public class GameUnitCard : GameCard
             desc += "\n";
         }
 
+        if (m_unit.GetStaminaToAttack(null) == 1)
+        {
+            desc += "Only takes 1 stamina to attack.";
+        }
+
         desc += GetUnit().GetKeywordDesc();
 
         return desc;

@@ -8,8 +8,6 @@ public class ContentOverlord : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_staminaToAttack = 1;
-
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;
         AddKeyword(new GameFlyingKeyword(), true, false);
@@ -50,5 +48,7 @@ public class ContentOverlord : GameUnit
         m_maxStamina = 6;
         m_staminaRegen = 3;
         m_power = 4;
+
+        m_staminaToAttack = 1;
     }
 }

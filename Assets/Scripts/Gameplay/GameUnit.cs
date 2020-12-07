@@ -732,6 +732,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
+    public virtual void SetStaminaToAttack(int newVal)
+    {
+        m_staminaToAttack = newVal;
+    }
+
     public void AddStaminaRegen(int toAdd, bool permanent)
     {
         if (m_gameTile != null)
@@ -1140,6 +1145,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void ResetKeywords(bool ignorePerm)
     {
         m_keywordHolder.RemoveAllKeywords(ignorePerm);
+
+        m_staminaToAttack = 2;
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)
