@@ -175,6 +175,8 @@ public static class GameCardFactory
 
         //New Cards
         m_cards.Add(new ContentMoonbeamCard());
+        m_cards.Add(new ContentContellationsCard());
+        m_cards.Add(new ContentHeroismCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());

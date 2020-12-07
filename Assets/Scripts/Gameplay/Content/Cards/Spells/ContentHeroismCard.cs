@@ -2,33 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGrowthCard : GameCardSpellBase
+public class ContentHeroismCard : GameCardSpellBase
 {
-    private int m_statBuff = 4;
+    private int m_statBuff = 15;
+    private int m_stamRegenBuff = 1;
 
-    public ContentGrowthCard()
+    public ContentHeroismCard()
     {
-        m_name = "Growth";
+        m_name = "Heroism";
         m_targetType = Target.Ally;
-        m_cost = 1;
-        m_rarity = GameRarity.Common;
+        m_cost = 4;
+        m_rarity = GameRarity.Uncommon;
+        m_shouldExile = true;
 
         SetupBasicData();
 
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetGameTile().GetTerrain().IsForest();
-    }
-
     public override string GetDesc()
     {
-        return "Target allied unit in a forest gains +" + m_statBuff + "/+" + m_statBuff + ".";
+        return "Target allied unit gains +" + m_statBuff + "/+" + m_statBuff + " and +" + m_stamRegenBuff + " stamina regen.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -41,5 +38,6 @@ public class ContentGrowthCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddStats(m_statBuff, m_statBuff, false, true);
+        targetUnit.AddStaminaRegen(m_stamRegenBuff, false);
     }
 }

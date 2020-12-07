@@ -55,7 +55,6 @@ public class ContentMoonbeamCard : GameCardSpellBase
             if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
             {
                 unit.GetHitBySpell(GetSpellValue(), this);
-                break;
             }
         }
     }
