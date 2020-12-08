@@ -8,18 +8,17 @@ public class ContentNaturalScout : GameUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.3f, 0);
 
-        m_staminaToAttack = 5;
         m_sightRange = 5;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
         m_name = "Natural Scout";
-        m_desc = "Has sight range of " + m_sightRange + ".\nTakes 5 Stamina to attack.\n";
+        m_desc = "Has sight range of " + m_sightRange + ".\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameForestwalkKeyword(), true, false);
+        AddKeyword(new GameFadeKeyword(), true, false);
 
         LateInit();
     }
@@ -29,8 +28,8 @@ public class ContentNaturalScout : GameUnit
         ResetKeywords(true);
 
         m_maxHealth = 10;
-        m_maxStamina = 6;
-        m_staminaRegen = 6;
+        m_maxStamina = 5;
+        m_staminaRegen = 4;
         m_power = 1;
     }
 }
