@@ -35,8 +35,10 @@ public class ContentProtectionCard : GameCardSpellBase
             return;
         }
 
-        targetUnit.AddKeyword(new GameDamageShieldKeyword(GameHelper.GetPlayer().GetXValue()), false, false);
+        int xVal = GameHelper.GetPlayer().GetXValue();
 
         base.PlayCard(targetUnit);
+
+        targetUnit.AddKeyword(new GameDamageShieldKeyword(xVal), false, false);
     }
 }

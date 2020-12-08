@@ -43,8 +43,8 @@ public class ContentExperienceCard : GameCardSpellBase
 
         int yVal = GameHelper.GetPlayer().GetXValue() * GetSpellValue();
 
-        targetUnit.AddStats(yVal, yVal, true, true);
-
         base.PlayCard(targetUnit);
+
+        targetUnit.AddStats(yVal, yVal, true, true);
     }
 }

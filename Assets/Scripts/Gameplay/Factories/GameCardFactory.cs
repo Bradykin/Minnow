@@ -192,6 +192,7 @@ public static class GameCardFactory
         m_tribalCards.Add(new ContentDwarfArchitectCard());
 
         m_tribalCards.Add(new ContentAncientTextsCard());
+        m_tribalCards.Add(new ContentDreamCard());
         //m_tribalCards.Add(new ContentFletchingCard());
         m_tribalCards.Add(new ContentInsightCard());
         m_tribalCards.Add(new ContentOverchargeCard());

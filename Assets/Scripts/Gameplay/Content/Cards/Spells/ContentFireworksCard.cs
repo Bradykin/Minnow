@@ -59,7 +59,11 @@ public class ContentFireworksCard : GameCardSpellBase
             }
         }
 
-        for (int i = 0; i < GameHelper.GetPlayer().GetXValue(); i++)
+        int xVal = GameHelper.GetPlayer().GetXValue();
+
+        base.PlayCard(targetUnit);
+
+        for (int i = 0; i < xVal; i++)
         {
             if (targets.Count == 0)
             {
@@ -70,7 +74,5 @@ public class ContentFireworksCard : GameCardSpellBase
             targets[index].GetHitBySpell(damage, this);
             targets.RemoveAt(index);
         }
-
-        base.PlayCard(targetUnit);
     }
 }

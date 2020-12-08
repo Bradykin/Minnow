@@ -8,9 +8,9 @@ public class ContentEndCard : GameCardSpellBase
 
     public ContentEndCard()
     {
-        m_spellEffect = 10;
+        m_spellEffect = 20;
 
-        m_name = "Burning Storm";
+        m_name = "End";
         m_targetType = Target.Enemy;
         m_cost = 5;
         m_rarity = GameRarity.Uncommon;

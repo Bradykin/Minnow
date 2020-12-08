@@ -41,11 +41,13 @@ public class ContentBrokenLinkCard : GameCardSpellBase
             return;
         }
 
-        for (int i = 0; i < GameHelper.GetPlayer().GetXValue(); i++)
+        int xVal = GameHelper.GetPlayer().GetXValue();
+
+        base.PlayCard(targetUnit);
+
+        for (int i = 0; i < xVal; i++)
         {
             targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
-
-        base.PlayCard(targetUnit);
     }
 }
