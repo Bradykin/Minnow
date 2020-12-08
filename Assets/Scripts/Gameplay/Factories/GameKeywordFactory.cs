@@ -62,7 +62,6 @@ public class GameKeywordFactory
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue);
                 break;
             case GameKeywordBase.KeywordParamType.BoolParam:
-                Debug.Log(m_keywords[i].GetType());
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.boolValue);
                 break;
             case GameKeywordBase.KeywordParamType.IntBoolParam:

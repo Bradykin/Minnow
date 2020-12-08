@@ -7,14 +7,13 @@ public class GameFadeKeyword : GameKeywordBase
 {
     public bool m_isActive;
     
-    //TODO Alex - make this a Boolparam, remove needless variable, and figure out wtf is going on
-    public GameFadeKeyword(int needlessVariable = 0, bool isActive = true)
+    public GameFadeKeyword(bool isActive = true)
     {
         m_isActive = isActive;
 
         m_name = "Fade";
         m_focusInfoText = "Cannot be targeted with attacks, spells, or abilities by the opposing team. Fade is lost when this unit attacks.";
-        m_keywordParamType = KeywordParamType.IntBoolParam;
+        m_keywordParamType = KeywordParamType.BoolParam;
     }
 
     //Left blank intentionally
