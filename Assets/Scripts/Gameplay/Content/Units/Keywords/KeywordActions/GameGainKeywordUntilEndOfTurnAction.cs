@@ -30,14 +30,14 @@ public class GameGainKeywordUntilEndOfTurnAction : GameAction
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainKeywordAction tempAction = (GameGainKeywordAction)toAdd;
+        GameGainTempKeywordAction tempAction = (GameGainTempKeywordAction)toAdd;
 
         m_keyword.AddKeyword(tempAction.GetKeyword());
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainKeywordAction tempAction = (GameGainKeywordAction)toSubtract;
+        GameGainTempKeywordAction tempAction = (GameGainTempKeywordAction)toSubtract;
 
         m_keyword.SubtractKeyword(tempAction.GetKeyword());
     }

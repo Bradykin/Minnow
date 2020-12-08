@@ -10,6 +10,7 @@ public struct JsonGameActionData
     //Json Keyword parsing data
     public int intValue1;
     public int intValue2;
+    public bool boolValue1;
     public List<int> intListValue1;
 
     public JsonGameKeywordData gameKeywordData;

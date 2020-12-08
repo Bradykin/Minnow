@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class GameFadeKeyword : GameKeywordBase
 {
-    public GameFadeKeyword()
+    public bool m_isActive;
+    
+    public GameFadeKeyword(bool isActive)
     {
         m_name = "Fade";
-        m_focusInfoText = "Cannot be targeted with attacks, spells, or abilities by the opposing team.";
-        m_keywordParamType = KeywordParamType.NoParams;
+        m_focusInfoText = "Cannot be targeted with attacks, spells, or abilities by the opposing team. Fade is lost when this unit attacks.";
+        m_keywordParamType = KeywordParamType.BoolParam;
+
+        m_isActive = isActive;
     }
 
     //Left blank intentionally
@@ -38,6 +42,7 @@ public class GameFadeKeyword : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
+            boolValue = m_isActive,
             isPermanentValue = m_isPermanent
         };
 

@@ -40,7 +40,7 @@ public class GameActionFactory
         m_actions.Add(new GameRoarOfVictoryAction(null, 0));
         m_actions.Add(new GameShivNearbyAction(null, 0, 0));
         m_actions.Add(new GameSpellcraftAttackAction(null, 0));
-        m_actions.Add(new GameGainKeywordAction(null, null));
+        m_actions.Add(new GameGainTempKeywordAction(null, null));
         m_actions.Add(new GameLoseKeywordAction(null, null));
         m_actions.Add(new GameGainKeywordUntilEndOfTurnAction(null, null));
         m_actions.Add(new GameGainKeywordRangeAction(null, 0, null));

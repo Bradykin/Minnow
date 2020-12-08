@@ -31,7 +31,7 @@ public class ContentFadeCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameFadeKeyword(), false, false);
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameLoseKeywordAction(targetUnit, new GameFadeKeyword()));
+        targetUnit.AddKeyword(new GameFadeKeyword(true), false, false);
+        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameLoseKeywordAction(targetUnit, new GameFadeKeyword(true)));
     }
 }

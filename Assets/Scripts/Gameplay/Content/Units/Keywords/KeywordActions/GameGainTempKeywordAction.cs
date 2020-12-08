@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGainKeywordAction : GameAction
+public class GameGainTempKeywordAction : GameAction
 {
     private GameUnit m_unit;
     private GameKeywordBase m_keyword;
 
-    public GameGainKeywordAction(GameUnit unit, GameKeywordBase keyword)
+    public GameGainTempKeywordAction(GameUnit unit, GameKeywordBase keyword)
     {
         m_unit = unit;
         m_keyword = keyword;
 
-        m_name = "Gain Keyword";
+        m_name = "Gain Temporary Keyword";
         m_actionParamType = ActionParamType.UnitKeywordParam;
     }
 
@@ -28,14 +28,14 @@ public class GameGainKeywordAction : GameAction
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainKeywordAction tempAction = (GameGainKeywordAction)toAdd;
+        GameGainTempKeywordAction tempAction = (GameGainTempKeywordAction)toAdd;
 
         m_keyword.AddKeyword(tempAction.GetKeyword());
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainKeywordAction tempAction = (GameGainKeywordAction)toSubtract;
+        GameGainTempKeywordAction tempAction = (GameGainTempKeywordAction)toSubtract;
 
         m_keyword.SubtractKeyword(tempAction.GetKeyword());
     }
@@ -60,7 +60,7 @@ public class GameGainKeywordAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            gameKeywordData = m_keyword.SaveToJson()
+            gameKeywordData = m_keyword.SaveToJson(),
         };
 
         return jsonData;

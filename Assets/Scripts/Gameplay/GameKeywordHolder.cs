@@ -89,6 +89,7 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
                         m_keywords.RemoveAt(i);
                         break;
                     case GameKeywordBase.KeywordParamType.IntParam:
+                    case GameKeywordBase.KeywordParamType.BoolParam:
                     case GameKeywordBase.KeywordParamType.IntBoolParam:
                     case GameKeywordBase.KeywordParamType.ActionParam:
                         m_keywords[i].SubtractKeyword(toSubtract);

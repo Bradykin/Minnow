@@ -25,7 +25,7 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, m_healthIncrease)), true, false);
-        AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameRegenerateKeyword(m_regenIncrease))), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainTempKeywordAction(this, new GameRegenerateKeyword(m_regenIncrease))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameMomentumKeyword(new GameGetHitAction(this, m_enrageSelfDamageAmount)), true, false);

@@ -29,7 +29,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionAmount))), true, false);
+            AddKeyword(new GameEnrageKeyword(new GameGainTempKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionAmount))), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

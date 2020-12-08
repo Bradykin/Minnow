@@ -22,7 +22,7 @@ public class GameKeywordFactory
         m_keywords.Add(new GameDeathKeyword(null));
         m_keywords.Add(new GameDuneswalkKeyword());
         m_keywords.Add(new GameEnrageKeyword(null));
-        m_keywords.Add(new GameFadeKeyword());
+        m_keywords.Add(new GameFadeKeyword(true));
         m_keywords.Add(new GameForestwalkKeyword());
         m_keywords.Add(new GameFlyingKeyword());
         m_keywords.Add(new GameFrostwalkKeyword());
@@ -60,6 +60,9 @@ public class GameKeywordFactory
                 break;
             case GameKeywordBase.KeywordParamType.IntParam:
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue);
+                break;
+            case GameKeywordBase.KeywordParamType.BoolParam:
+                newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.boolValue);
                 break;
             case GameKeywordBase.KeywordParamType.IntBoolParam:
                 newKeyword = (GameKeywordBase)Activator.CreateInstance(m_keywords[i].GetType(), jsonData.intValue, jsonData.boolValue);

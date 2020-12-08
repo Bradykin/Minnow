@@ -159,6 +159,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual void EndWave()
     {
+        GameFadeKeyword fadeKeyword = GetFadeKeyword(true);
+        if (fadeKeyword != null && !fadeKeyword.m_isActive)
+        {
+            fadeKeyword.m_isActive = true;
+        }
+        
         ResetToBase();
     }
 
@@ -931,6 +937,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
+        if (GetFadeKeyword() != null)
+        {
+            GetFadeKeyword().m_isActive = false;
+        }
+
         return damageTaken;
     }
 
@@ -999,6 +1010,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     damageTaken += HitBuilding(tilesToCleave[i].GetBuilding(), spendStamina: false, canCleave: false);
                 }
             }
+        }
+
+        if (GetFadeKeyword() != null)
+        {
+            GetFadeKeyword().m_isActive = false;
         }
 
         return 0;
@@ -1185,8 +1201,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return m_keywordHolder.GetKeyword<GameCleaveKeyword>();
     }
 
-    public virtual GameFadeKeyword GetFadeKeyword()
+    public virtual GameFadeKeyword GetFadeKeyword(bool getInactiveFade = false)
     {
+        GameFadeKeyword fadeKeyword = m_keywordHolder.GetKeyword<GameFadeKeyword>();
+        
+        if (fadeKeyword != null && !getInactiveFade && !fadeKeyword.m_isActive)
+        {
+            return null;
+        }
+
         return m_keywordHolder.GetKeyword<GameFadeKeyword>();
     }
 

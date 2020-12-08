@@ -9,6 +9,7 @@ public abstract class GameKeywordBase : GameElementBase, ISave<JsonGameKeywordDa
     {
         NoParams,
         IntParam,
+        BoolParam,
         IntBoolParam,
         ActionParam
     }

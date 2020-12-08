@@ -15,6 +15,8 @@ public class ContentDwarvenSoldier : GameUnit
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
+        AddKeyword(new GameFadeKeyword(true), true, false);
+
         LateInit();
     }
 
