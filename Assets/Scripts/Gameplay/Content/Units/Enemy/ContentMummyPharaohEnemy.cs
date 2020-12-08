@@ -97,11 +97,14 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
 
     public override bool IsInvulnerable()
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_mummyResurrectionRange);
-
-        if (surroundingTiles.Any(t => t.IsOccupied() && t.GetOccupyingUnit() is ContentMummyEnemy))
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            return true;
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_mummyResurrectionRange);
+
+            if (surroundingTiles.Any(t => t.IsOccupied() && t.GetOccupyingUnit() is ContentMummyEnemy))
+            {
+                return true;
+            }
         }
 
         return base.IsInvulnerable();
