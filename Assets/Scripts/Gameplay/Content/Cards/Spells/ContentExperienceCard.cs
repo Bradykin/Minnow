@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentBatteryPackCard : GameCardSpellBase
+public class ContentExperienceCard : GameCardSpellBase
 {
-    public ContentBatteryPackCard()
+    public ContentExperienceCard()
     {
+        m_name = "Experience";
+        m_targetType = Target.Ally;
+        m_rarity = GameRarity.Uncommon;
+        m_xSpell = true;
+        m_shouldExile = true;
+
         m_spellEffect = 1;
 
-        m_name = "Battery Pack";
-        m_targetType = Target.Ally;
-        m_cost = 1;
-        m_rarity = GameRarity.Uncommon;
+        m_cost = 0;
+
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         SetupBasicData();
-
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
@@ -30,7 +31,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit gains " + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
+        return "Target allied unit <b>permanently</b> gains +" + m_spellEffect + mpString + "X/+" + m_spellEffect + mpString + "X.\n" + GetModifiedByMagicPowerString();
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -40,8 +41,10 @@ public class ContentBatteryPackCard : GameCardSpellBase
             return;
         }
 
-        base.PlayCard(targetUnit);
+        int yVal = GameHelper.GetPlayer().GetXValue() * GetSpellValue();
 
-        targetUnit.AddMaxStamina(GetSpellValue(), false);
+        targetUnit.AddStats(yVal, yVal, true, true);
+
+        base.PlayCard(targetUnit);
     }
 }

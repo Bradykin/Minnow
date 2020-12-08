@@ -7,7 +7,7 @@ public class ContentMechanizeCard : GameCardSpellBase
     public ContentMechanizeCard()
     {
         m_name = "Mechanize";
-        m_desc = "Target allied <b>Creation</b> unit loses all current Stamina and gains that much power.";
+        m_desc = "Target allied unit loses all current Stamina and gains that much power.";
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Common;
@@ -20,11 +20,6 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Creation;
     }
 
     public override void PlayCard(GameUnit targetUnit)

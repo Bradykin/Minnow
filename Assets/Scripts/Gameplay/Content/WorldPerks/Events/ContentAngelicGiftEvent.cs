@@ -59,7 +59,7 @@ public class GameEventAngelicWings : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddKeyword(new GameFlyingKeyword(), true, false);
+        m_tile.GetOccupyingUnit().AddKeyword(new GameFlyingKeyword(), true, true);
 
         EndEvent();
     }

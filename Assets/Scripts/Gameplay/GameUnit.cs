@@ -738,6 +738,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
+    public virtual void SetStaminaToAttack(int newVal)
+    {
+        m_staminaToAttack = newVal;
+    }
+
     public void AddStaminaRegen(int toAdd, bool permanent)
     {
         if (m_gameTile != null)
@@ -1048,14 +1053,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int GetStaminaToAttack(GameElementBase targetToAttack)
     {
         int staminaToAttack = m_staminaToAttack;
+
         if (GetTeam() == Team.Player)
         {
             if (GameHelper.HasRelic<ContentUrbanTacticsRelic>())
-            {
-                staminaToAttack--;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber == GameHelper.GetPlayer().m_totemOfTheWolfTurn)
             {
                 staminaToAttack--;
             }
@@ -1156,6 +1157,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public void ResetKeywords(bool ignorePerm)
     {
         m_keywordHolder.RemoveAllKeywords(ignorePerm);
+
+        m_staminaToAttack = 2;
     }
 
     public void RemoveKeyword(GameKeywordBase toRemove)

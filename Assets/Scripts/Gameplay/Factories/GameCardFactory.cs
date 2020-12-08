@@ -172,8 +172,18 @@ public static class GameCardFactory
         m_cards.Add(new ContentDarkHeartCard());
         m_cards.Add(new ContentBladesCard());
         m_cards.Add(new ContentGrowthCard());
-
-        //New Cards
+        m_cards.Add(new ContentMoonbeamCard());
+        m_cards.Add(new ContentProductionCard());
+        m_cards.Add(new ContentHeroismCard());
+        m_cards.Add(new ContentContellationsCard());
+        m_cards.Add(new ContentEndCard());
+        m_cards.Add(new ContentQuickStrikesCard());
+        m_cards.Add(new ContentPathCard());
+        m_cards.Add(new ContentBrokenLinkCard());
+        m_cards.Add(new ContentProtectionCard());
+        m_cards.Add(new ContentExperienceCard());
+        m_cards.Add(new ContentFireworksCard());
+        m_cards.Add(new ContentCometOfThePastCard());
 
         //Event Cards
         m_cards.Add(new ContentLivingBombCard());
@@ -182,16 +192,9 @@ public static class GameCardFactory
         m_tribalCards.Add(new ContentDwarfArchitectCard());
 
         m_tribalCards.Add(new ContentAncientTextsCard());
-        m_tribalCards.Add(new ContentBatteryPackCard());
-        m_tribalCards.Add(new ContentBullheadedCard());
-        m_tribalCards.Add(new ContentEncouragementCard());
         //m_tribalCards.Add(new ContentFletchingCard());
-        m_tribalCards.Add(new ContentFuryCard());
         m_tribalCards.Add(new ContentInsightCard());
-        m_tribalCards.Add(new ContentMechanizeCard());
-        m_tribalCards.Add(new ContentMonsterProdCard());
         m_tribalCards.Add(new ContentOverchargeCard());
-        m_tribalCards.Add(new ContentPhalanxCard());
         m_tribalCards.Add(new ContentReforgingCard());
         m_tribalCards.Add(new ContentRoarOfVictoryCard());
 

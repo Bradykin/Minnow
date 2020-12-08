@@ -9,7 +9,6 @@ public class ContentGrowthCard : GameCardSpellBase
     public ContentGrowthCard()
     {
         m_name = "Growth";
-        m_desc = "Target allied unit in a forest gains +" + m_statBuff + "/+" + m_statBuff + ".";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -25,6 +24,11 @@ public class ContentGrowthCard : GameCardSpellBase
     public override bool IsValidToPlay(GameUnit targetUnit)
     {
         return base.IsValidToPlay(targetUnit) && targetUnit.GetGameTile().GetTerrain().IsForest();
+    }
+
+    public override string GetDesc()
+    {
+        return "Target allied unit in a forest gains +" + m_statBuff + "/+" + m_statBuff + ".";
     }
 
     public override void PlayCard(GameUnit targetUnit)

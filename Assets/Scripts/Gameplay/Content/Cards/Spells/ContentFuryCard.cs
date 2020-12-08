@@ -7,7 +7,7 @@ public class ContentFuryCard : GameCardSpellBase
     public ContentFuryCard()
     {
         m_name = "Fury";
-        m_desc = "Trigger all instances of <b>Momentum</b>, <b>Enrage</b>, and <b>Victorious</b> on target allied <b>Monster</b>.";
+        m_desc = "Trigger all instances of <b>Momentum</b>, <b>Enrage</b>, and <b>Victorious</b> on target allied unit.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
@@ -25,11 +25,6 @@ public class ContentFuryCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
-    }
-
-    public override bool IsValidToPlay(GameUnit targetUnit)
-    {
-        return base.IsValidToPlay(targetUnit) && targetUnit.GetTypeline() == Typeline.Monster;
     }
 
     public override void PlayCard(GameUnit targetUnit)

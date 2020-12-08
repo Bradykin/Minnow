@@ -65,6 +65,11 @@ public class ContentRiverlurkerEnemy : GameEnemyUnit
 
     public override int GetStaminaToAttack(GameElementBase targetToAttack)
     {
+        if (targetToAttack == null)
+        {
+            return base.GetStaminaToAttack(targetToAttack);
+        }
+
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility) && targetToAttack != null && targetToAttack is GameUnit gameUnit && gameUnit.GetBleedKeyword() != null)
         {
             return Mathf.Max(2, GetCurStamina());

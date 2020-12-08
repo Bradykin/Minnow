@@ -17,6 +17,7 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
     }
 
     protected int m_cost;
+    protected bool m_xSpell = false;
     protected int m_costTempModifier = 0;
     public string m_typeline;
     public Target m_targetType;
@@ -30,6 +31,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
     public int GetCost()
     {
+        if (m_xSpell)
+        {
+            return GameHelper.GetPlayer().GetCurEnergy();
+        }
+
         int toReturn = m_cost + m_costTempModifier;
 
         if (GameHelper.HasRelic<ContentGoldenKnotRelic>() && this is GameCardSpellBase)
@@ -216,6 +222,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
         }
 
         return false;
+    }
+
+    public bool IsXSpell()
+    {
+        return m_xSpell;
     }
 
     //============================================================================================================//

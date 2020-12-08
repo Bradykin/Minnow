@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentEncouragementCard : GameCardSpellBase
+public class ContentQuickStrikesCard : GameCardSpellBase
 {
-    public ContentEncouragementCard()
+    public ContentQuickStrikesCard()
     {
-        m_name = "Encouragement";
-        m_desc = "Deal 1 damage to target allied unit, then give them +0/+3.";
+        m_name = "Quick Strikes";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 2;
         m_rarity = GameRarity.Common;
+        m_shouldExile = true;
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Monster);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+    }
+
+    public override string GetDesc()
+    {
+        return "Target allied unit only takes 1 stamina to attack.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -30,13 +34,6 @@ public class ContentEncouragementCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.GetHitBySpell(1, this);
-
-        if (targetUnit.m_isDead)
-        {
-            return;
-        }
-
-        targetUnit.AddStats(0, 3, false, false);
+        targetUnit.SetStaminaToAttack(1);
     }
 }

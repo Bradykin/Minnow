@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMonsterProdCard : GameCardSpellBase
+public class ContentHeroismCard : GameCardSpellBase
 {
-    public ContentMonsterProdCard()
+    private int m_statBuff = 15;
+    private int m_stamRegenBuff = 1;
+
+    public ContentHeroismCard()
     {
-        m_name = "Monster Prod";
-        m_desc = "Target allied unit gains '<b>Enrage</b>: Gain 1 Stamina until end of wave.'";
+        m_name = "Heroism";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 4;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
-        m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
-
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Monster);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Enrage);
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.Healing);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+    }
+
+    public override string GetDesc()
+    {
+        return "Target allied unit gains +" + m_statBuff + "/+" + m_statBuff + " and +" + m_stamRegenBuff + " stamina regen.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -35,6 +37,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1)), false, false);
+        targetUnit.AddStats(m_statBuff, m_statBuff, false, true);
+        targetUnit.AddStaminaRegen(m_stamRegenBuff, false);
     }
 }
