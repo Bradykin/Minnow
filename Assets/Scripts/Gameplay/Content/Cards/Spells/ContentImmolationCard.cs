@@ -8,7 +8,7 @@ public class ContentImmolationCard : GameCardSpellBase
     
     public ContentImmolationCard()
     {
-        m_spellEffect = 5;
+        m_spellEffect = 8;
 
         m_name = "Immolation";
         m_targetType = Target.Enemy;

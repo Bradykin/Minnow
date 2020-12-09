@@ -1663,7 +1663,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile.GetTerrain().IsForest())
                 {
-                    toReturn += 10;
+                    toReturn += 8;
                 }
 
                 if (GameHelper.HasRelic<ContentBondOfFamilyRelic>())
@@ -1809,7 +1809,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 if (GameHelper.HasRelic<ContentSecretsOfNatureRelic>() && m_gameTile.GetTerrain().IsForest())
                 {
-                    toReturn += 10;
+                    toReturn += 8;
                 }
             }
         }

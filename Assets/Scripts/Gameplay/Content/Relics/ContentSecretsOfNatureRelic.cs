@@ -7,7 +7,7 @@ public class ContentSecretsOfNatureRelic : GameRelic
     public ContentSecretsOfNatureRelic()
     {
         m_name = "Secrets of Nature";
-        m_desc = "Allied units in forests get +10/+10.";
+        m_desc = "Allied units in forests get +8/+8.";
         m_rarity = GameRarity.Common;
 
         LateInit();

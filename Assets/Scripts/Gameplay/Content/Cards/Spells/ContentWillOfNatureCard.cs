@@ -6,7 +6,7 @@ public class ContentWillOfNatureCard : GameCardSpellBase
 {
     public ContentWillOfNatureCard()
     {
-        m_spellEffect = 6;
+        m_spellEffect = 15;
 
         m_name = "Will of Nature";
         m_targetType = Target.None;
