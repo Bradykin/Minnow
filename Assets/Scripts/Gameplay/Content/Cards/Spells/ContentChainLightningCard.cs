@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentChainLightningCard : GameCardSpellBase
@@ -45,25 +46,75 @@ public class ContentChainLightningCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
+        List<GameTile> previouslyHitTiles = new List<GameTile>();
 
         targetUnit.GetHitBySpell(GetSpellValue(), this);
 
         for (int c = 0; c < GetSpellValue(); c++)
         {
-            for (int i = 0; i < surroundingTiles.Count; i++)
-            {
-                GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
+            GameUnit unit = GetNextChainLightningTarget(surroundingTiles, previouslyHitTiles);
 
-                if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
-                {
-                    targetUnit = unit;
-                    surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
-                    targetUnit.GetHitBySpell(GetSpellValue(), this);
-                    break;
-                }
+            if (unit != null)
+            {
+                targetUnit = unit;
+                previouslyHitTiles.Add(targetUnit.GetGameTile());
+                surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
+                targetUnit.GetHitBySpell(GetSpellValue(), this);
+            }
+            else
+            {
+                break;
             }
         }
 
         GameHelper.GetGameController().RemoveIntermissionLock();
+    }
+
+    private GameUnit GetNextChainLightningTarget(List<GameTile> surroundingTiles, List<GameTile> previouslyHitTiles)
+    {
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            GameTile temp = surroundingTiles[i];
+            int randomIndex = UnityEngine.Random.Range(i, surroundingTiles.Count);
+            surroundingTiles[i] = surroundingTiles[randomIndex];
+            surroundingTiles[randomIndex] = temp;
+        }
+
+        List<GameTile> possibleTargetTiles = surroundingTiles.Where(t => t.IsOccupied() && !t.GetOccupyingUnit().m_isDead && t.GetOccupyingUnit().GetTeam() == Team.Enemy).ToList();
+
+        if (possibleTargetTiles.Count == 0)
+        {
+            return null;
+        }
+        else if (possibleTargetTiles.Count == 1)
+        {
+            return possibleTargetTiles[0].GetOccupyingUnit();
+        }
+        else
+        {
+            //Check if there are visible targets. If so, filter out all non-visible
+            if (possibleTargetTiles.Any(t => !t.m_isFog))
+            {
+                possibleTargetTiles = possibleTargetTiles.Where(t => !t.m_isFog).ToList();
+
+                if (possibleTargetTiles.Count == 1)
+                {
+                    return possibleTargetTiles[0].GetOccupyingUnit();
+                }
+            }
+
+            //Check if there are targets that have not yet been hit. If so, filter out all that have been previously hit
+            if (possibleTargetTiles.Any(t => !previouslyHitTiles.Contains(t)))
+            {
+                possibleTargetTiles = possibleTargetTiles.Where(t => !previouslyHitTiles.Contains(t)).ToList();
+
+                if (possibleTargetTiles.Count == 1)
+                {
+                    return possibleTargetTiles[0].GetOccupyingUnit();
+                }
+            }
+
+            return possibleTargetTiles[Random.Range(0, possibleTargetTiles.Count)].GetOccupyingUnit();
+        }
     }
 }
