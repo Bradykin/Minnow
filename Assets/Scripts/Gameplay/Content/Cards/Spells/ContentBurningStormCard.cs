@@ -40,6 +40,7 @@ public class ContentBurningStormCard : GameCardSpellBase
             return;
         }
 
+        GameHelper.GetGameController().AddIntermissionLock();
         base.PlayCard(targetUnit);
 
         GameTile centerTile = targetUnit.GetGameTile();
@@ -57,5 +58,7 @@ public class ContentBurningStormCard : GameCardSpellBase
                 unit.GetHitBySpell(GetSpellValue(), this);
             }
         }
+
+        GameHelper.GetGameController().RemoveIntermissionLock();
     }
 }

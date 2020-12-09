@@ -38,6 +38,8 @@ public class GameExplodeAction : GameAction
 
     public override void DoAction()
     {
+        GameHelper.GetGameController().AddIntermissionLock();
+
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_explodingUnit.GetGameTile(), m_explodeRanges.Max(), 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
@@ -55,6 +57,8 @@ public class GameExplodeAction : GameAction
                 unit.GetHitByAbility(m_explodePower);
             }
         }
+
+        GameHelper.GetGameController().RemoveIntermissionLock();
     }
 
     public override void AddAction(GameAction toAdd)

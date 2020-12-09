@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentFirestormCard : GameCardSpellBase
 {
-    private int m_numHits = 3;
+    private int m_numHits = 5;
     
     public ContentFirestormCard()
     {

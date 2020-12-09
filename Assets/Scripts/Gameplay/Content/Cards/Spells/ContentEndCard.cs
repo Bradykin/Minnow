@@ -41,6 +41,8 @@ public class ContentEndCard : GameCardSpellBase
             return;
         }
 
+        GameHelper.GetGameController().AddIntermissionLock();
+
         base.PlayCard(targetUnit);
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
@@ -56,5 +58,7 @@ public class ContentEndCard : GameCardSpellBase
         }
 
         targetUnit.GetHitBySpell(GetSpellValue(), this);
+
+        GameHelper.GetGameController().RemoveIntermissionLock();
     }
 }

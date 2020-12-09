@@ -29,6 +29,15 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     private bool ShouldStartIntermission => CurrentActor == m_player && m_curKillCount >= m_endWaveKillCount && m_currentWaveNumber != Constants.FinalWaveNum;
 
+    public bool IntermissionLock
+    {
+        get
+        {
+            return m_intermissionLockCount > 0;
+        }
+    }
+    private int m_intermissionLockCount;
+
     public RunStateType m_runStateType = RunStateType.None;
 
     public int m_currentWaveNumber;
@@ -152,6 +161,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public bool CheckStartIntermission(bool forceIntermission = false)
     {
+        if (IntermissionLock)
+        {
+            return false;
+        }
+        
         if (forceIntermission)
         {
             StartIntermissionImpl(false);
@@ -165,6 +179,19 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         }
 
         return false;
+    }
+
+    public void AddIntermissionLock()
+    {
+        m_intermissionLockCount++;
+    }
+
+    public void RemoveIntermissionLock()
+    {
+        if (IntermissionLock)
+        {
+            m_intermissionLockCount--;
+        }
     }
 
     public void StartIntermissionCheat()

@@ -41,6 +41,8 @@ public class ContentMoonbeamCard : GameCardSpellBase
             return;
         }
 
+        GameHelper.GetGameController().AddIntermissionLock();
+
         base.PlayCard();
 
         GameTile castleTile = GameHelper.GetPlayer().GetCastleGameTile();
@@ -56,5 +58,7 @@ public class ContentMoonbeamCard : GameCardSpellBase
                 unit.GetHitBySpell(GetSpellValue(), this);
             }
         }
+
+        GameHelper.GetGameController().RemoveIntermissionLock();
     }
 }
