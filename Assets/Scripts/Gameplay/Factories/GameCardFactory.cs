@@ -283,7 +283,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentHuskEnemyCard());
         m_enemyCards.Add(new ContentImmortalSpearEnemyCard());
         m_enemyCards.Add(new ContentImmortalBowEnemyCard());
-        m_enemyCards.Add(new ContentImmortalBannerEnemyCard());
+        m_enemyCards.Add(new ContentImmortalShieldEnemyCard());
         m_enemyCards.Add(new ContentOrcWarleaderEnemyCard());
         m_enemyCards.Add(new ContentRiverlurkerEnemyCard());
 

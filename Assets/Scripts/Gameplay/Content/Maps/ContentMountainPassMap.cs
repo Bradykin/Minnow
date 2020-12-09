@@ -24,7 +24,7 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalSpearEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalBowEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentImmortalBannerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentImmortalShieldEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
@@ -92,7 +92,7 @@ public class ContentMountainPassMap : GameMap
         List<GameEnemyUnit> immortalEnemyUnits = new List<GameEnemyUnit>();
         immortalEnemyUnits.Add(new ContentImmortalSpearEnemy(null));
         immortalEnemyUnits.Add(new ContentImmortalBowEnemy(null));
-        immortalEnemyUnits.Add(new ContentImmortalBannerEnemy(null));
+        immortalEnemyUnits.Add(new ContentImmortalShieldEnemy(null));
         List<GameEnemyUnit> activeBossUnits = GameHelper.GetGameController().m_activeBossUnits;
 
         if (GameHelper.GetGameController().m_currentTurnNumber < Constants.SpawnBossTurn || GameHelper.GetCurrentWaveNum() != Constants.FinalWaveNum)
@@ -139,7 +139,7 @@ public class ContentMountainPassMap : GameMap
 
                 gameOpponent.ForceSpawnNearPosition(new ContentImmortalSpearEnemy(gameOpponent), gameTile1);
                 gameOpponent.ForceSpawnNearPosition(new ContentImmortalBowEnemy(gameOpponent), gameTile2);
-                gameOpponent.ForceSpawnNearPosition(new ContentImmortalBannerEnemy(gameOpponent), gameTile3);
+                gameOpponent.ForceSpawnNearPosition(new ContentImmortalShieldEnemy(gameOpponent), gameTile3);
                 gameTile1.GetWorldTile().ClearSurroundingFog(2);
                 gameTile2.GetWorldTile().ClearSurroundingFog(2);
                 gameTile3.GetWorldTile().ClearSurroundingFog(2);

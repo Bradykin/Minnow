@@ -163,6 +163,8 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         //Generate number of enemies to spawn
         GameMap curMap = GameHelper.GetGameController().GetCurMap();
         float enemyCapToSpawn = curMap.GetNumEnemiesToSpawn();
+        float originalEnemyCapToSpawn = enemyCapToSpawn;
+        float percentageSpawnFogFirst = 0.2f;
         bool fogSpawningActive = curMap.GetFogSpawningActive();
 
         List<GameTile> tilesAtFogEdge = WorldGridManager.Instance.GetFogBorderGameTiles();
@@ -194,6 +196,23 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             int randomIndex = UnityEngine.Random.Range(i, m_spawnPoints.Count);
             m_spawnPoints[i] = m_spawnPoints[randomIndex];
             m_spawnPoints[randomIndex] = temp;
+        }
+
+        if (fogSpawningActive)
+        {
+            //Try spawning at edge of fog
+            int numTries = 10;
+            while (enemyCapToSpawn > originalEnemyCapToSpawn * (1.0f - percentageSpawnFogFirst) && tilesAtFogEdge.Count >= 0 && numTries > 0)
+            {
+                if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
+                {
+                    numTries = 10;
+                }
+                else
+                {
+                    numTries--;
+                }
+            }
         }
 
         for (int i = 0; i < m_spawnPoints.Count; i++)

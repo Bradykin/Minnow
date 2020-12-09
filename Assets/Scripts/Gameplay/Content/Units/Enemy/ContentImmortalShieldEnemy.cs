@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentImmortalBannerEnemy : GameEnemyUnit
+public class ContentImmortalShieldEnemy : GameEnemyUnit
 {
     private int m_powerIncreaseAmount = 5;
     private int m_damageReductionIncrease = 3;
     public int m_auraRange = 3;
 
-    public ContentImmortalBannerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentImmortalShieldEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
@@ -29,7 +29,7 @@ public class ContentImmortalBannerEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
 
-        m_name = "Immortal Banner";
+        m_name = "Immortal Shield";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range 2 get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";
 
 

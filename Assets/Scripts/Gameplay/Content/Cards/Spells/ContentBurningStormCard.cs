@@ -42,7 +42,11 @@ public class ContentBurningStormCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
+        GameTile centerTile = targetUnit.GetGameTile();
+
+        targetUnit.GetHitBySpell(GetSpellValue(), this);
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(centerTile, m_range, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
@@ -53,7 +57,5 @@ public class ContentBurningStormCard : GameCardSpellBase
                 unit.GetHitBySpell(GetSpellValue(), this);
             }
         }
-
-        targetUnit.GetHitBySpell(GetSpellValue(), this);
     }
 }

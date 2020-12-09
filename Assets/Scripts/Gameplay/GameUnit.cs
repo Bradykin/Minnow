@@ -1522,9 +1522,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GetTeam() == Team.Enemy)
             {
-                if (!(this is ContentImmortalBannerEnemy))
+                if (!(this is ContentImmortalShieldEnemy))
                 {
-                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    ContentImmortalShieldEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalShieldEnemy>();
                     if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
                         toReturn.AddKeyword(new GameDamageReductionKeyword(3));
@@ -1720,9 +1720,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GetTeam() == Team.Enemy)
             {
-                if (!(this is ContentImmortalBannerEnemy))
+                if (!(this is ContentImmortalShieldEnemy))
                 {
-                    ContentImmortalBannerEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalBannerEnemy>();
+                    ContentImmortalShieldEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalShieldEnemy>();
                     if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
                     {
                         toReturn += 5;
