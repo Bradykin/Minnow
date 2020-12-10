@@ -16,7 +16,7 @@ public class ContentEnergizedTreantEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Slime";
+        m_name = "Energized Treant";
         
         m_desc = "";
 

@@ -49,6 +49,30 @@ public class ContentLakesideMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
+
+        /*m_totalEnemiesOnMap.Add(new ContentAngryTreantEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentArcticYetiEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentBlueMageEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentDarkMageEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentEnergizedTreantEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFailedExperimentEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFlamingWerewolfEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentFleshConstructEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentGiantBrawlerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentGreenRockGiantEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentInfernalZombieEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentMetalCyclopsEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentNightmareWorkerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentNorthernBerserkerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentPoisonGargantuanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSerpentineConstructEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSnowTrollEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSwampwalkerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentTreantMageEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentUndeadForestMonsterEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentZombieCrabEnemy(null));*/
+
         //--------------------------------------------------------------------------------------------------------//
 
         List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();

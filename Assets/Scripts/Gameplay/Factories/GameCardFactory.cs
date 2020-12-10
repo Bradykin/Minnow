@@ -71,6 +71,7 @@ public static class GameCardFactory
         //m_cards.Add(new ContentFrogShamanCard());
         m_cards.Add(new ContentGladiatorCard());
         m_cards.Add(new ContentGoblinCard());
+        //m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentGrasperCard());
         m_cards.Add(new ContentGroundskeeperCard());
         m_cards.Add(new ContentGuardCaptainCard());
@@ -242,7 +243,6 @@ public static class GameCardFactory
         //m_enemyCards.Add(new ContentGilaLizardEnemyCard());
         //m_enemyCards.Add(new ContentGoblinShamanEnemyCard());
         m_enemyCards.Add(new ContentGoblinWarriorEnemyCard());
-        //m_enemyCards.Add(new ContentGolemProtectorCard());
         m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
         //m_enemyCards.Add(new ContentGreenRockGiantEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
