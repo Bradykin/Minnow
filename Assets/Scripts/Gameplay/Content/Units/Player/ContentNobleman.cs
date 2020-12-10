@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentArmouredMonk : GameUnit
+public class ContentNobleman : GameUnit
 {
     private int m_powerBoost = 8;
     private int m_staminaRegenBoost = 2;
 
-    public ContentArmouredMonk()
+    public ContentNobleman()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
@@ -17,7 +17,7 @@ public class ContentArmouredMonk : GameUnit
         AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameForestwalkKeyword(), true, false);
 
-        m_name = "Armoured Monk";
+        m_name = "Nobleman";
         m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);

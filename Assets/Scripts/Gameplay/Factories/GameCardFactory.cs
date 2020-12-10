@@ -84,6 +84,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentMinerCard());
         //m_cards.Add(new ContentMountainBeastCard());
         m_cards.Add(new ContentNaturalScoutCard());
+        //m_cards.Add(new ContentNoblemanCard());
         m_cards.Add(new ContentOverlordCard());
         //m_cards.Add(new ContentPolarHunterCard());
         //m_cards.Add(new ContentPyromageCard());
