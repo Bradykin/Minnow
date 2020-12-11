@@ -18,7 +18,7 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameFlyingKeyword(), true, false);
-        AddKeyword(new GameDamageShieldKeyword(2), true, false);
+        AddKeyword(new GameDamageShieldKeyword(), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

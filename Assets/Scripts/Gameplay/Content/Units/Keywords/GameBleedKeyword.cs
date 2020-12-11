@@ -5,39 +5,32 @@ using UnityEngine;
 
 public class GameBleedKeyword : GameKeywordBase
 {
-    public int m_bleedAmount;
-
-    public GameBleedKeyword(int bleedAmount)
+    public GameBleedKeyword()
     {
-        m_bleedAmount = bleedAmount;
-
         m_name = "Bleed";
-        m_focusInfoText = $"Takes {m_bleedAmount} damage at the end of each turn. Goes away at the end of a wave, or when this unit gets healed to full.";
-        m_keywordParamType = KeywordParamType.IntParam;
+        m_focusInfoText = $"Regenerates 2 less stamina each turn. Bleeding is removed if this unit is healed to full.";
+        m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    //Left blank intentionally
     public override string GetDesc()
     {
-        return " " + m_bleedAmount;
+        return "";
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameBleedKeyword tempKeyword = (GameBleedKeyword)toAdd;
-
-        m_bleedAmount += tempKeyword.m_bleedAmount;
+        //Stacking this keyword does nothing.
     }
 
     public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        GameBleedKeyword tempKeyword = (GameBleedKeyword)toSubtract;
-
-        m_bleedAmount -= tempKeyword.m_bleedAmount;
+        //Subtracting this keyword does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_bleedAmount <= 0;
+        return false;
     }
 
     public override JsonGameKeywordData SaveToJson()
@@ -45,8 +38,7 @@ public class GameBleedKeyword : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
-            isPermanentValue = m_isPermanent,
-            intValue = m_bleedAmount
+            isPermanentValue = m_isPermanent
         };
 
         return jsonData;

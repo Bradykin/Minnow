@@ -5,40 +5,33 @@ using UnityEngine;
 
 public class GameBrittleKeyword : GameKeywordBase
 {
-    public int m_damageIncrease;
-
-    public GameBrittleKeyword(int damageIncrease)
+    public GameBrittleKeyword()
     {
-        m_damageIncrease = damageIncrease;
-
         m_name = "Brittle";
-        m_focusInfoText = "Takes additional damage.";
-        m_shortDesc = "Takes more damage on hit";
-        m_keywordParamType = KeywordParamType.IntParam;
+        m_focusInfoText = "Takes double damage.";
+        m_shortDesc = "Takes double damage on hit";
+        m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    //Left blank intentionally
     public override string GetDesc()
     {
-        return "" + m_damageIncrease;
+        return "";
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toAdd;
-
-        m_damageIncrease += tempKeyword.m_damageIncrease;
+        //Stacking this keyword does nothing.
     }
 
     public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        GameBrittleKeyword tempKeyword = (GameBrittleKeyword)toSubtract;
-
-        m_damageIncrease -= tempKeyword.m_damageIncrease;
+        //Subtracting this keyword does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_damageIncrease <= 0;
+        return false;
     }
 
     public override JsonGameKeywordData SaveToJson()
@@ -46,8 +39,7 @@ public class GameBrittleKeyword : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
-            isPermanentValue = m_isPermanent,
-            intValue = m_damageIncrease
+            isPermanentValue = m_isPermanent
         };
 
         return jsonData;

@@ -241,26 +241,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameDamageShieldKeyword damageShieldKeyword = GetDamageShieldKeyword();
         if (damageShieldKeyword != null)
         {
-            if (!damageShieldKeyword.ShouldBeRemoved())
+            if (!GetGameTile().m_isFog)
             {
-                damageShieldKeyword.DecreaseShield(1);
-                if (damageShieldKeyword.ShouldBeRemoved())
-                {
-                    if (!GetGameTile().m_isFog)
-                    {
-                        UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
-                    }
-                    RemoveKeyword(damageShieldKeyword);
-                }
-                else
-                {
-                    if (!GetGameTile().m_isFog)
-                    {
-                        UIHelper.CreateWorldElementNotification("Damage Shield Weakened!", true, m_worldUnit.gameObject);
-                    }
-                }
-                return 0;
+                UIHelper.CreateWorldElementNotification("Damage Shield Broken!", true, m_worldUnit.gameObject);
             }
+            RemoveKeyword(damageShieldKeyword);
+
+            return 0;
         }
 
         if (GameHelper.HasRelic<ContentTalonOfTheCruelRelic>() && GetTeam() == Team.Enemy && GetFlyingKeyword() != null)
@@ -282,18 +269,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (lordOfChaosDamageApplyBleedsActive)
         {
-            AddKeyword(new GameBleedKeyword(damage), false, false);
+            AddKeyword(new GameBleedKeyword(), false, false);
         }
-        else
-        {
-            m_curHealth -= damage;
-        }
+
+        m_curHealth -= damage;
 
         if (GetTeam() == Team.Player)
         {
-            if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 5)
+            if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 10)
             {
-                AddKeyword(new GameDamageShieldKeyword(3), false, false);
+                AddKeyword(new GameDamageShieldKeyword(), false, false);
             }
 
             if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
@@ -370,12 +355,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage = 0;
         }
 
-        GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
-        if (brittleKeyword != null)
-        {
-            damage += brittleKeyword.m_damageIncrease;
-        }
-
         if (IsInCover())
         {
             if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.CoverTakesMoreDamage)
@@ -397,6 +376,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (damageReductionKeyword != null)
         {
             damage -= damageReductionKeyword.m_damageReduction;
+        }
+
+        GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
+        if (brittleKeyword != null)
+        {
+            damage *= 2;
         }
 
         if (damage < 0)
@@ -599,6 +584,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GetBleedKeyword() != null)
             {
                 m_keywordHolder.SubtractKeyword(GetBleedKeyword());
+                UIHelper.CreateWorldElementNotification($"{GetName()}'s Bleed is cured!", true, m_worldUnit.gameObject);
             }
         }
 
@@ -2278,6 +2264,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         int staminaToRegen = GetStaminaRegen();
 
+        if (GetBleedKeyword() != null)
+        {
+            staminaToRegen -= 2;
+        }
+
+        if (staminaToRegen < 0)
+        {
+            staminaToRegen = 0;
+        }
+
         GainStamina(staminaToRegen, true);
     }
 
@@ -2477,7 +2473,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentStarOfDenumainRelic>())
             {
-                AddKeyword(new GameDamageShieldKeyword(1), false, false);
+                AddKeyword(new GameDamageShieldKeyword(), false, false);
             }
 
             if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
@@ -2718,15 +2714,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         RegenStamina();
-
-        if (GetBleedKeyword() != null)
-        {
-            GetHitByAbility(GetBleedKeyword().m_bleedAmount);
-            if (m_isDead)
-            {
-                return;
-            }
-        }
 
         if (GetGameTile().GetTerrain().IsLava() && GetLavawalkKeyword() == null && GetFlyingKeyword() == null)
         {

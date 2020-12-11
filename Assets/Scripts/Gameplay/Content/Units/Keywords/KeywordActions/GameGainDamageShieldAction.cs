@@ -5,45 +5,40 @@ using UnityEngine;
 public class GameGainDamageShieldAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_damageShieldVal;
 
-    public GameGainDamageShieldAction(GameUnit unit, int damageShieldVal)
+    public GameGainDamageShieldAction(GameUnit unit)
     {
         m_unit = unit;
-        m_damageShieldVal = damageShieldVal;
 
         m_name = "Damage Shield";
-        m_actionParamType = ActionParamType.UnitIntParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override string GetDesc()
     {
-        return "Gain <b>Damage Shield</b> " + m_damageShieldVal + ".";
+        return "Gain <b>Damage Shield</b>.";
     }
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameDamageShieldKeyword(m_damageShieldVal), false, false);
+        m_unit.AddKeyword(new GameDamageShieldKeyword(), false, false);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainDamageShieldAction tempAction = (GameGainDamageShieldAction)toAdd;
-
-        m_damageShieldVal += tempAction.m_damageShieldVal;
+        //Stacking this action does nothing.
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainDamageShieldAction tempAction = (GameGainDamageShieldAction)toSubtract;
-
-        m_damageShieldVal -= tempAction.m_damageShieldVal;
+        //Subtracting this action does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_damageShieldVal <= 0;
+        return false;
     }
+
 
     public override GameUnit GetGameUnit()
     {
@@ -54,8 +49,7 @@ public class GameGainDamageShieldAction : GameAction
     {
         JsonGameActionData jsonData = new JsonGameActionData
         {
-            name = m_name,
-            intValue1 = m_damageShieldVal
+            name = m_name
         };
 
         return jsonData;

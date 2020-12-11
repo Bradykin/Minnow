@@ -7,7 +7,7 @@ public class ContentAngelicFeatherRelic : GameRelic
     public ContentAngelicFeatherRelic()
     {
         m_name = "Angelic Feather";
-        m_desc = "When an allied unit survives a hit with 5 or less health; it gains <b>Damage Shield 3</b>.";
+        m_desc = "When an allied unit survives a hit with 10 or less health; it gains <b>Damage Shield</b>.";
         m_rarity = GameRarity.Common;
 
         LateInit();

@@ -6,44 +6,38 @@ using UnityEngine;
 public class GameGainBrittleAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_brittleAmount;
 
-    public GameGainBrittleAction(GameUnit unit, int brittleAmount)
+    public GameGainBrittleAction(GameUnit unit)
     {
         m_unit = unit;
-        m_brittleAmount = brittleAmount;
 
         m_name = "Gain Brittle";
-        m_actionParamType = ActionParamType.UnitIntParam;
+        m_actionParamType = ActionParamType.UnitParam;
     }
 
     public override string GetDesc()
     {
-        return "Gain <b>Brittle</b> " + m_brittleAmount + ".";
+        return "Gain <b>Brittle</b>.";
     }
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(new GameBrittleKeyword(m_brittleAmount), false, false);
+        m_unit.AddKeyword(new GameBrittleKeyword(), false, false);
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameGainBrittleAction tempAction = (GameGainBrittleAction)toAdd;
-
-        m_brittleAmount += tempAction.m_brittleAmount;
+        //Stacking this action does nothing.
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameGainBrittleAction tempAction = (GameGainBrittleAction)toSubtract;
-
-        m_brittleAmount -= tempAction.m_brittleAmount;
+        //Subtracting this action does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_brittleAmount <= 0;
+        return false;
     }
 
     public override GameUnit GetGameUnit()
@@ -55,8 +49,7 @@ public class GameGainBrittleAction : GameAction
     {
         JsonGameActionData jsonData = new JsonGameActionData
         {
-            name = m_name,
-            intValue1 = m_brittleAmount
+            name = m_name
         };
 
         return jsonData;

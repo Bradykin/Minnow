@@ -23,7 +23,7 @@ public class ContentGreatFrostlizardEnemy : GameEnemyUnit
         AddKeyword(new GameDamageReductionKeyword(3), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainDamageShieldAction(this, 1)), true, false);
+            AddKeyword(new GameMomentumKeyword(new GameGainDamageShieldAction(this)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

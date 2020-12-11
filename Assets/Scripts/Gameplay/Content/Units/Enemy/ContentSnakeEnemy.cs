@@ -5,6 +5,7 @@ using UnityEngine;
 //Prioritize units over buildings
 //Deprioritze targets with attack <= 0
 //Prioritize with high Stamina regen per attack ratio
+//TODO Alex - make snake have a chaos ability
 public class ContentSnakeEnemy : GameEnemyUnit
 {
     public ContentSnakeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -20,12 +21,11 @@ public class ContentSnakeEnemy : GameEnemyUnit
         m_name = "Snake";
         m_desc = "On hit, permanently give -2/-0.\n";
 
-        int damageShield = 2;
+        AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            damageShield = 4;
+            
         }
-        AddKeyword(new GameDamageShieldKeyword(damageShield), true, false);
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);

@@ -53,7 +53,7 @@ public class AIScanTargetsInRangeStandardStep : AIStep
                 int numHitsToRateVulnerable = 2;
                 if (tile.GetOccupyingUnit().GetDamageShieldKeyword() != null)
                 {
-                    numHitsToRateVulnerable -= tile.GetOccupyingUnit().GetDamageShieldKeyword().GetShieldLevel();
+                    numHitsToRateVulnerable -= 1;
                 }
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)

@@ -15,7 +15,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_shouldExile = true;
 
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
-        m_keywordHolder.AddKeyword(new GameBrittleKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameBrittleKeyword());
 
         SetupBasicData();
 
@@ -28,7 +28,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>: " + GetSpellValue() + "'.\n" + GetModifiedByMagicPowerString();
+        return "Target enemy unit gains '<b>Enrage</b>: Gain <b>Brittle</b>.\n";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -40,6 +40,6 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetUnit, GetSpellValue())), false, false);
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(targetUnit)), false, false);
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ContentBasiliskEnemy : GameEnemyUnit
 {
-    int m_brittleAmount = 3;
-    
     public ContentBasiliskEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
@@ -19,7 +17,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Basilisk";
-        m_desc = $"When this unit hits another, it gives them Brittle {m_brittleAmount}.\n";
+        m_desc = $"When this unit hits another, it gives them Brittle until end of wave.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
@@ -40,7 +38,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
 
         if (!other.m_isDead)
         {
-            other.AddKeyword(new GameBrittleKeyword(m_brittleAmount), true, true);
+            other.AddKeyword(new GameBrittleKeyword(), false, true);
         }
 
         return amount;

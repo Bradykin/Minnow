@@ -21,7 +21,7 @@ public class GameActionFactory
         m_actions.Add(new GameFullHealAction(null));
         m_actions.Add(new GameFullHealRangeAction(null, 0));
         m_actions.Add(new GameHealAction(null, 0));
-        m_actions.Add(new GameGainDamageShieldAction(null, 0));
+        m_actions.Add(new GameGainDamageShieldAction(null));
         m_actions.Add(new GameGainStatsAction(null, 0, 0));
         m_actions.Add(new GameGainStatsPermanentAction(null, 0, 0));
         m_actions.Add(new GameGainStatsRangeAction(null, 0, 0, 0));
@@ -32,7 +32,7 @@ public class GameActionFactory
         m_actions.Add(new GameGainStaminaRangeAction(null, 0, 0));
         m_actions.Add(new GameGainStaminaRegenAction(null, 0));
         m_actions.Add(new GameGainTempMagicPowerAction(0));
-        m_actions.Add(new GameGainBrittleAction(null, 0));
+        m_actions.Add(new GameGainBrittleAction(null));
         m_actions.Add(new GameGainEnergyAction(0));
         m_actions.Add(new GameGainRangeAction(null, 0));
         m_actions.Add(new GameGainGoldAction(0));

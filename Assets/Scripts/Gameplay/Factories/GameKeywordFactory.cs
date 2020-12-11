@@ -14,11 +14,11 @@ public class GameKeywordFactory
 
     public static void Init()
     {
-        m_keywords.Add(new GameBleedKeyword(0));
-        m_keywords.Add(new GameBrittleKeyword(0));
+        m_keywords.Add(new GameBleedKeyword());
+        m_keywords.Add(new GameBrittleKeyword());
         m_keywords.Add(new GameCleaveKeyword());
         m_keywords.Add(new GameDamageReductionKeyword(0));
-        m_keywords.Add(new GameDamageShieldKeyword(0));
+        m_keywords.Add(new GameDamageShieldKeyword());
         m_keywords.Add(new GameDeathKeyword(null));
         m_keywords.Add(new GameDuneswalkKeyword());
         m_keywords.Add(new GameEnrageKeyword(null));

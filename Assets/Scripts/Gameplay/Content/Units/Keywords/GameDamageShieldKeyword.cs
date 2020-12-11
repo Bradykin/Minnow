@@ -5,49 +5,32 @@ using UnityEngine;
 
 public class GameDamageShieldKeyword : GameKeywordBase
 {
-    private int m_numShields;
-
-    public GameDamageShieldKeyword(int numShields)
+    public GameDamageShieldKeyword()
     {
-        m_numShields = numShields;
-
         m_name = "Damage Shield";
         m_focusInfoText = "Prevent all damage from this many attacks. <i>(Stacks)</i>";
-        m_keywordParamType = KeywordParamType.IntParam;
+        m_keywordParamType = KeywordParamType.NoParams;
     }
 
+    //Left blank intentionally
     public override string GetDesc()
     {
-        return "" + m_numShields;
-    }
-
-    public int GetShieldLevel()
-    {
-        return m_numShields;
+        return "";
     }
 
     public override void AddKeyword(GameKeywordBase toAdd)
     {
-        GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toAdd;
-
-        m_numShields += tempKeyword.m_numShields;
+        //Stacking this keyword does nothing.
     }
 
     public override void SubtractKeyword(GameKeywordBase toSubtract)
     {
-        GameDamageShieldKeyword tempKeyword = (GameDamageShieldKeyword)toSubtract;
-
-        m_numShields -= tempKeyword.m_numShields;
-    }
-
-    public void DecreaseShield(int decrease)
-    {
-        m_numShields -= decrease;
+        //Subtracting this keyword does nothing.
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_numShields <= 0;
+        return false;
     }
 
     public override JsonGameKeywordData SaveToJson()
@@ -55,8 +38,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
         JsonGameKeywordData jsonData = new JsonGameKeywordData
         {
             name = m_name,
-            isPermanentValue = m_isPermanent,
-            intValue = m_numShields
+            isPermanentValue = m_isPermanent
         };
 
         return jsonData;

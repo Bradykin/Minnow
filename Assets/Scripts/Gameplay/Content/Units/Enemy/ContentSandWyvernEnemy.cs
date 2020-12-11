@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO Alex - make a more interesting chaos ability
 public class ContentSandWyvernEnemy : GameEnemyUnit
 {
     public ContentSandWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -23,7 +24,7 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageShieldKeyword(3), true, false);
+            AddKeyword(new GameDamageShieldKeyword(), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

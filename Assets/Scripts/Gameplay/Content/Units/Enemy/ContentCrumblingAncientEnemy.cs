@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Alex TODO: implement this in a way resembling old brittle system
 public class ContentCrumblingAncientEnemy : GameEnemyUnit
 {
-    private int m_brittleAmount = 10;
     private int m_staminaLossAmount = 1;
 
     public ContentCrumblingAncientEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -14,7 +14,7 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_maxHealth = 200;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 30;
+        m_power = 20;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
@@ -22,7 +22,6 @@ public class ContentCrumblingAncientEnemy : GameEnemyUnit
         m_name = "Crumbling Ancient";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainBrittleAction(this, m_brittleAmount)), true, false);
         if (!GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameEnrageKeyword(new GameLoseStaminaAction(this, m_staminaLossAmount)), true, false);

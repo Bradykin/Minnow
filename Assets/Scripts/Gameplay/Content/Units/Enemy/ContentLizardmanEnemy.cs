@@ -22,7 +22,7 @@ public class ContentLizardmanEnemy : GameEnemyUnit
 
         AddKeyword(new GameWaterwalkKeyword(), true, false);
         m_instantWaterMovement = true;
-        AddKeyword(new GameDamageShieldKeyword(2), true, false);
+        AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), true, false);

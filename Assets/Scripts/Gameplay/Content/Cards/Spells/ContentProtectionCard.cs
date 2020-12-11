@@ -13,7 +13,7 @@ public class ContentProtectionCard : GameCardSpellBase
 
         m_cost = 0;
 
-        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword());
 
         m_tags.AddTag(GameTag.TagType.Tank);
         m_tags.AddTag(GameTag.TagType.DamageShield);
@@ -39,6 +39,6 @@ public class ContentProtectionCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameDamageShieldKeyword(xVal), false, false);
+        targetUnit.AddKeyword(new GameDamageShieldKeyword(), false, false);
     }
 }

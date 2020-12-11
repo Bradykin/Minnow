@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ContentAegisCard : GameCardSpellBase
 {
-    private int m_amount = 1;
-    
     public ContentAegisCard()
     {
         m_name = "Aegis";
@@ -13,9 +11,9 @@ public class ContentAegisCard : GameCardSpellBase
         m_rarity = GameRarity.Starter;
 
         m_cost = 1;
-        m_desc = "Give target allied unit <b>Damage Shield</b> " + m_amount + ".\n";
+        m_desc = "Give target allied unit <b>Damage Shield</b>.\n";
 
-        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword(-1));
+        m_keywordHolder.AddKeyword(new GameDamageShieldKeyword());
 
         SetupBasicData();
 
@@ -43,7 +41,7 @@ public class ContentAegisCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameDamageShieldKeyword(m_amount), false, false);
+        targetUnit.AddKeyword(new GameDamageShieldKeyword(), false, false);
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

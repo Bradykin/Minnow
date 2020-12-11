@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentFlameImpEnemy : GameEnemyUnit
 {
     int m_range = 3;
-    int m_damageShieldCount = 1;
     int m_powerIncreaseCount = 5;
     
     public ContentFlameImpEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -24,7 +23,7 @@ public class ContentFlameImpEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
-        AddKeyword(new GameMomentumKeyword(new GameGainKeywordRangeAction(this, m_range, new GameDamageShieldKeyword(m_damageShieldCount))), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameGainKeywordRangeAction(this, m_range, new GameDamageShieldKeyword())), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameMomentumKeyword(new GameGainStatsRangeAction(this, m_powerIncreaseCount, 0, m_range)), true, false);

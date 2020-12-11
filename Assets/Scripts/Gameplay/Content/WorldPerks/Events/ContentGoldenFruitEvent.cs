@@ -15,7 +15,7 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameGainDamageShieldAction(m_tile.GetOccupyingUnit(), 1)));
+        m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameMomentumKeyword(new GameGainDamageShieldAction(m_tile.GetOccupyingUnit())));
         m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 50);
 
         base.LateInit();
@@ -23,7 +23,7 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here '<b>Momentum</b>: gain <b>Damage Shield</b> 1' <b>permanently</b>.";
+        return "Give the unit that goes here '<b>Momentum</b>: gain <b>Damage Shield</b>' <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
