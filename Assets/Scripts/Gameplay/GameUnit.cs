@@ -858,6 +858,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool isThornsAttack = false, bool canCleave = true)
     {
+        GameHelper.GetGameController().AddIntermissionLock();
+
         if (spendStamina)
         {
             SpendStamina(GetStaminaToAttack(other));
@@ -933,11 +935,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             GetFadeKeyword().m_isActive = false;
         }
 
+        GameHelper.GetGameController().RemoveIntermissionLock();
+
         return damageTaken;
     }
 
     public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
     {
+        GameHelper.GetGameController().AddIntermissionLock();
+
         if (spendStamina)
         {
             SpendStamina(GetStaminaToAttack(other));
@@ -1008,7 +1014,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             GetFadeKeyword().m_isActive = false;
         }
 
-        return 0;
+        GameHelper.GetGameController().RemoveIntermissionLock();
+
+        return damageTaken;
     }
 
     public virtual int GetDamageToDealTo(GameUnit target)
