@@ -16,7 +16,7 @@ public class ContentAlphaBoar : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
 
         AddKeyword(new GameTauntKeyword(), true, false);
-        AddKeyword(new GameThornsKeyword(2), true, false);
+        AddKeyword(new GameDamageReductionKeyword(2), true, false);
 
         LateInit();
     }

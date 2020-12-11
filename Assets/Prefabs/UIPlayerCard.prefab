@@ -917,8 +917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.08999634, y: -74.32}
-  m_SizeDelta: {x: -8.89, y: -157.95}
+  m_AnchoredPosition: {x: -0.08999634, y: -74.09}
+  m_SizeDelta: {x: -8.89, y: -158.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &757981491177153828
 CanvasRenderer:
@@ -952,7 +952,10 @@ MonoBehaviour:
     say... 6 lines of text?
 
     Is it still legible?  What if it is in one <b>LONG</b>
-    paragraph? Is it still readable from a distance?  This  is a good test for mobile...'
+    paragraph? Is it still readable from a distance?  This  is a good test for mobile...
+
+    readable
+    from a distance?  This  is a good test for mobile...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b6483c6da4ae5c4ead40e154e051e80, type: 2}
   m_sharedMaterial: {fileID: -5811884890487984593, guid: 5b6483c6da4ae5c4ead40e154e051e80,
@@ -981,11 +984,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 8.5
+  m_fontSize: 6.75
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 8
+  m_fontSizeMin: 6
   m_fontSizeMax: 12
   m_fontStyle: 0
   m_textAlignment: 257
@@ -1022,12 +1025,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9167409003015395683}
-    characterCount: 223
+    characterCount: 285
     spriteCount: 0
-    spaceCount: 46
-    wordCount: 44
+    spaceCount: 59
+    wordCount: 55
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
