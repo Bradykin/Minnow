@@ -44,9 +44,9 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentGroundskeeper());
         m_playerUnits.Add(new ContentRanger());
         m_playerUnits.Add(new ContentDwarfShivcaster());
+        m_playerUnits.Add(new ContentMiner());
 
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
-        m_playerUnits.Add(new ContentMiner()); // 1 - Rework; bad concept (Mountain explorer?)
         m_playerUnits.Add(new ContentFishOracle()); //1 - Rework
         m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain explorer?)
         m_playerUnits.Add(new ContentGoblin()); //1 - Rework (Basic unit with victorious)

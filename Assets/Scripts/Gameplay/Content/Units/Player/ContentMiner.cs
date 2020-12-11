@@ -4,54 +4,43 @@ using UnityEngine;
 
 public class ContentMiner : GameUnit
 {
-    private int m_miningRange;
-    private int m_miningVal;
-
     public ContentMiner()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
-
-        m_miningRange = 1;
-        m_miningVal = 2;
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
         m_name = "Miner";
-        m_desc = "At the end of each turn, gain " + m_miningVal + " gold for each mountain in range " + m_miningRange + ".\n";
+        m_desc = "Has <b>Fade</b> when in mountains.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+
+        AddKeyword(new GameMountainwalkKeyword(), true, false);
 
         LateInit();
     }
 
-    public override void EndTurn()
+    public override GameFadeKeyword GetFadeKeyword(bool getInactiveFade = false)
     {
-        base.EndTurn();
-
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_miningRange, 0);
-
-        int numMountains = 0;
-        for (int i = 0; i < surroundingTiles.Count; i++)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            GameTerrainBase terrain = surroundingTiles[i].GetTerrain();
-
-            if (terrain.IsMountain())
+            if (m_gameTile.GetTerrain().IsMountain())
             {
-                numMountains++;
+                return new GameFadeKeyword();
             }
         }
 
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(numMountains * m_miningVal));
+        return base.GetFadeKeyword();
     }
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 4;
+        m_maxHealth = 1;
         m_maxStamina = 4;
-        m_staminaRegen = 1;
+        m_staminaRegen = 4;
         m_power = 1;
     }
 }
