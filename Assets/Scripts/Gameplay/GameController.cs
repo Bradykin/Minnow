@@ -191,6 +191,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         if (IntermissionLock)
         {
             m_intermissionLockCount--;
+
+            if (!IntermissionLock)
+            {
+                CheckStartIntermission();
+            }
         }
     }
 

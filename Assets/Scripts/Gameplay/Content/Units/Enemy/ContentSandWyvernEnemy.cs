@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO Alex - make a more interesting chaos ability
 public class ContentSandWyvernEnemy : GameEnemyUnit
 {
     public ContentSandWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 70;
-        m_maxStamina = 7;
+        m_maxHealth = 60;
+        m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 15;
+        m_power = 20;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;
