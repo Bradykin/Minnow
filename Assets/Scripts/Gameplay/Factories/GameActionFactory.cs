@@ -44,6 +44,8 @@ public class GameActionFactory
         m_actions.Add(new GameLoseKeywordAction(null, null));
         m_actions.Add(new GameGainKeywordUntilEndOfTurnAction(null, null));
         m_actions.Add(new GameGainKeywordRangeAction(null, 0, null));
+        m_actions.Add(new GameReturnToDeckAction(null));
+        m_actions.Add(new GameExplodeEnemiesAction(null, 0, 0));
 
         m_hasInit = true;
     }

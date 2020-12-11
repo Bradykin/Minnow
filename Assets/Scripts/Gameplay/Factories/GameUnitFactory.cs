@@ -39,12 +39,12 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentNaturalScout());
         m_playerUnits.Add(new ContentWanderer());
         m_playerUnits.Add(new ContentSabobot());
+        m_playerUnits.Add(new ContentSkeleton());
+        m_playerUnits.Add(new ContentMage());
 
         m_playerUnits.Add(new ContentDwarfShivcaster()); //9 - It's shivs shouldn't trigger Spellcraft
-        m_playerUnits.Add(new ContentSkeleton()); // 6 - Needs to go back into deck on death; not stay around
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
         m_playerUnits.Add(new ContentMiner()); // 1 - Rework; bad concept (Mountain explorer?)
-        m_playerUnits.Add(new ContentMage()); //1 - Rework Too much cheap power, too similar to other things; just needs new concept
         m_playerUnits.Add(new ContentFishOracle()); //1 - Rework
         m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain explorer?)
         m_playerUnits.Add(new ContentGroundskeeper()); //1 - Rework (Maybe gains Taunt in forest?)

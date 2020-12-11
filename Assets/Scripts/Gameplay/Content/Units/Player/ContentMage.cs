@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContentMage : GameUnit
 {
+    private int m_explodePower = 25;
+
     public ContentMage()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
@@ -11,8 +13,8 @@ public class ContentMage : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        AddKeyword(new GameRangeKeyword(3), true, false);
-        AddKeyword(new GameKnowledgeableKeyword(new GameGainStatsAction(this, 3, 0)), true, false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
+        AddKeyword(new GameKnowledgeableKeyword(new GameExplodeEnemiesAction(this, m_explodePower, 2)), true, false);
 
         m_name = "Mage";
         m_typeline = Typeline.Humanoid;
