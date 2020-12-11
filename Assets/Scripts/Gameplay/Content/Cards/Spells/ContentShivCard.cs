@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContentShivCard : GameCardSpellBase
 {
+    private bool m_canTriggerSpellcraft = true;
+
     public ContentShivCard()
     {
         m_spellEffect = 4;
@@ -61,16 +63,13 @@ public class ContentShivCard : GameCardSpellBase
         }
     }
 
+    public void SetCanTriggerSpellcraft(bool newVal)
+    {
+        m_canTriggerSpellcraft = newVal;
+    }
+
     protected override bool CanTriggerSpellcraft()
     {
-        GamePlayer player = GameHelper.GetPlayer();
-        for (int i = 0; i < player.m_controlledUnits.Count; i++)
-        {
-            if (player.m_controlledUnits[i] is ContentDwarfShivcaster)
-            {
-                return false;
-            }
-        }
-        return true;
+        return m_canTriggerSpellcraft;
     }
 }
