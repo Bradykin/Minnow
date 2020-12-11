@@ -41,7 +41,8 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentSabobot());
         m_playerUnits.Add(new ContentSkeleton());
         m_playerUnits.Add(new ContentMage());
-        m_playerUnits.Add(new ContentGroundskeeper()); //1 - Rework (Maybe gains Taunt in forest?)
+        m_playerUnits.Add(new ContentGroundskeeper());
+        m_playerUnits.Add(new ContentRanger());
 
         m_playerUnits.Add(new ContentDwarfShivcaster()); //9 - It's shivs shouldn't trigger Spellcraft
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
@@ -49,7 +50,6 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentFishOracle()); //1 - Rework
         m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain explorer?)
         m_playerUnits.Add(new ContentGoblin()); //1 - Rework (Basic unit with victorious)
-        m_playerUnits.Add(new ContentRanger()); //6 - Rework; keep soul
         m_playerUnits.Add(new ContentStoneGolem()); //1 - Rework
         m_playerUnits.Add(new ContentWildfolk()); //1 - Rework (Monster synergy Humanoid)
 

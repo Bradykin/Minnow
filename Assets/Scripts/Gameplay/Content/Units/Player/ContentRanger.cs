@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentRanger : GameUnit
 {
-    private int m_powerBoost = 8;
-    private int m_staminaRegenBoost = 2;
+    private int m_staminaRegenBoost = 1;
+    private int m_rangeBoost = 1;
 
     public ContentRanger()
     {
@@ -18,7 +18,7 @@ public class ContentRanger : GameUnit
         AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_name = "Ranger";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
+        m_desc = "When in a forest, double power, +" + m_staminaRegenBoost + " Stamina regen, and +" + m_rangeBoost + " <b>Range</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -36,7 +36,7 @@ public class ContentRanger : GameUnit
 
         if (m_gameTile.GetTerrain().IsForest())
         {
-            returnPower += m_powerBoost;
+            returnPower = returnPower*2;
         }
 
         return returnPower;
@@ -57,6 +57,31 @@ public class ContentRanger : GameUnit
         }
 
         return returnStaminaRegen;
+    }
+
+    public override GameRangeKeyword GetRangeKeyword()
+    {
+        GameRangeKeyword toReturn = new GameRangeKeyword(0);
+
+        if (base.GetRangeKeyword() != null)
+        {
+            toReturn.AddKeyword(base.GetRangeKeyword());
+        }
+
+        if (GameHelper.IsUnitInWorld(this))
+        {
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn.AddKeyword(new GameRangeKeyword(m_rangeBoost));
+            }
+        }
+
+        if (toReturn.m_range == 0)
+        {
+            toReturn = null;
+        }
+
+        return toReturn;
     }
 
     protected override void ResetToBase()
