@@ -58,6 +58,11 @@ public class GameExplodeEnemiesAction : GameAction
             }
         }
 
+        if (Globals.m_selectedUnit.GetUnit() == m_explodingUnit)
+        {
+            Globals.m_selectedUnit = null;
+        }
+
         GameHelper.GetGameController().RemoveIntermissionLock();
     }
 
