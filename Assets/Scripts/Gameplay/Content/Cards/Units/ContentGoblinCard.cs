@@ -6,7 +6,7 @@ public class ContentGoblinCard : GameUnitCard
 {
     public ContentGoblinCard()
     {
-        m_unit = new ContentGoblin();
+        m_unit = new ContentGoblinLegend();
 
         m_cost = 1;
 

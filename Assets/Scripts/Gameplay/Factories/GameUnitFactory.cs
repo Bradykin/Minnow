@@ -46,10 +46,10 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentDwarfShivcaster());
         m_playerUnits.Add(new ContentMiner());
         m_playerUnits.Add(new ContentFishOracle());
+        m_playerUnits.Add(new ContentGoblinLegend());
 
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
         m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain Fighter?)
-        m_playerUnits.Add(new ContentGoblin()); //1 - Rework (Basic unit with victorious)
         m_playerUnits.Add(new ContentStoneGolem()); //1 - Rework
         m_playerUnits.Add(new ContentWildfolk()); //1 - Rework (Monster synergy Humanoid)
 
