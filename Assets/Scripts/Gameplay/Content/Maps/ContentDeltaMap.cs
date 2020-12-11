@@ -105,7 +105,7 @@ public class ContentDeltaMap : GameMap
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.33f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
