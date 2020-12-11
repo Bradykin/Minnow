@@ -10,7 +10,7 @@ public class ContentFishOracle : GameUnit
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
-        AddKeyword(new GameSpellcraftKeyword(new GameDrawCardAction(1)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainShivAction(1)), true, false);
 
         m_name = "Fish Oracle";
         m_typeline = Typeline.Monster;
@@ -23,9 +23,9 @@ public class ContentFishOracle : GameUnit
     {
         ResetKeywords(true);
 
-        m_maxHealth = 8;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
+        m_maxHealth = 25;
+        m_maxStamina = 5;
+        m_staminaRegen = 4;
         m_power = 2;
     }
 }
