@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentGroundskeeper : GameUnit
 {
-    private int m_powerBoost = 5;
-    private int m_staminaRegenBoost = 2;
+    private int m_damageReductionVal = 3;
+    private int m_thornsVal = 8;
 
     public ContentGroundskeeper()
     {
@@ -15,7 +15,7 @@ public class ContentGroundskeeper : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Groundskeeper";
-        m_desc = "Gains +" + m_powerBoost + "/+0 and +" + m_staminaRegenBoost + " Stamina regen while in a forest.\n";
+        m_desc = "When in a forest, gains <b>Damage Reduction</b> " + m_damageReductionVal + ", <b>Thorns</b> " + m_thornsVal + ", and <b>Taunt</b>.\n\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -24,44 +24,67 @@ public class ContentGroundskeeper : GameUnit
         LateInit();
     }
 
-    public override int GetPower()
+    public override GameDamageReductionKeyword GetDamageReductionKeyword()
     {
-        int returnPower = base.GetPower();
+        GameDamageReductionKeyword toReturn = new GameDamageReductionKeyword(0);
 
-        if (m_gameTile == null)
+        if (base.GetDamageReductionKeyword() != null)
         {
-            return returnPower;
+            toReturn.AddKeyword(base.GetDamageReductionKeyword());
         }
 
         if (GameHelper.IsUnitInWorld(this))
         {
             if (m_gameTile.GetTerrain().IsForest())
             {
-                returnPower += m_powerBoost;
+                toReturn.AddKeyword(new GameDamageReductionKeyword(m_damageReductionVal));
             }
         }
 
-        return returnPower;
+        if (toReturn.m_damageReduction == 0)
+        {
+            toReturn = null;
+        }
+
+        return toReturn;
     }
 
-    public override int GetStaminaRegen()
+    public override GameThornsKeyword GetThornsKeyword()
     {
-        int returnStaminaRegen = base.GetStaminaRegen();
+        GameThornsKeyword toReturn = new GameThornsKeyword(0);
 
-        if (m_gameTile == null)
+        if (base.GetThornsKeyword() != null)
         {
-            return returnStaminaRegen;
+            toReturn.AddKeyword(base.GetThornsKeyword());
         }
 
         if (GameHelper.IsUnitInWorld(this))
         {
             if (m_gameTile.GetTerrain().IsForest())
             {
-                returnStaminaRegen += m_staminaRegenBoost;
+                toReturn.AddKeyword(new GameThornsKeyword(m_thornsVal));
             }
         }
 
-        return returnStaminaRegen;
+        if (toReturn.m_thornsDamage == 0)
+        {
+            toReturn = null;
+        }
+
+        return toReturn;
+    }
+
+    public override GameTauntKeyword GetTauntKeyword()
+    {
+        if (GameHelper.IsUnitInWorld(this))
+        {
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                return new GameTauntKeyword();
+            }
+        }
+
+        return base.GetTauntKeyword();
     }
 
     protected override void ResetToBase()

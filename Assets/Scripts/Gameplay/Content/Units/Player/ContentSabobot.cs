@@ -18,9 +18,9 @@ public class ContentSabobot : GameUnit
         m_rarity = GameRarity.Uncommon;
         AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), true, false);
         AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckAction(this)), true, false);
 
         m_name = "Sabobot";
-        m_desc = "Starts at full Stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -32,8 +32,8 @@ public class ContentSabobot : GameUnit
         ResetKeywords(true);
 
         m_maxHealth = 1;
-        m_maxStamina = 8;
-        m_staminaRegen = 2;
+        m_maxStamina = 4;
+        m_staminaRegen = 4;
         m_power = 1;
     }
 }

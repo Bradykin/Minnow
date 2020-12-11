@@ -26,7 +26,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentGladiator());
         m_playerUnits.Add(new ContentGrasper());
         m_playerUnits.Add(new ContentElvenWizard());
-        m_playerUnits.Add(new ContentHomonculus()); //Rework without Knowledgeable
+        m_playerUnits.Add(new ContentHomonculus());
         m_playerUnits.Add(new ContentCyclops());
         m_playerUnits.Add(new ContentInjuredTroll());
         m_playerUnits.Add(new ContentHero());
@@ -35,22 +35,21 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentElvenRogue());
         m_playerUnits.Add(new ContentElvenSentinel());
         m_playerUnits.Add(new ContentRaptor());
+        m_playerUnits.Add(new ContentGuardCaptain());
+        m_playerUnits.Add(new ContentNaturalScout());
+        m_playerUnits.Add(new ContentWanderer());
+        m_playerUnits.Add(new ContentSabobot());
+        m_playerUnits.Add(new ContentSkeleton());
+        m_playerUnits.Add(new ContentMage());
+        m_playerUnits.Add(new ContentGroundskeeper());
+        m_playerUnits.Add(new ContentRanger());
 
         m_playerUnits.Add(new ContentDwarfShivcaster()); //9 - It's shivs shouldn't trigger Spellcraft
-        m_playerUnits.Add(new ContentGuardCaptain());
-        m_playerUnits.Add(new ContentNaturalScout()); // 6 - Blind Beast - it; tweak stamina regen, remove attack restriction
-        m_playerUnits.Add(new ContentSabobot()); //5 - Remove start at max stam; add shuffle back in on death
-        m_playerUnits.Add(new ContentSkeleton()); // 6 - Needs to go back into deck on death; not stay around
-        m_playerUnits.Add(new ContentWanderer());
-
         m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
         m_playerUnits.Add(new ContentMiner()); // 1 - Rework; bad concept (Mountain explorer?)
-        m_playerUnits.Add(new ContentMage()); //1 - Rework Too much cheap power, too similar to other things; just needs new concept
         m_playerUnits.Add(new ContentFishOracle()); //1 - Rework
         m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain explorer?)
-        m_playerUnits.Add(new ContentGroundskeeper()); //1 - Rework (Maybe gains Taunt in forest?)
         m_playerUnits.Add(new ContentGoblin()); //1 - Rework (Basic unit with victorious)
-        m_playerUnits.Add(new ContentRanger()); //6 - Rework; keep soul
         m_playerUnits.Add(new ContentStoneGolem()); //1 - Rework
         m_playerUnits.Add(new ContentWildfolk()); //1 - Rework (Monster synergy Humanoid)
 
