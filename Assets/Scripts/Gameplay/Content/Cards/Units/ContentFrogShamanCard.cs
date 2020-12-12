@@ -8,7 +8,7 @@ public class ContentFrogShamanCard : GameUnitCard
     {
         m_unit = new ContentFrogShaman();
 
-        m_cost = 1;
+        m_cost = 3;
 
         FillBasicData();
 

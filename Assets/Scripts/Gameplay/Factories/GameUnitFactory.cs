@@ -61,10 +61,10 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentPyromage());
         m_playerUnits.Add(new ContentRhinoProtector());
         m_playerUnits.Add(new ContentDesertSwordsman());
+        m_playerUnits.Add(new ContentFrogShaman());
 
         //WIP
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
-        m_playerUnits.Add(new ContentFrogShaman());
         m_playerUnits.Add(new ContentGolemProtector());
         m_playerUnits.Add(new ContentEnergyConstruct());
         m_playerUnits.Add(new ContentEtherealStag());
