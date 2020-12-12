@@ -51,6 +51,28 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentStoneGolem());
         m_playerUnits.Add(new ContentConjuredImp());
 
+        //New Units
+        m_playerUnits.Add(new ContentArmouredMonk());
+        m_playerUnits.Add(new ContentMetalProtector());
+        m_playerUnits.Add(new ContentNobleman());
+        m_playerUnits.Add(new ContentPolarHunter());
+        m_playerUnits.Add(new ContentMountainBeast());
+        m_playerUnits.Add(new ContentPyromage());
+        m_playerUnits.Add(new ContentRhinoProtector());
+        m_playerUnits.Add(new ContentDesertDuelist());
+        m_playerUnits.Add(new ContentDwarfforgedConstruct());
+        m_playerUnits.Add(new ContentFrogShaman());
+        m_playerUnits.Add(new ContentGolemProtector());
+        m_playerUnits.Add(new ContentEnergyConstruct());
+        m_playerUnits.Add(new ContentEtherealStag());
+        m_playerUnits.Add(new ContentGuardianOfTheForest());
+        m_playerUnits.Add(new ContentSpelldancer());
+        m_playerUnits.Add(new ContentStagBear());
+        m_playerUnits.Add(new ContentWildwoodExplorer());
+        m_playerUnits.Add(new ContentStormChanneler());
+        m_playerUnits.Add(new ContentWildwoodSkirmisher());
+        m_playerUnits.Add(new ContentWarriorPriestess());
+
         //Starter Units
         m_playerUnits.Add(new ContentLizardSoldier());
         m_playerUnits.Add(new ContentUndeadMammoth());

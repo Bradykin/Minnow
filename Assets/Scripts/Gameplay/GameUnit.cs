@@ -520,7 +520,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
         GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
 
-        GameHelper.GetGameController().KillEnemy(m_incrementsKillCounter);
+        if (GetTeam() == Team.Enemy)
+        {
+            GameHelper.GetGameController().KillEnemy(m_incrementsKillCounter);
+        }
 
         SetGameTile(null);
     }

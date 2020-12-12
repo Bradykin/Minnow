@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContentProtectionCard : GameCardSpellBase
 {
+    private int m_range = 3;
+
     public ContentProtectionCard()
     {
         m_name = "Protection";
@@ -25,7 +27,7 @@ public class ContentProtectionCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains <b>Damage Shield</b> X.\n";
+        return $"Target allied unit and up to X other allied units within range {m_range} gain <b>Damage Shield</b>.\n";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -37,8 +39,37 @@ public class ContentProtectionCard : GameCardSpellBase
 
         int xVal = GameHelper.GetPlayer().GetXValue();
 
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
+
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameDamageShieldKeyword(), false, false);
+        if (xVal > 0)
+        {
+            targetUnit.AddKeyword(new GameDamageShieldKeyword(), false, false);
+
+            List<GameUnit> targets = new List<GameUnit>();
+
+            for (int i = 0; i < surroundingTiles.Count; i++)
+            {
+                GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
+
+                if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Player)
+                {
+                    targets.Add(unit);
+                }
+            }
+
+            for (int i = 0; i < xVal; i++)
+            {
+                if (targets.Count == 0)
+                {
+                    break;
+                }
+
+                int index = Random.Range(0, targets.Count);
+                targets[index].AddKeyword(new GameDamageShieldKeyword(), false, false);
+                targets.RemoveAt(index);
+            }
+        }
     }
 }

@@ -523,7 +523,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         int toReturn = Constants.InitialHandSize;
 
-        if (GameHelper.GetGameController().m_currentTurnNumber == 0)
+        if (GameHelper.GetGameController().m_currentTurnNumber == 1)
         {
             if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
             {
@@ -721,7 +721,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         }
         m_curEnergy = GetMaxEnergy();
 
-        if (GameHelper.GetGameController().m_currentTurnNumber == 0)
+        if (GameHelper.GetGameController().m_currentTurnNumber == 1)
         {
             if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
             {

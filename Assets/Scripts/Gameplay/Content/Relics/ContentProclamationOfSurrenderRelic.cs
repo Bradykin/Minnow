@@ -8,7 +8,7 @@ public class ContentProclamationOfSurrenderRelic : GameRelic
     {
         m_name = "Proclamation of Surrender";
         m_desc = "Whenever <b>Spellcraft</b> is triggered, gain an energy.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Rare;
 
         LateInit();
 
