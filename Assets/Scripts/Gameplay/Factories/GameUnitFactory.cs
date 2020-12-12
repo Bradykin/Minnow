@@ -56,9 +56,9 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentArmouredMonk());
         m_playerUnits.Add(new ContentMetalProtector());
         m_playerUnits.Add(new ContentPirateCaptain());
+        m_playerUnits.Add(new ContentPolarHunter());
 
         //WIP
-        m_playerUnits.Add(new ContentPolarHunter());
         m_playerUnits.Add(new ContentMountainBeast());
         m_playerUnits.Add(new ContentPyromage());
         m_playerUnits.Add(new ContentRhinoProtector());
