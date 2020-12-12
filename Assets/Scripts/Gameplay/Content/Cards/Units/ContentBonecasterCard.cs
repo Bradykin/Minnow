@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracleCard : GameUnitCard
+public class ContentBonecasterCard : GameUnitCard
 {
-    public ContentFishOracleCard()
+    public ContentBonecasterCard()
     {
         m_unit = new ContentBonecaster();
 

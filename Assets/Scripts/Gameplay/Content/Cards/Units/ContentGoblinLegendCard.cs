@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentGoblinCard : GameUnitCard
+public class ContentGoblinLegendCard : GameUnitCard
 {
-    public ContentGoblinCard()
+    public ContentGoblinLegendCard()
     {
         m_unit = new ContentGoblinLegend();
 

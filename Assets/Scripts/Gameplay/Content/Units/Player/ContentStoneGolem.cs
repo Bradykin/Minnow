@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ContentStoneGolem : GameUnit
 {
-    private GameDamageReductionKeyword m_drKeyword;
     private bool m_staminaAdded;
 
     public ContentStoneGolem()
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.4f, 0);
 
-        m_desc = "When at maximum stamina, Stone Golem has Damage Reduction 4.\n";
+        m_desc = "When at maximum stamina, Stone Golem has Damage Reduction equal to its maximum stamina.\n";
 
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
@@ -20,46 +19,41 @@ public class ContentStoneGolem : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        m_drKeyword = new GameDamageReductionKeyword(4);
-
         LateInit();
     }
 
-    public override void GainStamina(int toGain, bool isRegen = false)
+    public override GameDamageReductionKeyword GetDamageReductionKeyword()
     {
-        base.GainStamina(toGain, isRegen);
+        GameDamageReductionKeyword toReturn = new GameDamageReductionKeyword(0);
 
-        if (m_curStamina == m_maxStamina)
+        if (base.GetDamageReductionKeyword() != null)
         {
-            if (!m_staminaAdded)
+            toReturn.AddKeyword(base.GetDamageReductionKeyword());
+        }
+
+        if (GameHelper.IsUnitInWorld(this))
+        {
+            if (GetCurStamina() == GetMaxStamina())
             {
-                AddKeyword(m_drKeyword, true, false);
-                m_staminaAdded = true;
+                toReturn.AddKeyword(new GameDamageReductionKeyword(GetMaxStamina()));
             }
         }
-    }
 
-    public override void SpendStamina(int toSpend)
-    {
-        base.SpendStamina(toSpend);
-
-        if (m_curStamina < m_maxStamina)
+        if (toReturn.m_damageReduction == 0)
         {
-            if (m_staminaAdded)
-            {
-                SubtractKeyword(m_drKeyword);
-                m_staminaAdded = false;
-            }
+            toReturn = null;
         }
+
+        return toReturn;
     }
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 20;
+        m_maxHealth = 50;
         m_maxStamina = 3;
-        m_staminaRegen = 1;
-        m_power = 1;
+        m_staminaRegen = 2;
+        m_power = 0;
     }
 }

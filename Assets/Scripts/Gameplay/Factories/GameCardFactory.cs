@@ -67,10 +67,10 @@ public static class GameCardFactory
         m_cards.Add(new ContentElvenWizardCard());
         //m_cards.Add(new ContentEnergyConstructCard());
         //m_cards.Add(new ContentEtherealStagCard());
-        m_cards.Add(new ContentFishOracleCard());
+        m_cards.Add(new ContentBonecasterCard());
         //m_cards.Add(new ContentFrogShamanCard());
         m_cards.Add(new ContentGladiatorCard());
-        m_cards.Add(new ContentGoblinCard());
+        m_cards.Add(new ContentGoblinLegendCard());
         //m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentGrasperCard());
         m_cards.Add(new ContentGroundskeeperCard());

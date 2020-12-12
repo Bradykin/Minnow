@@ -8,7 +8,7 @@ public class ContentMetalGolemCard : GameUnitCard
     {
         m_unit = new ContentMetalGolem();
 
-        m_cost = 3;
+        m_cost = 1;
 
         FillBasicData();
 
