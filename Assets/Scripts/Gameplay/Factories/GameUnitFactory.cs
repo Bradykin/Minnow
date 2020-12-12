@@ -60,9 +60,9 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentMountainBeast());
         m_playerUnits.Add(new ContentPyromage());
         m_playerUnits.Add(new ContentRhinoProtector());
+        m_playerUnits.Add(new ContentDesertDuelist());
 
         //WIP
-        m_playerUnits.Add(new ContentDesertDuelist());
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
         m_playerUnits.Add(new ContentFrogShaman());
         m_playerUnits.Add(new ContentGolemProtector());
