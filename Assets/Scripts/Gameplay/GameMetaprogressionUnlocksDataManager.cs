@@ -330,7 +330,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_relicRewards.Add(24, CreateRelicLevelReward("More Relics",
             "",
-            new ContentPinnacleOfFearRelic(), new ContentEyeOfDorsonRelic(), new ContentCursedAmuletRelic()));
+            new ContentPinnacleOfFearRelic(), new ContentCursedAmuletRelic(), new ContentCursedAmuletRelic()));
     }
 
     private static void FillMapData(GameMap map, GameCard rewardCard)
