@@ -6,25 +6,39 @@ public class ContentRhinoProtector : GameUnit
 {
     public ContentRhinoProtector()
     {
-        m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
+        m_worldTilePositionAdjustment = new Vector3(0.2f, 0, 0);
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
+
+        AddKeyword(new GameForestwalkKeyword(), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameRootedKeyword())), true, false);
 
         m_name = "Rhino Protector";
+        m_desc = "Changes the terrain under this at the end of the turn to a verdant forest.";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
 
+    public override void EndTurn()
+    {
+        base.EndTurn();
+
+        if (GameHelper.IsUnitInWorld(this))
+        {
+            GetGameTile().SetTerrain(new ContentForestTerrain(), false);
+        }
+    }
+
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 20;
+        m_maxHealth = 30;
         m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 6;
+        m_staminaRegen = 4;
+        m_power = 4;
     }
 }
