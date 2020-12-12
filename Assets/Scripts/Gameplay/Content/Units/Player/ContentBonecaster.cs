@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentFishOracle : GameUnit
+public class ContentBonecaster : GameUnit
 {
-    public ContentFishOracle()
+    public ContentBonecaster()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.65f, 0);
 
@@ -12,7 +12,7 @@ public class ContentFishOracle : GameUnit
         m_rarity = GameRarity.Uncommon;
         AddKeyword(new GameEnrageKeyword(new GameGainShivAction(1)), true, false);
 
-        m_name = "Fish Oracle";
+        m_name = "Bonecaster";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 

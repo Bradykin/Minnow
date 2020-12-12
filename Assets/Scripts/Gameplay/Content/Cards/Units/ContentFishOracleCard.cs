@@ -6,7 +6,7 @@ public class ContentFishOracleCard : GameUnitCard
 {
     public ContentFishOracleCard()
     {
-        m_unit = new ContentFishOracle();
+        m_unit = new ContentBonecaster();
 
         m_cost = 1;
 
