@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ContentArmouredMonk : GameUnit
 {
-    private int m_powerBoost = 8;
-    private int m_staminaRegenBoost = 2;
+    private int m_basePower = 3;
+
+    public int m_qiVal;
 
     public ContentArmouredMonk()
     {
@@ -14,58 +15,29 @@ public class ContentArmouredMonk : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        AddKeyword(new GameRangeKeyword(2), true, false);
-        AddKeyword(new GameForestwalkKeyword(), true, false);
+        AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 4, 0)), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameMonkHealAction(this, 3)), true, false);
 
         m_name = "Armoured Monk";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
 
-    public override int GetPower()
-    {
-        int returnPower = base.GetPower();
-
-        if (m_gameTile == null)
-        {
-            return returnPower;
-        }
-
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnPower += m_powerBoost;
-        }
-
-        return returnPower;
-    }
-
-    public override int GetStaminaRegen()
-    {
-        int returnStaminaRegen = base.GetStaminaRegen();
-
-        if (m_gameTile == null)
-        {
-            return returnStaminaRegen;
-        }
-
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnStaminaRegen += m_staminaRegenBoost;
-        }
-
-        return returnStaminaRegen;
-    }
-
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 15;
+        m_maxHealth = 40;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 9;
+        m_staminaRegen = 4;
+        m_power = m_basePower;
+    }
+
+    public void ResetPower()
+    {
+        m_power = m_basePower;
+        UIHelper.CreateWorldElementNotification($"The power leaves {GetName()}'s body.", false, GetWorldTile().gameObject);
     }
 }
