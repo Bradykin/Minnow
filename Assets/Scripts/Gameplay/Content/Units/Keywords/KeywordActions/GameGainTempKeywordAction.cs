@@ -18,7 +18,7 @@ public class GameGainTempKeywordAction : GameAction
 
     public override string GetDesc()
     {
-        return $"Add {m_keyword.GetDesc()} {m_keyword.GetName()} to {m_unit.GetName()}";
+        return $"Add {m_keyword.GetName()} {m_keyword.GetDesc()} to {m_unit.GetName()}";
     }
 
     public override void DoAction()
