@@ -487,13 +487,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             SubtractKeyword(GetBleedKeyword());
         }
 
-        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
-        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllUnitsDeathExplode)
-        {
-            GameExplodeAction gameExplodeAction = new GameExplodeAction(this, this.GetPower(), 3);
-            gameExplodeAction.DoAction();
-        }
-
         if (m_worldUnit == Globals.m_selectedUnit)
         {
             WorldGridManager.Instance.ClearAllTilesMovementRange();
@@ -1183,6 +1176,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn.AddKeyword(new GameThornsKeyword(2));
         }
 
+        ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
+        if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllUnitsHaveThorns)
+        {
+            toReturn.AddKeyword(new GameThornsKeyword(10));
+        }
+
         //If the return keyword is still blank, set it to null
         if (toReturn.m_thornsDamage == 0)
         {
@@ -1257,23 +1256,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual GameRootedKeyword GetRootedKeyword()
     {
-        GameRootedKeyword rootedKeyword = m_keywordHolder.GetKeyword<GameRootedKeyword>();
-
-        if (rootedKeyword != null)
-        {
-            return rootedKeyword;
-        }
-
-        if (GameHelper.IsInGame())
-        {
-            ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
-            if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.AllRooted)
-            {
-                return new GameRootedKeyword();
-            }
-        }
-
-        return rootedKeyword;
+        return m_keywordHolder.GetKeyword<GameRootedKeyword>();
     }
 
     public virtual GameTauntKeyword GetTauntKeyword()

@@ -64,53 +64,55 @@ public class ContentDeltaMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentMummyEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMummyPharaohEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentRiverlurkerEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
 
-        m_totalEnemiesOnMap.Add(new ContentScorchingSerpentEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDemonMagicianEnemy(null));
 
+        m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentJackalEnemy(null));
 
         //--------------------------------------------------------------------------------------------------------//
 
         List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();
         //Wave 1
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinShamanEnemy(null), 1, 1, 0.33f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 1, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.25f));
 
         //Wave 2
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinShamanEnemy(null), 2, 1, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 2, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 2, 1, 0.25f));
 
         //Wave 3
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 3, 1, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.5f));
 
         //Wave 4
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.5f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.2f));
 
         //Wave 5
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.5f));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.2f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.2f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 6, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 6, 1, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
 
@@ -119,10 +121,11 @@ public class ContentDeltaMap : GameMap
         List<GameSpawnPoolData> riverShoresSpawnPoolData = new List<GameSpawnPoolData>();
 
         //Wave 1
+        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinShamanEnemy(null), 1, 1, 0.33f));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 1, 1, 1));
-        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.25f));
 
         //Wave 2
+        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinShamanEnemy(null), 2, 1, 0.75f));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 2, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 1));
@@ -140,13 +143,13 @@ public class ContentDeltaMap : GameMap
         //Wave 5
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 5, 1, 0.5f));
-        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
+        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 5, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 5, 1, 0.25f));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 1));
-        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
+        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentJackalEnemy(null), 6, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandWyvernEnemy(null), 6, 1, 0.5f));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
 
@@ -155,7 +158,6 @@ public class ContentDeltaMap : GameMap
         List<GameSpawnPoolData> inRiverSpawnPoolData = new List<GameSpawnPoolData>();
 
         //Wave 1
-        inRiverSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 1, 1, 0.25f));
 
         //Wave 3
         inRiverSpawnPoolData.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 3, 2.0f, 0.5f));

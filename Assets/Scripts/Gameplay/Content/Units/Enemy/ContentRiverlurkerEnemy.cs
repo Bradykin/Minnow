@@ -10,10 +10,10 @@ public class ContentRiverlurkerEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 40;
+        m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 6;
+        m_power = 8;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

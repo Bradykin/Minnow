@@ -11,11 +11,10 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         NormalDifficultTerrainCostReversal, // 1
         StaminaCostAttackDecreaseMoveCostIncrease, // 2
         RangedNotRangedSwap, // 3
-        AllUnitsDeathExplode, // 4
+        AllUnitsHaveThorns, // 4
         DamageAppliesBleeds, // 5
         NobodyCanDealDamage, // 6
-        AllRooted, // 7
-        None // 8
+        None // 7
     }
 
     public ChaosWarpAbility m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
@@ -58,7 +57,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
 
         GameHelper.GetGameController().m_activeBossUnits.Add(this);
 
-        m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+        m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 7);
         GetWorldTile().ClearSurroundingFog(2);
         UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Chaos has arrived and sown disorder!");
         UIHelper.CreateHUDNotification("Chaos Warp", GetChaosWarpString());
@@ -96,17 +95,14 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             case ChaosWarpAbility.RangedNotRangedSwap:
                 chaosWarpString = "All ranged units only have one range. All non-ranged units have ranged 2.\n";
                 break;
-            case ChaosWarpAbility.AllUnitsDeathExplode:
-                chaosWarpString = "All units explode on death for damage equal to their power to all target in range 3.\n";
+            case ChaosWarpAbility.AllUnitsHaveThorns:
+                chaosWarpString = "All units have Thorns 10.\n";
                 break;
             case ChaosWarpAbility.DamageAppliesBleeds:
-                chaosWarpString = "Damage applies bleeds instead of damage.\n";
+                chaosWarpString = "When a unit gets damaged, it gains <b>Bleeding</b>.\n";
                 break;
             case ChaosWarpAbility.NobodyCanDealDamage:
                 chaosWarpString = "Attacks deal no damage this turn.\n";
-                break;
-            case ChaosWarpAbility.AllRooted:
-                chaosWarpString = "All units are rooted for this turn.\n";
                 break;
             case ChaosWarpAbility.None:
                 chaosWarpString = "";
@@ -141,7 +137,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         GetWorldTile().ClearSurroundingFog(2);
         while ((int)m_currentChaosWarpAbility == prevValue)
         {
-            m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 8);
+            m_currentChaosWarpAbility = (ChaosWarpAbility)Random.Range(0, 7);
         }
         UIHelper.CreateHUDNotification("Chaos Warp", GetChaosWarpString());
     }

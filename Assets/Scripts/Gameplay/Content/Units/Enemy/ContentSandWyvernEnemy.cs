@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ContentSandWyvernEnemy : GameEnemyUnit
 {
+    private int m_deathAuraRange = 3;
+    
     public ContentSandWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 60;
+        m_maxHealth = 55;
         m_maxStamina = 6;
         m_staminaRegen = 4;
         m_power = 20;
@@ -23,7 +25,7 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageShieldKeyword(), true, false);
+            m_desc += $"Whenever any unit dies within range {m_deathAuraRange} of this unit, this unit heals to full health.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -32,5 +34,20 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override void OnOtherDie(GameUnit other, GameTile deathLocation)
+    {
+        base.OnOtherDie(other, deathLocation);
+
+        if (!GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            return;
+        }
+
+        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) <= m_deathAuraRange)
+        {
+            Heal(GetMaxHealth());
+        }
     }
 }

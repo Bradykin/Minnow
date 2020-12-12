@@ -8,20 +8,20 @@ public class ContentBasiliskEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 18;
+        m_maxHealth = 16;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 7;
+        m_power = 6;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Basilisk";
-        m_desc = $"When this unit hits another, it gives them Brittle until end of wave.\n";
+        m_desc = $"When this unit hits another, it gives them <b>Rooted</b> until end of wave. If they were already rooted, they instead get <b>Brittle</b> until end of wave.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameRangeKeyword(2), true, false);
+            m_desc += "If they were already <b>Brittle</b>, then it becomes <b>permanent</b>.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -38,7 +38,28 @@ public class ContentBasiliskEnemy : GameEnemyUnit
 
         if (!other.m_isDead)
         {
-            other.AddKeyword(new GameBrittleKeyword(), false, true);
+            if (other.GetRootedKeyword() == null)
+            {
+                other.AddKeyword(new GameRootedKeyword(), false, false);
+            }
+            else
+            {
+                if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+                {
+                    if (other.GetBrittleKeyword() == null)
+                    {
+                        other.AddKeyword(new GameBrittleKeyword(), false, false);
+                    }
+                    else if (!other.GetBrittleKeyword().m_isPermanent)
+                    {
+                        other.GetBrittleKeyword().m_isPermanent = true;
+                    }
+                }
+                else
+                {
+                    other.AddKeyword(new GameBrittleKeyword(), false, false);
+                }
+            }
         }
 
         return amount;

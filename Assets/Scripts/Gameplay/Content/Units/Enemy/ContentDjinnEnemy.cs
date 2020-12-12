@@ -8,10 +8,10 @@ public class ContentDjinnEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0, 0);
 
-        m_maxHealth = 34;
+        m_maxHealth = 60;
         m_maxStamina = 6;
         m_staminaRegen = 5;
-        m_power = 14;
+        m_power = 18;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
@@ -20,7 +20,7 @@ public class ContentDjinnEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameFlyingKeyword(), true, false);
-        AddKeyword(new GameDeathKeyword(new GameGainTempMagicPowerAction(1)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameGainTempMagicPowerAction(2)), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
