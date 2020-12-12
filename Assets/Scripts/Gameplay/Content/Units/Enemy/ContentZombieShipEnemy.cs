@@ -77,21 +77,25 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         }
     }
     
-    public void TryReleaseUnits()
+    public bool TryReleaseUnits()
     {
-        int numFreeSpacesNeeded = 4;
+        int numFreeSpacesNeeded = 3;
+        if (m_isEliteShip)
+        {
+            numFreeSpacesNeeded++;
+        }
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
         if (!surroundingTiles.Any(t => !t.GetTerrain().IsWater()))
         {
-            return;
+            return false;
         }
 
         List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => !t.IsOccupied() && t.IsPassable(null, false)).ToList();
 
         if (surroundingPassableTiles.Count < numFreeSpacesNeeded)
         {
-            return;
+            return false;
         }
 
         surroundingPassableTiles.OrderBy(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), t));
@@ -119,6 +123,8 @@ public class ContentZombieShipEnemy : GameEnemyUnit
 
         UIHelper.CreateWorldElementNotification("The ghostly ship has disembarked its crew!", false, m_worldUnit.gameObject);
         m_hasReleasedUnits = true;
+
+        return true;
     }
 
     public override void LoadFromJson(JsonGameUnitData jsonData)

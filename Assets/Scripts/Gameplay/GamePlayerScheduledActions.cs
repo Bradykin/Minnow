@@ -8,6 +8,7 @@ public enum ScheduledActionTime : int
     EndOfTurn,
     StartOfTurn,
     EndOfWave,
+    StartIntermission,
     StartOfWave
 }
 

@@ -19,7 +19,15 @@ public class ContentMountainPassMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        return 6;
+        if (GameHelper.GetGameController().m_currentWaveNumber % 2 == 0 && GameHelper.GetGameController().m_currentTurnNumber < 6)
+        {
+            return 4;
+        }
+
+        else
+        {
+            return 6;
+        }
     }
 
     protected override void FillSpawnPool()
@@ -266,7 +274,10 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillMapEvents()
     {
-        
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
+            AddMapEvent(new ContentZombieFleetEvent(0), 1);
+        }
     }
 
     protected override void FillExclusionCardPool()

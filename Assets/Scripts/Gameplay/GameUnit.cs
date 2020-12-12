@@ -1011,7 +1011,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             GetFadeKeyword().m_isActive = false;
         }
 
-        GameHelper.GetGameController().RemoveIntermissionLock();
+        if (GameHelper.IsInGame())
+        {
+            GameHelper.GetGameController().RemoveIntermissionLock();
+        }
 
         return damageTaken;
     }

@@ -26,7 +26,6 @@ public class WorldController : Singleton<WorldController>
 
         m_gameController = new GameController(map);
         map.TriggerStartMap();
-        map.TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
 
 
         m_playerHand = new List<UICard>();
@@ -288,7 +287,7 @@ public class WorldController : Singleton<WorldController>
                 }
             }
 
-            m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartOfWave);
+            m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartIntermission);
 
             //Choose unit rarity
             GameElementBase.GameRarity gameRarity = SelectIntermissionUnitRarity();

@@ -27,7 +27,7 @@ public class ContentLakesideMap : GameMap
     {
         //These events are used for light tutorialization
         AddMapEvent(new ContentTutorialFirstWaveMapEvent(), 1);
-        AddMapEvent(new ContentTutorialBossMapEvent(), 5);
+        AddMapEvent(new ContentTutorialBossMapEvent(), 6);
     }
 
     protected override void FillSpawnPool()

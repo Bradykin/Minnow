@@ -115,6 +115,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_randomSeed = (int)System.DateTime.Now.Ticks;
         Random.InitState(m_randomSeed);
 
+        GetCurMap().TriggerMapEvents(m_currentWaveNumber, ScheduledActionTime.StartOfWave);
+
         m_currentActorIterator = 0;
         m_runStateType = RunStateType.Gameplay;
         CurrentActor.StartTurn();
