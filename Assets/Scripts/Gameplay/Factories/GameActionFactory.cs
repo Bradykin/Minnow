@@ -47,6 +47,7 @@ public class GameActionFactory
         m_actions.Add(new GameReturnToDeckAction(null));
         m_actions.Add(new GameExplodeEnemiesAction(null, 0, 0));
         m_actions.Add(new GameMonkHealAction(null, 0));
+        m_actions.Add(new GameGainRandomSpellAction(0));
 
         m_hasInit = true;
     }

@@ -26,6 +26,8 @@ public static class GameCardFactory
 
     public static List<GameCard> m_tribalCards = new List<GameCard>();
 
+    public static List<GameCard> m_exileSpells = new List<GameCard>();
+
     private static bool m_hasInit = false;
 
     public static void Init()
@@ -92,9 +94,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentPirateCaptainCard());
         m_cards.Add(new ContentPolarHunterCard());
         m_cards.Add(new ContentMountainBeastCard());
+        m_cards.Add(new ContentPyromageCard());
 
         //WIP
-        m_cards.Add(new ContentPyromageCard());
         m_cards.Add(new ContentRhinoProtectorCard());
         m_cards.Add(new ContentDesertDuelistCard());
         m_cards.Add(new ContentDwarfforgedConstructCard());
@@ -337,6 +339,13 @@ public static class GameCardFactory
             if (isUnit)
             {
                 m_unitCards.Add(m_cards[i]);
+            }
+            else
+            {
+                if (m_cards[i].m_shouldExile)
+                {
+                    m_exileSpells.Add(m_cards[i]);
+                }
             }
 
             if (m_cards[i].m_rarity == GameElementBase.GameRarity.Common 
