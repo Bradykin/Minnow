@@ -118,6 +118,12 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cards.Add(new ContentEndCard());
         m_cards.Add(new ContentPathCard());
         m_cards.Add(new ContentExperienceCard());
+
+        //Units
+        //m_cards.Add(new ContentPirateCaptainCard());
+        //m_cards.Add(new ContentRhinoProtectorCard());
+        //m_cards.Add(new ContentDesertSwordsmanCard());
+        //m_cards.Add(new ContentFrogShamanCard());
          */
 
         //Creations - 2
@@ -447,6 +453,11 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentShadowWarlockCard());
         m_initialCards.Add(new ContentWandererCard());
         m_initialCards.Add(new ContentCyclopsCard());
+        m_initialCards.Add(new ContentArmouredMonkCard());
+        m_initialCards.Add(new ContentMetalProtectorCard());
+        m_initialCards.Add(new ContentPolarHunterCard());
+        m_initialCards.Add(new ContentMountainBeastCard());
+        m_initialCards.Add(new ContentPyromageCard());
 
         //Spells
         m_initialCards.Add(new ContentArcaneBoltCard());

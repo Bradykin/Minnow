@@ -50,9 +50,6 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentMetalGolem());
         m_playerUnits.Add(new ContentStoneGolem());
         m_playerUnits.Add(new ContentConjuredImp());
-
-        //New Units
-        //Implemented 
         m_playerUnits.Add(new ContentArmouredMonk());
         m_playerUnits.Add(new ContentMetalProtector());
         m_playerUnits.Add(new ContentPirateCaptain());
@@ -62,6 +59,9 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentRhinoProtector());
         m_playerUnits.Add(new ContentDesertSwordsman());
         m_playerUnits.Add(new ContentFrogShaman());
+
+        //New Units
+        //Implemented
 
         //WIP
         m_playerUnits.Add(new ContentDwarfforgedConstruct());

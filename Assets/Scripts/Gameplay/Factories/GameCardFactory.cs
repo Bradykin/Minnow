@@ -86,9 +86,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentStoneGolemCard());
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
-
-        //New Units
-        //Implemeneted
         m_cards.Add(new ContentArmouredMonkCard());
         m_cards.Add(new ContentMetalProtectorCard());
         m_cards.Add(new ContentPirateCaptainCard());
@@ -98,6 +95,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentRhinoProtectorCard());
         m_cards.Add(new ContentDesertSwordsmanCard());
         m_cards.Add(new ContentFrogShamanCard());
+
+        //New Units
+        //Implemeneted
 
         //WIP
         m_cards.Add(new ContentDwarfforgedConstructCard());
