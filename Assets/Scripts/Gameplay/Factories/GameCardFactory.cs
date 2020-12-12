@@ -296,8 +296,8 @@ public static class GameCardFactory
         //m_enemyCards.Add(new ContentSandWurmEnemyCard());
         //m_enemyCards.Add(new ContentScytheBarbarianEnemyCard());
         m_enemyCards.Add(new ContentShadeEnemyCard());
-        //m_enemyCards.Add(new ContentSkeletalCaptainEnemyCard());
-        //m_enemyCards.Add(new ContentSkeletalPirateEnemyCard());
+        m_enemyCards.Add(new ContentSkeletalCaptainEnemyCard());
+        m_enemyCards.Add(new ContentSkeletalPirateEnemyCard());
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
         m_enemyCards.Add(new ContentSpiralSerpentEnemyCard());
@@ -318,7 +318,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentYetiEnemyCard());
         //m_enemyCards.Add(new ContentWildOgreEnemyCard());
         //m_enemyCards.Add(new ContentWitchEnemyCard());
-        //m_enemyCards.Add(new ContentZombieCrabEnemyCard());
+        m_enemyCards.Add(new ContentZombieCrabEnemyCard());
         m_enemyCards.Add(new ContentZombieEnemyCard());
         m_enemyCards.Add(new ContentZombieShipEnemyCard());
 

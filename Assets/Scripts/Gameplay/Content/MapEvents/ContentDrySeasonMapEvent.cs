@@ -16,13 +16,10 @@ public class ContentDrySeasonMapEvent : GameMapEvent
 
     public override void TriggerEvent()
     {
-        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        List<GameTile> eventTiles = WorldGridManager.Instance.GetTilesWithEventMarker(m_markerToCheck);
+        for (int i = 0; i < eventTiles.Count; i++)
         {
-            GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.HasEventMarker(m_markerToCheck))
-            {
-                gameTile.SetTerrain(new ContentScrublandPlainsTerrain(), true); //Should be muddy dirt or something
-            }
+            eventTiles[i].SetTerrain(new ContentScrublandPlainsTerrain(), true); // Should be muddy dirt or something
         }
     }
 }

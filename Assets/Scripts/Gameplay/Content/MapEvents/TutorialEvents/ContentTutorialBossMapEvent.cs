@@ -9,7 +9,7 @@ public class ContentTutorialBossMapEvent : GameMapEvent
         m_name = "Boss Arrival!";
         m_desc = "Defeat the boss that appears this wave to win the run!";
 
-        m_triggerType = ScheduledActionTime.EndOfWave;
+        m_triggerType = ScheduledActionTime.StartIntermission;
     }
 
     public override void TriggerEvent()

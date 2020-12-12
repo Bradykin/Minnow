@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class GameMapEvent : GameElementBase
 {
-    public ScheduledActionTime m_triggerType = ScheduledActionTime.StartOfWave;
+    public ScheduledActionTime m_triggerType = ScheduledActionTime.StartIntermission;
 
     public abstract void TriggerEvent();
 

@@ -6,23 +6,20 @@ public class ContentSkeletalPirateEnemy : GameEnemyUnit
 {
     public ContentSkeletalPirateEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
-
-        m_maxHealth = 4;
+        m_maxHealth = 2 + GetHealthModByWave();
         m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 3;
+        m_staminaRegen = 3;
+        m_power = 0 + GetPowerModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Skeletal Pirate";
-        
-        m_desc = "";
+        m_desc = "This unit is part of the pirate crew.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), true, false);
+            //TODO ALEX - make a chaos ability
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -31,5 +28,24 @@ public class ContentSkeletalPirateEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+    private int GetHealthModByWave()
+    {
+        int waveNum = GameHelper.GetCurrentWaveNum();
+
+        int scalingValue = waveNum;
+        if (waveNum >= 3)
+        {
+            scalingValue += (waveNum - 2);
+        }
+
+        return scalingValue * 6;
+    }
+
+    private int GetPowerModByWave()
+    {
+        int waveNum = GameHelper.GetCurrentWaveNum();
+
+        return waveNum * 3;
     }
 }

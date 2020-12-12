@@ -16,13 +16,10 @@ public class ContentFloodingMapEvent : GameMapEvent
 
     public override void TriggerEvent()
     {
-        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        List<GameTile> eventTiles = WorldGridManager.Instance.GetTilesWithEventMarker(m_markerToCheck);
+        for (int i = 0; i < eventTiles.Count; i++)
         {
-            GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
-            if (gameTile.HasEventMarker(m_markerToCheck))
-            {
-                gameTile.SetTerrain(new ContentWaterTerrain(), true);
-            }
+            eventTiles[i].SetTerrain(new ContentWaterTerrain(), true);
         }
     }
 }

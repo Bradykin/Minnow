@@ -18,8 +18,6 @@ public abstract class GameMap : GameElementBase
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
-    protected bool m_fogSpawningActive = true;
-
     protected bool m_spawnCrystals = false;
     protected int m_destroyedCrystals;
 
@@ -34,11 +32,6 @@ public abstract class GameMap : GameElementBase
     public string GetDesc()
     {
         return m_desc;
-    }
-
-    public bool GetFogSpawningActive()
-    {
-        return m_fogSpawningActive;
     }
 
     public void TriggerStartMap()
@@ -231,39 +224,38 @@ public abstract class GameMap : GameElementBase
             return true;
         }
 
-        if (GetFogSpawningActive())
+        if (GameHelper.GetGameController().m_currentTurnNumber < (gameOpponent.m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn))
         {
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (gameOpponent.m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn))
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(gameOpponent);
-                gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
-                return true;
-            }
+            return false;
         }
-        else
+
+        GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(gameOpponent);
+        if (gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
+        {
+            return true;
+        }
+
+        //Failed to spawn at fog edge, instead spawn at a spawn point
+        for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+        {
+            GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
+            int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
+            gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
+            gameOpponent.m_spawnPoints[randomIndex] = temp;
+        }
+
+        if (GameHelper.GetGameController().m_currentTurnNumber >= (gameOpponent.m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn))
         {
             for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
             {
-                GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
-                int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
-                gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
-                gameOpponent.m_spawnPoints[randomIndex] = temp;
-            }
-
-            if (GameHelper.GetGameController().m_currentTurnNumber >= (gameOpponent.m_eliteSpawnWaveModifier + Constants.SpawnEliteTurn))
-            {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomEliteEnemy(gameOpponent);
-                for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+                if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
                 {
-                    if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
-                    {
-                        return true;
-                    }
+                if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
+                {
+                    return true;
                 }
             }
         }
@@ -285,37 +277,39 @@ public abstract class GameMap : GameElementBase
             return false;
         }
 
-        if (GetFogSpawningActive())
+        GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
+        if (gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
         {
-            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
-            gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge);
             return true;
         }
-        else
+
+        //Failed to spawn at fog edge, instead spawn at a spawn point
+        for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
         {
-            for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+            GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
+            int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
+            gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
+            gameOpponent.m_spawnPoints[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+        {
+            if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
             {
-                GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
-                int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
-                gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
-                gameOpponent.m_spawnPoints[randomIndex] = temp;
+                continue;
             }
 
-            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetRandomBossEnemy(gameOpponent);
-            for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+            if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
             {
-                if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                {
-                    continue;
-                }
-
-                if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
-                {
-                    return true;
-                }
+                return true;
             }
         }
 
         return false;
+    }
+
+    public virtual List<GameTile> GetValidFogSpawningTiles()
+    {
+        return WorldGridManager.Instance.GetFogBorderGameTiles();
     }
 }

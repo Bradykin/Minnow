@@ -77,21 +77,25 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         }
     }
     
-    public void TryReleaseUnits()
+    public bool TryReleaseUnits()
     {
         int numFreeSpacesNeeded = 3;
+        if (m_isEliteShip)
+        {
+            numFreeSpacesNeeded++;
+        }
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
         if (!surroundingTiles.Any(t => !t.GetTerrain().IsWater()))
         {
-            return;
+            return false;
         }
 
-        List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => t.IsPassable(null, false)).ToList();
+        List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => !t.IsOccupied() && t.IsPassable(null, false)).ToList();
 
         if (surroundingPassableTiles.Count < numFreeSpacesNeeded)
         {
-            return;
+            return false;
         }
 
         surroundingPassableTiles.OrderBy(t => WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), t));
@@ -100,17 +104,17 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         for (int i = 0; i < numFreeSpacesNeeded; i++)
         {
             GameEnemyUnit newEnemyUnit;
-            if (i > 0)
+            if (i == 0)
             {
-                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalPirateEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
+                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalCaptainEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
-            else if (m_isEliteShip)
+            else if (i == 1 && m_isEliteShip)
             {
                 newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentZombieCrabEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
             else
             {
-                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalCaptainEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
+                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalPirateEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
             surroundingPassableTiles[i].PlaceUnit(newEnemyUnit);
             newEnemyUnit.OnSummon();
@@ -119,6 +123,8 @@ public class ContentZombieShipEnemy : GameEnemyUnit
 
         UIHelper.CreateWorldElementNotification("The ghostly ship has disembarked its crew!", false, m_worldUnit.gameObject);
         m_hasReleasedUnits = true;
+
+        return true;
     }
 
     public override void LoadFromJson(JsonGameUnitData jsonData)

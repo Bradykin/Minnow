@@ -30,8 +30,10 @@ public class AIZombieShipSeekLandStep : AIMoveStep
 
         if (!zombieShipEnemy.m_hasReleasedUnits)
         {
-            zombieShipEnemy.TryReleaseUnits();
-            yield return new WaitForSeconds(0.5f);
+            if (zombieShipEnemy.TryReleaseUnits())
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 

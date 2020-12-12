@@ -13,13 +13,27 @@ public class ContentMountainPassMap : GameMap
         m_difficulty = MapDifficulty.Easy;
 
         m_id = 6;
-        m_fogSpawningActive = false;
 
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        if (GameHelper.GetGameController().m_currentWaveNumber % 2 == 0 && GameHelper.GetGameController().m_currentTurnNumber < 6)
+        {
+            return 4;
+        }
+
+        else
+        {
+            return 6;
+        }
+    }
+
     protected override void FillSpawnPool()
     {
+        
+        
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
@@ -36,6 +50,20 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
 
+
+        m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentMetalCyclopsEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentMetalManticoreEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSerpentineConstructEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentStoneflingerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentGreenRockGiantEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
+        
         m_totalEnemiesOnMap.Add(new ContentImmortalSpearEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalBowEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentImmortalShieldEnemy(null));
@@ -196,53 +224,44 @@ public class ContentMountainPassMap : GameMap
                 continue;
             }
             
-            if (GetFogSpawningActive())
+            GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
+            if (gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
             {
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
-                if (!gameOpponent.TryForceSpawnAtEdgeOfFog(gameEnemyUnit, tilesAtFogEdge))
+                numSpawned++;
+                continue;
+            }
+
+            //Failed to spawn at fog edge, instead spawn at a spawn point
+            for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+            {
+                GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
+                int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
+                gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
+                gameOpponent.m_spawnPoints[randomIndex] = temp;
+            }
+
+            bool immortalSpawned = false;
+            for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
+            {
+                if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
                 {
-                    allSpawned = false;
+                    continue;
                 }
-                else
+
+                if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
                 {
-                    numSpawned++;
+                    immortalSpawned = true;
+                    break;
                 }
             }
-            else
+
+            if (immortalSpawned)
             {
-                for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
-                {
-                    GameSpawnPoint temp = gameOpponent.m_spawnPoints[i];
-                    int randomIndex = UnityEngine.Random.Range(i, gameOpponent.m_spawnPoints.Count);
-                    gameOpponent.m_spawnPoints[i] = gameOpponent.m_spawnPoints[randomIndex];
-                    gameOpponent.m_spawnPoints[randomIndex] = temp;
-                }
-
-                GameEnemyUnit gameEnemyUnit = GameUnitFactory.GetEnemyUnitClone(immortalEnemyUnits[k]);
-                bool immortalSpawned = false;
-                for (int i = 0; i < gameOpponent.m_spawnPoints.Count; i++)
-                {
-                    if (!gameOpponent.m_spawnPoints[i].m_tile.IsPassable(gameEnemyUnit, false))
-                    {
-                        continue;
-                    }
-
-                    if (gameOpponent.TryForceSpawnAtSpawnPoint(gameEnemyUnit, gameOpponent.m_spawnPoints[i]))
-                    {
-                        immortalSpawned = true;
-                        break;
-                    }
-                }
-
-                if (!immortalSpawned)
-                {
-                    allSpawned = false;
-                }
-                else
-                {
-                    numSpawned++;
-                }
+                numSpawned++;
+                continue;
             }
+
+            allSpawned = false;
         }
 
         if (numSpawned > 0)
@@ -255,7 +274,10 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillMapEvents()
     {
-        
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
+            AddMapEvent(new ContentZombieFleetEvent(0), 1);
+        }
     }
 
     protected override void FillExclusionCardPool()
@@ -271,5 +293,10 @@ public class ContentMountainPassMap : GameMap
     protected override void FillExclusionRelicPool()
     {
 
+    }
+
+    public override List<GameTile> GetValidFogSpawningTiles()
+    {
+        return WorldGridManager.Instance.GetFogBorderGameTiles().Where(t => !t.HasEventMarker(1)).ToList();
     }
 }

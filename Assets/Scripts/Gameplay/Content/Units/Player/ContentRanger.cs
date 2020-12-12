@@ -36,7 +36,7 @@ public class ContentRanger : GameUnit
 
         if (m_gameTile.GetTerrain().IsForest())
         {
-            returnPower = returnPower*2;
+            returnPower *= 2;
         }
 
         return returnPower;
