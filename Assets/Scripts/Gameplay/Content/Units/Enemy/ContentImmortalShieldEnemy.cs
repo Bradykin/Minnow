@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentImmortalShieldEnemy : GameEnemyUnit
 {
-    private int m_powerIncreaseAmount = 5;
+    private int m_powerIncreaseAmount = 10;
     private int m_damageReductionIncrease = 3;
     public int m_auraRange = 3;
 
@@ -22,7 +22,7 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
             m_maxHealth = 150;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 15;
+            m_power = 12;
         }
 
         m_team = Team.Enemy;
