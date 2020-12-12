@@ -25,7 +25,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
     public void LateInit()
     {
-        HandleSpawn();
+        
     }
 
     public void AddControlledUnit(GameEnemyUnit toAdd)
@@ -156,6 +156,8 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
     {
         m_hasSpawnedEliteThisWave = false;
         m_eliteSpawnWaveModifier = UnityEngine.Random.Range(0, 3);
+
+        HandleSpawn();
     }
 
     private void HandleSpawn()

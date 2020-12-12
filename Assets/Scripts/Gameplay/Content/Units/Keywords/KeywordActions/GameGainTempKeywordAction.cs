@@ -23,7 +23,9 @@ public class GameGainTempKeywordAction : GameAction
 
     public override void DoAction()
     {
-        m_unit.AddKeyword(m_keyword, false, false);
+        GameKeywordBase keywordToAdd = GameKeywordFactory.GetKeywordClone(m_keyword, m_unit);
+
+        m_unit.AddKeyword(keywordToAdd, false, false);
     }
 
     public override void AddAction(GameAction toAdd)

@@ -15,8 +15,8 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
         m_maxHealth = 200;
-        m_maxStamina = 5;
-        m_staminaRegen = 5;
+        m_maxStamina = 3;
+        m_staminaRegen = 3;
         m_power = 6;
 
         m_team = Team.Enemy;
@@ -56,11 +56,6 @@ public class ContentZombieShipEnemy : GameEnemyUnit
     {
         base.EndTurn();
 
-        if (!m_hasReleasedUnits)
-        {
-            TryReleaseUnits();
-        }
-
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_auraRange, 0);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
@@ -82,9 +77,15 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         }
     }
     
-    private void TryReleaseUnits()
+    public void TryReleaseUnits()
     {
         int numFreeSpacesNeeded = 3;
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+        if (!surroundingTiles.Any(t => !t.GetTerrain().IsWater()))
+        {
+            return;
+        }
 
         List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => t.IsPassable(null, false)).ToList();
 

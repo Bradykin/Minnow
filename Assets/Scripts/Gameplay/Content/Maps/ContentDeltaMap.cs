@@ -16,6 +16,11 @@ public class ContentDeltaMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        return 7;
+    }
+
     protected override void FillMapEvents()
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
