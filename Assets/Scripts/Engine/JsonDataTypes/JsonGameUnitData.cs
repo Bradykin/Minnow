@@ -27,5 +27,6 @@ public class JsonGameUnitData
 
     //Unique case variables
     public int intValue;
-    public bool boolValue;
+    public bool boolValue1;
+    public bool boolValue2;
 }

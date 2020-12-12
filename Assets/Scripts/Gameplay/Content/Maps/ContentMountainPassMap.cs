@@ -21,10 +21,6 @@ public class ContentMountainPassMap : GameMap
     protected override void FillSpawnPool()
     {
         m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentDarkWarriorEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentImmortalSpearEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentImmortalBowEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentImmortalShieldEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
@@ -38,6 +34,15 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentYetiEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
+
+
+        m_totalEnemiesOnMap.Add(new ContentImmortalSpearEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentImmortalBowEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentImmortalShieldEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSkeletalPirateEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentSkeletalCaptainEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentZombieCrabEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentZombieShipEnemy(null));
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -84,6 +89,11 @@ public class ContentMountainPassMap : GameMap
         //--------------------------------------------------------------------------------------------------------//
 
         m_defaultSpawnPool = new GameSpawnPool(defaultSpawnPoolData);
+    }
+
+    public override bool TrySpawnElite(List<GameTile> tilesAtFogEdge)
+    {
+        return false;
     }
 
     public override bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)
@@ -230,7 +240,7 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillMapEvents()
     {
-        //No events, left blank by default.  No Chaos on this map.
+        
     }
 
     protected override void FillExclusionCardPool()
