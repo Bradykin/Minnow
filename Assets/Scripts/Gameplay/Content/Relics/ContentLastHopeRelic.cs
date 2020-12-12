@@ -8,7 +8,7 @@ public class ContentLastHopeRelic : GameRelic
     {
         m_name = "Last Hope";
         m_desc = "Whenever <b>Spellcraft</b> is triggered, draw a card.";
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 

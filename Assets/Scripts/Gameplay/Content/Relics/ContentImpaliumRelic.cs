@@ -7,8 +7,8 @@ public class ContentImpaliumRelic : GameRelic
     public ContentImpaliumRelic()
     {
         m_name = "Impalium";
-        m_desc = "Spellcraft triggers twice.";
-        m_rarity = GameRarity.Common;
+        m_desc = "<b>Spellcraft</b> triggers twice.";
+        m_rarity = GameRarity.Uncommon;
 
         LateInit();
 
