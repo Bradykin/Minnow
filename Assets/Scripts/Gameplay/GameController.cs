@@ -224,7 +224,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     }
 
     public void KillEnemy(bool incrementsKillCounter)
-    {
+    { 
         if (incrementsKillCounter)
         {
             m_curKillCount++;
@@ -232,6 +232,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             if (m_curKillCount >= m_endWaveKillCount)
             {
                 CheckStartIntermission();
+            }
+            else if (m_endWaveKillCount - m_curKillCount == 3)
+            {
+                UIHelper.CreateHUDNotification("Nearly There", "Killing a few more ought to force them back and give some more time to build!");
             }
         }
     }
