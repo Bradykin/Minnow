@@ -15,7 +15,7 @@ public class ContentRhinoProtector : GameUnit
         AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameRootedKeyword())), true, false);
 
         m_name = "Rhino Protector";
-        m_desc = "Changes the terrain under this at the end of the turn to a verdant forest.";
+        m_desc = "Changes the terrain under this at the end of the turn to a verdant forest.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 

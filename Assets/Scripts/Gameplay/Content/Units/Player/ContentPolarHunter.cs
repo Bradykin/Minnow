@@ -35,6 +35,11 @@ public class ContentPolarHunter : GameUnit
             {
                 GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
 
+                if (unit is ContentPolarHunter)
+                {
+                    continue;
+                }
+
                 if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Player)
                 {
                     returnPower += unit.GetPower();
@@ -51,7 +56,7 @@ public class ContentPolarHunter : GameUnit
 
         m_maxHealth = 10;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
+        m_staminaRegen = 3;
         m_power = 0;
     }
 }

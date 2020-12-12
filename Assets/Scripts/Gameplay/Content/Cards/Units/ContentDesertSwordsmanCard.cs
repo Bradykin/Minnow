@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDesertDuelistCard : GameUnitCard
+public class ContentDesertSwordsmanCard : GameUnitCard
 {
-    public ContentDesertDuelistCard()
+    public ContentDesertSwordsmanCard()
     {
-        m_unit = new ContentDesertDuelist();
+        m_unit = new ContentDesertSwordsman();
 
         m_cost = 1;
 
