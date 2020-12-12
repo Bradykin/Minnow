@@ -93,7 +93,6 @@ public class ContentDeltaMap : GameMap
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 3, 1, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.5f));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.5f));
 
         //Wave 4
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 0.5f));
@@ -133,7 +132,6 @@ public class ContentDeltaMap : GameMap
         //Wave 3
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
-        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.5f));
 
         //Wave 4
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.5f));
@@ -161,7 +159,6 @@ public class ContentDeltaMap : GameMap
 
         //Wave 3
         inRiverSpawnPoolData.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 3, 2.0f, 0.5f));
-        inRiverSpawnPoolData.Add(new GameSpawnPoolData(new ContentScorchingSerpentEnemy(null), 3, 0.75f, 0.25f));
 
         //Wave 4
         inRiverSpawnPoolData.Add(new GameSpawnPoolData(new ContentRiverlurkerEnemy(null), 4, 1.5f, 1));

@@ -11,10 +11,10 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
 
     public ContentMummyPharaohEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 5 + GetHealthModByWave();
+        m_maxHealth = 8 + GetHealthModByWave();
         m_maxStamina = 2 + GetStaminaRegenModByWave();
         m_staminaRegen = 2 + GetStaminaRegenModByWave();
-        m_power = 2 + GetPowerModByWave();
+        m_power = 4 + GetPowerModByWave();
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;

@@ -223,13 +223,16 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_endWaveKillCount = Constants.GetWaveKillCount(m_currentWaveNumber);
     }
 
-    public void KillEnemy()
+    public void KillEnemy(bool incrementsKillCounter)
     {
-        m_curKillCount++;
-
-        if (m_curKillCount >= m_endWaveKillCount)
+        if (incrementsKillCounter)
         {
-            CheckStartIntermission();
+            m_curKillCount++;
+
+            if (m_curKillCount >= m_endWaveKillCount)
+            {
+                CheckStartIntermission();
+            }
         }
     }
 

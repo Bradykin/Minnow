@@ -65,6 +65,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public bool m_instantWaterMovement;
     public bool m_startWithMaxStamina;
     public bool m_takesLavaFieldDamage = true;
+    public bool m_incrementsKillCounter = true;
 
     //Unique guid per unit, to use to link together like gameunits in save data
     private string m_guid = System.Guid.NewGuid().ToString();
@@ -519,7 +520,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
         GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
 
-        GameHelper.GetGameController().KillEnemy();
+        GameHelper.GetGameController().KillEnemy(m_incrementsKillCounter);
 
         SetGameTile(null);
     }
