@@ -27,6 +27,12 @@ public class AIZombieShipSeekLandStep : AIMoveStep
 
         yield return FactoryManager.Instance.StartCoroutine(MoveTowardsCastleCoroutine());
         yield return new WaitForSeconds(0.5f);
+
+        if (!zombieShipEnemy.m_hasReleasedUnits)
+        {
+            zombieShipEnemy.TryReleaseUnits();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public override void TakeStepInstant()
@@ -37,5 +43,27 @@ public class AIZombieShipSeekLandStep : AIMoveStep
         }
 
         MoveTowardsCastleInstant();
+
+        if (!zombieShipEnemy.m_hasReleasedUnits)
+        {
+            zombieShipEnemy.TryReleaseUnits();
+        }
+    }
+
+    protected override GameTile GetCastleTravelTile()
+    {
+        GameTile targetTile = zombieShipEnemy.GetGameTile().LeftWorldTile().GetGameTile();
+        while (targetTile.m_gridPosition.x > 0)
+        {
+            if (!targetTile.GetTerrain().IsPassable(null))
+            {
+                targetTile = targetTile.LeftWorldTile().GetGameTile();
+                continue;
+            }
+
+            return targetTile;
+        }
+        
+        return base.GetCastleTravelTile();
     }
 }

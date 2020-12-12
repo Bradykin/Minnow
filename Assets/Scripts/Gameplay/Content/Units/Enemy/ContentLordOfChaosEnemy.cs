@@ -24,16 +24,16 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = 1000;
-            m_maxStamina = 5;
-            m_staminaRegen = 5;
-            m_power = 50;
+            m_maxStamina = 7;
+            m_staminaRegen = 7;
+            m_power = 40;
         }
         else
         {
-            m_maxHealth = 700;
-            m_maxStamina = 4;
-            m_staminaRegen = 4;
-            m_power = 30;
+            m_maxHealth = 600;
+            m_maxStamina = 6;
+            m_staminaRegen = 6;
+            m_power = 20;
         }
 
         m_team = Team.Enemy;

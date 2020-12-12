@@ -93,7 +93,22 @@ public class ContentMountainPassMap : GameMap
 
     public override bool TrySpawnElite(List<GameTile> tilesAtFogEdge)
     {
-        return false;
+        if (GameHelper.GetOpponent().m_hasSpawnedEliteThisWave)
+        {
+            return true;
+        }
+
+        List<GameTile> shipSpawnTiles = WorldGridManager.Instance.GetTilesWithEventMarker(0);
+
+        GameTile tileToSpawn = shipSpawnTiles[Random.Range(0, shipSpawnTiles.Count)];
+
+        GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentZombieShipEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
+        ((ContentZombieShipEnemy)newEnemyUnit).m_isEliteShip = true;
+        tileToSpawn.PlaceUnit(newEnemyUnit);
+        newEnemyUnit.OnSummon();
+        WorldController.Instance.m_gameController.m_gameOpponent.AddControlledUnit(newEnemyUnit);
+
+        return true;
     }
 
     public override bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)

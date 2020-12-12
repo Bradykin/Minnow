@@ -314,6 +314,22 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
+    public List<GameTile> GetTilesWithEventMarker(int markerToCheck)
+    {
+        List<GameTile> eventMarkerTiles = new List<GameTile>();
+        for (int i = 0; i < WorldGridManager.Instance.m_gridArray.Length; i++)
+        {
+            GameTile gameTile = WorldGridManager.Instance.m_gridArray[i].GetGameTile();
+
+            if (gameTile.HasEventMarker(markerToCheck))
+            {
+                eventMarkerTiles.Add(gameTile);
+            }
+        }
+
+        return eventMarkerTiles;
+    }
+
     public List<GameTile> GetSurroundingGameTiles(GameTile centerPoint, int outerRange, int innerRange = 1)
     {
         List<WorldTile> worldTiles = GetSurroundingWorldTiles(centerPoint.GetWorldTile(), outerRange, innerRange);
