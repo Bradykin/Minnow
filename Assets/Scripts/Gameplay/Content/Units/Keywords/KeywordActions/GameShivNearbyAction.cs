@@ -6,14 +6,15 @@ using UnityEngine;
 public class GameShivNearbyAction : GameAction
 {
     private GameUnit m_unit;
-    private GameCard m_shivCard;
+    private ContentShivCard m_shivCard;
     private int m_numShivsThrown;
     private List<int> m_shivRanges;
 
     public GameShivNearbyAction(GameUnit unit, int numShivsThrown, int shivRange)
     {
         m_unit = unit;
-        m_shivCard = GameCardFactory.GetCardClone(new ContentShivCard());
+        m_shivCard = (ContentShivCard)(GameCardFactory.GetCardClone(new ContentShivCard()));
+        m_shivCard.SetCanTriggerSpellcraft(false);
         m_numShivsThrown = numShivsThrown;
         m_shivRanges = new List<int>();
         m_shivRanges.Add(shivRange);

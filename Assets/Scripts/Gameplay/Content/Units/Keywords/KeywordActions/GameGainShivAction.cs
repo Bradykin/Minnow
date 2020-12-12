@@ -31,7 +31,15 @@ public class GameGainShivAction : GameAction
     {
         for (int i = 0; i < m_toAdd; i++)
         {
-            GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+            GamePlayer player = GameHelper.GetPlayer();
+            if (GameHelper.GetGameController().CurrentActor == player)
+            {
+                player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
+            }
+            else
+            {
+                player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
+            }
         }
     }
 

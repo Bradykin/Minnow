@@ -732,15 +732,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (permanent)
         {
             m_permStaminaRegen += toAdd;
+
+            if (!HasCustomName())
+            {
+                SetCustomName();
+            }
         }
         else
         {
             m_staminaRegen += toAdd;
-        }
-
-        if (!HasCustomName())
-        {
-            SetCustomName();
         }
     }
 
@@ -749,11 +749,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (toAdd == 0)
         {
             return;
-        }
-
-        if (!HasCustomName())
-        {
-            SetCustomName();
         }
 
         if (GetMaxStamina() >= Constants.MaxTotalStamina)
@@ -782,6 +777,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (permanent)
         {
             m_permMaxStamina += toAdd;
+
+            if (!HasCustomName())
+            {
+                SetCustomName();
+            }
         }
         else
         {
@@ -796,11 +796,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return;
         }
 
-        if (!HasCustomName())
-        {
-            SetCustomName();
-        }
-
         if (GetMaxStamina() == 0)
         {
             return;
@@ -809,6 +804,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (permanent)
         {
             m_permMaxStamina = Mathf.Max(0, GetMaxStamina() - toRemove);
+
+            if (!HasCustomName())
+            {
+                SetCustomName();
+            }
         }
         else
         {
@@ -2390,23 +2390,19 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetTeam() == Team.Player)
         {
             if (GameHelper.HasRelic<ContentMarkOfTordrimRelic>())
-            {
-                //if (m_keywordHolder.GetNumVisibleKeywords() == 0)
-                //{
-                    List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
-                    tordrimKeywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
-                    tordrimKeywords.Add(new GameEnrageKeyword(new GameGainGoldAction(5)));
-                    tordrimKeywords.Add(new GameFlyingKeyword());
-                    tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
-                    tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
-                    tordrimKeywords.Add(new GameRangeKeyword(2));
-                    tordrimKeywords.Add(new GameRegenerateKeyword(10));
-                    tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
-                    tordrimKeywords.Add(new GameKnowledgeableKeyword(new GameExplodeAction(this, 8, 2)));
+            { 
+                List<GameKeywordBase> tordrimKeywords = new List<GameKeywordBase>();
+                tordrimKeywords.Add(new GameVictoriousKeyword(new GameFullHealAction(this)));
+                tordrimKeywords.Add(new GameEnrageKeyword(new GameGainGoldAction(5)));
+                tordrimKeywords.Add(new GameFlyingKeyword());
+                tordrimKeywords.Add(new GameMomentumKeyword(new GameGainEnergyAction(1)));
+                tordrimKeywords.Add(new GameDeathKeyword(new GameDrawCardAction(3)));
+                tordrimKeywords.Add(new GameRangeKeyword(2));
+                tordrimKeywords.Add(new GameRegenerateKeyword(10));
+                tordrimKeywords.Add(new GameSpellcraftKeyword(new GameGainStaminaAction(this, 1)));
 
-                    int r = Random.Range(0, tordrimKeywords.Count);
-                    AddKeyword(tordrimKeywords[r], false, false);
-                //}
+                int r = Random.Range(0, tordrimKeywords.Count);
+                AddKeyword(tordrimKeywords[r], false, false);
             }
 
             if (GameHelper.HasRelic<ContentSporetechRelic>())

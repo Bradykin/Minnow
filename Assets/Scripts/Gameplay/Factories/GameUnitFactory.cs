@@ -20,7 +20,6 @@ public class GameUnitFactory
 
     public static void Init()
     {
-        //Player Units 1-10 score (1 100% rework; 10 best)
         m_playerUnits.Add(new ContentOverlord());
         m_playerUnits.Add(new ContentShadowWarlock());
         m_playerUnits.Add(new ContentGladiator());
@@ -43,15 +42,14 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentMage());
         m_playerUnits.Add(new ContentGroundskeeper());
         m_playerUnits.Add(new ContentRanger());
-
-        m_playerUnits.Add(new ContentDwarfShivcaster()); //9 - It's shivs shouldn't trigger Spellcraft
-        m_playerUnits.Add(new ContentConjuredImp()); //4 - Rework? Not obvious how to use (Maybe auto-spawn 1 nearby; they share stats and stuff)
-        m_playerUnits.Add(new ContentMiner()); // 1 - Rework; bad concept (Mountain explorer?)
-        m_playerUnits.Add(new ContentFishOracle()); //1 - Rework
-        m_playerUnits.Add(new ContentMetalGolem()); //1 - Rework (Mountain explorer?)
-        m_playerUnits.Add(new ContentGoblin()); //1 - Rework (Basic unit with victorious)
-        m_playerUnits.Add(new ContentStoneGolem()); //1 - Rework
-        m_playerUnits.Add(new ContentWildfolk()); //1 - Rework (Monster synergy Humanoid)
+        m_playerUnits.Add(new ContentDwarfShivcaster());
+        m_playerUnits.Add(new ContentMiner());
+        m_playerUnits.Add(new ContentBonecaster());
+        m_playerUnits.Add(new ContentGoblinLegend());
+        m_playerUnits.Add(new ContentWildfolk());
+        m_playerUnits.Add(new ContentMetalGolem());
+        m_playerUnits.Add(new ContentStoneGolem());
+        m_playerUnits.Add(new ContentConjuredImp());
 
         //Starter Units
         m_playerUnits.Add(new ContentLizardSoldier());
