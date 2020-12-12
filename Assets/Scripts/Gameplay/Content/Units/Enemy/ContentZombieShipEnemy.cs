@@ -79,7 +79,7 @@ public class ContentZombieShipEnemy : GameEnemyUnit
     
     public void TryReleaseUnits()
     {
-        int numFreeSpacesNeeded = 3;
+        int numFreeSpacesNeeded = 4;
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
         if (!surroundingTiles.Any(t => !t.GetTerrain().IsWater()))
@@ -87,7 +87,7 @@ public class ContentZombieShipEnemy : GameEnemyUnit
             return;
         }
 
-        List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => t.IsPassable(null, false)).ToList();
+        List<GameTile> surroundingPassableTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 2).Where(t => !t.IsOccupied() && t.IsPassable(null, false)).ToList();
 
         if (surroundingPassableTiles.Count < numFreeSpacesNeeded)
         {
@@ -100,17 +100,17 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         for (int i = 0; i < numFreeSpacesNeeded; i++)
         {
             GameEnemyUnit newEnemyUnit;
-            if (i > 0)
+            if (i == 0)
             {
-                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalPirateEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
+                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalCaptainEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
-            else if (m_isEliteShip)
+            else if (i == 1 && m_isEliteShip)
             {
                 newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentZombieCrabEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
             else
             {
-                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalCaptainEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
+                newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentSkeletalPirateEnemy(WorldController.Instance.m_gameController.m_gameOpponent));
             }
             surroundingPassableTiles[i].PlaceUnit(newEnemyUnit);
             newEnemyUnit.OnSummon();
