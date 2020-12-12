@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentNoblemanCard : GameUnitCard
+public class ContentPirateCaptainCard : GameUnitCard
 {
-    public ContentNoblemanCard()
+    public ContentPirateCaptainCard()
     {
-        m_unit = new ContentNobleman();
+        m_unit = new ContentPirateCaptain();
 
         m_cost = 1;
 

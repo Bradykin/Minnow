@@ -8,7 +8,7 @@ public class ContentMetalProtectorCard : GameUnitCard
     {
         m_unit = new ContentMetalProtector();
 
-        m_cost = 1;
+        m_cost = 4;
 
         FillBasicData();
     }

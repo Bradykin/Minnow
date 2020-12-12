@@ -86,11 +86,14 @@ public static class GameCardFactory
         m_cards.Add(new ContentWildfolkCard());
 
         //New Units
+        //Implemeneted
         m_cards.Add(new ContentArmouredMonkCard());
         m_cards.Add(new ContentMetalProtectorCard());
-        m_cards.Add(new ContentNoblemanCard());
+        m_cards.Add(new ContentPirateCaptainCard());
         m_cards.Add(new ContentPolarHunterCard());
         m_cards.Add(new ContentMountainBeastCard());
+
+        //WIP
         m_cards.Add(new ContentPyromageCard());
         m_cards.Add(new ContentRhinoProtectorCard());
         m_cards.Add(new ContentDesertDuelistCard());

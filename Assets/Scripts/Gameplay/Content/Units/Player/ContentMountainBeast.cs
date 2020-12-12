@@ -11,6 +11,9 @@ public class ContentMountainBeast : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 3, 0)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainTempKeywordAction(this, new GameRegenerateKeyword(2))), true, false);
+
         m_name = "Mountain Beast";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
@@ -22,9 +25,9 @@ public class ContentMountainBeast : GameUnit
     {
         ResetKeywords(true);
 
-        m_maxHealth = 20;
+        m_maxHealth = 30;
         m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 6;
+        m_staminaRegen = 2;
+        m_power = 5;
     }
 }

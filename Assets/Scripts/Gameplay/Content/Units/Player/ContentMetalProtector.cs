@@ -9,22 +9,28 @@ public class ContentMetalProtector : GameUnit
         m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
+        m_rarity = GameRarity.Rare;
 
         m_name = "Metal Protector";
-        m_typeline = Typeline.Monster;
+        m_desc = "Has stamina regen equal to max stamina.\n";
+        m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
+    }
+
+    public override int GetStaminaRegen()
+    {
+        return GetMaxStamina();
     }
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 20;
-        m_maxStamina = 5;
-        m_staminaRegen = 3;
-        m_power = 6;
+        m_maxHealth = 70;
+        m_maxStamina = 1;
+        m_staminaRegen = GetMaxStamina();
+        m_power = 30;
     }
 }
