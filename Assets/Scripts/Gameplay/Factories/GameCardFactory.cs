@@ -96,9 +96,9 @@ public static class GameCardFactory
         m_cards.Add(new ContentMountainBeastCard());
         m_cards.Add(new ContentPyromageCard());
         m_cards.Add(new ContentRhinoProtectorCard());
+        m_cards.Add(new ContentDesertSwordsmanCard());
 
         //WIP
-        m_cards.Add(new ContentDesertDuelistCard());
         m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentFrogShamanCard());
         m_cards.Add(new ContentGolemProtectorCard());
