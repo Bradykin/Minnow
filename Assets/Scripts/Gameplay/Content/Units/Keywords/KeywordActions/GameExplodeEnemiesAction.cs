@@ -58,7 +58,7 @@ public class GameExplodeEnemiesAction : GameAction
             }
         }
 
-        if (Globals.m_selectedUnit.GetUnit() == m_explodingUnit)
+        if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit() == m_explodingUnit)
         {
             Globals.m_selectedUnit = null;
         }
