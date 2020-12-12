@@ -12,7 +12,7 @@ public class ContentMetalProtector : GameUnit
         m_rarity = GameRarity.Rare;
 
         m_name = "Metal Protector";
-        m_desc = "Has stamina regen equal to max stamina.";
+        m_desc = "Has stamina regen equal to max stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

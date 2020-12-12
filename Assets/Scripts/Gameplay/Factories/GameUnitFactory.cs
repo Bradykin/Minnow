@@ -52,9 +52,12 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentConjuredImp());
 
         //New Units
+        //Implemented 
         m_playerUnits.Add(new ContentArmouredMonk());
         m_playerUnits.Add(new ContentMetalProtector());
-        m_playerUnits.Add(new ContentNobleman());
+        m_playerUnits.Add(new ContentPirateCaptain());
+
+        //WIP
         m_playerUnits.Add(new ContentPolarHunter());
         m_playerUnits.Add(new ContentMountainBeast());
         m_playerUnits.Add(new ContentPyromage());
