@@ -8,8 +8,8 @@ public class ContentZombieFleetEvent : GameMapEvent
 
     public ContentZombieFleetEvent(int markerToCheck)
     {
-        m_name = "Flooding";
-        m_desc = "The great river has flooded!";
+        m_name = "Zombie Fleet";
+        m_desc = "A zombie fleet has arrived on the shores!";
 
         m_triggerType = ScheduledActionTime.StartOfWave;
         m_markerToCheck = markerToCheck;
