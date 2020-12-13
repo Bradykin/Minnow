@@ -8,7 +8,7 @@ public class ContentQuickStrikesCard : GameCardSpellBase
     {
         m_name = "Quick Strikes";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 3;
         m_rarity = GameRarity.Common;
         m_shouldExile = true;
 

@@ -10,7 +10,7 @@ public class ContentGrasper : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Grasper";
-        m_desc = "When this hits a unit, it drains all Stamina from it.\n";
+        m_desc = "When this damages a unit, it takes all Stamina from it.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
 

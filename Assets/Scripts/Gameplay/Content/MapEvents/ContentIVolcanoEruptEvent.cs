@@ -14,7 +14,7 @@ public class ContentVolcanoEruptionEvent : GameMapEvent
 
         if (onlyVolcano)
         {
-            m_desc = "Loud noises are coming from a volcano. An eruption is coming soon!";
+            m_desc = "Loud noises are coming from a volcano. An eruption is coming at the end of the next wave!";
         }
         else
         {

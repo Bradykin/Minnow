@@ -7,7 +7,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
     public ContentMonsterProdCard()
     {
         m_name = "Monster Prod";
-        m_desc = "Target allied unit gains '<b>Enrage</b>: Gain 1 Stamina until end of wave.'";
+        m_desc = "Target allied unit gains '<b>Enrage</b>: Gain 1 Stamina.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;

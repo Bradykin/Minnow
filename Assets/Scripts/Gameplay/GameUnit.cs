@@ -1622,7 +1622,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentSigilOfTheSwordsmanRelic>() && GetTypeline() == Typeline.Humanoid)
             {
-                toReturn += 6;
+                toReturn += 8;
             }
 
             if (GameHelper.HasRelic<ContentMightOfSugoRelic>())
@@ -2429,20 +2429,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 }
             }
 
-            if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
-            {
-                if (GameHelper.HasAllTypelines())
-                {
-                    GameHelper.GetPlayer().DrawCard();
-                    GameHelper.GetPlayer().AddEnergy(2);
-                }
-            }
-
             if (GameHelper.HasRelic<ContentToldiranMiracleRelic>())
             {
                 if (GameHelper.HasAllTypelines())
                 {
-                    AddKeyword(new GameDamageReductionKeyword(2), false, false);
+                    GameHelper.GetPlayer().DrawCards(2);
+                    GameHelper.GetPlayer().AddEnergy(3);
+                }
+            }
+
+            if (GameHelper.HasRelic<ContentSymbolOfTheAllianceRelic>())
+            {
+                if (GameHelper.HasAllTypelines())
+                {
+                    AddKeyword(new GameDamageReductionKeyword(3), false, false);
                 }
             }
 
