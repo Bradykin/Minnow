@@ -106,20 +106,6 @@ public static class GameMetaprogressionUnlocksDataManager
 
     private static void AddCardRewards()
     {
-        /* NOT YET ADDED
-        m_cards.Add(new ContentWildfolkCard());
-        m_cards.Add(new ContentDeadeyeCard());
-        m_cards.Add(new ContentMarksmanCard());
-        m_cards.Add(new ContentFadeCard());
-        m_cards.Add(new ContentDrainingTalonsCard());
-        m_cards.Add(new ContentToxicTonicCard());
-        m_cards.Add(new ContentDarkHeartCard());
-        m_cards.Add(new ContentContellationsCard());
-        m_cards.Add(new ContentEndCard());
-        m_cards.Add(new ContentPathCard());
-        m_cards.Add(new ContentExperienceCard());
-         */
-
         //Creations - 2
         //Max Stamina - 3
         //Monsters - 4
@@ -205,15 +191,30 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cardRewards.Add(18, CreateCardLevelReward("Flexible",
             "Flexibility has a value of it's own!",
             new ContentFirestormCard(), new ContentPurgeCard(), new ContentWisdomOfThePastCard()));
+
+        m_cardRewards.Add(19, CreateCardLevelReward("More Cards",
+            "",
+            new ContentWildfolkCard(), new ContentPirateCaptainCard(), new ContentFrogShamanCard()));
+
+        m_cardRewards.Add(20, CreateCardLevelReward("More Cards",
+            "",
+            new ContentDeadeyeCard(), new ContentMarksmanCard(), new ContentFadeCard()));
+
+        m_cardRewards.Add(21, CreateCardLevelReward("More Cards",
+            "",
+            new ContentDrainingTalonsCard(), new ContentToxicTonicCard(), new ContentDarkHeartCard()));
+
+        m_cardRewards.Add(22, CreateCardLevelReward("More Cards",
+            "",
+            new ContentContellationsCard(), new ContentEndCard(), new ContentPathCard()));
+
+        m_cardRewards.Add(23, CreateCardLevelReward("More Cards",
+            "",
+            new ContentExperienceCard(), new ContentRhinoProtectorCard(), new ContentDesertSwordsmanCard()));
     }
 
     private static void AddRelicRewards()
     {
-        /* NOT YET ADDED
-        m_relics.Add(new ContentPinnacleOfFearRelic()); //Energy
-        m_relics.Add(new ContentEyeOfDorsonRelic()); //Terrain/Weird
-        */
-
         //Creations - 2
         //Max Stamina - 3
         //Monsters - 4
@@ -323,9 +324,13 @@ public static class GameMetaprogressionUnlocksDataManager
             "Even more toughness!",
             new ContentCarapaceOfTutuiun(), new ContentCanvasOfHistoryRelic(), new ContentPrimeRibRelic()));
 
-        m_relicRewards.Add(24, CreateRelicLevelReward("More Relics",
+        m_relicRewards.Add(23, CreateRelicLevelReward("More Relics",
             "",
             new ContentCursedAmuletRelic(), new ContentMemoryOfTheDefenderRelic(), new ContentBeadsOfProphecyRelic()));
+
+        m_relicRewards.Add(24, CreateRelicLevelReward("More Relics",
+            "",
+            new ContentPinnacleOfFearRelic(), new ContentCursedAmuletRelic(), new ContentCursedAmuletRelic()));
     }
 
     private static void FillMapData(GameMap map, GameCard rewardCard)
@@ -447,6 +452,11 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentShadowWarlockCard());
         m_initialCards.Add(new ContentWandererCard());
         m_initialCards.Add(new ContentCyclopsCard());
+        m_initialCards.Add(new ContentArmouredMonkCard());
+        m_initialCards.Add(new ContentMetalProtectorCard());
+        m_initialCards.Add(new ContentPolarHunterCard());
+        m_initialCards.Add(new ContentMountainBeastCard());
+        m_initialCards.Add(new ContentPyromageCard());
 
         //Spells
         m_initialCards.Add(new ContentArcaneBoltCard());

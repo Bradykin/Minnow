@@ -12,7 +12,7 @@ public class ContentPirateCaptainCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Water);
+        m_tags.AddTag(GameTag.TagType.Explorer);
     }
 }

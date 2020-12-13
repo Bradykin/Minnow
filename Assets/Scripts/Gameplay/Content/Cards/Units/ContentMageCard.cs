@@ -12,6 +12,7 @@ public class ContentMageCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

@@ -11,5 +11,8 @@ public class ContentRhinoProtectorCard : GameUnitCard
         m_cost = 1;
 
         FillBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }

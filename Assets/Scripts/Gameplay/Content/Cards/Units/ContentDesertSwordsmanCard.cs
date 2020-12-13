@@ -11,5 +11,8 @@ public class ContentDesertSwordsmanCard : GameUnitCard
         m_cost = 1;
 
         FillBasicData();
+
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
     }
 }

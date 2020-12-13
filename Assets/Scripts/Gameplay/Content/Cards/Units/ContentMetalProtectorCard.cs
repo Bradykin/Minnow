@@ -11,5 +11,8 @@ public class ContentMetalProtectorCard : GameUnitCard
         m_cost = 4;
 
         FillBasicData();
+
+        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tags.AddTag(GameTag.TagType.StaminaRegen);
     }
 }
