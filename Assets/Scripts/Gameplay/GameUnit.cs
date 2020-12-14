@@ -63,6 +63,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     //Special functionality
     public bool m_instantWaterMovement;
+    public bool m_instantForestMovement;
     public bool m_startWithMaxStamina;
     public bool m_takesLavaFieldDamage = true;
     public bool m_incrementsKillCounter = true;

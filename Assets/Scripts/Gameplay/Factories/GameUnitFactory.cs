@@ -65,9 +65,9 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentEnergyConstruct());
         m_playerUnits.Add(new ContentStormChanneler());
         m_playerUnits.Add(new ContentWarriorPriestess());
+        m_playerUnits.Add(new ContentWildwoodExplorer());
 
         //WIP
-        m_playerUnits.Add(new ContentWildwoodExplorer());
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
         m_playerUnits.Add(new ContentGolemProtector());
         m_playerUnits.Add(new ContentEtherealStag());
