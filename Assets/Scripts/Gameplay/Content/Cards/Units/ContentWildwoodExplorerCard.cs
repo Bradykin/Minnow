@@ -12,7 +12,7 @@ public class ContentWildwoodExplorerCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tags.AddTag(GameTag.TagType.Explorer);
         m_tags.AddTag(GameTag.TagType.Forest);
     }
 }

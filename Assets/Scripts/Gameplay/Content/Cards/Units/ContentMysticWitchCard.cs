@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentEnergyConstructCard : GameUnitCard
+public class ContentMysticWitchCard : GameUnitCard
 {
-    public ContentEnergyConstructCard()
+    public ContentMysticWitchCard()
     {
-        m_unit = new ContentEnergyConstruct();
+        m_unit = new ContentMysticWitch();
 
         m_cost = 3;
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
         m_tags.AddTag(GameTag.TagType.HighCost);
         m_tags.AddTag(GameTag.TagType.LowCost);
+        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
     }
 }

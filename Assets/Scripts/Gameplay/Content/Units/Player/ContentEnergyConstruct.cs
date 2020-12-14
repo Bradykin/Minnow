@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class ContentEnergyConstruct : GameUnit
 {
-    private int m_powerBoost = 8;
-    private int m_staminaRegenBoost = 2;
+    private int m_powerGain = 8;
+    private int m_staminaGain = 4;
 
     public ContentEnergyConstruct()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Common;
-
-        AddKeyword(new GameRangeKeyword(2), true, false);
-        AddKeyword(new GameForestwalkKeyword(), true, false);
+        m_rarity = GameRarity.Rare;
 
         m_name = "Energy Construct";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
-        m_typeline = Typeline.Humanoid;
+        m_typeline = Typeline.Creation;
+        m_desc = $"Gets +{m_powerGain}/+0 and +{m_staminaGain} stamina regen for each unspent energy.\n";
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
@@ -27,45 +24,45 @@ public class ContentEnergyConstruct : GameUnit
 
     public override int GetPower()
     {
-        int returnPower = base.GetPower();
+        int returnVal = base.GetPower();
 
         if (m_gameTile == null)
         {
-            return returnPower;
+            return returnVal;
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
+        if (GameHelper.IsUnitInWorld(this))
         {
-            returnPower += m_powerBoost;
+            returnVal += GameHelper.GetPlayer().GetCurEnergy() * m_powerGain;
         }
 
-        return returnPower;
+        return returnVal;
     }
 
     public override int GetStaminaRegen()
     {
-        int returnStaminaRegen = base.GetStaminaRegen();
+        int returnVal = base.GetStaminaRegen();
 
         if (m_gameTile == null)
         {
-            return returnStaminaRegen;
+            return returnVal;
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
+        if (GameHelper.IsUnitInWorld(this))
         {
-            returnStaminaRegen += m_staminaRegenBoost;
+            returnVal += GameHelper.GetPlayer().GetCurEnergy() * m_staminaGain;
         }
 
-        return returnStaminaRegen;
+        return returnVal;
     }
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 15;
-        m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 9;
+        m_maxHealth = 40;
+        m_maxStamina = 6;
+        m_staminaRegen = 0;
+        m_power = 5;
     }
 }

@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentWildwoodExplorer : GameUnit
+public class ContentMysticWitch : GameUnit
 {
-    public ContentWildwoodExplorer()
+    public ContentMysticWitch()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        m_instantForestMovement = true;
-
-        m_name = "Wildwood Explorer";
-        m_desc = "Forests take no stamina to move through.\n";
+        m_name = "Mystic Witch";
+        m_desc = "Spell cards cost 1 less to cast.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -25,9 +23,9 @@ public class ContentWildwoodExplorer : GameUnit
     {
         ResetKeywords(true);
 
-        m_maxHealth = 18;
-        m_maxStamina = 5;
+        m_maxHealth = 5;
+        m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 15;
+        m_power = 1;
     }
 }

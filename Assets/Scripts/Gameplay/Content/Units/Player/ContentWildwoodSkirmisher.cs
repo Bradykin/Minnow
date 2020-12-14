@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ContentWildwoodSkirmisher : GameUnit
 {
-    private int m_powerBoost = 8;
-    private int m_staminaRegenBoost = 2;
+    private int m_statBoost = 25;
 
     public ContentWildwoodSkirmisher()
     {
@@ -14,11 +13,10 @@ public class ContentWildwoodSkirmisher : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_name = "Wildwood Skirmisher";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
+        m_desc = $"When in a forest, gain +{m_statBoost}/+0 and '<b>Victorious:</b> Fully heal'.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -29,34 +27,40 @@ public class ContentWildwoodSkirmisher : GameUnit
     {
         int returnPower = base.GetPower();
 
-        if (m_gameTile == null)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            return returnPower;
-        }
-
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnPower += m_powerBoost;
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                returnPower += m_statBoost;
+            }
         }
 
         return returnPower;
     }
 
-    public override int GetStaminaRegen()
+    public override GameVictoriousKeyword GetVictoriousKeyword()
     {
-        int returnStaminaRegen = base.GetStaminaRegen();
+        GameVictoriousKeyword toReturn = new GameVictoriousKeyword(null);
 
-        if (m_gameTile == null)
+        if (base.GetVictoriousKeyword() != null)
         {
-            return returnStaminaRegen;
+            toReturn.AddKeyword(base.GetVictoriousKeyword());
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
+        if (GameHelper.IsUnitInWorld(this))
         {
-            returnStaminaRegen += m_staminaRegenBoost;
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                toReturn.AddKeyword(new GameVictoriousKeyword(new GameFullHealAction(this)));
+            }
         }
 
-        return returnStaminaRegen;
+        if (toReturn.IsEmpty())
+        {
+            toReturn = null;
+        }
+
+        return toReturn;
     }
 
     protected override void ResetToBase()
@@ -65,7 +69,7 @@ public class ContentWildwoodSkirmisher : GameUnit
 
         m_maxHealth = 15;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 9;
+        m_staminaRegen = 4;
+        m_power = 5;
     }
 }

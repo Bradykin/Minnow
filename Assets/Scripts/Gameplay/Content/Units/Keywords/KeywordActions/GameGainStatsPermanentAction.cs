@@ -15,14 +15,14 @@ public class GameGainStatsPermanentAction : GameAction
         m_powerToGain = powerToGain;
         m_healthToGain = healthToGain;
 
-        m_name = "Gain Stats";
+        m_name = "Gain Stats Permanent";
 
         m_actionParamType = ActionParamType.UnitTwoIntParam;
     }
 
     public override string GetDesc()
     {
-        return "+" + m_powerToGain + "/+" + m_healthToGain + "(<b>permanent</b>)";
+        return "+" + m_powerToGain + "/+" + m_healthToGain + " (<b>permanent</b>)";
     }
 
     public override void DoAction()

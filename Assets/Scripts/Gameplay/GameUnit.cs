@@ -63,6 +63,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     //Special functionality
     public bool m_instantWaterMovement;
+    public bool m_instantForestMovement;
     public bool m_startWithMaxStamina;
     public bool m_takesLavaFieldDamage = true;
     public bool m_incrementsKillCounter = true;
@@ -289,7 +290,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
             {
-                GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(5));
+                GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(15));
             }
         }
 
@@ -2332,7 +2333,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_maxHealth -= healthToRemove;
         }
 
-        if (m_maxHealth < 1)
+        if (GetMaxHealth() < 1)
         {
             if (!m_isDead)
             {
@@ -2341,9 +2342,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_maxHealth = 1;
         }
 
-        if (m_curHealth > m_maxHealth)
+        if (m_curHealth > GetMaxHealth())
         {
-            m_curHealth = m_maxHealth;
+            m_curHealth = GetMaxHealth();
         }
     }
 
@@ -2511,7 +2512,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
         {
-            player.m_wallet.AddResources(new GameWallet(1));
+            player.m_wallet.AddResources(new GameWallet(2));
         }
 
         if (GetTeam() == Team.Enemy)

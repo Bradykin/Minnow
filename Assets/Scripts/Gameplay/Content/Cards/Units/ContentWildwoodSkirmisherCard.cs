@@ -8,7 +8,7 @@ public class ContentWildwoodSkirmisherCard : GameUnitCard
     {
         m_unit = new ContentWildwoodSkirmisher();
 
-        m_cost = 1;
+        m_cost = 2;
 
         FillBasicData();
 

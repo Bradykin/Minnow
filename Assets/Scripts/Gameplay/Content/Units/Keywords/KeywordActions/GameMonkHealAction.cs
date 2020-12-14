@@ -31,7 +31,7 @@ public class GameMonkHealAction : GameAction
 
     public override string GetDesc()
     {
-        return $"Heal all allied units in range {m_ranges.Max()} for an amount equal to {m_unit.GetName()}'s power.";
+        return $"Heal all allied units (including self) in range {m_ranges.Max()} for an amount equal to {m_unit.GetName()}'s power, then remove bonus power.";
     }
 
     public override void DoAction()

@@ -6,7 +6,7 @@ public class ContentGoblinWarriorEnemy : GameEnemyUnit
 {
     public ContentGoblinWarriorEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
+        m_worldTilePositionAdjustment = new Vector3(-0.1f, 0.5f, 0);
 
         m_maxHealth = 6;
         m_maxStamina = 4;

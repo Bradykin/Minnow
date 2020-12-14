@@ -20,7 +20,7 @@ public class GameReturnToDeckBuffedAction : GameAction
 
     public override string GetDesc()
     {
-        return "Return " + m_retuningUnit.GetName() + " to your deck, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
+        return "Return " + m_retuningUnit.GetName() + " to your discard, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
     }
 
     public override void DoAction()
