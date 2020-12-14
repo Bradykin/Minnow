@@ -24,7 +24,7 @@ public class ContentSnakeEnemy : GameEnemyUnit
         AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            
+            m_desc = "On hit, permanently give -2/-0 and drain 2 stamina.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);
@@ -42,6 +42,11 @@ public class ContentSnakeEnemy : GameEnemyUnit
         if (damageTaken > 0)
         {
             other.RemoveStats(2, 0, true);
+        }
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            other.DrainStamina(2);
         }
 
         return damageTaken;

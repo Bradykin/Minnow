@@ -8,6 +8,7 @@ public struct JsonGamePlayerData
     public int curEnergy;
     public int maxActions;
     public int curActions;
+    public int magicPower;
     
     public JsonGameDeckData jsonDeckBaseData;
     public JsonGameDeckData jsonDeckCurrentData;

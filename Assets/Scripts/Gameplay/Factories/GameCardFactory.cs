@@ -570,7 +570,6 @@ public static class GameCardFactory
 
         //Fill the list by removing anything that was excluded.
         List<GameCard> finalList = new List<GameCard>();
-        int currentLevel = PlayerDataManager.GetCurLevel();
 
         if (exclusionList == null)
         {

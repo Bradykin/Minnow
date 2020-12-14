@@ -799,6 +799,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             curEnergy = m_curEnergy,
             maxActions = m_maxActions,
             curActions = m_curActions,
+            magicPower = m_magicPower,
             jsonDeckBaseData = m_deckBase.SaveToJson(),
             jsonDeckCurrentData = m_curDeck.SaveToJson(),
             jsonGameCardsInHandData = new List<JsonGameCardData>(),
@@ -850,7 +851,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_curEnergy = jsonData.curEnergy;
         m_maxActions = jsonData.maxActions;
         m_curActions = jsonData.curActions;
-        
+        m_magicPower = jsonData.magicPower;
+
         m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);
         m_curDeck.LoadFromJson(jsonData.jsonDeckCurrentData);
         

@@ -187,8 +187,6 @@ public static class GameRelicFactory
 
         List<GameRelic> relicList = GetListWithoutPlayerRelics();
 
-        int curLevel = PlayerDataManager.GetCurLevel();
-
         for (int i = relicList.Count - 1; i >= 0; i--)
         {
             if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(relicList[i]))

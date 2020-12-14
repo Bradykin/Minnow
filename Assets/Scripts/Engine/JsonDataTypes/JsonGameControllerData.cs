@@ -8,6 +8,10 @@ public struct JsonGameControllerData
     public int currentTurn;
     public int mapId;
 
+    public int chaosLevel;
+    public int endWaveKillCount;
+    public int curKillCount;
+
     public int runKillExp;
     public int runEventExp;
     public int runBaseExp;

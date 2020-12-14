@@ -327,6 +327,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             currentWave = m_currentWaveNumber,
             currentTurn = m_currentTurnNumber,
             mapId = GetCurMap().m_id,
+            chaosLevel = Globals.m_curChaos,
+
+            endWaveKillCount = m_endWaveKillCount,
+            curKillCount = m_curKillCount,
 
             runBaseExp = m_baseExpAmount,
             runKillExp = m_killExpAmount,
@@ -359,6 +363,9 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         m_currentWaveNumber = jsonData.currentWave;
         m_currentTurnNumber = jsonData.currentTurn;
+        Globals.m_curChaos = jsonData.chaosLevel;
+        m_endWaveKillCount = jsonData.endWaveKillCount;
+        m_curKillCount = jsonData.curKillCount;
 
         m_baseExpAmount = jsonData.runBaseExp;
         m_killExpAmount = jsonData.runKillExp;
