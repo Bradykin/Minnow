@@ -8,11 +8,10 @@ public class ContentDwarfforgedConstructCard : GameUnitCard
     {
         m_unit = new ContentDwarfforgedConstruct();
 
-        m_cost = 1;
+        m_cost = 3;
 
         FillBasicData();
 
         m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
     }
 }

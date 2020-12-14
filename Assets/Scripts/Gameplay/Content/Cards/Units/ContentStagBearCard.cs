@@ -8,7 +8,10 @@ public class ContentStagBearCard : GameUnitCard
     {
         m_unit = new ContentStagBear();
 
-        m_cost = 1;
+        m_cost = 2;
+
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.BuffSpell);
 
         FillBasicData();
     }

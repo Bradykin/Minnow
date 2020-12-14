@@ -8,7 +8,9 @@ public class ContentEtherealStagCard : GameUnitCard
     {
         m_unit = new ContentEtherealStag();
 
-        m_cost = 1;
+        m_cost = 3;
+
+        m_tags.AddTag(GameTag.TagType.Midrange);
 
         FillBasicData();
     }
