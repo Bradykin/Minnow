@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ContentWarriorPriestess : GameUnit
 {
-    private int m_powerBoost = 8;
-    private int m_staminaRegenBoost = 2;
+    private int m_blastRange = 2;
 
     public ContentWarriorPriestess()
     {
@@ -14,58 +13,46 @@ public class ContentWarriorPriestess : GameUnit
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
 
-        AddKeyword(new GameRangeKeyword(2), true, false);
-        AddKeyword(new GameForestwalkKeyword(), true, false);
+        AddKeyword(new GameTauntKeyword(), true, false);
 
         m_name = "Warrior Priestess";
-        m_desc = "When in a forest, gains: +" + m_powerBoost + "/+0 and " + m_staminaRegenBoost + " Stamina regen.\n";
+        m_desc = $"When healed; deal that much damage to all enemy units in range {m_blastRange}.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
         LateInit();
     }
 
-    public override int GetPower()
+    public override int Heal(int toHeal)
     {
-        int returnPower = base.GetPower();
+        int healVal = base.Heal(toHeal);
 
-        if (m_gameTile == null)
+        GameHelper.GetGameController().AddIntermissionLock();
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_blastRange, 1);
+
+        for (int i = 0; i < surroundingTiles.Count; i++)
         {
-            return returnPower;
+            GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
+
+            if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
+            {
+                unit.GetHitByAbility(healVal);
+            }
         }
 
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnPower += m_powerBoost;
-        }
+        GameHelper.GetGameController().RemoveIntermissionLock();
 
-        return returnPower;
-    }
-
-    public override int GetStaminaRegen()
-    {
-        int returnStaminaRegen = base.GetStaminaRegen();
-
-        if (m_gameTile == null)
-        {
-            return returnStaminaRegen;
-        }
-
-        if (m_gameTile.GetTerrain().IsForest())
-        {
-            returnStaminaRegen += m_staminaRegenBoost;
-        }
-
-        return returnStaminaRegen;
+        return healVal;
     }
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 15;
+        m_maxHealth = 50;
         m_maxStamina = 5;
-        m_staminaRegen = 2;
-        m_power = 9;
+        m_staminaRegen = 3;
+        m_power = 5;
     }
 }

@@ -100,6 +100,7 @@ public static class GameCardFactory
         //Implemeneted
         m_cards.Add(new ContentEnergyConstructCard());
         m_cards.Add(new ContentStormChannelerCard());
+        m_cards.Add(new ContentWarriorPriestessCard());
 
         //WIP
         m_cards.Add(new ContentDwarfforgedConstructCard());
@@ -110,7 +111,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentStagBearCard());
         m_cards.Add(new ContentWildwoodExplorerCard());
         m_cards.Add(new ContentWildwoodSkirmisherCard());
-        m_cards.Add(new ContentWarriorPriestessCard());
 
         //Enemy Related Cards
         m_cards.Add(new ContentZombieCard());

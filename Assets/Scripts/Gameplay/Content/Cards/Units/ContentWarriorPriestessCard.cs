@@ -8,11 +8,11 @@ public class ContentWarriorPriestessCard : GameUnitCard
     {
         m_unit = new ContentWarriorPriestess();
 
-        m_cost = 1;
+        m_cost = 3;
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tags.AddTag(GameTag.TagType.Tank);
     }
 }
