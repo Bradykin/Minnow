@@ -67,13 +67,13 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentWarriorPriestess());
         m_playerUnits.Add(new ContentWildwoodExplorer());
         m_playerUnits.Add(new ContentWildwoodSkirmisher());
+        m_playerUnits.Add(new ContentMysticWitch());
 
         //WIP
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
         m_playerUnits.Add(new ContentGolemProtector());
         m_playerUnits.Add(new ContentEtherealStag());
         m_playerUnits.Add(new ContentGuardianOfTheForest());
-        m_playerUnits.Add(new ContentSpelldancer());
         m_playerUnits.Add(new ContentStagBear());
 
         //Starter Units

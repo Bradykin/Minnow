@@ -103,13 +103,13 @@ public static class GameCardFactory
         m_cards.Add(new ContentWarriorPriestessCard());
         m_cards.Add(new ContentWildwoodExplorerCard());
         m_cards.Add(new ContentWildwoodSkirmisherCard());
+        m_cards.Add(new ContentMysticWitchCard());
 
         //WIP
         m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentEtherealStagCard());
         m_cards.Add(new ContentGuardianOfTheForestCard());
-        m_cards.Add(new ContentSpelldancerCard());
         m_cards.Add(new ContentStagBearCard());
 
         //Enemy Related Cards

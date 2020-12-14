@@ -38,13 +38,16 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
         int toReturn = m_cost + m_costTempModifier;
 
-        if (GameHelper.HasRelic<ContentGoldenKnotRelic>() && this is GameCardSpellBase)
-        {
-            toReturn += 3;
-        }
 
         if (this is GameCardSpellBase)
         {
+            GamePlayer player = GameHelper.GetPlayer();
+
+            if (GameHelper.HasRelic<ContentGoldenKnotRelic>())
+            {
+                toReturn += 3;
+            }
+
             if (GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
             {
                 toReturn -= 1;
@@ -55,15 +58,23 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
                 if (GameHelper.CardInPlayerDeck(this))
                 {
                     int numShivsInHand = 0;
-                    for (int i = 0; i < GameHelper.GetPlayer().m_hand.Count; i++)
+                    for (int i = 0; i < player.m_hand.Count; i++)
                     {
-                        if (GameHelper.GetPlayer().m_hand[i] is ContentShivCard)
+                        if (player.m_hand[i] is ContentShivCard)
                         {
                             numShivsInHand++;
                         }
                     }
 
                     toReturn -= numShivsInHand;
+                }
+            }
+
+            for (int i = 0; i < player.m_controlledUnits.Count; i++)
+            {
+                if (player.m_controlledUnits[i] is ContentMysticWitch)
+                {
+                    toReturn -= 1;
                 }
             }
         }
