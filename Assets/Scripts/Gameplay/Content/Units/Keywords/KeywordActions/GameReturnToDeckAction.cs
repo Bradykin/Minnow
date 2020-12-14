@@ -16,7 +16,7 @@ public class GameReturnToDeckAction : GameAction
 
     public override string GetDesc()
     {
-        return "Return " + m_retuningUnit.GetName() + " to your deck.";
+        return "Return " + m_retuningUnit.GetName() + " to your discard.";
     }
 
     public override void DoAction()

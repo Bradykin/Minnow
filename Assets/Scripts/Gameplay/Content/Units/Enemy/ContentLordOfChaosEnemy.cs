@@ -102,7 +102,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
                 chaosWarpString = "When a unit gets damaged, it gains <b>Bleeding</b>.\n";
                 break;
             case ChaosWarpAbility.NobodyCanDealDamage:
-                chaosWarpString = "Attacks deal no damage this turn.\n";
+                chaosWarpString = "No damage can be dealt this turn.\n";
                 break;
             case ChaosWarpAbility.None:
                 chaosWarpString = "";

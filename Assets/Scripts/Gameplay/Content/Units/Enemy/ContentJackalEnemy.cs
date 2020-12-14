@@ -65,13 +65,16 @@ public class ContentJackalEnemy : GameEnemyUnit
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_range);
-
-        for (int i = 0; i < surroundingTiles.Count; i++)
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead && surroundingTiles[i].GetOccupyingUnit().GetTeam() == GetTeam())
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_range);
+
+            for (int i = 0; i < surroundingTiles.Count; i++)
             {
-                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth), true, true);
+                if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead && surroundingTiles[i].GetOccupyingUnit().GetTeam() == GetTeam())
+                {
+                    surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth), true, true);
+                }
             }
         }
 
