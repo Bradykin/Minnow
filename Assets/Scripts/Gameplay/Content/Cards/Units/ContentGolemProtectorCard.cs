@@ -8,11 +8,11 @@ public class ContentGolemProtectorCard : GameUnitCard
     {
         m_unit = new ContentGolemProtector();
 
-        m_cost = 1;
+        m_cost = 6;
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tags.AddTag(GameTag.TagType.HighCost);
     }
 }

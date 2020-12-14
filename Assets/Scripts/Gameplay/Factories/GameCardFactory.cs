@@ -107,8 +107,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentEtherealStagCard());
         m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentStagBearCard());
-
-        //WIP
         m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentGuardianOfTheForestCard());
 

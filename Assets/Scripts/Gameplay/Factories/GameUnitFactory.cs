@@ -71,8 +71,6 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentEtherealStag());
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
         m_playerUnits.Add(new ContentStagBear());
-
-        //WIP
         m_playerUnits.Add(new ContentGolemProtector());
         m_playerUnits.Add(new ContentGuardianOfTheForest());
 

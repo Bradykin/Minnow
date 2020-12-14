@@ -73,21 +73,21 @@ public static class GameMetaprogressionUnlocksDataManager
             mountainPass.GetDesc(),
             mountainPass));
 
-        m_mapRewards.Add(6, CreateMapLevelReward(volcanoRun.GetBaseName(),
+        m_mapRewards.Add(8, CreateMapLevelReward(volcanoRun.GetBaseName(),
             volcanoRun.GetDesc(),
             volcanoRun));
 
-        m_mapRewards.Add(9, CreateMapLevelReward(snowmeltMap.GetBaseName(),
+        m_mapRewards.Add(13, CreateMapLevelReward(frozenLake.GetBaseName(),
+            frozenLake.GetDesc(),
+            frozenLake));
+
+        /*m_mapRewards.Add(9, CreateMapLevelReward(snowmeltMap.GetBaseName(),
             snowmeltMap.GetDesc(),
             snowmeltMap));
 
         m_mapRewards.Add(13, CreateMapLevelReward(crimsonIslandsMap.GetBaseName(),
             crimsonIslandsMap.GetDesc(),
             crimsonIslandsMap));
-
-        m_mapRewards.Add(17, CreateMapLevelReward(frozenLake.GetBaseName(),
-            frozenLake.GetDesc(),
-            frozenLake));
 
         m_mapRewards.Add(22, CreateMapLevelReward(themarshlands.GetBaseName(),
             themarshlands.GetDesc(),
@@ -99,7 +99,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_mapRewards.Add(35, CreateMapLevelReward(lakesideHardMap.GetBaseName(),
             lakesideHardMap.GetDesc(),
-            lakesideHardMap));
+            lakesideHardMap));*/
 
         m_isInit = true;
     }
