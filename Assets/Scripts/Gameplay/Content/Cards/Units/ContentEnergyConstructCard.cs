@@ -8,11 +8,12 @@ public class ContentEnergyConstructCard : GameUnitCard
     {
         m_unit = new ContentEnergyConstruct();
 
-        m_cost = 1;
+        m_cost = 3;
 
         FillBasicData();
 
         m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tags.AddTag(GameTag.TagType.LowCost);
     }
 }

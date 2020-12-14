@@ -8,11 +8,12 @@ public class ContentStormChannelerCard : GameUnitCard
     {
         m_unit = new ContentStormChanneler();
 
-        m_cost = 1;
+        m_cost = 2;
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tags.AddTag(GameTag.TagType.MagicPower);
+        m_tags.AddTag(GameTag.TagType.LowCost);
     }
 }

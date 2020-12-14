@@ -98,17 +98,17 @@ public static class GameCardFactory
 
         //New Units
         //Implemeneted
+        m_cards.Add(new ContentEnergyConstructCard());
+        m_cards.Add(new ContentStormChannelerCard());
 
         //WIP
         m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentGolemProtectorCard());
-        m_cards.Add(new ContentEnergyConstructCard());
         m_cards.Add(new ContentEtherealStagCard());
         m_cards.Add(new ContentGuardianOfTheForestCard());
         m_cards.Add(new ContentSpelldancerCard());
         m_cards.Add(new ContentStagBearCard());
         m_cards.Add(new ContentWildwoodExplorerCard());
-        m_cards.Add(new ContentStormChannelerCard());
         m_cards.Add(new ContentWildwoodSkirmisherCard());
         m_cards.Add(new ContentWarriorPriestessCard());
 
