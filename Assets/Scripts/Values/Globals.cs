@@ -46,7 +46,6 @@ public static class Globals
     public static GameEnemyUnit m_testSpawnEnemyUnit = null;
 
     //Values that will be moved into player save data
-    public static int m_goldPerShivKill = 0;
     public static int m_curChaos = 1;
     public static bool m_worthySacrificeEvent = false;
 

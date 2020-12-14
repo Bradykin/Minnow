@@ -56,11 +56,6 @@ public class ContentShivCard : GameCardSpellBase
             base.PlayCard(targetUnit);
             targetUnit.GetHitBySpell(GetSpellValue(), this);
         }
-
-        if (targetUnit.m_isDead && Globals.m_goldPerShivKill > 0)
-        {
-            GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(Globals.m_goldPerShivKill));
-        }
     }
 
     public void SetCanTriggerSpellcraft(bool newVal)

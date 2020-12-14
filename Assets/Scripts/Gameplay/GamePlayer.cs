@@ -785,7 +785,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_spellsPlayedPreviousTurn = m_spellsPlayedThisTurn;
         m_spellsPlayedThisTurn = 0;
         m_fletchingPowerIncrease = 0;
-        Globals.m_goldPerShivKill = 0;
         Globals.m_canSelect = false;
     }
 
