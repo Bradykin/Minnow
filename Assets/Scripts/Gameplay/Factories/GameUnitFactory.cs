@@ -66,6 +66,7 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentStormChanneler());
         m_playerUnits.Add(new ContentWarriorPriestess());
         m_playerUnits.Add(new ContentWildwoodExplorer());
+        m_playerUnits.Add(new ContentWildwoodSkirmisher());
 
         //WIP
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
@@ -74,7 +75,6 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentGuardianOfTheForest());
         m_playerUnits.Add(new ContentSpelldancer());
         m_playerUnits.Add(new ContentStagBear());
-        m_playerUnits.Add(new ContentWildwoodSkirmisher());
 
         //Starter Units
         m_playerUnits.Add(new ContentLizardSoldier());

@@ -13,7 +13,7 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
         Enemy,
         Unit,
         Building,
-        None //This is used for spells like 'Draw 3'
+        None
     }
 
     protected int m_cost;

@@ -2333,7 +2333,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_maxHealth -= healthToRemove;
         }
 
-        if (m_maxHealth < 1)
+        if (GetMaxHealth() < 1)
         {
             if (!m_isDead)
             {
@@ -2342,9 +2342,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             m_maxHealth = 1;
         }
 
-        if (m_curHealth > m_maxHealth)
+        if (m_curHealth > GetMaxHealth())
         {
-            m_curHealth = m_maxHealth;
+            m_curHealth = GetMaxHealth();
         }
     }
 

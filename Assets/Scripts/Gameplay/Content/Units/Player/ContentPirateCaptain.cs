@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContentPirateCaptain : GameUnit
 {
     private int m_statBoost = 50;
-    private int m_regenVal = 10;
+    private int m_rangeBoost = 2;
 
     public ContentPirateCaptain()
     {
@@ -17,7 +17,7 @@ public class ContentPirateCaptain : GameUnit
         AddKeyword(new GameWaterwalkKeyword(), true, false);
 
         m_name = "Pirate Captain";
-        m_desc = $"Gets +{m_statBoost}/+{m_statBoost} and <b>Regen</b> {m_regenVal} when on water.\n";
+        m_desc = $"When in water, gain +{m_statBoost}/+0 and +{m_rangeBoost} <b>Range</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -28,54 +28,35 @@ public class ContentPirateCaptain : GameUnit
     {
         int returnPower = base.GetPower();
 
-        if (m_gameTile == null)
+        if (GameHelper.IsUnitInWorld(this))
         {
-            return returnPower;
-        }
-
-        if (m_gameTile.GetTerrain().IsWater())
-        {
-            returnPower += m_statBoost;
+            if (m_gameTile.GetTerrain().IsWater())
+            {
+                returnPower += m_statBoost;
+            }
         }
 
         return returnPower;
     }
 
-    public override int GetMaxHealth()
+    public override GameRangeKeyword GetRangeKeyword()
     {
-        int returnHealth = base.GetMaxHealth();
+        GameRangeKeyword toReturn = new GameRangeKeyword(0);
 
-        if (m_gameTile == null)
+        if (base.GetRangeKeyword() != null)
         {
-            return returnHealth;
-        }
-
-        if (m_gameTile.GetTerrain().IsWater())
-        {
-            returnHealth += m_statBoost;
-        }
-
-        return returnHealth;
-    }
-
-    public override GameRegenerateKeyword GetRegenerateKeyword()
-    {
-        GameRegenerateKeyword toReturn = new GameRegenerateKeyword(0);
-
-        if (base.GetRegenerateKeyword() != null)
-        {
-            toReturn.AddKeyword(base.GetRegenerateKeyword());
+            toReturn.AddKeyword(base.GetRangeKeyword());
         }
 
         if (GameHelper.IsUnitInWorld(this))
         {
             if (m_gameTile.GetTerrain().IsWater())
             {
-                toReturn.AddKeyword(new GameRegenerateKeyword(m_regenVal));
+                toReturn.AddKeyword(new GameRangeKeyword(m_rangeBoost));
             }
         }
 
-        if (toReturn.m_regenVal == 0)
+        if (toReturn.m_range == 0)
         {
             toReturn = null;
         }
@@ -87,7 +68,7 @@ public class ContentPirateCaptain : GameUnit
     {
         ResetKeywords(true);
 
-        m_maxHealth = 8;
+        m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 0;
