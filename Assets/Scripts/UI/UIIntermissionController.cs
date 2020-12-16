@@ -32,8 +32,8 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
 
         m_intermissionActions.Add(new ContentResourcesIntermissionAction());
         m_intermissionActions.Add(new ContentCardIntermissionAction());
-        //m_intermissionActions.Add(new ContentRelicIntermissionAction());
         m_intermissionActions.Add(new ContentRemovalIntermissionAction());
+        //m_intermissionActions.Add(new ContentRelicIntermissionAction());
 
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentForestLodgeBuilding()));
         m_intermissionBuildings.Add(new GameBuildingIntermission(new ContentFarmlandBuilding()));
