@@ -8,21 +8,24 @@ public class ContentMetalManticoreEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 3;
+        m_maxHealth = 65;
+        m_maxStamina = 5;
+        m_staminaRegen = 5;
+        m_power = 20;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Metal Manticore";
         
-        m_desc = "";
-
+        m_desc = "Any damage that pierces this unit's damage reduction is tripled.";
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), true, false);
+            AddKeyword(new GameDamageReductionKeyword(20), true, false);
+        }
+        else
+        {
+            AddKeyword(new GameDamageReductionKeyword(15), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -31,5 +34,12 @@ public class ContentMetalManticoreEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override int CalculateDamageAmount(int damage, DamageType damageType)
+    {
+        int damageAmount = base.CalculateDamageAmount(damage, damageType);
+
+        return damageAmount * 3;
     }
 }

@@ -50,7 +50,6 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
 
-
         m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
