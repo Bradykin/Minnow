@@ -18,8 +18,9 @@ public class ContentRedDragonEnemy : GameEnemyUnit
 
         m_name = "Red Dragon";
         
-        m_desc = "";
+        m_desc = "If this unit attacks a unit in a forest, it burns the forest and deals double damage.";
 
+        AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameDamageReductionKeyword(2), true, false);
@@ -31,5 +32,26 @@ public class ContentRedDragonEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
+    }
+
+    public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool isThornsAttack = false, bool canCleave = true)
+    {
+        if (other.GetGameTile().GetTerrain().IsForest() && other.GetGameTile().GetTerrain().CanBurn())
+        {
+            damageAmount *= 2;
+            other.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(other.GetGameTile().GetTerrain()));
+        }
+        
+        return base.HitUnit(other, damageAmount, spendStamina, isThornsAttack, canCleave);
+    }
+
+    public override int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
+    {
+        if (other.GetGameTile().GetTerrain().IsForest() && other.GetGameTile().GetTerrain().CanBurn())
+        {
+            other.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(other.GetGameTile().GetTerrain()));
+        }
+
+        return base.HitBuilding(other, spendStamina, canCleave);
     }
 }
