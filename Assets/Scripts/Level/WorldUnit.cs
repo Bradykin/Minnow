@@ -122,6 +122,11 @@ public class WorldUnit : MonoBehaviour
 
     void OnMouseDown()
     {
+        OnMouseDownExt();
+    }
+
+    public void OnMouseDownExt()
+    {
         if (UIHelper.UIShouldBlockClick())
         {
             return;

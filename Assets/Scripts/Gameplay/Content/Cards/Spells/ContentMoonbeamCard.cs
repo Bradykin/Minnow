@@ -8,7 +8,7 @@ public class ContentMoonbeamCard : GameCardSpellBase
 
     public ContentMoonbeamCard()
     {
-        m_spellEffect = 70;
+        m_spellEffect = 90;
 
         m_name = "Moonbeam";
         m_targetType = Target.None;

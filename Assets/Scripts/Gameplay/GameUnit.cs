@@ -357,6 +357,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             damage = 0;
         }
 
+        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
+        if (damageReductionKeyword != null)
+        {
+            damage -= damageReductionKeyword.m_damageReduction;
+        }
+
         if (IsInCover())
         {
             if (lordOfChaosEnemy != null && lordOfChaosEnemy.m_currentChaosWarpAbility == ContentLordOfChaosEnemy.ChaosWarpAbility.CoverTakesMoreDamage)
@@ -372,12 +378,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (damageType == DamageType.Spell && GetGameTile().GetTerrain().IsDunes())
         {
             damage = Mathf.FloorToInt((float)damage / (100.0f / Constants.CoverProtectionPercent));
-        }
-
-        GameDamageReductionKeyword damageReductionKeyword = GetDamageReductionKeyword();
-        if (damageReductionKeyword != null)
-        {
-            damage -= damageReductionKeyword.m_damageReduction;
         }
 
         GameBrittleKeyword brittleKeyword = GetBrittleKeyword();
