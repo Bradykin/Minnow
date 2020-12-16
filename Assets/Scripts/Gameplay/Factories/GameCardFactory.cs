@@ -236,7 +236,7 @@ public static class GameCardFactory
         //m_enemyCards.Add(new ContentDraconicPlesiosaurEnemyCard());
         //m_enemyCards.Add(new ContentEnergizedTreantEnemyCard());
         //m_enemyCards.Add(new ContentFailedExperimentEnemyCard());
-        //m_enemyCards.Add(new ContentFireLizardEnemyCard());
+        m_enemyCards.Add(new ContentFireLizardEnemyCard());
         m_enemyCards.Add(new ContentFlameImpEnemyCard());
         //m_enemyCards.Add(new ContentFlameNecromancerEnemyCard());
         //m_enemyCards.Add(new ContentFlamingWerewolfEnemyCard());
