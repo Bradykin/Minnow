@@ -57,4 +57,20 @@ public class ContentStormChanneler : GameUnit
 
         m_bonusMagicPower = 0;
     }
+
+    public override JsonGameUnitData SaveToJson()
+    {
+        JsonGameUnitData jsonData = base.SaveToJson();
+
+        jsonData.intValue = m_bonusMagicPower;
+
+        return jsonData;
+    }
+
+    public override void LoadFromJson(JsonGameUnitData jsonData)
+    {
+        base.LoadFromJson(jsonData);
+
+        m_bonusMagicPower = jsonData.intValue;
+    }
 }
