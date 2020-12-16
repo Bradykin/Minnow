@@ -20,7 +20,7 @@ public class ContentSpreadingCorruptionMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        return 8;
+        return 8 + Mathf.FloorToInt(GameHelper.GetGameController().m_currentTurnNumber / 4);
     }
 
     protected override void FillMapEvents()

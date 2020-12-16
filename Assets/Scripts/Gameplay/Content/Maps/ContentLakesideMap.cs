@@ -20,7 +20,7 @@ public class ContentLakesideMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        return 4;
+        return 4 + Mathf.FloorToInt(GameHelper.GetGameController().m_currentTurnNumber / 4);
     }
 
     protected override void FillMapEvents()
