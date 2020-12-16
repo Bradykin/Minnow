@@ -626,6 +626,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         ResetActions();
 
         m_cardsInExile.Clear();
+        m_cardsToDiscard.Clear();
 
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
