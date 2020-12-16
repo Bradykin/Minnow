@@ -211,6 +211,14 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cardRewards.Add(23, CreateCardLevelReward("More Cards",
             "",
             new ContentExperienceCard(), new ContentRhinoProtectorCard(), new ContentDesertSwordsmanCard()));
+
+        m_cardRewards.Add(24, CreateCardLevelReward("More Cards",
+            "",
+            new ContentEnergyConstructCard(), new ContentStormChannelerCard(), new ContentWildwoodSkirmisherCard()));
+
+        m_cardRewards.Add(25, CreateCardLevelReward("More Cards",
+            "",
+            new ContentMysticWitchCard(), new ContentGolemProtectorCard(), new ContentGuardianOfTheForestCard()));
     }
 
     private static void AddRelicRewards()
@@ -457,6 +465,11 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentPolarHunterCard());
         m_initialCards.Add(new ContentMountainBeastCard());
         m_initialCards.Add(new ContentPyromageCard());
+        m_initialCards.Add(new ContentWarriorPriestessCard());
+        m_initialCards.Add(new ContentWildwoodExplorerCard());
+        m_initialCards.Add(new ContentEtherealStagCard());
+        m_initialCards.Add(new ContentDwarfforgedConstructCard());
+        m_initialCards.Add(new ContentStagBearCard());
 
         //Spells
         m_initialCards.Add(new ContentArcaneBoltCard());
