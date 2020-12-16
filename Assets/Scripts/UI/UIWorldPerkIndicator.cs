@@ -29,6 +29,8 @@ public class UIWorldPerkIndicator : UIElementBase
     {
         if (m_gameWorldPerk != null)
         {
+            UITooltipController.Instance.ClearTooltipStack();
+
             UIHelper.CreateWorldPerkTooltip(m_gameWorldPerk);
 
             m_isShowingTooltip = true;
@@ -37,6 +39,13 @@ public class UIWorldPerkIndicator : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        m_ownerTile.OnMouseDownExt();
+        if (m_ownerTile.GetGameTile().IsOccupied())
+        {
+            m_ownerTile.GetGameTile().GetOccupyingUnit().m_worldUnit.OnMouseDownExt();
+        }
+        else
+        {
+            m_ownerTile.OnMouseDownExt();
+        }
     }
 }
