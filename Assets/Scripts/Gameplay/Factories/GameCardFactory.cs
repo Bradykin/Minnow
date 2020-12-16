@@ -249,7 +249,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentGoblinShamanEnemyCard());
         m_enemyCards.Add(new ContentGoblinWarriorEnemyCard());
         m_enemyCards.Add(new ContentGreatFrostlizardEnemyCard());
-        //m_enemyCards.Add(new ContentGreenRockGiantEnemyCard());
+        m_enemyCards.Add(new ContentGreenRockGiantEnemyCard());
         m_enemyCards.Add(new ContentGriffonEnemyCard());
         m_enemyCards.Add(new ContentHellhoundEnemyCard());
         //m_enemyCards.Add(new ContentIcebladeWarriorEnemyCard());
@@ -271,8 +271,8 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentLordOfWinterEnemyCard());
         //m_enemyCards.Add(new ContentMageShadeEnemyCard());
         //m_enemyCards.Add(new ContentMarshSerpentEnemyCard());
-        //m_enemyCards.Add(new ContentMetalCyclopsEnemyCard());
-        //m_enemyCards.Add(new ContentMetalManticoreEnemyCard());
+        m_enemyCards.Add(new ContentMetalCyclopsEnemyCard());
+        m_enemyCards.Add(new ContentMetalManticoreEnemyCard());
         m_enemyCards.Add(new ContentMobolaEnemyCard());
         m_enemyCards.Add(new ContentMummyEnemyCard());
         m_enemyCards.Add(new ContentMummyPharaohEnemyCard());
@@ -284,12 +284,12 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentPhoenixEnemyCard());
         m_enemyCards.Add(new ContentPolarWarriorEnemyCard());
         //m_enemyCards.Add(new ContentPoisonGargantuanEnemyCard());
-        //m_enemyCards.Add(new ContentRedDragonEnemyCard());
+        m_enemyCards.Add(new ContentRedDragonEnemyCard());
         m_enemyCards.Add(new ContentRiverlordEnemyCard());
         m_enemyCards.Add(new ContentSandWyvernEnemyCard());
         m_enemyCards.Add(new ContentSandVortexEnemyCard());
         m_enemyCards.Add(new ContentScorchingSerpentEnemyCard());
-        //m_enemyCards.Add(new ContentSerpentineConstructEnemyCard());
+        m_enemyCards.Add(new ContentSerpentineConstructEnemyCard());
         //m_enemyCards.Add(new ContentSpikewolfEnemyCard());
         //m_enemyCards.Add(new ContentSandWurmEnemyCard());
         //m_enemyCards.Add(new ContentScytheBarbarianEnemyCard());
@@ -299,7 +299,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentSlimeEnemyCard());
         m_enemyCards.Add(new ContentSnakeEnemyCard());
         m_enemyCards.Add(new ContentSpiralSerpentEnemyCard());
-        //m_enemyCards.Add(new ContentStoneflingerEnemyCard());
+        m_enemyCards.Add(new ContentStoneflingerEnemyCard());
         m_enemyCards.Add(new ContentSnowprowlerEnemyCard());
         //m_enemyCards.Add(new ContentSnowTrollEnemyCard());
         //m_enemyCards.Add(new ContentSwampwalkerEnemyCard());

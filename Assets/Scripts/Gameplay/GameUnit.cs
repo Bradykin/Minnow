@@ -648,6 +648,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual bool IsInRangeOfUnit(GameUnit other)
     {
+        if (GetRange() > 1 && other is ContentSerpentineConstructEnemy)
+        {
+            return false;
+        }
+        
         return IsInRangeOfTile(other.GetGameTile());
     }
 
