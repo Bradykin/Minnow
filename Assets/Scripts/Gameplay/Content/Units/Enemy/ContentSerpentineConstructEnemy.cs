@@ -8,21 +8,22 @@ public class ContentSerpentineConstructEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
+        m_maxHealth = 38;
+        m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 3;
+        m_power = 18;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Serpentine Construct";
         
-        m_desc = "";
+        m_desc = "By staying low to the ground, this unit cannot be targeted at range.";
 
+        AddKeyword(new GameDamageReductionKeyword(4), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameDamageReductionKeyword(2), true, false);
+            AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 2)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

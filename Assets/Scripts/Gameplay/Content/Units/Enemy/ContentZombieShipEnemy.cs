@@ -127,6 +127,16 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         return true;
     }
 
+    public override JsonGameUnitData SaveToJson()
+    {
+        JsonGameUnitData jsonData = base.SaveToJson();
+
+        jsonData.boolValue1 = m_isEliteShip;
+        jsonData.boolValue2 = m_hasReleasedUnits;
+
+        return jsonData;
+    }
+
     public override void LoadFromJson(JsonGameUnitData jsonData)
     {
         base.LoadFromJson(jsonData);
