@@ -71,6 +71,6 @@ public class ContentStormChanneler : GameUnit
     {
         base.LoadFromJson(jsonData);
 
-        m_bonusMagicPower = jsonData.intValue;\
+        m_bonusMagicPower = jsonData.intValue;
     }
 }
