@@ -166,7 +166,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         GameMap curMap = GameHelper.GetGameController().GetCurMap();
         float enemyCapToSpawn = curMap.GetNumEnemiesToSpawn();
         float originalEnemyCapToSpawn = enemyCapToSpawn;
-        float percentageSpawnFogFirst = 0.2f;
+        float amountSpawnFogEdgeFirst = 1.0f;
 
         List<GameTile> tilesAtFogEdge = curMap.GetValidFogSpawningTiles();
         for (int i = 0; i < tilesAtFogEdge.Count; i++)
@@ -201,7 +201,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
 
         //Try spawning at edge of fog
         int numTries = 10;
-        while (enemyCapToSpawn > originalEnemyCapToSpawn * (1.0f - percentageSpawnFogFirst) && tilesAtFogEdge.Count >= 0 && numTries > 0)
+        while (enemyCapToSpawn > originalEnemyCapToSpawn - amountSpawnFogEdgeFirst && tilesAtFogEdge.Count >= 0 && numTries > 0)
         {
             if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
             {

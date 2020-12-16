@@ -20,7 +20,7 @@ public class ContentSpreadingCorruptionMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        return 12;
+        return 8;
     }
 
     protected override void FillMapEvents()

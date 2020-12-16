@@ -21,12 +21,12 @@ public class ContentMountainPassMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents) && GameHelper.GetGameController().m_currentWaveNumber % 2 == 0 && GameHelper.GetGameController().m_currentTurnNumber < 6)
         {
-            return 4;
+            return 3;
         }
 
         else
         {
-            return 6;
+            return 5;
         }
     }
 

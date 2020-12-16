@@ -16,6 +16,11 @@ public class ContentFrozenLakeMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        return 5;
+    }
+
     protected override void FillMapEvents()
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))

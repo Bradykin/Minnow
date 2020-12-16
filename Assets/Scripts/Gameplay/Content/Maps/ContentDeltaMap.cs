@@ -18,7 +18,7 @@ public class ContentDeltaMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        return 7;
+        return 5;
     }
 
     protected override void FillMapEvents()
