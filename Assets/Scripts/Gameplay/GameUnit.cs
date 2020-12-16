@@ -869,11 +869,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         List<GameTile> tilesToCleave = new List<GameTile>();
-        if (canCleave && GetCleaveKeyword() != null)
+        if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
-            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
-            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
-            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
+            tilesToCleave = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
         }
 
         int damageTaken = other.GetHitByUnit(damageAmount, this, !isThornsAttack);
@@ -918,7 +916,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             UIHelper.ReselectUnit();
         }
 
-        if (canCleave && GetCleaveKeyword() != null)
+        if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
             for (int i = 0; i < tilesToCleave.Count; i++)
             {
@@ -956,11 +954,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         List<GameTile> tilesToCleave = new List<GameTile>();
-        if (canCleave && GetCleaveKeyword() != null)
+        if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
-            List<GameTile> surroundingTilesToSelf = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
-            List<GameTile> surroundingTilesToOther = WorldGridManager.Instance.GetSurroundingGameTiles(other.GetGameTile(), 1);
-            tilesToCleave = surroundingTilesToSelf.Where(t => surroundingTilesToOther.Contains(t)).ToList();
+            tilesToCleave = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
@@ -1000,7 +996,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        if (canCleave && GetCleaveKeyword() != null)
+        if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
             for (int i = 0; i < tilesToCleave.Count; i++)
             {

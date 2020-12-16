@@ -8,7 +8,7 @@ public class GameCleaveKeyword : GameKeywordBase
     public GameCleaveKeyword()
     {
         m_name = "Cleave";
-        m_focusInfoText = "When this unit attacks, it also hits all enemy targets that are adjacent both to itself and the target. Does not work with ranged.";
+        m_focusInfoText = "When this unit attacks, it also hits all other enemy targets adjacent to itself. Does not work with ranged.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 
