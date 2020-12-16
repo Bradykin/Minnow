@@ -32,24 +32,6 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillSpawnPool()
     {
-        
-        
-        m_totalEnemiesOnMap.Add(new ContentAngryBirdEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLizardmanEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentMobolaEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSlimeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentWerewolfEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentYetiEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
-
-
         m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
@@ -88,17 +70,30 @@ public class ContentMountainPassMap : GameMap
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 3, 2, 0.25f));
 
         //Wave 4
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 4, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 4, 1, 0.2f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 4, 1, 0.33f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGreenRockGiantEnemy(null), 4, 1, 0.33f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 4, 1, 0.1f));
 
         //Wave 5
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSerpentineConstructEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMetalManticoreEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMetalCyclopsEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGreenRockGiantEnemy(null), 5, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 5, 1, 0.2f));
 
         //Wave 6
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSerpentineConstructEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMetalManticoreEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMetalCyclopsEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGreenRockGiantEnemy(null), 6, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 0.2f));
 
         //--------------------------------------------------------------------------------------------------------//
 
