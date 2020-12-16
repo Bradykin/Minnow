@@ -59,18 +59,15 @@ public class GameUnitFactory
         m_playerUnits.Add(new ContentRhinoProtector());
         m_playerUnits.Add(new ContentDesertSwordsman());
         m_playerUnits.Add(new ContentFrogShaman());
-
-        //New Units
-        //Implemented
-        m_playerUnits.Add(new ContentEnergyConstruct());
-        m_playerUnits.Add(new ContentStormChanneler());
         m_playerUnits.Add(new ContentWarriorPriestess());
         m_playerUnits.Add(new ContentWildwoodExplorer());
-        m_playerUnits.Add(new ContentWildwoodSkirmisher());
-        m_playerUnits.Add(new ContentMysticWitch());
         m_playerUnits.Add(new ContentEtherealStag());
         m_playerUnits.Add(new ContentDwarfforgedConstruct());
         m_playerUnits.Add(new ContentStagBear());
+        m_playerUnits.Add(new ContentEnergyConstruct());
+        m_playerUnits.Add(new ContentStormChanneler());
+        m_playerUnits.Add(new ContentWildwoodSkirmisher());
+        m_playerUnits.Add(new ContentMysticWitch());
         m_playerUnits.Add(new ContentGolemProtector());
         m_playerUnits.Add(new ContentGuardianOfTheForest());
 
