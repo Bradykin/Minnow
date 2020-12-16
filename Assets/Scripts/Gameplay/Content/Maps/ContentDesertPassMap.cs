@@ -16,6 +16,11 @@ public class ContentDesertPassMap : GameMap
         Init();
     }
 
+    public override int GetNumEnemiesToSpawn()
+    {
+        return 5 + Mathf.FloorToInt(GameHelper.GetGameController().m_currentTurnNumber / 4);
+    }
+
     protected override void FillMapEvents()
     {
         //Need to fill

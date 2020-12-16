@@ -52,10 +52,7 @@ public abstract class GameMap : GameElementBase
     }
 
 
-    public virtual int GetNumEnemiesToSpawn()
-    {
-        return 8;
-    }
+    public abstract int GetNumEnemiesToSpawn();
 
     public virtual void DestroyCrystal()
     {

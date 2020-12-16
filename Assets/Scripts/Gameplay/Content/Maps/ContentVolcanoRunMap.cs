@@ -20,20 +20,7 @@ public class ContentVolcanoRunMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        int wave = GameHelper.GetCurrentWaveNum();
-        int baseAmount = base.GetNumEnemiesToSpawn();
-
-        if (wave == 2 || wave == 3)
-        {
-            baseAmount += 1;
-        }
-
-        if (wave == 4 || wave == 5 || wave == 6)
-        {
-            baseAmount += 2;
-        }
-
-        return baseAmount;
+        return 5 + Mathf.FloorToInt(GameHelper.GetGameController().m_currentTurnNumber / 4);
     }
 
     protected override void FillMapEvents()

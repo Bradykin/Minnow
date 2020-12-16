@@ -31,6 +31,11 @@ public abstract class GameCard : GameElementBase, ILoad<JsonGameCardData>, ISave
 
     public int GetCost()
     {
+        if (!GameHelper.IsInGame())
+        {
+            return m_cost;
+        }
+
         if (m_xSpell)
         {
             return GameHelper.GetPlayer().GetCurEnergy();
