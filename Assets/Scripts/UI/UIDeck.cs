@@ -27,64 +27,15 @@ public class UIDeck : UIElementBase
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
-        {
-            GameCard topCard = GameHelper.GetPlayer().m_curDeck.GetCardByIndex(0);
+        AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
 
-            if (topCard != null)
-            {
-                if (topCard.IsValidToPlay())
-                {
-                    AudioHelper.PlaySFX(AudioHelper.UICardClick);
+        GamePlayer player = GameHelper.GetPlayer();
 
-                    if (topCard.m_targetType == GameCard.Target.None)
-                    {
-                        GameHelper.GetPlayer().PlayCard(topCard);
-                        topCard.PlayCard();
-                    }
-                    else
-                    {
-                        UIHelper.SelectCard(UITooltipController.Instance.GetTooltipFromStackByIndex(0).GetComponent<UICard>());
-                    }
-                }
-                else
-                {
-                    if (Globals.m_canSelect)
-                    {
-                        UIHelper.CreateWorldElementNotification("Not enough energy.", false, gameObject);
-
-                        AudioHelper.PlaySFX(AudioHelper.UIError);
-                    }
-                }
-
-                ClearTooltip();
-                HandleTooltip();
-            }
-        }
-        else
-        {
-            AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
-
-            GamePlayer player = GameHelper.GetPlayer();
-
-            UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View, "Current Deck");
-        }
+        UIDeckViewController.Instance.Init(player.m_curDeck.GetDeck(), UIDeckViewController.DeckViewType.View, "Current Deck");
     }
 
     public override void HandleTooltip()
     {
-        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
-        {
-            GameCard topCard = GameHelper.GetPlayer().m_curDeck.GetCardByIndex(0);
-
-            if (topCard != null)
-            {
-                UIHelper.CreateCardTooltip(topCard);
-            }
-        }
-        else
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Deck", "This is your deck!  When you run out of cards here, your discard will shuffle back in."));
-        }
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Deck", "This is your deck!  When you run out of cards here, your discard will shuffle back in."));
     }
 }

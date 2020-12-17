@@ -7,7 +7,7 @@ public class ContentEyeOfTelloRelic : GameRelic
     public ContentEyeOfTelloRelic()
     {
         m_name = "Eye of Tello";
-        m_desc = "You can look at and play the top card of your deck.  However, you can no longer look at your current deck.";
+        m_desc = "+4 actions during intermission phase!";
         m_rarity = GameRarity.Special;
 
         LateInit();

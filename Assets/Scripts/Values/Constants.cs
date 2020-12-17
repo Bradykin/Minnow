@@ -38,7 +38,7 @@ public static class Constants
     public static int WinterStormDamage = 3;
     public static int WinterStormVisionRange = 1;
 
-    public static int IntermissionBuffValue = 3;
+    public static int IntermissionBuffValue = 1;
 
     public static int MaxChaos = 5;
 

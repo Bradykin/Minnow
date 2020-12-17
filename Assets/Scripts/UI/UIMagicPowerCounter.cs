@@ -17,7 +17,14 @@ public class UIMagicPowerCounter : UIElementBase
 
     void Update()
     {
-        if (GameHelper.GetPlayer().GetMagicPower() == 0)
+        GamePlayer player = GameHelper.GetPlayer();
+
+        if (player == null)
+        {
+            return;
+        }
+
+        if (player.GetMagicPower() == 0)
         {
             m_holder.SetActive(false);
             return;
@@ -27,7 +34,7 @@ public class UIMagicPowerCounter : UIElementBase
             m_holder.SetActive(true);
         }
 
-        m_countText.text = $"{GameHelper.GetPlayer().GetMagicPower()}";
+        m_countText.text = $"{player.GetMagicPower()}";
     }
 
     public override void HandleTooltip()

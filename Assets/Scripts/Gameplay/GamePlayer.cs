@@ -613,6 +613,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             toReturn += 1;
         }
 
+        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
+        {
+            toReturn += 4;
+        }
+
         return toReturn;
     }
 

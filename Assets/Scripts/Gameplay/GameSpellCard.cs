@@ -112,22 +112,6 @@ public class GameCardSpellBase : GameCard
     private void PlayCardImpl()
     {
         GameHelper.GetPlayer().m_spellsPlayedThisTurn++;
-
-        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
-        {
-            GameDeck curDeck = GameHelper.GetPlayer().m_curDeck;
-
-            if (curDeck.GetDeck().Count > 0)
-            {
-                GameCard topCard = curDeck.GetDeck()[0];
-
-                if (topCard == this)
-                {
-                    curDeck.GetDeck().RemoveAt(0);
-                    curDeck.GetDiscard().Add(this);
-                }
-            }
-        }
     }
 
     public override void PlayCard()
