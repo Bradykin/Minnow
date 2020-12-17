@@ -36,8 +36,8 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         if (isOnLakeside)
         {
             m_intermissionActions.Add(new ContentResourcesIntermissionAction());
-            m_intermissionActions.Add(new ContentRebuildIntermissionAction());
             m_intermissionActions.Add(new ContentCardIntermissionAction());
+            m_intermissionActions.Add(new ContentRebuildIntermissionAction());
         }
         else
         {
@@ -45,8 +45,8 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
             m_intermissionActions.Add(new ContentBuffUnitIntermissionAction());
             m_intermissionActions.Add(new ContentRemovalIntermissionAction());
             m_intermissionActions.Add(new ContentCardIntermissionAction());
-            m_intermissionActions.Add(new ContentRebuildIntermissionAction());
             m_intermissionActions.Add(new ContentGainMagicPowerIntermissionAction());
+            m_intermissionActions.Add(new ContentRebuildIntermissionAction());
             m_intermissionActions.Add(new ContentTransformUnitIntermissionAction());
             m_intermissionActions.Add(new ContentDuplicateSpellIntermissionAction());
             m_intermissionActions.Add(new ContentRelicIntermissionAction());
