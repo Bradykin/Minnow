@@ -7,7 +7,7 @@ public class ContentMechanizeCard : GameCardSpellBase
     public ContentMechanizeCard()
     {
         m_name = "Mechanize";
-        m_desc = "Target allied unit loses all current Stamina and gains that much power.";
+        m_desc = "Target allied unit loses all current Stamina and <b>permanently</b> gains that much power.";
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Common;
@@ -33,6 +33,6 @@ public class ContentMechanizeCard : GameCardSpellBase
 
         int curStamina = targetUnit.GetCurStamina();
         targetUnit.SpendStamina(curStamina);
-        targetUnit.AddStats(curStamina, 0, false, false);
+        targetUnit.AddStats(curStamina, 0, true, false);
     }
 }
