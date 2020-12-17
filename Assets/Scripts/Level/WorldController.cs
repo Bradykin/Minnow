@@ -303,6 +303,7 @@ public class WorldController : Singleton<WorldController>
             m_gameController.m_intermissionSavedCardTwo = cardTwo;
             m_gameController.m_intermissionSavedCardThree = cardThree;
             PlayerDataManager.PlayerAccountData.SaveRunData();
+            GameHelper.GetGameController().SaveDirectorData();
         }
         else
         {

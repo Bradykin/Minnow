@@ -20,6 +20,19 @@ public enum RunStateType : int
 
 public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameControllerData>
 {
+    public GameDirector GameDirector
+    {
+        get
+        {
+            if (m_gameDirector == null)
+            {
+                m_gameDirector = Files.ImportGameDirectorData();
+            }
+            return m_gameDirector;
+        }
+    }
+    private GameDirector m_gameDirector;
+    
     public List<ITurns> m_teamActor;
     public GamePlayer m_player;
     public GameOpponent m_gameOpponent;
@@ -267,6 +280,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             bool isVictory = endType == RunEndType.Win;
             bool firstChaosClear = !PlayerDataManager.IsChaosLevelAchieved(GetCurMap().m_id, Globals.m_curChaos);
             PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(isVictory, firstChaosClear), m_map.m_id, Globals.m_curChaos);
+            SaveDirectorData();
             Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }
     }
@@ -316,6 +330,11 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         }
 
         return toReturn;
+    }
+
+    public void SaveDirectorData()
+    {
+        Files.ExportGameDirectorData(GameDirector);
     }
 
     //============================================================================================================//

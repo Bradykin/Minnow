@@ -56,15 +56,19 @@ public static class GameCardFactory
         m_tribalCards = new List<GameCard>();
 
         //Unit Cards
+        m_cards.Add(new ContentArmouredMonkCard());
+        m_cards.Add(new ContentBonecasterCard());
         m_cards.Add(new ContentConjuredImpCard());
         m_cards.Add(new ContentCyclopsCard());
         m_cards.Add(new ContentDevourerCard());
         m_cards.Add(new ContentDwarfArchitectCard());
+        m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentDwarfShivcasterCard());
         m_cards.Add(new ContentElvenRogueCard());
         m_cards.Add(new ContentElvenSentinelCard());
         m_cards.Add(new ContentElvenWizardCard());
-        m_cards.Add(new ContentBonecasterCard());
+        m_cards.Add(new ContentEnergyConstructCard());
+        m_cards.Add(new ContentFrogShamanCard());
         m_cards.Add(new ContentGladiatorCard());
         m_cards.Add(new ContentGoblinLegendCard());
         m_cards.Add(new ContentGrasperCard());
@@ -75,37 +79,33 @@ public static class GameCardFactory
         m_cards.Add(new ContentInjuredTrollCard());
         m_cards.Add(new ContentMageCard());
         m_cards.Add(new ContentMetalGolemCard());
+        m_cards.Add(new ContentMetalProtectorCard());
+        m_cards.Add(new ContentMountainBeastCard());
         m_cards.Add(new ContentMinerCard());
         m_cards.Add(new ContentNaturalScoutCard());
         m_cards.Add(new ContentOverlordCard());
+        m_cards.Add(new ContentPirateCaptainCard());
+        m_cards.Add(new ContentPolarHunterCard());
+        m_cards.Add(new ContentPyromageCard());
         m_cards.Add(new ContentRangerCard());
         m_cards.Add(new ContentRaptorCard());
+        m_cards.Add(new ContentRhinoProtectorCard());
         m_cards.Add(new ContentSabobotCard());
         m_cards.Add(new ContentShadowWarlockCard());
         m_cards.Add(new ContentSkeletonCard());
         m_cards.Add(new ContentStoneGolemCard());
         m_cards.Add(new ContentWandererCard());
         m_cards.Add(new ContentWildfolkCard());
-        m_cards.Add(new ContentArmouredMonkCard());
-        m_cards.Add(new ContentMetalProtectorCard());
-        m_cards.Add(new ContentPirateCaptainCard());
-        m_cards.Add(new ContentPolarHunterCard());
-        m_cards.Add(new ContentMountainBeastCard());
-        m_cards.Add(new ContentPyromageCard());
-        m_cards.Add(new ContentRhinoProtectorCard());
-        m_cards.Add(new ContentDesertSwordsmanCard());
-        m_cards.Add(new ContentFrogShamanCard());
-
-        //New Units
-        //Implemeneted
-        m_cards.Add(new ContentEnergyConstructCard());
         m_cards.Add(new ContentStormChannelerCard());
+        m_cards.Add(new ContentDesertSwordsmanCard());
         m_cards.Add(new ContentWarriorPriestessCard());
         m_cards.Add(new ContentWildwoodExplorerCard());
         m_cards.Add(new ContentWildwoodSkirmisherCard());
+
+        //New Units
+        //Implemeneted
         m_cards.Add(new ContentMysticWitchCard());
         m_cards.Add(new ContentEtherealStagCard());
-        m_cards.Add(new ContentDwarfforgedConstructCard());
         m_cards.Add(new ContentStagBearCard());
         m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentGuardianOfTheForestCard());

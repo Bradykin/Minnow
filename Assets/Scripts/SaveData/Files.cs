@@ -15,6 +15,7 @@ public static class Files
     public const string DEFAULT_MAP_DATA_PATH = "MapData0.txt";
     public const string PLAYER_ACCOUNT_DATA_PATH = "PlayerAccountData.player";
     public const string PLAYER_RUN_DATA_PATH = "PlayerRunData.player";
+    public const string GAME_DIRECTOR_DATA_PATH = "GameDirector.player";
 
     public static string EDITOR_PATH = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, REMOTE_DATA_PATH, ADD_TO_BUILD_PATH);
     public static string BUILD_PATH = Path.Combine(Application.productName + "_Data", BUILD_DATA_PATH);
@@ -123,5 +124,37 @@ public static class Files
         File.Delete(path);
 
         return ImportPlayerRunData();
+    }
+
+    public static GameDirector ImportGameDirectorData()
+    {
+        string path;
+#if UNITY_EDITOR
+        path = Path.Combine(Files.EDITOR_PATH, GAME_DIRECTOR_DATA_PATH);
+#else
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, GAME_DIRECTOR_DATA_PATH);
+#endif
+
+        if (!File.Exists(path))
+        {
+            GameDirector data = new GameDirector();
+            return data;
+        }
+
+        var loaded = JsonConvert.DeserializeObject<GameDirector>(File.ReadAllText(path));
+
+        return loaded;
+    }
+
+    public static string ExportGameDirectorData(GameDirector gameDirector)
+    {
+        var export = JsonConvert.SerializeObject(gameDirector);
+#if UNITY_EDITOR
+        File.WriteAllText(Path.Combine(Files.EDITOR_PATH, GAME_DIRECTOR_DATA_PATH), export);
+#else
+        File.WriteAllText(Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, GAME_DIRECTOR_DATA_PATH), export);
+#endif
+
+        return export;
     }
 }
