@@ -25,6 +25,7 @@ public static class Globals
     public static WorldUnit m_selectedUnit;
     public static WorldTile m_selectedTile;
     public static WorldUnit m_selectedEnemy;
+    public static GameActionIntermission m_selectedAction;
     public static WorldTile m_hoveredTile;
     public static UICard m_hoveredCard;
 

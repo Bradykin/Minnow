@@ -186,7 +186,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else
             {
-                if (m_shouldAlertTint)
+                if (Globals.m_selectedAction != null &&
+                    Globals.m_selectedAction.GetName() == "Rebuild" &&
+                    GetGameTile().GetTerrain() is ContentRubbleTerrain)
+                {
+                    m_tintRenderer.color = UIHelper.GetValidTintColor(true);
+                }
+                else if (m_shouldAlertTint)
                 {
                     m_tintRenderer.color = UIHelper.GetValidTintColor(false);
                 }
@@ -351,6 +357,18 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
 
             return;
+        }
+
+        GameActionIntermission action = Globals.m_selectedAction;
+        if (action != null && GameHelper.GetGameController().m_runStateType == RunStateType.Intermission)
+        {
+            if (action.GetName() == "Rebuild" && GetGameTile().GetTerrain() is ContentRubbleTerrain)
+            {
+                action.SpendCost();
+                GetGameTile().RestoreBuilding();
+                UIHelper.SelectAction(action);
+                return;
+            }
         }
 
         UICard selectedCard = Globals.m_selectedCard;

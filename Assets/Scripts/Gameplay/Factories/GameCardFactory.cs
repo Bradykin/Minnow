@@ -110,9 +110,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentGolemProtectorCard());
         m_cards.Add(new ContentGuardianOfTheForestCard());
 
-        //Enemy Related Cards
-        m_cards.Add(new ContentZombieCard());
-
         //Starter Cards
         m_cards.Add(new ContentLizardSoldierCard());
         m_cards.Add(new ContentUndeadMammothCard());
@@ -317,7 +314,6 @@ public static class GameCardFactory
         //m_enemyCards.Add(new ContentWildOgreEnemyCard());
         //m_enemyCards.Add(new ContentWitchEnemyCard());
         m_enemyCards.Add(new ContentZombieCrabEnemyCard());
-        m_enemyCards.Add(new ContentZombieEnemyCard());
         m_enemyCards.Add(new ContentZombieShipEnemyCard());
 
         m_enemyCards.Add(new ContentSabertoothWyvernEnemyCard());

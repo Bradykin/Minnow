@@ -18,7 +18,7 @@ public class ContentRanger : GameUnit
         AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_name = "Ranger";
-        m_desc = $"When in a forest, double power, +{m_staminaRegenBoost} Stamina regen, and +{m_rangeBoost} <b>Range</b>.\n";
+        m_desc = $"When in a forest, <b>double</b> power, +{m_staminaRegenBoost} stamina regen, and +{m_rangeBoost} <b>Range</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 

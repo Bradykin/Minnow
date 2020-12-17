@@ -26,6 +26,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     public int m_numCauseStorm = 0;
 
     public GameWorldPerk m_gameWorldPerk;
+    public GameBuildingBase m_destroyedBuilding;
     
     public GameTile(WorldTile worldTile)
     {
@@ -95,6 +96,16 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         }
 
         GetWorldTile().TryAddOccupyingUnit();
+    }
+
+    public void SetDestroyedBuilding(GameBuildingBase prevBuilding)
+    {
+        m_destroyedBuilding = prevBuilding;
+    }
+
+    public void RestoreBuilding()
+    {
+        GameHelper.MakePlayerBuilding(this, m_destroyedBuilding);
     }
 
     public void PlaceBuilding(GameBuildingBase newBuilding)
@@ -448,13 +459,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 }
 
                 if (checkerUnit.m_shouldAlwaysPassEnemies)
-                {
-                    return true;
-                }
-
-                bool isZombiePass = (checkerUnit is ContentZombie || checkerUnit is ContentZombieEnemy) && (m_occupyingUnit is ContentZombie || m_occupyingUnit is ContentZombieEnemy);
-
-                if (isZombiePass)
                 {
                     return true;
                 }
