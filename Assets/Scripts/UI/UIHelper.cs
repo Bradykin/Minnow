@@ -658,6 +658,24 @@ public static class UIHelper
         SetMoveableTileForUnit(Globals.m_selectedUnit);
     }
 
+    public static void SelectAction(GameActionIntermission action)
+    {
+        if (!Globals.m_canSelect)
+        {
+            return;
+        }
+
+        if (Globals.m_selectedAction == action)
+        {
+            Globals.m_selectedAction = null;
+        }
+        else
+        {
+            UnselectAll();
+            Globals.m_selectedAction = action;
+        }
+    }
+
     public static void SelectCard(UICard card)
     {
         if (!Globals.m_canSelect)
@@ -712,6 +730,7 @@ public static class UIHelper
         UnselectEnemy();
         Globals.m_selectedTile = null;
         Globals.m_selectedCard = null;
+        Globals.m_selectedAction = null;
         UnselectUnit();
 
         UIHelper.ClearDefensiveBuildingTiles();

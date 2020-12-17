@@ -183,12 +183,20 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     {
         m_isDestroyed = true;
 
+        m_gameTile.SetDestroyedBuilding(this);
+
         UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile().gameObject);
 
         UIHelper.ClearDefensiveBuildingTiles();
         UIHelper.SetDefensiveBuildingTiles();
 
         GameHelper.DestroyPlayerBuilding(this.m_gameTile);
+    }
+
+    public virtual void Restore()
+    {
+        m_isDestroyed = false;
+        m_curHealth = m_maxHealth;
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile);

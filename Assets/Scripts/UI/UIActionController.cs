@@ -29,7 +29,8 @@ public class UIActionController : MonoBehaviour
 
     void Update()
     {
-        if (m_actionController.HasBuilding() && Globals.m_selectedIntermissionBuilding == m_actionController.m_building)
+        if ((m_actionController.HasBuilding() && Globals.m_selectedIntermissionBuilding == m_actionController.m_building) ||
+            (m_actionController.HasAction() && Globals.m_selectedAction == m_actionController.m_action))
         {
             m_tintImage.color = UIHelper.GetSelectTintColor(true);
         }
