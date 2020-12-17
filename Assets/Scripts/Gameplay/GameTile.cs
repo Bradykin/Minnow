@@ -463,13 +463,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                     return true;
                 }
 
-                bool isZombiePass = (checkerUnit is ContentZombie || checkerUnit is ContentZombieEnemy) && (m_occupyingUnit is ContentZombie || m_occupyingUnit is ContentZombieEnemy);
-
-                if (isZombiePass)
-                {
-                    return true;
-                }
-
                 return false;
             }
         }

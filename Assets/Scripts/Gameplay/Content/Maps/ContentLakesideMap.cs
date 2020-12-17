@@ -47,7 +47,6 @@ public class ContentLakesideMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentWerewolfEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentYetiEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentShadeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentZombieEnemy(null));
 
 
         /*m_totalEnemiesOnMap.Add(new ContentAngryTreantEnemy(null));
@@ -105,7 +104,6 @@ public class ContentLakesideMap : GameMap
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 5, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 5, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 5, 1, 0.5f));
 
         //Wave 6
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLavaRhinoEnemy(null), 6, 1, 0.5f));
@@ -113,7 +111,6 @@ public class ContentLakesideMap : GameMap
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentYetiEnemy(null), 6, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentMobolaEnemy(null), 6, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLizardmanEnemy(null), 6, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentZombieEnemy(null), 6, 1, 0.5f));
 
         //--------------------------------------------------------------------------------------------------------//
 
