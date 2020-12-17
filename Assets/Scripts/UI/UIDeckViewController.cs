@@ -12,7 +12,8 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
         View,
         Remove,
         Transform,
-        Duplicate
+        Duplicate,
+        Buff
     }
 
     public enum DeckViewFilter

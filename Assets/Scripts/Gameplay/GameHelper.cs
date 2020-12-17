@@ -329,4 +329,9 @@ public static class GameHelper
 
         return true;
     }
+
+    public static bool IsCurrentMapLakeside()
+    {
+        return GetGameController().GetCurMap().m_id == 0;
+    }
 }

@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentTransformUnitIntermissionAction : MonoBehaviour
+public class ContentTransformUnitIntermissionAction : GameActionIntermission
 {
-    // Start is called before the first frame update
-    void Start()
+    public ContentTransformUnitIntermissionAction()
     {
-        
+        m_actionCost = 3;
+        m_name = "Transform Unit";
+        m_desc = "Transform a unit card in your deck into a random one!";
+
+        m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Activate()
     {
-        
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfUnits(), UIDeckViewController.DeckViewType.Transform, "Transform a Unit");
+
+        SpendCost();
     }
 }

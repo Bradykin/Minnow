@@ -82,6 +82,10 @@ public class UICardDeckView : MonoBehaviour
             player.m_deckBase.RemoveCard(m_uiCard.m_card);
             player.m_deckBase.AddCard(newCard);
         }
+        else if (m_viewType == UIDeckViewController.DeckViewType.Buff)
+        {
+            ((GameUnitCard)m_uiCard.m_card).GetUnit().AddStats(Constants.IntermissionBuffValue, Constants.IntermissionBuffValue, true, false);
+        }
 
         UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetCardsForRead(), UIDeckViewController.DeckViewType.View, "Base Deck");
     }
