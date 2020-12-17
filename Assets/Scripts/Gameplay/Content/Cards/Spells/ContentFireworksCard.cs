@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentFireworksCard : GameCardSpellBase
 {
-    private int m_range = 3;
+    private int m_range = 2;
 
     public ContentFireworksCard()
     {
@@ -43,7 +43,11 @@ public class ContentFireworksCard : GameCardSpellBase
 
         List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
 
-        int damage = GameHelper.GetPlayer().GetXValue() * GetSpellValue();
+        int xVal = GameHelper.GetPlayer().GetXValue();
+
+        int damage = xVal * GetSpellValue();
+
+        base.PlayCard(targetUnit);
 
         targetUnit.GetHitBySpell(damage, this);
 
@@ -58,10 +62,6 @@ public class ContentFireworksCard : GameCardSpellBase
                 targets.Add(unit);
             }
         }
-
-        int xVal = GameHelper.GetPlayer().GetXValue();
-
-        base.PlayCard(targetUnit);
 
         for (int i = 0; i < xVal; i++)
         {
