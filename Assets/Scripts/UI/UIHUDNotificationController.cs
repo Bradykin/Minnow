@@ -22,6 +22,8 @@ public class UIHUDNotificationController : Singleton<UIHUDNotificationController
 
         m_titles.Add(name);
         m_descs.Add(desc);
+
+        AudioHelper.PlaySFX(AudioHelper.UIHudNotification);
     }
 
     void Update()

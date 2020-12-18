@@ -170,8 +170,6 @@ public class WorldUnit : MonoBehaviour
             UIHelper.SelectUnit(this);
 
             m_tintRenderer.color = UIHelper.GetSelectTintColor(Globals.m_selectedUnit == this);
-
-            AudioHelper.PlaySFX(AudioHelper.WorldUnitClick);
         }
         else if (GetUnit().GetTeam() == Team.Player) //This means that the target doesn't have enough Stamina to be selected (typically 0)
         {
@@ -200,8 +198,6 @@ public class WorldUnit : MonoBehaviour
             else
             {
                 UIHelper.SelectEnemy(this);
-
-                AudioHelper.PlaySFX(AudioHelper.WorldUnitClick);
             }
         }
     }
@@ -236,11 +232,6 @@ public class WorldUnit : MonoBehaviour
         if (UIHelper.UIShouldBlockClick())
         {
             return;
-        }
-
-        if (!m_isHovered)
-        {
-            AudioHelper.PlaySFX(AudioHelper.WorldUnitHover);
         }
 
         if (!m_isShowingTooltip && !GetUnit().GetGameTile().m_isFog)

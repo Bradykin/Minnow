@@ -60,8 +60,8 @@ public class PlayerAccountData
 
     public bool m_altarsUnlockedOnAccount;
 
-    public float m_musicVolume = 1.0f; // AudioHelper.DefaultMusicVolume; //0.0f - 1.0f
-    public float m_sfxVolume = 0;// AudioHelper.DefaultSFXVolume; //0.0f - 1.0f
+    public float m_musicVolume = AudioHelper.DefaultMusicVolume; // AudioHelper.DefaultMusicVolume; //0.0f - 1.0f
+    public float m_sfxVolume = AudioHelper.DefaultSFXVolume;// AudioHelper.DefaultSFXVolume; //0.0f - 1.0f
     public bool m_followEnemy = true;
 
     public PlayerAccountData()

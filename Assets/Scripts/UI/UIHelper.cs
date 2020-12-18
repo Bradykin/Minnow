@@ -602,6 +602,8 @@ public static class UIHelper
             Globals.m_selectedUnit = unit;
 
             SetMoveableTileForUnit(Globals.m_selectedUnit);
+
+            AudioHelper.PlaySFX(AudioHelper.WorldUnitClick);
         }
     }
 
