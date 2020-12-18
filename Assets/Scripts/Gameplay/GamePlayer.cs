@@ -758,7 +758,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         GameHelper.GetGameController().m_randomSeed = (int)System.DateTime.Now.Ticks;
         Random.InitState(GameHelper.GetGameController().m_randomSeed);
         PlayerDataManager.PlayerAccountData.SaveRunData();
-        GameHelper.GetGameController().SaveDirectorData();
+        GameNotificationManager.SaveGameDirectorData();
     }
 
     public void EndTurn()
