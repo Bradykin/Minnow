@@ -152,14 +152,15 @@ public class WorldUnit : MonoBehaviour
             {
                 if (Globals.m_selectedCard.m_card is GameCardSpellBase)
                 {
+                    AudioHelper.PlaySFX(AudioHelper.UIError);
                     UIHelper.CreateWorldElementNotification("Invalid target for " + Globals.m_selectedCard.m_card.GetBaseName(), false, gameObject);
                 }
             }
         }
         else if (GetUnit().GetTeam() == Team.Enemy && GetUnit().GetFadeKeyword() != null)
         {
-            UIHelper.CreateWorldElementNotification(GetUnit().GetName() + " has Fade and cannot be targeted.", false, gameObject);
             AudioHelper.PlaySFX(AudioHelper.UIError);
+            UIHelper.CreateWorldElementNotification(GetUnit().GetName() + " has Fade and cannot be targeted.", false, gameObject);
         }
         else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))
         {
@@ -185,15 +186,18 @@ public class WorldUnit : MonoBehaviour
                 {
                     if (GetUnit().GetWorldTile().IsAttackable())
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Move into range to attack.", false, GetUnit().m_worldUnit.gameObject);
                     }
                     else
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
                     }
                 }
                 else if (!Globals.m_selectedUnit.GetUnit().HasStaminaToAttack(GetUnit()))
                 {
+                    AudioHelper.PlaySFX(AudioHelper.UIError);
                     UIHelper.CreateWorldElementNotification("Requires " + Globals.m_selectedUnit.GetUnit().GetStaminaToAttack(GetUnit()) + " Stamina to attack.", false, GetUnit().m_worldUnit.gameObject);
                 }
             }

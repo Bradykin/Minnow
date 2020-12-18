@@ -387,19 +387,23 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     if (!GetGameTile().CanPlace())
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Out of placement range.", false, gameObject);
                     }
                     else if (GetGameTile().IsOccupied())
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Tile already occupied.", false, gameObject);
                     }
                     else if (!GetGameTile().IsPassable(selectedCard.m_unitCard.GetUnit(), false))
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Unit cannot stand on tile.", false, gameObject);
                     }
                 }
                 else
                 {
+                    AudioHelper.PlaySFX(AudioHelper.UIError);
                     UIHelper.CreateWorldElementNotification("This doesn't target tiles.", false, gameObject);
                 }
             }
@@ -417,6 +421,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
             }
             else if (selectedUnit.GetUnit().GetRootedKeyword() != null)
             {
+                AudioHelper.PlaySFX(AudioHelper.UIError);
                 UIHelper.CreateWorldElementNotification("Unit is Rooted.", false, gameObject);
             }
             else if (selectedUnit.GetUnit().CanMoveTo(GetGameTile()))
@@ -430,20 +435,24 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                     int pathLength = WorldGridManager.Instance.GetPathLength(selectedUnit.GetUnit().GetGameTile(), GetGameTile(), true, false, true);
                     if (pathLength == 1 && !GetGameTile().IsOccupied())
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Can't move, difficult terrain requires " + GetGameTile().GetCostToPass(selectedUnit.GetUnit()) + " Stamina.", false, gameObject);
                     }
                     else
                     {
                         if (GetGameTile().GetOccupyingUnit() == Globals.m_selectedUnit.GetUnit())
                         {
+                            AudioHelper.PlaySFX(AudioHelper.UIError);
                             UIHelper.CreateWorldElementNotification("Already here.", false, gameObject);
                         }
                         else if (GetGameTile().IsOccupied())
                         {
+                            AudioHelper.PlaySFX(AudioHelper.UIError);
                             UIHelper.CreateWorldElementNotification("Already occupied.", false, gameObject);
                         }
                         else
                         {
+                            AudioHelper.PlaySFX(AudioHelper.UIError);
                             UIHelper.CreateWorldElementNotification("Out of movement range.", false, gameObject);
                         }
                     }
@@ -452,10 +461,12 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     if (!GetGameTile().IsOccupied())
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification(GetGameTile().GetName() + " is impassable.", false, gameObject);
                     }
                     else
                     {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Can't move to tile with enemy unit.", false, gameObject);
                     }
                 }
