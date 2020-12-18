@@ -159,6 +159,7 @@ public class WorldUnit : MonoBehaviour
         else if (GetUnit().GetTeam() == Team.Enemy && GetUnit().GetFadeKeyword() != null)
         {
             UIHelper.CreateWorldElementNotification(GetUnit().GetName() + " has Fade and cannot be targeted.", false, gameObject);
+            AudioHelper.PlaySFX(AudioHelper.UIError);
         }
         else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit()))
         {
@@ -173,6 +174,7 @@ public class WorldUnit : MonoBehaviour
         }
         else if (GetUnit().GetTeam() == Team.Player) //This means that the target doesn't have enough Stamina to be selected (typically 0)
         {
+            AudioHelper.PlaySFX(AudioHelper.UIError);
             UIHelper.CreateWorldElementNotification(GetUnit().GetName() + " has no Stamina.", false, gameObject);
         }
         else if (GetUnit().GetTeam() == Team.Enemy)
@@ -313,6 +315,11 @@ public class WorldUnit : MonoBehaviour
         if (GetUnit().GetTeam() == Team.Enemy)
         {
             return false;
+        }
+
+        if (GetUnit() is ContentWildwoodExplorer)
+        {
+            return true;
         }
 
         return true;

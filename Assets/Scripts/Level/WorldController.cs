@@ -32,8 +32,6 @@ public class WorldController : Singleton<WorldController>
 
         m_playerUnitFocusIndex = 0;
         Globals.m_selectedCard = null;
-
-        AudioBackgroundController.Instance.StartBackgroundMusic(map);
     }
 
     public void EndLevel(RunEndType endType)

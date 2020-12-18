@@ -7,7 +7,7 @@ public class AudioBackgroundController : Singleton<AudioBackgroundController>
 {
     private AudioSource m_audioSource;
 
-    private bool m_playingMenuMusic;
+    public bool m_playingMenuMusic;
 
     void Start()
     {
