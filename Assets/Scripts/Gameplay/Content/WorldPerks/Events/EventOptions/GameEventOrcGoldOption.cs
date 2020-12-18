@@ -30,7 +30,7 @@ public class GameEventOrcGoldOption : GameEventOption
             return;
         }
 
-        player.m_wallet.AddResources(new GameWallet(m_goldAmount));
+        player.GainGold(m_goldAmount);
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_tile, 2);
 

@@ -44,6 +44,6 @@ public class ContentLootingsCard : GameCardSpellBase
             castleUnit.GetHitBySpell(m_damageVal, this);
         }
 
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(m_lootVal));
+        GameHelper.GetPlayer().GainGold(m_lootVal, true);
     }
 }

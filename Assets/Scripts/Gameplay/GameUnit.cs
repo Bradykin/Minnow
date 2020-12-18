@@ -68,6 +68,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public bool m_takesLavaFieldDamage = true;
     public bool m_incrementsKillCounter = true;
 
+    protected AudioClip m_attackSFX;
+
     //Unique guid per unit, to use to link together like gameunits in save data
     private string m_guid = System.Guid.NewGuid().ToString();
 
@@ -82,6 +84,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_power = other.m_power;
         m_permPower = other.m_permPower;
         m_typeline = other.m_typeline;
+        m_attackSFX = other.m_attackSFX;
 
         m_keywordHolder = other.m_keywordHolder.Clone(other, this);
 
@@ -290,7 +293,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
             {
-                GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(15));
+                GameHelper.GetPlayer().GainGold(15, true);
             }
         }
 
@@ -863,6 +866,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         GameHelper.GetGameController().AddIntermissionLock();
 
+        AudioHelper.PlaySFX(GetAttackSFX());
+        
         if (spendStamina)
         {
             SpendStamina(GetStaminaToAttack(other));
@@ -1877,7 +1882,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentIotalRelic>())
             {
-                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().m_wallet.m_gold) / 150.0f);
+                int toAdd = Mathf.FloorToInt((float)(GameHelper.GetPlayer().GetGold()) / 150.0f);
 
                 toReturn += toAdd;
             }
@@ -2453,11 +2458,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentMemoryOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                if (GameHelper.GetPlayer().m_wallet.m_gold >= 10)
-                {
-                    GameHelper.GetPlayer().m_wallet.SubtractResources(new GameWallet(10));
-                    GameHelper.GetPlayer().AddMagicPower(1);
-                }
+                 GameHelper.GetPlayer().AddMagicPower(1);
             }
 
             if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
@@ -2516,7 +2517,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
         {
-            player.m_wallet.AddResources(new GameWallet(2));
+            player.GainGold(2);
         }
 
         if (GetTeam() == Team.Enemy)
@@ -2677,6 +2678,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 AddStats(GetMaxStamina(), GetMaxStamina(), false, false);
             }
         }
+    }
+
+    public virtual AudioClip GetAttackSFX()
+    {
+        return m_attackSFX;
     }
 
     //============================================================================================================//

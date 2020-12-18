@@ -84,7 +84,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
 
         if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
         {
-            player.m_wallet.AddResources(new GameWallet(75));
+            player.GainGold(75);
         }
 
         base.Die(canRevive, damageType);

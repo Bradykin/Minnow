@@ -99,7 +99,7 @@ public class GameEventProphecyTakeGoldOption : GameEventOption
             return;
         }
 
-        player.m_wallet.m_gold += m_value;
+        player.GainGold(m_value);
         EndEvent();
     }
 }

@@ -106,7 +106,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
     {
         GameNotificationManager.RecordCardChoice(CardChoice.None, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
 
-        GameHelper.GetPlayer().m_wallet.AddResources(m_skipWallet);
+        GameHelper.GetPlayer().GainGold(m_skipWallet.m_gold);
 
         EndSelection();
     }

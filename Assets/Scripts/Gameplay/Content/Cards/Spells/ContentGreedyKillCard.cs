@@ -48,7 +48,7 @@ public class ContentGreedyKillCard : GameCardSpellBase
 
         if (targetUnit.m_isDead)
         {
-            GameHelper.GetPlayer().m_wallet.AddGold(m_goldGain);
+            GameHelper.GetPlayer().GainGold(m_goldGain, true);
         }
     }
 }

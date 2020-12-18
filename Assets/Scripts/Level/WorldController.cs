@@ -272,7 +272,7 @@ public class WorldController : Singleton<WorldController>
                 intermissionWallet.m_gold += 25;
             }
 
-            player.m_wallet.AddResources(intermissionWallet);
+            player.GainGold(intermissionWallet.m_gold);
 
             player.OnEndWave();
 

@@ -59,7 +59,7 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
 
     public void SkipSelection()
     {
-        GameHelper.GetPlayer().m_wallet.AddResources(m_skipWallet);
+        GameHelper.GetPlayer().GainGold(m_skipWallet.m_gold);
 
         EndSelection();
     }

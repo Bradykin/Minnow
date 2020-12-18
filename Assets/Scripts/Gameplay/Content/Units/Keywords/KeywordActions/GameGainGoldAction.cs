@@ -22,7 +22,7 @@ public class GameGainGoldAction : GameAction
 
     public override void DoAction()
     {
-        GameHelper.GetPlayer().m_wallet.AddGold(m_toGain);
+        GameHelper.GetPlayer().GainGold(m_toGain, true);
     }
 
     public override void AddAction(GameAction toAdd)

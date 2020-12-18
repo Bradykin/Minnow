@@ -1098,7 +1098,7 @@ public static class UIHelper
 
         int endWave = WorldController.Instance.m_gameController.m_currentWaveNumber;
         int numRelics = player.GetRelics().GetRelicListForRead().Count;
-        int gold = player.m_wallet.m_gold;
+        int gold = player.GetGold();
         int maxPower = 0;
         int maxHealth = 0;
 
@@ -1120,12 +1120,12 @@ public static class UIHelper
 
         if (endWave >= 4)
         {
-            if (numRelics <= 3)
+            if (numRelics <= 5)
             {
                 return "Holding key chokepoints with strong units will allow you to explore outwards in the early game.\n" +
                     "This can help power you up with Relics, Gold, and Events for later waves!";
             }
-            else if (numRelics <= 5)
+            else if (numRelics <= 10)
             {
                 return "Taking down the elite gives more relics; which are a big power boost!";
             }

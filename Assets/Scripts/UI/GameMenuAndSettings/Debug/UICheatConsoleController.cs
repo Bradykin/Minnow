@@ -270,7 +270,7 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
 
     private void HandleAddGold(string param)
     {
-        GameHelper.GetPlayer().m_wallet.AddResources(new GameWallet(int.Parse(param)));
+        GameHelper.GetPlayer().GainGold(int.Parse(param));
     }
 
     private void HandleAddEnergy(string param)

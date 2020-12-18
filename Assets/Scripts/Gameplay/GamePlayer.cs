@@ -9,7 +9,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public int m_curEnergy;
     private int m_maxEnergy;
 
-    public GameWallet m_wallet;
+    private GameWallet m_wallet;
 
     public GameDeck m_deckBase { get; private set; }
     public GameDeck m_curDeck { get; private set; }
@@ -418,12 +418,12 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         if (toAdd is ContentLoadedChestRelic)
         {
-            m_wallet.AddResources(new GameWallet(75));
+            GainGold(75);
         }
 
         if (toAdd is ContentGreedOfDorphinRelic)
         {
-            m_wallet.AddResources(new GameWallet(200));
+            GainGold(200);
         }
 
         if (toAdd is ContentEyeOfMoragRelic)
@@ -468,7 +468,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (toAdd is ContentAncientEvilRelic)
         {
-            m_wallet.AddResources(new GameWallet(1));
+            GainGold(1);
         }
 
         m_relics.AddRelic(toAdd);
@@ -687,6 +687,35 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public void OnBeginWave()
     {
         
+    }
+
+    public void SpendGold(int toSpend)
+    {
+        m_wallet.SpendGold(toSpend);
+        AudioHelper.PlaySFX(AudioHelper.GoldSpend);
+    }
+
+    public void GainGold(int toGain, bool showUINotification = true)
+    {
+        m_wallet.AddGold(toGain, showUINotification);
+
+        if (toGain >= 75)
+        {
+            AudioHelper.PlaySFX(AudioHelper.GoldPickupLarge);
+        }
+        else if (toGain >= 25)
+        {
+            AudioHelper.PlaySFX(AudioHelper.GoldPickupMedium);
+        }
+        else
+        {
+            AudioHelper.PlaySFX(AudioHelper.GoldPickupSmall);
+        }
+    }
+
+    public int GetGold()
+    {
+        return m_wallet.m_gold;
     }
 
     public void TriggerSpellcraft(GameCard.Target targetType, GameTile targetTile)

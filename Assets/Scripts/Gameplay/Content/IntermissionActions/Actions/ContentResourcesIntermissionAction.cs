@@ -24,7 +24,7 @@ public class ContentResourcesIntermissionAction : GameActionIntermission
             return;
         }
 
-        player.m_wallet.AddResources(m_wallet);
+        player.GainGold(m_wallet.m_gold, true);
 
         SpendCost();
     }

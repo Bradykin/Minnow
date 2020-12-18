@@ -23,9 +23,7 @@ public class UIWallet : UIElementBase
             return;
         }
 
-        GameWallet playerWallet = player.m_wallet;
-
-        m_goldText.text = "" + playerWallet.m_gold;
+        m_goldText.text = "" + player.GetGold();
     }
 
     public override void HandleTooltip()

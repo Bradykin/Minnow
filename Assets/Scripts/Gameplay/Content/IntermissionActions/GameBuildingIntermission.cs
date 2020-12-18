@@ -26,7 +26,7 @@ public class GameBuildingIntermission
             return;
         }
 
-        player.m_wallet.SubtractResources(m_cost);
+        player.SpendGold(m_cost.m_gold);
         player.SpendActions(m_actionCost);
     }
 
@@ -58,7 +58,7 @@ public class GameBuildingIntermission
             return false;
         }
 
-        if (!player.m_wallet.CanAfford(m_cost))
+        if (player.GetGold() < m_cost.m_gold)
         {
             return false;
         }

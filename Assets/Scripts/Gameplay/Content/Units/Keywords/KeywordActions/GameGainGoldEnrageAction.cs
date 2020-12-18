@@ -38,7 +38,7 @@ public class GameGainGoldEnrageAction : GameAction
     {
         for (int i = 0; i < m_numTimesToGain; i++)
         {
-            GameHelper.GetPlayer().m_wallet.m_gold += damageAmount;
+            GameHelper.GetPlayer().GainGold(damageAmount);
         }
     }
 

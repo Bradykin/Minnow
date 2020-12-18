@@ -62,7 +62,7 @@ public class GameEventBreakBarricadeOption : GameEventOption
 
         m_tile.GetOccupyingUnit().Die();
 
-        player.m_wallet.AddResources(m_wallet);
+        player.GainGold(m_wallet.m_gold);
 
         EndEvent();
     }

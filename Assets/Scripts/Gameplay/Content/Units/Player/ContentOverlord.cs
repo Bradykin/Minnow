@@ -17,6 +17,7 @@ public class ContentOverlord : GameUnit
         m_desc = "Spends all Stamina to attack, deals damage equal to power times Stamina spent.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.LazerAttack;
 
         LateInit();
     }

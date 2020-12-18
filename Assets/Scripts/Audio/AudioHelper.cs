@@ -29,6 +29,15 @@ public static class AudioHelper
     public static AudioClip DebuffSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DebuffSpellCategory") as AudioClip;
     public static AudioClip DamageSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DamageSpellCategory") as AudioClip;
 
+    //Unit Attack SFX
+    public static AudioClip LazerAttack = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/LazerAttack") as AudioClip;
+
+    //World Perk Pickup
+    public static AudioClip GoldPickupSmall = Resources.Load<AudioClip>("Audio/SFX/WorldPerk/GoldPickupSmall") as AudioClip;
+    public static AudioClip GoldPickupMedium = Resources.Load<AudioClip>("Audio/SFX/WorldPerk/GoldPickupMedium") as AudioClip;
+    public static AudioClip GoldPickupLarge = Resources.Load<AudioClip>("Audio/SFX/WorldPerk/GoldPickupLarge") as AudioClip;
+    public static AudioClip GoldSpend = Resources.Load<AudioClip>("Audio/SFX/WorldPerk/GoldSpend") as AudioClip;
+
     public static AudioClip UnitGetHit = Resources.Load<AudioClip>("Audio/SFX/UnitGetHit") as AudioClip;
 
     public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;

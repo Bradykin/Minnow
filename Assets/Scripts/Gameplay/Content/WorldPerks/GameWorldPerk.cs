@@ -78,7 +78,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
         else if (m_perkType == WorldPerkType.Gold)
         {
-            GameHelper.GetPlayer().m_wallet.AddGold(m_goldVal, false);
+            GameHelper.GetPlayer().GainGold(m_goldVal, false);
         }
     }
 
