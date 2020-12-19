@@ -29,8 +29,8 @@ public static class Constants
     public static int NumUncommonChests = 1;
     public static int NumRareChests = 1;
 
-    public static int CloseGoldVal = 10;
-    public static int FarGoldVal = 25;
+    public static int CloseGoldVal = 15;
+    public static int FarGoldVal = 30;
     public static int NumCloseGold = 7;
     public static int NumFarGold = 10;
 
