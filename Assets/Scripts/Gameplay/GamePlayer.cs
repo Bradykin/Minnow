@@ -1,5 +1,4 @@
-﻿
-using Game.Util;
+﻿using Game.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -748,6 +747,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void StartTurn()
     {
+        if (GameHelper.GetGameController().m_currentTurnNumber >= 4)
+        {
+            Globals.m_curRage++;
+        }
+
         DrawHand();
 
         if (GetCastleGameElement() != null && (Constants.SnapToCastleAtStart || GameHelper.GetGameController().m_currentTurnNumber == 0))

@@ -14,20 +14,14 @@ public static class AudioHelper
     public static float DefaultMusicVolume = 0.6f;
     public static float DefaultSFXVolume = 0.4f;
 
-    public static AudioClip UIHover = Resources.Load<AudioClip>("Audio/SFX/UIHover") as AudioClip;
-    public static AudioClip UIClick = Resources.Load<AudioClip>("Audio/SFX/UIClick") as AudioClip;
-
-    public static AudioClip WorldUnitClick = Resources.Load<AudioClip>("Audio/SFX/WorldUnitClick") as AudioClip;
-
-    public static AudioClip UICardHover = Resources.Load<AudioClip>("Audio/SFX/UICardHover") as AudioClip;
-    public static AudioClip UICardClick = Resources.Load<AudioClip>("Audio/SFX/UICardClick") as AudioClip;
-    public static AudioClip UIHudNotification = Resources.Load<AudioClip>("Audio/SFX/UIHudNotification") as AudioClip;
-
-    public static AudioClip UIError = Resources.Load<AudioClip>("Audio/SFX/UIError") as AudioClip;
-
-    public static AudioClip BuffSpellCategory = Resources.Load<AudioClip>("Audio/SFX/BuffSpellCategory") as AudioClip;
-    public static AudioClip DebuffSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DebuffSpellCategory") as AudioClip;
-    public static AudioClip DamageSpellCategory = Resources.Load<AudioClip>("Audio/SFX/DamageSpellCategory") as AudioClip;
+    //UI SFX
+    public static AudioClip UIHover = Resources.Load<AudioClip>("Audio/SFX/UI/UIHover") as AudioClip;
+    public static AudioClip UIClick = Resources.Load<AudioClip>("Audio/SFX/UI/UIClick") as AudioClip;
+    public static AudioClip UICardHover = Resources.Load<AudioClip>("Audio/SFX/UI/UICardHover") as AudioClip;
+    public static AudioClip UICardClick = Resources.Load<AudioClip>("Audio/SFX/UI/UICardClick") as AudioClip;
+    public static AudioClip UIHudNotification = Resources.Load<AudioClip>("Audio/SFX/UI/UIHudNotification") as AudioClip;
+    public static AudioClip UIError = Resources.Load<AudioClip>("Audio/SFX/UI/UIError") as AudioClip;
+    public static AudioClip WorldUnitClick = Resources.Load<AudioClip>("Audio/SFX/UI/WorldUnitClick") as AudioClip;
 
     //Unit Attack SFX
     public static AudioClip LazerAttack = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/LazerAttack") as AudioClip;
@@ -64,8 +58,6 @@ public static class AudioHelper
     //Special Actions
     public static AudioClip ShivcasterThrowShivs = Resources.Load<AudioClip>("Audio/SFX/SpecialActions/ShivcasterThrowShivs") as AudioClip;
     public static AudioClip GainRandomSpellCard = Resources.Load<AudioClip>("Audio/SFX/SpecialActions/GainRandomSpellCard") as AudioClip;
-
-    public static AudioClip UnitGetHit = Resources.Load<AudioClip>("Audio/SFX/UnitGetHit") as AudioClip;
 
     public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;
 

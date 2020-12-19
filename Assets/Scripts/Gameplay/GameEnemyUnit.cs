@@ -45,6 +45,15 @@ public class GameEnemyUnit : GameUnit
         }
     }
 
+    public override int GetPower()
+    {
+        int toReturn = base.GetPower();
+
+        toReturn += Globals.m_curRage;
+
+        return toReturn;
+    }
+
     //============================================================================================================//
 
 

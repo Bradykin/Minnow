@@ -297,8 +297,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
-
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
 
         if (enrageKeyword != null)

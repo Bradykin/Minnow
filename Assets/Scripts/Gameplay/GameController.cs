@@ -141,7 +141,10 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     {
         CurrentActor.EndTurn();
 
-        m_currentTurnNumber++;
+        if (GameHelper.IsPlayerTurn())
+        {
+            m_currentTurnNumber++;
+        }
 
         if (m_currentActorIterator == m_teamActor.Count - 1)
         {

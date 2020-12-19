@@ -49,6 +49,7 @@ public static class Globals
     //Values that will be moved into player save data
     public static int m_curChaos = 1;
     public static bool m_worthySacrificeEvent = false;
+    public static int m_curRage = 0;
 
     private static bool m_hasInit;
 
