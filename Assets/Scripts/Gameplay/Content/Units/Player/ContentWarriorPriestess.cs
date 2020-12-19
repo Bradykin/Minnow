@@ -19,6 +19,7 @@ public class ContentWarriorPriestess : GameUnit
         m_desc = $"When healed; deal that much damage to all enemy units in range {m_blastRange}.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         LateInit();
     }
@@ -38,6 +39,7 @@ public class ContentWarriorPriestess : GameUnit
             if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
             {
                 unit.GetHitByAbility(healVal);
+                AudioHelper.PlaySFX(AudioHelper.FireBlast);
             }
         }
 

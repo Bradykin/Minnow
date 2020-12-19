@@ -13,6 +13,7 @@ public class ContentGrasper : GameUnit
         m_desc = "When this damages a unit, it takes all Stamina from it.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlurpAttack;
 
         LateInit();
     }

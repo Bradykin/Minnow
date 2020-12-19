@@ -14,6 +14,7 @@ public class ContentDwarfforgedConstruct : GameUnit
         m_name = "Dwarfforged Construct";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }

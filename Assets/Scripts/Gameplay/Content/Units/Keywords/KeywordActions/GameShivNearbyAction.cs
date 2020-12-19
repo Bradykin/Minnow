@@ -64,6 +64,7 @@ public class GameShivNearbyAction : GameAction
                 nearbyEnemies.RemoveAt(randomIndex);
                 if (nearbyEnemies.Count == 0)
                 {
+                    AudioHelper.PlaySFX(AudioHelper.ShivcasterThrowShivs);
                     break;
                 }
             }

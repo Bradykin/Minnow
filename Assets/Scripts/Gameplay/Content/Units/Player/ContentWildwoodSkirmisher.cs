@@ -23,6 +23,16 @@ public class ContentWildwoodSkirmisher : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetGameTile() != null && GetGameTile().GetTerrain().IsForest())
+        {
+            return AudioHelper.SwordHeavy;
+        }
+
+        return AudioHelper.SwordLight;
+    }
+
     public override int GetPower()
     {
         int returnPower = base.GetPower();

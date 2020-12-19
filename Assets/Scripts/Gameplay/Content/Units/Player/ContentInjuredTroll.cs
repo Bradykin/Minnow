@@ -17,6 +17,7 @@ public class ContentInjuredTroll : GameUnit
         m_desc = "Starts at 1 health and 0 Stamina.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         LateInit();
     }

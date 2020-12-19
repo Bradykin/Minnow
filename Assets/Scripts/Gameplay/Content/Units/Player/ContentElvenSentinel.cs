@@ -19,6 +19,7 @@ public class ContentElvenSentinel : GameUnit
         m_desc = "Multiply damage dealt by the distance between " + m_name + " and the target unit.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.BowHeavy;
 
         LateInit();
     }

@@ -16,6 +16,7 @@ public class ContentGolemProtector : GameUnit
         m_name = "Golem Protector";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }

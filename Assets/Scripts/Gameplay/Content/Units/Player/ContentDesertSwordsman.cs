@@ -16,6 +16,7 @@ public class ContentDesertSwordsman : GameUnit
         m_name = "Desert Swordsman";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordLight;
 
         LateInit();
     }

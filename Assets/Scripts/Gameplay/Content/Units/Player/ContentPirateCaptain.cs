@@ -24,6 +24,19 @@ public class ContentPirateCaptain : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (m_gameTile != null)
+        {
+            if (m_gameTile.GetTerrain().IsWater())
+            {
+                return AudioHelper.BowHeavy;
+            }
+        }
+
+        return AudioHelper.PunchLight;
+    }
+
     public override int GetPower()
     {
         int returnPower = base.GetPower();

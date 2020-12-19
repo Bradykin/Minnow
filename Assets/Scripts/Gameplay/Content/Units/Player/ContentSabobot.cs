@@ -27,6 +27,16 @@ public class ContentSabobot : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetDeathKeyword() != null)
+        {
+            return AudioHelper.LargeImpact;
+        }
+
+        return AudioHelper.PunchLight;
+    }
+
     protected override void ResetToBase()
     {
         ResetKeywords(true);

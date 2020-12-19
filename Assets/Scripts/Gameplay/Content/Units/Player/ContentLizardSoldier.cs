@@ -16,6 +16,7 @@ public class ContentLizardSoldier : GameUnit
         m_name = "Lizard Soldier";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordLight;
 
         LateInit();
     }

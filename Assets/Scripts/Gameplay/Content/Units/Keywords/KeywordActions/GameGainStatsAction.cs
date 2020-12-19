@@ -27,6 +27,7 @@ public class GameGainStatsAction : GameAction
 
     public override void DoAction()
     {
+        AudioHelper.PlaySFX(AudioHelper.SmallBuff);
         m_unit.AddStats(m_powerToGain, m_healthToGain, false, true);
     }
 

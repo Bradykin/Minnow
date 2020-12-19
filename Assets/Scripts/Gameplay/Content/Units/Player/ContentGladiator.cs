@@ -14,6 +14,7 @@ public class ContentGladiator : GameUnit
         m_name = "Gladiator";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 3)), true, false);
         AddKeyword(new GameTauntKeyword(), true, false);

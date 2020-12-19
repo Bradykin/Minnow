@@ -15,7 +15,7 @@ public class ContentFireboltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.FireBlast;
     }
 
     public override string GetDesc()

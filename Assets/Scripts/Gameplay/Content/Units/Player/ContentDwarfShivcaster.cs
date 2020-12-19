@@ -13,6 +13,7 @@ public class ContentDwarfShivcaster : GameUnit
         m_name = "Dwarf Shivcaster";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.DaggerThrown;
 
         AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, 3)), true, false);
         AddKeyword(new GameRangeKeyword(3), true, false);

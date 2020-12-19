@@ -63,6 +63,8 @@ public class GameExplodeAction : GameAction
             Globals.m_selectedUnit = null;
         }
 
+        AudioHelper.PlaySFX(AudioHelper.LargeImpact);
+
         GameHelper.GetGameController().RemoveIntermissionLock();
     }
 

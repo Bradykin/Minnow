@@ -17,6 +17,7 @@ public class ContentWildwoodExplorer : GameUnit
         m_desc = "Forests take no stamina to move through.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordLight;
 
         LateInit();
     }

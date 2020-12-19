@@ -16,6 +16,7 @@ public class ContentMechanizedBeast : GameUnit
         m_desc = "Starts at full Stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }

@@ -25,6 +25,19 @@ public class ContentRanger : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (m_gameTile != null)
+        {
+            if (m_gameTile.GetTerrain().IsForest())
+            {
+                return AudioHelper.BowHeavy;
+            }
+        }
+
+        return AudioHelper.BowLight;
+    }
+
     public override int GetPower()
     {
         int returnPower = base.GetPower();

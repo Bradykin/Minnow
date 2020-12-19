@@ -14,6 +14,7 @@ public class ContentEtherealStag : GameUnit
         m_name = "Ethereal Stag";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         LateInit();
     }

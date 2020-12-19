@@ -18,6 +18,7 @@ public class ContentRhinoProtector : GameUnit
         m_desc = "Changes the terrain under this at the end of the turn to a verdant forest.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.PunchLight;
 
         LateInit();
     }

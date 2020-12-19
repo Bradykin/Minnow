@@ -18,6 +18,7 @@ public class ContentStoneGolem : GameUnit
         m_name = "Stone Golem";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         LateInit();
     }

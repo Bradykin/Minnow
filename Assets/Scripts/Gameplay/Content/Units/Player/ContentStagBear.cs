@@ -30,6 +30,16 @@ public class ContentStagBear : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetPower() >= m_powerThreshhold)
+        {
+            return AudioHelper.SlamHeavy;
+        }
+
+        return AudioHelper.PunchLight;
+    }
+
     public override int GetStaminaRegen()
     {
         int returnVal = base.GetStaminaRegen();

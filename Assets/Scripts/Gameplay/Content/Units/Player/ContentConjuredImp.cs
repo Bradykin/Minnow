@@ -22,6 +22,16 @@ public class ContentConjuredImp : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetPower() >= 30)
+        {
+            return AudioHelper.SlamHeavy;
+        }
+
+        return AudioHelper.PunchLight;
+    }
+
     public override string GetDesc()
     {
         if (disableDuplicate)

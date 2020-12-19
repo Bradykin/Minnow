@@ -14,6 +14,7 @@ public class ContentDwarvenSoldier : GameUnit
         m_name = "Dwarven Soldier";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MaceMedium;
 
         LateInit();
     }

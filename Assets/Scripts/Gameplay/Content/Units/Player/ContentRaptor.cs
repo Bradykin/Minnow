@@ -14,6 +14,7 @@ public class ContentRaptor : GameUnit
         m_name = "Raptor";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.RaptorAttack;
 
         LateInit();
     }

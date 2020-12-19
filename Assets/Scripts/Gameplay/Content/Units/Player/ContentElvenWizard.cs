@@ -17,6 +17,7 @@ public class ContentElvenWizard : GameUnit
         m_name = "Elven Wizard";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         LateInit();
     }

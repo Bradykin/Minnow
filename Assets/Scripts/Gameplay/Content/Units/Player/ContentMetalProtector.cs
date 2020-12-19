@@ -15,6 +15,7 @@ public class ContentMetalProtector : GameUnit
         m_desc = "Has stamina regen equal to max stamina.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }

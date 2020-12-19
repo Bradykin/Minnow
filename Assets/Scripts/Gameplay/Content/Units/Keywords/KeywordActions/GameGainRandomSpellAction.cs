@@ -30,6 +30,7 @@ public class GameGainRandomSpellAction : GameAction
     {
         for (int i = 0; i < m_numTimesToTrigger; i++)
         {
+            AudioHelper.PlaySFX(AudioHelper.GainRandomSpellCard);
             GameHelper.GetPlayer().AddCardToHand(GameCardFactory.GetRandomStandardSpellCard(GameCardFactory.m_exileSpells), false);
         }
     }

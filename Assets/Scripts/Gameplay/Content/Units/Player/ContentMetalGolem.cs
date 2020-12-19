@@ -16,6 +16,7 @@ public class ContentMetalGolem : GameUnit
         m_desc = "At the start of each turn, gain <b>Damage Shield</b>.\n";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         AddKeyword(new GameMountainwalkKeyword(), true, false);
 

@@ -15,6 +15,7 @@ public class ContentMiner : GameUnit
         m_desc = "Has <b>Fade</b> when in mountains.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordLight;
 
         AddKeyword(new GameMountainwalkKeyword(), true, false);
 

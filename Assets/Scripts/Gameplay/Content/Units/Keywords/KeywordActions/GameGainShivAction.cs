@@ -34,6 +34,7 @@ public class GameGainShivAction : GameAction
             GamePlayer player = GameHelper.GetPlayer();
             if (GameHelper.GetGameController().CurrentActor == player)
             {
+                AudioHelper.PlaySFX(AudioHelper.UICardClick);
                 player.AddCardToHand(GameCardFactory.GetCardClone(new ContentShivCard()), false);
             }
             else

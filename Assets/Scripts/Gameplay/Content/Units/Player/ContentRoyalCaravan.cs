@@ -15,6 +15,7 @@ public class ContentRoyalCaravan : GameUnit
         m_desc = "With the castle gone, this caravan holds the royal court. Lose this, and it's game over!\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.BowLight;
 
         LateInit();
     }

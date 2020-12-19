@@ -21,6 +21,16 @@ public class ContentElvenRogue : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetPower() <= 30)
+        {
+            return AudioHelper.BowLight;
+        }
+
+        return AudioHelper.BowHeavy;
+    }
+
     protected override void ResetToBase()
     {
         ResetKeywords(true);

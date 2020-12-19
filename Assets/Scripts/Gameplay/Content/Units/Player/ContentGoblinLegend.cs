@@ -23,6 +23,16 @@ public class ContentGoblinLegend : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetPower() >= 40)
+        {
+            return AudioHelper.SpearHeavy;
+        }
+
+        return AudioHelper.SpearLight;
+    }
+
     protected override void ResetToBase()
     {
         ResetKeywords(true);

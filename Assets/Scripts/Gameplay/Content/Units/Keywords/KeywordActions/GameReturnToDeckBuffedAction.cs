@@ -29,6 +29,9 @@ public class GameReturnToDeckBuffedAction : GameAction
         {
             return;
         }
+
+        AudioHelper.PlaySFX(AudioHelper.UICardClick);
+
         m_retuningUnit.m_returnedToDeckDeath = true;
 
         m_retuningUnit.AddStats(m_powerBuff, m_healthBuff, false, false);

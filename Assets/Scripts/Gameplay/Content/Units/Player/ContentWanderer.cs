@@ -14,6 +14,7 @@ public class ContentWanderer : GameUnit
         m_name = "Wanderer";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.DaggerLight;
 
         AddKeyword(new GameMomentumKeyword(new GameGainShivAction(1)), true, false);
         AddKeyword(new GameShivKeyword(), true, false);

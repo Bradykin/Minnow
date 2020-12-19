@@ -22,6 +22,7 @@ public class GameGainTempMagicPowerAction : GameAction
 
     public override void DoAction()
     {
+        AudioHelper.PlaySFX(AudioHelper.SmallBuff);
         GameHelper.GetPlayer().m_tempMagicPowerIncrease += m_toGain;
     }
 

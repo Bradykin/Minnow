@@ -17,6 +17,7 @@ public class ContentWildfolk : GameUnit
         m_desc = "When an allied <b>Monster</b> unit is summoned within " + m_effectRange + " range, give it <b>Fade</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.PunchLight;
 
         AddKeyword(new GameFadeKeyword(), true, false);
         AddKeyword(new GameForestwalkKeyword(), true, false);
@@ -34,6 +35,7 @@ public class ContentWildfolk : GameUnit
             if (distanceBetween <= m_effectRange)
             {
                 other.AddKeyword(new GameFadeKeyword(), false, false);
+                AudioHelper.PlaySFX(AudioHelper.SmallBuff);
             }
         }
     }

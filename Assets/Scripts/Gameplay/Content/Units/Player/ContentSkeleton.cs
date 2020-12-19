@@ -17,6 +17,7 @@ public class ContentSkeleton : GameUnit
         m_name = "Skeleton";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBonus, m_healthBonus)), true, false);
 

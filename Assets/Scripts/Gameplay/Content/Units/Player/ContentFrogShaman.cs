@@ -18,6 +18,7 @@ public class ContentFrogShaman : GameUnit
         m_name = "Frog Shaman";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         LateInit();
     }

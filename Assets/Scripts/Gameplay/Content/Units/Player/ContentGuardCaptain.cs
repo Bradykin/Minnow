@@ -18,6 +18,7 @@ public class ContentGuardCaptain : GameUnit
         m_desc = "When summoned, all allied <b>Humanoid</b> units within range " + m_rallyRange + " gain +" + m_rallyValue + " Stamina.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         LateInit();
     }

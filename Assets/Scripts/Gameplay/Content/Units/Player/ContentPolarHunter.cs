@@ -23,6 +23,16 @@ public class ContentPolarHunter : GameUnit
         LateInit();
     }
 
+    public override AudioClip GetAttackSFX()
+    {
+        if (GetPower() >= 30)
+        {
+            return AudioHelper.SpearHeavy;
+        }
+
+        return AudioHelper.SpearLight;
+    }
+
     public override int GetPower()
     {
         int returnPower = 0;

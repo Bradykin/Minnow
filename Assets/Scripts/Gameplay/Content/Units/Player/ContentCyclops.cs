@@ -17,6 +17,7 @@ public class ContentCyclops : GameUnit
         m_desc = "Has a sight range of 1.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         LateInit();
     }

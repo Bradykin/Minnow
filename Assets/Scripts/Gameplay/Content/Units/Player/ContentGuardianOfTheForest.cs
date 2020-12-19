@@ -14,6 +14,7 @@ public class ContentGuardianOfTheForest : GameUnit
         m_name = "Guardian of the Forest";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         LateInit();
     }

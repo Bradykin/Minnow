@@ -17,6 +17,7 @@ public class ContentNaturalScout : GameUnit
         m_desc = "Has sight range of " + m_sightRange + ".\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.BoarAttack;
 
         AddKeyword(new GameFadeKeyword(), true, false);
 

@@ -16,6 +16,7 @@ public class ContentDwarfArchitect : GameUnit
         m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, <b>permanently</b> give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MaceMedium;
 
         LateInit();
     }

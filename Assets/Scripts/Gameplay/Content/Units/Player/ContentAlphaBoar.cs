@@ -14,6 +14,7 @@ public class ContentAlphaBoar : GameUnit
         m_name = "Alpha Boar";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.BoarAttack;
 
         AddKeyword(new GameTauntKeyword(), true, false);
         AddKeyword(new GameDamageReductionKeyword(2), true, false);

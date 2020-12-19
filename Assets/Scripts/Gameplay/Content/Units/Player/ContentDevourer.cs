@@ -15,6 +15,7 @@ public class ContentDevourer : GameUnit
         m_name = "Devourer";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.Roar;
 
         LateInit();
     }

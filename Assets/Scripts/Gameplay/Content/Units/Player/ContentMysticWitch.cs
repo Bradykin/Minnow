@@ -15,6 +15,7 @@ public class ContentMysticWitch : GameUnit
         m_desc = "Spell cards cost 1 less to cast.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         LateInit();
     }

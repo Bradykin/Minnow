@@ -18,6 +18,7 @@ public class ContentUndeadMammoth : GameUnit
         m_name = "Undead Mammoth";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), true, false);
 

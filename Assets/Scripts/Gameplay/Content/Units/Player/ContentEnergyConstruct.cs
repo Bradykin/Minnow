@@ -18,6 +18,7 @@ public class ContentEnergyConstruct : GameUnit
         m_typeline = Typeline.Creation;
         m_desc = $"Gets +{m_powerGain}/+0 and +{m_staminaGain} stamina regen for each unspent energy.\n";
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }

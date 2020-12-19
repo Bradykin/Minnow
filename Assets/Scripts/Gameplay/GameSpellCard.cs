@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameCardSpellBase : GameCard
 {
     protected AudioHelper.SpellAudioCategory m_audioCategory;
+    protected AudioClip m_onPlaySFX;
 
     //This is for keywords on the card that we want to display info for.
     protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
@@ -163,7 +164,7 @@ public class GameCardSpellBase : GameCard
 
     protected virtual void HandleAudio()
     {
-        AudioHelper.PlaySFX(m_audioCategory);
+        AudioHelper.PlaySFX(m_onPlaySFX);
     }
 
     protected void TriggerSpellcraft(GameTile tileCastAt)

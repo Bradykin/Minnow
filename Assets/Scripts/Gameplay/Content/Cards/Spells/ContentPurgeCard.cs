@@ -48,11 +48,11 @@ public class ContentPurgeCard : GameCardSpellBase
 
         if (targetUnit.GetTeam() == Team.Player)
         {
-            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Buff);
+            AudioHelper.PlaySFX(AudioHelper.SmallBuff);
         }
         else
         {
-            AudioHelper.PlaySFX(AudioHelper.SpellAudioCategory.Debuff);
+            AudioHelper.PlaySFX(AudioHelper.SmallDebuff);
         }
 
         if (targetUnit.GetTeam() == Team.Player)

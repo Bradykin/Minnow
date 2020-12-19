@@ -14,6 +14,7 @@ public class ContentSandwalker : GameUnit
         m_name = "Sandwalker";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.RaptorAttack;
 
         AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 2, 0)), true, false);
 

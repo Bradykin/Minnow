@@ -30,6 +30,7 @@ public class GameApplyKeywordToOtherOnMomentumAction : GameAction
     {
         if (targetUnit != null && !targetUnit.m_isDead)
         {
+            AudioHelper.PlaySFX(AudioHelper.SmallDebuff);
             targetUnit.AddKeyword(m_keyword, false, true);
         }
     }

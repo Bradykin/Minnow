@@ -24,6 +24,7 @@ public class GameGainStaminaAction : GameAction
 
     public override void DoAction()
     {
+        AudioHelper.PlaySFX(AudioHelper.SmallBuff);
         m_unit.GainStamina(m_toGain);
     }
 
