@@ -48,6 +48,7 @@ public class ContentFortressBuilding : GameBuildingBase
             }
 
             unit.GetHitByAbility(m_power);
+            AudioHelper.PlaySFX(AudioHelper.BowHeavy);
         }
     }
 

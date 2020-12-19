@@ -60,6 +60,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         }
 
         highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_power + magicPower * m_magicPowerMultiplier);
+        AudioHelper.PlaySFX(AudioHelper.SpellAttackMedium);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
