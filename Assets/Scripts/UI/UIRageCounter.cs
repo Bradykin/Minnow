@@ -21,6 +21,6 @@ public class UIRageCounter : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Rage", "Rage increases over turns, empowering the enemies. It resets each Wave."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Rage", "After the first few turns of a wave, rage will begin to build each turn, empowering the enemies. It resets each Wave."));
     }
 }
