@@ -59,7 +59,7 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isWaterSource; // Not currently used
 
     protected bool m_isHot; // Not currently used
-    protected bool m_isCold; // Not currently used
+    protected bool m_isCold;
     protected bool m_isBurned;
     protected bool m_canBurn;
 
@@ -149,6 +149,11 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public bool IsForest()
     {
         return m_isForest;
+    }
+
+    public bool IsCold()
+    {
+        return m_isCold;
     }
 
     public bool IsMountain()

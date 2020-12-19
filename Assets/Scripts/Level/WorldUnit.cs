@@ -21,6 +21,7 @@ public class WorldUnit : MonoBehaviour
     private bool m_isHovered;
     private bool m_isShowingTooltip;
 
+    private List<WorldTile> m_movePath = new List<WorldTile>();
     private Vector3 m_moveTarget = new Vector3();
     private float m_movementSpeed = 25.0f;
 
@@ -71,6 +72,16 @@ public class WorldUnit : MonoBehaviour
         if (m_moveTarget != gameObject.transform.position)
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed * Time.deltaTime);
+        
+            if (gameObject.transform.position == m_moveTarget)
+            {
+                m_movePath.RemoveAt(0);
+                if (m_movePath.Count > 0)
+                {
+                    m_moveTarget = m_movePath[0].GetScreenPositionForUnit(this);
+                    AudioHelper.PlaySFXForWalkOnTile(m_movePath[0].GetGameTile(), GetUnit());
+                }
+            }
         }
 
         if (this == Globals.m_selectedUnit || this == Globals.m_selectedEnemy || (m_isHovered && GetUnit().GetCurStamina() != 0 && Globals.m_canSelect && Globals.m_selectedCard == null && GetUnit().GetTeam() == Team.Player))
@@ -214,6 +225,13 @@ public class WorldUnit : MonoBehaviour
 
     public void MoveTo(GameTile targetTile, bool spendStamina = true)
     {
+        List<GameTile> path = WorldGridManager.Instance.CalculateAStarPath(GetUnit().GetGameTile(), targetTile, false, false, false, false);
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            m_movePath.Add(path[i].GetWorldTile());
+        }
+
         GetUnit().OnMoveBegin();
         GetUnit().GetWorldTile().ClearUnit();
         targetTile.GetWorldTile().PlaceUnit(this);
@@ -221,7 +239,9 @@ public class WorldUnit : MonoBehaviour
         
         GetUnit().OnMoveEnd();
 
-        m_moveTarget = targetTile.GetWorldTile().GetScreenPositionForUnit(this);
+        m_movePath.RemoveAt(0); //Remove current tile
+        m_moveTarget = m_movePath[0].GetScreenPositionForUnit(this);
+        AudioHelper.PlaySFXForWalkOnTile(GetUnit().GetGameTile(), GetUnit());
 
         m_renderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;
         m_tintRenderer.sortingOrder = targetTile.GetWorldTile().m_renderer.sortingOrder;

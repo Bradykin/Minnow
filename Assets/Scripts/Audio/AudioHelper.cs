@@ -59,8 +59,18 @@ public static class AudioHelper
     public static AudioClip ShivcasterThrowShivs = Resources.Load<AudioClip>("Audio/SFX/SpecialActions/ShivcasterThrowShivs") as AudioClip;
     public static AudioClip GainRandomSpellCard = Resources.Load<AudioClip>("Audio/SFX/SpecialActions/GainRandomSpellCard") as AudioClip;
 
-    public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;
+    //Movement SFX
+    public static AudioClip BuildingMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/BuildingMovement") as AudioClip;
+    public static AudioClip DesertMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/DesertMovement") as AudioClip;
+    public static AudioClip ForestMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/ForestMovement") as AudioClip;
+    public static AudioClip HillMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/HillMovement") as AudioClip;
+    public static AudioClip MountainMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/MountainMovement") as AudioClip;
+    public static AudioClip PlainsMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/PlainsMovement") as AudioClip;
+    public static AudioClip SnowMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/SnowMovement") as AudioClip;
+    public static AudioClip WaterMovement = Resources.Load<AudioClip>("Audio/SFX/TerrainMovement/WaterMovement") as AudioClip;
 
+    //Background Music
+    public static AudioClip MenuBackgroundMusic = Resources.Load<AudioClip>("Audio/MapBackground/Main Menu") as AudioClip;
     private static Dictionary<string, AudioClip> m_backgroundMusicDictionary = new Dictionary<string, AudioClip>();
 
     public static AudioClip GetBackgroundMusic(string mapName)
@@ -79,5 +89,59 @@ public static class AudioHelper
     public static void PlaySFX(AudioClip toPlay)
     {
         AudioSFXController.Instance.PlaySFX(toPlay);
+    }
+
+    public static void PlaySFXForWalkOnTile(GameTile tile, GameUnit walkUnit)
+    {
+        if (walkUnit.GetFlyingKeyword() != null)
+        {
+            return;
+        }
+
+        if (walkUnit.GetTeam() == Team.Enemy)
+        {
+            if (!PlayerDataManager.PlayerAccountData.m_followEnemy)
+            {
+                return;
+            }
+
+            if (tile.m_isFog)
+            {
+                return;
+            }
+        }
+
+        if (tile.HasBuilding())
+        {
+            PlaySFX(BuildingMovement);
+        }
+        else if (tile.GetTerrain().IsWater() || tile.GetTerrain().IsWaterSource())
+        {
+            PlaySFX(WaterMovement);
+        }
+        else if (tile.GetTerrain().IsDunes())
+        {
+            PlaySFX(DesertMovement);
+        }
+        else if (tile.GetTerrain().IsForest())
+        {
+            PlaySFX(ForestMovement);
+        }
+        else if (tile.GetTerrain().IsHill())
+        {
+            PlaySFX(HillMovement);
+        }
+        else if (tile.GetTerrain().IsMountain())
+        {
+            PlaySFX(MountainMovement);
+        }
+        else if (tile.GetTerrain().IsPlains())
+        {
+            PlaySFX(PlainsMovement);
+        }
+        else if (tile.GetTerrain().IsCold())
+        {
+            PlaySFX(SnowMovement);
+        }
     }
 }
