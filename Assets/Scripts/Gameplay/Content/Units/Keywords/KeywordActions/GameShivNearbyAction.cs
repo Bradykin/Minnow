@@ -58,13 +58,13 @@ public class GameShivNearbyAction : GameAction
         {
             int randomIndex = Random.Range(0, nearbyEnemies.Count);
             m_shivCard.PlayCard(nearbyEnemies[randomIndex]);
+            AudioHelper.PlaySFX(AudioHelper.ShivcasterThrowShivs);
 
             if (nearbyEnemies[randomIndex].m_isDead)
             {
                 nearbyEnemies.RemoveAt(randomIndex);
                 if (nearbyEnemies.Count == 0)
                 {
-                    AudioHelper.PlaySFX(AudioHelper.ShivcasterThrowShivs);
                     break;
                 }
             }
