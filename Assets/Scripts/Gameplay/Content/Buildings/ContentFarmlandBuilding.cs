@@ -11,7 +11,7 @@ public class ContentFarmlandBuilding : GameBuildingBase
         m_range = 2;
         
         m_name = "Farmland";
-        m_desc = $"A safe place to stop and eat, farmland heals all ally units in Range {m_range} for {m_percentageheal}% of their max health at the start of your turn.";
+        m_desc = $"Farmlands heals all ally units in Range {m_range} for {m_percentageheal}% of their max health at the start of your turn.";
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Defensive;
 

@@ -8,7 +8,7 @@ public class GameDamageShieldKeyword : GameKeywordBase
     public GameDamageShieldKeyword()
     {
         m_name = "Damage Shield";
-        m_focusInfoText = "Prevent all damage from this many attacks. <i>(Stacks)</i>";
+        m_focusInfoText = "Prevent all damage from one attack then is removed.";
         m_keywordParamType = KeywordParamType.NoParams;
     }
 

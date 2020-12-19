@@ -14,6 +14,10 @@ public class GameCardSpellBase : GameCard
 
     protected void SetupBasicData()
     {
+        if (m_rarity == GameRarity.Starter)
+        {
+            m_typeline += "Starter ";
+        }
         if (m_shouldExile)
         {
             m_typeline += "Exile ";

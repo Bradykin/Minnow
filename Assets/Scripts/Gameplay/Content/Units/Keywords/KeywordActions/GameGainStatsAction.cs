@@ -22,7 +22,7 @@ public class GameGainStatsAction : GameAction
 
     public override string GetDesc()
     {
-        return "+" + m_powerToGain + "/+" + m_healthToGain;
+        return "+" + m_powerToGain + "|+" + m_healthToGain;
     }
 
     public override void DoAction()

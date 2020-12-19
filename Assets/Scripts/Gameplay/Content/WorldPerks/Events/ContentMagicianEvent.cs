@@ -15,7 +15,7 @@ public class ContentMagicianEvent : GameEvent
 
     public override void LateInit()
     {
-        m_optionOne = new GameEventStatsBuffOption(m_tile, 10, 25);
+        m_optionOne = new GameEventStatsBuffOption(m_tile, 8, 15);
         m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Rare, GameHelper.GetPlayer().m_deckBase.GetCardsForRead()));
 
         base.LateInit();
@@ -23,7 +23,7 @@ public class ContentMagicianEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here +10/+25.";
+        return "Give the unit that goes here +8/+15.";
     }
 
     public override string GetOptionTwoTooltip()

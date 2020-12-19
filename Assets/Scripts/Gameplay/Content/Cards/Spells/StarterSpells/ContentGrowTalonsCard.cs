@@ -27,7 +27,14 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString();
+        string description = "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString();
+        
+        if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
+        {
+            description += "\nDraw a card.";
+        }
+
+        return description;
     }
 
     public override void PlayCard(GameUnit targetUnit)

@@ -17,6 +17,8 @@ public class ContentMageArmorCard : GameCardSpellBase
 
         SetupBasicData();
 
+        m_keywordHolder.AddKeyword(new GameDamageReductionKeyword(0));
+
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
