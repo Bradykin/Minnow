@@ -747,7 +747,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void StartTurn()
     {
-        if (GameHelper.GetGameController().m_currentTurnNumber >= 4)
+        if (GameHelper.GetGameController().m_currentTurnNumber >= 5)
         {
             Globals.m_curRage+=2;
         }

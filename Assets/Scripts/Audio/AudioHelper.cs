@@ -5,7 +5,7 @@ using UnityEngine;
 public static class AudioHelper
 {
     public static float DefaultMusicVolume = 0.6f;
-    public static float DefaultSFXVolume = 0.4f;
+    public static float DefaultSFXVolume = 0.7f;
 
     //UI SFX
     public static AudioClip UIHover = Resources.Load<AudioClip>("Audio/SFX/UI/UIHover") as AudioClip;
