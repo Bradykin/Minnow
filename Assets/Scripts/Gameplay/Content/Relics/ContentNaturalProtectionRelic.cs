@@ -12,8 +12,7 @@ public class ContentNaturalProtectionRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Forest);
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Forest);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

@@ -12,9 +12,6 @@ public class ContentSymbolOfTheAllianceRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

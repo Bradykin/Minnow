@@ -12,10 +12,8 @@ public class ContentHistoryInBloodRelic : GameRelic
 
         LateInit();
 
-        //TODO: Alex - Tag refactor: Needs a pull tank tag
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
-        m_tagHolder.AddTag(GameTagHolder.TagType.MagicPower);
-        m_tagHolder.AddTag(GameTagHolder.TagType.DamageShield);
-        m_tagHolder.AddTag(GameTagHolder.TagType.DamageSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.DamageShield);
     }
 }

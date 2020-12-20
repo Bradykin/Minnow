@@ -12,7 +12,8 @@ public class ContentTauntingPipeRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Monster);
     }
 }

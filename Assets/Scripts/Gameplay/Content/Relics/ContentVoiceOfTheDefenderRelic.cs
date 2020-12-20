@@ -12,8 +12,8 @@ public class ContentVoiceOfTheDefenderRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
-        m_tagHolder.AddTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
     }
 }

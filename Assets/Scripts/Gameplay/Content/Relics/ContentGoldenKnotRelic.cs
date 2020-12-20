@@ -12,7 +12,7 @@ public class ContentGoldenKnotRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
-        //TODO: Alex.  When you can have tags be either push or pull, this should have a pull exile tag.
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Exile);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.HighCost);
     }
 }

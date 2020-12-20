@@ -12,7 +12,7 @@ public class ContentCarapaceOfTutuiun : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

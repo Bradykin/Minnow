@@ -12,7 +12,7 @@ public class ContentSoulTrapRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
     }
 }

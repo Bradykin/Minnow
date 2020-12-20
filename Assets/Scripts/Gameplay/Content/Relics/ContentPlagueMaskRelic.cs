@@ -12,7 +12,7 @@ public class ContentPlagueMaskRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Monster);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Healing);
     }
 }

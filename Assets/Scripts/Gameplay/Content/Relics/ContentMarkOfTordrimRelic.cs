@@ -11,8 +11,5 @@ public class ContentMarkOfTordrimRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
-
-        m_tagHolder.AddTag(GameTagHolder.TagType.Vanilla);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tordrim);
     }
 }

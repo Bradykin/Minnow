@@ -12,7 +12,7 @@ public class ContentPrimeRibRelic : GameRelic
 
         LateInit();
 
-        //TODO - Alex : Tag Refactor; needs a pull tank tag
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Tank);
     }
 }

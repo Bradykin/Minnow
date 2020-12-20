@@ -58,6 +58,7 @@ public class GameTagHolder
         Gold,
         Brittle,
         Shiv,
+        Exile,
         Healing
     }
 
@@ -81,7 +82,9 @@ public class GameTagHolder
 
     public static int GetTagValueFor(GameElementBase checkElement)
     {
-        int tagValue = 12;
+        return GameNotificationManager.GameDirector.GameDirectorRun.GetTagValueFor(checkElement);
+        
+        /*int tagValue = 12;
 
         for (int i = 0; i < checkElement.m_tagHolder.m_tags.Count; i++)
         {
@@ -204,12 +207,7 @@ public class GameTagHolder
 
         //Can technically return below 0; but it will be treated as a 0% change to obtain.  Leaving it for interest's sake to see what some things get to.
 
-        return tagValue;
-    }
-
-    public bool HasTag(TagType testTag)
-    {
-        return m_tags.Contains(testTag);
+        return tagValue;*/
     }
 
     //These tags push the player away from receiving more of this type

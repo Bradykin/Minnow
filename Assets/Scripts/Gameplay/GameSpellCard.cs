@@ -26,6 +26,11 @@ public class GameCardSpellBase : GameCard
 
     private void AddBasicTags()
     {
+        if (m_shouldExile)
+        {
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Exile);
+        }
+        
         if (m_cost >= 3 || m_xSpell) //Not calling GetCost() here to avoid all temp modifiers
         {
             m_tagHolder.AddPullTag(GameTagHolder.TagType.HighCost);

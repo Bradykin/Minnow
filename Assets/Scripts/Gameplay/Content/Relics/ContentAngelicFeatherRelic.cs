@@ -12,8 +12,7 @@ public class ContentAngelicFeatherRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, isReceiver: false);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.DamageShield);
     }
 }

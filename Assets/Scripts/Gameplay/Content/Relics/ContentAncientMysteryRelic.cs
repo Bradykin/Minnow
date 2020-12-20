@@ -12,7 +12,6 @@ public class ContentAncientMysteryRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 2);
     }
 }

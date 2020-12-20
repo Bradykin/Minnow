@@ -12,7 +12,7 @@ public class ContentSackOfSoulsRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Gold);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
     }
 }

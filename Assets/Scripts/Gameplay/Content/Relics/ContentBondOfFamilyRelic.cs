@@ -12,7 +12,7 @@ public class ContentBondOfFamilyRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Creation);
     }
 }

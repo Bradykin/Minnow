@@ -11,7 +11,5 @@ public class ContentLivingStoneRelic : GameRelic
         m_rarity = GameRarity.Common;
 
         LateInit();
-
-        m_tagHolder.AddTag(GameTagHolder.TagType.Gold);
     }
 }

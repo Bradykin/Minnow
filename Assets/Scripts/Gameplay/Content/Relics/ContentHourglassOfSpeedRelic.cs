@@ -12,6 +12,6 @@ public class ContentHourglassOfSpeedRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.MaxStamina);
     }
 }

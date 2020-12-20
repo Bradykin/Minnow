@@ -11,9 +11,5 @@ public class ContentSporetechRelic : GameRelic
         m_rarity = GameRarity.Rare;
 
         LateInit();
-
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
     }
 }

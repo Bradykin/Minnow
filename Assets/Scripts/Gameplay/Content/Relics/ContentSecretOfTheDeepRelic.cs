@@ -12,6 +12,6 @@ public class ContentSecretOfTheDeepRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Humanoid);
     }
 }

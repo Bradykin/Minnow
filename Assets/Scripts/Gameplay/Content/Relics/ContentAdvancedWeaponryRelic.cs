@@ -12,6 +12,6 @@ public class ContentAdvancedWeaponryRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Range);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Range);
     }
 }

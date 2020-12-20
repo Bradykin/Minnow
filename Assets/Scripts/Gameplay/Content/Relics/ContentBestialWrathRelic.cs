@@ -12,9 +12,9 @@ public class ContentBestialWrathRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Momentum);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Enrage);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Victorious);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Momentum);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Enrage);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Monster);
     }
 }

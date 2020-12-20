@@ -28,6 +28,11 @@ public class GameDirectorRun
         }
     }
 
+    public int GetTagValueFor(GameElementBase checkElement)
+    {
+        return 0;
+    }
+
     public GameDirectorTagWeight GetTagWeight(GameTag tag)
     {
         if (tagWeights.Any(c => c.gameTagType == tag.m_tagType))

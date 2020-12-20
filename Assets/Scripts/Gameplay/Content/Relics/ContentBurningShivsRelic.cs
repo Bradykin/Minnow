@@ -12,7 +12,7 @@ public class ContentBurningShivsRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Shiv);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
     }
 }

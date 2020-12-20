@@ -12,7 +12,7 @@ public class ContentSecretSoupRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
-        m_tagHolder.AddTag(GameTagHolder.TagType.UtilitySpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, isReceiver: false);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

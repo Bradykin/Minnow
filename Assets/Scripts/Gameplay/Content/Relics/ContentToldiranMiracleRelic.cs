@@ -12,10 +12,7 @@ public class ContentToldiranMiracleRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
-        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.HighCost);
     }
 }

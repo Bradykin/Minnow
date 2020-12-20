@@ -12,6 +12,6 @@ public class ContentEyeOfMoragRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Forest);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Forest, 4, isReceiver: false);
     }
 }

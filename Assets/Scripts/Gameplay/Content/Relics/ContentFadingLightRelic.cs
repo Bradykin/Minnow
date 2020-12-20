@@ -12,7 +12,7 @@ public class ContentFadingLightRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing, 4);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

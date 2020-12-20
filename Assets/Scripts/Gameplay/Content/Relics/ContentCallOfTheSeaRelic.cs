@@ -12,7 +12,7 @@ public class ContentCallOfTheSeaRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Water);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Water);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Healing);
     }
 }

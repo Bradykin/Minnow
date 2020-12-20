@@ -12,6 +12,6 @@ public class ContentNamelessFlaskRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

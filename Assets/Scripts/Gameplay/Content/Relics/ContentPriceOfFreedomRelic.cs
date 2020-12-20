@@ -12,8 +12,7 @@ public class ContentPriceOfFreedomRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
-        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
     }
 }

@@ -12,6 +12,7 @@ public class ContentBeadsOfProphecyRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, isReceiver: false);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

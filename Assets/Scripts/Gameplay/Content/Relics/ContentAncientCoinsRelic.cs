@@ -12,7 +12,7 @@ public class ContentAncientCoinsRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Gold);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Midrange);
     }
 }

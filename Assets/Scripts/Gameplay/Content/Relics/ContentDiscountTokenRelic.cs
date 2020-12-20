@@ -12,6 +12,6 @@ public class ContentDiscountTokenRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Gold);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
     }
 }

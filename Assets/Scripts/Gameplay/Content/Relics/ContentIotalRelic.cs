@@ -12,7 +12,7 @@ public class ContentIotalRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
-        //TODO: Alex - When the push/pull tags can be manually set, this needs a pull gold tag.
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Gold, 3, isReceiver: false);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

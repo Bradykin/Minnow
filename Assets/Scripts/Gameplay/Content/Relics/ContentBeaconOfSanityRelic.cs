@@ -12,7 +12,6 @@ public class ContentBeaconOfSanityRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.MaxStamina);
     }
 }

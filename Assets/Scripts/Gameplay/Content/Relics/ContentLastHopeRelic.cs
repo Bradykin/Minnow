@@ -12,8 +12,8 @@ public class ContentLastHopeRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
-        m_tagHolder.AddTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
     }
 }

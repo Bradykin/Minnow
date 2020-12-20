@@ -12,8 +12,7 @@ public class ContentThornsOfRayRelic : GameRelic
 
         LateInit();
 
-        //TODO: Alex - Tag refactor, needs a pull tank tag
-        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Enrage);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing);
     }
 }

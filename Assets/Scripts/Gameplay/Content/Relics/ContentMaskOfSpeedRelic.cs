@@ -12,6 +12,6 @@ public class ContentMaskOfSpeedRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
     }
 }

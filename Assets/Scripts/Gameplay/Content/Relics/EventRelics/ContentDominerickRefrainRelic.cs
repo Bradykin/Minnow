@@ -12,7 +12,7 @@ public class ContentDominerickRefrainRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.MagicPower);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
     }
 }

@@ -12,7 +12,7 @@ public class ContentHeroicTrophyRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
     }
 }

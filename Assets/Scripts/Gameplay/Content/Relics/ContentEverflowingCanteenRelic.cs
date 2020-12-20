@@ -12,7 +12,7 @@ public class ContentEverflowingCanteenRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddTag(GameTagHolder.TagType.Water);
-        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Water);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }
