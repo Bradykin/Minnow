@@ -17,9 +17,9 @@ public class ContentInsightCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

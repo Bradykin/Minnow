@@ -40,55 +40,53 @@ public class GameUnitCard : GameCard
     {
         if (GetUnit().GetTypeline() == Typeline.Humanoid)
         {
-            m_tags.AddTag(GameTag.TagType.Humanoid);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Humanoid);
         }
         if (GetUnit().GetTypeline() == Typeline.Monster)
         {
-            m_tags.AddTag(GameTag.TagType.Monster);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Monster);
         }
         if (GetUnit().GetTypeline() == Typeline.Creation)
         {
-            m_tags.AddTag(GameTag.TagType.Creation);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Creation);
         }
 
         if (GetUnit().GetKnowledgeableKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Knowledgeable);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Knowledgeable);
         }
         if (GetUnit().GetVictoriousKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Victorious);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Victorious);
         }
         if (GetUnit().GetEnrageKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Enrage);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Enrage);
         }
         if (GetUnit().GetMomentumKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Momentum);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Momentum);
         }
         if (GetUnit().GetRangeKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Range);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Range);
         }
         if (GetUnit().GetSpellcraftKeyword() != null)
         {
-            m_tags.AddTag(GameTag.TagType.Spellcraft);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Spellcraft);
         }
 
-        if (m_cost >= 2) //Not calling GetCost() here to avoid all temp modifiers
+        if (m_cost >= 3 || m_xSpell) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.HighCost);
+            m_tagHolder.AddPullTag(GameTagHolder.TagType.HighCost);
         }
-
-        if (m_cost == 0) //Not calling GetCost() here to avoid all temp modifiers
+        else if (m_cost == 2) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.LowCost);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.HighCost);
         }
-
-        if (GetUnit().GetKeywordHolderForRead().GetNumVisibleKeywords() == 0)
+        else if (m_cost <= 1) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.Vanilla);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.LowCost);
         }
     }
 

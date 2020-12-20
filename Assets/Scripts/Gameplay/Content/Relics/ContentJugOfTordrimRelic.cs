@@ -12,8 +12,8 @@ public class ContentJugOfTordrimRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Tordrim);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Tordrim);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
         //TODO: Alex - Once you can split tags out from being always push/pull, this should have a pull Scaler tag
     }
 }

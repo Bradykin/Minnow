@@ -12,8 +12,8 @@ public class ContentMedKitRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Healing);
-        m_tags.AddTag(GameTag.TagType.Humanoid);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Forest);
     }
 }

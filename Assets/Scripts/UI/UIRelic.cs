@@ -16,7 +16,7 @@ public class UIRelic : UIElementBase
         ViewNoTooltip
     }
 
-    private GameRelic m_relic;
+    public GameRelic m_relic;
     private RelicSelectionType m_selectionType;
 
     public Image m_image;

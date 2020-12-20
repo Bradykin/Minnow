@@ -12,9 +12,9 @@ public class ContentSackOfManyShapesRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Scaler);
     }
 }

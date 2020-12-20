@@ -416,6 +416,40 @@ public static class GameCardFactory
         }
     }
 
+    public static IReadOnlyList<GameCard> GetCardListOfTypeAtRarity(GameElementBase.GameRarity gameRarity, bool getUnitCardsInsteadOfSpells)
+    {
+        if (getUnitCardsInsteadOfSpells)
+        {
+            switch (gameRarity)
+            {
+                case GameElementBase.GameRarity.Common:
+                    return m_commonUnitCards;
+                case GameElementBase.GameRarity.Uncommon:
+                    return m_uncommonUnitCards;
+                case GameElementBase.GameRarity.Rare:
+                    return m_rareUnitCards;
+                default:
+                    Debug.LogError("Empty Card List for Rarity");
+                    return new List<GameCard>();
+            }
+        }
+        else
+        {
+            switch (gameRarity)
+            {
+                case GameElementBase.GameRarity.Common:
+                    return m_commonSpellCards;
+                case GameElementBase.GameRarity.Uncommon:
+                    return m_uncommonSpellCards;
+                case GameElementBase.GameRarity.Rare:
+                    return m_rareSpellCards;
+                default:
+                    Debug.LogError("Empty Card List for Rarity");
+                    return new List<GameCard>();
+            }
+        }
+    }
+
     public static GameCard GetRandomStandardCard(List<GameCard> exclusionList = null)
     {
         if (!m_hasInit)
@@ -616,7 +650,7 @@ public static class GameCardFactory
         int totalWeight = 0;
         for (int i = 0; i < finalList.Count; i++)
         {
-            int tagWeight = GameTag.GetTagValueFor(finalList[i]);
+            int tagWeight = GameTagHolder.GetTagValueFor(finalList[i]);
             //Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
             if (tagWeight > 0)
             {

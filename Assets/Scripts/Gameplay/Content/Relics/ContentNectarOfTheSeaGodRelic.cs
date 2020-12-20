@@ -12,7 +12,7 @@ public class ContentNectarOfTheSeaGodRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Water);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Water);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
     }
 }

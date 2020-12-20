@@ -12,8 +12,8 @@ public class ContentDesignSchematicsRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
     }
 }

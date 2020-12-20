@@ -14,8 +14,7 @@ public class ContentControlMoralCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
     }
 
     public override void PlayCard(GameUnit targetUnit)

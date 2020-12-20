@@ -12,7 +12,7 @@ public class ContentArmouredMonkCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Tank);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing);
     }
 }

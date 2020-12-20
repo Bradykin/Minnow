@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AnalyticsManager
 {
-    public void RecordCardChoice(in CardChoice cardChoice, in GameCard optionOne, in GameCard optionTwo, in GameCard optionThree)
+    public void RecordCardChoice(in GameCard cardChoice, in GameCard optionOne, in GameCard optionTwo, in GameCard optionThree)
     {
         
     }
 
-    public void RecordRelicChoice(in RelicChoice relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
+    public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         
     }

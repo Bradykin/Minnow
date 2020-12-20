@@ -12,8 +12,7 @@ public class ContentWildfolkCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Monster);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

@@ -16,8 +16,8 @@ public class ContentFletchingCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Range);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Range, 2);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

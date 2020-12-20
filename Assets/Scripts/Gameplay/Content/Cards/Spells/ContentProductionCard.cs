@@ -16,8 +16,8 @@ public class ContentProductionCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

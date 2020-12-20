@@ -12,8 +12,8 @@ public class ContentChargingRingRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Monster);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Momentum);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Momentum);
     }
 }

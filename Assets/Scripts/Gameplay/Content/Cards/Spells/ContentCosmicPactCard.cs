@@ -15,10 +15,9 @@ public class ContentCosmicPactCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

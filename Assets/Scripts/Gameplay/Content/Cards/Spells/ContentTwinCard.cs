@@ -14,8 +14,7 @@ public class ContentTwinCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell, 2);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

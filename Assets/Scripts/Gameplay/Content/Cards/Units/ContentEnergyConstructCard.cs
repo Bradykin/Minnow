@@ -12,8 +12,8 @@ public class ContentEnergyConstructCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.LowCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.EnergyRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

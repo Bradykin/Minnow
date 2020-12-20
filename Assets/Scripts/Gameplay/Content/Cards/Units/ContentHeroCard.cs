@@ -12,6 +12,6 @@ public class ContentHeroCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Scaler);
     }
 }

@@ -7,6 +7,10 @@ public static class GameRelicFactory
 {
     private static List<GameRelic> m_relics = new List<GameRelic>();
 
+    private static List<GameRelic> m_rareRelics = new List<GameRelic>();
+    private static List<GameRelic> m_uncommonRelics = new List<GameRelic>();
+    private static List<GameRelic> m_commonRelics = new List<GameRelic>();
+
     private static bool m_hasInit = false;
 
     public static void Init()
@@ -14,6 +18,9 @@ public static class GameRelicFactory
         m_hasInit = true;
         
         m_relics.Clear();
+        m_rareRelics.Clear();
+        m_uncommonRelics.Clear();
+        m_commonRelics.Clear();
         
         //Starter Relics
         m_relics.Add(new ContentMaskOfAgesRelic());
@@ -135,14 +142,17 @@ public static class GameRelicFactory
         {
             if (m_relics[i].m_rarity == GameElementBase.GameRarity.Common)
             {
+                m_commonRelics.Add(m_relics[i]);
                 commonRelics++;
             }
             if (m_relics[i].m_rarity == GameElementBase.GameRarity.Uncommon)
             {
+                m_uncommonRelics.Add(m_relics[i]);
                 uncommonRelics++;
             }
             if (m_relics[i].m_rarity == GameElementBase.GameRarity.Rare)
             {
+                m_rareRelics.Add(m_relics[i]);
                 rareRelics++;
             }
         }
@@ -233,7 +243,7 @@ public static class GameRelicFactory
         int totalWeight = 0;
         for (int i = 0; i < relicList.Count; i++)
         {
-            int tagWeight = GameTag.GetTagValueFor(relicList[i]);
+            int tagWeight = GameTagHolder.GetTagValueFor(relicList[i]);
             if (tagWeight > 0)
             {
                 relicList[i].m_storedTagWeight = tagWeight + totalWeight;
@@ -258,6 +268,22 @@ public static class GameRelicFactory
 
         Debug.LogError("Failed to find any relic when trying get one (likely caused by tag weighting issues).");
         return relicListBeforeTagWeights[UnityEngine.Random.Range(0, relicListBeforeTagWeights.Count)];
+    }
+
+    public static IReadOnlyList<GameRelic> GetRelicListAtRarity(GameElementBase.GameRarity gameRarity)
+    {
+        switch (gameRarity)
+        {
+            case GameElementBase.GameRarity.Common:
+                return m_commonRelics;
+            case GameElementBase.GameRarity.Uncommon:
+                return m_uncommonRelics;
+            case GameElementBase.GameRarity.Rare:
+                return m_uncommonRelics;
+            default:
+                Debug.LogError("Empty Relic List for Rarity");
+                return new List<GameRelic>();
+        }
     }
 
     private static List<GameRelic> GetListWithoutPlayerRelics()

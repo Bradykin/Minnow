@@ -12,8 +12,8 @@ public class ContentDwarfShivcasterCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

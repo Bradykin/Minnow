@@ -12,7 +12,7 @@ public class ContentLegacyOfMonstersRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
     }
 }

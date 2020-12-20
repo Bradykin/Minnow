@@ -19,8 +19,8 @@ public class ContentFossilizeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Brittle);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Brittle);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
     }

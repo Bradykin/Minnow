@@ -12,8 +12,8 @@ public class ContentProclamationOfSurrenderRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.LowCost);
-        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
     }
 }

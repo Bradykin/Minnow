@@ -12,7 +12,7 @@ public class ContentMysticRuneRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
     }
 }

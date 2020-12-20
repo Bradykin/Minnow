@@ -12,6 +12,6 @@ public class ContentTalonOfTheCruelRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.DamageSpell);
     }
 }

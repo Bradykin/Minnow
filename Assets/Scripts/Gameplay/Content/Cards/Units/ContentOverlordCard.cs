@@ -12,9 +12,9 @@ public class ContentOverlordCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Explorer);
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell, 2);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Explorer);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

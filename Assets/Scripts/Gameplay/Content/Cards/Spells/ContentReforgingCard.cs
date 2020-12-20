@@ -14,8 +14,8 @@ public class ContentReforgingCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate, 2);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

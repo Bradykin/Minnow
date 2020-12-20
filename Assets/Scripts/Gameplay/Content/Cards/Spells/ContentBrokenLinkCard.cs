@@ -14,9 +14,8 @@ public class ContentBrokenLinkCard : GameCardSpellBase
         m_cost = 0;
         m_spellEffect = 5;
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         SetupBasicData();
 

@@ -12,7 +12,7 @@ public class ContentFrogShamanCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Water);
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Water);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.DamageSpell);
     }
 }

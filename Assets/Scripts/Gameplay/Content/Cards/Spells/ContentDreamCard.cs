@@ -15,9 +15,9 @@ public class ContentDreamCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.LowCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

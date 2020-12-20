@@ -17,9 +17,8 @@ public class ContentLivingBombCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
     }
 
     public override string GetDesc()

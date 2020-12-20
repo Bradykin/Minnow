@@ -12,7 +12,7 @@ public class ContentAncientMysteryRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.Humanoid);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
     }
 }

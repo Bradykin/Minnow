@@ -12,7 +12,7 @@ public class ContentWarriorPriestessCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Healing);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, 2);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

@@ -12,8 +12,8 @@ public class ContentLifebringerRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Healing);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
     }
 }

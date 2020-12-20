@@ -12,6 +12,8 @@ public class ContentHomonculusCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen, isReceiver: false);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

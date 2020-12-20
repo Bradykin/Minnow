@@ -12,6 +12,6 @@ public class ContentHealthFlaskRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Healing);
     }
 }

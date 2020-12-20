@@ -12,9 +12,9 @@ public class ContentUrbanTacticsRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.UtilitySpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
     }
 }

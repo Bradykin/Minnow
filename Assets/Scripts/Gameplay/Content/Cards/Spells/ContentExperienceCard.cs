@@ -16,7 +16,7 @@ public class ContentExperienceCard : GameCardSpellBase
 
         m_cost = 0;
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         SetupBasicData();
 

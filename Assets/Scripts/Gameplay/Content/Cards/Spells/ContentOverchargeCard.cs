@@ -14,10 +14,9 @@ public class ContentOverchargeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

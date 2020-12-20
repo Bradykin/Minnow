@@ -12,7 +12,7 @@ public class ContentConjuredImpCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

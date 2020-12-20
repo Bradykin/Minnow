@@ -77,25 +77,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
             return;
         }
 
-        CardChoice cardChoice;
-        if (card == m_firstButton.m_card)
-        {
-            cardChoice = CardChoice.First;
-        }
-        else if (card == m_secondButton.m_card)
-        {
-            cardChoice = CardChoice.Second;
-        }
-        else if (card == m_thirdButton.m_card)
-        {
-            cardChoice = CardChoice.Third;
-        }
-        else
-        {
-            Debug.LogError("Failed to match chosen card to existing options for Game Director Statistics.");
-            cardChoice = CardChoice.None;
-        }
-        GameNotificationManager.RecordCardChoice(cardChoice, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
+        GameNotificationManager.RecordCardChoice(card, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
 
         player.AddCardToDiscard(card, true);
 
@@ -104,7 +86,7 @@ public class UICardSelectController : Singleton<UICardSelectController>
 
     public void SkipSelection()
     {
-        GameNotificationManager.RecordCardChoice(CardChoice.None, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
+        GameNotificationManager.RecordCardChoice(null, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
 
         GameHelper.GetPlayer().GainGold(m_skipWallet.m_gold);
 

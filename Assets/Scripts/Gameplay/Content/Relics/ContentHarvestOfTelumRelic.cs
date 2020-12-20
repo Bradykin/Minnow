@@ -12,6 +12,6 @@ public class ContentHarvestOfTelumRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Gold);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Gold);
     }
 }

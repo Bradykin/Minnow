@@ -12,7 +12,7 @@ public class ContentRangerCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Forest);
     }
 }

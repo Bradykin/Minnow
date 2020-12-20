@@ -12,6 +12,7 @@ public class ContentElvenRogueCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

@@ -17,7 +17,7 @@ public class GameElementBase
     protected string m_desc = string.Empty;
     public Sprite m_icon { get; protected set; }
     public GameRarity m_rarity { get; protected set; } = GameRarity.Common;
-    public GameTag m_tags = new GameTag();
+    public GameTagHolder m_tagHolder = new GameTagHolder();
 
     public virtual string GetName()
     {

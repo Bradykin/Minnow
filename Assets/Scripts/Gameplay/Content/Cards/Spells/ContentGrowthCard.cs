@@ -15,8 +15,8 @@ public class ContentGrowthCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Forest);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

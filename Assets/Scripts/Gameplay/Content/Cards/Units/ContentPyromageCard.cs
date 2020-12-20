@@ -12,6 +12,8 @@ public class ContentPyromageCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell, isReceiver: false);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

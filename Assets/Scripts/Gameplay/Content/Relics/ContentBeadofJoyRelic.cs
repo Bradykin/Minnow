@@ -12,7 +12,7 @@ public class ContentBeadofJoyRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Victorious);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Victorious);
     }
 }

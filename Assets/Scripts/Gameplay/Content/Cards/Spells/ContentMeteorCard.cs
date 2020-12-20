@@ -15,7 +15,7 @@ public class ContentMeteorCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_onPlaySFX = AudioHelper.LargeImpact;
     }

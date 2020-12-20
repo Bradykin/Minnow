@@ -12,9 +12,8 @@ public class ContentGrasperCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

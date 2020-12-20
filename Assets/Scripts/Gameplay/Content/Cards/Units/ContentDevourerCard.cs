@@ -12,6 +12,6 @@ public class ContentDevourerCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

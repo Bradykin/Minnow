@@ -17,8 +17,7 @@ public class ContentProtectionCard : GameCardSpellBase
 
         m_keywordHolder.AddKeyword(new GameDamageShieldKeyword());
 
-        m_tags.AddTag(GameTag.TagType.Tank);
-        m_tags.AddTag(GameTag.TagType.DamageShield);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.DamageShield);
 
         SetupBasicData();
 

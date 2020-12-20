@@ -19,8 +19,8 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

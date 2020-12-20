@@ -10,7 +10,7 @@ public class ContentEtherealStagCard : GameUnitCard
 
         m_cost = 3;
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
 
         FillBasicData();
     }

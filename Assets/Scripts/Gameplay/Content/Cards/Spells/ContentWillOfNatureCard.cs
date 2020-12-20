@@ -15,9 +15,8 @@ public class ContentWillOfNatureCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Healing);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Tank, isReceiver: false);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

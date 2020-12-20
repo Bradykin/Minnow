@@ -12,8 +12,9 @@ public class ContentStormChannelerCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.LowCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

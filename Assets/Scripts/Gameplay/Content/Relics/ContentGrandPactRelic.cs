@@ -12,10 +12,10 @@ public class ContentGrandPactRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.Monster);
-        m_tags.AddTag(GameTag.TagType.Humanoid);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Monster);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
     }
 }

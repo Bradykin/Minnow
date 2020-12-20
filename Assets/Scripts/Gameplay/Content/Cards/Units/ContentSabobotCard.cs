@@ -12,8 +12,7 @@ public class ContentSabobotCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.Explorer);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

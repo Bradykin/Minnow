@@ -18,7 +18,8 @@ public class ContentChainLightningCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 2);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

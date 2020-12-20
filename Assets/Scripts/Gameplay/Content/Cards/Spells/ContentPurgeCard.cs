@@ -15,9 +15,8 @@ public class ContentPurgeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Vanilla);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, isReceiver: false);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
     }
 
     public override string GetDesc()

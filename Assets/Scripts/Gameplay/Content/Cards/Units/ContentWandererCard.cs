@@ -12,7 +12,7 @@ public class ContentWandererCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

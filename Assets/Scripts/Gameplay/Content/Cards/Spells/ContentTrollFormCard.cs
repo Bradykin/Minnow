@@ -18,8 +18,8 @@ public class ContentTrollFormCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Healing);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

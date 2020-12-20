@@ -12,8 +12,7 @@ public class ContentSkeletonCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

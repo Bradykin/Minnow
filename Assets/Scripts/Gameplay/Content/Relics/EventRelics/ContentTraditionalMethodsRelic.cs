@@ -12,8 +12,8 @@ public class ContentTraditionalMethodsRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Midrange);
     }
 }

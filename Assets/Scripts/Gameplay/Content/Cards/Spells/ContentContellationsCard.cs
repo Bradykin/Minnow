@@ -17,7 +17,7 @@ public class ContentContellationsCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

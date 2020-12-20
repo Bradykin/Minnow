@@ -12,6 +12,6 @@ public class ContentRoyalCaravanCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
     }
 }

@@ -12,7 +12,7 @@ public class ContentForbiddenKnowledge : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
     }
 }

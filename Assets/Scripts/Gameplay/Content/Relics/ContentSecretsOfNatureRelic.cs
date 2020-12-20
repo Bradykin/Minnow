@@ -12,7 +12,7 @@ public class ContentSecretsOfNatureRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Forest);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Forest);
     }
 }

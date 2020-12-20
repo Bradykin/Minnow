@@ -16,11 +16,11 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

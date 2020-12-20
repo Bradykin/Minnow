@@ -8,7 +8,7 @@ public class ContentGreedyKillCard : GameCardSpellBase
 
     public ContentGreedyKillCard()
     {
-        m_spellEffect = 2;
+        m_spellEffect = 3;
 
         m_name = "Greedy Kill";
         m_targetType = Target.Enemy;
@@ -18,8 +18,8 @@ public class ContentGreedyKillCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Gold);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

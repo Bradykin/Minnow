@@ -18,7 +18,7 @@ public class ContentToxicTonicCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

@@ -12,8 +12,8 @@ public class ContentTomeOfDuluhainRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.LowCost);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.UtilitySpell);
     }
 }

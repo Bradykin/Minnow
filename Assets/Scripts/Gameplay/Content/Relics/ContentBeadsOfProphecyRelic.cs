@@ -12,6 +12,6 @@ public class ContentBeadsOfProphecyRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

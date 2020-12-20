@@ -17,10 +17,10 @@ public class ContentBloodMoneyCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Gold);
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.Enrage);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Enrage);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, isReceiver: false);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold, 3);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell); 
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }

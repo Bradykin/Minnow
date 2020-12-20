@@ -12,8 +12,8 @@ public class ContentBonecasterCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

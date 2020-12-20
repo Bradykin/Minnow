@@ -12,10 +12,10 @@ public class ContentToolOfTheDeadmanRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.MagicPower);
+        m_tagHolder.AddTag(GameTagHolder.TagType.DamageSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

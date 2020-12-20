@@ -12,8 +12,8 @@ public class ContentDestinyRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Reanimate);
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Scaler);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
     }
 }

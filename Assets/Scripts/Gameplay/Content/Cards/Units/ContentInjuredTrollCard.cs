@@ -12,7 +12,7 @@ public class ContentInjuredTrollCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Healing);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

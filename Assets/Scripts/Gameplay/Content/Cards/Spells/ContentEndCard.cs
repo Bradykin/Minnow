@@ -17,8 +17,7 @@ public class ContentEndCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

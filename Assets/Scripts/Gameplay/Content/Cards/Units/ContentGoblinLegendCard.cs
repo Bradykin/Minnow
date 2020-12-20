@@ -12,6 +12,6 @@ public class ContentGoblinLegendCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

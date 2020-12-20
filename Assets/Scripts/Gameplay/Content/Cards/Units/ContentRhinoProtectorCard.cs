@@ -12,7 +12,7 @@ public class ContentRhinoProtectorCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Forest);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Forest);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

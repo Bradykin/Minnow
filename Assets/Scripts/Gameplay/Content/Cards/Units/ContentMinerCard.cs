@@ -12,7 +12,7 @@ public class ContentMinerCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Gold);
-        m_tags.AddTag(GameTag.TagType.Mountain);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

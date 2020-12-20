@@ -12,7 +12,7 @@ public class ContentPolarHunterCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Scaler, isReceiver: false);
     }
 }

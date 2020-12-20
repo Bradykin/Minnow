@@ -12,9 +12,10 @@ public class ContentElvenWizardCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.Scaler);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

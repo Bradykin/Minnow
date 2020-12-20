@@ -12,7 +12,7 @@ public class ContentStoneGolemCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Tank);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

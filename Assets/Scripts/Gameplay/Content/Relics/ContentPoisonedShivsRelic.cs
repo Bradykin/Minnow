@@ -12,9 +12,9 @@ public class ContentPoisonedShivsRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.UtilitySpell);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddTag(GameTagHolder.TagType.UtilitySpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
     }
 }

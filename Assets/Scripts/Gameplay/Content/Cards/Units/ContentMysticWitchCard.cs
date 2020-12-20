@@ -12,9 +12,9 @@ public class ContentMysticWitchCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.LowCost);
-        m_tags.AddTag(GameTag.TagType.Knowledgeable);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.LowCost);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

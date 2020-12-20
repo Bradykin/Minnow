@@ -12,6 +12,6 @@ public class ContentOrbOfEnergyRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
     }
 }

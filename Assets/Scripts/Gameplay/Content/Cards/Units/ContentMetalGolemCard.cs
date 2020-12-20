@@ -12,8 +12,7 @@ public class ContentMetalGolemCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Mountain);
-        m_tags.AddTag(GameTag.TagType.DamageShield);
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.DamageShield);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
     }
 }

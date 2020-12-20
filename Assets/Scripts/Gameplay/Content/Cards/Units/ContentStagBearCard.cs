@@ -10,8 +10,10 @@ public class ContentStagBearCard : GameUnitCard
 
         m_cost = 2;
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Momentum);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Enrage);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
 
         FillBasicData();
     }

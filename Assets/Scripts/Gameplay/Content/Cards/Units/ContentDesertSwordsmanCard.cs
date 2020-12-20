@@ -12,7 +12,7 @@ public class ContentDesertSwordsmanCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Midrange);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
     }
 }

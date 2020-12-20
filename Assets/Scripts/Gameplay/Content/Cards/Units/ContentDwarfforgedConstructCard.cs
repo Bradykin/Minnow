@@ -12,6 +12,6 @@ public class ContentDwarfforgedConstructCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Midrange);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Tank);
     }
 }

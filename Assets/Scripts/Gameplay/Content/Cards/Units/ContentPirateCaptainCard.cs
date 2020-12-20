@@ -12,7 +12,6 @@ public class ContentPirateCaptainCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Water);
-        m_tags.AddTag(GameTag.TagType.Explorer);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Water);
     }
 }

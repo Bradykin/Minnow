@@ -12,7 +12,7 @@ public class ContentStarOfDenumainRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.DamageShield);
-        m_tags.AddTag(GameTag.TagType.Tank);
+        m_tagHolder.AddTag(GameTagHolder.TagType.DamageShield);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Tank);
     }
 }

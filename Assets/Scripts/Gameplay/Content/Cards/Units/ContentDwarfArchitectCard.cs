@@ -12,8 +12,9 @@ public class ContentDwarfArchitectCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

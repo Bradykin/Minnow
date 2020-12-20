@@ -12,9 +12,9 @@ public class ContentTotemOfRevengeRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.MaxStamina);
-        m_tags.AddTag(GameTag.TagType.Creation);
-        m_tags.AddTag(GameTag.TagType.Reanimate);
+        m_tagHolder.AddTag(GameTagHolder.TagType.StaminaRegen);
+        m_tagHolder.AddTag(GameTagHolder.TagType.MaxStamina);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Creation);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Reanimate);
     }
 }

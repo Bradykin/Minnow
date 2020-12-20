@@ -15,9 +15,9 @@ public class ContentArcaneBoltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.MagicPower);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
-        m_tags.AddTag(GameTag.TagType.DamageSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
     }

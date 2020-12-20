@@ -26,19 +26,17 @@ public class GameCardSpellBase : GameCard
 
     private void AddBasicTags()
     {
-        if (m_shouldExile)
+        if (m_cost >= 3 || m_xSpell) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.Exile);
+            m_tagHolder.AddPullTag(GameTagHolder.TagType.HighCost);
         }
-
-        if (m_cost >= 2)
+        else if (m_cost == 2) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.HighCost);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.HighCost);
         }
-
-        if (m_cost == 0)
+        else if (m_cost <= 1) //Not calling GetCost() here to avoid all temp modifiers
         {
-            m_tags.AddTag(GameTag.TagType.LowCost);
+            m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.LowCost);
         }
     }
 

@@ -12,8 +12,8 @@ public class ContentShardOfSorrowRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Shiv);
-        m_tags.AddTag(GameTag.TagType.HighCost);
-        m_tags.AddTag(GameTag.TagType.Spellcraft);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Shiv);
+        m_tagHolder.AddTag(GameTagHolder.TagType.HighCost);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Spellcraft);
     }
 }

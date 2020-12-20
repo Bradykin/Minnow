@@ -12,7 +12,7 @@ public class ContentTokenOfFriendshipRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.Mountain);
-        m_tags.AddTag(GameTag.TagType.Humanoid);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Mountain);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
     }
 }

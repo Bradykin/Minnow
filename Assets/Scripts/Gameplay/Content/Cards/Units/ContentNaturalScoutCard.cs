@@ -12,6 +12,7 @@ public class ContentNaturalScoutCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Explorer);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Explorer);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
     }
 }

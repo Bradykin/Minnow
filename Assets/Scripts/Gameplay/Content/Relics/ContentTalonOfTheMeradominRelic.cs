@@ -12,6 +12,6 @@ public class ContentTalonOfTheMeradominRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
     }
 }

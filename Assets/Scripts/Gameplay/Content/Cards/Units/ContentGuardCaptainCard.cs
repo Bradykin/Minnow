@@ -12,6 +12,8 @@ public class ContentGuardCaptainCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Humanoid);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilityUnit);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }
 }

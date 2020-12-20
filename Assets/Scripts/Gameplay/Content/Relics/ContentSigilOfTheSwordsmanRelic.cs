@@ -12,7 +12,7 @@ public class ContentSigilOfTheSwordsmanRelic : GameRelic
 
         LateInit();
 
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.Humanoid);
+        m_tagHolder.AddTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddTag(GameTagHolder.TagType.Humanoid);
     }
 }

@@ -12,8 +12,7 @@ public class ContentMountainBeastCard : GameUnitCard
 
         FillBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.Tank);
-        m_tags.AddTag(GameTag.TagType.Healing);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
+        m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing, isReceiver: false);
     }
 }

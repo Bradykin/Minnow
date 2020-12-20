@@ -11,8 +11,5 @@ public class ContentGolemProtectorCard : GameUnitCard
         m_cost = 6;
 
         FillBasicData();
-
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.HighCost);
     }
 }

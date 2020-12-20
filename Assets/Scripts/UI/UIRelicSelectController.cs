@@ -52,6 +52,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
             return;
         }
 
+        GameNotificationManager.RecordRelicChoice(relic, m_firstButton.m_relic, m_secondButton.m_relic);
+
         player.AddRelic(relic);
 
         EndSelection();

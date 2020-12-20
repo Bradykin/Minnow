@@ -18,11 +18,10 @@ public class ContentDemonicAspectCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tags.AddTag(GameTag.TagType.Scaler);
-        m_tags.AddTag(GameTag.TagType.BuffSpell);
-        m_tags.AddTag(GameTag.TagType.StaminaRegen);
-        m_tags.AddTag(GameTag.TagType.Victorious);
-        m_tags.AddTag(GameTag.TagType.Monster);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Scaler);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 
         m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
