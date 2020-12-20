@@ -18,7 +18,7 @@ public class ContentEnergizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Energize;
     }
 
     public override void PlayCard(GameUnit targetUnit)

@@ -21,7 +21,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.UtilitySpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MiscEffect;
     }
 
     public override string GetDesc()

@@ -17,8 +17,6 @@ public class ContentDarkHeartCard : GameCardSpellBase
         m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
 
         SetupBasicData();
-
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
     }
 
     public override string GetDesc()
@@ -34,6 +32,15 @@ public class ContentDarkHeartCard : GameCardSpellBase
         }
 
         base.PlayCard(targetUnit);
+
+        if (targetUnit.GetTeam() == Team.Player)
+        {
+            AudioHelper.PlaySFX(AudioHelper.SmallBuff);
+        }
+        else
+        {
+            AudioHelper.PlaySFX(AudioHelper.SmallDebuff);
+        }
 
         targetUnit.AddStats(m_buff, m_buff, false, true);
         targetUnit.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetUnit, m_selfDamage)), false, false);

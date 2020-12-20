@@ -864,7 +864,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         GameHelper.GetGameController().AddIntermissionLock();
 
-        AudioHelper.PlaySFX(GetAttackSFX());
+        AudioHelper.PlaySFX(this.GetAttackSFX());
         
         if (spendStamina)
         {

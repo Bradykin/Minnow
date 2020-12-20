@@ -749,7 +749,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         if (GameHelper.GetGameController().m_currentTurnNumber >= 4)
         {
-            Globals.m_curRage++;
+            Globals.m_curRage+=2;
         }
 
         DrawHand();

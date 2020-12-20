@@ -24,7 +24,7 @@ public class ContentFuryCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Victorious);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Fury;
     }
 
     public override void PlayCard(GameUnit targetUnit)

@@ -20,7 +20,7 @@ public class ContentToxicTonicCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.MagicEffect;
     }
 
     public override string GetDesc()

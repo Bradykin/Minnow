@@ -19,7 +19,7 @@ public class ContentArcaneBoltCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.MagicBolt;
     }
 
     public override string GetDesc()

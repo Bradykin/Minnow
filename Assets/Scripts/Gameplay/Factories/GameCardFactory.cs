@@ -101,13 +101,12 @@ public static class GameCardFactory
         m_cards.Add(new ContentWarriorPriestessCard());
         m_cards.Add(new ContentWildwoodExplorerCard());
         m_cards.Add(new ContentWildwoodSkirmisherCard());
-
-        //New Units
-        //Implemeneted
         m_cards.Add(new ContentMysticWitchCard());
         m_cards.Add(new ContentEtherealStagCard());
         m_cards.Add(new ContentStagBearCard());
         m_cards.Add(new ContentGolemProtectorCard());
+        
+
         m_cards.Add(new ContentGuardianOfTheForestCard());
 
         //Starter Cards

@@ -15,7 +15,7 @@ public class ContentCureWoundsCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Heal;
     }
 
     public override string GetDesc()

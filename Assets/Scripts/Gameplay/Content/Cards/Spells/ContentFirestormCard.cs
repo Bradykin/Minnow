@@ -21,7 +21,7 @@ public class ContentFirestormCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Enrage);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.FireBlast;
     }
 
     public override string GetDesc()

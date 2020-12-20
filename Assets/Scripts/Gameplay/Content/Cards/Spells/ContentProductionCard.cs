@@ -19,7 +19,7 @@ public class ContentProductionCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MetalBuff;
     }
 
     public override string GetDesc()

@@ -11,6 +11,7 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_cost = 0;
         m_rarity = GameRarity.Common;
+        m_shouldExile = true;
 
         SetupBasicData();
 
@@ -19,7 +20,7 @@ public class ContentMechanizeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MetalBuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

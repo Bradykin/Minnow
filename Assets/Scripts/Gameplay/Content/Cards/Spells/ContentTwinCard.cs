@@ -17,7 +17,7 @@ public class ContentTwinCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.HighCost);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MagicEffect;
     }
 
     public override string GetDesc()

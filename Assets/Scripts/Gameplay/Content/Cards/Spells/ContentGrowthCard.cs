@@ -18,7 +18,7 @@ public class ContentGrowthCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Forest);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.TreeGrow;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

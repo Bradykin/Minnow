@@ -15,7 +15,7 @@ public class ContentDeadeyeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.BowSpell;
     }
 
     public override string GetDesc()

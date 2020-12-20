@@ -24,7 +24,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Victorious);
         m_tags.AddTag(GameTag.TagType.Monster);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

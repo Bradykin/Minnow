@@ -23,7 +23,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Spellcraft);
         m_tags.AddTag(GameTag.TagType.MagicPower);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override void PlayCard()

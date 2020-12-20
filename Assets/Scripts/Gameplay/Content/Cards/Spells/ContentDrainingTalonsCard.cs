@@ -19,7 +19,7 @@ public class ContentDrainingTalonsCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override string GetDesc()

@@ -20,7 +20,7 @@ public class ContentShivCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.Shiv);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

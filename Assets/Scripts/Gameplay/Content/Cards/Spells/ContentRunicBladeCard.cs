@@ -21,7 +21,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Victorious);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

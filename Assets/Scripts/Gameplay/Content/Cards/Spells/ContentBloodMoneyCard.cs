@@ -22,7 +22,7 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Enrage);
         m_tags.AddTag(GameTag.TagType.Healing);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.GoldSpell;
     }
 
     public override void PlayCard(GameUnit targetUnit)

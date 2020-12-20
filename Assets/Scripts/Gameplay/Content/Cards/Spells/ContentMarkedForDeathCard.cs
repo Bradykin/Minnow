@@ -23,7 +23,7 @@ public class ContentMarkedForDeathCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Brittle);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
+        m_onPlaySFX = AudioHelper.SmallDebuff;
     }
 
     public override string GetDesc()

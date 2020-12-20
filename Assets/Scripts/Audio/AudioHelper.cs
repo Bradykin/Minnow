@@ -4,13 +4,6 @@ using UnityEngine;
 
 public static class AudioHelper
 {
-    public enum SpellAudioCategory
-    {
-        Buff,
-        Debuff,
-        Damage
-    }
-
     public static float DefaultMusicVolume = 0.6f;
     public static float DefaultSFXVolume = 0.4f;
 
@@ -48,6 +41,22 @@ public static class AudioHelper
     public static AudioClip FireBlast = Resources.Load<AudioClip>("Audio/SFX/Spells/FireBlast") as AudioClip;
     public static AudioClip SmallBuff = Resources.Load<AudioClip>("Audio/SFX/Spells/SmallBuff") as AudioClip;
     public static AudioClip SmallDebuff = Resources.Load<AudioClip>("Audio/SFX/Spells/SmallDebuff") as AudioClip;
+    public static AudioClip MiscEffect = Resources.Load<AudioClip>("Audio/SFX/Spells/MiscEffect") as AudioClip;
+    public static AudioClip MagicBolt = Resources.Load<AudioClip>("Audio/SFX/Spells/MagicBolt") as AudioClip;
+    public static AudioClip DaggerSwingSpell = Resources.Load<AudioClip>("Audio/SFX/Spells/DaggerSwingSpell") as AudioClip;
+    public static AudioClip BowSpell = Resources.Load<AudioClip>("Audio/SFX/Spells/BowSpell") as AudioClip;
+    public static AudioClip SciFiBuffSmall = Resources.Load<AudioClip>("Audio/SFX/Spells/SciFiBuffSmall") as AudioClip;
+    public static AudioClip BloodSacrifice = Resources.Load<AudioClip>("Audio/SFX/Spells/BloodSacrifice") as AudioClip;
+    public static AudioClip Bullheaded = Resources.Load<AudioClip>("Audio/SFX/Spells/Bullheaded") as AudioClip;
+    public static AudioClip Heal = Resources.Load<AudioClip>("Audio/SFX/Spells/Heal") as AudioClip;
+    public static AudioClip Energize = Resources.Load<AudioClip>("Audio/SFX/Spells/Energize") as AudioClip;
+    public static AudioClip Fury = Resources.Load<AudioClip>("Audio/SFX/Spells/Fury") as AudioClip;
+    public static AudioClip GoldSpell = Resources.Load<AudioClip>("Audio/SFX/Spells/GoldSpell") as AudioClip;
+    public static AudioClip MetalBuff = Resources.Load<AudioClip>("Audio/SFX/Spells/MetalBuff") as AudioClip;
+    public static AudioClip NecromanticTouch = Resources.Load<AudioClip>("Audio/SFX/Spells/NecromanticTouch") as AudioClip;
+    public static AudioClip MagicEffect = Resources.Load<AudioClip>("Audio/SFX/Spells/MagicEffect") as AudioClip;
+    public static AudioClip LightningBolt = Resources.Load<AudioClip>("Audio/SFX/Spells/LightningBolt") as AudioClip;
+    public static AudioClip TreeGrow = Resources.Load<AudioClip>("Audio/SFX/Spells/TreeGrow") as AudioClip;
 
     //World Perk Pickup
     public static AudioClip GoldPickupSmall = Resources.Load<AudioClip>("Audio/SFX/WorldPerk/GoldPickupSmall") as AudioClip;

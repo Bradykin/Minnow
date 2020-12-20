@@ -19,7 +19,7 @@ public class ContentFletchingCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.Range);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override void PlayCard()

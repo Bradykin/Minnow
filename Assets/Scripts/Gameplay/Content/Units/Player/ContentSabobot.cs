@@ -23,18 +23,9 @@ public class ContentSabobot : GameUnit
         m_name = "Sabobot";
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.PunchLight;
 
         LateInit();
-    }
-
-    public override AudioClip GetAttackSFX()
-    {
-        if (GetDeathKeyword() != null)
-        {
-            return AudioHelper.LargeImpact;
-        }
-
-        return AudioHelper.PunchLight;
     }
 
     protected override void ResetToBase()

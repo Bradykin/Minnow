@@ -22,7 +22,7 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Enrage);
         m_tags.AddTag(GameTag.TagType.Healing);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Bullheaded;
     }
 
     public override void PlayCard(GameUnit targetUnit)

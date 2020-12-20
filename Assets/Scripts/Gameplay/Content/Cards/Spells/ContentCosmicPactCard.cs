@@ -20,7 +20,7 @@ public class ContentCosmicPactCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Spellcraft);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MiscEffect;
     }
 
     public override void PlayCard()

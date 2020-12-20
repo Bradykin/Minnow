@@ -20,7 +20,7 @@ public class ContentChainLightningCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.MagicPower);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.LightningBolt;
     }
 
     public override string GetDesc()

@@ -22,7 +22,7 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.Knowledgeable);
         m_tags.AddTag(GameTag.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override void PlayCard()

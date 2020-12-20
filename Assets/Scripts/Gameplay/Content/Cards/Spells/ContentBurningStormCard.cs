@@ -19,7 +19,7 @@ public class ContentBurningStormCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.MagicPower);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.FireBlast;
     }
 
     public override string GetDesc()

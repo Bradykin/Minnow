@@ -17,7 +17,7 @@ public class ContentQuickStrikesCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.BuffSpell);
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

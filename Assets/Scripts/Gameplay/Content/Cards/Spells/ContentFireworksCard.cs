@@ -20,7 +20,7 @@ public class ContentFireworksCard : GameCardSpellBase
 
         m_tags.AddTag(GameTag.TagType.MagicPower);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.LargeImpact;
     }
 
     public override string GetDesc()

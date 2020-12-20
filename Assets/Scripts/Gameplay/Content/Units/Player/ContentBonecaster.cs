@@ -15,6 +15,7 @@ public class ContentBonecaster : GameUnit
         m_name = "Bonecaster";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
+        m_attackSFX = AudioHelper.MaceMedium;
 
         LateInit();
     }

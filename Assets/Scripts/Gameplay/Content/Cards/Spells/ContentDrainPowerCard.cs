@@ -21,7 +21,7 @@ public class ContentDrainPowerCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.MagicBolt;
     }
 
     public override string GetDesc()

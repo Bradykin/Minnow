@@ -23,7 +23,7 @@ public class ContentMonsterProdCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.StaminaRegen);
         m_tags.AddTag(GameTag.TagType.Healing);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

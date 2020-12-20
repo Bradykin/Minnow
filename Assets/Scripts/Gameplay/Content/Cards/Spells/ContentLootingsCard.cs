@@ -18,7 +18,7 @@ public class ContentLootingsCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.GoldSpell;
     }
 
     public override void PlayCard()

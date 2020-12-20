@@ -22,7 +22,7 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
         m_tags.AddTag(GameTag.TagType.MagicPower);
         m_tags.AddTag(GameTag.TagType.Creation);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.BloodSacrifice;
     }
 
     public override string GetDesc()
