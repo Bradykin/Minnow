@@ -302,60 +302,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         if (GameHelper.IsInLevelBuilder())
         {
-            if (Globals.m_levelCreatorEraserMode)
-            {
-                GameTile gameTile = GetGameTile();
-                if (gameTile.HasSpawnPoint())
-                {
-                    gameTile.ClearSpawnPoint();
-                }
-                else if (gameTile.HasEventMarker())
-                {
-                    gameTile.ClearEventMarkers();
-                }
-                else if (gameTile.HasBuilding())
-                {
-                    gameTile.ClearBuilding();
-                }
-                else if (gameTile.GetTerrain() != null)
-                {
-                    gameTile.ClearTerrain();
-                }
-            }
-            else
-            {
-                if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
-                {
-                    GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
-                }
-                else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
-                {
-                    GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
-                }
-                else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
-                {
-                    if (!GetGameTile().HasSpawnPoint())
-                    {
-                        GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
-                        GetGameTile().SetSpawnPoint(gameSpawnPoint);
-                    }
-
-                    if (!GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
-                    {
-                        GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
-                        Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
-                    }
-                }
-                else if (Globals.m_currentlyPaintingType == typeof(int))
-                {
-                    if (!GetGameTile().HasEventMarker(Globals.m_currentlyPaintingNumberIndex))
-                    {
-                        GetGameTile().AddEventMarker(Globals.m_currentlyPaintingNumberIndex);
-                        Debug.Log("Add Event Tile index" + Globals.m_currentlyPaintingNumberIndex);
-                    }
-                }
-            }
-
+            HandleLevelBuilderMouseDown();
             return;
         }
 
@@ -403,8 +350,18 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else
                 {
-                    AudioHelper.PlaySFX(AudioHelper.UIError);
-                    UIHelper.CreateWorldElementNotification("This doesn't target tiles.", false, gameObject);
+                    if (GetGameTile().IsOccupied())
+                    {
+                        if (selectedCard.m_card.IsValidToPlay(GetGameTile().GetOccupyingUnit()))
+                        {
+                            GameHelper.PlayCardOnUnit(Globals.m_selectedCard, GetGameTile().GetOccupyingUnit());
+                        }
+                    }
+                    else
+                    {
+                        AudioHelper.PlaySFX(AudioHelper.UIError);
+                        UIHelper.CreateWorldElementNotification("This doesn't target tiles.", false, gameObject);
+                    }
                 }
             }
         }
@@ -732,5 +689,62 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         }
 
         UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip(building.GetName(), building.GetDesc()));
+    }
+
+    private void HandleLevelBuilderMouseDown()
+    {
+        if (Globals.m_levelCreatorEraserMode)
+        {
+            GameTile gameTile = GetGameTile();
+            if (gameTile.HasSpawnPoint())
+            {
+                gameTile.ClearSpawnPoint();
+            }
+            else if (gameTile.HasEventMarker())
+            {
+                gameTile.ClearEventMarkers();
+            }
+            else if (gameTile.HasBuilding())
+            {
+                gameTile.ClearBuilding();
+            }
+            else if (gameTile.GetTerrain() != null)
+            {
+                gameTile.ClearTerrain();
+            }
+        }
+        else
+        {
+            if (Globals.m_currentlyPaintingType == typeof(GameTerrainBase) && Globals.m_currentlyPaintingTerrain != null)
+            {
+                GetGameTile().SetTerrain(GameTerrainFactory.GetTerrainClone(Globals.m_currentlyPaintingTerrain));
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameBuildingBase) && Globals.m_currentlyPaintingBuilding != null)
+            {
+                GetGameTile().PlaceBuilding(GameBuildingFactory.GetBuildingClone(Globals.m_currentlyPaintingBuilding));
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameSpawnPoint))
+            {
+                if (!GetGameTile().HasSpawnPoint())
+                {
+                    GameSpawnPoint gameSpawnPoint = new GameSpawnPoint();
+                    GetGameTile().SetSpawnPoint(gameSpawnPoint);
+                }
+
+                if (!GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Contains(Globals.m_currentlyPaintingNumberIndex))
+                {
+                    GetGameTile().GetSpawnPoint().m_spawnPointMarkers.Add(Globals.m_currentlyPaintingNumberIndex);
+                    Debug.Log("Add Spawn point index" + Globals.m_currentlyPaintingNumberIndex);
+                }
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(int))
+            {
+                if (!GetGameTile().HasEventMarker(Globals.m_currentlyPaintingNumberIndex))
+                {
+                    GetGameTile().AddEventMarker(Globals.m_currentlyPaintingNumberIndex);
+                    Debug.Log("Add Event Tile index" + Globals.m_currentlyPaintingNumberIndex);
+                }
+            }
+        }
     }
 }

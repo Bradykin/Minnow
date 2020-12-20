@@ -153,11 +153,8 @@ public class WorldUnit : MonoBehaviour
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()))
             {
-                UICard card = Globals.m_selectedCard;
-                WorldController.Instance.PlayCard(Globals.m_selectedCard);
-                card.m_card.PlayCard(GetUnit());
+                GameHelper.PlayCardOnUnit(Globals.m_selectedCard, GetUnit());
                 m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetUnit().GetTeam());
-                WorldController.Instance.PostPlayCard();
             }
             else
             {

@@ -334,4 +334,11 @@ public static class GameHelper
     {
         return GetGameController().GetCurMap().m_id == 0;
     }
+
+    public static void PlayCardOnUnit(UICard card, GameUnit target)
+    {
+        WorldController.Instance.PlayCard(card);
+        card.m_card.PlayCard(target);
+        WorldController.Instance.PostPlayCard();
+    }
 }
