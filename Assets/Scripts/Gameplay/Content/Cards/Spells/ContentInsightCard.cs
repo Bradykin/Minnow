@@ -21,7 +21,7 @@ public class ContentInsightCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MiscEffect;
     }
 
     public override string GetDesc()

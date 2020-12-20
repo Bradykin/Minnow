@@ -11,14 +11,14 @@ public class ContentShivCard : GameCardSpellBase
         m_spellEffect = 4;
 
         m_name = "Shiv";
-        m_targetType = Target.Unit;
+        m_targetType = Target.Enemy;
         m_cost = 0;
         m_rarity = GameRarity.Special;
         m_shouldExile = true;
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

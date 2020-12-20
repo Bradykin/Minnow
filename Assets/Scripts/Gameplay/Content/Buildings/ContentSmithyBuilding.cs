@@ -7,12 +7,12 @@ public class ContentSmithyBuilding : GameBuildingBase
     public ContentSmithyBuilding()
     {
         m_name = "Smithy";
-        m_desc = "A grand boon to production; a smithy will give you a bonus action at the end of each wave it survived in.";
+        m_desc = "A grand boon to production; a smithy will give you a bonus intermission action at the end of each wave it survived in.";
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Economic;
 
         m_maxHealth = 25;
-        m_cost = new GameWallet(130);
+        m_cost = new GameWallet(120);
 
         m_expandsPlaceRange = false;
 

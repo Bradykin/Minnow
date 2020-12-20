@@ -18,7 +18,7 @@ public class ContentWillOfNatureCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Tank, isReceiver: false);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Heal;
     }
 
     public override string GetDesc()

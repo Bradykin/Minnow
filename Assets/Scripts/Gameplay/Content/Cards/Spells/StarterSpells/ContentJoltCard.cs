@@ -15,7 +15,7 @@ public class ContentJoltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Energize;
     }
 
     public override string GetDesc()

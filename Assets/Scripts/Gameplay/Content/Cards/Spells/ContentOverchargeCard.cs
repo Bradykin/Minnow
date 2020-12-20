@@ -18,7 +18,7 @@ public class ContentOverchargeCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MetalBuff;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

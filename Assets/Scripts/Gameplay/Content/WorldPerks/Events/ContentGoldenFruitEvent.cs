@@ -16,7 +16,7 @@ public class ContentGoldenFruitEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameRegenerateKeyword(20));
-        m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 50);
+        m_optionTwo = new GameEventStatsBuffOption(m_tile, 0, 40);
 
         base.LateInit();
     }
@@ -28,7 +28,7 @@ public class ContentGoldenFruitEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here +0/+50 <b>permanently</b>.";
+        return "Give the unit that goes here +0/+40 <b>permanently</b>.";
     }
 }
 

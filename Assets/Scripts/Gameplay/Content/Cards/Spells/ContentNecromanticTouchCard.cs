@@ -22,7 +22,7 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Healing);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.NecromanticTouch;
     }
 
     public override string GetDesc()

@@ -21,7 +21,7 @@ public class ContentChainLightningCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 2);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.LightningBolt;
     }
 
     public override string GetDesc()

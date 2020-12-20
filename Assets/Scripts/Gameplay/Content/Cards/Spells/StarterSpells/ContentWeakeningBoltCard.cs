@@ -15,7 +15,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.MagicBolt;
     }
 
     public override string GetDesc()

@@ -14,7 +14,7 @@ public class ContentSummoningCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MagicEffect;
     }
 
     public override void PlayCard()

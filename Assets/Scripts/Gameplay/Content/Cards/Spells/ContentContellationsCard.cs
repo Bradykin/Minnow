@@ -19,7 +19,7 @@ public class ContentContellationsCard : GameCardSpellBase
 
         m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override string GetDesc()

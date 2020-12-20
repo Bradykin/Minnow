@@ -21,7 +21,7 @@ public class ContentFirestormCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Enrage);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.FireBlast;
     }
 
     public override string GetDesc()

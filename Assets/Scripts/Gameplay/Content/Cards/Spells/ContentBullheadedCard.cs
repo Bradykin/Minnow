@@ -20,7 +20,7 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Enrage);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Bullheaded;
     }
 
     public override void PlayCard(GameUnit targetUnit)

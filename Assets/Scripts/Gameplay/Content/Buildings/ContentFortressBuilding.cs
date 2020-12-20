@@ -12,7 +12,7 @@ public class ContentFortressBuilding : GameBuildingBase
         m_range = 3;
 
         m_name = "Fortress";
-        m_desc = "Damage enemy units on tiles in Range " + m_range + " for " + m_power + " damage at the start of your turn.";
+        m_desc = "Damage enemy units in Range " + m_range + " for " + m_power + " damage at the start of your turn.";
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;

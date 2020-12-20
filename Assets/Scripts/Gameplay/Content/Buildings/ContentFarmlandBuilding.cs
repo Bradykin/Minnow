@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ContentFarmlandBuilding : GameBuildingBase
 {
-    float m_percentageheal = 50.0f;
+    private int m_heal = 20;
 
     public ContentFarmlandBuilding()
     {
         m_range = 2;
         
         m_name = "Farmland";
-        m_desc = $"A safe place to stop and eat, farmland heals all ally units in Range {m_range} for {m_percentageheal}% of their max health at the start of your turn.";
+        m_desc = $"Farmlands heals all ally units in Range {m_range} for {m_heal} at the start of your turn, but does not provide Cover.";
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Defensive;
 
@@ -48,7 +48,7 @@ public class ContentFarmlandBuilding : GameBuildingBase
                 continue;
             }
 
-            unit.Heal(Mathf.CeilToInt(unit.GetMaxHealth() * (m_percentageheal / 100.0f)));
+            unit.Heal(m_heal);
         }
     }
 

@@ -11,7 +11,7 @@ public class ContentTempleBuilding : GameBuildingBase
         m_rarity = GameRarity.Uncommon;
         m_buildingType = BuildingType.Economic;
 
-        m_maxHealth = 25;
+        m_maxHealth = 17;
         m_cost = new GameWallet(130);
 
         m_expandsPlaceRange = false;

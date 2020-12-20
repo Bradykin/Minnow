@@ -19,7 +19,7 @@ public class ContentEndCard : GameCardSpellBase
 
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.LargeImpact;
     }
 
     public override string GetDesc()

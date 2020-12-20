@@ -25,7 +25,7 @@ public class ContentRoarOfVictoryCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Monster);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Fury;
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

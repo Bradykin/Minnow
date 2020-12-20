@@ -17,7 +17,7 @@ public class ContentReforgingCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 2);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate, 2);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MetalBuff;
     }
 
     public override void PlayCard()

@@ -18,7 +18,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.MaxStamina);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SciFiBuffSmall;
     }
 
     public override string GetDesc()

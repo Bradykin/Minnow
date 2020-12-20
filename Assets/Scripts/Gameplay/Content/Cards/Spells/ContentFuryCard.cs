@@ -23,7 +23,7 @@ public class ContentFuryCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Fury;
     }
 
     public override void PlayCard(GameUnit targetUnit)

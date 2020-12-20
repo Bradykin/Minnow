@@ -27,7 +27,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
     public override string GetDesc()
     {
-        m_desc = "Damage a random enemy unit in a range of " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b>(+" + (m_magicPowerMultiplier * GameHelper.GetPlayer().GetMagicPower()) + ") at the start of your turn.";
+        m_desc = "Damage a random enemy unit in a range " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b>(+" + (m_magicPowerMultiplier * GameHelper.GetPlayer().GetMagicPower()) + ") at the start of your turn.";
 
         return m_desc;
     }

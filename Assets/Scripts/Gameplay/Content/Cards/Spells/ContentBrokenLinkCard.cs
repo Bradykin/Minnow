@@ -19,7 +19,7 @@ public class ContentBrokenLinkCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.MagicEffect;
     }
 
     public override string GetDesc()

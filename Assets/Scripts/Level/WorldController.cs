@@ -246,6 +246,8 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
+        Globals.m_curRage = 0;
+
         GamePlayer player = m_gameController.m_player;
 
         List<GameCard> exclusionCards = new List<GameCard>();

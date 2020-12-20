@@ -297,8 +297,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        AudioHelper.PlaySFX(AudioHelper.UnitGetHit);
-
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();
 
         if (enrageKeyword != null)
@@ -866,7 +864,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         GameHelper.GetGameController().AddIntermissionLock();
 
-        AudioHelper.PlaySFX(GetAttackSFX());
+        AudioHelper.PlaySFX(this.GetAttackSFX());
         
         if (spendStamina)
         {
@@ -1554,7 +1552,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (m_gameTile.HasBuilding())
+        if (m_gameTile.HasCoverBuilding())
         {
             return true;
         }

@@ -20,7 +20,7 @@ public class ContentMoonbeamCard : GameCardSpellBase
 
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.LargeImpact;
     }
 
     public override string GetDesc()

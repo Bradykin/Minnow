@@ -18,7 +18,7 @@ public class ContentOptimizeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MiscEffect;
     }
 
     public override string GetDesc()

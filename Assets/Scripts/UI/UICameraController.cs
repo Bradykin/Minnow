@@ -174,6 +174,8 @@ public class UICameraController : Singleton<UICameraController>
             size += m_zoomSpeed * Time.deltaTime;
         }
 
+        size = Mathf.Clamp(size, 5, 15);
+
         GetComponent<Camera>().orthographicSize = size;
     }
 }

@@ -22,7 +22,7 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold, 3);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell); 
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.GoldSpell;
     }
 
     public override void PlayCard(GameUnit targetUnit)

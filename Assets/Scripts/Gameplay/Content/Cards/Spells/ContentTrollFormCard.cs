@@ -21,7 +21,7 @@ public class ContentTrollFormCard : GameCardSpellBase
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.Healing);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.Heal;
     }
 
     public override string GetDesc()

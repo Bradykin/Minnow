@@ -13,11 +13,13 @@ public class ContentMageArmorCard : GameCardSpellBase
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
 
-        m_cost = 1;
+        m_cost = 0;
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_keywordHolder.AddKeyword(new GameDamageReductionKeyword(0));
+
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override string GetDesc()

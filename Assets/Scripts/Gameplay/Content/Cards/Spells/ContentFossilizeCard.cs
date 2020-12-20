@@ -22,7 +22,7 @@ public class ContentFossilizeCard : GameCardSpellBase
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Brittle);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
+        m_onPlaySFX = AudioHelper.SmallDebuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

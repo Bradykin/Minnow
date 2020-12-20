@@ -20,7 +20,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 2);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.MiscEffect;
     }
 
     public override string GetDesc()

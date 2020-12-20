@@ -19,7 +19,7 @@ public class ContentNightWingsCard : GameCardSpellBase
 
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Explorer);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

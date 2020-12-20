@@ -20,7 +20,7 @@ public class ContentBladesCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override void PlayCard(GameUnit targetUnit)

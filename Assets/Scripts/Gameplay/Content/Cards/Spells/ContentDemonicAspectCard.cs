@@ -23,7 +23,7 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
     public override void PlayCard(GameUnit targetUnit)

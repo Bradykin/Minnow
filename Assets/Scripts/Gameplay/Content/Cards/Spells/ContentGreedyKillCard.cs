@@ -21,7 +21,7 @@ public class ContentGreedyKillCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Damage;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

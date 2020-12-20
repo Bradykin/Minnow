@@ -17,7 +17,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Debuff;
+        m_onPlaySFX = AudioHelper.SmallDebuff;
     }
 
     public override string GetDesc()

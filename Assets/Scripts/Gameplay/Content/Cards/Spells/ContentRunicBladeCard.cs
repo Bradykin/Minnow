@@ -21,7 +21,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 2);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
-        m_audioCategory = AudioHelper.SpellAudioCategory.Buff;
+        m_onPlaySFX = AudioHelper.DaggerSwingSpell;
     }
 
     public override string GetDesc()

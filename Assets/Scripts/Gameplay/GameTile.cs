@@ -179,6 +179,21 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         return m_building != null;
     }
 
+    public bool HasCoverBuilding()
+    {
+        if (m_building == null)
+        {
+            return false;
+        }
+
+        if (m_building is ContentFarmlandBuilding)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public override string GetName()
     {
         if (HasBuilding())

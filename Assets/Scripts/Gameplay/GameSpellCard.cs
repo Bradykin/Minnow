@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameCardSpellBase : GameCard
 {
-    protected AudioHelper.SpellAudioCategory m_audioCategory;
     protected AudioClip m_onPlaySFX;
 
     //This is for keywords on the card that we want to display info for.
@@ -14,6 +13,10 @@ public class GameCardSpellBase : GameCard
 
     protected void SetupBasicData()
     {
+        if (m_rarity == GameRarity.Starter)
+        {
+            m_typeline += "Starter ";
+        }
         if (m_shouldExile)
         {
             m_typeline += "Exile ";
