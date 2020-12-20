@@ -32,6 +32,11 @@ public class ContentAegisCard : GameCardSpellBase
         return description;
     }
 
+    public override bool IsValidToPlay(GameUnit targetUnit)
+    {
+        return base.IsValidToPlay(targetUnit) && targetUnit.GetDamageShieldKeyword() == null;
+    }
+
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
