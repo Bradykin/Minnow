@@ -6,6 +6,7 @@ using UnityEngine;
 [SerializeField]
 public class GameDirectorAccount
 {
+    private const int tagWeightMaximums = 10;
     private const int weightDecreaseAcceptCard = 10;
     private const int weightDecreaseDeclineAllOptions = 7;
     private const int weightDecreaseDeclineCard = 3;
@@ -41,6 +42,7 @@ public class GameDirectorAccount
             {
                 cardWeight.curWeight += weightIncreaseNotOfferedCard;
             }
+            cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
             //Debug.Log($"{cardWeight.gameCard.GetName()} adjusted from {curWeight} to {cardWeight.curWeight}");
         }
     }
@@ -72,6 +74,7 @@ public class GameDirectorAccount
             {
                 relicWeight.curWeight += weightIncreaseNotOfferedCard;
             }
+            relicWeight.curWeight = Mathf.Clamp(relicWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
             //Debug.Log($"{relicWeight.gameRelic.GetName()} adjusted from {curWeight} to {relicWeight.curWeight}");
         }
     }
@@ -106,5 +109,20 @@ public class GameDirectorAccount
         relicWeights.Add(relicWeight);
 
         return relicWeight;
+    }
+
+    public int GetTagValueFor(GameElementBase checkElement)
+    {
+        if (checkElement is GameCard gameCard)
+        {
+            return GetCardWeight(gameCard).curWeight;
+        }
+        else if (checkElement is GameRelic gameRelic)
+        {
+            return GetRelicWeight(gameRelic).curWeight;
+        }
+
+        Debug.LogError("GameDirectorAccount does not recognize GameElementBase");
+        return 0;
     }
 }

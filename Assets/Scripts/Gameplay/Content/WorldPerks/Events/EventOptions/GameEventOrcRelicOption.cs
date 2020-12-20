@@ -30,6 +30,8 @@ public class GameEventOrcRelicOption : GameEventOption
             return;
         }
 
+        GameNotificationManager.RecordRelicSingleChoice(m_relic, true);
+
         player.AddRelic(m_relic);
 
         List<GameTile> nearbyTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_tile, 2);

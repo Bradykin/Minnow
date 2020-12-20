@@ -244,10 +244,12 @@ public static class GameRelicFactory
         for (int i = 0; i < relicList.Count; i++)
         {
             int tagWeight = GameTagHolder.GetTagValueFor(relicList[i]);
+            Debug.Log($"{relicList[i].GetBaseName()} with tag weight {tagWeight}");
             if (tagWeight > 0)
             {
                 relicList[i].m_storedTagWeight = tagWeight + totalWeight;
                 totalWeight += tagWeight;
+                //Debug.Log($"{relicList[i].GetBaseName()} with total weight {relicList[i].m_storedTagWeight}");
             }
             else
             {

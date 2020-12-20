@@ -650,7 +650,7 @@ public static class GameCardFactory
         for (int i = 0; i < finalList.Count; i++)
         {
             int tagWeight = GameTagHolder.GetTagValueFor(finalList[i]);
-            //Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
+            Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
             if (tagWeight > 0)
             {
                 totalWeight += tagWeight;

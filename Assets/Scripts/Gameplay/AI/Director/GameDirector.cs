@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class GameDirector
 {
-    public GameDirectorAccount GameDirectorAccount
+    private const int tagWeightBaseValue = 10;
+
+    private GameDirectorAccount GameDirectorAccount
     {
         get
         {
@@ -22,7 +24,7 @@ public class GameDirector
     }
     private GameDirectorAccount m_gameDirectorAccount;
 
-    public GameDirectorRun GameDirectorRun
+    private GameDirectorRun GameDirectorRun
     {
         get
         {
@@ -42,11 +44,18 @@ public class GameDirector
     public void RecordCardChoice(in GameCard cardChoice, in GameCard optionOne, in GameCard optionTwo, in GameCard optionThree)
     {
         GameDirectorAccount.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
+        GameDirectorRun.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
     }
 
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         GameDirectorAccount.RecordRelicChoice(relicChoice, optionOne, optionTwo);
+        GameDirectorRun.RecordRelicChoice(relicChoice, optionOne, optionTwo);
+    }
+
+    public int GetTagValueFor(GameElementBase checkElement)
+    {
+        return tagWeightBaseValue + GameDirectorAccount.GetTagValueFor(checkElement) + GameDirectorRun.GetTagValueFor(checkElement);
     }
 
     public void SaveGameDirectorData()

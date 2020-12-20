@@ -25,6 +25,8 @@
             return;
         }
 
+        GameNotificationManager.RecordCardSingleChoice(m_card, true);
+
         player.AddCardToDiscard(GameCardFactory.GetCardClone(m_card), true);
 
         EndEvent();

@@ -28,6 +28,8 @@
             return;
         }
 
+        GameNotificationManager.RecordRelicSingleChoice(m_relic, true);
+
         player.AddRelic(m_relic);
 
         EndEvent();

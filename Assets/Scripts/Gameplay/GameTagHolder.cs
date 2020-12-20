@@ -82,7 +82,8 @@ public class GameTagHolder
 
     public static int GetTagValueFor(GameElementBase checkElement)
     {
-        return GameNotificationManager.GameDirector.GameDirectorRun.GetTagValueFor(checkElement);
+        return GameNotificationManager.GameDirector.GetTagValueFor(checkElement);
+    }
         
         /*int tagValue = 12;
 
@@ -208,7 +209,6 @@ public class GameTagHolder
         //Can technically return below 0; but it will be treated as a 0% change to obtain.  Leaving it for interest's sake to see what some things get to.
 
         return tagValue;*/
-    }
 
     //These tags push the player away from receiving more of this type
     /*public static bool IsPushTag(TagType tagType)

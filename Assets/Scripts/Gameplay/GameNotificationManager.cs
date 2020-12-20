@@ -13,10 +13,20 @@ public static class GameNotificationManager
         GameDirector.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
     }
 
+    public static void RecordCardSingleChoice(in GameCard cardOption, bool taken)
+    {
+
+    }
+
     public static void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         AnalyticsManager.RecordRelicChoice(relicChoice, optionOne, optionTwo);
         GameDirector.RecordRelicChoice(relicChoice, optionOne, optionTwo);
+    }
+
+    public static void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
+    {
+
     }
 
     public static void SaveGameDirectorData()
