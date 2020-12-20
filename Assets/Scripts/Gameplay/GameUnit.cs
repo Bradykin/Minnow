@@ -1552,7 +1552,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             return false;
         }
 
-        if (m_gameTile.HasBuilding())
+        if (m_gameTile.HasCoverBuilding())
         {
             return true;
         }
