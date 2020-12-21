@@ -646,6 +646,7 @@ public static class GameCardFactory
         finalListBeforeTagWeights.AddRange(finalList);
 
         //Use the tag weights + randomization to get the correct card here.
+        Debug.Log("Checking tag weights for all options on this random card query.");
         int totalWeight = 0;
         for (int i = 0; i < finalList.Count; i++)
         {

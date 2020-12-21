@@ -239,6 +239,7 @@ public static class GameRelicFactory
         List<GameRelic> relicListBeforeTagWeights = new List<GameRelic>();
         relicListBeforeTagWeights.AddRange(relicList);
 
+        Debug.Log("Checking tag weights for all options on this random relic query.");
         //Use the tag weights + randomization to get the correct card here.
         int totalWeight = 0;
         for (int i = 0; i < relicList.Count; i++)
