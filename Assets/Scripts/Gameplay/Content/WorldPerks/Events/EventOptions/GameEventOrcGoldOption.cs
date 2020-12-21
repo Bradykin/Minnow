@@ -69,6 +69,12 @@ public class GameEventOrcGoldOption : GameEventOption
         EndEvent();
     }
 
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
+
     public override void BuildTooltip()
     {
         UIHelper.CreateUnitTooltip(m_orcCheckerUnit);

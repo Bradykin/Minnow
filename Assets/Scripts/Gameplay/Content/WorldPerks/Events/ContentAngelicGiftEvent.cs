@@ -64,6 +64,12 @@ public class GameEventAngelicWings : GameEventOption
         EndEvent();
     }
 
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
+
     public override void BuildTooltip()
     {
         GameFlyingKeyword keyword = new GameFlyingKeyword();

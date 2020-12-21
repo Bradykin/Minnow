@@ -35,6 +35,11 @@
         EndEvent();
     }
 
+    public override void DeclineOption()
+    {
+        GameNotificationManager.RecordRelicSingleChoice(m_relic, false);
+    }
+
     public override void BuildTooltip()
     {
         UIHelper.CreateRelicTooltip(m_relic);

@@ -67,6 +67,12 @@ public class GameEventBreakBarricadeOption : GameEventOption
         EndEvent();
     }
 
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
+
     public override void BuildTooltip()
     {
         if (m_tile.GetOccupyingUnit() == null)

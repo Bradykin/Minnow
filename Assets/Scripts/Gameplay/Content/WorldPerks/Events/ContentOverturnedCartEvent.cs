@@ -57,4 +57,10 @@ public class GameEventTakeGoldOption : GameEventOption
         player.GainGold(m_value);
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
 }

@@ -67,6 +67,12 @@ public class GameEventTakeHorsesOption : GameEventOption
         EndEvent();
     }
 
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
+
     public override void BuildTooltip()
     {
          UIHelper.CreateUnitTooltip(m_tile.GetOccupyingUnit());

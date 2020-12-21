@@ -57,6 +57,12 @@ public class GameEventSpeedTimeOption : GameEventOption
 
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
 }
 
 public class GameEventSlowTimeOption : GameEventOption
@@ -87,5 +93,11 @@ public class GameEventSlowTimeOption : GameEventOption
         WorldController.Instance.m_gameController.CheckStartIntermission();*/
 
         EndEvent();
+    }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
     }
 }

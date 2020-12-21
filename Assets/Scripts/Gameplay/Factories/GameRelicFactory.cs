@@ -258,7 +258,7 @@ public static class GameRelicFactory
                 totalWeight += tagWeight;
                 if (Constants.GameDirectorTestPrints)
                 {
-                    Debug.Log($"{relicList[i].GetBaseName()} with total weight {relicList[i].m_storedTagWeight}");
+                    //Debug.Log($"{relicList[i].GetBaseName()} with total weight {relicList[i].m_storedTagWeight}");
                 }
             }
             else

@@ -57,8 +57,17 @@ public class UIEventController : Singleton<UIEventController>
         m_holder.SetActive(true);
     }
 
-    public void EndEvent()
+    public void EndEvent(GameEventOption acceptedOption)
     {
+        if (m_event.m_optionOne == acceptedOption)
+        {
+            m_event.m_optionTwo.DeclineOption();
+        }
+        else if (m_event.m_optionTwo == acceptedOption)
+        {
+            m_event.m_optionOne.DeclineOption();
+        }
+        
         Globals.m_canSelect = true;
         m_event.m_isComplete = true;
         m_holder.SetActive(false);

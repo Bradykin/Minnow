@@ -76,6 +76,12 @@ public class GameEventFirestormOption : GameEventOption
 
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+        
+    }
 }
 
 public class GameEventConsumeFireOption : GameEventOption
@@ -99,5 +105,11 @@ public class GameEventConsumeFireOption : GameEventOption
         m_tile.GetOccupyingUnit().AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_toGrow, 0)), true, false);
 
         EndEvent();
+    }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
     }
 }

@@ -69,6 +69,11 @@ public class GameEventHelpMillitiaOption : GameEventOption
         EndEvent();
     }
 
+    public override void DeclineOption()
+    {
+        GameNotificationManager.RecordCardSingleChoice(m_card, false);
+    }
+
     public override void BuildTooltip()
     {
         if (m_tile.GetOccupyingUnit() == null)

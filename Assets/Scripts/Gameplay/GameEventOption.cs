@@ -8,13 +8,15 @@ public abstract class GameEventOption
     protected string m_message;
 
     public abstract void AcceptOption();
+    public abstract void DeclineOption();
+
     public virtual bool IsOptionValid() { return true; }
 
     public int m_experienceAmount = 50;
 
     public virtual void EndEvent()
     {
-        UIEventController.Instance.EndEvent();
+        UIEventController.Instance.EndEvent(this);
         GameHelper.GetGameController().AddEventExp(m_experienceAmount);
     }
 

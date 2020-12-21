@@ -54,6 +54,12 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
 }
 
 public class GameEventDamageReductionOption : GameEventOption
@@ -76,6 +82,12 @@ public class GameEventDamageReductionOption : GameEventOption
         m_tile.GetOccupyingUnit().AddKeyword(new GameDamageReductionKeyword(m_damageReduction), true, true);
 
         EndEvent();
+    }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
     }
 }
 
@@ -101,5 +113,11 @@ public class GameEventProphecyTakeGoldOption : GameEventOption
 
         player.GainGold(m_value);
         EndEvent();
+    }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
     }
 }

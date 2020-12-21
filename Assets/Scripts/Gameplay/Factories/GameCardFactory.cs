@@ -664,7 +664,7 @@ public static class GameCardFactory
                 finalList[i].m_storedTagWeight = totalWeight;
                 if (Constants.GameDirectorTestPrints)
                 {
-                    Debug.Log($"{finalList[i].GetBaseName()} with total weight {finalList[i].m_storedTagWeight}");
+                    //Debug.Log($"{finalList[i].GetBaseName()} with total weight {finalList[i].m_storedTagWeight}");
                 }
             }
             else

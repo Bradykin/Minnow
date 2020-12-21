@@ -54,4 +54,10 @@ public class GameEventDuplicateCardOption : GameEventOption
 
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
 }

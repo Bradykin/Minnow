@@ -73,4 +73,10 @@ public class GameEventHealCastle : GameEventOption
 
         EndEvent();
     }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
+    }
 }

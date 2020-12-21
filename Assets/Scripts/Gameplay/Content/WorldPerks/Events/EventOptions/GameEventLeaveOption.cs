@@ -12,6 +12,12 @@
 
     public override void AcceptOption()
     {
-        UIEventController.Instance.EndEvent();
+        UIEventController.Instance.EndEvent(this);
+    }
+
+    //Intentionally left blank
+    public override void DeclineOption()
+    {
+
     }
 }
