@@ -9,8 +9,18 @@ public class AnalyticsManager
         
     }
 
+    public void RecordCardSingleChoice(in GameCard cardOption, bool taken)
+    {
+
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         
+    }
+
+    public void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
+    {
+
     }
 }

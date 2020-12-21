@@ -18,11 +18,27 @@ public class GameDirectorRun
         }
     }
 
+    public void RecordCardSingleChoice(in GameCard cardOption, bool taken)
+    {
+        if (taken)
+        {
+            AddTagValue(cardOption.m_tagHolder.m_tags);
+        }
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         if (relicChoice != null)
         {
             AddTagValue(relicChoice.m_tagHolder.m_tags);
+        }
+    }
+
+    public void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
+    {
+        if (taken)
+        {
+            AddTagValue(relicOption.m_tagHolder.m_tags);
         }
     }
 

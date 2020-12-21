@@ -6,6 +6,6 @@ using UnityEngine;
 [Serializable]
 public class GameDirectorRelicWeight
 {
-    public GameRelic gameRelic;
+    public string gameRelicName;
     public int curWeight;
 }

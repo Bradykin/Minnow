@@ -46,11 +46,23 @@ public class GameDirector
         GameDirectorAccount.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
         GameDirectorRun.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
     }
+    
+    public void RecordCardSingleChoice(in GameCard cardOption, bool taken)
+    {
+        GameDirectorAccount.RecordCardSingleChoice(cardOption, taken);
+        GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
+    }
 
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         GameDirectorAccount.RecordRelicChoice(relicChoice, optionOne, optionTwo);
         GameDirectorRun.RecordRelicChoice(relicChoice, optionOne, optionTwo);
+    }
+
+    public void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
+    {
+        GameDirectorAccount.RecordRelicSingleChoice(relicOption, taken);
+        GameDirectorRun.RecordRelicSingleChoice(relicOption, taken);
     }
 
     public int GetTagValueFor(GameElementBase checkElement)

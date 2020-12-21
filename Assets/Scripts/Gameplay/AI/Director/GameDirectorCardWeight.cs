@@ -6,6 +6,6 @@ using UnityEngine;
 [Serializable]
 public class GameDirectorCardWeight
 {
-    public GameCard gameCard;
+    public string gameCardName;
     public int curWeight;
 }
