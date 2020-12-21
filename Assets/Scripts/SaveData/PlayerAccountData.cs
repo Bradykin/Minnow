@@ -107,6 +107,7 @@ public class PlayerAccountData
     {
         m_playerRunData = null;
         Files.ClearPlayerRunData();
+        Files.ClearGameDirectorRunData();
         m_hasPlayerRunData = false;
     }
 }

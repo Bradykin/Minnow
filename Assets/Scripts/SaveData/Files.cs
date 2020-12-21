@@ -159,6 +159,20 @@ public static class Files
         return export;
     }
 
+    public static GameDirectorAccount ClearGameDirectorAccountData()
+    {
+        string path;
+#if UNITY_EDITOR
+        path = Path.Combine(Files.EDITOR_PATH, GAME_DIRECTOR_ACCOUNT_DATA_PATH);
+#else
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, GAME_DIRECTOR_ACCOUNT_DATA_PATH);
+#endif
+
+        File.Delete(path);
+
+        return ImportGameDirectorAccountData();
+    }
+
     public static GameDirectorRun ImportGameDirectorRunData()
     {
         string path;
@@ -189,5 +203,20 @@ public static class Files
 #endif
 
         return export;
+    }
+
+
+    public static GameDirectorRun ClearGameDirectorRunData()
+    {
+        string path;
+#if UNITY_EDITOR
+        path = Path.Combine(Files.EDITOR_PATH, GAME_DIRECTOR_RUN_DATA_PATH);
+#else
+        path = Path.Combine(Files.PERSISTENT_SAVE_BUILD_PATH, GAME_DIRECTOR_RUN_DATA_PATH);
+#endif
+
+        File.Delete(path);
+
+        return ImportGameDirectorRunData();
     }
 }

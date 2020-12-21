@@ -225,6 +225,9 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         PlayerDataManager.ClearPlayerAccountData();
 
         Files.ClearPlayerAccountData();
+        Files.ClearPlayerRunData();
+        Files.ClearGameDirectorAccountData();
+        Files.ClearGameDirectorRunData();
 
         UIStarterCardSelectionController.Instance.ResetStarterCardInit();
     }

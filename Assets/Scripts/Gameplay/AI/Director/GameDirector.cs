@@ -53,6 +53,11 @@ public class GameDirector
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public void RecordCardUnlock(in GameCard cardUnlocked)
+    {
+        GameDirectorAccount.RecordCardUnlock(cardUnlocked);
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         GameDirectorAccount.RecordRelicChoice(relicChoice, optionOne, optionTwo);
@@ -63,6 +68,11 @@ public class GameDirector
     {
         GameDirectorAccount.RecordRelicSingleChoice(relicOption, taken);
         GameDirectorRun.RecordRelicSingleChoice(relicOption, taken);
+    }
+
+    public void RecordRelicUnlock(in GameRelic relicUnlocked)
+    {
+        GameDirectorAccount.RecordRelicUnlock(relicUnlocked);
     }
 
     public int GetTagValueFor(GameElementBase checkElement)

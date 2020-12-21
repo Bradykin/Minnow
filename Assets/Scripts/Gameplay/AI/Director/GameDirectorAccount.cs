@@ -7,13 +7,21 @@ using UnityEngine;
 public class GameDirectorAccount
 {
     private const int tagWeightMaximums = 10;
+
     private const int weightDecreaseAcceptCard = 10;
-    private const int weightDecreaseDeclineAllOptions = 7;
+    private const int weightDecreaseDeclineAllCardOptions = 7;
     private const int weightDecreaseDeclineCard = 3;
     private const int weightIncreaseNotOfferedCard = 1;
     private const int weightDecreaseAcceptSingleCardOption = 10;
     private const int weightDecreaseDeclineSingleCardOption = 3;
-    
+
+    private const int weightDecreaseAcceptRelic = 10;
+    private const int weightDecreaseDeclineAllRelicOptions = 7;
+    private const int weightDecreaseDeclineRelic = 6;
+    private const int weightIncreaseNotOfferedRelic = 1;
+    private const int weightDecreaseAcceptSingleRelicOption = 10;
+    private const int weightDecreaseDeclineSingleRelicOption = 3;
+
     public List<GameDirectorCardWeight> cardWeights = new List<GameDirectorCardWeight>();
     public List<GameDirectorRelicWeight> relicWeights = new List<GameDirectorRelicWeight>();
 
@@ -37,7 +45,7 @@ public class GameDirectorAccount
                 }
                 else
                 {
-                    cardWeight.curWeight -= weightDecreaseDeclineAllOptions;
+                    cardWeight.curWeight -= weightDecreaseDeclineAllCardOptions;
                 }
             }
             else
@@ -64,6 +72,13 @@ public class GameDirectorAccount
         cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
+    public void RecordCardUnlock(in GameCard cardUnlocked)
+    {
+        GameDirectorCardWeight cardWeight = GetCardWeight(cardUnlocked);
+
+        cardWeight.curWeight = tagWeightMaximums;
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         IReadOnlyList<GameRelic> affectedRelics = GameRelicFactory.GetRelicListAtRarity(optionOne.m_rarity);
@@ -74,22 +89,22 @@ public class GameDirectorAccount
             int curWeight = relicWeight.curWeight;
             if (relicChoice != null && relicWeight.gameRelicName == relicChoice.GetBaseName())
             {
-                relicWeight.curWeight -= weightDecreaseAcceptCard;
+                relicWeight.curWeight -= weightDecreaseAcceptRelic;
             }
             else if (relicWeight.gameRelicName == optionOne.GetBaseName() || relicWeight.gameRelicName == optionTwo.GetBaseName())
             {
                 if (relicChoice != null)
                 {
-                    relicWeight.curWeight -= weightDecreaseDeclineCard;
+                    relicWeight.curWeight -= weightDecreaseDeclineRelic;
                 }
                 else
                 {
-                    relicWeight.curWeight -= weightDecreaseDeclineAllOptions;
+                    relicWeight.curWeight -= weightDecreaseDeclineAllRelicOptions;
                 }
             }
             else
             {
-                relicWeight.curWeight += weightIncreaseNotOfferedCard;
+                relicWeight.curWeight += weightIncreaseNotOfferedRelic;
             }
             relicWeight.curWeight = Mathf.Clamp(relicWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
             //Debug.Log($"{relicWeight.gameRelic.GetBaseName()} adjusted from {curWeight} to {relicWeight.curWeight}");
@@ -102,13 +117,20 @@ public class GameDirectorAccount
 
         if (taken)
         {
-            relicWeight.curWeight -= weightDecreaseAcceptSingleCardOption;
+            relicWeight.curWeight -= weightDecreaseAcceptSingleRelicOption;
         }
         else
         {
-            relicWeight.curWeight -= weightDecreaseDeclineSingleCardOption;
+            relicWeight.curWeight -= weightDecreaseDeclineSingleRelicOption;
         }
         relicWeight.curWeight = Mathf.Clamp(relicWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
+    }
+
+    public void RecordRelicUnlock(in GameRelic relicUnlocked)
+    {
+        GameDirectorRelicWeight relicWeight = GetRelicWeight(relicUnlocked);
+
+        relicWeight.curWeight = tagWeightMaximums;
     }
 
     public GameDirectorCardWeight GetCardWeight(GameCard gameCard)

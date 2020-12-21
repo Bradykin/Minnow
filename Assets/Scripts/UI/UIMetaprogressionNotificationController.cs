@@ -24,6 +24,21 @@ public static class UIMetaprogressionNotificationController
 
     public static void AddReward(GameMetaprogressionReward reward)
     {
+        if (reward.IsCards())
+        {
+            for (int i = 0; i < reward.GetCards().Count; i++)
+            {
+                GameNotificationManager.RecordCardUnlock(reward.GetCards()[i]);
+            }
+        }
+        else if (reward.IsRelics())
+        {
+            for (int i = 0; i < reward.GetRelics().Count; i++)
+            {
+                GameNotificationManager.RecordRelicUnlock(reward.GetRelics()[i]);
+            }
+        }
+        
         m_rewardsToShow.Add(reward);
     }
 
