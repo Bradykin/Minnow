@@ -43,14 +43,17 @@ public class GameDirector
 
     public void RecordCardChoice(in GameCard cardChoice, in GameCard optionOne, in GameCard optionTwo, in GameCard optionThree)
     {
-        Debug.Log($"Game Director registering being offered one of {optionOne.GetBaseName()} {optionTwo.GetBaseName()} {optionThree.GetBaseName()}.");
-        if (cardChoice == null)
+        if (Constants.GameDirectorTestPrints)
         {
-            Debug.Log("Game Director registering not taking any option");
-        }
-        else
-        {
-            Debug.Log($"Game Director registering taking {cardChoice.GetBaseName()}");
+            Debug.Log($"Game Director registering being offered one of {optionOne.GetBaseName()} {optionTwo.GetBaseName()} {optionThree.GetBaseName()}.");
+            if (cardChoice == null)
+            {
+                Debug.Log("Game Director registering not taking any option");
+            }
+            else
+            {
+                Debug.Log($"Game Director registering taking {cardChoice.GetBaseName()}");
+            }
         }
         GameDirectorAccount.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
         GameDirectorRun.RecordCardChoice(cardChoice, optionOne, optionTwo, optionThree);
@@ -58,27 +61,36 @@ public class GameDirector
     
     public void RecordCardSingleChoice(in GameCard cardOption, bool taken)
     {
-        Debug.Log($"Game Director registering being offered {cardOption.GetBaseName()} and {taken} value for taking it.");
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering being offered {cardOption.GetBaseName()} and {taken} value for taking it.");
+        }
         GameDirectorAccount.RecordCardSingleChoice(cardOption, taken);
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
     public void RecordCardUnlock(in GameCard cardUnlocked)
     {
-        Debug.Log($"Game Director registering unlocking {cardUnlocked.GetBaseName()}.");
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering unlocking {cardUnlocked.GetBaseName()}.");
+        }
         GameDirectorAccount.RecordCardUnlock(cardUnlocked);
     }
 
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
-        Debug.Log($"Game Director registering being offered one of {optionOne.GetBaseName()} {optionTwo.GetBaseName()}.");
-        if (relicChoice == null)
+        if (Constants.GameDirectorTestPrints)
         {
-            Debug.Log("Game Director registering not taking any option");
-        }
-        else
-        {
-            Debug.Log($"Game Director registering taking {relicChoice.GetBaseName()}");
+            Debug.Log($"Game Director registering being offered one of {optionOne.GetBaseName()} {optionTwo.GetBaseName()}.");
+            if (relicChoice == null)
+            {
+                Debug.Log("Game Director registering not taking any option");
+            }
+            else
+            {
+                Debug.Log($"Game Director registering taking {relicChoice.GetBaseName()}");
+            }
         }
         GameDirectorAccount.RecordRelicChoice(relicChoice, optionOne, optionTwo);
         GameDirectorRun.RecordRelicChoice(relicChoice, optionOne, optionTwo);
@@ -86,14 +98,20 @@ public class GameDirector
 
     public void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
     {
-        Debug.Log($"Game Director registering being offered {relicOption.GetBaseName()} and {taken} value for taking it.");
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering being offered {relicOption.GetBaseName()} and {taken} value for taking it.");
+        }
         GameDirectorAccount.RecordRelicSingleChoice(relicOption, taken);
         GameDirectorRun.RecordRelicSingleChoice(relicOption, taken);
     }
 
     public void RecordRelicUnlock(in GameRelic relicUnlocked)
     {
-        Debug.Log($"Game Director registering unlocking {relicUnlocked.GetBaseName()}.");
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering unlocking {relicUnlocked.GetBaseName()}.");
+        }
         GameDirectorAccount.RecordRelicUnlock(relicUnlocked);
     }
 

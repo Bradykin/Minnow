@@ -646,17 +646,26 @@ public static class GameCardFactory
         finalListBeforeTagWeights.AddRange(finalList);
 
         //Use the tag weights + randomization to get the correct card here.
-        Debug.Log("Checking tag weights for all options on this random card query.");
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log("Checking tag weights for all options on this random card query.");
+        }
         int totalWeight = 0;
         for (int i = 0; i < finalList.Count; i++)
         {
             int tagWeight = GameTagHolder.GetTagValueFor(finalList[i]);
-            Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
+            if (Constants.GameDirectorTestPrints)
+            {
+                Debug.Log($"{finalList[i].GetBaseName()} with tag weight {tagWeight}");
+            }
             if (tagWeight > 0)
             {
                 totalWeight += tagWeight;
                 finalList[i].m_storedTagWeight = totalWeight;
-                //Debug.Log($"{finalList[i].GetBaseName()} with total weight {finalList[i].m_storedTagWeight}");
+                if (Constants.GameDirectorTestPrints)
+                {
+                    Debug.Log($"{finalList[i].GetBaseName()} with total weight {finalList[i].m_storedTagWeight}");
+                }
             }
             else
             {
