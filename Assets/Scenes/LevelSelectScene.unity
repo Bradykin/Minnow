@@ -261,6 +261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HardLakesideButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -408,6 +413,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrimsonIslandsButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -487,6 +497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpreadingCorruptionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
         type: 3}
@@ -738,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertPassButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -817,6 +837,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TheMarshlandsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825775301688125324, guid: 4259ab68733489a428afec1426801dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5825775301688125325, guid: 4259ab68733489a428afec1426801dd4,
         type: 3}
