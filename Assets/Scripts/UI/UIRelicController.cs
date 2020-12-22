@@ -12,6 +12,17 @@ public class UIRelicController : Singleton<UIRelicController>
         m_relics.Add(FactoryManager.Instance.GetFactory<UIRelicFactory>().CreateObject<UIRelic>(relic, transform));
     }
 
+    public void TriggerRelicAnimation<T>()
+    {
+        for (int i = 0; i < m_relics.Count; i++)
+        {
+            if (m_relics[i].m_relic is T val)
+            {
+                m_relics[i].OnTrigger();
+            }
+        }
+    }
+
     void Update()
     {
         for (int i = 0; i < m_relics.Count; i++)

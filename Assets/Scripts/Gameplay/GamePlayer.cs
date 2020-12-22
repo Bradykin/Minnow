@@ -538,6 +538,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += 1;
+            UIHelper.TriggerRelicAnimation<ContentMaskOfAgesRelic>();
         }
 
         if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())

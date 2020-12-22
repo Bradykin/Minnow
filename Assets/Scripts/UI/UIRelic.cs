@@ -19,6 +19,7 @@ public class UIRelic : UIElementBase
     public GameRelic m_relic;
     private RelicSelectionType m_selectionType;
     public UIRelicPickupAnimation m_pickupAnimation;
+    public UIRelicTriggerAnimation m_triggerAnimation;
 
     public Image m_image;
     public Image m_rarityFrame;
@@ -94,6 +95,11 @@ public class UIRelic : UIElementBase
         {
             m_lockIcon.SetActive(m_isLocked);
         }
+    }
+
+    public void OnTrigger()
+    {
+        m_triggerAnimation.PlayAnim();
     }
 
     public override void HandleTooltip()

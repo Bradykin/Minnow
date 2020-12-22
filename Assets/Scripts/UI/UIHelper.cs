@@ -783,6 +783,11 @@ public static class UIHelper
         CreateWorldElementNotificationImpl(message, color, positionObj);
     }
 
+    public static void TriggerRelicAnimation<T>()
+    {
+        UIRelicController.Instance.TriggerRelicAnimation<T>();
+    }
+
     public static UISimpleTooltip CreateSimpleTooltip(string name, string desc)
     {
         return FactoryManager.Instance.GetFactory<UISimpleTooltipFactory>().CreateObject<UISimpleTooltip>(name, desc);

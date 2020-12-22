@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tintImage: {fileID: 3571551141680600083}
   m_pickupAnimation: {fileID: 8860058625666974213}
+  m_triggerAnimation: {fileID: 7116562010442084930}
   m_image: {fileID: 6180159291116876669}
   m_rarityFrame: {fileID: 1904548704206758378}
   m_isLocked: 0
@@ -692,6 +693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2574938565275128949}
   - component: {fileID: 8860058625666974213}
+  - component: {fileID: 7116562010442084930}
   m_Layer: 10
   m_Name: RelicArt
   m_TagString: Untagged
@@ -732,9 +734,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba930f914643fc4abbfd94cd876a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maskImage: {fileID: 4483669495962611784}
-  m_image: {fileID: 6180159291116876669}
-  m_rarityFrame: {fileID: 1904548704206758378}
+--- !u!114 &7116562010442084930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587688603514917992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fad77c4f19aa347b6e2eaaaa6f79e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7316009708942126417
 GameObject:
   m_ObjectHideFlags: 0
