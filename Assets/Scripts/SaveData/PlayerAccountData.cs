@@ -7,6 +7,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
+    public static readonly Version VERSION = new Version(1, 0, 0, 0);
+
     [JsonIgnore]
     public PlayerRunData PlayerRunData
     {
