@@ -980,25 +980,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        if (other.m_isDestroyed)
-        {
-            GameVictoriousKeyword victoriousKeyword = GetVictoriousKeyword();
-
-            if (victoriousKeyword != null)
-            {
-                victoriousKeyword.DoAction();
-
-                //Repeat the action if the player has the Bestial Wrath Relic
-                if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
-                {
-                    if (GameHelper.HasRelic<ContentBestialWrathRelic>())
-                    {
-                        victoriousKeyword.DoAction();
-                    }
-                }
-            }
-        }
-
         if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
             for (int i = 0; i < tilesToCleave.Count; i++)
