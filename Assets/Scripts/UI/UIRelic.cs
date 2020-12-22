@@ -18,6 +18,7 @@ public class UIRelic : UIElementBase
 
     public GameRelic m_relic;
     private RelicSelectionType m_selectionType;
+    public UIRelicPickupAnimation m_pickupAnimation;
 
     public Image m_image;
     public Image m_rarityFrame;
@@ -76,6 +77,8 @@ public class UIRelic : UIElementBase
 
             m_titleText.gameObject.SetActive(false);
             m_descText.gameObject.SetActive(false);
+
+            m_pickupAnimation.PlayAnim();
         }
 
         if (m_selectionType == RelicSelectionType.SelectStarter)

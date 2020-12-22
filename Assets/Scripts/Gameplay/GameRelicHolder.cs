@@ -45,6 +45,11 @@ public class GameRelicHolder : ISave<JsonGameRelicHolderData>, ILoad<JsonGameRel
         return null;
     }
 
+    public int GetSize()
+    {
+        return m_relics.Count;
+    }
+
     public List<GameRelic> GetRelicListForRead()
     {
         return m_relics;

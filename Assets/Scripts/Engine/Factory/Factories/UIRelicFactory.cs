@@ -25,14 +25,25 @@ namespace Game.Util
             return Object.Instantiate(m_prefab);
         }
 
-        public override GameObject CreateGameObject(Transform parent)
+        public GameObject CreateGameObject(Transform parent, Vector3 position)
         {
-            return Object.Instantiate(m_prefab, parent);
+            return Object.Instantiate(m_prefab, position, Quaternion.identity, parent);
         }
 
         public T CreateObject<T>(GameRelic relic, Transform parent)
         {
-            GameObject obj = CreateGameObject(parent);
+            GamePlayer player = GameHelper.GetPlayer();
+
+            GameObject obj;
+
+            if (player == null)
+            {
+                 obj = CreateGameObject(parent, new Vector3(0,0,0));
+            }
+            else
+            {
+                obj = CreateGameObject(parent, new Vector3(200.0f + player.GetRelics().GetSize() * 60.0f, -25.0f, 0.0f));
+            }
 
             obj.GetComponent<UIRelic>().Init(relic, UIRelic.RelicSelectionType.View);
 
