@@ -16,7 +16,7 @@ public class UIRageCounter : UIElementBase
 
     void Update()
     {
-        m_countText.text = $"{Globals.m_curRage}";
+        m_countText.text = $"{GameHelper.GetGameController().m_curRage}";
     }
 
     public override void HandleTooltip()
