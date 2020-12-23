@@ -29,6 +29,12 @@ public class UICardSelectSkipButton : UIElementBase
 
         UICardSelectController.Instance.SkipSelection();
         m_tintImage.color = UIHelper.GetDefaultTintColor();
+
+        if (Globals.m_selectedCard.m_unitCard != null)
+        {
+            UIHelper.TriggerSpellCardSelction();
+        }
+
         Globals.m_selectedCard = null;
     }
 

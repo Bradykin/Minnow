@@ -18,12 +18,12 @@ public class ContentMetalCyclopsEnemy : GameEnemyUnit
 
         m_name = "Metal Cyclops";
         
-        m_desc = "When this unit gets attacked, if it survives, it attacks back instantly.";
+        m_desc = "When this unit gets attacked, if it survives, it attacks back instantly.\n";
 
         AddKeyword(new GameCleaveKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc = "When this unit gets attacked, if it survives, it attacks back instantly without spending stamina.";
+            m_desc = "When this unit gets attacked, if it survives, it attacks back instantly without spending stamina.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

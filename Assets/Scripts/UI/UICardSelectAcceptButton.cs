@@ -30,7 +30,6 @@ public class UICardSelectAcceptButton : UIElementBase
         UICardSelectController.Instance.AcceptCard(Globals.m_selectedCard.m_card);
         m_tintImage.color = UIHelper.GetDefaultTintColor();
 
-
         if (Globals.m_selectedCard.m_unitCard != null)
         {
             UIHelper.TriggerSpellCardSelction();
