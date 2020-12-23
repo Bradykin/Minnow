@@ -372,7 +372,7 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             }
             else if (GetTerrain().IsMountain() && checkerUnit.GetMountainwalkKeyword() != null)
             {
-                tileValue = GetTerrain().GetCostToPass();
+                tileValue = 1;
                 buildingOverrideValue = false;
             }
             else if (GetTerrain().IsHill() && checkerUnit.GetMountainwalkKeyword() != null)

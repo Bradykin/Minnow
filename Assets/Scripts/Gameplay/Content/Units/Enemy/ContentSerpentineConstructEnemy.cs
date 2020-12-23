@@ -18,7 +18,7 @@ public class ContentSerpentineConstructEnemy : GameEnemyUnit
 
         m_name = "Serpentine Construct";
         
-        m_desc = "By staying low to the ground, this unit cannot be targeted at range.";
+        m_desc = "By staying low to the ground, this unit cannot be targeted at range.\n";
 
         AddKeyword(new GameDamageReductionKeyword(4), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

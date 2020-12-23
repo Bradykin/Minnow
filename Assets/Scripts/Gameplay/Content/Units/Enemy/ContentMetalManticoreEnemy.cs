@@ -18,7 +18,7 @@ public class ContentMetalManticoreEnemy : GameEnemyUnit
 
         m_name = "Metal Manticore";
         
-        m_desc = "Any damage that pierces this unit's damage reduction is tripled.";
+        m_desc = "Any damage that pierces this unit's damage reduction is tripled.\n";
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameDamageReductionKeyword(20), true, false);

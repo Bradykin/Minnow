@@ -276,7 +276,10 @@ public class WorldController : Singleton<WorldController>
                 UIHelper.TriggerRelicAnimation<ContentHarvestOfTelumRelic>();
             }
 
-            player.GainGold(intermissionWallet.m_gold);
+            if (intermissionWallet.m_gold > 0)
+            {
+                player.GainGold(intermissionWallet.m_gold);
+            }
 
             player.OnEndWave();
 
