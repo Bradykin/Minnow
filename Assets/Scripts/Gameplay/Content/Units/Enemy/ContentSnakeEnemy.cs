@@ -19,12 +19,12 @@ public class ContentSnakeEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Snake";
-        m_desc = "On hit, permanently give -2/-0.\n";
+        m_desc = "When this unit deals damage, it permanently gives -2/-0 to the target.\n";
 
         AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc = "On hit, permanently give -2/-0 and drain 2 stamina.\n";
+            m_desc = "When this unit deals damage, it permanently gives -2/-0 to the target and drains 2 stamina.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIToadSnakeScanTargetsInRangeStep(m_AIGameEnemyUnit), true);

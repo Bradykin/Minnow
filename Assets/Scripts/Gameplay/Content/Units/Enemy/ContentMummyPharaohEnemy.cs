@@ -89,6 +89,12 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         GameOpponent gameOpponent = GameHelper.GetOpponent();
 
         GameEnemyUnit newEnemyUnit = GameUnitFactory.GetEnemyUnitClone(new ContentMummyEnemy(gameOpponent), WorldController.Instance.m_gameController.m_gameOpponent);
+
+        if (!deathLocation.IsPassable(newEnemyUnit, false))
+        {
+            return;
+        }
+
         deathLocation.PlaceUnit(newEnemyUnit);
         newEnemyUnit.OnSummon();
         gameOpponent.AddControlledUnit(newEnemyUnit);
