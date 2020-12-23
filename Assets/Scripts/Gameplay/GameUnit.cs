@@ -875,8 +875,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         GameHelper.GetGameController().AddIntermissionLock();
 
-        AudioHelper.PlaySFX(this.GetAttackSFX());
-        m_worldUnit.PlayHitAnim(other.m_worldUnit);
+        if (!isThornsAttack)
+        {
+            AudioHelper.PlaySFX(this.GetAttackSFX());
+
+            if (!GetGameTile().m_isFog)
+            {
+                m_worldUnit.PlayHitAnim(other.m_worldUnit);
+            }
+        }
         
         if (spendStamina)
         {
