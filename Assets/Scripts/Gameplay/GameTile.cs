@@ -438,6 +438,14 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 return true;
             }
 
+            if (HasBuilding() && checkerUnit.GetTeam() != GetBuilding().GetTeam())
+            {
+                if (!letPassEnemies)
+                {
+                    return false;
+                }
+            }
+
             if (checkerUnit.GetFlyingKeyword() != null)
             {
                 return true;
@@ -451,14 +459,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             if (HasBuilding() && checkerUnit.GetTeam() == GetBuilding().GetTeam())
             {
                 return true;
-            }
-
-            if (HasBuilding() && checkerUnit.GetTeam() != GetBuilding().GetTeam())
-            {
-                if (!letPassEnemies)
-                {
-                    return false;
-                }
             }
 
             if (IsOccupied() && checkerUnit.GetTeam() == m_occupyingUnit.GetTeam())
