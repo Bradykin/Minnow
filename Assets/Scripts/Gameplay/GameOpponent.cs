@@ -228,7 +228,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         //Try spawning at edge of fog
-        numTries = 10;
+        int numTries = 10;
         while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0 && numTries > 0)
         {
             if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
