@@ -1070,7 +1070,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     staminaToAttack = 1;
                 }
-                UIHelper.TriggerRelicAnimation<ContentNamelessFlaskRelic>();
             }
 
             if (GameHelper.HasRelic<ContentAncientRitualRelic>())
@@ -1191,7 +1190,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentThornsOfRayRelic>() && GetTeam() == Team.Player)
         {
             toReturn.AddKeyword(new GameThornsKeyword(2));
-            UIHelper.TriggerRelicAnimation<ContentThornsOfRayRelic>();
         }
 
         ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
@@ -1246,7 +1244,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
         {
-            UIHelper.TriggerRelicAnimation<ContentSecretOfTheDeepRelic>();
             return new GameWaterwalkKeyword();
         }
 
@@ -1304,7 +1301,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentPlagueMaskRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
         {
             toReturn.AddKeyword(new GameRegenerateKeyword(5));
-            UIHelper.TriggerRelicAnimation<ContentPlagueMaskRelic>();
         }
         if (GameHelper.IsUnitInWorld(this))
         {
@@ -1315,7 +1311,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth() / 2.0f)))
                 {
                     toReturn.AddKeyword(new GameRegenerateKeyword(5));
-                    UIHelper.TriggerRelicAnimation<ContentHealthFlaskRelic>();
                 }
 
                 if (GameHelper.HasRelic<ContentCallOfTheSeaRelic>())
@@ -1335,7 +1330,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (isNearWater)
                     {
                         toReturn.AddKeyword(new GameRegenerateKeyword(10));
-                        UIHelper.TriggerRelicAnimation<ContentCallOfTheSeaRelic>();
                     }
                 }
             }
@@ -1453,7 +1447,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentAdvancedWeaponryRelic>() && GetTeam() == Team.Player && toReturn.m_range >= 2)
         {
             toReturn.AddKeyword(new GameRangeKeyword(1));
-            UIHelper.TriggerRelicAnimation<ContentAdvancedWeaponryRelic>();
         }
 
         if (GameHelper.IsUnitInWorld(this))
@@ -1515,7 +1508,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (adjacentTiles[i].GetTerrain().IsWater())
                     {
                         toReturn.AddKeyword(new GameDamageReductionKeyword(2));
-                        UIHelper.TriggerRelicAnimation<ContentEverflowingCanteenRelic>();
                         break;
                     }
                 }
