@@ -27,10 +27,12 @@ public class ContentAncientEvilRelic : GameRelic
 
             UIHelper.CreateHUDNotification("Evil Awakens", "The Ancient Evil Awakens.");
             m_desc = "All allied units are <b>Monster</b> units and allied <b>Monster</b> units get +10/+10";
+            UIHelper.TriggerRelicAnimation<ContentAncientEvilRelic>();
         }
         else if (m_killCount < 50 && m_killCount%10 == 0)
         {
             UIHelper.CreateHUDNotification("Evil Stirs", "As the blood of the enemies fall, an Ancient Evil stirs.");
+            UIHelper.TriggerRelicAnimation<ContentAncientEvilRelic>();
         }
     }
 

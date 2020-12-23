@@ -7,7 +7,7 @@ public class ContentGoldenFeatherRelic : GameRelic
     public ContentGoldenFeatherRelic()
     {
         m_name = "Golden Feather";
-        m_desc = "When an allied unit survives a hit with 1 health; you gain 15 gold.";
+        m_desc = "When an allied unit survives a hit with 6 health or less; you gain 15 gold.";
         m_rarity = GameRarity.Rare;
 
         LateInit();

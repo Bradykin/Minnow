@@ -73,6 +73,7 @@ public class ContentFuryCard : GameCardSpellBase
                 {
                     victoriousKeyword.DoAction();
                 }
+                UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
             }
         }
     }

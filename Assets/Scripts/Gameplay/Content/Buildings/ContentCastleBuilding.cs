@@ -27,6 +27,7 @@ public class ContentCastleBuilding : GameBuildingBase
         {
             m_curHealth = 50;
             tailRelic.Use();
+            UIHelper.TriggerRelicAnimation<ContentTailOfLifeRelic>();
             UIHelper.CreateWorldElementNotification("The castle is spared by the Tail of Life!", false, m_gameTile.GetWorldTile().gameObject);
             return;
         }

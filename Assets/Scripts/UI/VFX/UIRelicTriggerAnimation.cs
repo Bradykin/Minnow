@@ -21,7 +21,7 @@ public class UIRelicTriggerAnimation : UIAnimationBase
 
         if (m_gettingBig)
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(2, 2, 2), 0.1f);
+            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(2, 2, 2), 0.2f);
 
             if (transform.localScale == new Vector3(2, 2, 2))
             {
@@ -30,7 +30,7 @@ public class UIRelicTriggerAnimation : UIAnimationBase
         }
         else
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(1, 1, 1), 0.1f);
+            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(1, 1, 1), 0.05f);
 
             if (transform.localScale == new Vector3(1, 1, 1))
             {

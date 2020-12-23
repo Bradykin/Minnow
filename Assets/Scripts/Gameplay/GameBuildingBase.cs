@@ -216,6 +216,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
                 int toIncrease = 1;
                 m_maxHealth += toIncrease;
                 GetHealed(toIncrease);
+                UIHelper.TriggerRelicAnimation<ContentLivingStoneRelic>();
             }
         }
     }

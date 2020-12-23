@@ -36,6 +36,7 @@ public class ContentShivCard : GameCardSpellBase
         if (GameHelper.HasRelic<ContentPoisonedShivsRelic>())
         {
             targetUnit.SpendStamina(2);
+            UIHelper.TriggerRelicAnimation<ContentPoisonedShivsRelic>();
         }
 
         if (GameHelper.HasRelic<ContentBurningShivsRelic>())
@@ -48,6 +49,7 @@ public class ContentShivCard : GameCardSpellBase
                     targetUnit.GetHitBySpell(GetSpellValue(), this);
                 }
             }
+            UIHelper.TriggerRelicAnimation<ContentBurningShivsRelic>();
         }
         else
         {
