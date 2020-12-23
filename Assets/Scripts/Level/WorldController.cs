@@ -14,6 +14,7 @@ public class WorldController : Singleton<WorldController>
     private int m_playerUnitFocusIndex;
 
     public bool m_isInGame;
+    public bool m_isEndTurnLocked;
 
     protected override void Awake()
     {

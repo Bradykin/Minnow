@@ -16,7 +16,10 @@ public class UIRageCounter : UIElementBase
 
     void Update()
     {
-        m_countText.text = $"{GameHelper.GetGameController().m_curRage}";
+        if (GameHelper.IsInGame())
+        {
+            m_countText.text = $"{GameHelper.GetGameController().m_curRage}";
+        }
     }
 
     public override void HandleTooltip()

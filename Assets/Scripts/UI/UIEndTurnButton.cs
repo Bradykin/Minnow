@@ -48,12 +48,18 @@ public class UIEndTurnButton : UIElementBase
             return;
         }
 
+        if (WorldController.Instance.m_isEndTurnLocked)
+        {
+            return;
+        }
+
         UITooltipController.Instance.ClearTooltipStack();
 
         Globals.m_selectedCard = null;
         UIHelper.UnselectUnit();
         UIHelper.UnselectEnemy();
         Globals.m_selectedTile = null;
+        WorldController.Instance.m_isEndTurnLocked = true;
 
         WorldController.Instance.MoveToNextTurn();
 
