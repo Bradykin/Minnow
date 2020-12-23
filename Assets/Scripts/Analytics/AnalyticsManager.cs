@@ -14,6 +14,21 @@ public class AnalyticsManager
 
     }
 
+    public void RecordCardDuplication(in GameCard cardDuplicated)
+    {
+
+    }
+
+    public void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
+    {
+
+    }
+
+    public void RecordCardRemoval(in GameCard cardRemoved)
+    {
+
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         

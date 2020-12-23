@@ -72,6 +72,21 @@ public class GameDirectorAccount
         cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
+    public void RecordCardDuplication(in GameCard cardDuplicated)
+    {
+
+    }
+
+    public void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
+    {
+
+    }
+
+    public void RecordCardRemoval(in GameCard cardRemoved)
+    {
+
+    }
+
     public void RecordCardUnlock(in GameCard cardUnlocked)
     {
         GameDirectorCardWeight cardWeight = GetCardWeight(cardUnlocked);

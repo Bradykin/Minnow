@@ -69,6 +69,36 @@ public class GameDirector
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public void RecordCardDuplication(in GameCard cardDuplicated)
+    {
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering duplicating {cardDuplicated.GetBaseName()}.");
+        }
+        GameDirectorAccount.RecordCardDuplication(cardDuplicated);
+        GameDirectorRun.RecordCardDuplication(cardDuplicated);
+    }
+
+    public void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
+    {
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering transforming {cardTransformed.GetBaseName()} into {cardReceived.GetBaseName()}.");
+        }
+        GameDirectorAccount.RecordCardTransformation(cardTransformed, cardReceived);
+        GameDirectorRun.RecordCardTransformation(cardTransformed, cardReceived);
+    }
+
+    public void RecordCardRemoval(in GameCard cardRemoved)
+    {
+        if (Constants.GameDirectorTestPrints)
+        {
+            Debug.Log($"Game Director registering removing {cardRemoved.GetBaseName()}.");
+        }
+        GameDirectorAccount.RecordCardRemoval(cardRemoved);
+        GameDirectorRun.RecordCardRemoval(cardRemoved);
+    }
+
     public void RecordCardUnlock(in GameCard cardUnlocked)
     {
         if (Constants.GameDirectorTestPrints)

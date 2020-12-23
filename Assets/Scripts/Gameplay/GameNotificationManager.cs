@@ -19,6 +19,24 @@ public static class GameNotificationManager
         GameDirector.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public static void RecordCardDuplication(in GameCard cardDuplicated)
+    {
+        AnalyticsManager.RecordCardDuplication(cardDuplicated);
+        GameDirector.RecordCardDuplication(cardDuplicated);
+    }
+
+    public static void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
+    {
+        AnalyticsManager.RecordCardTransformation(cardTransformed, cardReceived);
+        GameDirector.RecordCardTransformation(cardTransformed, cardReceived);
+    }
+
+    public static void RecordCardRemoval(in GameCard cardRemoved)
+    {
+        AnalyticsManager.RecordCardRemoval(cardRemoved);
+        GameDirector.RecordCardRemoval(cardRemoved);
+    }
+
     public static void RecordCardUnlock(in GameCard cardUnlocked)
     {
         GameDirector.RecordCardUnlock(cardUnlocked);

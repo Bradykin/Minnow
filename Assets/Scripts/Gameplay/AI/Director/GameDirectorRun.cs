@@ -26,6 +26,22 @@ public class GameDirectorRun
         }
     }
 
+    public void RecordCardDuplication(in GameCard cardDuplicated)
+    {
+        AddTagValue(cardDuplicated.m_tagHolder.m_tags);
+    }
+
+    public void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
+    {
+        SubtractTagValue(cardTransformed.m_tagHolder.m_tags);
+        AddTagValue(cardReceived.m_tagHolder.m_tags);
+    }
+
+    public void RecordCardRemoval(in GameCard cardRemoved)
+    {
+        SubtractTagValue(cardRemoved.m_tagHolder.m_tags);
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         if (relicChoice != null)
@@ -55,6 +71,24 @@ public class GameDirectorRun
             else if (tagType.m_tagInfluence == GameTagHolder.TagInfluence.Pull)
             {
                 tagWeight.curWeight -= tagType.m_tagWeight;
+            }
+            tagWeight.curWeight = Mathf.Clamp(tagWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
+        }
+    }
+
+    private void SubtractTagValue(in List<GameTag> gameTags)
+    {
+        for (int i = 0; i < gameTags.Count; i++)
+        {
+            GameTag tagType = gameTags[i];
+            GameDirectorTagWeight tagWeight = GetTagWeight(tagType.m_tagType);
+            if (tagType.m_tagInfluence == GameTagHolder.TagInfluence.Push)
+            {
+                tagWeight.curWeight -= tagType.m_tagWeight;
+            }
+            else if (tagType.m_tagInfluence == GameTagHolder.TagInfluence.Pull)
+            {
+                tagWeight.curWeight += tagType.m_tagWeight;
             }
             tagWeight.curWeight = Mathf.Clamp(tagWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
         }

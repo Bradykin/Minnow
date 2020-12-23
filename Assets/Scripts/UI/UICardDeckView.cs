@@ -34,6 +34,7 @@ public class UICardDeckView : MonoBehaviour
 
         if (m_viewType == UIDeckViewController.DeckViewType.Remove)
         {
+            GameNotificationManager.RecordCardRemoval(m_uiCard.m_card);
             player.m_deckBase.RemoveCard(m_uiCard.m_card);
 
             if (player.m_hand.Contains(m_uiCard.m_card))
@@ -47,6 +48,7 @@ public class UICardDeckView : MonoBehaviour
         }
         else if (m_viewType == UIDeckViewController.DeckViewType.Duplicate)
         {
+            GameNotificationManager.RecordCardDuplication(m_uiCard.m_card);
             GameCard dupCard = GameCardFactory.GetCardDup(m_uiCard.m_card);
             player.m_deckBase.AddCard(dupCard);
             player.m_curDeck.AddToDiscard(dupCard);
@@ -67,6 +69,8 @@ public class UICardDeckView : MonoBehaviour
             {
                 newCard = GameCardFactory.GetRandomStandardCard();
             }
+
+            GameNotificationManager.RecordCardTransformation(m_uiCard.m_card, newCard);
 
             if (player.m_hand.Contains(m_uiCard.m_card))
             {
