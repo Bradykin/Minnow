@@ -43,6 +43,11 @@ public class UIEndTurnButton : UIElementBase
             return;
         }
 
+        if (GameHelper.IsOpponentsTurn())
+        {
+            return;
+        }
+
         UITooltipController.Instance.ClearTooltipStack();
 
         Globals.m_selectedCard = null;

@@ -474,8 +474,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             GameHelper.GetPlayer().m_controlledUnits.Remove(this);
         }
 
-        UIHelper.CreateWorldElementNotification(GetName() + " dies.", false, m_gameTile.GetWorldTile().gameObject);
-
         if (GetGameTile().GetTerrain().IsIceCracked())
         {
             GetGameTile().SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(GetGameTile().GetTerrain()));
