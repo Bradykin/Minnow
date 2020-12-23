@@ -6,5 +6,6 @@ public abstract class UIAnimationBase : MonoBehaviour
 {
     protected bool m_shouldAnimate;
 
-    public abstract void PlayAnim();
+    public virtual void PlayAnim() { }
+    public virtual void PlayAnim(WorldUnit targetUnit) { }
 }
