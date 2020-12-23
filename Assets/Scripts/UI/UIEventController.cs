@@ -59,11 +59,11 @@ public class UIEventController : Singleton<UIEventController>
 
     public void EndEvent(GameEventOption acceptedOption)
     {
-        if (m_event.m_optionOne == acceptedOption)
+        if (m_event.m_optionOne == acceptedOption && m_event.m_optionTwo != null)
         {
             m_event.m_optionTwo.DeclineOption();
         }
-        else if (m_event.m_optionTwo == acceptedOption)
+        else if (m_event.m_optionTwo == acceptedOption && m_event.m_optionOne != null)
         {
             m_event.m_optionOne.DeclineOption();
         }

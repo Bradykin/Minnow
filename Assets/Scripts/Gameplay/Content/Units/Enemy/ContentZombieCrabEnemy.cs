@@ -10,10 +10,10 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
     
     public ContentZombieCrabEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 8 + GetHealthModByWave();
+        m_maxHealth = 7 + GetHealthModByWave();
         m_maxStamina = 6;
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
-        m_power = 2 + GetPowerModByWave();
+        m_power = 1 + GetPowerModByWave();
         m_shipBombardDamage += GetBombardModByWave();
 
         m_team = Team.Enemy;
@@ -23,7 +23,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         m_name = "Zombie Crab";
         m_desc = $"An elite foe. Defeat it and gain a relic!\nThis unit is part of the pirate crew.\nWhen this unit attacks, all zombie ships bombard the target for {m_shipBombardDamage} damage.\n";
 
-        AddKeyword(new GameDamageReductionKeyword(3), true, false);
+        AddKeyword(new GameDamageReductionKeyword(2), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_desc = $"An elite foe. Defeat it and gain a relic!\nThis unit is part of the pirate crew.\nWhen this unit attacks, all zombie ships bombard the target and all other player units in range {m_shipChaosBombardRange} for {m_shipBombardDamage} damage. Any members of the crew hit by the bombard are instead healed for that amount.\n";
@@ -132,7 +132,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
             scalingValue += (waveNum - 2);
         }
 
-        return scalingValue * 7;
+        return scalingValue * 8;
     }
 
     private int GetStaminaRegenModByWave()
@@ -146,7 +146,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 
-        return waveNum * 4;
+        return waveNum * 5;
     }
 
     private int GetBombardModByWave()

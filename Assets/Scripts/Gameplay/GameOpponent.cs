@@ -149,7 +149,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             m_controlledUnits[i].EndTurn();
         }
 
-        HandleSpawn();
+        HandleSpawn(true);
     }
 
     public void OnBeginWave()
@@ -157,10 +157,10 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         m_hasSpawnedEliteThisWave = false;
         m_eliteSpawnWaveModifier = UnityEngine.Random.Range(0, 3);
 
-        HandleSpawn();
+        HandleSpawn(false);
     }
 
-    private void HandleSpawn()
+    private void HandleSpawn(bool forceSomeFogSpawning)
     {
         //Generate number of enemies to spawn
         GameMap curMap = GameHelper.GetGameController().GetCurMap();
@@ -199,17 +199,20 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             m_spawnPoints[randomIndex] = temp;
         }
 
-        //Try spawning at edge of fog
-        int numTries = 10;
-        while (enemyCapToSpawn > originalEnemyCapToSpawn - amountSpawnFogEdgeFirst && tilesAtFogEdge.Count >= 0 && numTries > 0)
+        if (forceSomeFogSpawning)
         {
-            if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
+            //Try spawning at edge of fog
+            int numTries = 10;
+            while (enemyCapToSpawn > originalEnemyCapToSpawn - amountSpawnFogEdgeFirst && tilesAtFogEdge.Count >= 0 && numTries > 0)
             {
-                numTries = 10;
-            }
-            else
-            {
-                numTries--;
+                if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
+                {
+                    numTries = 10;
+                }
+                else
+                {
+                    numTries--;
+                }
             }
         }
 

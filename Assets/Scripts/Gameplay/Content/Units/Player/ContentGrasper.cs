@@ -24,7 +24,7 @@ public class ContentGrasper : GameUnit
 
         int damageTaken = base.HitUnit(other, damageAmount, spendStamina);
 
-        if (damageTaken > 0)
+        if (damageTaken > 0 && GameHelper.IsUnitInWorld(this))
         {
             if (!other.m_isDead)
             {

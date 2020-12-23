@@ -8,14 +8,14 @@ public class GameDirectorAccount
 {
     private const int tagWeightMaximums = 10;
 
-    private const int weightDecreaseAcceptCard = 10;
+    private const int weightDecreaseAcceptCard = 8;
     private const int weightDecreaseDeclineAllCardOptions = 7;
-    private const int weightDecreaseDeclineCard = 3;
+    private const int weightDecreaseDeclineCard = 5;
     private const int weightIncreaseNotOfferedCard = 1;
-    private const int weightDecreaseAcceptSingleCardOption = 10;
-    private const int weightDecreaseDeclineSingleCardOption = 3;
+    private const int weightDecreaseAcceptSingleCardOption = 8;
+    private const int weightDecreaseDeclineSingleCardOption = 5;
 
-    private const int weightDecreaseAcceptRelic = 10;
+    private const int weightDecreaseAcceptRelic = 8;
     private const int weightDecreaseDeclineAllRelicOptions = 7;
     private const int weightDecreaseDeclineRelic = 6;
     private const int weightIncreaseNotOfferedRelic = 1;

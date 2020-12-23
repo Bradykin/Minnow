@@ -19,7 +19,7 @@ public class ContentMountainPassMap : GameMap
 
     public override int GetNumEnemiesToSpawn()
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents) && GameHelper.GetGameController().m_currentWaveNumber % 2 == 0 && GameHelper.GetGameController().m_currentTurnNumber < 6)
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents) && GameHelper.GetGameController().m_currentWaveNumber == 4 && GameHelper.GetGameController().m_currentTurnNumber < 7)
         {
             return 3;
         }

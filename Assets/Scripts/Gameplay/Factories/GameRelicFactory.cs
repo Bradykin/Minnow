@@ -240,7 +240,7 @@ public static class GameRelicFactory
         relicListBeforeTagWeights.AddRange(relicList);
 
         //Use the tag weights + randomization to get the correct card here.
-        if (Constants.GameDirectorTestPrints)
+        if (Constants.GameDirectorTestPrints && exclusionRelic == null)
         {
             Debug.Log("Checking tag weights for all options on this random relic query.");
         }
@@ -248,7 +248,7 @@ public static class GameRelicFactory
         for (int i = 0; i < relicList.Count; i++)
         {
             int tagWeight = GameTagHolder.GetTagValueFor(relicList[i]);
-            if (Constants.GameDirectorTestPrints)
+            if (Constants.GameDirectorTestPrints && exclusionRelic == null)
             {
                 Debug.Log($"{relicList[i].GetBaseName()} with tag weight {tagWeight}");
             }
@@ -256,7 +256,7 @@ public static class GameRelicFactory
             {
                 relicList[i].m_storedTagWeight = tagWeight + totalWeight;
                 totalWeight += tagWeight;
-                if (Constants.GameDirectorTestPrints)
+                if (Constants.GameDirectorTestPrints && exclusionRelic == null)
                 {
                     //Debug.Log($"{relicList[i].GetBaseName()} with total weight {relicList[i].m_storedTagWeight}");
                 }
