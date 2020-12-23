@@ -257,7 +257,7 @@ public class ContentMountainPassMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
-            AddMapEvent(new ContentZombieFleetEvent(0), 1);
+            AddMapEvent(new ContentZombieFleetEvent(0), 4);
         }
     }
 
