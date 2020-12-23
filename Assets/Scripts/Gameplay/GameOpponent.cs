@@ -199,10 +199,10 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             m_spawnPoints[randomIndex] = temp;
         }
 
+        //Try spawning at edge of fog
+        int numTries = 10;
         if (forceSomeFogSpawning)
         {
-            //Try spawning at edge of fog
-            int numTries = 10;
             while (enemyCapToSpawn > originalEnemyCapToSpawn - amountSpawnFogEdgeFirst && tilesAtFogEdge.Count >= 0 && numTries > 0)
             {
                 if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
@@ -228,7 +228,7 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
 
         //Try spawning at edge of fog
-        int numTries = 10;
+        numTries = 10;
         while (enemyCapToSpawn > 0 && tilesAtFogEdge.Count >= 0 && numTries > 0)
         {
             if (TrySpawnAtEdgeOfFog(tilesAtFogEdge, ref enemyCapToSpawn))
