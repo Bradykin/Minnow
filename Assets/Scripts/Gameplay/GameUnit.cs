@@ -890,6 +890,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
             tilesToCleave = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            tilesToCleave.Remove(other.GetGameTile());
         }
 
         int damageTaken = other.GetHitByUnit(damageAmount, this, !isThornsAttack);
@@ -977,6 +978,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (canCleave && GetRangeKeyword() == null && GetCleaveKeyword() != null)
         {
             tilesToCleave = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+            tilesToCleave.Remove(other.GetGameTile());
         }
 
         int damageTaken = other.GetHit(GetDamageToDealTo(other));
