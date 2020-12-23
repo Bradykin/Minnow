@@ -7,7 +7,7 @@ public class ContentGrasper : GameUnit
     public ContentGrasper()
     {
         m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Rare;
 
         m_name = "Grasper";
         m_desc = "When this damages a unit, it takes all Stamina from it.\n";
@@ -44,7 +44,7 @@ public class ContentGrasper : GameUnit
     {
         ResetKeywords(true);
 
-        m_maxHealth = 9;
+        m_maxHealth = 12;
         m_maxStamina = 3;
         m_staminaRegen = 2;
         m_power = 1;
