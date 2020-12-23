@@ -246,7 +246,7 @@ public class WorldController : Singleton<WorldController>
 
     public void StartIntermission()
     {
-        Globals.m_curRage = 0;
+        m_gameController.m_curRage = 0;
 
         GamePlayer player = m_gameController.m_player;
 

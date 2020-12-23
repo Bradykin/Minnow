@@ -49,7 +49,7 @@ public class GameEnemyUnit : GameUnit
     {
         int toReturn = base.GetPower();
 
-        toReturn += Globals.m_curRage;
+        toReturn += GameHelper.GetGameController().m_curRage;
 
         return toReturn;
     }

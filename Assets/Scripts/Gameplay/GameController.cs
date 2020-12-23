@@ -54,6 +54,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public int m_curKillCount;
     public int m_endWaveKillCount;
+    public int m_curRage = 0;
 
     public int m_randomSeed;
 
@@ -335,6 +336,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
             endWaveKillCount = m_endWaveKillCount,
             curKillCount = m_curKillCount,
+            curRage = m_curRage,
 
             runBaseExp = m_baseExpAmount,
             runKillExp = m_killExpAmount,
@@ -370,6 +372,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         Globals.m_curChaos = jsonData.chaosLevel;
         m_endWaveKillCount = jsonData.endWaveKillCount;
         m_curKillCount = jsonData.curKillCount;
+        m_curRage = jsonData.curRage;
 
         m_baseExpAmount = jsonData.runBaseExp;
         m_killExpAmount = jsonData.runKillExp;

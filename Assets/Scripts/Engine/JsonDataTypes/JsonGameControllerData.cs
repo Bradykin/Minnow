@@ -11,6 +11,7 @@ public struct JsonGameControllerData
     public int chaosLevel;
     public int endWaveKillCount;
     public int curKillCount;
+    public int curRage;
 
     public int runKillExp;
     public int runEventExp;

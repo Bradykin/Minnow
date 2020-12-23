@@ -12,16 +12,16 @@ public class AILavaRhinoScanTargetsInRangeStep : AIScanTargetsInRangeStandardSte
     
     public override void TakeStepInstant()
     {
-        List<GameTile> tilesInAttackRange = GetTilesToScan();
+        List<GameTile> tilesInMoveRange = GetTilesToScan();
 
-        if (tilesInAttackRange == null)
+        if (tilesInMoveRange == null)
         {
             return;
         }
 
         List<GameBuildingBase> possibleBuildingTargets = new List<GameBuildingBase>();
 
-        foreach (var tile in tilesInAttackRange)
+        foreach (var tile in tilesInMoveRange)
         {
             if (tile.HasBuilding() && !tile.GetBuilding().m_isDestroyed && tile.GetBuilding().GetTeam() == Team.Player)
             {
@@ -43,5 +43,10 @@ public class AILavaRhinoScanTargetsInRangeStep : AIScanTargetsInRangeStandardSte
 
         m_AIGameEnemyUnit.m_possibleUnitTargets = new List<GameUnit>();
         m_AIGameEnemyUnit.m_possibleBuildingTargets = possibleBuildingTargets;
+    }
+
+    protected override List<GameTile> GetTilesToScan()
+    {
+        return WorldGridManager.Instance.GetTilesInMovementRange(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), false, false);
     }
 }
