@@ -506,7 +506,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             WorldGridManager.Instance.ClearAllTilesMovementRange();
         }
-        m_gameTile.GetWorldTile().RecycleUnit();
+        m_worldUnit.PlayDeathAnim();
         UITooltipController.Instance.ClearTooltipStack();
 
         m_isDead = willSetDead;
@@ -538,8 +538,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             GameHelper.GetGameController().KillEnemy(m_incrementsKillCounter);
         }
-
-        SetGameTile(null);
     }
 
     public virtual void OnOtherDie(GameUnit other, GameTile deathLocation)
@@ -969,6 +967,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int HitBuilding(GameBuildingBase other, bool spendStamina = true, bool canCleave = true)
     {
         GameHelper.GetGameController().AddIntermissionLock();
+
+        m_worldUnit.PlayHitAnim(other.GetGameTile().GetWorldTile());
+        AudioHelper.PlaySFX(this.GetAttackSFX());
 
         if (spendStamina)
         {

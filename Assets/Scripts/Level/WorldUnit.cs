@@ -9,6 +9,7 @@ using TMPro;
 public class WorldUnit : MonoBehaviour
 {
     public UIUnitAttackAnimation m_attackAnimation;
+    public UIUnitDeathAnimation m_deathAnimation;
 
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
@@ -114,7 +115,7 @@ public class WorldUnit : MonoBehaviour
             }
         }
 
-        m_titleBlock.SetActive(true);
+        m_titleBlock.SetActive(!GetUnit().m_isDead);
 
         if (GetUnit().GetCurStamina() == 0 && Globals.m_selectedUnit == this)
         {
@@ -141,6 +142,11 @@ public class WorldUnit : MonoBehaviour
     public void OnMouseDownExt()
     {
         if (UIHelper.UIShouldBlockClick())
+        {
+            return;
+        }
+
+        if (GetUnit().m_isDead)
         {
             return;
         }
@@ -320,6 +326,17 @@ public class WorldUnit : MonoBehaviour
     public void PlayHitAnim(WorldUnit targetUnit)
     {
         m_attackAnimation.PlayAnim(targetUnit);
+    }
+
+    public void PlayHitAnim(WorldTile targetTile)
+    {
+        m_attackAnimation.PlayAnim(targetTile);
+    }
+
+    public void PlayDeathAnim()
+    {
+        m_titleBlock.SetActive(false);
+        m_deathAnimation.PlayAnim(this);
     }
 
     private bool CanSelect()

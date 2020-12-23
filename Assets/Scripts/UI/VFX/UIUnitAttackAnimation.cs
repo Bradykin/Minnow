@@ -24,6 +24,21 @@ public class UIUnitAttackAnimation : UIAnimationBase
         }
     }
 
+    public override void PlayAnim(WorldTile targetTile)
+    {
+        if (!m_shouldAnimate)
+        {
+            m_shouldAnimate = true;
+            m_movingOut = true;
+
+            m_initPos = transform.localPosition;
+
+            Vector3 dir = (transform.position - targetTile.transform.position).normalized * 1.25f;
+
+            m_targetPos = new Vector3(transform.localPosition.x - dir.x, transform.localPosition.y - dir.y, transform.localPosition.z - dir.z);
+        }
+    }
+
     void Update()
     {
         if (!m_shouldAnimate)

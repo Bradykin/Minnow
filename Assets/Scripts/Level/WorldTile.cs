@@ -604,6 +604,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     {
         if (m_occupyingUnitObj != null)
         {
+            m_occupyingUnitObj.GetUnit().SetGameTile(null);
             GetGameTile().ClearUnit();
             Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
             m_occupyingUnitObj = null;
