@@ -8,6 +8,8 @@ using TMPro;
 
 public class WorldUnit : MonoBehaviour
 {
+    public UIUnitAttackAnimation m_attackAnimation;
+
     public SpriteRenderer m_tintRenderer;
     public SpriteRenderer m_renderer;
     public UIStaminaContainer m_staminaContainer;
@@ -315,9 +317,9 @@ public class WorldUnit : MonoBehaviour
         return m_unit;
     }
 
-    public void PlayHitAnim()
+    public void PlayHitAnim(WorldUnit targetUnit)
     {
-        //nmartino - Implement this
+        m_attackAnimation.PlayAnim(targetUnit);
     }
 
     private bool CanSelect()

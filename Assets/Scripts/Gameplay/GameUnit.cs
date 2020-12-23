@@ -880,6 +880,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameHelper.GetGameController().AddIntermissionLock();
 
         AudioHelper.PlaySFX(this.GetAttackSFX());
+        m_worldUnit.PlayHitAnim(other.m_worldUnit);
         
         if (spendStamina)
         {
