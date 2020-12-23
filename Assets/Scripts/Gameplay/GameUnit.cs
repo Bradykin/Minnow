@@ -258,11 +258,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentTalonOfTheCruelRelic>() && GetTeam() == Team.Enemy && GetFlyingKeyword() != null)
         {
             damage = damage * 2;
+            UIHelper.TriggerRelicAnimation<ContentTalonOfTheCruelRelic>();
         }
 
         if (GameHelper.HasRelic<ContentHistoryInBloodRelic>())
         {
             damage = damage * 2;
+            UIHelper.TriggerRelicAnimation<ContentHistoryInBloodRelic>();
         }
 
         bool lordOfChaosDamageApplyBleedsActive = false;
@@ -281,19 +283,22 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetTeam() == Team.Player)
         {
-            if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 10)
+            if (GameHelper.HasRelic<ContentAngelicFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 8)
             {
                 AddKeyword(new GameDamageShieldKeyword(), false, false);
+                UIHelper.TriggerRelicAnimation<ContentAngelicFeatherRelic>();
             }
 
-            if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 3)
+            if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 10)
             {
                 AddStats(10, 0, false, true);
+                UIHelper.TriggerRelicAnimation<ContentBloodFeatherRelic>();
             }
 
-            if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 1)
+            if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 6)
             {
                 GameHelper.GetPlayer().GainGold(15, true);
+                UIHelper.TriggerRelicAnimation<ContentGoldenFeatherRelic>();
             }
         }
 
@@ -309,6 +314,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
                     enrageKeyword.DoAction(damage);
+                    UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                 }
             }
         }
@@ -405,6 +411,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentDestinyRelic>())
             {
                 shouldRevive = shouldRevive || GameHelper.PercentChanceRoll(33);
+
+                if (shouldRevive)
+                {
+                    UIHelper.TriggerRelicAnimation<ContentDestinyRelic>();
+                }
             }
         }
 
@@ -444,6 +455,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     UIHelper.CreateWorldElementNotification(GetName() + " deceives the foe and survives.", true, m_gameTile.GetWorldTile().gameObject);
                     return;
                 }
+                UIHelper.TriggerRelicAnimation<ContentSachelOfDeceptionRelic>();
             }
         }
 
@@ -550,7 +562,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         int realHealVal = toHeal;
 
-        if (!GameHelper.HasRelic<ContentPrimeRibRelic>())
+        if (!GameHelper.HasRelic<ContentPrimeRibRelic>() || !(GetTeam() == Team.Player))
         {
             if (m_curHealth + toHeal > maxHealth)
             {
@@ -575,6 +587,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentLifebringerRelic>())
             {
                 GainStamina(1);
+                UIHelper.TriggerRelicAnimation<ContentLifebringerRelic>();
             }
         }
 
@@ -714,6 +727,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentForbiddenKnowledge>())
             {
                 GameHelper.GetPlayer().AddEnergy(1);
+                UIHelper.TriggerRelicAnimation<ContentForbiddenKnowledge>();
             }
         }
     }
@@ -780,6 +794,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                         adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Monster)
                     {
                         adjacentTiles[i].GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(adjacentTiles[i].GetOccupyingUnit(), 3, 3)), false, false);
+                        UIHelper.TriggerRelicAnimation<ContentSecretTiesRelic>();
                     }
                 }
             }
@@ -893,6 +908,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
                         momentumKeyword.DoAction();
+                        UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                     }
                 }
             }
@@ -912,6 +928,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
                         victoriousKeyword.DoAction();
+                        UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                     }
                 }
             }
@@ -976,6 +993,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
                     momentumKeyword.DoAction();
+                    UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                 }
             }
         }
@@ -1050,6 +1068,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     staminaToAttack = 1;
                 }
+                UIHelper.TriggerRelicAnimation<ContentNamelessFlaskRelic>();
             }
 
             if (GameHelper.HasRelic<ContentAncientRitualRelic>())
@@ -1170,6 +1189,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentThornsOfRayRelic>() && GetTeam() == Team.Player)
         {
             toReturn.AddKeyword(new GameThornsKeyword(2));
+            UIHelper.TriggerRelicAnimation<ContentThornsOfRayRelic>();
         }
 
         ContentLordOfChaosEnemy lordOfChaosEnemy = GameHelper.GetBoss<ContentLordOfChaosEnemy>();
@@ -1224,6 +1244,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         if (GameHelper.HasRelic<ContentSecretOfTheDeepRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Humanoid)
         {
+            UIHelper.TriggerRelicAnimation<ContentSecretOfTheDeepRelic>();
             return new GameWaterwalkKeyword();
         }
 
@@ -1281,6 +1302,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentPlagueMaskRelic>() && GetTeam() == Team.Player && GetTypeline() == Typeline.Monster)
         {
             toReturn.AddKeyword(new GameRegenerateKeyword(5));
+            UIHelper.TriggerRelicAnimation<ContentPlagueMaskRelic>();
         }
         if (GameHelper.IsUnitInWorld(this))
         {
@@ -1291,6 +1313,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 m_curHealth <= Mathf.FloorToInt((float)(GetMaxHealth() / 2.0f)))
                 {
                     toReturn.AddKeyword(new GameRegenerateKeyword(5));
+                    UIHelper.TriggerRelicAnimation<ContentHealthFlaskRelic>();
                 }
 
                 if (GameHelper.HasRelic<ContentCallOfTheSeaRelic>())
@@ -1310,6 +1333,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (isNearWater)
                     {
                         toReturn.AddKeyword(new GameRegenerateKeyword(10));
+                        UIHelper.TriggerRelicAnimation<ContentCallOfTheSeaRelic>();
                     }
                 }
             }
@@ -1427,6 +1451,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentAdvancedWeaponryRelic>() && GetTeam() == Team.Player && toReturn.m_range >= 2)
         {
             toReturn.AddKeyword(new GameRangeKeyword(1));
+            UIHelper.TriggerRelicAnimation<ContentAdvancedWeaponryRelic>();
         }
 
         if (GameHelper.IsUnitInWorld(this))
@@ -1488,6 +1513,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     if (adjacentTiles[i].GetTerrain().IsWater())
                     {
                         toReturn.AddKeyword(new GameDamageReductionKeyword(2));
+                        UIHelper.TriggerRelicAnimation<ContentEverflowingCanteenRelic>();
                         break;
                     }
                 }
@@ -2399,6 +2425,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
                 int r = Random.Range(0, tordrimKeywords.Count);
                 AddKeyword(tordrimKeywords[r], false, false);
+
+                UIHelper.TriggerRelicAnimation<ContentMarkOfTordrimRelic>();
             }
 
             if (GameHelper.HasRelic<ContentSporetechRelic>())
@@ -2416,6 +2444,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     m_typeline = Typeline.Creation;
                 }
+                UIHelper.TriggerRelicAnimation<ContentSporetechRelic>();
             }
 
             if (GameHelper.HasRelic<ContentToldiranMiracleRelic>())
@@ -2424,6 +2453,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     GameHelper.GetPlayer().DrawCards(2);
                     GameHelper.GetPlayer().AddEnergy(3);
+                    UIHelper.TriggerRelicAnimation<ContentToldiranMiracleRelic>();
                 }
             }
 
@@ -2432,27 +2462,32 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.HasAllTypelines())
                 {
                     AddKeyword(new GameDamageReductionKeyword(3), false, false);
+                    UIHelper.TriggerRelicAnimation<ContentSymbolOfTheAllianceRelic>();
                 }
             }
 
             if (GameHelper.HasRelic<ContentMemoryOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
-                 GameHelper.GetPlayer().AddMagicPower(1);
+                GameHelper.GetPlayer().AddMagicPower(1);
+                UIHelper.TriggerRelicAnimation<ContentMemoryOfTheDefenderRelic>();
             }
 
             if (GameHelper.HasRelic<ContentTauntingPipeRelic>() && GetTypeline() == Typeline.Humanoid)
             {
                 AddKeyword(new GameTauntKeyword(), false, false);
+                UIHelper.TriggerRelicAnimation<ContentTauntingPipeRelic>();
             }
 
             if (GameHelper.HasRelic<ContentCarapaceOfTutuiun>())
             {
                 AddKeyword(new GameDamageReductionKeyword(1), true, false);
+                UIHelper.TriggerRelicAnimation<ContentCarapaceOfTutuiun>();
             }
 
             if (GameHelper.HasRelic<ContentStarOfDenumainRelic>())
             {
                 AddKeyword(new GameDamageShieldKeyword(), false, false);
+                UIHelper.TriggerRelicAnimation<ContentStarOfDenumainRelic>();
             }
 
             if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
@@ -2478,6 +2513,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     AddStats(0, healthChange, false, true);
                     RemoveStats(-powerChange, 0, false);
                 }
+                UIHelper.TriggerRelicAnimation<ContentAlterOfTordrimRelic>();
             }
 
             if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
@@ -2486,6 +2522,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 m_power = GetMaxHealth();
                 m_maxHealth = tempPower;
                 m_curHealth = GetMaxHealth();
+                UIHelper.TriggerRelicAnimation<ContentJugOfTordrimRelic>();
             }
         }
     }
@@ -2497,6 +2534,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
         {
             player.GainGold(2);
+            UIHelper.TriggerRelicAnimation<ContentSackOfSoulsRelic>();
         }
 
         if (GetTeam() == Team.Enemy)
@@ -2504,17 +2542,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentMorlemainsSkullRelic>())
             {
                 player.AddEnergy(1);
+                UIHelper.TriggerRelicAnimation<ContentMorlemainsSkullRelic>();
             }
 
             if (GameHelper.HasRelic<ContentSpiritCatcherRelic>())
             {
                 player.DrawCards(1);
+                UIHelper.TriggerRelicAnimation<ContentSpiritCatcherRelic>();
             }
 
             if (GameHelper.HasRelic<ContentRelicOfVictoryRelic>() && GetPower() >= 20)
             {
                 player.DrawCards(2);
                 player.AddEnergy(2);
+                UIHelper.TriggerRelicAnimation<ContentRelicOfVictoryRelic>();
             }
 
             if (GameHelper.HasRelic<ContentAncientEvilRelic>())
@@ -2535,6 +2576,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
                             adjacentTiles[i].GetOccupyingUnit().Heal(15);
+                            UIHelper.TriggerRelicAnimation<ContentCanvasOfHistoryRelic>();
                         }
                     }
                 }
@@ -2549,6 +2591,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
                             adjacentTiles[i].GetOccupyingUnit().GainStamina(1);
+                            UIHelper.TriggerRelicAnimation<ContentBeadsOfProphecyRelic>();
                         }
                     }
                 }
@@ -2566,6 +2609,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     {
                         player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(1));
                     }
+                    UIHelper.TriggerRelicAnimation<ContentToolOfTheDeadmanRelic>();
                 }
             }
         }
@@ -2581,6 +2625,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameDrawCardAction(3));
                 }
+                UIHelper.TriggerRelicAnimation<ContentSoulTrapRelic>();
             }
 
             if (GameHelper.HasRelic<ContentTombOfTheDefenderRelic>())
@@ -2595,6 +2640,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     player.AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameGainShivAction(3));
                 }
+                UIHelper.TriggerRelicAnimation<ContentTombOfTheDefenderRelic>();
             }
 
             if (GameHelper.IsUnitInWorld(this))
@@ -2609,6 +2655,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             adjacentTiles[i].GetOccupyingUnit().SpendStamina(adjacentTiles[i].GetOccupyingUnit().GetCurStamina());
                         }
                     }
+                    UIHelper.TriggerRelicAnimation<ContentCursedAmuletRelic>();
                 }
 
                 if (GameHelper.HasRelic<ContentTokenOfTheUprisingRelic>() && GetTypeline() == Typeline.Humanoid)
@@ -2622,6 +2669,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                         {
                             adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth(), false, true);
+                            UIHelper.TriggerRelicAnimation<ContentTokenOfTheUprisingRelic>();
                         }
                     }
                 }
@@ -2636,6 +2684,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             !adjacentTiles[i].GetOccupyingUnit().m_isDead)
                         {
                             adjacentTiles[i].GetOccupyingUnit().FillStamina();
+                            UIHelper.TriggerRelicAnimation<ContentTotemOfRevengeRelic>();
                         }
                     }
                 }
@@ -2644,17 +2693,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             if (GameHelper.HasRelic<ContentVoiceOfTheDefenderRelic>() && GetTypeline() == Typeline.Creation)
             {
                 player.AddMagicPower(1);
+                UIHelper.TriggerRelicAnimation<ContentVoiceOfTheDefenderRelic>();
             }
 
             if (GameHelper.HasRelic<ContentDesignSchematicsRelic>() && GetTypeline() == Typeline.Creation)
             {
                 AddStats(1, 3, true, false);
                 AddMaxStamina(1, true);
+                UIHelper.TriggerRelicAnimation<ContentDesignSchematicsRelic>();
             }
 
             if (GameHelper.HasRelic<ContentInstructionsRelic>() && GetTypeline() == Typeline.Creation)
             {
                 AddStats(GetMaxStamina(), GetMaxStamina(), false, false);
+                UIHelper.TriggerRelicAnimation<ContentInstructionsRelic>();
             }
         }
     }
@@ -2685,6 +2737,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             {
                 int healAmount = m_gameTile.GetCostToPass(this) * 5;
                 Heal(healAmount);
+                UIHelper.TriggerRelicAnimation<ContentMedKitRelic>();
             }
         }
     }
@@ -2695,6 +2748,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             AddStats(2, 2, true, true);
             EmptyStamina();
+            UIHelper.TriggerRelicAnimation<ContentPriceOfFreedomRelic>();
         }
 
         RegenStamina();
@@ -2715,6 +2769,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (m_gameTile.GetTerrain().IsWater())
                 {
                     Die();
+                    UIHelper.TriggerRelicAnimation<ContentSecretOfTheDeepRelic>();
                 }
             }
         }

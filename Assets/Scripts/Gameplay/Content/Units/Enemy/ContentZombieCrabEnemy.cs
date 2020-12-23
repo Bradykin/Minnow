@@ -109,12 +109,14 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
             for (int i = 0; i < GameHelper.GetPlayer().m_controlledUnits.Count; i++)
             {
                 player.m_controlledUnits[i].AddStats(5, 5, true, true);
+                UIHelper.TriggerRelicAnimation<ContentHeroicTrophyRelic>();
             }
         }
 
         if (GameHelper.HasRelic<ContentAncientCoinsRelic>())
         {
             player.GainGold(75);
+            UIHelper.TriggerRelicAnimation<ContentAncientCoinsRelic>();
         }
 
         base.Die(canRevive, damageType);

@@ -176,6 +176,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             if (GameHelper.HasRelic<ContentAncientMysteryRelic>())
             {
                 m_controlledUnits[i].TriggerKnowledgeable();
+                UIHelper.TriggerRelicAnimation<ContentAncientMysteryRelic>();
             }
         }
     }
@@ -219,9 +220,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (m_hand.Count == 0)
         {
-            if (GetRelics().GetNumRelics<ContentMaskOfSpeedRelic>() > 0)
+            if (GameHelper.HasRelic<ContentMaskOfSpeedRelic>())
             {
                 DrawCard();
+                UIHelper.TriggerRelicAnimation<ContentMaskOfSpeedRelic>();
             }
         }
     }
@@ -527,6 +529,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
             {
                 toReturn += 3;
+                UIHelper.TriggerRelicAnimation<ContentSackOfManyShapesRelic>();
             }
         }
 
@@ -538,7 +541,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += 1;
-            UIHelper.TriggerRelicAnimation<ContentMaskOfAgesRelic>();
         }
 
         if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())
@@ -549,6 +551,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (GameHelper.HasRelic<ContentMysticRuneRelic>())
         {
             toReturn += 2;
+            UIHelper.TriggerRelicAnimation<ContentMysticRuneRelic>();
         }
 
         if (GameHelper.HasRelic<ContentPinnacleOfFearRelic>())
@@ -729,11 +732,13 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 if (GameHelper.HasRelic<ContentLastHopeRelic>())
                 {
                     DrawCard();
+                    UIHelper.TriggerRelicAnimation<ContentLastHopeRelic>();
                 }
 
                 if (GameHelper.HasRelic<ContentProclamationOfSurrenderRelic>())
                 {
                     AddEnergy(1);
+                    UIHelper.TriggerRelicAnimation<ContentProclamationOfSurrenderRelic>();
                 }
             }
         }
@@ -766,6 +771,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             if (GameHelper.HasRelic<ContentSackOfManyShapesRelic>())
             {
                 AddEnergy(2);
+                UIHelper.TriggerRelicAnimation<ContentSackOfManyShapesRelic>();
             }
         }
 

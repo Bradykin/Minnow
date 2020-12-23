@@ -268,10 +268,12 @@ public class WorldController : Singleton<WorldController>
             if (GameHelper.HasRelic<ContentNewInvestmentsRelic>())
             {
                 intermissionWallet.m_gold += 35;
+                UIHelper.TriggerRelicAnimation<ContentNewInvestmentsRelic>();
             }
             if (GameHelper.HasRelic<ContentHarvestOfTelumRelic>())
             {
                 intermissionWallet.m_gold += 25;
+                UIHelper.TriggerRelicAnimation<ContentHarvestOfTelumRelic>();
             }
 
             player.GainGold(intermissionWallet.m_gold);

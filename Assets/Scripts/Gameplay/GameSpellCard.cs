@@ -190,6 +190,7 @@ public class GameCardSpellBase : GameCard
         if (GameHelper.HasRelic<ContentImpaliumRelic>())
         {
             player.TriggerSpellcraft(m_targetType, tileCastAt);
+            UIHelper.TriggerRelicAnimation<ContentImpaliumRelic>();
         }
     }
 
