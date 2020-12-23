@@ -9,7 +9,7 @@ public class ContentOverchargeCard : GameCardSpellBase
         m_name = "Overcharge";
         m_desc = "Maximize the Stamina of target allied <b>Creation</b> unit.";
         m_targetType = Target.Ally;
-        m_cost = 3;
+        m_cost = 2;
         m_rarity = GameRarity.Rare;
 
         SetupBasicData();
