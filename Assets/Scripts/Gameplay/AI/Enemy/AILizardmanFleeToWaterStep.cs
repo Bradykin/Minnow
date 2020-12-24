@@ -9,7 +9,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 
     public override IEnumerator TakeStepCoroutine()
     {
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater() || !m_AIGameEnemyUnit.m_hasAttacked)
         {
             yield break;
         }
@@ -80,7 +80,7 @@ public class AILizardmanFleeToWaterStep : AIStep
 
     public override void TakeStepInstant()
     {
-        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater())
+        if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile().GetTerrain().IsWater() || !m_AIGameEnemyUnit.m_hasAttacked)
         {
             return;
         }

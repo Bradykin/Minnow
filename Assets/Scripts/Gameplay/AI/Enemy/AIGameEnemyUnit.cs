@@ -26,6 +26,7 @@ public class AIGameEnemyUnit
     public GameTile m_targetGameTile = null;
 
     public bool m_doSteps = true;
+    public bool m_hasAttacked = false;
     public bool m_exitSteps = false;
 
     public List<string> m_AIDebugLogs = new List<string>();
@@ -161,6 +162,7 @@ public class AIGameEnemyUnit
         m_targetGameElement = null;
         m_targetGameTile = null;
         m_doSteps = true;
+        m_hasAttacked = false;
         m_exitSteps = false;
     }
 }

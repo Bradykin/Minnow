@@ -27,6 +27,7 @@ public class AIAttackOnceStandardStep : AIStep
                     }
 
                     m_AIGameEnemyUnit.m_gameEnemyUnit.HitUnit(gameUnit, m_AIGameEnemyUnit.m_gameEnemyUnit.GetDamageToDealTo(gameUnit));
+                    m_AIGameEnemyUnit.m_hasAttacked = true;
 
                     yield return new WaitForSeconds(0.5f);
 
