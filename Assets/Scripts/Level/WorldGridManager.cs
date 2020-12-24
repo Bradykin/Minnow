@@ -877,8 +877,15 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             {
                 continue;
             }
-            
-            List<WorldTile> tiles = GetSurroundingWorldTiles(GetWorldGridTileAtPosition(tilesInMovementRangeWithStaminaToAttack[i].m_gridPosition), range);
+
+            int terrainRangeIncrease = 0;
+            WorldTile worldTileAtPosition = GetWorldGridTileAtPosition(tilesInMovementRangeWithStaminaToAttack[i].m_gridPosition);
+            if (worldTileAtPosition.GetGameTile().GetTerrain().IsHill())
+            {
+                terrainRangeIncrease = 1;
+            }
+
+            List<WorldTile> tiles = GetSurroundingWorldTiles(worldTileAtPosition, range + terrainRangeIncrease);
             for (int k = 0; k < tiles.Count; k++)
             {
                 if (!tilesInRangeToMoveAndAttack.Contains(tiles[k].GetGameTile()))

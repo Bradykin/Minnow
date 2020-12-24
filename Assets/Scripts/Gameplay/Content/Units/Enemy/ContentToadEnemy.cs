@@ -19,7 +19,7 @@ public class ContentToadEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Toad";
-        m_desc = "On hit, drains Stamina to 2!\n";
+        m_desc = "When attacking, drains Stamina of the target to 2!\n";
 
         AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

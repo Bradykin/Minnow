@@ -330,6 +330,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                 return 0;
             }
 
+            if (GetTerrain().IsDunes() && checkerUnit.m_instantDunesMovement)
+            {
+                return 0;
+            }
+
             bool canFly = checkerUnit.GetFlyingKeyword() != null;
 
             if (canFly)
