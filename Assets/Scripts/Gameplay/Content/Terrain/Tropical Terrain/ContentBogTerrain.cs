@@ -15,7 +15,6 @@ public class ContentBogTerrain : GameTerrainBase
 
         m_isPassable = true;
 
-        m_addedEventTerrainType = typeof(ContentBogRuinsTerrain);
         m_marshTideRiseTerrainType = typeof(ContentOceanCalmTerrain);
         m_marshTideLowerTerrainType = typeof(ContentMarshTerrain);
 

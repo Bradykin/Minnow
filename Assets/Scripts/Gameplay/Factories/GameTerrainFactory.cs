@@ -19,7 +19,6 @@ public class GameTerrainFactory
     private static List<GameTerrainBase> m_redDesertTerrain = new List<GameTerrainBase>();
     private static List<GameTerrainBase> m_yellowDesertTerrain = new List<GameTerrainBase>();
     private static List<GameTerrainBase> m_volcanicTerrain = new List<GameTerrainBase>();
-    private static List<GameTerrainBase> m_ruinsTerrain = new List<GameTerrainBase>();
     private static List<GameTerrainBase> m_tempTerrain = new List<GameTerrainBase>();
 
     private static bool m_hasInit = false;
@@ -36,9 +35,6 @@ public class GameTerrainFactory
         m_basicTerrain.Add(new ContentWaterTerrain());
         m_basicTerrain.Add(new ContentLakeTerrain());
         m_basicTerrain.Add(new ContentOceanCalmTerrain());
-        m_basicTerrain.Add(new ContentGrassPlainsRuinsTerrain());
-        m_basicTerrain.Add(new ContentScrublandPlainsRuinsTerrain());
-        m_basicTerrain.Add(new ContentForestRuinsTerrain());
         m_basicTerrain.Add(new ContentRubbleTerrain());
         m_basicTerrain.Add(new ContentCorruptionTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Basic Terrain", m_basicTerrain));
@@ -65,8 +61,6 @@ public class GameTerrainFactory
         m_plainsTerrain.Add(new ContentTundraPlainsPondTerrain());
         m_plainsTerrain.Add(new ContentSnowPlainsPondTerrain());
         m_plainsTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
-        m_plainsTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
-        m_plainsTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Plains Terrain", m_plainsTerrain));
 
         //Forest Terrain
@@ -84,9 +78,6 @@ public class GameTerrainFactory
         m_forestTerrain.Add(new ContentDesertYellowForestTerrain());
         m_forestTerrain.Add(new ContentForestBurnedTerrain());
         m_forestTerrain.Add(new ContentAshForestBurnedTerrain());
-        m_forestTerrain.Add(new ContentForestRuinsTerrain());
-        m_forestTerrain.Add(new ContentForestBurnedRuinsTerrain());
-        m_forestTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Forest Terrain", m_forestTerrain));
 
         //Hill Terrain
@@ -131,16 +122,6 @@ public class GameTerrainFactory
         m_tropicalTerrain.Add(new ContentWetlandsTerrain());
         m_tropicalTerrain.Add(new ContentMarshTerrain());
         m_tropicalTerrain.Add(new ContentBogTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalPlainsRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalGrassSandPlainsRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalSandPlainsRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalSandForestRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentTropicalGrassSandForestRuinsTerrain());
-        //m_tropicalTerrain.Add(new ContentJungleForestRuinsTerrain());
-        //m_tropicalTerrain.Add(new ContentSwampForestRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentWetlandsRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentMarshRuinsTerrain());
-        m_tropicalTerrain.Add(new ContentBogRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Tropical Terrain", m_tropicalTerrain));
 
         //Snow Terrain
@@ -163,13 +144,6 @@ public class GameTerrainFactory
         m_snowTerrain.Add(new ContentSnowMountainTerrain());
         m_snowTerrain.Add(new ContentSnowMountainCaveTerrain());
         m_snowTerrain.Add(new ContentSnowBankTerrain());
-        m_snowTerrain.Add(new ContentColdPlainsRuinsTerrain());
-        m_snowTerrain.Add(new ContentColdDirtPlainsRuinsTerrain());
-        m_snowTerrain.Add(new ContentTundraPlainsRuinsTerrain());
-        m_snowTerrain.Add(new ContentSnowPlainsRuinsTerrain());
-        m_snowTerrain.Add(new ContentPineForestRuinsTerrain());
-        m_snowTerrain.Add(new ContentTundraForestRuinsTerrain());
-        m_snowTerrain.Add(new ContentSnowForestRuinsTerrain());
         m_snowTerrain.Add(new ContentIceWaterTerrain());
         m_snowTerrain.Add(new ContentIceCrackedTerrain());
         m_snowTerrain.Add(new ContentIceTerrain());
@@ -189,10 +163,6 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedGrassDunesTerrain());
         m_redDesertTerrain.Add(new ContentDesertDunesTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedForestRuinsTerrain());
-        m_redDesertTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Red Desert Terrain", m_redDesertTerrain));
 
         //Desert Yellow Terrain
@@ -208,10 +178,7 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowDirtPlainsRuinsTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowForestRuinsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertDunesTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertDunesRuinsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Yellow Desert Terrain", m_yellowDesertTerrain));
 
         //Volcanic Terrain
@@ -224,20 +191,6 @@ public class GameTerrainFactory
         m_volcanicTerrain.Add(new ContentVolcanoInactiveTerrain());
         m_volcanicTerrain.Add(new ContentFumarolePlainsTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Volcanic Terrain", m_volcanicTerrain));
-
-        //Ruins Terrain
-        m_ruinsTerrain.Add(new ContentGrassPlainsRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentDesertRedGrassPlainsRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentDirtPlainsRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentDesertRedDirtPlainsRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentForestRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentForestBurnedRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentPineForestRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentSnowForestRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentMarshRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentDesertDunesRuinsTerrain());
-        m_ruinsTerrain.Add(new ContentSnowPlainsRuinsTerrain());
-        m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Ruins Terrain", m_ruinsTerrain));
 
         //Temp Terrain
         m_tempTerrain.Add(new ContentTropicalPlainsTerrain());
@@ -305,20 +258,6 @@ public class GameTerrainFactory
     public static GameTerrainBase GetTerrainClone(Type type)
     {
         return (GameTerrainBase)Activator.CreateInstance(type);
-    }
-
-    public static GameTerrainBase GetCompletedEventTerrainClone(GameTerrainBase currentTerrain)
-    {
-        if (currentTerrain.GetCompletedEventTerrainType() == null)
-        {
-            Debug.LogError("Missing completed event type for " + currentTerrain.GetName());
-            return GetTerrainClone(currentTerrain);
-        }
-
-        GameTerrainBase toReturn = GetTerrainClone(currentTerrain.GetCompletedEventTerrainType());
-        toReturn.SetSprite(currentTerrain.GetTerrainImageNumber());
-
-        return toReturn;
     }
 
     public static GameTerrainBase GetUnburnedTerrainClone(GameTerrainBase currentTerrain)

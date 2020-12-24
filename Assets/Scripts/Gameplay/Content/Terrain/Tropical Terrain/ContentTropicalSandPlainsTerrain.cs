@@ -16,8 +16,6 @@ public class ContentTropicalSandPlainsTerrain : GameTerrainBase
         m_isPassable = true;
         m_isPlains = true;
 
-        m_addedEventTerrainType = typeof(ContentTropicalSandPlainsRuinsTerrain);
-
         LateInit();
     }
 }

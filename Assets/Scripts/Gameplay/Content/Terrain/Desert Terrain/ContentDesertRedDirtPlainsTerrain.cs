@@ -19,7 +19,6 @@ public class ContentDesertRedDirtPlainsTerrain : GameTerrainBase
         m_isHot = true;
 
         m_unburnedTerrainType = typeof(ContentDesertRedGrassPlainsTerrain);
-        m_addedEventTerrainType = typeof(ContentDesertRedDirtPlainsRuinsTerrain);
 
         LateInit();
     }

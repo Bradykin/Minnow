@@ -15,7 +15,6 @@ public class ContentSwampForestTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isForest = true;
-        m_isWaterSource = true;
 
         LateInit();
     }

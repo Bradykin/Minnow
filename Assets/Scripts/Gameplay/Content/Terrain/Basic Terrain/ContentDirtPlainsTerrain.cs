@@ -16,8 +16,6 @@ public class ContentDirtPlainsTerrain : GameTerrainBase
         m_isPassable = true;
         m_isPlains = true;
 
-        m_addedEventTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
-
         LateInit();
     }
 }

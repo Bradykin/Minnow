@@ -15,8 +15,6 @@ public class ContentRubbleTerrain : GameTerrainBase
 
         m_isPassable = true;
 
-        m_addedEventTerrainType = typeof(ContentDirtPlainsRuinsTerrain);
-
         LateInit();
     }
 }

@@ -16,7 +16,6 @@ public class ContentDesertYellowMesaLargePondTerrain : GameTerrainBase
 
         m_isMountain = true;
         m_isHot = true;
-        m_isWaterSource = true;
 
         LateInit();
     }

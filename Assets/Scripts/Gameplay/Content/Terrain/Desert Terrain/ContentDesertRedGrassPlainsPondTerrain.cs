@@ -17,7 +17,6 @@ public class ContentDesertRedGrassPlainsPondTerrain : GameTerrainBase
         m_isPlains = true;
         m_canBurn = true;
         m_isHot = true;
-        m_isWaterSource = true;
 
         m_burnedTerrainType = typeof(ContentDesertRedDirtPlainsTerrain);
 

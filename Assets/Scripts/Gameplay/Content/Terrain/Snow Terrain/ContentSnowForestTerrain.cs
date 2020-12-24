@@ -19,7 +19,6 @@ public class ContentSnowForestTerrain : GameTerrainBase
         m_canBurn = true;
 
         m_burnedTerrainType = typeof(ContentForestBurnedTerrain);
-        m_addedEventTerrainType = typeof(ContentSnowForestRuinsTerrain);
 
         LateInit();
     }

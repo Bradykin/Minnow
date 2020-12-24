@@ -15,9 +15,6 @@ public class ContentTundraPlainsTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isPlains = true;
-        m_isCold = true;
-
-        m_addedEventTerrainType = typeof(ContentTundraPlainsRuinsTerrain);
 
         LateInit();
     }

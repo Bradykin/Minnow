@@ -17,8 +17,6 @@ public class ContentSnowPlainsTerrain : GameTerrainBase
         m_isPlains = true;
         m_isCold = true;
 
-        m_addedEventTerrainType = typeof(ContentSnowPlainsRuinsTerrain);
-
         LateInit();
     }
 }

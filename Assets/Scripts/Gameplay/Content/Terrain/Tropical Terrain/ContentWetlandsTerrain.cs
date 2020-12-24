@@ -14,9 +14,6 @@ public class ContentWetlandsTerrain : GameTerrainBase
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isPassable = true;
-        m_isWaterSource = true;
-
-        m_addedEventTerrainType = typeof(ContentWetlandsRuinsTerrain);
 
         LateInit();
     }

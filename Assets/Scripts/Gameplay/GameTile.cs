@@ -260,12 +260,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             SetTerrain(new ContentIceTerrain(), clearBuilding);
             return;
         }
-
-        if (newTerrain.IsEventTerrain())
-        {
-            m_gameWorldPerk = new GameWorldPerk(this, GameEventFactory.GetRandomEvent(this));
-            m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
-        }
     }
 
     public GameSpawnPoint GetSpawnPoint()

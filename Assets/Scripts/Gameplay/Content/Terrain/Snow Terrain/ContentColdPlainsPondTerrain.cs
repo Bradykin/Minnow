@@ -16,7 +16,6 @@ public class ContentColdPlainsPondTerrain : GameTerrainBase
         m_isPassable = true;
         m_isPlains = true;
         m_isCold = true;
-        m_isWaterSource = true;
 
         LateInit();
     }

@@ -124,7 +124,7 @@ public static class AudioHelper
         {
             PlaySFX(BuildingMovement);
         }
-        else if (tile.GetTerrain().IsWater() || tile.GetTerrain().IsWaterSource())
+        else if (tile.GetTerrain().IsWater())
         {
             PlaySFX(WaterMovement);
         }

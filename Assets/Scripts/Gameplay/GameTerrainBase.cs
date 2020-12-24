@@ -48,7 +48,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isMountain;
     protected bool m_isWater;
 
-    protected bool m_isEventTerrain;
     protected bool m_isCave; // Not currently used
     protected bool m_isVolcano;
     protected bool m_isLava;
@@ -56,7 +55,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     protected bool m_isIceCracked;
     protected bool m_isDunes;
     protected bool m_isCorruption;
-    protected bool m_isWaterSource; // Not currently used
 
     protected bool m_isHot; // Not currently used
     protected bool m_isCold;
@@ -65,8 +63,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
 
     protected Type m_burnedTerrainType;
     protected Type m_unburnedTerrainType;
-    protected Type m_completedEventTerrainType;
-    protected Type m_addedEventTerrainType;
     protected Type m_iceCrackedTerrainType;
     protected Type m_volcanoEruptTerrainType;
     protected Type m_marshTideRiseTerrainType;
@@ -201,16 +197,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
         return m_isCorruption;
     }
 
-    public bool IsWaterSource()
-    {
-        return m_isWater || m_isWaterSource;
-    }
-
-    public bool IsEventTerrain()
-    {
-        return m_isEventTerrain;
-    }
-
     public bool IsBurned()
     {
         return m_isBurned;
@@ -234,11 +220,6 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
     public Type GetUnburnedTerrainType()
     {
         return m_unburnedTerrainType;
-    }
-
-    public Type GetCompletedEventTerrainType()
-    {
-        return m_completedEventTerrainType;
     }
 
     public Type GetIceCrackedTerrainType()
