@@ -58,7 +58,7 @@ public static class PlayerDataManager
         return PlayerAccountData.m_mapChaosLevels[mapId] >= chaosLevel;
     }
 
-    public static void UpdatePlayerAccountDataOnEndRun(RunEndType endType, int experienceAmount, int mapID, int curChaos)
+    public static void UpdatePlayerAccountDataOnEndRun(RunEndType endType, GameDeck endDeck, int experienceAmount, int mapID, int curChaos)
     {
         if (endType == RunEndType.Win)
         {
@@ -73,6 +73,12 @@ public static class PlayerDataManager
             {
                 PlayerAccountData.m_mapChaosLevels[mapID] = curChaos;
                 firstTimeCompleteChaosLevel = true;
+            }
+
+            List<GameCard> endDeckCards = endDeck.GetDeck();
+            for (int i = 0; i < endDeckCards.Count; i++)
+            {
+                PlayerDataManager.PlayerAccountData.TryAddGoldCard(endDeckCards[i]);
             }
 
             if (firstTimeCompleteChaosLevel)

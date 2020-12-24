@@ -270,7 +270,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         {
             bool isVictory = endType == RunEndType.Win;
             bool firstChaosClear = !PlayerDataManager.IsChaosLevelAchieved(GetCurMap().m_id, Globals.m_curChaos);
-            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GetRunExperienceNum(isVictory, firstChaosClear), m_map.m_id, Globals.m_curChaos);
+            PlayerDataManager.UpdatePlayerAccountDataOnEndRun(endType, GameHelper.GetPlayer().m_deckBase, GetRunExperienceNum(isVictory, firstChaosClear), m_map.m_id, Globals.m_curChaos);
             GameNotificationManager.SaveGameDirectorData();
             Files.ExportPlayerAccountData(PlayerDataManager.PlayerAccountData);
         }

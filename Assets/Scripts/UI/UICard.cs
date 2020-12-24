@@ -215,6 +215,11 @@ public class UICard : MonoBehaviour
                 m_unitObj.SetActive(false);
             }
         }
+
+        if (PlayerDataManager.PlayerAccountData.CheckHasGoldCard(m_card))
+        {
+            //Todo: Nick make card gold
+        }
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)

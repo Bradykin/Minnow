@@ -16,16 +16,20 @@ public class ContentGuardianOfTheForest : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.SlamHeavy;
 
+        AddKeyword(new GameForestwalkKeyword(), true, false);
+
         LateInit();
     }
+
+
 
     protected override void ResetToBase()
     {
         ResetKeywords(true);
 
-        m_maxHealth = 20;
+        m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 6;
+        m_power = 8;
     }
 }

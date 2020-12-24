@@ -40,6 +40,11 @@ public class PlayerAccountData
     public List<JsonGameMetaProgressionRewardData> JsonGameMetaProgressionRewardDatas => m_jsonGameMetaProgressionRewardDatas;
     [JsonProperty]
     private List<JsonGameMetaProgressionRewardData> m_jsonGameMetaProgressionRewardDatas;
+
+    [JsonIgnore]
+    public List<string> GoldCardNames => m_goldCardNames;
+    [JsonProperty]
+    private List<string> m_goldCardNames = new List<string>();
     
     //Key = map ID, value = Chaos progression (highest chaos BEATEN)
     public Dictionary<int, int> m_mapChaosLevels;
@@ -86,6 +91,20 @@ public class PlayerAccountData
         }
 
         return true;
+    }
+
+    public bool CheckHasGoldCard(GameCard gameCard)
+    {
+        return m_goldCardNames.Contains(gameCard.GetBaseName());
+    }
+
+    public void TryAddGoldCard(GameCard gameCard)
+    {
+        string cardName = gameCard.GetBaseName();
+        if (!m_goldCardNames.Contains(cardName))
+        {
+            m_goldCardNames.Add(cardName);
+        }
     }
 
     public void SaveGameMetaProgressionRewardDatas()
