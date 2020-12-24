@@ -11,6 +11,7 @@ public class WorldController : Singleton<WorldController>
 
     public List<UICard> m_playerHand { get; private set; }
 
+    private GameUnit m_playerUnitFocus;
     private int m_playerUnitFocusIndex;
 
     public bool m_isInGame;
@@ -31,6 +32,7 @@ public class WorldController : Singleton<WorldController>
 
         m_playerHand = new List<UICard>();
 
+        m_playerUnitFocus = null;
         m_playerUnitFocusIndex = 0;
         Globals.m_selectedCard = null;
     }
@@ -393,6 +395,15 @@ public class WorldController : Singleton<WorldController>
             return;
         }
 
+        if (validUnits.Contains(m_playerUnitFocus))
+        {
+            m_playerUnitFocusIndex = validUnits.IndexOf(m_playerUnitFocus);
+        }
+        else
+        {
+            m_playerUnitFocusIndex = Mathf.Clamp(m_playerUnitFocusIndex, 0, validUnits.Count - 1);
+        }
+
         m_playerUnitFocusIndex++;
 
         if (m_playerUnitFocusIndex >= validUnits.Count)
@@ -416,6 +427,15 @@ public class WorldController : Singleton<WorldController>
         if (validUnits.Count == 0)
         {
             return;
+        }
+
+        if (validUnits.Contains(m_playerUnitFocus))
+        {
+            m_playerUnitFocusIndex = validUnits.IndexOf(m_playerUnitFocus);
+        }
+        else
+        {
+            m_playerUnitFocusIndex = Mathf.Clamp(m_playerUnitFocusIndex, 0, validUnits.Count - 1);
         }
 
         m_playerUnitFocusIndex--;
