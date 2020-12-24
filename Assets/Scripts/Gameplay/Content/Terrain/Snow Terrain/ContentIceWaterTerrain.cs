@@ -15,7 +15,7 @@ public class ContentIceWaterTerrain : GameTerrainBase
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isWater = true;
-        m_isCold = true;
+        m_isSnow = true;
 
         LateInit();
     }

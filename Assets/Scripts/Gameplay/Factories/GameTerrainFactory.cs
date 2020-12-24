@@ -57,10 +57,6 @@ public class GameTerrainFactory
         m_plainsTerrain.Add(new ContentDesertYellowDirtPlainsTerrain());
         m_plainsTerrain.Add(new ContentFumarolePlainsTerrain());
         m_plainsTerrain.Add(new ContentAshPlainsTerrain());
-        m_plainsTerrain.Add(new ContentColdPlainsPondTerrain());
-        m_plainsTerrain.Add(new ContentTundraPlainsPondTerrain());
-        m_plainsTerrain.Add(new ContentSnowPlainsPondTerrain());
-        m_plainsTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Plains Terrain", m_plainsTerrain));
 
         //Forest Terrain
@@ -74,7 +70,6 @@ public class GameTerrainFactory
         m_forestTerrain.Add(new ContentTropicalSandForestTerrain());
         m_forestTerrain.Add(new ContentTropicalGrassSandForestTerrain());
         m_forestTerrain.Add(new ContentDesertRedForestTerrain());
-        m_forestTerrain.Add(new ContentDesertRedForestPondTerrain());
         m_forestTerrain.Add(new ContentDesertYellowForestTerrain());
         m_forestTerrain.Add(new ContentForestBurnedTerrain());
         m_forestTerrain.Add(new ContentAshForestBurnedTerrain());
@@ -92,8 +87,6 @@ public class GameTerrainFactory
         m_hillTerrain.Add(new ContentTundraHillsCaveTerrain());
         m_hillTerrain.Add(new ContentSnowHillsCaveTerrain());
         m_hillTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
-        m_hillTerrain.Add(new ContentDesertRedHillsPondTerrain());
-        m_hillTerrain.Add(new ContentDesertYellowHillsPondTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Hills Terrain", m_hillTerrain));
 
         //Mountain Terrain
@@ -106,7 +99,6 @@ public class GameTerrainFactory
         m_mountainTerrain.Add(new ContentDesertRedMountainCaveTerrain());
         m_mountainTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
         m_mountainTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
-        m_mountainTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
         m_mountainTerrain.Add(new ContentVolcanoActiveTerrain());
         m_mountainTerrain.Add(new ContentVolcanoInactiveTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Mountain Terrain", m_mountainTerrain));
@@ -129,9 +121,6 @@ public class GameTerrainFactory
         m_snowTerrain.Add(new ContentColdDirtPlainsTerrain());
         m_snowTerrain.Add(new ContentSnowPlainsTerrain());
         m_snowTerrain.Add(new ContentTundraPlainsTerrain());
-        m_snowTerrain.Add(new ContentColdPlainsPondTerrain());
-        m_snowTerrain.Add(new ContentTundraPlainsPondTerrain());
-        m_snowTerrain.Add(new ContentSnowPlainsPondTerrain());
         m_snowTerrain.Add(new ContentPineForestTerrain());
         m_snowTerrain.Add(new ContentTundraForestTerrain());
         m_snowTerrain.Add(new ContentSnowForestTerrain());
@@ -158,9 +147,6 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMountainCaveTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedGrassPlainsPondTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedForestPondTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedHillsPondTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedGrassDunesTerrain());
         m_redDesertTerrain.Add(new ContentDesertDunesTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Red Desert Terrain", m_redDesertTerrain));
@@ -176,8 +162,6 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowSaltFlatsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeCaveTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowHillsPondTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargePondTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertDunesTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Yellow Desert Terrain", m_yellowDesertTerrain));
 

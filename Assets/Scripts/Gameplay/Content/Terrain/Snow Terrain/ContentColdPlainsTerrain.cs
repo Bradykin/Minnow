@@ -15,7 +15,6 @@ public class ContentColdPlainsTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isPlains = true;
-        m_isCold = true;
 
         LateInit();
     }

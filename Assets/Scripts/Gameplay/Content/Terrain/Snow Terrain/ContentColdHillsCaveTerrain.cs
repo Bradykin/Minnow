@@ -16,8 +16,6 @@ public class ContentColdHillsCaveTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isHill = true;
-        m_isCold = true;
-        m_isCave = true;
 
         LateInit();
     }

@@ -16,7 +16,6 @@ public class ContentDesertRedMountainCaveTerrain : GameTerrainBase
 
         m_isMountain = true;
         m_isHot = true;
-        m_isCave = true;
 
         LateInit();
     }

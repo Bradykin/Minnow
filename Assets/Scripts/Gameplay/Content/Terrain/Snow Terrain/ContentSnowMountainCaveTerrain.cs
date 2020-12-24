@@ -15,8 +15,7 @@ public class ContentSnowMountainCaveTerrain : GameTerrainBase
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
         m_isMountain = true;
-        m_isCold = true;
-        m_isCave = true;
+        m_isSnow = true;
 
         LateInit();
     }

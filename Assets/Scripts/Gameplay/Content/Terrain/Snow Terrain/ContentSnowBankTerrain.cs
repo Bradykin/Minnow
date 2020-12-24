@@ -15,7 +15,7 @@ public class ContentSnowBankTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isHill = true;
-        m_isCold = true;
+        m_isSnow = true;
 
         LateInit();
     }

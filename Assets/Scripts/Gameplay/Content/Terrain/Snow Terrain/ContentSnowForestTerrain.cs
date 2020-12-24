@@ -15,7 +15,7 @@ public class ContentSnowForestTerrain : GameTerrainBase
 
         m_isPassable = true;
         m_isForest = true;
-        m_isCold = true;
+        m_isSnow = true;
         m_canBurn = true;
 
         m_burnedTerrainType = typeof(ContentForestBurnedTerrain);

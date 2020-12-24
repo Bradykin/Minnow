@@ -148,7 +148,7 @@ public static class AudioHelper
         {
             PlaySFX(PlainsMovement);
         }
-        else if (tile.GetTerrain().IsCold())
+        else if (tile.GetTerrain().IsSnow())
         {
             PlaySFX(SnowMovement);
         }

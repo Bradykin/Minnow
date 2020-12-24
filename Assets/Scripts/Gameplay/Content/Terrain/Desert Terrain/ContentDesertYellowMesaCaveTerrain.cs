@@ -17,7 +17,6 @@ public class ContentDesertYellowMesaCaveTerrain : GameTerrainBase
         m_isPassable = true;
         m_isHot = true;
         m_isHill = true;
-        m_isCave = true;
 
         LateInit();
     }
