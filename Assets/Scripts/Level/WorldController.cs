@@ -233,10 +233,13 @@ public class WorldController : Singleton<WorldController>
         {
             for (int i = m_gameController.m_player.m_controlledUnits.Count - 1; i >= 0; i--)
             {
-                if (m_gameController.m_player.m_controlledUnits[i].GetType() != typeof(ContentRoyalCaravan))
+                if (m_gameController.m_player.m_controlledUnits[i].GetType() == typeof(ContentRoyalCaravan))
                 {
-                    m_gameController.m_player.m_controlledUnits.RemoveAt(i);
+                    m_gameController.m_player.m_controlledUnits[i].EndWave();
+                    continue;
                 }
+
+                m_gameController.m_player.m_controlledUnits.RemoveAt(i);
             }
         }
         else

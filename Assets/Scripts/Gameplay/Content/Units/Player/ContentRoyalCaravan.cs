@@ -49,5 +49,7 @@ public class ContentRoyalCaravan : GameUnit
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 5;
+
+        m_curStamina = m_staminaRegen;
     }
 }
