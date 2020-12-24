@@ -10,7 +10,7 @@ public class ContentDesertYellowMesaLargeCaveTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
-        m_name = "DesertYellowMesaLargeCave";
+        m_name = "Desert Yellow Mesa Large Cave";
         m_maxTerrainImageNumber = 2;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

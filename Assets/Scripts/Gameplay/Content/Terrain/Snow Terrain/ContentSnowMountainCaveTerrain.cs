@@ -10,7 +10,7 @@ public class ContentSnowMountainCaveTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
-        m_name = "SnowMountainCave";
+        m_name = "Snow Mountain Cave";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

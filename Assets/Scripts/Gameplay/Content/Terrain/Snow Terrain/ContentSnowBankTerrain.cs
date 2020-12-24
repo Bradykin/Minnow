@@ -9,7 +9,7 @@ public class ContentSnowBankTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "SnowBank";
+        m_name = "Snow Bank";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

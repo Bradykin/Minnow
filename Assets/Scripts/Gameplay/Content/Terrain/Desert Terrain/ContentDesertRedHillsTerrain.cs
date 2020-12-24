@@ -10,7 +10,7 @@ public class ContentDesertRedHillsTerrain : GameTerrainBase
         m_coverType = CoverType.Cover;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "DesertRedHills";
+        m_name = "Desert Red Hills";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

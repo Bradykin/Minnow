@@ -10,7 +10,7 @@ public class ContentColdHillsTerrain : GameTerrainBase
         m_coverType = CoverType.Cover;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "ColdHills";
+        m_name = "Cold Hills";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

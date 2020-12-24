@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using UnityEngine;
 
 public class GameTerrainFactory
@@ -43,7 +44,6 @@ public class GameTerrainFactory
         m_plainsTerrain.Add(new ContentScrublandPlainsTerrain());
         m_plainsTerrain.Add(new ContentGrassPlainsTerrain());
         m_plainsTerrain.Add(new ContentDirtPlainsTerrain());
-        m_plainsTerrain.Add(new ContentHighlandsPlainsTerrain());
         m_plainsTerrain.Add(new ContentColdPlainsTerrain());
         m_plainsTerrain.Add(new ContentColdDirtPlainsTerrain());
         m_plainsTerrain.Add(new ContentTundraPlainsTerrain());
@@ -61,7 +61,6 @@ public class GameTerrainFactory
 
         //Forest Terrain
         m_forestTerrain.Add(new ContentForestTerrain());
-        m_forestTerrain.Add(new ContentWoodlandsForestTerrain());
         m_forestTerrain.Add(new ContentPineForestTerrain());
         m_forestTerrain.Add(new ContentTundraForestTerrain());
         m_forestTerrain.Add(new ContentSnowForestTerrain());
@@ -147,7 +146,6 @@ public class GameTerrainFactory
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMountainCaveTerrain());
         m_redDesertTerrain.Add(new ContentDesertRedMesaLargeCaveTerrain());
-        m_redDesertTerrain.Add(new ContentDesertRedGrassDunesTerrain());
         m_redDesertTerrain.Add(new ContentDesertDunesTerrain());
         m_terrain.Add(new KeyValuePair<string, List<GameTerrainBase>>("Red Desert Terrain", m_redDesertTerrain));
 
@@ -157,7 +155,6 @@ public class GameTerrainFactory
         m_yellowDesertTerrain.Add(new ContentDesertYellowHillsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMountainTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaLargeTerrain());
-        m_yellowDesertTerrain.Add(new ContentDesertYellowDirtDunesTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowCraterTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowSaltFlatsTerrain());
         m_yellowDesertTerrain.Add(new ContentDesertYellowMesaCaveTerrain());
@@ -395,7 +392,7 @@ public class GameTerrainFactory
         {
             List<GameTerrainBase> currentTerrainList = m_terrain[i].Value;
 
-            int r = currentTerrainList.FindIndex(t => t.GetName() == jsonData.name);
+            int r = currentTerrainList.FindIndex(t => t.GetName() == jsonData.name || new string(t.GetName().ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray()) == jsonData.name);
 
             if (r == -1)
             {

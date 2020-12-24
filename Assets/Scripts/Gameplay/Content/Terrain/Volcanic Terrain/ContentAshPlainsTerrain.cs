@@ -9,7 +9,7 @@ public class ContentAshPlainsTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "AshPlains";
+        m_name = "Ash Plains";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

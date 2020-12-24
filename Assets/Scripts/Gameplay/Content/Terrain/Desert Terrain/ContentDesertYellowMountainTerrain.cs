@@ -10,7 +10,7 @@ public class ContentDesertYellowMountainTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
-        m_name = "DesertYellowMountain";
+        m_name = "Desert Yellow Mountain";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

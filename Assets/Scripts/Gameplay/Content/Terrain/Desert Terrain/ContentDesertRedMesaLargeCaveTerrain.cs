@@ -10,7 +10,7 @@ public class ContentDesertRedMesaLargeCaveTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
-        m_name = "DesertRedMesaLargeCave";
+        m_name = "Desert Red Mesa Large Cave";
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

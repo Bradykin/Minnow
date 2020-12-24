@@ -9,7 +9,7 @@ public class ContentScrublandPlainsTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "ScrublandPlains";
+        m_name = "Scrubland Plains";
         m_maxTerrainImageNumber = 5;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber);
 

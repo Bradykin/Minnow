@@ -10,7 +10,7 @@ public class ContentTundraHillsCaveTerrain : GameTerrainBase
         m_coverType = CoverType.Cover;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "TundraHillsCave";
+        m_name = "Tundra Hills Cave";
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

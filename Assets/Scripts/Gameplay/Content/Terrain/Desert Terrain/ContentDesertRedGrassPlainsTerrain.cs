@@ -9,7 +9,7 @@ public class ContentDesertRedGrassPlainsTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "DesertRedGrassPlains";
+        m_name = "Desert Red Grass Plains";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

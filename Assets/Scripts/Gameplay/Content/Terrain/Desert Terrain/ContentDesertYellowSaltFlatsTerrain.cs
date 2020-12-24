@@ -9,7 +9,7 @@ public class ContentDesertYellowSaltFlatsTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "DesertYellowSaltFlats";
+        m_name = "Desert Yellow Salt Flats";
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

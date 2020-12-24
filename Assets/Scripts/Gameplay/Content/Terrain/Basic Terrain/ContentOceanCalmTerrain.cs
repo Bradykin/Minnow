@@ -10,7 +10,7 @@ public class ContentOceanCalmTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Normal;
         m_isPassable = false;
 
-        m_name = "OceanCalm";
+        m_name = "Ocean Calm";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

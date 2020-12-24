@@ -9,7 +9,7 @@ public class ContentDesertYellowCraterTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "DesertYellowCrater";
+        m_name = "Desert Yellow Crater";
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = 1;
 

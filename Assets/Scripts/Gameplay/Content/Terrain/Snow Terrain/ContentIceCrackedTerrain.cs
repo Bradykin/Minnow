@@ -9,7 +9,7 @@ public class ContentIceCrackedTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "IceCracked";
+        m_name = "Ice Cracked";
         m_maxTerrainImageNumber = 1;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

@@ -9,7 +9,7 @@ public class ContentDesertDunesTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "DesertDunes";
+        m_name = "Desert Dunes";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

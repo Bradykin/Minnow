@@ -10,7 +10,7 @@ public class ContentVolcanoActiveTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Difficult;
         m_isPassable = false;
 
-        m_name = "VolcanoActive";
+        m_name = "Volcano Active";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

@@ -10,7 +10,7 @@ public class ContentIceWaterTerrain : GameTerrainBase
         m_movementType = TerrainMovementType.Normal;
         m_isPassable = false;
 
-        m_name = "IceWater";
+        m_name = "Ice Water";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

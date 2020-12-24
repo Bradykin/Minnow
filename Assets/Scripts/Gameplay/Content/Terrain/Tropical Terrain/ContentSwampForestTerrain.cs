@@ -9,7 +9,7 @@ public class ContentSwampForestTerrain : GameTerrainBase
         m_coverType = CoverType.Cover;
         m_movementType = TerrainMovementType.Difficult;
 
-        m_name = "SwampForest";
+        m_name = "Swamp Forest";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 

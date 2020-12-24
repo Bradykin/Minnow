@@ -9,7 +9,7 @@ public class ContentTropicalGrassSandPlainsTerrain : GameTerrainBase
         m_coverType = CoverType.None;
         m_movementType = TerrainMovementType.Normal;
 
-        m_name = "TropicalGrassSandPlains";
+        m_name = "Tropical Grass Sand Plains";
         m_maxTerrainImageNumber = 4;
         m_terrainImageNumber = Random.Range(1, m_maxTerrainImageNumber + 1);
 
