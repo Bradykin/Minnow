@@ -9,6 +9,8 @@ public class ContentSpreadingCorruptionMap : GameMap
         m_name = "Spreading Corruption";
         m_desc = "Many prosperous villages live in this valley, all under threat of the spreading corruption. Can you stop the spread before it is on your gates?";
 
+        m_disableUnfinished = true;
+
         m_difficulty = MapDifficulty.Hard;
 
         m_id = 10;

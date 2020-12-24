@@ -9,6 +9,8 @@ public class ContentDesertPassMap : GameMap
         m_name = "Desert Pass";
         m_desc = "Can you protect the passes?";
 
+        m_disableUnfinished = true;
+
         m_difficulty = MapDifficulty.Medium;
 
         m_id = 2;

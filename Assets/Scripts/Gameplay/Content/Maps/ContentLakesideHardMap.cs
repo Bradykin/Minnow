@@ -9,6 +9,8 @@ public class ContentLakesideHardMap : GameMap
         m_name = "Lakeside Hard";
         m_desc = "Defend from 3 different angles in this expert map!";
 
+        m_disableUnfinished = true;
+
         m_difficulty = MapDifficulty.Hard;
 
         m_id = 1;

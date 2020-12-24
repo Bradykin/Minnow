@@ -9,6 +9,8 @@ public class ContentTheMarshlandsMap : GameMap
         m_name = "The Marshlands";
         m_desc = "Why anyone would live in this marsh, I do not know. Beware the changing tides.";
 
+        m_disableUnfinished = true;
+
         m_difficulty = MapDifficulty.Medium;
 
         m_id = 9;

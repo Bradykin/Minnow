@@ -9,6 +9,8 @@ public class ContentCrimsonIslandsMap : GameMap
         m_name = "Crimson Islands";
         m_desc = "A small set of islands form your natural base, but you'll want to expand to discover the secrets of the others.";
 
+        m_disableUnfinished = true;
+
         m_difficulty = MapDifficulty.Medium;
 
         m_id = 4;

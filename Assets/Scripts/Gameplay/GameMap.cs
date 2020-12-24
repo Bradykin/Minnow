@@ -21,6 +21,8 @@ public abstract class GameMap : GameElementBase
     protected bool m_spawnCrystals = false;
     protected int m_destroyedCrystals;
 
+    public bool m_disableUnfinished;
+
     public AudioClip m_backgroundMusic;
 
     protected void Init()

@@ -16,7 +16,7 @@ public class UIWorldMap : MonoBehaviour
                 continue;
             }
 
-            m_levelSelectButtons[i].gameObject.SetActive(Constants.UnlockAllContent || GameMetaprogressionUnlocksDataManager.HasUnlocked(m_levelSelectButtons[i].GetMap()));
+            m_levelSelectButtons[i].gameObject.SetActive((!m_levelSelectButtons[i].GetMap().m_disableUnfinished) && (Constants.UnlockAllContent || GameMetaprogressionUnlocksDataManager.HasUnlocked(m_levelSelectButtons[i].GetMap())));
         }
     }
 }
