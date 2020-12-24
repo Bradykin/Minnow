@@ -697,7 +697,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         if (Globals.m_levelCreatorEraserMode)
         {
             GameTile gameTile = GetGameTile();
-            if (gameTile.HasSpawnPoint())
+            if (gameTile.m_gameWorldPerk != null)
+            {
+                gameTile.m_gameWorldPerk = null;
+            }
+            else if (gameTile.HasSpawnPoint())
             {
                 gameTile.ClearSpawnPoint();
             }
@@ -744,6 +748,13 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     GetGameTile().AddEventMarker(Globals.m_currentlyPaintingNumberIndex);
                     Debug.Log("Add Event Tile index" + Globals.m_currentlyPaintingNumberIndex);
+                }
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameWorldPerk))
+            {
+                if (GetGameTile().m_gameWorldPerk == null)
+                {
+                    GetGameTile().m_gameWorldPerk = new GameWorldPerk(GetGameTile(), GameEventFactory.GetRandomEvent(GetGameTile()));
                 }
             }
         }

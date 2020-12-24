@@ -261,13 +261,10 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             return;
         }
 
-        if (!GameHelper.IsInLevelBuilder())
+        if (newTerrain.IsEventTerrain())
         {
-            if (newTerrain.IsEventTerrain())
-            {
-                m_gameWorldPerk = new GameWorldPerk(this, GameEventFactory.GetRandomEvent(this));
-                m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
-            }
+            m_gameWorldPerk = new GameWorldPerk(this, GameEventFactory.GetRandomEvent(this));
+            m_terrain = GameTerrainFactory.GetCompletedEventTerrainClone(m_terrain);
         }
     }
 

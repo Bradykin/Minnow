@@ -197,7 +197,11 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         m_perkType = (WorldPerkType)jsonData.perkType;
         m_chestRarity = (GameElementBase.GameRarity)jsonData.chestRarity;
 
-        if (jsonData.gameEventData != null)
+        if (m_perkType == WorldPerkType.Event && jsonData.gameEventData == null)
+        {
+            m_event = GameEventFactory.GetRandomEvent(m_gameTile);
+        }
+        else if (jsonData.gameEventData != null)
         {
             m_event = GameEventFactory.GetEventFromJson(jsonData.gameEventData, m_gameTile);
         }

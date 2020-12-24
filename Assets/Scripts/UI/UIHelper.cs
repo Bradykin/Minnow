@@ -854,6 +854,11 @@ public static class UIHelper
 
     public static void CreateWorldPerkTooltip(GameWorldPerk perk)
     {
+        if (GameHelper.IsInLevelBuilder())
+        {
+            return;
+        }
+        
         if (perk.IsChest())
         {
             UITooltipController.Instance.AddTooltipToStack(CreateSimpleTooltip(perk.GetChestRarity() + " Chest", "Send troops here to collect a " + perk.GetChestRarity() + " relic!"));

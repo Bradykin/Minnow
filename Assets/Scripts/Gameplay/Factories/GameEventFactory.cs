@@ -23,6 +23,11 @@ public static class GameEventFactory
 
     public static GameEvent GetRandomEvent(GameTile tile)
     {
+        if (GameHelper.IsInLevelBuilder())
+        {
+            return null;
+        }
+        
         List<GameEvent> availableEvents = new List<GameEvent>();
 
         for (int i = 0; i < m_events.Count; i++)

@@ -200,6 +200,15 @@ public class LevelCreator : MonoBehaviour
             }
             else if (Globals.m_currentlyPaintingType == typeof(int))
             {
+                Globals.m_currentlyPaintingType = typeof(GameWorldPerk);
+                m_selectedImage.sprite = null;
+                m_selectedListNotifier.text = "Event Marker";
+                Globals.m_currentlyPaintingNumberIndex = 0;
+
+                m_selectedTileNotifier.text = "Event";
+            }
+            else if (Globals.m_currentlyPaintingType == typeof(GameWorldPerk))
+            {
                 Globals.m_currentlyPaintingType = typeof(GameTerrainBase);
                 Globals.m_currentlyPaintingTerrain = GameTerrainFactory.GetCurrentTerrain();
                 m_selectedImage.sprite = Globals.m_currentlyPaintingTerrain.m_icon;
