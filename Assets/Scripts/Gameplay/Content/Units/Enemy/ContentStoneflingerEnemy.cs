@@ -18,12 +18,12 @@ public class ContentStoneflingerEnemy : GameEnemyUnit
 
         m_name = "Stoneflinger";
         
-        m_desc = "If this unit attacks a building or attacks a unit defending a building, it deals double damage.";
+        m_desc = "";
 
         AddKeyword(new GameRangeKeyword(2), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(this, 1)), true, false);
+            m_desc = "If this unit attacks a building or attacks a unit defending a building, it deals double damage.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -37,10 +37,13 @@ public class ContentStoneflingerEnemy : GameEnemyUnit
     public override int GetDamageToDealTo(GameUnit target)
     {
         int damageAmount = base.GetDamageToDealTo(target);
-        
-        if (target.GetGameTile().HasBuilding() && target.GetTeam() == target.GetGameTile().GetBuilding().GetTeam())
+
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            damageAmount *= 2;
+            if (target.GetGameTile().HasBuilding() && target.GetTeam() == target.GetGameTile().GetBuilding().GetTeam())
+            {
+                damageAmount *= 2;
+            }
         }
 
         return damageAmount;
