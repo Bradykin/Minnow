@@ -36,7 +36,7 @@ public class ContentMummyEnemy : GameEnemyUnit
             scalingValue += (waveNum - 2);
         }
 
-        return scalingValue * 3;
+        return scalingValue * 4;
     }
 
     private int GetStaminaRegenModByWave()
@@ -50,6 +50,6 @@ public class ContentMummyEnemy : GameEnemyUnit
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 
-        return waveNum * 2;
+        return waveNum * 3;
     }
 }
