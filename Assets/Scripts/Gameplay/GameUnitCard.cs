@@ -8,6 +8,11 @@ public class GameUnitCard : GameCard
 
     public override string GetName()
     {
+        if (m_unit.GetName() != m_unit.GetBaseName())
+        {
+            return $"{m_unit.GetName()}, the {m_unit.GetBaseName()}";
+        }
+        
         return m_unit.GetName();
     }
 
