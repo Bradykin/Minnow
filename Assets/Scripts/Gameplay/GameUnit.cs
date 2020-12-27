@@ -2454,7 +2454,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (GameHelper.HasAllTypelines())
                 {
                     GameHelper.GetPlayer().DrawCards(2);
-                    GameHelper.GetPlayer().AddEnergy(3);
+                    GameHelper.GetPlayer().AddEnergy(1);
                     UIHelper.TriggerRelicAnimation<ContentToldiranMiracleRelic>();
                 }
             }
