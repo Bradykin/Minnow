@@ -974,8 +974,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     {
         GameHelper.GetGameController().AddIntermissionLock();
 
-        m_worldUnit.PlayHitAnim(other.GetGameTile().GetWorldTile());
-        AudioHelper.PlaySFX(this.GetAttackSFX());
+        if (!GetGameTile().m_isFog)
+        {
+            m_worldUnit.PlayHitAnim(other.GetGameTile().GetWorldTile());
+            AudioHelper.PlaySFX(this.GetAttackSFX());
+        }
 
         if (spendStamina)
         {
@@ -2773,6 +2776,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                     Die();
                     UIHelper.TriggerRelicAnimation<ContentSecretOfTheDeepRelic>();
                 }
+            }
+
+            if (!GetGameTile().IsPassable(this, true))
+            {
+                Die();
             }
         }
     }
