@@ -36,6 +36,8 @@ public class WorldUnit : MonoBehaviour
     
     private GameUnit m_unit;
 
+    public bool IsMoving => m_movePath.Count > 0;
+
     public void Init(GameUnit unit)
     {
         m_unit = unit;
@@ -82,7 +84,13 @@ public class WorldUnit : MonoBehaviour
 
         if (m_moveTarget != gameObject.transform.position)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, m_movementSpeed * Time.deltaTime);
+            float movementSpeed = m_movementSpeed;
+            if (!PlayerDataManager.PlayerAccountData.m_followEnemy)
+            {
+                movementSpeed *= 1.5f;
+            }
+            
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_moveTarget, movementSpeed * Time.deltaTime);
         
             if (gameObject.transform.position == m_moveTarget)
             {

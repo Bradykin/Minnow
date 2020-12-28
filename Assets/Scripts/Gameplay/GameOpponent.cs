@@ -127,6 +127,11 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             }
         }
 
+        while (m_controlledUnits.Any(u => u.m_worldUnit.IsMoving))
+        {
+            yield return null;
+        }
+
         if (WorldController.Instance.m_isInGame)
         {
             WorldController.Instance.m_isEndTurnLocked = false;

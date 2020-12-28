@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Linq;
 
 public class UIEndTurnButton : UIElementBase
     , IPointerClickHandler
@@ -49,6 +50,11 @@ public class UIEndTurnButton : UIElementBase
         }
 
         if (WorldController.Instance.m_isEndTurnLocked)
+        {
+            return;
+        }
+
+        if (GameHelper.GetPlayer().m_controlledUnits.Any(u => u.m_worldUnit.IsMoving))
         {
             return;
         }
