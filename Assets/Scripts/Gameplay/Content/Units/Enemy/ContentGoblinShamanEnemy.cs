@@ -12,6 +12,7 @@ public class ContentGoblinShamanEnemy : GameEnemyUnit
         m_maxStamina = 4;
         m_staminaRegen = 3;
         m_power = 3;
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

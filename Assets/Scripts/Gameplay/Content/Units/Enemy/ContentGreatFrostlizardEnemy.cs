@@ -12,6 +12,7 @@ public class ContentGreatFrostlizardEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = 14;
+        m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

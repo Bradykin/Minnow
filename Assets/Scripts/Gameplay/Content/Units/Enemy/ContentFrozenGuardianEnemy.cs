@@ -15,6 +15,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         m_maxStamina = 4 + GetStaminaRegenAndMaxStaminaModByWave();
         m_staminaRegen = 3 + GetStaminaRegenAndMaxStaminaModByWave();
         m_power = 1 + GetPowerModByWave();
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_damageReductionAmount = 1 + GetDamageReductionModByWave();
         m_statGain = 1 + GetStatsGainModByWave();

@@ -12,6 +12,7 @@ public class ContentMobolaEnemy : GameEnemyUnit
         m_maxStamina = 6;
         m_staminaRegen = 2;
         m_power = 6;
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;

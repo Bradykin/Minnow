@@ -17,6 +17,7 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = 3;
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

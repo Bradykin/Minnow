@@ -28,6 +28,7 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
         m_aoeRange = 3;
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_name = "Immortal Shield";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range {m_aoeRange} get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";

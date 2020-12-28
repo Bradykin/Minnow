@@ -24,6 +24,7 @@ public class ContentImmortalBowEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_attackSFX = AudioHelper.BowHeavy;
 
         m_name = "Immortal Bow";
         m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\n";

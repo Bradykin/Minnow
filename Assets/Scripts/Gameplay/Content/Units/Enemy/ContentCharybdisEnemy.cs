@@ -13,6 +13,7 @@ public class ContentCharybdisEnemy : GameEnemyUnit
         m_maxStamina = 6;
         m_staminaRegen = 6;
         m_power = 28;
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

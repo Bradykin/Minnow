@@ -15,6 +15,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 5;
         m_power = m_basePower;
+        m_attackSFX = AudioHelper.SpearHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

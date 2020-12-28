@@ -27,6 +27,7 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_attackSFX = AudioHelper.Roar;
 
         m_name = "Orc Warleader";
         m_desc = $"The final boss. Kill it, and win.\nThis boss arrives with a mighty warband to destroy you! This unit gets 1 Damage Reduction for each surviving orc in the warband.\n";

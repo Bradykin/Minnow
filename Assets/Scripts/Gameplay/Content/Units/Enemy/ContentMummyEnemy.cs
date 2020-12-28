@@ -10,6 +10,7 @@ public class ContentMummyEnemy : GameEnemyUnit
         m_maxStamina = 3 + GetStaminaRegenModByWave();
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
         m_power = 0 + GetPowerModByWave();
+        m_attackSFX = AudioHelper.PunchLight;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

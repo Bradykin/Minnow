@@ -12,9 +12,11 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_maxStamina = 4;
         m_staminaRegen = 4;
         m_power = 6;
+        m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
+
 
         m_name = "Basilisk";
         m_desc = $"When this unit hits another, it gives them <b>Rooted</b> until end of wave. If they were already rooted, they instead get <b>Brittle</b> until end of wave.\n";

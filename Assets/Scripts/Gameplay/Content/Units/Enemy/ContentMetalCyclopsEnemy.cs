@@ -12,6 +12,7 @@ public class ContentMetalCyclopsEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 15;
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

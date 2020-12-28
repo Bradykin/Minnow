@@ -35,6 +35,7 @@ public static class AudioHelper
     public static AudioClip RaptorAttack = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/RaptorAttack") as AudioClip;
     public static AudioClip BoarAttack = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/BoarAttack") as AudioClip;
     public static AudioClip MetalClangAttack = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/MetalClangAttack") as AudioClip;
+    public static AudioClip BirdFlap = Resources.Load<AudioClip>("Audio/SFX/UnitAttack/BirdFlap") as AudioClip;
 
     //Spell Play SFX
     public static AudioClip LargeImpact = Resources.Load<AudioClip>("Audio/SFX/Spells/LargeImpact") as AudioClip;

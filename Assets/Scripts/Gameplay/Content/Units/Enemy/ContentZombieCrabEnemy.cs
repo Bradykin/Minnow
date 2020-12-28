@@ -14,6 +14,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
         m_power = 1 + GetPowerModByWave();
         m_shipBombardDamage += GetBombardModByWave();
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;

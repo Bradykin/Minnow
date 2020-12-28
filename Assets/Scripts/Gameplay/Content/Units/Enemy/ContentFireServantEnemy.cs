@@ -12,6 +12,7 @@ public class ContentFireServantEnemy : GameEnemyUnit
         m_maxStamina = 4;
         m_staminaRegen = 2;
         m_power = 4;
+        m_attackSFX = AudioHelper.FireBlast;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

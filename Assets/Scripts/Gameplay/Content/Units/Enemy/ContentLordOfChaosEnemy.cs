@@ -39,6 +39,7 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_attackSFX = AudioHelper.LazerAttack;
 
         m_name = "Lord of Chaos";
         m_desc = $"The final boss. Kill it, and win.\nEach turn, this unit will cause a new Chaos Warp, changing the rules of the game.\nAt the end of this unit's turn, it will scramble the terrain in range 3 around it.\n";

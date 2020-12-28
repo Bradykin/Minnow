@@ -14,6 +14,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 8;
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

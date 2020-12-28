@@ -11,6 +11,7 @@ public class ContentAngryBirdEnemy : GameEnemyUnit
         m_maxStamina = 5;
         m_staminaRegen = 4;
         m_power = 5;
+        m_attackSFX = AudioHelper.BirdFlap;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

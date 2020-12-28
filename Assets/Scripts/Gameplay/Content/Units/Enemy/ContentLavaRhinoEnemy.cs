@@ -11,6 +11,7 @@ public class ContentLavaRhinoEnemy : GameEnemyUnit
         m_staminaRegen = 3;
         m_power = 100;
         m_staminaToAttack = 2;
+        m_attackSFX = AudioHelper.LargeImpact;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Rare;

@@ -12,6 +12,7 @@ public class ContentHuskEnemy : GameEnemyUnit
         m_maxStamina = 4;
         m_staminaRegen = 2;
         m_power = 4;
+        m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;

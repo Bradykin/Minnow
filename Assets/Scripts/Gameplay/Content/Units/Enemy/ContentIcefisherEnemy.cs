@@ -16,6 +16,7 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         m_maxStamina = 4;
         m_staminaRegen = 4;
         m_power = 8;
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

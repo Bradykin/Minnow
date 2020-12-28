@@ -12,6 +12,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
         m_maxStamina = 3;
         m_staminaRegen = 2;
         m_power = 15;
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

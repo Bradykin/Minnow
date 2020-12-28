@@ -27,6 +27,7 @@ public class ContentRiverlordEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
         m_aoeRange = 3;
+        m_attackSFX = AudioHelper.SlamHeavy;
 
         m_name = "Riverlord";
         m_desc = $"The final boss. Kill it, and win.\n";

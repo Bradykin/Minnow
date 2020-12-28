@@ -17,6 +17,7 @@ public class ContentZombieShipEnemy : GameEnemyUnit
         m_maxStamina = 3;
         m_staminaRegen = 3;
         m_power = 6;
+        m_attackSFX = AudioHelper.BowHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;

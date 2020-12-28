@@ -18,6 +18,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_maxStamina = 6;
         m_staminaRegen = 3;
         m_power = 2 + GetPowerModByWave();
+        m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_powerIncrease = 2 + GetPowerIncreaseModByWave();
         m_maxDamageReduction = 3 + GetDamageReductionModByWave();

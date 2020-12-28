@@ -30,6 +30,7 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_attackSFX = AudioHelper.SlurpAttack;
 
         m_name = "Lord of Shadows";
         m_desc = $"The final boss. Kill it, and win.\nWhile this boss is alive, all units have -{m_visionReductionAmount} sight radius and fog will not stay revealed.\nGlows brighter for each time this unit attacks or is attacked, and explodes at the end of its turn damaging all enemies in the brightness area for {m_brightnessExplosionAmount}\n";

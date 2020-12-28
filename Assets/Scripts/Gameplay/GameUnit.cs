@@ -884,7 +884,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (!isThornsAttack)
         {
-            AudioHelper.PlaySFX(this.GetAttackSFX());
+            if (GetTeam() == Team.Player || (GetTeam() == Team.Enemy && PlayerDataManager.PlayerAccountData.m_followEnemy))
+            {
+                AudioHelper.PlaySFX(this.GetAttackSFX());
+            }
 
             if (!GetGameTile().m_isFog)
             {
@@ -983,7 +986,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (!GetGameTile().m_isFog)
         {
             m_worldUnit.PlayHitAnim(other.GetGameTile().GetWorldTile());
-            AudioHelper.PlaySFX(this.GetAttackSFX());
+            if (GetTeam() == Team.Player || (GetTeam() == Team.Enemy && PlayerDataManager.PlayerAccountData.m_followEnemy))
+            {
+                AudioHelper.PlaySFX(this.GetAttackSFX());
+            }
         }
 
         if (spendStamina)

@@ -10,6 +10,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         m_maxStamina = 6;
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
         m_power = 4 + GetPowerModByWave();
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;

@@ -27,6 +27,7 @@ public class ContentLichEnemy : GameEnemyUnit
         m_rarity = GameRarity.Special;
         m_isBoss = true;
         m_aoeRange = 3;
+        m_attackSFX = AudioHelper.SpellAttackMedium;
 
         m_name = "Lich";
         m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_aoeRange} is instead converted into damage.\n";
