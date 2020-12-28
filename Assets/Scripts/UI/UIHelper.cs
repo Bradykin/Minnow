@@ -102,6 +102,9 @@ public static class UIHelper
     public static Sprite m_eventSprite = null;
     public static Sprite m_eventSpriteW = null;
 
+    public static Sprite m_cardDefaultBackgroundSprite = null;
+    public static Sprite m_cardGoldBackgroundSprite = null;
+
     public static Color GetRarityColor(GameElementBase.GameRarity rarity)
     {
         if (rarity == GameElementBase.GameRarity.Common)
@@ -378,6 +381,26 @@ public static class UIHelper
         }
 
         return m_eventSprite;
+    }
+
+    public static Sprite GetCardGoldBackground()
+    {
+        if (m_cardGoldBackgroundSprite == null)
+        {
+            m_cardGoldBackgroundSprite = Resources.Load<Sprite>("UI2/Cards/GoldCardBackground168x230") as Sprite;
+        }
+
+        return m_cardGoldBackgroundSprite;
+    }
+
+    public static Sprite GetCardDefaultBackground()
+    {
+        if (m_cardDefaultBackgroundSprite == null)
+        {
+            m_cardDefaultBackgroundSprite = Resources.Load<Sprite>("UI2/Cards/CardBackground168x230") as Sprite;
+        }
+
+        return m_cardDefaultBackgroundSprite;
     }
 
     public static Sprite GetIconWorldPerkGold(int goldVal)
