@@ -17,7 +17,7 @@ public static class Globals
         BossStrength = 5
     }
 
-    //TODO: THis is temp.
+    //TODO: This is temp.
     public static bool loadingRun = false;
     public static string mapToLoad = string.Empty;
 

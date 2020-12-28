@@ -10,15 +10,6 @@ public class UIHUDController : Singleton<UIHUDController>
     public GameObject m_globalHUD;
     public GameObject m_levelSelectHUD;
 
-    public RectTransform m_rectTransform;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        m_rectTransform = GetComponent<RectTransform>();
-    }
-
     void Update()
     {
         if (GameHelper.IsInWinLoss())
