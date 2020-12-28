@@ -16,7 +16,7 @@ public class ContentStablesEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventTakeHorsesOption(m_tile);
-        m_optionTwo = new GameEventTakeGoldOption(50);
+        m_optionTwo = new GameEventTakeGoldOption(75);
 
         base.LateInit();
     }
@@ -28,7 +28,7 @@ public class ContentStablesEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "Gain 50 gold.";
+        return "Gain 75 gold.";
     }
 }
 

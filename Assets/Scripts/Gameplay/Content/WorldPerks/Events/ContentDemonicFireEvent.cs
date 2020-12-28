@@ -16,71 +16,19 @@ public class ContentDemonicFireEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventConsumeFireOption(m_tile, 3);
-        m_optionTwo = new GameEventFirestormOption(2, 4);
+        m_optionTwo = new GameEventDuplicateCardOption(UIDeckViewController.DeckViewFilter.Spells);
 
         base.LateInit();
     }
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here '<b>Enrage</b>: +3/+0'.";
+        return "Give the unit that goes here '<b>Enrage</b>: +3/+0' <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Hit <b>all</b> units on the map for 2 damage 4 times.";
-    }
-}
-
-public class GameEventFirestormOption : GameEventOption
-{
-    private int m_damage;
-    private int m_numTimes;
-
-    public GameEventFirestormOption(int damage, int numTimes)
-    {
-        m_damage = damage;
-        m_numTimes = numTimes;
-    }
-
-    public override void Init()
-    {
-        m_message = "Hit <b>all</b> Units for " + m_damage + ", " + m_numTimes + " times.";
-    }
-
-    public override void AcceptOption()
-    {
-        List<GameUnit> playerUnits = GameHelper.GetPlayer().m_controlledUnits;
-        for (int i = playerUnits.Count-1; i >= 0; i--)
-        {
-            for (int c = 0; c < m_numTimes; c++)
-            {
-                if (!playerUnits[i].m_isDead)
-                {
-                    playerUnits[i].GetHitByAbility(m_damage);
-                }
-            }
-        }
-
-        List<GameEnemyUnit> enemyUnits = WorldController.Instance.m_gameController.m_gameOpponent.m_controlledUnits;
-        for (int i = enemyUnits.Count-1; i >= 0; i--)
-        {
-            for (int c = 0; c < m_numTimes; c++)
-            {
-                if (!enemyUnits[i].m_isDead)
-                {
-                    enemyUnits[i].GetHitByAbility(m_damage);
-                }
-            }
-        }
-
-        EndEvent();
-    }
-
-    //Intentionally left blank
-    public override void DeclineOption()
-    {
-        
+        return "Duplicate a spell card <b>permanently</b>.";
     }
 }
 
@@ -97,7 +45,7 @@ public class GameEventConsumeFireOption : GameEventOption
 
     public override void Init()
     {
-        m_message = m_tile.GetOccupyingUnit().GetName() + " <b>permanently</b> gains '<b>Enrage</b>: Gain +" + m_toGrow + "/+0'";
+        m_message = $"{m_tile.GetOccupyingUnit().GetName()} gains '<b>Enrage</b>: Gain +{m_toGrow}/+0' <b>permanently</b> ";
     }
 
     public override void AcceptOption()

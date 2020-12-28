@@ -43,7 +43,7 @@ public class GameEventHealCastle : GameEventOption
 
     public override string GetMessage()
     {
-        m_message = "Restore " + m_toHeal + " health to your castle.";
+        m_message = $"Restore {m_toHeal} health to your castle.";
 
         return base.GetMessage();
     }

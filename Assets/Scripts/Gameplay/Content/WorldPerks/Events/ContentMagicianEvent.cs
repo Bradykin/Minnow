@@ -23,11 +23,11 @@ public class ContentMagicianEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here +8/+15.";
+        return "Give the unit that goes here +8/+15 <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Gain a random rare spell card.";
+        return "Gain a random rare spell card <b>permanently</b>.";
     }
 }

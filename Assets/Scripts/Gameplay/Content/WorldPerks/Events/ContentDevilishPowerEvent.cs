@@ -23,11 +23,11 @@ public class ContentDevilishPowerEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Gain the Living Bomb spell card.\n" + new ContentLivingBombCard().GetDesc();
+        return $"Gain the Living Bomb spell card.\n{new ContentLivingBombCard().GetDesc()}";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here '<b>Enrage</b>: Gain gold equal to the damage taken.'.";
+        return "Give the unit that goes here '<b>Enrage</b>: Gain gold equal to the damage taken.' <b>permanently</b>.";
     }
 }

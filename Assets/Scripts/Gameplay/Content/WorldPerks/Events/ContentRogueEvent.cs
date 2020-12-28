@@ -23,11 +23,11 @@ public class ContentRogueEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Gain a random rare spell card.";
+        return "Gain a random rare spell card <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Gain a random rare spell card.";
+        return "Gain a random rare spell card <b>permanently</b>.";
     }
 }

@@ -16,18 +16,19 @@ public class ContentMillitiaEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventHelpMillitiaOption(m_tile);
+        m_optionTwo = new GameEventTakeGoldOption(75);
 
         base.LateInit();
     }
 
     public override string GetOptionOneTooltip()
     {
-        return "Sacrifice the unit that goes here for the wave, but gain a random rare unit permanently.";
+        return "Sacrifice the unit that goes here for the wave, but gain a random rare unit <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "";
+        return "Loot the remains after for 75 gold.";
     }
 }
 

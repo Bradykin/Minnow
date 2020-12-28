@@ -28,7 +28,7 @@ public class ContentAngelicGiftEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here <b>Flying</b>.";
+        return "Give the unit that goes here <b>Flying</b> <b>permanently</b>.";
     }
 }
 

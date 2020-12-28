@@ -23,11 +23,11 @@ public class ContentForestOrCityEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here <b>Forestwalk</b>.";
+        return "Give the unit that goes here <b>Forestwalk</b> <b>permanently</b> .";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here <b>Knowledgeable</b>: Gain 1 stamina'.";
+        return "Give the unit that goes here <b>Knowledgeable</b>: Gain 1 stamina' <b>permanently</b> .";
     }
 }

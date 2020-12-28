@@ -23,11 +23,11 @@ public class ContentBurrowOrSwimEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here <b>Waterwalk</b>.";
+        return "Give the unit that goes here <b>Waterwalk</b> <b>permanently</b>.";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here <b>Mountainwalk</b>.";
+        return "Give the unit that goes here <b>Mountainwalk</b> <b>permanently</b>.";
     }
 }

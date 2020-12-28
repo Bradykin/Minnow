@@ -17,6 +17,7 @@ public class ContentOverturnedCartEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventTakeGoldOption(75);
+        m_optionTwo = new GameEventCardSelectOption(GameCardFactory.GetRandomStandardUnitCard(GameRarity.Uncommon));
 
         base.LateInit();
     }
@@ -28,7 +29,7 @@ public class ContentOverturnedCartEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "";
+        return "Gain a random uncommon unit <b>permanently</b>.";
     }
 }
 

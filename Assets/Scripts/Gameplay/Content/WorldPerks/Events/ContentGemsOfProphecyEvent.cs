@@ -24,12 +24,12 @@ public class ContentGemsOfProphecyEvent : GameEvent
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here '<b>Victorious</b>: +5/+0'.";
+        return "Give the unit that goes here '<b>Victorious</b>: +5/+0' <b>permanently</b> .";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here <b>Damage Reduction</b> 3.";
+        return "Give the unit that goes here <b>Damage Reduction</b> 3 <b>permanently</b> .";
     }
 }
 
@@ -45,7 +45,7 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of adventure: " + m_tile.GetOccupyingUnit().GetName() + " <b>permanently</b> gains '<b>Victorious</b>: gain +" + m_powerGain + "/+0.'";
+        m_message = $"Receive the prophecy of adventure: {m_tile.GetOccupyingUnit().GetName()} <b>permanently</b> gains '<b>Victorious</b>: gain +{m_powerGain}/+0.'";
     }
 
     public override void AcceptOption()
@@ -74,7 +74,7 @@ public class GameEventDamageReductionOption : GameEventOption
 
     public override void Init()
     {
-        m_message = "Receive the prophecy of dangers: " + m_tile.GetOccupyingUnit().GetName() + " gains <b>Damage Reduction</b> " + m_damageReduction + " <b>permanently</b>";
+        m_message = $"Receive the prophecy of dangers: {m_tile.GetOccupyingUnit().GetName()} gains <b>Damage Reduction</b> {m_damageReduction} <b>permanently</b>";
     }
 
     public override void AcceptOption()
@@ -99,7 +99,7 @@ public class GameEventProphecyTakeGoldOption : GameEventOption
     {
         m_value = value;
 
-        m_message = "Receive the prophecy of wealth: Take " + m_value + " gold.";
+        m_message = $"Receive the prophecy of wealth: Take {m_value} gold.";
     }
 
     public override void AcceptOption()

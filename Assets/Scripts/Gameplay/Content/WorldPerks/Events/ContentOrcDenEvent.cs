@@ -29,6 +29,6 @@ public class ContentOrcDenEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "Gain a random rare relic, but spawn 4 Orc enemy units nearby.";
+        return "<b>Permanently</b> gain a random rare relic, but spawn 4 Orc enemy units nearby.";
     }
 }

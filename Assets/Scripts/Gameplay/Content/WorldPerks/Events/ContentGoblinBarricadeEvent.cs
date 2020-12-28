@@ -16,6 +16,7 @@ public class ContentGoblinBarricadeEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventBreakBarricadeOption(m_tile);
+        m_optionOne = new GameEventTakeRandomRelicOption(GameRarity.Common);
 
         base.LateInit();
     }
@@ -27,7 +28,7 @@ public class ContentGoblinBarricadeEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "";
+        return "Gain a random common relic.";
     }
 }
 

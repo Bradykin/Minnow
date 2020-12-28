@@ -16,18 +16,18 @@ public class ContentCombatTrainingEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), 0, 3)));
-        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameVictoriousKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), 5, 0)));
+        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameVictoriousKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), 3, 0)));
 
         base.LateInit();
     }
 
     public override string GetOptionOneTooltip()
     {
-        return "Give the unit that goes here '<b>Enrage</b>: +0/+3'.";
+        return "Give the unit that goes here '<b>Enrage</b>: +0/+3' <b>permanently</b> .";
     }
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here '<b>Victorious</b>: +5/+0'.";
+        return "Give the unit that goes here '<b>Victorious</b>: +3/+0' <b>permanently</b> .";
     }
 }
