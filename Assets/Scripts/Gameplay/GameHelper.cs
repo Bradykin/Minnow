@@ -305,7 +305,7 @@ public static class GameHelper
         bool hasAll = true;
         for (int i = 0; i < (int)Typeline.Count; i++)
         {
-            if (!numCreatureTypes.ContainsKey(0))
+            if (!numCreatureTypes.ContainsKey(i))
             {
                 hasAll = false;
                 break;

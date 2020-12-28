@@ -684,6 +684,12 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible)
     {
+        if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.GetOccupyingUnit().m_isDead)
+        {
+            Debug.Log("NO UNIT ON TILE");
+            return new List<GameTile>();
+        }
+
         if (startingGridTile.IsOccupied() && !startingGridTile.GetOccupyingUnit().m_isDead && startingGridTile.GetOccupyingUnit().GetRootedKeyword() != null)
         {
             return null;

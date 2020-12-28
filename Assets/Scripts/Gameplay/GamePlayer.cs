@@ -810,6 +810,15 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_cardsToDiscard = new List<GameCard>();
 
+        for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
+        {
+            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.EndOfTurn)
+            {
+                m_scheduledActions[i].gameAction.DoAction();
+                m_scheduledActions.RemoveAt(i);
+            }
+        }
+
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
             m_controlledUnits[i].EndTurn();
@@ -818,15 +827,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         for (int i = 0; i < m_controlledBuildings.Count; i++)
         {
             m_controlledBuildings[i].EndTurn();
-        }
-
-        for (int i = m_scheduledActions.Count - 1; i >= 0; i--)
-        {
-            if (m_scheduledActions[i].scheduledActionTime == ScheduledActionTime.EndOfTurn)
-            {
-                m_scheduledActions[i].gameAction.DoAction();
-                m_scheduledActions.RemoveAt(i);
-            }
         }
 
         m_spellsPlayedPreviousTurn = m_spellsPlayedThisTurn;

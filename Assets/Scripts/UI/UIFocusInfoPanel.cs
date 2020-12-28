@@ -72,8 +72,8 @@ public class UIFocusInfoPanel : UIElementBase
         {
             GameCardSpellBase spellCard = (GameCardSpellBase)(cardData.m_card);
 
-            //Don't show this if there are no keywords.
-            if (spellCard.GetKeywordHolderForRead().GetNumKeywords() == 0)
+            //Don't show this if there are no keywords, and it is not an exile or x spell
+            if (spellCard.GetKeywordHolderForRead().GetNumKeywords() == 0 && !spellCard.m_shouldExile && !spellCard.IsXSpell())
             {
                 m_shouldShow = false;
                 return;
@@ -83,7 +83,12 @@ public class UIFocusInfoPanel : UIElementBase
 
             if (spellCard.m_shouldExile)
             {
-                m_descText.text += "Exile spells are removed from your deck after being cast.  They are returned for the next wave.\n\n";
+                m_descText.text += "<b>Exile Spells</b>: This spell is removed from your deck after being cast.  It is returned to your deck in the next wave.\n\n";
+            }
+
+            if (spellCard.IsXSpell())
+            {
+                m_descText.text += "<b>X Spells</b>: This spell consumes all available energy, and then sets the value of X on all effects of the card equal to the amount of energy used.\n\n";
             }
 
             IReadOnlyList<GameKeywordBase> keywords = spellCard.GetKeywordHolderForRead().GetKeywordsForRead();
