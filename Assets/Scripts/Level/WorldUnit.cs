@@ -28,8 +28,12 @@ public class WorldUnit : MonoBehaviour
     private Vector3 m_moveTarget = new Vector3();
     private float m_movementSpeed = 25.0f;
 
+    public SpriteMask m_indicatorMask;
     public SpriteRenderer m_damageShieldIndicator;
-
+    public SpriteRenderer m_rootedIndicator;
+    public SpriteRenderer m_brittleIndicator;
+    public SpriteRenderer m_bleedingIndicator;
+    
     private GameUnit m_unit;
 
     public void Init(GameUnit unit)
@@ -38,6 +42,7 @@ public class WorldUnit : MonoBehaviour
         unit.m_worldUnit = this;
 
         m_renderer.sprite = GetUnit().m_icon;
+        m_indicatorMask.sprite = GetUnit().m_icon;
         m_tintRenderer.sprite = GetUnit().m_iconWhite;
 
         m_staminaContainer.Init(GetUnit().GetCurStamina(), GetUnit().GetMaxStamina(), GetUnit().GetTeam());
@@ -52,10 +57,10 @@ public class WorldUnit : MonoBehaviour
 
         m_collider = GetComponent<BoxCollider2D>();
 
-        m_damageShieldIndicator.gameObject.transform.localPosition = new Vector3(
-            m_damageShieldIndicator.gameObject.transform.localPosition.x - GetUnit().GetWorldTilePositionAdjustment().x,
-            m_damageShieldIndicator.gameObject.transform.localPosition.y - GetUnit().GetWorldTilePositionAdjustment().y,
-            m_damageShieldIndicator.gameObject.transform.localPosition.z - GetUnit().GetWorldTilePositionAdjustment().z);
+        m_indicatorMask.gameObject.transform.localPosition = new Vector3(
+            m_indicatorMask.gameObject.transform.localPosition.x - GetUnit().GetWorldTilePositionAdjustment().x,
+            m_indicatorMask.gameObject.transform.localPosition.y - GetUnit().GetWorldTilePositionAdjustment().y,
+            m_indicatorMask.gameObject.transform.localPosition.z - GetUnit().GetWorldTilePositionAdjustment().z);
     }
 
     public void SetMoveTarget(Vector3 moveTarget)
@@ -71,6 +76,9 @@ public class WorldUnit : MonoBehaviour
         }
 
         m_damageShieldIndicator.gameObject.SetActive(GetUnit().GetDamageShieldKeyword() != null);
+        m_brittleIndicator.gameObject.SetActive(GetUnit().GetBrittleKeyword() != null);
+        m_bleedingIndicator.gameObject.SetActive(GetUnit().GetBleedKeyword() != null);
+        m_rootedIndicator.gameObject.SetActive(GetUnit().GetRootedKeyword() != null);
 
         if (m_moveTarget != gameObject.transform.position)
         {
