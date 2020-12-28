@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContentHellhoundEnemy : GameEnemyUnit
 {
-    int m_effectRange = 4;
     int m_effectIncrease = 5;
     
     public ContentHellhoundEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -16,11 +15,12 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_staminaRegen = 3;
         m_power = 3;
 
+        m_aoeRange = 4;
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Hellhound";
-        m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_effectRange} range.\n";
+        m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_aoeRange} range.\n";
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
@@ -42,7 +42,7 @@ public class ContentHellhoundEnemy : GameEnemyUnit
 
         if (GetGameTile() != null)
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {

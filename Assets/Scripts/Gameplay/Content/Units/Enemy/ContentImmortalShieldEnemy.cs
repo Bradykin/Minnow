@@ -6,7 +6,6 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
 {
     private int m_powerIncreaseAmount = 10;
     private int m_damageReductionIncrease = 3;
-    public int m_auraRange = 3;
 
     public ContentImmortalShieldEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -28,9 +27,10 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_aoeRange = 3;
 
         m_name = "Immortal Shield";
-        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range 2 get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";
+        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range {m_aoeRange} get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";
 
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

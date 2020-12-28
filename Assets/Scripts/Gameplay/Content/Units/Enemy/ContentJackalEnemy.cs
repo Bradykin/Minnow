@@ -6,7 +6,6 @@ public class ContentJackalEnemy : GameEnemyUnit
 {
     public int m_basePower = 16;
     public int m_baseMaxHealth = 45;
-    public int m_range = 2;
     
     public ContentJackalEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -19,9 +18,10 @@ public class ContentJackalEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
+        m_aoeRange = 2;
 
         m_name = "Jackal";
-        m_desc = $"When this unit dies, it gives all allied units in {m_range} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/{m_maxHealth - m_baseMaxHealth})\n";
+        m_desc = $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/{m_maxHealth - m_baseMaxHealth})\n";
 
         AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 10, 10)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
@@ -42,7 +42,7 @@ public class ContentJackalEnemy : GameEnemyUnit
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            return $"When this unit dies, it gives all allied units in {m_range} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/+{m_maxHealth - m_baseMaxHealth})\n";
+            return $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/+{m_maxHealth - m_baseMaxHealth})\n";
         }
         
         return base.GetDesc();
@@ -66,7 +66,7 @@ public class ContentJackalEnemy : GameEnemyUnit
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_range);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

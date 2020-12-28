@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentHomonculus : GameUnit
 {
     private int m_effectAmount = 1;
-    private int m_effectRange = 1;
 
     public ContentHomonculus()
     {
@@ -18,8 +17,9 @@ public class ContentHomonculus : GameUnit
         m_typeline = Typeline.Creation;
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.PunchLight;
+        m_aoeRange = 2;
 
-        AddKeyword(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_effectRange)), true, false);
+        AddKeyword(new GameKnowledgeableKeyword(new GameGainStaminaRangeAction(this, m_effectAmount, m_aoeRange)), true, false);
 
         LateInit();
     }

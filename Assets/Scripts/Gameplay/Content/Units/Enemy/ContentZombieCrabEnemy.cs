@@ -6,7 +6,6 @@ using UnityEngine;
 public class ContentZombieCrabEnemy : GameEnemyUnit
 {
     private int m_shipBombardDamage = 3;
-    private int m_shipChaosBombardRange = 1;
     
     public ContentZombieCrabEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -26,7 +25,8 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         AddKeyword(new GameDamageReductionKeyword(2), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_desc = $"An elite foe. Defeat it and gain a relic!\nThis unit is part of the pirate crew.\nWhen this unit attacks, all zombie ships bombard the target and all other player units in range {m_shipChaosBombardRange} for {m_shipBombardDamage} damage. Any members of the crew hit by the bombard are instead healed for that amount.\n";
+            m_aoeRange = 1;
+            m_desc = $"An elite foe. Defeat it and gain a relic!\nThis unit is part of the pirate crew.\nWhen this unit attacks, all zombie ships bombard the target and all other player units in range {m_aoeRange} for {m_shipBombardDamage} damage. Any members of the crew hit by the bombard are instead healed for that amount.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -66,7 +66,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         List<GameTile> tilesInBombardArea;
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            tilesInBombardArea = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_shipChaosBombardRange, 0);
+            tilesInBombardArea = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, m_aoeRange, 0);
         }
         else
         {

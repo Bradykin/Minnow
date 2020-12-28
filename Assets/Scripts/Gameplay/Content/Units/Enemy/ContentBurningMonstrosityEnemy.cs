@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentBurningMonstrosityEnemy : GameEnemyUnit
 {
     private int m_explosionDamage = 15;
-    private int m_explosionRange = 2;
 
     public ContentBurningMonstrosityEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -18,13 +17,14 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
+        m_aoeRange = 2;
 
         m_name = "Burning Monstrosity";
         m_desc = "";
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
         AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), true, false);
-        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_aoeRange)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc  = $"All player units in the explosion radius are drained of all Stamina on death.\n";

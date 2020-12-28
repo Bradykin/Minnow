@@ -12,7 +12,7 @@ public static class UIHelper
     public static Color m_fadedColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
 
     public static Color m_defaultTint = new Color(Color.white.r, Color.white.g, Color.white.b, 0f);
-    public static Color m_stormTint = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0f);
+    public static Color m_stormTint = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.4f);
     public static Color m_defaultFaded = new Color(Color.white.r, Color.white.g, Color.white.b, 0.4f);
     public static Color m_selectedTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.3f);
     public static Color m_selectedHarshTint = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 1f);
@@ -21,6 +21,7 @@ public static class UIHelper
     public static Color m_attackTint = new Color(Color.green.r, Color.green.g, Color.green.b, 0.3f);
     public static Color m_spellcraftTint = new Color(128.0f, 0.0f, 128.0f, 0.3f);
     public static Color m_defensiveBuildingTint = new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f);
+    public static Color m_aoeTint = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.4f);
 
     public static Color m_valid = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 1.0f);
     public static Color m_validAltPlayer = new Color(Color.green.r, Color.green.g, Color.green.b, 1.0f);
@@ -185,6 +186,14 @@ public static class UIHelper
     {
         Color returnColor = m_defensiveBuildingTint;
         returnColor.a = returnColor.a + (0.2f * (numBuildings - 1));
+
+        return returnColor;
+    }
+
+    public static Color GetAoeRangeTint(int count)
+    {
+        Color returnColor = m_aoeTint;
+        //returnColor.a = returnColor.a + (0.2f * (count - 1)); nmartino - Try not using tint mulitplier for now
 
         return returnColor;
     }
@@ -569,19 +578,19 @@ public static class UIHelper
             return;
         }
 
-        List<GameBuildingBase> m_playerDefensiveBuildings = new List<GameBuildingBase>();
+        List<GameBuildingBase> playerDefensiveBuildings = new List<GameBuildingBase>();
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
         {
             if (player.m_controlledBuildings[i].m_buildingType == BuildingType.Defensive && !player.m_controlledBuildings[i].m_isDestroyed)
             {
-                m_playerDefensiveBuildings.Add(player.m_controlledBuildings[i]);
+                playerDefensiveBuildings.Add(player.m_controlledBuildings[i]);
             }
         }
 
-        for (int i = 0; i < m_playerDefensiveBuildings.Count; i++)
+        for (int i = 0; i < playerDefensiveBuildings.Count; i++)
         {
-            List<GameTile> tilesInDefensiveBuildingRange = WorldGridManager.Instance.GetSurroundingGameTiles(m_playerDefensiveBuildings[i].GetGameTile(), m_playerDefensiveBuildings[i].m_range, 0);
+            List<GameTile> tilesInDefensiveBuildingRange = WorldGridManager.Instance.GetSurroundingGameTiles(playerDefensiveBuildings[i].GetGameTile(), playerDefensiveBuildings[i].m_range, 0);
 
             if (tilesInDefensiveBuildingRange == null)
             {
@@ -595,9 +604,39 @@ public static class UIHelper
         }
     }
 
+    public static void SetAoeTiles(GameUnit unit)
+    {
+        if (GameHelper.IsInLevelBuilder())
+        {
+            return;
+        }
+
+        if (unit.GetAoeRange() == 0)
+        {
+            return;
+        }
+
+        List<GameTile> tilesInAoeRange = WorldGridManager.Instance.GetSurroundingGameTiles(unit.GetGameTile(), unit.GetAoeRange(), 1);
+
+        if (tilesInAoeRange == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < tilesInAoeRange.Count; i++)
+        {
+            tilesInAoeRange[i].GetWorldTile().AddAoeRangeCount();
+        }
+    }
+
     public static void ClearSpellcraftTiles()
     {
         WorldGridManager.Instance.ClearAllTilesSpellcraftRange();
+    }
+
+    public static void ClearAoeTiles()
+    {
+        WorldGridManager.Instance.ClearAllTilesAoeRange();
     }
 
     public static void ClearDefensiveBuildingTiles()

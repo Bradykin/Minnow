@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ContentSandWyvernEnemy : GameEnemyUnit
 {
-    private int m_deathAuraRange = 3;
-    
     public ContentSandWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
@@ -25,7 +23,8 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(this, m_maxStamina)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc += $"Whenever any unit dies within range {m_deathAuraRange} of this unit, this unit heals to full health.";
+            m_aoeRange = 3;
+            m_desc += $"Whenever any unit dies within range {m_aoeRange} of this unit, this unit heals to full health.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -45,7 +44,7 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
             return;
         }
 
-        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) <= m_deathAuraRange)
+        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) <= m_aoeRange)
         {
             Heal(GetMaxHealth());
         }

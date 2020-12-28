@@ -280,6 +280,8 @@ public class WorldUnit : MonoBehaviour
         }
 
         m_isHovered = true;
+        UIHelper.SetAoeTiles(GetUnit());
+
         if (Globals.m_selectedUnit != null)
         {
             bool canHit = Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit());
@@ -320,6 +322,7 @@ public class WorldUnit : MonoBehaviour
         m_isShowingTooltip = false;
 
         m_isHovered = false;
+        UIHelper.ClearAoeTiles();
         if (Globals.m_selectedUnit != this)
         {
             m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetUnit().GetTeam());

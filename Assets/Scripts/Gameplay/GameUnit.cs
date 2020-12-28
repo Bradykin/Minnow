@@ -60,6 +60,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     protected string m_customName;
     protected Vector3 m_worldTilePositionAdjustment = new Vector3(0,0,0);
     protected bool m_usesBigTooltip;
+    protected int m_aoeRange = 0;
 
     //Special functionality
     public bool m_instantWaterMovement;
@@ -514,7 +515,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             bool lichAuraInRange = false;
             ContentLichEnemy lichEnemy = GameHelper.GetBoss<ContentLichEnemy>();
-            if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
+            if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.GetAoeRange())
             {
                 lichAuraInRange = true;
             }
@@ -548,7 +549,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     public virtual int Heal(int toHeal)
     {
         ContentLichEnemy lichEnemy = GameHelper.GetBoss<ContentLichEnemy>();
-        if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.m_auraRange)
+        if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.GetAoeRange())
         {
             UIHelper.CreateWorldElementNotification("The Lich converts healing into damage!", true, m_worldUnit.gameObject);
             GetHitByAbility(toHeal);
@@ -1529,7 +1530,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (!(this is ContentImmortalShieldEnemy))
                 {
                     ContentImmortalShieldEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalShieldEnemy>();
-                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.GetAoeRange())
                     {
                         toReturn.AddKeyword(new GameDamageReductionKeyword(3));
                     }
@@ -1727,7 +1728,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (!(this is ContentImmortalShieldEnemy))
                 {
                     ContentImmortalShieldEnemy immortalBannerEnemy = GameHelper.GetBoss<ContentImmortalShieldEnemy>();
-                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.m_auraRange)
+                    if (immortalBannerEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), immortalBannerEnemy.GetGameTile()) <= immortalBannerEnemy.GetAoeRange())
                     {
                         toReturn += 5;
                     }
@@ -2391,6 +2392,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
 
         m_customName = GameNamesFactory.GetCustomUnitName(m_typeline);
+    }
+
+    public int GetAoeRange()
+    {
+        return m_aoeRange;
     }
 
     //Gets the full name with custom + base or just base
