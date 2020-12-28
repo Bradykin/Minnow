@@ -8,8 +8,8 @@ public class ContentMobolaEnemy : GameEnemyUnit
 {
     public ContentMobolaEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 60;
-        m_maxStamina = 8;
+        m_maxHealth = 50;
+        m_maxStamina = 6;
         m_staminaRegen = 2;
         m_power = 6;
 

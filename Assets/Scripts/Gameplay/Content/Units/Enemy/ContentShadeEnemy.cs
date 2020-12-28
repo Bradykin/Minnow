@@ -6,10 +6,10 @@ public class ContentShadeEnemy : GameEnemyUnit
 {
     public ContentShadeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 12;
+        m_maxHealth = 10;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 12;
+        m_power = 10;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Uncommon;

@@ -10,10 +10,10 @@ public class ContentYetiEnemy : GameEnemyUnit
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
-        m_maxHealth = 30;
+        m_maxHealth = 25;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 15;
+        m_power = 8;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
