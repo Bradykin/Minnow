@@ -215,18 +215,20 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_runStateType = RunStateType.Intermission;
         if (shouldEndWave)
         {
-            OnEndWave();
+            EndWave();
         }
         WorldController.Instance.StartIntermission();
     }
 
-    private void OnEndWave()
+    private void EndWave()
     {
         GetCurMap().TriggerMapEvents(m_currentWaveNumber, ScheduledActionTime.EndOfWave);
         m_currentWaveNumber++;
         m_currentTurnNumber = 1;
         m_curKillCount = 0;
         m_endWaveKillCount = Constants.GetWaveKillCount(m_currentWaveNumber);
+
+        UIHelper.UnselectUnit();
     }
 
     public void KillEnemy(bool incrementsKillCounter)

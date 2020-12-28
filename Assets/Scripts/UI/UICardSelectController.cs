@@ -84,12 +84,16 @@ public class UICardSelectController : Singleton<UICardSelectController>
         EndSelection();
     }
 
-    public void SkipSelection()
+    public bool SkipSelection()
     {
+        bool shouldTriggerSpellSelectionAfter = m_firstButton.m_unitCard != null;
+        
         GameNotificationManager.RecordCardChoice(null, m_firstButton.m_card, m_secondButton.m_card, m_thirdButton.m_card);
 
         GameHelper.GetPlayer().GainGold(m_skipWallet.m_gold);
 
         EndSelection();
+
+        return shouldTriggerSpellSelectionAfter;
     }
 }

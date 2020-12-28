@@ -23,6 +23,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
 
     public void Init(GameRelic relicOne, GameRelic relicTwo)
     {
+        GameHelper.GetGameController().AddIntermissionLock();
+        
         m_skipWallet = new GameWallet(25);
 
         Globals.m_canSelect = false;
@@ -42,6 +44,8 @@ public class UIRelicSelectController : Singleton<UIRelicSelectController>
     {
         Globals.m_canSelect = true;
         m_holder.SetActive(false);
+
+        GameHelper.GetGameController().RemoveIntermissionLock();
     }
 
     public void AcceptRelic(GameRelic relic)

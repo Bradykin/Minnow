@@ -237,7 +237,7 @@ public class WorldController : Singleton<WorldController>
             {
                 if (m_gameController.m_player.m_controlledUnits[i].GetType() == typeof(ContentRoyalCaravan))
                 {
-                    m_gameController.m_player.m_controlledUnits[i].EndWave();
+                    m_gameController.m_player.m_controlledUnits[i].OnEndWave();
                     continue;
                 }
 
