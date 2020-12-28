@@ -7,7 +7,7 @@ public class ContentGoblinLegend : GameUnit
     private int m_powerToGain = 10;
     private int m_healthToGain = 10;
     
-    public ContentGoblinLegend()
+    public ContentGoblinLegend() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.3f, -0.5f, 0);
 

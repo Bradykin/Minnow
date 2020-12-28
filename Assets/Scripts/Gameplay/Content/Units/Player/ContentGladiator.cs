@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGladiator : GameUnit
 {
-    public ContentGladiator()
+    public ContentGladiator() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 

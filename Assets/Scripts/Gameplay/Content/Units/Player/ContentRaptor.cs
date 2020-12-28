@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentRaptor : GameUnit
 {
-    public ContentRaptor()
+    public ContentRaptor() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.6f, 0);
 

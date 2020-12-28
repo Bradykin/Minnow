@@ -6,7 +6,7 @@ public class ContentPyromage : GameUnit
 {
     private int m_explodePower = 25;
 
-    public ContentPyromage()
+    public ContentPyromage() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

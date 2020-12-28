@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentDesertSwordsman : GameUnit
 {
-    public ContentDesertSwordsman()
+    public ContentDesertSwordsman() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.1f, 0.3f, 0);
 

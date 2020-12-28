@@ -6,7 +6,7 @@ public class ContentHomonculus : GameUnit
 {
     private int m_effectAmount = 1;
 
-    public ContentHomonculus()
+    public ContentHomonculus() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.1f, 0);
 

@@ -7,7 +7,7 @@ public class ContentSabobot : GameUnit
 {
     private int m_explosionDamage = 25;
     
-    public ContentSabobot()
+    public ContentSabobot() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 

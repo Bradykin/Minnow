@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentLizardSoldier : GameUnit
 {
-    public ContentLizardSoldier()
+    public ContentLizardSoldier() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.1f, 0.5f, 0);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentPolarHunter : GameUnit
 {
-    public ContentPolarHunter()
+    public ContentPolarHunter() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.3f, 0.5f, 0);
 

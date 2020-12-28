@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentRoyalCaravan : GameUnit
 {
-    public ContentRoyalCaravan()
+    public ContentRoyalCaravan() : base()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Special;

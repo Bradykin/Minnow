@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentBonecaster : GameUnit
 {
-    public ContentBonecaster()
+    public ContentBonecaster() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.65f, 0);
 

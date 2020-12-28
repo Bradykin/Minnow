@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentEtherealStag : GameUnit
 {
-    public ContentEtherealStag()
+    public ContentEtherealStag() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, 0, 0);
 

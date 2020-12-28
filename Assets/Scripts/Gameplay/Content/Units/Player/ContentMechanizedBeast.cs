@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentMechanizedBeast : GameUnit
 {
-    public ContentMechanizedBeast()
+    public ContentMechanizedBeast() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 

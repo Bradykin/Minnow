@@ -7,7 +7,7 @@ public class ContentPirateCaptain : GameUnit
     private int m_statBoost = 50;
     private int m_rangeBoost = 2;
 
-    public ContentPirateCaptain()
+    public ContentPirateCaptain() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

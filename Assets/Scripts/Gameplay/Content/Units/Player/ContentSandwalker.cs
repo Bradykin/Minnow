@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSandwalker : GameUnit
 {
-    public ContentSandwalker()
+    public ContentSandwalker() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

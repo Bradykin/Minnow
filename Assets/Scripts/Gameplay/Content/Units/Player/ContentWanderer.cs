@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentWanderer : GameUnit
 {
-    public ContentWanderer()
+    public ContentWanderer() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentCyclops : GameUnit
 {
-    public ContentCyclops()
+    public ContentCyclops() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.25f, 0);
 

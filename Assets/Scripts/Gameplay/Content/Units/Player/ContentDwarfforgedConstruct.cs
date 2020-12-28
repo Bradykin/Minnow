@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentDwarfforgedConstruct : GameUnit
 {
-    public ContentDwarfforgedConstruct()
+    public ContentDwarfforgedConstruct() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0, 0);
 

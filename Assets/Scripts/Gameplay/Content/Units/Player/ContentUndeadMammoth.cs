@@ -8,7 +8,7 @@ public class ContentUndeadMammoth : GameUnit
     private int m_powerBuff = 3;
     private int m_healthBuff = 7;
 
-    public ContentUndeadMammoth()
+    public ContentUndeadMammoth() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.3f, 0.5f, 0);
 

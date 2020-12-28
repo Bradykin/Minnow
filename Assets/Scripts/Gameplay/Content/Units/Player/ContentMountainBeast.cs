@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentMountainBeast : GameUnit
 {
-    public ContentMountainBeast()
+    public ContentMountainBeast() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
 

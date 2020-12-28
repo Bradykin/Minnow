@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentElvenRogue : GameUnit
 {
-    public ContentElvenRogue()
+    public ContentElvenRogue() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

@@ -7,7 +7,7 @@ public class ContentGuardCaptain : GameUnit
     private int m_rallyRange = 2;
     private int m_rallyValue = 5;
 
-    public ContentGuardCaptain()
+    public ContentGuardCaptain() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.2f, 0);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentDevourer : GameUnit
 {
-    public ContentDevourer()
+    public ContentDevourer() : base()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;

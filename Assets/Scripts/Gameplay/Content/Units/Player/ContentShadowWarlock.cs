@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentShadowWarlock : GameUnit
 {
-    public ContentShadowWarlock()
+    public ContentShadowWarlock() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 

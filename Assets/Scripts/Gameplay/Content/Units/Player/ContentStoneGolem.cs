@@ -6,7 +6,7 @@ public class ContentStoneGolem : GameUnit
 {
     private bool m_staminaAdded;
 
-    public ContentStoneGolem()
+    public ContentStoneGolem() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.4f, 0);
 

@@ -7,7 +7,7 @@ public class ContentRanger : GameUnit
     private int m_staminaRegenBoost = 1;
     private int m_rangeBoost = 1;
 
-    public ContentRanger()
+    public ContentRanger() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentMage : GameUnit
 {
-    public ContentMage()
+    public ContentMage() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 

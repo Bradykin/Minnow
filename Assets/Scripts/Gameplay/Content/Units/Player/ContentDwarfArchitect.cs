@@ -6,7 +6,7 @@ public class ContentDwarfArchitect : GameUnit
 {
     private int m_maxStaminaIncrease = 1;
 
-    public ContentDwarfArchitect()
+    public ContentDwarfArchitect() : base()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;

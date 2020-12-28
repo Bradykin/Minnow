@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGolemProtector : GameUnit
 {
-    public ContentGolemProtector()
+    public ContentGolemProtector() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

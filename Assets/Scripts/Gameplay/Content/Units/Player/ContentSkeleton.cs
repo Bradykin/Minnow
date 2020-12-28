@@ -7,7 +7,7 @@ public class ContentSkeleton : GameUnit
     private int m_powerBonus = 5;
     private int m_healthBonus = 12;
 
-    public ContentSkeleton()
+    public ContentSkeleton() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
         

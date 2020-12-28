@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentHero : GameUnit
 {
-    public ContentHero()
+    public ContentHero() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGrasper : GameUnit
 {
-    public ContentGrasper()
+    public ContentGrasper() : base()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Rare;

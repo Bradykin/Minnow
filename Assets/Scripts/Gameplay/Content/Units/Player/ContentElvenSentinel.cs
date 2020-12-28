@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentElvenSentinel : GameUnit
 {
-    public ContentElvenSentinel()
+    public ContentElvenSentinel() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 

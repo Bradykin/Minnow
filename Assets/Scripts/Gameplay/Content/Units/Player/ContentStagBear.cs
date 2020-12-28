@@ -11,7 +11,7 @@ public class ContentStagBear : GameUnit
     private int m_powerThreshhold = 60;
     private int m_bonusStamRegen = 2;
 
-    public ContentStagBear()
+    public ContentStagBear() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.2f, 0.5f, 0);
 

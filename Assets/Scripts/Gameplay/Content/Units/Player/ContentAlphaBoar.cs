@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentAlphaBoar : GameUnit
 {
-    public ContentAlphaBoar()
+    public ContentAlphaBoar() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0f, 0);
 

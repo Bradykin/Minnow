@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentFrogShaman : GameUnit
 {
-    public ContentFrogShaman()
+    public ContentFrogShaman() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

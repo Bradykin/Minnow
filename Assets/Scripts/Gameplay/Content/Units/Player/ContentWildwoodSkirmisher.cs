@@ -6,7 +6,7 @@ public class ContentWildwoodSkirmisher : GameUnit
 {
     private int m_statBoost = 25;
 
-    public ContentWildwoodSkirmisher()
+    public ContentWildwoodSkirmisher() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

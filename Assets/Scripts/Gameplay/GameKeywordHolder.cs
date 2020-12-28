@@ -7,15 +7,17 @@ using UnityEngine;
 public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGameKeywordHolderData, GameUnit)>
 {
     private List<GameKeywordBase> m_keywords;
+    private GameUnit m_unit;
 
-    public GameKeywordHolder()
+    public GameKeywordHolder(GameUnit gameUnit)
     {
         m_keywords = new List<GameKeywordBase>();
+        m_unit = gameUnit;
     }
 
     public GameKeywordHolder Clone(GameUnit gameUnit, GameUnit cloneTo)
     {
-        GameKeywordHolder newHolder = new GameKeywordHolder();
+        GameKeywordHolder newHolder = new GameKeywordHolder(gameUnit);
 
         for (int i = 0; i < m_keywords.Count; i++)
         {
@@ -25,31 +27,26 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
         return newHolder;
     }
 
-    public T GetKeyword<T>()
+    public T GetKeyword<T>() where T: GameKeywordBase
     {
+        T keywordTemp = null;
+
         for (int i = 0; i < m_keywords.Count; i++)
         {
             if (m_keywords[i] is T val)
             {
-                return val;
+                if (keywordTemp == null)
+                {
+                    keywordTemp = (T)GameKeywordFactory.GetKeywordClone(val, m_unit);
+                }
+                else
+                {
+                    keywordTemp.AddKeyword(val);
+                }
             }
         }
 
-        return default(T);
-    }
-
-    public List<T> GetKeywords<T>()
-    {
-        List<T> listOfKeyword = new List<T>();
-        for (int i = 0; i < m_keywords.Count; i++)
-        {
-            if (m_keywords[i] is T val)
-            {
-                listOfKeyword.Add(val);
-            }
-        }
-
-        return listOfKeyword;
+        return keywordTemp;
     }
 
     public IReadOnlyList<GameKeywordBase> GetKeywordsForRead()
@@ -62,7 +59,7 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
         //If there are any keywords that are the same as the one being added; instead of adding a new one, add this one to that keyword
         for (int i = 0; i < m_keywords.Count; i++)
         {
-            if (m_keywords[i].GetName() == newKeyword.GetName())
+            if (m_keywords[i].GetName() == newKeyword.GetName() && m_keywords[i].m_isPermanent == newKeyword.m_isPermanent)
             {
                 m_keywords[i].AddKeyword(newKeyword);
                 return;
@@ -81,7 +78,7 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
     {
         for (int i = 0; i < m_keywords.Count; i++)
         {
-            if (m_keywords[i].GetName() == toSubtract.GetName())
+            if (m_keywords[i].GetName() == toSubtract.GetName() && m_keywords[i].m_isPermanent == toSubtract.m_isPermanent)
             {
                 switch(m_keywords[i].m_keywordParamType)
                 {

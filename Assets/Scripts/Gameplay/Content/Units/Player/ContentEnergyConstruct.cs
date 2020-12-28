@@ -7,7 +7,7 @@ public class ContentEnergyConstruct : GameUnit
     private int m_powerGain = 8;
     private int m_staminaGain = 4;
 
-    public ContentEnergyConstruct()
+    public ContentEnergyConstruct() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

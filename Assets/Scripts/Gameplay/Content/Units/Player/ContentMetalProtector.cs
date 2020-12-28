@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentMetalProtector : GameUnit
 {
-    public ContentMetalProtector()
+    public ContentMetalProtector() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
 

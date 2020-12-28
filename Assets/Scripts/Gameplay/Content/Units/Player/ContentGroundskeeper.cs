@@ -7,7 +7,7 @@ public class ContentGroundskeeper : GameUnit
     private int m_damageReductionVal = 3;
     private int m_thornsVal = 8;
 
-    public ContentGroundskeeper()
+    public ContentGroundskeeper() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.3f, 0);
 

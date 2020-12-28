@@ -6,7 +6,7 @@ public class ContentStormChanneler : GameUnit
 {
     private int m_bonusMagicPower = 0;
 
-    public ContentStormChanneler()
+    public ContentStormChanneler() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

@@ -7,7 +7,7 @@ public class ContentConjuredImp : GameUnit
 {
     private bool disableDuplicate = false;
     
-    public ContentConjuredImp()
+    public ContentConjuredImp() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

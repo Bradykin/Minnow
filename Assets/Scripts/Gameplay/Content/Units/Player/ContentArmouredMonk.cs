@@ -8,7 +8,7 @@ public class ContentArmouredMonk : GameUnit
 
     public int m_qiVal;
 
-    public ContentArmouredMonk()
+    public ContentArmouredMonk() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

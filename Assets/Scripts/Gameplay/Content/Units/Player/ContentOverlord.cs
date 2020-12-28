@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentOverlord : GameUnit
 {
-    public ContentOverlord()
+    public ContentOverlord() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

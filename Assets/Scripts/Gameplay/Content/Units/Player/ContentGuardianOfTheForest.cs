@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGuardianOfTheForest : GameUnit
 {
-    public ContentGuardianOfTheForest()
+    public ContentGuardianOfTheForest() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(-0.15f, 0, 0);
 

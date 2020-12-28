@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentElvenWizard : GameUnit
 {
-    public ContentElvenWizard()
+    public ContentElvenWizard() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.2f, 0);
 

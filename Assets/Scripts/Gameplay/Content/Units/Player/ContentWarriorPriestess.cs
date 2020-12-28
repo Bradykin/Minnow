@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentWarriorPriestess : GameUnit
 {
-    public ContentWarriorPriestess()
+    public ContentWarriorPriestess() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

@@ -7,7 +7,7 @@ public class GameCardSpellBase : GameCard
     protected AudioClip m_onPlaySFX;
 
     //This is for keywords on the card that we want to display info for.
-    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
+    protected GameKeywordHolder m_keywordHolder = new GameKeywordHolder(null);
 
     protected int m_spellEffect;
 

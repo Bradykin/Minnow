@@ -43,9 +43,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     protected int m_power;
     protected int m_permPower;
     protected Typeline m_typeline;
+    protected GameKeywordHolder m_keywordHolder;
 
     //Specific data.  Only set if it varies from the default.  Be sure to add to the descrip so it shows up in the UI.
-    private GameKeywordHolder m_keywordHolder = new GameKeywordHolder();
     protected int m_staminaToAttack = 2;
     protected int m_sightRange = 3;
     public bool m_shouldAlwaysPassEnemies;
@@ -74,6 +74,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     //Unique guid per unit, to use to link together like gameunits in save data
     private string m_guid = System.Guid.NewGuid().ToString();
+
+    public GameUnit()
+    {
+        m_keywordHolder = new GameKeywordHolder(this);
+    }
 
     public void CopyOff(GameUnit other)
     {

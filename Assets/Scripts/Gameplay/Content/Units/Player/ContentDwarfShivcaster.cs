@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentDwarfShivcaster : GameUnit
 {
-    public ContentDwarfShivcaster()
+    public ContentDwarfShivcaster() : base()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;

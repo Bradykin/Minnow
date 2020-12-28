@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentWildwoodExplorer : GameUnit
 {
-    public ContentWildwoodExplorer()
+    public ContentWildwoodExplorer() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 

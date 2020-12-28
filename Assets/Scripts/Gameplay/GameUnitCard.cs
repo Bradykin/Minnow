@@ -181,6 +181,8 @@ public class GameUnitCard : GameCard
         bool hasAnyVisibleKeywords = keywords.Count > 0;
         if (hasAnyVisibleKeywords)
         {
+            hasAnyVisibleKeywords = false;
+
             for (int i = 0; i < keywords.Count; i++)
             {
                 if (keywords[i].m_isVisible)
@@ -189,8 +191,6 @@ public class GameUnitCard : GameCard
                     break;
                 }
             }
-
-            hasAnyVisibleKeywords = false;
         }
 
         if (hasAnyVisibleKeywords && (desc != ""))

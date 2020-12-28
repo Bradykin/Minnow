@@ -13,7 +13,7 @@ public class GameEnemyUnit : GameUnit
 
     public int m_experienceAmount = 5;
 
-    public GameEnemyUnit(GameOpponent gameOpponent)
+    public GameEnemyUnit(GameOpponent gameOpponent) : base()
     {
         m_AIGameEnemyUnit = new AIGameEnemyUnit(this);
         m_gameOpponentController = gameOpponent;

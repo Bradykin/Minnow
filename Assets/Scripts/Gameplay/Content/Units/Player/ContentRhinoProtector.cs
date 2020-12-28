@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentRhinoProtector : GameUnit
 {
-    public ContentRhinoProtector()
+    public ContentRhinoProtector() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, 0, 0);
 

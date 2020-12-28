@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentNaturalScout : GameUnit
 {
-    public ContentNaturalScout()
+    public ContentNaturalScout() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0.2f, -0.3f, 0);
 

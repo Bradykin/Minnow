@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentInjuredTroll : GameUnit
 {
-    public ContentInjuredTroll()
+    public ContentInjuredTroll() : base()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.4f, 0);
 
