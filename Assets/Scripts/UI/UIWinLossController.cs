@@ -43,7 +43,6 @@ public class UIWinLossController : Singleton<UIWinLossController>
         bool isFirstChaosClear = !PlayerDataManager.IsChaosLevelAchieved(gameController.GetCurMap().m_id, Globals.m_curChaos);
 
         m_reputationText.text = "Reputation Gained Total: " + gameController.GetRunExperienceNum(isVictory, isFirstChaosClear) + "\n" +
-            "\tBase - " + gameController.GetBaseExpNum() + "\n" +
             "\tElite Kills - " + gameController.GetEliteExpNum() + "\n" +
             "\tEnemy Kills - " + gameController.GetKillExpNum() + "\n" +
             "\tEvent Discovery - " + gameController.GetEventExpNum();

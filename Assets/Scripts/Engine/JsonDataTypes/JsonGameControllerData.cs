@@ -15,7 +15,6 @@ public struct JsonGameControllerData
 
     public int runKillExp;
     public int runEventExp;
-    public int runBaseExp;
     public int runEliteExp;
     public int runVictoryExp;
     public int runFirstChaosExp;
