@@ -806,6 +806,22 @@ public static class UIHelper
         CreateWorldElementNotificationImpl(message, color, positionObj);
     }
 
+    public static void CreateMousePointerNotification(string message, bool isPositive)
+    {
+        Color color = Color.black;
+
+        if (isPositive)
+        {
+            color = m_valid;
+        }
+        else
+        {
+            color = m_invalid;
+        }
+
+        UIWorldElementNotification elementNotification = FactoryManager.Instance.GetFactory<UIWorldElementNotificationFactory>().CreateObject<UIWorldElementNotification>(message, color, Input.mousePosition);
+    }
+
     public static void TriggerRelicAnimation<T>()
     {
         UIRelicController.Instance.TriggerRelicAnimation<T>();

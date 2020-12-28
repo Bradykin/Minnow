@@ -47,13 +47,15 @@ public class GameIntermissionActionController
 
     public void Activate()
     {
-        if (!CanAfford())
-        {
-            return;
-        }
-
         if (HasBuilding())
         {
+            if (!CanAfford())
+            {
+                UIHelper.CreateMousePointerNotification("Not enough gold.", false);
+                AudioHelper.PlaySFX(AudioHelper.UIError);
+                return;
+            }
+
             if (Globals.m_selectedIntermissionBuilding == m_building)
             {
                 Globals.m_selectedIntermissionBuilding = null;
@@ -66,6 +68,13 @@ public class GameIntermissionActionController
 
         if (HasAction())
         {
+            if (!CanAfford())
+            {
+                UIHelper.CreateMousePointerNotification("Not enough actions.", false);
+                AudioHelper.PlaySFX(AudioHelper.UIError);
+                return;
+            }
+
             m_action.Activate();
         }
     }
