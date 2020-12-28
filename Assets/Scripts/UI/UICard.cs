@@ -175,7 +175,7 @@ public class UICard : MonoBehaviour
             {
                 if (m_card.IsXSpell())
                 {
-                    m_costText.text = "X"; 
+                    m_costText.text = "X";
                 }
                 else
                 {
@@ -217,13 +217,18 @@ public class UICard : MonoBehaviour
             }
         }
 
-        if (PlayerDataManager.PlayerAccountData.CheckHasGoldCard(m_card))
+
+        if ((m_unitCard != null && m_unitCard.GetUnit().GetTeam() == Team.Player)
+            || m_unitCard == null)
         {
-            m_backgroundImage.sprite = UIHelper.GetCardGoldBackground();
-        }
-        else
-        {
-            m_backgroundImage.sprite = UIHelper.GetCardDefaultBackground();
+            if (PlayerDataManager.PlayerAccountData.CheckHasGoldCard(m_card))
+            {
+                m_backgroundImage.sprite = UIHelper.GetCardGoldBackground();
+            }
+            else
+            {
+                m_backgroundImage.sprite = UIHelper.GetCardDefaultBackground();
+            }
         }
     }
 
