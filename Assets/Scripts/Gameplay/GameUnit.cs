@@ -164,7 +164,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     }
 
-    public virtual void EndWave()
+    public virtual void OnEndWave()
     {
         GameFadeKeyword fadeKeyword = GetFadeKeyword(true);
         if (fadeKeyword != null && !fadeKeyword.m_isActive)

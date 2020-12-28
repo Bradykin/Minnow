@@ -648,7 +648,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         {
             if (m_deckBase.GetCardByIndex(i) is GameUnitCard)
             {
-                ((GameUnitCard)m_deckBase.GetCardByIndex(i)).m_unit.EndWave();
+                ((GameUnitCard)m_deckBase.GetCardByIndex(i)).m_unit.OnEndWave();
             }
         }
 
