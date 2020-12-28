@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContentFrozenGuardianEnemy : GameEnemyUnit
 {
-    private int m_staminaLossRange = 3;
     private int m_staminaLossAmount = 2;
 
     private int m_damageReductionAmount;
@@ -20,12 +19,14 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         m_damageReductionAmount = 1 + GetDamageReductionModByWave();
         m_statGain = 1 + GetStatsGainModByWave();
 
+        m_aoeRange = 3;
+
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isElite = true;
 
         m_name = "Frozen Guardian";
-        m_desc = $"An elite foe.  Defeat it and gain a relic!\nAt the end of this unit's turn, nearby enemies in range {m_staminaLossRange} lose {m_staminaLossAmount} stamina. Gain +{m_statGain}/{m_statGain} for each enemy drained this way.";
+        m_desc = $"An elite foe.  Defeat it and gain a relic!\nAt the end of this unit's turn, nearby enemies in range {m_aoeRange} lose {m_staminaLossAmount} stamina. Gain +{m_statGain}/{m_statGain} for each enemy drained this way.";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
@@ -46,7 +47,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
     {
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_staminaLossRange);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
 
         int numEnemiesHit = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)

@@ -5,15 +5,15 @@ using UnityEngine;
 public class ContentDwarfArchitect : GameUnit
 {
     private int m_maxStaminaIncrease = 1;
-    private int m_effectRange = 2;
 
     public ContentDwarfArchitect()
     {
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
+        m_aoeRange = 2;
 
         m_name = "Dwarf Architect";
-        m_desc = "When an allied <b>Creation</b> unit is summoned within " + m_effectRange + " range, <b>permanently</b> give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.\n";
+        m_desc = $"When an allied <b>Creation</b> unit is summoned within {m_aoeRange} range, <b>permanently</b> give it +" + m_maxStaminaIncrease + " max Stamina and have it start at full.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.MaceMedium;
@@ -28,7 +28,7 @@ public class ContentDwarfArchitect : GameUnit
         if (other.GetTypeline() == Typeline.Creation)
         {
             int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), other.GetGameTile(), true, false, true);
-            if (distanceBetween <= m_effectRange)
+            if (distanceBetween <= m_aoeRange)
             {
                 other.AddMaxStamina(m_maxStaminaIncrease, true);
                 other.GainStamina(other.GetMaxStamina());

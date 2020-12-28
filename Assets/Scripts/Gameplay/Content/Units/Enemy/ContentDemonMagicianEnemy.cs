@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContentDemonMagicianEnemy : GameEnemyUnit
 {
-    int m_range = 2;
     int m_magicPowerLoseAmount = 1;
     
     public ContentDemonMagicianEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -22,7 +21,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_name = "Demon Magician";
         m_desc = "This unit cannot be targeted by spells.\n";
 
-        AddKeyword(new GameRangeKeyword(m_range), true, false);
+        AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameLavawalkKeyword(), true, false);
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))

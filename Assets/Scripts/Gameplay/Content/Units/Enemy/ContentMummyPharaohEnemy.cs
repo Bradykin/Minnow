@@ -7,7 +7,6 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
 {
     private int m_spawnRange = 2;
     private int m_numMummiesSpawned = 3;
-    private int m_mummyResurrectionRange = 2;
 
     public ContentMummyPharaohEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -19,13 +18,14 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isElite = true;
+        m_aoeRange = 2;
 
         m_name = "Mummy Pharaoh";
-        m_desc = $"An elite foe. Defeat it and gain a relic!\nAny non-Mummy units that die with range {m_mummyResurrectionRange} get resurrected as Mummies.\n";
+        m_desc = $"An elite foe. Defeat it and gain a relic!\nAny non-Mummy units that die with range {m_aoeRange} get resurrected as Mummies.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            m_desc += $"This unit cannot be damaged if there are any mummies within range {m_mummyResurrectionRange} of it.";
+            m_desc += $"This unit cannot be damaged if there are any mummies within range {m_aoeRange} of it.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -81,7 +81,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
             return;
         }
 
-        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) > m_mummyResurrectionRange)
+        if (WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), deathLocation) > m_aoeRange)
         {
             return;
         }
@@ -105,7 +105,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_mummyResurrectionRange);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
 
             if (surroundingTiles.Any(t => t.IsOccupied() && t.GetOccupyingUnit() is ContentMummyEnemy))
             {

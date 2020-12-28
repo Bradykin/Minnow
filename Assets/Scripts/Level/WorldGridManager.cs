@@ -1002,6 +1002,14 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
+    public void ClearAllTilesAoeRange()
+    {
+        for (int i = 0; i < m_gridArray.Length; i++)
+        {
+            m_gridArray[i].ClearAoeRangeCount();
+        }
+    }
+
     public void ClearAllTilesDefensiveBuildingRange()
     {
         for (int i = 0; i < m_gridArray.Length; i++)

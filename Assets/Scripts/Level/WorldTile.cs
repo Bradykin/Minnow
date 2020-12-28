@@ -32,6 +32,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private bool m_isAttackable;
     private int m_inSpellcraftRange;
     private int m_inDefensiveBuildingRange;
+    private int m_aoeRangeCount;
 
     public bool m_shouldAlertTint;
 
@@ -203,6 +204,10 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 else if (Globals.m_selectedCard != null && GameHelper.GetGameController().m_runStateType != RunStateType.Intermission && m_inSpellcraftRange > 0)
                 {
                     m_tintRenderer.color = UIHelper.GetSpellcraftTint(m_inSpellcraftRange);
+                }
+                else if (m_aoeRangeCount > 0)
+                {
+                    m_tintRenderer.color = UIHelper.GetAoeRangeTint(m_aoeRangeCount);
                 }
                 else if ((Globals.m_selectedUnit != null || Globals.m_selectedEnemy != null) && m_isMoveable)
                 {
@@ -655,9 +660,19 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_inDefensiveBuildingRange++;
     }
 
+    public void AddAoeRangeCount()
+    {
+        m_aoeRangeCount++;
+    }
+
     public void ClearInDefensiveBuildingRangeCount()
     {
         m_inDefensiveBuildingRange = 0;
+    }
+
+    public void ClearAoeRangeCount()
+    {
+        m_aoeRangeCount = 0;
     }
 
     public void CustomRecycle(params object[] args)

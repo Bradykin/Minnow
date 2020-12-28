@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ContentVolcanoGolemEnemy : GameEnemyUnit
 {
-    int m_effectRange = 1;
-    
     public ContentVolcanoGolemEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
@@ -17,6 +15,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
+        m_aoeRange = 1;
 
         m_name = "Volcano Golem";
 
@@ -24,10 +23,10 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
         AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_effectRange = 3;
+            m_aoeRange = 3;
         }
 
-        m_desc = $"When this unit dies, all plains and forest tiles within {m_effectRange} range are turned to lava.\n";
+        m_desc = $"When this unit dies, all plains and forest tiles within {m_aoeRange} range are turned to lava.\n";
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
@@ -39,7 +38,7 @@ public class ContentVolcanoGolemEnemy : GameEnemyUnit
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_effectRange, 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange, 0);
         for (int i = 0; i < surroundingTiles.Count; i++)
         {
             if (!surroundingTiles[i].HasBuilding() && (surroundingTiles[i].GetTerrain().IsPlains() || surroundingTiles[i].GetTerrain().IsForest()))

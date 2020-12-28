@@ -6,7 +6,6 @@ using UnityEngine;
 public class ContentSabobot : GameUnit
 {
     private int m_explosionDamage = 25;
-    private int m_explosionRange = 1;
     
     public ContentSabobot()
     {
@@ -14,10 +13,12 @@ public class ContentSabobot : GameUnit
 
         m_startWithMaxStamina = true;
 
+        m_aoeRange = 2;
+
         m_team = Team.Player;
         m_rarity = GameRarity.Uncommon;
         AddKeyword(new GameMomentumKeyword(new GameDeathAction(this)), true, false);
-        AddKeyword(new GameDeathKeyword(new GameExplodeAction(this, m_explosionDamage, m_explosionRange)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameExplodeEnemiesAction(this, m_explosionDamage, m_aoeRange)), true, false);
         AddKeyword(new GameDeathKeyword(new GameReturnToDeckAction(this)), true, false);
 
         m_name = "Sabobot";

@@ -15,9 +15,12 @@ public class ContentDwarfShivcaster : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.DaggerThrown;
 
-        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, 3)), true, false);
+        m_aoeRange = 3;
+
+        AddKeyword(new GameSpellcraftKeyword(new GameShivNearbyAction(this, 2, m_aoeRange)), true, false);
         AddKeyword(new GameRangeKeyword(3), true, false);
         AddKeyword(new GameShivKeyword(), true, false);
+
 
         LateInit();
     }

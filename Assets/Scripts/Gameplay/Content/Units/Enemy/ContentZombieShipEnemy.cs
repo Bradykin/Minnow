@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ContentZombieShipEnemy : GameEnemyUnit
 {
-    private int m_auraRange = 3;
     private int m_damageOrHealingAmount = 8;
     public bool m_isEliteShip;
     public bool m_hasReleasedUnits;
@@ -21,10 +20,11 @@ public class ContentZombieShipEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
+        m_aoeRange = 3;
 
         m_name = "Zombie Ship";
         
-        m_desc = $"At the end of each turn, this unit will radiate necromantic energy, healing all nearby members of its crew and damaging all player units in range {m_auraRange} for {m_damageOrHealingAmount}./n";
+        m_desc = $"At the end of each turn, this unit will radiate necromantic energy, healing all nearby members of its crew and damaging all player units in range {m_aoeRange} for {m_damageOrHealingAmount}./n";
 
 
         AddKeyword(new GameWaterboundKeyword(), true, false);
@@ -56,7 +56,7 @@ public class ContentZombieShipEnemy : GameEnemyUnit
     {
         base.EndTurn();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_auraRange, 0);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange, 0);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

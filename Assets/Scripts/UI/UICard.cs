@@ -22,6 +22,7 @@ public class UICard : MonoBehaviour
     }
 
     public Image m_image;
+    public Image m_backgroundImage;
     public Image m_tintImage;
 
     public GameObject m_lockedObj;
@@ -218,7 +219,11 @@ public class UICard : MonoBehaviour
 
         if (PlayerDataManager.PlayerAccountData.CheckHasGoldCard(m_card))
         {
-            //Todo: Nick make card gold
+            m_backgroundImage.sprite = UIHelper.GetCardGoldBackground();
+        }
+        else
+        {
+            m_backgroundImage.sprite = UIHelper.GetCardDefaultBackground();
         }
     }
 

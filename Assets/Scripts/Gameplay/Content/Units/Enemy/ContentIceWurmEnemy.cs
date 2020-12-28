@@ -26,6 +26,7 @@ public class ContentIceWurmEnemy : GameEnemyUnit
             m_maxStamina += 1;
             m_staminaRegen += 1;
             m_desc += "After moving, root all player units in range 1 until the end of their turn.\n";
+            m_aoeRange = 1;
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -40,7 +41,7 @@ public class ContentIceWurmEnemy : GameEnemyUnit
     {
         base.OnMoveEnd();
 
-        List<GameTile> gameTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
+        List<GameTile> gameTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
 
         for (int i = 0; i < gameTiles.Count; i++)
         {

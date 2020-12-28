@@ -25,7 +25,7 @@ public class GameShivNearbyAction : GameAction
 
     public override string GetDesc()
     {
-        return "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within " + m_shivRanges.Max() + " tiles.";
+        return "Throw " + m_numShivsThrown + " shivs at random nearby enemy units within range " + m_shivRanges.Max() + ".";
     }
 
     public override void DoAction()

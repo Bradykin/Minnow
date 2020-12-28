@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContentLichEnemy : GameEnemyUnit
 {
-    public int m_auraRange = 3;
     public bool m_hasReanimated = false;
 
     public ContentLichEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -27,9 +26,10 @@ public class ContentLichEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_aoeRange = 3;
 
         m_name = "Lich";
-        m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_auraRange} is instead converted into damage.\n";
+        m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_aoeRange} is instead converted into damage.\n";
 
         AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameFlyingKeyword(), true, false);
@@ -60,7 +60,7 @@ public class ContentLichEnemy : GameEnemyUnit
     {
         string descString = m_desc;
 
-        descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
+        descString += $"Any player units that die within range {m_aoeRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {

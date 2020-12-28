@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ContentWarriorPriestess : GameUnit
 {
-    private int m_blastRange = 2;
-
     public ContentWarriorPriestess()
     {
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_team = Team.Player;
         m_rarity = GameRarity.Common;
+        m_aoeRange = 2;
 
         AddKeyword(new GameTauntKeyword(), true, false);
 
         m_name = "Warrior Priestess";
-        m_desc = $"When healed; deal that much damage to all enemy units in range {m_blastRange}.\n";
+        m_desc = $"When healed; deal that much damage to all enemy units in range {m_aoeRange}.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.SwordHeavy;
@@ -30,7 +29,7 @@ public class ContentWarriorPriestess : GameUnit
 
         GameHelper.GetGameController().AddIntermissionLock();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_blastRange, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange, 1);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

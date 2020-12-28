@@ -83,7 +83,7 @@ public static class Constants
     public static int GoldPerWave = 0;
 
     //Testing Data
-    public static bool GameDirectorTestPrints = true;
+    public static bool GameDirectorTestPrints = false;
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;

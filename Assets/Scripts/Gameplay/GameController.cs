@@ -48,7 +48,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     private int m_killExpAmount;
     private int m_killEliteExpAmount;
     private int m_eventExpAmount;
-    private int m_baseExpAmount = 50;
     private int m_victoryAmount = 200;
     private int m_firstChaosClearAmount = 500;
 
@@ -288,11 +287,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         return m_eventExpAmount;
     }
 
-    public int GetBaseExpNum()
-    {
-        return m_baseExpAmount;
-    }
-
     public int GetVictoryNum()
     {
         return m_victoryAmount;
@@ -310,7 +304,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public int GetRunExperienceNum(bool victory, bool firstChaos)
     {
-        int toReturn = m_baseExpAmount + m_killExpAmount + m_eventExpAmount + m_killEliteExpAmount;
+        int toReturn = m_killExpAmount + m_eventExpAmount + m_killEliteExpAmount;
         
         if (victory)
         {
@@ -340,7 +334,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
             curKillCount = m_curKillCount,
             curRage = m_curRage,
 
-            runBaseExp = m_baseExpAmount,
             runKillExp = m_killExpAmount,
             runEventExp = m_eventExpAmount,
             runEliteExp = m_killEliteExpAmount,
@@ -376,7 +369,6 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
         m_curKillCount = jsonData.curKillCount;
         m_curRage = jsonData.curRage;
 
-        m_baseExpAmount = jsonData.runBaseExp;
         m_killExpAmount = jsonData.runKillExp;
         m_eventExpAmount = jsonData.runEventExp;
         m_killEliteExpAmount = jsonData.runEliteExp;

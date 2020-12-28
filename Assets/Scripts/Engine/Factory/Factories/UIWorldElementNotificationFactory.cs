@@ -35,6 +35,16 @@ namespace Game.Util
             return obj.GetComponent<T>();
         }
 
+        public T CreateObject<T>(string message, Color color, Vector3 position)
+        {
+            GameObject obj = CreateGameObject();
+            obj.transform.position = Camera.main.ScreenToWorldPoint(position);
+
+            obj.GetComponent<UIWorldElementNotification>().Init(message, color);
+
+            return obj.GetComponent<T>();
+        }
+
         public override T CreateObject<T>()
         {
             if (Recycler.TryGrab(out T newObject))

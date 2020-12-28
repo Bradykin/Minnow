@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentGriffonEnemy : GameEnemyUnit
 {
     int m_statBoostAmount = 5;
-    int m_statBoostRange = 2;
     
     public ContentGriffonEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -18,15 +17,16 @@ public class ContentGriffonEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
+        m_aoeRange = 2;
 
         m_name = "Griffon";
-        m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.\n";
+        m_desc = $"When this unit dies, all other {m_name}s within range {m_aoeRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.\n";
 
         AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_statBoostAmount += 5;
-            m_desc = $"When this unit dies, all other {m_name}s within range {m_statBoostRange} gain +{m_statBoostAmount}/{m_statBoostAmount} and are fully healed.\n";
+            m_desc = $"When this unit dies, all other {m_name}s within range {m_aoeRange} gain +{m_statBoostAmount}/{m_statBoostAmount} and are fully healed.\n";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -39,7 +39,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_statBoostRange);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_aoeRange);
 
         for (int i = 0; i < surroundingTiles.Count; i++)
         {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContentRiverlordEnemy : GameEnemyUnit
 {
-    public int m_auraRange = 3;
     public bool m_hasReanimated = false;
 
     public ContentRiverlordEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -27,6 +26,7 @@ public class ContentRiverlordEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Special;
         m_isBoss = true;
+        m_aoeRange = 3;
 
         m_name = "Riverlord";
         m_desc = $"The final boss. Kill it, and win.\n";
@@ -60,7 +60,7 @@ public class ContentRiverlordEnemy : GameEnemyUnit
     {
         string descString = m_desc;
 
-        descString += $"Any player units that die within range {m_auraRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
+        descString += $"Any player units that die within range {m_aoeRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
 
         if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
         {
