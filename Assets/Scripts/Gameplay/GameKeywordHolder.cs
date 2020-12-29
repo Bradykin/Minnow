@@ -71,7 +71,14 @@ public class GameKeywordHolder : ISave<JsonGameKeywordHolderData>, ILoad<(JsonGa
 
     public void RemoveKeyword(GameKeywordBase toRemove)
     {
-        m_keywords.Remove(toRemove);
+        for (int i = 0; i < m_keywords.Count; i++)
+        {
+            if (m_keywords[i].GetName() == toRemove.GetName() && m_keywords[i].m_isPermanent == toRemove.m_isPermanent)
+            {
+                m_keywords.RemoveAt(i);
+                return;
+            }
+        }
     }
 
     public void SubtractKeyword(GameKeywordBase toSubtract)

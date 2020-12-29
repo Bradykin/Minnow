@@ -598,7 +598,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         {
             if (GetBleedKeyword() != null)
             {
-                m_keywordHolder.SubtractKeyword(GetBleedKeyword());
+                RemoveKeyword(GetBleedKeyword());
                 UIHelper.CreateWorldElementNotification($"{GetName()}'s Bleed is cured!", true, m_worldUnit.gameObject);
             }
         }

@@ -20,7 +20,19 @@ public class GameShivNearbyAction : GameAction
         m_shivRanges.Add(shivRange);
 
         m_name = "Throw Shiv";
-        m_actionParamType = ActionParamType.UnitTwoIntParam;
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
+    }
+
+    public GameShivNearbyAction(GameUnit unit, int numShivsThrown, List<int> shivRanges)
+    {
+        m_unit = unit;
+        m_shivCard = (ContentShivCard)(GameCardFactory.GetCardClone(new ContentShivCard()));
+        m_shivCard.SetCanTriggerSpellcraft(false);
+        m_numShivsThrown = numShivsThrown;
+        m_shivRanges = shivRanges;
+
+        m_name = "Throw Shiv";
+        m_actionParamType = ActionParamType.UnitIntListIntParam;
     }
 
     public override string GetDesc()
