@@ -50,7 +50,7 @@ public class UIUnitDeathAnimation : UIAnimationBase
         {
             m_shouldAnimate = false;
 
-            m_targetUnit.GetUnit().GetWorldTile().RecycleUnit();
+            m_targetUnit.GetUnit().GetWorldTile().RecycleUnit(m_targetUnit.GetUnit());
         }
     }
 }
