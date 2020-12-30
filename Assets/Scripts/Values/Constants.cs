@@ -83,15 +83,16 @@ public static class Constants
     public static int GoldPerWave = 0;
 
     //Testing Data
-    public static bool GameDirectorTestPrints = false;
     public static bool SnapToCastleAtStart = false;
     public static bool FogOfWar = true;
     public static bool DebugEventsVisibleInFog = true;
 #if UNITY_EDITOR
+    public static bool GameDirectorTestPrints = true;
     public static bool DevMode = true;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
 #else
+    public static bool GameDirectorTestPrints = false;
     public static bool DevMode = false;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;

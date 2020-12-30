@@ -516,6 +516,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         m_isDead = willSetDead;
 
+        GetGameTile().ClearUnit();
+
         if (GetTeam() == Team.Player)
         {
             bool lichAuraInRange = false;
@@ -536,8 +538,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             }
         }
 
-        GameHelper.GetPlayer().InformHasDied(this, this.GetGameTile());
-        GameHelper.GetOpponent().InformHasDied(this, this.GetGameTile());
+        GameHelper.GetPlayer().InformHasDied(this, GetGameTile());
+        GameHelper.GetOpponent().InformHasDied(this, GetGameTile());
 
         if (GetTeam() == Team.Enemy)
         {

@@ -605,18 +605,25 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_occupyingUnitObj = null;
     }
 
-    public void RecycleUnit()
+    public void RecycleUnit(GameUnit unitReference)
     {
-        if (m_occupyingUnitObj != null)
+        if (m_occupyingUnitObj == null)
+        {
+            Debug.LogError("Trying to recycle unit that is not on the tile.");
+        }
+        
+        if (unitReference != null && unitReference != GetGameTile().GetOccupyingUnit())
+        {
+            Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
+            m_occupyingUnitObj = null;
+            TryAddOccupyingUnit();
+        }
+        else
         {
             m_occupyingUnitObj.GetUnit().SetGameTile(null);
             GetGameTile().ClearUnit();
             Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
             m_occupyingUnitObj = null;
-        }
-        else
-        {
-            Debug.LogError("Trying to recycle unit that is not on the tile.");
         }
     }
 
