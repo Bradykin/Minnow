@@ -17,7 +17,13 @@ public class UIGameMenuConcedeButton : UIElementBase
     public void OnPointerClick(PointerEventData eventData)
     {
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
+        m_gameMenu.SetActive(false);
 
+        UIConfirmationController.Instance.Init("Are you sure you want to concede?", HandleConcede);
+    }
+
+    public void HandleConcede()
+    {
         m_gameMenu.SetActive(false);
         GameHelper.EndLevel(RunEndType.Quit);
     }
