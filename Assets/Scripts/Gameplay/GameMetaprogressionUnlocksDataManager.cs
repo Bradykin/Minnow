@@ -178,7 +178,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_cardRewards.Add(15, CreateCardLevelReward("Buffs",
             "Newly unlocked cards - these cards can appear in future runs.\nUse spells to augment your units natural abilities!",
-            new ContentNightWingsCard(), new ContentDrainPowerCard(), new ContentCurseOfInactionCard()));
+            new ContentNightWingsCard(), new ContentDrainPowerCard(), new ContentGuardianOfTheForestCard()));
 
         m_cardRewards.Add(16, CreateCardLevelReward("Buff Targets",
             "Newly unlocked cards - these cards can appear in future runs.\nSome units work great when given the right buff spell!",
@@ -186,11 +186,11 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_cardRewards.Add(17, CreateCardLevelReward("Silver Bullets",
             "Newly unlocked cards - these cards can appear in future runs.\nWhile these may be specific, when you can get good use out of them they pull far above their weight!",
-            new ContentFletchingCard(), new ContentMarkedForDeathCard(), new ContentFossilizeCard()));
+            new ContentFletchingCard(), new ContentGolemProtectorCard(), new ContentFossilizeCard()));
 
         m_cardRewards.Add(18, CreateCardLevelReward("Flexible",
             "Newly unlocked cards - these cards can appear in future runs.\nFlexibility has a value of it's own!",
-            new ContentFirestormCard(), new ContentPurgeCard(), new ContentWisdomOfThePastCard()));
+            new ContentStormChannelerCard(), new ContentWildwoodSkirmisherCard(), new ContentMysticWitchCard()));
 
         m_cardRewards.Add(19, CreateCardLevelReward("More Cards",
             "Newly unlocked cards - these cards can appear in future runs.\n",
@@ -215,10 +215,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_cardRewards.Add(24, CreateCardLevelReward("More Cards",
             "Newly unlocked cards - these cards can appear in future runs.\n",
             new ContentEnergyConstructCard(), new ContentStormChannelerCard(), new ContentWildwoodSkirmisherCard()));
-
-        m_cardRewards.Add(25, CreateCardLevelReward("More Cards",
-            "Newly unlocked cards - these cards can appear in future runs.\n",
-            new ContentMysticWitchCard(), new ContentGolemProtectorCard(), new ContentGuardianOfTheForestCard()));
     }
 
     private static void AddRelicRewards()
@@ -498,7 +494,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentProductionCard());
         m_initialCards.Add(new ContentHeroismCard());
         m_initialCards.Add(new ContentQuickStrikesCard());
-        m_initialCards.Add(new ContentBrokenLinkCard());
         m_initialCards.Add(new ContentProtectionCard());
         m_initialCards.Add(new ContentFireworksCard());
         m_initialCards.Add(new ContentCometOfThePastCard());
