@@ -776,6 +776,16 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void StartTurn()
     {
+        if (!PlayerDataManager.PlayerAccountData.m_unitTutorialComplete && GameHelper.GetGameController().m_currentTurnNumber == 3)
+        {
+            UITutorialController.Instance.ShowTutorial(UITutorialController.TutorialType.Unit);
+        }
+
+        if (!PlayerDataManager.PlayerAccountData.m_tileTutorialComplete && GameHelper.GetGameController().m_currentWaveNumber == 3 && GameHelper.GetGameController().m_currentTurnNumber == 2)
+        {
+            UITutorialController.Instance.ShowTutorial(UITutorialController.TutorialType.Tile);
+        }
+
         if (GameHelper.GetGameController().m_currentTurnNumber >= 5)
         {
             GameHelper.GetGameController().m_curRage += 2;

@@ -13,15 +13,14 @@ public class GameCardSpellBase : GameCard
 
     protected void SetupBasicData()
     {
-        if (m_rarity == GameRarity.Starter)
-        {
-            m_typeline += "Starter ";
-        }
         if (m_shouldExile)
         {
-            m_typeline += "Exile ";
+            m_typeline = $"Exile - {m_targetType.ToString()}";
         }
-        m_typeline += "Spell - " + m_targetType.ToString();
+        else
+        {
+            m_typeline = m_targetType.ToString();
+        }
         m_icon = UIHelper.GetIconCard(m_name);
 
         AddBasicTags();
@@ -75,7 +74,7 @@ public class GameCardSpellBase : GameCard
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage.\n";
+        return $"Deal <color=#027FFF>{m_spellEffect}{mpString}</color> damage.\n";
     }
 
     protected string GetHealDescString()
@@ -86,7 +85,7 @@ public class GameCardSpellBase : GameCard
             mpString = GetMagicPowerString();
         }
 
-        return "Heal for " + m_spellEffect + mpString + ".\n";
+        return $"Heal for <color=#027FFF>{m_spellEffect}{mpString}</color> damage.\n";
     }
 
     protected string GetMagicPowerString()
@@ -97,7 +96,7 @@ public class GameCardSpellBase : GameCard
         }
         else
         {
-            return "(" + GetSpellValue() + ")";
+            return $"({GetSpellValue()})";
         }
     }
 

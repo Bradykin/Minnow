@@ -59,6 +59,18 @@ public class UIEndTurnButton : UIElementBase
             return;
         }
 
+        if (!HasActionsRemaining())
+        {
+            FinalizeEndTurn();
+        }
+        else
+        {
+            UIConfirmationController.Instance.Init("Are you sure you want to end the turn (actions remain)?", FinalizeEndTurn);
+        }
+    }
+
+    private void FinalizeEndTurn()
+    {
         UITooltipController.Instance.ClearTooltipStack();
 
         Globals.m_selectedCard = null;
@@ -70,6 +82,39 @@ public class UIEndTurnButton : UIElementBase
         WorldController.Instance.MoveToNextTurn();
 
         m_tintImage.color = UIHelper.GetDefaultTintColor();
+    }
+
+    private bool HasActionsRemaining()
+    {
+        GamePlayer player = GameHelper.GetPlayer();
+
+        int lowestEnergyCostInHand = int.MaxValue;
+        for (int i = 0; i < player.m_hand.Count; i++)
+        {
+            if (player.m_hand[i].GetCost() < lowestEnergyCostInHand)
+            {
+                lowestEnergyCostInHand = player.m_hand[i].GetCost();
+            }
+        }
+
+        if (player.GetCurEnergy() >= lowestEnergyCostInHand)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < player.m_controlledUnits.Count; i++)
+        {
+            GameUnit unit = player.m_controlledUnits[i];
+            if (unit.GetCurStamina() + unit.GetStaminaRegen() > unit.GetMaxStamina())
+            {
+                if (!unit.GetGameTile().HasBuilding())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public override void HandleTooltip()

@@ -27,7 +27,7 @@ public class ContentGrowTalonsCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        string description = "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + "/+0.\n" + GetModifiedByMagicPowerString();
+        string description = $"<b>Permanently</b> give an allied unit +<color=#027FFF>{m_spellEffect}{mpString}</color>/+0.\n" + GetModifiedByMagicPowerString();
         
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {

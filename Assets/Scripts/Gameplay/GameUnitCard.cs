@@ -143,12 +143,7 @@ public class GameUnitCard : GameCard
 
     public override string GetTypeline()
     {
-        string typeline = "";
-        if (m_rarity == GameRarity.Starter)
-        {
-            typeline += "Starter ";
-        }
-        typeline += "Unit - " + m_unit.GetTypeline();
+        string typeline = m_unit.GetTypeline().ToString();
 
         if (GetUnit() is GameEnemyUnit)
         {

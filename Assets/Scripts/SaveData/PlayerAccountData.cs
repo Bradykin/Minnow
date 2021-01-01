@@ -71,6 +71,10 @@ public class PlayerAccountData
     public float m_sfxVolume = AudioHelper.DefaultSFXVolume;// AudioHelper.DefaultSFXVolume; //0.0f - 1.0f
     public bool m_followEnemy = true;
 
+    public bool m_unitTutorialComplete = false;
+    public bool m_spellTutorialComplete = false;
+    public bool m_tileTutorialComplete = false;
+
     public PlayerAccountData()
     {
         m_mapChaosLevels = new Dictionary<int, int>();
