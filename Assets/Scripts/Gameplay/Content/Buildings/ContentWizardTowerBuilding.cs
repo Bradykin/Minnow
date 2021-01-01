@@ -29,7 +29,14 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
     public override string GetDesc()
     {
-        m_desc = $"Damage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+        if (GetGameTile() == null)
+        {
+            m_desc = $"Damage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+        }
+        else
+        {
+            m_desc = $"Current Damage: {m_powerBase + m_spellcraftStacks}\nDamage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+        }
 
         return m_desc;
     }

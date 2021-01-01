@@ -53,6 +53,19 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         }
     }
 
+    public void InformHasAttacked(GameUnit attackingUnit, GameUnit attackedUnit, int damageAmount)
+    {
+        for (int i = 0; i < m_controlledUnits.Count; i++)
+        {
+            if (m_controlledUnits[i] == attackingUnit)
+            {
+                continue;
+            }
+
+            m_controlledUnits[i].OnOtherAttack(attackingUnit, attackedUnit, damageAmount);
+        }
+    }
+
     public void InformHasDied(GameUnit deadUnit, GameTile deathLocation)
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)

@@ -232,6 +232,8 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         return true;
     }
 
+    public virtual void OnOtherAttack(GameUnit attackingUnit, GameUnit attackedUnit, int damageAmount) { }
+
     public virtual void OnSpellCraft() { }
 
     public virtual void TriggerEndOfWave() { }

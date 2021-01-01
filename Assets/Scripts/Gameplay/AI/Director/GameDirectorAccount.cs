@@ -29,6 +29,7 @@ public class GameDirectorAccount
     {
         IReadOnlyList<GameCard> affectedCards = GameCardFactory.GetCardListOfTypeAtRarity(optionOne.m_rarity, optionOne is GameUnitCard);
 
+        int maximumTagValue = -9999;
         for (int i = 0; i < affectedCards.Count; i++)
         {
             GameDirectorCardWeight cardWeight = GetCardWeight(affectedCards[i]);
@@ -53,7 +54,18 @@ public class GameDirectorAccount
                 cardWeight.curWeight += weightIncreaseNotOfferedCard;
             }
             cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
+            maximumTagValue = Mathf.Max(maximumTagValue, cardWeight.curWeight);
             //Debug.Log($"{cardWeight.gameCard.GetBaseName()} adjusted from {curWeight} to {cardWeight.curWeight}");
+        }
+
+        if (maximumTagValue <= 0)
+        {
+            int increaseAmount = maximumTagValue + 3;
+            for (int i = 0; i < affectedCards.Count; i++)
+            {
+                GameDirectorCardWeight cardWeight = GetCardWeight(affectedCards[i]);
+                cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight + increaseAmount, -tagWeightMaximums, tagWeightMaximums);
+            }
         }
     }
 
@@ -98,6 +110,7 @@ public class GameDirectorAccount
     {
         IReadOnlyList<GameRelic> affectedRelics = GameRelicFactory.GetRelicListAtRarity(optionOne.m_rarity);
 
+        int maximumTagValue = -9999;
         for (int i = 0; i < affectedRelics.Count; i++)
         {
             GameDirectorRelicWeight relicWeight = GetRelicWeight(affectedRelics[i]);
@@ -122,7 +135,18 @@ public class GameDirectorAccount
                 relicWeight.curWeight += weightIncreaseNotOfferedRelic;
             }
             relicWeight.curWeight = Mathf.Clamp(relicWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
+            maximumTagValue = Mathf.Max(maximumTagValue, relicWeight.curWeight);
             //Debug.Log($"{relicWeight.gameRelic.GetBaseName()} adjusted from {curWeight} to {relicWeight.curWeight}");
+        }
+
+        if (maximumTagValue <= 0)
+        {
+            int increaseAmount = maximumTagValue + 3;
+            for (int i = 0; i < affectedRelics.Count; i++)
+            {
+                GameDirectorRelicWeight relicWeight = GetRelicWeight(affectedRelics[i]);
+                relicWeight.curWeight = Mathf.Clamp(relicWeight.curWeight + increaseAmount, -tagWeightMaximums, tagWeightMaximums);
+            }
         }
     }
 

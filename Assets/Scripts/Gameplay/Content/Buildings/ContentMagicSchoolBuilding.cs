@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentMagicSchoolBuilding : GameBuildingBase
 {
-    public int m_magicIncrease = 1;
+    public int m_magicIncrease = 2;
 
     public ContentMagicSchoolBuilding()
     {
@@ -15,8 +15,8 @@ public class ContentMagicSchoolBuilding : GameBuildingBase
         m_rarity = GameRarity.Uncommon;
         m_buildingType = BuildingType.Economic;
 
-        m_maxHealth = 5;
-        m_cost = new GameWallet(40);
+        m_maxHealth = 15;
+        m_cost = new GameWallet(70);
 
         m_expandsPlaceRange = false;
 

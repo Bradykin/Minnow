@@ -5,14 +5,12 @@ using Game.Util;
 
 public class ContentFortressBuilding : GameBuildingBase
 {
-    public int m_power = 6;
-
     public ContentFortressBuilding()
     {
         m_range = 3;
 
         m_name = "Fortress";
-        m_desc = "Damage enemy units in Range " + m_range + " for " + m_power + " damage at the start of your turn.";
+        m_desc = "Whenever a nearby allied unit in range {m_range} attacks a target, the Fortress will also attack it for half the damage that the unit did.";
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;
@@ -22,34 +20,17 @@ public class ContentFortressBuilding : GameBuildingBase
         LateInit();
     }
 
-    public override void StartTurn()
+    public override void OnOtherAttack(GameUnit attackingUnit, GameUnit attackedUnit, int damageAmount)
     {
-        if (m_isDestroyed)
+        base.OnOtherAttack(attackingUnit, attackedUnit, damageAmount);
+
+        if (attackedUnit.m_isDead)
         {
             return;
         }
 
-        base.EndTurn();
-
-        List<GameTile> surroundingTiles = surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(m_gameTile, m_range, 0);
-
-        for (int i = 0; i < surroundingTiles.Count; i++)
-        {
-            GameUnit unit = surroundingTiles[i].GetOccupyingUnit();
-
-            if (unit == null)
-            {
-                continue;
-            }
-
-            if (unit.GetTeam() == Team.Player)
-            {
-                continue;
-            }
-
-            unit.GetHitByAbility(m_power);
-            AudioHelper.PlaySFX(AudioHelper.BowHeavy);
-        }
+        UIHelper.CreateWorldElementNotification("Fortress launches an attack!", true, GetWorldTile().gameObject);
+        attackedUnit.GetHitByAbility(damageAmount / 2);
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)

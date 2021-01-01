@@ -169,6 +169,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     }
 
+    public virtual void OnOtherAttack(GameUnit attackingUnit, GameUnit attackedUnit, int damageAmount)
+    {
+
+    }
+
     public virtual void OnEndWave()
     {
         GameFadeKeyword fadeKeyword = GetFadeKeyword(true);
@@ -973,6 +978,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetFadeKeyword() != null)
         {
             GetFadeKeyword().m_isActive = false;
+        }
+
+        if (!isThornsAttack)
+        {
+            GameHelper.GetPlayer().InformHasAttacked(this, other, damageTaken);
+            GameHelper.GetOpponent().InformHasAttacked(this, other, damageTaken);
         }
 
         if (GameHelper.IsInGame())
