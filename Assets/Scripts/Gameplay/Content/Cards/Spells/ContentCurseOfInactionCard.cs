@@ -28,7 +28,7 @@ public class ContentCurseOfInactionCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Give a unit '<b>Momentum</b>: take " + m_spellEffect + mpString + " damage.'\n" + GetModifiedByMagicPowerString();
+        return $"Give a unit '<b>Momentum</b>: take {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage.'";
     }
 
     public override void PlayCard(GameUnit targetUnit)

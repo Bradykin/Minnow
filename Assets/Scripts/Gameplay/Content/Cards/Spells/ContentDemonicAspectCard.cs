@@ -9,8 +9,9 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_name = "Demonic Aspect";
         m_desc = "Give target unit '<b>Victorious</b>: Gain 2 Stamina.'";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 3;
         m_shouldExile = true;
+        m_spellEffect = 1;
 
         m_rarity = GameRarity.Rare;
 
@@ -26,6 +27,17 @@ public class ContentDemonicAspectCard : GameCardSpellBase
         m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Give target unit '<b>Victorious</b>: Gain {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} Stamina.'";
+    }
+
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
@@ -35,6 +47,6 @@ public class ContentDemonicAspectCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, 2)), false, false);
+        targetUnit.AddKeyword(new GameVictoriousKeyword(new GameGainStaminaAction(targetUnit, GetSpellValue())), false, false);
     }
 }

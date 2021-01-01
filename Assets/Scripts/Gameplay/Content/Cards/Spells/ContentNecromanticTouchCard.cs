@@ -27,7 +27,13 @@ public class ContentNecromanticTouchCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return GetDamageDescString() + "Heal all allied units within range " + m_range + " for the same amount.";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"{GetDamageDescString()}Heal all allied units within range {m_range} for {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

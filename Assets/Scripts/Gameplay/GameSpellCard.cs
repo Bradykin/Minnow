@@ -105,11 +105,6 @@ public class GameCardSpellBase : GameCard
         return true;
     }
 
-    protected string GetModifiedByMagicPowerString()
-    {
-        return "<i>(Modified by <b>Magic Power</b>)</i>";
-    }
-
     protected bool HasMagicPower()
     {
         return GetSpellValue() != m_spellEffect;

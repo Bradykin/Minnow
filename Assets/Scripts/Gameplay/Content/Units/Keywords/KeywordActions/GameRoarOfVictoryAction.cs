@@ -42,7 +42,7 @@ public class GameRoarOfVictoryAction : GameAction
 
             if (enrageKeyword != null)
             {
-                enrageKeyword.DoAction(0);
+                enrageKeyword.DoAction();
             }
 
             //Repeat the action if the player has the Bestial Wrath relic
@@ -57,7 +57,7 @@ public class GameRoarOfVictoryAction : GameAction
 
                     if (enrageKeyword != null)
                     {
-                        enrageKeyword.DoAction(0);
+                        enrageKeyword.DoAction();
                     }
                 }
             }

@@ -31,7 +31,7 @@ public class ContentMoonbeamCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage to all enemies in range " + m_range + " of your castle!";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to all enemies in range {m_range} of your castle!";
     }
 
     public override void PlayCard()

@@ -7,11 +7,11 @@ public class ContentMonsterProdCard : GameCardSpellBase
     public ContentMonsterProdCard()
     {
         m_name = "Monster Prod";
-        m_desc = "Target allied unit gains '<b>Enrage</b>: Gain 1 Stamina.'";
         m_targetType = Target.Ally;
-        m_cost = 2;
+        m_cost = 3;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
+        m_spellEffect = 1;
 
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
@@ -24,6 +24,17 @@ public class ContentMonsterProdCard : GameCardSpellBase
         m_onPlaySFX = AudioHelper.SmallBuff;
     }
 
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains '<b>Enrage</b>: Gain {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} Stamina.'";
+    }
+
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
@@ -33,6 +44,6 @@ public class ContentMonsterProdCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, 1)), false, false);
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStaminaAction(targetUnit, GetSpellValue())), false, false);
     }
 }

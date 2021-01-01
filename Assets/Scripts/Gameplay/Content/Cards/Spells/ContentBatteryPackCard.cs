@@ -29,7 +29,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit gains " + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
+        return $"Target allied unit gains {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} max Stamina.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

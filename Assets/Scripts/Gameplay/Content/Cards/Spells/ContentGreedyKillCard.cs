@@ -32,7 +32,7 @@ public class ContentGreedyKillCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage to target enemy. If it dies, gain " + m_goldGain + " gold.";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy. If it dies, gain {m_goldGain} gold.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

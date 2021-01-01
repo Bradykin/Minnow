@@ -25,7 +25,7 @@ public class ContentToxicTonicCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Instantly kill an enemy unit with " + m_healthBarrier + " or less health.";
+        return $"Instantly kill an enemy unit with {m_healthBarrier} or less health.";
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

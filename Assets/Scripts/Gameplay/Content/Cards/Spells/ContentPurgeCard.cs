@@ -21,14 +21,13 @@ public class ContentPurgeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        if (m_spellEffect != GetSpellValue())
+        string mpString = "";
+        if (HasMagicPower())
         {
-            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it <b>permanently</b> gains +" + m_spellEffect + "/+" + m_spellEffect + " (+" + GetSpellValue() + "/+" + GetSpellValue() + ").\n" + GetModifiedByMagicPowerString();
+            mpString = GetMagicPowerString();
         }
-        else
-        {
-            return "Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it <b>permanently</b> gains +" + m_spellEffect + "/+" + m_spellEffect + ".\n" + GetModifiedByMagicPowerString();
-        }
+
+        return $"Target non-elite unit loses all keywords. If it was an allied unit that previously had keywords, it <b>permanently</b> gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)

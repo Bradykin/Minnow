@@ -7,11 +7,11 @@ public class ContentBullheadedCard : GameCardSpellBase
     public ContentBullheadedCard()
     {
         m_name = "Bullheaded";
-        m_desc = "Target allied unit gains '<b>Enrage</b>: +1/+0.'";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
+        m_spellEffect = 1;
 
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
@@ -23,6 +23,17 @@ public class ContentBullheadedCard : GameCardSpellBase
         m_onPlaySFX = AudioHelper.Bullheaded;
     }
 
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains '<b>Enrage</b>: +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+0.'";
+    }
+
     public override void PlayCard(GameUnit targetUnit)
     {
         if (!IsValidToPlay(targetUnit))
@@ -32,6 +43,6 @@ public class ContentBullheadedCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, 1, 0)), false, false);
+        targetUnit.AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(targetUnit, GetSpellValue(), 0)), false, false);
     }
 }

@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class ContentPhalanxCard : GameCardSpellBase
 {
-    private int m_effectRange = 2;
-    private int m_buffNum = 2;
+    private int m_buffNum = 1;
     
     public ContentPhalanxCard()
     {
         m_name = "Phalanx";
-        m_desc = "Target allied unit gets +" + m_buffNum + "/+" + m_buffNum + " for each allied unit within " + m_effectRange + " tiles (including itself).";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 2;
         m_rarity = GameRarity.Common;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
         m_onPlaySFX = AudioHelper.SmallBuff;
+    }
+
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gets +{m_buffNum}/+{m_buffNum} for each allied unit within {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} tiles (including itself).";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -34,7 +44,7 @@ public class ContentPhalanxCard : GameCardSpellBase
         int amount = 0;
         if (tile != null)
         {
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, m_effectRange, 0);
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tile, GetSpellValue(), 0);
 
             for (int i = 0; i < surroundingTiles.Count; i++)
             {

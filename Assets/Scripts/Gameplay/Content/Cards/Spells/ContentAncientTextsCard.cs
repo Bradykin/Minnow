@@ -31,7 +31,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Trigger <b>Knowledgeable</b> " + m_spellEffect + mpString + " times.\n" + GetModifiedByMagicPowerString();
+        return $"Trigger <b>Knowledgeable</b> {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} times.";
     }
 
     public override void PlayCard()

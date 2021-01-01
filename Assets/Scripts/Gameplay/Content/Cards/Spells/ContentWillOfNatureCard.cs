@@ -29,7 +29,7 @@ public class ContentWillOfNatureCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Heal <b>all</b> allied units for " + m_spellEffect + mpString + ".";
+        return $"Heal <b>all</b> allied units for {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard()

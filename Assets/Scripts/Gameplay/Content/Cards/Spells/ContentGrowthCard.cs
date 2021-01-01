@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ContentGrowthCard : GameCardSpellBase
 {
-    private int m_statBuff = 4;
-
     public ContentGrowthCard()
     {
         m_name = "Growth";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
+        m_spellEffect = 4;
 
         SetupBasicData();
 
@@ -28,7 +27,13 @@ public class ContentGrowthCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit in a forest gains +" + m_statBuff + "/+" + m_statBuff + ".";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit in a forest gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -40,6 +45,6 @@ public class ContentGrowthCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddStats(m_statBuff, m_statBuff, false, true);
+        targetUnit.AddStats(GetSpellValue(), GetSpellValue(), false, true);
     }
 }

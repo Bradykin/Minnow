@@ -131,7 +131,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentBullheadedCard());
         m_cards.Add(new ContentCosmicPactCard());
         m_cards.Add(new ContentCureWoundsCard());
-        m_cards.Add(new ContentCurseOfInactionCard());
         m_cards.Add(new ContentDemonicAspectCard());
         m_cards.Add(new ContentDrainingBoltCard());
         m_cards.Add(new ContentControlMoralCard());
@@ -139,7 +138,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentEncouragementCard());
         m_cards.Add(new ContentEnergizeCard());
         m_cards.Add(new ContentFireboltCard());
-        m_cards.Add(new ContentFirestormCard());
         m_cards.Add(new ContentFletchingCard());
         m_cards.Add(new ContentFossilizeCard());
         m_cards.Add(new ContentFuryCard());
@@ -149,7 +147,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentJoltCard());
         m_cards.Add(new ContentLegionOfBladesCard());
         m_cards.Add(new ContentLootingsCard());
-        m_cards.Add(new ContentMarkedForDeathCard());
         m_cards.Add(new ContentMechanizeCard());
         m_cards.Add(new ContentMonsterProdCard());
         m_cards.Add(new ContentNecromanticTouchCard());
@@ -157,7 +154,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentOptimizeCard());
         m_cards.Add(new ContentOverchargeCard());
         m_cards.Add(new ContentPhalanxCard());
-        m_cards.Add(new ContentPurgeCard());
         m_cards.Add(new ContentReforgingCard());
         m_cards.Add(new ContentRoarOfVictoryCard());
         m_cards.Add(new ContentRunicBladeCard());
@@ -168,7 +164,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentTonicOfStrengthCard());
         m_cards.Add(new ContentTrollFormCard());
         m_cards.Add(new ContentWeakeningBoltCard());
-        m_cards.Add(new ContentWisdomOfThePastCard());
         m_cards.Add(new ContentMeteorCard());
         m_cards.Add(new ContentChainLightningCard());
         m_cards.Add(new ContentTwinCard());
@@ -193,7 +188,6 @@ public static class GameCardFactory
         m_cards.Add(new ContentEndCard());
         m_cards.Add(new ContentQuickStrikesCard());
         m_cards.Add(new ContentPathCard());
-        m_cards.Add(new ContentBrokenLinkCard());
         m_cards.Add(new ContentProtectionCard());
         m_cards.Add(new ContentExperienceCard());
         m_cards.Add(new ContentFireworksCard());

@@ -32,7 +32,7 @@ public class ContentFireworksCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + "X damage to target enemy unit and up to X other random enemy units in range " + m_range + ".";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}X damage to target enemy unit and up to X other random enemy units in range {m_range}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

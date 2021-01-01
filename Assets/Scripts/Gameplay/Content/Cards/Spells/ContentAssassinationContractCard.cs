@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ContentAssassinationContractCard : GameCardSpellBase
 {
-    private int m_shivAmount = 3;
-    
     public ContentAssassinationContractCard()
     {
         m_name = "Assassination Contract";
-        m_desc = "Add " + m_shivAmount + " shivs to your hand.";
         m_targetType = Target.None;
-        m_cost = 3;
+        m_cost = 2;
         m_rarity = GameRarity.Common;
+        m_spellEffect = 2;
 
         m_keywordHolder.AddKeyword(new GameShivKeyword());
 
@@ -24,6 +22,17 @@ public class ContentAssassinationContractCard : GameCardSpellBase
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_onPlaySFX = AudioHelper.DaggerSwingSpell;
+    }
+
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Add {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} <b>shivs</b> to your hand.";
     }
 
     public override void PlayCard()
@@ -42,7 +51,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
 
         base.PlayCard();
 
-        for (int i = 0; i < m_shivAmount; i++)
+        for (int i = 0; i < GetSpellValue(); i++)
         {
             player.AddCardToHand(new ContentShivCard(), false);
         }

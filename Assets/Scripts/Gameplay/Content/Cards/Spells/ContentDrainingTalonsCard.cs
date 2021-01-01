@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ContentDrainingTalonsCard : GameCardSpellBase
 {
-    private int m_healVal = 5;
-
     public ContentDrainingTalonsCard()
     {
         m_name = "Draining Talons";
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
+        m_spellEffect = 3;
 
         m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
 
@@ -24,7 +23,13 @@ public class ContentDrainingTalonsCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains '<b>Momentum</b>: Heal for " + m_healVal + ".";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains '<b>Momentum</b>: Heal for {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -36,6 +41,6 @@ public class ContentDrainingTalonsCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameMomentumKeyword(new GameHealAction(targetUnit, m_healVal)), false, false);
+        targetUnit.AddKeyword(new GameMomentumKeyword(new GameHealAction(targetUnit, GetSpellValue())), false, false);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentDarkHeartCard : GameCardSpellBase
 {
     private int m_selfDamage = 10;
-    private int m_buff = 20;
 
     public ContentDarkHeartCard()
     {
@@ -13,6 +12,7 @@ public class ContentDarkHeartCard : GameCardSpellBase
         m_targetType = Target.Unit;
         m_cost = 0;
         m_rarity = GameRarity.Rare;
+        m_spellEffect = 20;
 
         m_keywordHolder.AddKeyword(new GameMomentumKeyword(null));
 
@@ -21,7 +21,13 @@ public class ContentDarkHeartCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Give a unit +" + m_buff + "/+" + m_buff + ", and '<b>Momentum</b>: Take " + m_selfDamage + " damage.'";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Give a unit +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}, and '<b>Momentum</b>: Take {m_selfDamage} damage.'";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -42,7 +48,7 @@ public class ContentDarkHeartCard : GameCardSpellBase
             AudioHelper.PlaySFX(AudioHelper.SmallDebuff);
         }
 
-        targetUnit.AddStats(m_buff, m_buff, false, true);
+        targetUnit.AddStats(GetSpellValue(), GetSpellValue(), false, true);
         targetUnit.AddKeyword(new GameMomentumKeyword(new GameGetHitAction(targetUnit, m_selfDamage)), false, false);
     }
 }

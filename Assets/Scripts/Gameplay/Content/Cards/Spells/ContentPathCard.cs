@@ -10,10 +10,11 @@ public class ContentPathCard : GameCardSpellBase
         m_targetType = Target.None;
         m_cost = 0;
         m_rarity = GameRarity.Uncommon;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.HighCost);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
 
         m_onPlaySFX = AudioHelper.MiscEffect;
@@ -21,7 +22,13 @@ public class ContentPathCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Draw a card";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Gain {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} energy.";
     }
 
     public override void PlayCard()
@@ -35,6 +42,6 @@ public class ContentPathCard : GameCardSpellBase
 
         GamePlayer player = GameHelper.GetPlayer();
 
-        player.DrawCards(1);
+        player.AddEnergy(GetSpellValue());
     }
 }

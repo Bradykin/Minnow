@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ContentFletchingCard : GameCardSpellBase
 {
-    private int m_fletchlingCount = 8;
-
     public ContentFletchingCard()
     {
         m_name = "Fletching";
-        m_desc = "Allied ranged units get +" + m_fletchlingCount + "/+0 until end of turn.";
         m_targetType = Target.None;
         m_cost = 1;
         m_rarity = GameRarity.Common;
+        m_spellEffect = 8;
 
         SetupBasicData();
 
@@ -20,6 +18,16 @@ public class ContentFletchingCard : GameCardSpellBase
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_onPlaySFX = AudioHelper.SmallBuff;
+    }
+
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+        return $"Allied ranged units get +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+0 until end of turn.";
     }
 
     public override void PlayCard()
@@ -31,6 +39,6 @@ public class ContentFletchingCard : GameCardSpellBase
 
         base.PlayCard();
 
-        GameHelper.GetPlayer().m_fletchingPowerIncrease += m_fletchlingCount;
+        GameHelper.GetPlayer().m_fletchingPowerIncrease += GetSpellValue();
     }
 }

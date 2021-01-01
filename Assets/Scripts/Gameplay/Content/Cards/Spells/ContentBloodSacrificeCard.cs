@@ -31,7 +31,14 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Sacrifice an allied unit to draw " + m_spellEffect + mpString + " card and gain " + m_spellEffect + mpString + " energy.\n" + GetModifiedByMagicPowerString();
+        if (GetSpellValue() > 1)
+        {
+            return $"Sacrifice an allied unit to draw {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} cards and gain {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} energy.";
+        }
+        else
+        {
+            return $"Sacrifice an allied unit to draw {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} card and gain {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} energy.";
+        }
     }
 
     public override void PlayCard(GameUnit targetUnit)
