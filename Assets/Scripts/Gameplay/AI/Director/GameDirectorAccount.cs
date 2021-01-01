@@ -60,7 +60,7 @@ public class GameDirectorAccount
 
         if (maximumTagValue <= 0)
         {
-            int increaseAmount = maximumTagValue + 3;
+            int increaseAmount = Mathf.Abs(maximumTagValue) + 3;
             for (int i = 0; i < affectedCards.Count; i++)
             {
                 GameDirectorCardWeight cardWeight = GetCardWeight(affectedCards[i]);
@@ -141,7 +141,7 @@ public class GameDirectorAccount
 
         if (maximumTagValue <= 0)
         {
-            int increaseAmount = maximumTagValue + 3;
+            int increaseAmount = Mathf.Abs(maximumTagValue) + 3;
             for (int i = 0; i < affectedRelics.Count; i++)
             {
                 GameDirectorRelicWeight relicWeight = GetRelicWeight(affectedRelics[i]);
