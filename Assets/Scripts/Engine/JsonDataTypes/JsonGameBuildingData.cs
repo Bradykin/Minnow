@@ -12,4 +12,5 @@ public class JsonGameBuildingData
     //GameTerrain values
     public int curHealth;
     public bool isDestroyed;
+    public int intValue;
 }

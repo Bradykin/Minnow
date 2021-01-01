@@ -692,13 +692,13 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return true;
     }
 
-    public virtual void SpellCast(GameCard.Target targetType, GameTile targetTile)
+    public virtual bool SpellCast(GameCard.Target targetType, GameTile targetTile)
     {
         GameSpellcraftKeyword spellcraftKeyword = GetSpellcraftKeyword();
 
         if (spellcraftKeyword == null)
         {
-            return;
+            return false;
         }
 
         if (Constants.UseLocationalSpellcraft)
@@ -708,18 +708,20 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 if (targetTile == null)
                 {
                     Debug.LogError("Spellcast that isn't target none received null target tile");
-                    return;
+                    return false;
                 }
 
-                int distanceBetween = WorldGridManager.Instance.GetPathLength(GetGameTile(), targetTile, true, false, true);
+                int distanceBetween = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), targetTile);
                 if (distanceBetween > GameSpellcraftKeyword.m_spellcraftRange)
                 {
-                    return;
+                    return false;
                 }
             }
         }
 
         spellcraftKeyword.DoAction();
+
+        return true;
     }
 
     public void TriggerKnowledgeable()
@@ -1477,6 +1479,11 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GameHelper.IsUnitInWorld(this))
         {
             int terrainRange = m_gameTile.GetTerrain().m_rangeModifier;
+            
+            if (m_gameTile.HasBuilding() && m_gameTile.GetBuilding() is ContentHillFortBuilding)
+            {
+                terrainRange += 1;
+            }
 
             if (terrainRange > 0)
             {

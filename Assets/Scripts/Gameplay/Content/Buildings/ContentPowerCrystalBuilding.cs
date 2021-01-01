@@ -6,6 +6,8 @@ public class ContentPowerCrystalBuilding : GameBuildingBase
 {
     public ContentPowerCrystalBuilding()
     {
+        m_range = 0;
+
         m_name = "Power Crystal";
         m_desc = "While this is alive, the boss is invulnerable.";
         m_rarity = GameRarity.Common;

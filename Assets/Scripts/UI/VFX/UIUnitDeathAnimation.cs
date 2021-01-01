@@ -22,6 +22,12 @@ public class UIUnitDeathAnimation : UIAnimationBase
             return;
         }
 
+        if (m_targetUnit.IsRecycled)
+        {
+            m_shouldAnimate = false;
+            return;
+        }
+
         if (m_flickerCount == 0)
         {
             m_image.color = new Color(m_image.color.r, m_image.color.g, m_image.color.b, m_image.color.a - 0.2f);

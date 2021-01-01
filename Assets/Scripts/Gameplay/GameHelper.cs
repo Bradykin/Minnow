@@ -35,8 +35,8 @@ public static class GameHelper
         targetTile.PlaceBuilding(toPlace);
         player.AddControlledBuilding(toPlace);
 
-        UIHelper.ClearDefensiveBuildingTiles();
-        UIHelper.SetDefensiveBuildingTiles();
+        UIHelper.ClearBuildingTiles();
+        UIHelper.SetBuildingTiles();
     }
 
     public static void DestroyPlayerBuilding(GameTile buildingTile)

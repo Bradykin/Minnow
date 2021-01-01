@@ -31,7 +31,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private bool m_isMoveable;
     private bool m_isAttackable;
     private int m_inSpellcraftRange;
-    private int m_inDefensiveBuildingRange;
+    private int m_inBuildingRange;
     private int m_aoeRangeCount;
 
     public bool m_shouldAlertTint;
@@ -225,17 +225,15 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 }
                 else if (Globals.m_selectedTile != null &&
                     Globals.m_selectedTile.m_gameTile.HasBuilding() &&
-                    Globals.m_selectedTile.m_gameTile.GetBuilding().m_buildingType == BuildingType.Defensive &&
-                    m_inDefensiveBuildingRange > 0)
+                    m_inBuildingRange > 0)
                 {
-                    m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
+                    m_tintRenderer.color = UIHelper.GetBuildingRangeTint(m_inBuildingRange);
                 }
                 else if (Globals.m_hoveredTile != null &&
                     Globals.m_hoveredTile.m_gameTile.HasBuilding() &&
-                    Globals.m_hoveredTile.m_gameTile.GetBuilding().m_buildingType == BuildingType.Defensive &&
-                    m_inDefensiveBuildingRange > 0)
+                    m_inBuildingRange > 0)
                 {
-                    m_tintRenderer.color = UIHelper.GetDefensiveBuildingTint(m_inDefensiveBuildingRange);
+                    m_tintRenderer.color = UIHelper.GetBuildingRangeTint(m_inBuildingRange);
                 }
                 else if (m_gameTile.IsStorm())
                 {
@@ -464,10 +462,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
             m_isShowingTooltip = true;
 
-            if (GetGameTile().GetBuilding().m_buildingType == BuildingType.Defensive)
-            {
-                UIHelper.SetDefensiveBuildingTiles();
-            }
+            UIHelper.SetBuildingTiles();
         }
 
         m_isHovered = true;
@@ -486,7 +481,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
         if (GetGameTile().HasBuilding())
         {
-            UIHelper.ClearDefensiveBuildingTiles();
+            UIHelper.ClearBuildingTiles();
         }
 
         m_isHovered = false;
@@ -662,9 +657,9 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_inSpellcraftRange = 0;
     }
 
-    public void AddInDefensiveBuildingRangeCount()
+    public void AddInBuildingRangeCount()
     {
-        m_inDefensiveBuildingRange++;
+        m_inBuildingRange++;
     }
 
     public void AddAoeRangeCount()
@@ -672,9 +667,9 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         m_aoeRangeCount++;
     }
 
-    public void ClearInDefensiveBuildingRangeCount()
+    public void ClearInBuildingRangeCount()
     {
-        m_inDefensiveBuildingRange = 0;
+        m_inBuildingRange = 0;
     }
 
     public void ClearAoeRangeCount()

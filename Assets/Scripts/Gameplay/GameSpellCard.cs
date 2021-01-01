@@ -47,7 +47,7 @@ public class GameCardSpellBase : GameCard
         }
     }
 
-    protected virtual int GetSpellValue()
+   protected virtual int GetSpellValue()
    {
         int toReturn = m_spellEffect;
 

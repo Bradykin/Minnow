@@ -6,6 +6,8 @@ public class ContentMineBuilding : GameBuildingBase
 {
     public ContentMineBuilding()
     {
+        m_range = 0;
+
         m_name = "Mine";
         m_desc = "Mines boost production, giving an extra draw every turn.";
         m_rarity = GameRarity.Uncommon;

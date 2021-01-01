@@ -7,6 +7,8 @@ public class ContentCastleBuilding : GameBuildingBase
 {
     public ContentCastleBuilding()
     {
+        m_range = 0;
+
         m_name = "Castle";
         m_desc = "This is your home base. Lose this, and it's game over!";
         m_rarity = GameRarity.Starter;

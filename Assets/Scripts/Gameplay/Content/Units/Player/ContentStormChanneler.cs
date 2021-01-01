@@ -24,11 +24,16 @@ public class ContentStormChanneler : GameUnit
         LateInit();
     }
 
-    public override void SpellCast(GameCard.Target targetType, GameTile targetTile)
+    public override bool SpellCast(GameCard.Target targetType, GameTile targetTile)
     {
-        base.SpellCast(targetType, targetTile);
+        bool spellcast = base.SpellCast(targetType, targetTile);
 
-        m_bonusMagicPower++;
+        if (spellcast)
+        {
+            m_bonusMagicPower++;
+        }
+
+        return spellcast;
     }
 
     public override string GetDesc()

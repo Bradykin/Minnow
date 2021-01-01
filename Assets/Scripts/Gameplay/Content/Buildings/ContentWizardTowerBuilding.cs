@@ -1,35 +1,43 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ContentWizardTowerBuilding : GameBuildingBase
 {
-    public int m_power = 5;
-    public int m_magicPowerMultiplier = 20;
+    private int m_powerBase = 10;
+    private int m_spellcraftStacks = 0;
+    private int m_spellcraftStacksIncreaseAmount = 2;
 
     public ContentWizardTowerBuilding()
     {
-        m_range = 4;
+        m_range = 3;
 
         m_name = "Wizard Tower";
         m_rarity = GameRarity.Rare;
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 35;
-        m_cost = new GameWallet(100);
+        m_cost = new GameWallet(65);
         m_sightRange = m_range;
 
         m_expandsPlaceRange = false;
+        m_spellcraftBuilding = true;
 
         LateInit();
     }
 
     public override string GetDesc()
     {
-        m_desc = "Damage a random enemy unit in a range " + m_range + " for " + m_power + ", plus " + m_magicPowerMultiplier + " times your amount of <b>Magic Power</b>(+" + (m_magicPowerMultiplier * GameHelper.GetPlayer().GetMagicPower()) + ") at the start of your turn.";
+        m_desc = $"Damage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
 
         return m_desc;
+    }
+
+    public override void OnSpellCraft()
+    {
+        m_spellcraftStacks += m_spellcraftStacksIncreaseAmount;
+        UIHelper.CreateWorldElementNotification($"Tower gained {m_spellcraftStacksIncreaseAmount} damage!", true, GetWorldTile().gameObject);
     }
 
     public override void StartTurn()
@@ -51,15 +59,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         int highestHealthAmount = surroundingTiles.Max(t => t.GetOccupyingUnit().GetCurHealth());
         GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.GetOccupyingUnit().GetCurHealth() == highestHealthAmount);
 
-        GamePlayer player = GameHelper.GetPlayer();
-        int magicPower = 0;
-
-        if (player != null)
-        {
-            magicPower = player.GetMagicPower();
-        }
-
-        highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_power + magicPower * m_magicPowerMultiplier);
+        highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_powerBase + m_spellcraftStacks);
         AudioHelper.PlaySFX(AudioHelper.SpellAttackMedium);
     }
 
@@ -71,5 +71,42 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         }
 
         return false;
+    }
+
+    //============================================================================================================//
+
+    public override JsonGameBuildingData SaveToJson()
+    {
+        JsonGameBuildingData jsonData = new JsonGameBuildingData
+        {
+            name = m_name,
+            curHealth = m_curHealth,
+            isDestroyed = m_isDestroyed,
+            intValue = m_spellcraftStacks
+        };
+
+        return jsonData;
+    }
+
+    public override string SaveToJsonAsString()
+    {
+        JsonGameBuildingData jsonData = new JsonGameBuildingData
+        {
+            name = m_name,
+            curHealth = m_curHealth,
+            isDestroyed = m_isDestroyed,
+            intValue = m_spellcraftStacks
+        };
+
+        var export = JsonConvert.SerializeObject(jsonData);
+
+        return export;
+    }
+
+    public override void LoadFromJson(JsonGameBuildingData jsonData)
+    {
+        m_curHealth = jsonData.curHealth;
+        m_isDestroyed = jsonData.isDestroyed;
+        m_spellcraftStacks = jsonData.intValue;
     }
 }

@@ -1010,11 +1010,11 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
     }
 
-    public void ClearAllTilesDefensiveBuildingRange()
+    public void ClearAllTilesBuildingRange()
     {
         for (int i = 0; i < m_gridArray.Length; i++)
         {
-            m_gridArray[i].ClearInDefensiveBuildingRangeCount();
+            m_gridArray[i].ClearInBuildingRangeCount();
         }
     }
 

@@ -725,9 +725,9 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         for (int i = 0; i < m_controlledUnits.Count; i++)
         {
-            m_controlledUnits[i].SpellCast(targetType, targetTile);
+            bool spellcraftTriggered = m_controlledUnits[i].SpellCast(targetType, targetTile);
 
-            if (m_controlledUnits[i].GetSpellcraftKeyword() != null)
+            if (spellcraftTriggered)
             {
                 if (GameHelper.HasRelic<ContentLastHopeRelic>())
                 {
@@ -739,6 +739,29 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
                 {
                     AddEnergy(1);
                     UIHelper.TriggerRelicAnimation<ContentProclamationOfSurrenderRelic>();
+                }
+            }
+        }
+
+        for (int i = 0; i < m_controlledBuildings.Count; i++)
+        {
+            if (m_controlledBuildings[i].m_spellcraftBuilding)
+            {
+                bool spellcraftTriggered = m_controlledBuildings[i].SpellCast(targetType, targetTile);
+
+                if (spellcraftTriggered)
+                {
+                    if (GameHelper.HasRelic<ContentLastHopeRelic>())
+                    {
+                        DrawCard();
+                        UIHelper.TriggerRelicAnimation<ContentLastHopeRelic>();
+                    }
+
+                    if (GameHelper.HasRelic<ContentProclamationOfSurrenderRelic>())
+                    {
+                        AddEnergy(1);
+                        UIHelper.TriggerRelicAnimation<ContentProclamationOfSurrenderRelic>();
+                    }
                 }
             }
         }
