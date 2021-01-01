@@ -20,6 +20,10 @@ public class UICardHand : MonoBehaviour
         if ((m_uiCard.m_isHovered && Globals.m_selectedCard == null) || Globals.m_selectedCard == m_uiCard)
         {
             m_isBig = true;
+            if (!PlayerDataManager.PlayerAccountData.m_spellTutorialComplete && m_uiCard.m_card.m_shouldExile)
+            {
+                UITutorialController.Instance.ShowTutorial(UITutorialController.TutorialType.Spell);
+            }
         }
         else
         {
