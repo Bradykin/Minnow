@@ -182,7 +182,7 @@ public static class UIHelper
         return returnColor;
     }
 
-    public static Color GetDefensiveBuildingTint(int numBuildings)
+    public static Color GetBuildingRangeTint(int numBuildings)
     {
         Color returnColor = m_defensiveBuildingTint;
         returnColor.a = returnColor.a + (0.2f * (numBuildings - 1));
@@ -571,35 +571,35 @@ public static class UIHelper
         }
     }
 
-    public static void SetDefensiveBuildingTiles()
+    public static void SetBuildingTiles()
     {
         if (GameHelper.IsInLevelBuilder())
         {
             return;
         }
 
-        List<GameBuildingBase> playerDefensiveBuildings = new List<GameBuildingBase>();
+        List<GameBuildingBase> playerRangeBuildings = new List<GameBuildingBase>();
         GamePlayer player = GameHelper.GetPlayer();
         for (int i = 0; i < player.m_controlledBuildings.Count; i++)
         {
-            if (player.m_controlledBuildings[i].m_buildingType == BuildingType.Defensive && !player.m_controlledBuildings[i].m_isDestroyed)
+            if (player.m_controlledBuildings[i].m_range > 0 && !player.m_controlledBuildings[i].m_isDestroyed)
             {
-                playerDefensiveBuildings.Add(player.m_controlledBuildings[i]);
+                playerRangeBuildings.Add(player.m_controlledBuildings[i]);
             }
         }
 
-        for (int i = 0; i < playerDefensiveBuildings.Count; i++)
+        for (int i = 0; i < playerRangeBuildings.Count; i++)
         {
-            List<GameTile> tilesInDefensiveBuildingRange = WorldGridManager.Instance.GetSurroundingGameTiles(playerDefensiveBuildings[i].GetGameTile(), playerDefensiveBuildings[i].m_range, 0);
+            List<GameTile> tilesInBuildingRange = WorldGridManager.Instance.GetSurroundingGameTiles(playerRangeBuildings[i].GetGameTile(), playerRangeBuildings[i].m_range, 0);
 
-            if (tilesInDefensiveBuildingRange == null)
+            if (tilesInBuildingRange == null)
             {
                 continue;
             }
 
-            for (int c = 0; c < tilesInDefensiveBuildingRange.Count; c++)
+            for (int c = 0; c < tilesInBuildingRange.Count; c++)
             {
-                tilesInDefensiveBuildingRange[c].GetWorldTile().AddInDefensiveBuildingRangeCount();
+                tilesInBuildingRange[c].GetWorldTile().AddInBuildingRangeCount();
             }
         }
     }
@@ -639,9 +639,9 @@ public static class UIHelper
         WorldGridManager.Instance.ClearAllTilesAoeRange();
     }
 
-    public static void ClearDefensiveBuildingTiles()
+    public static void ClearBuildingTiles()
     {
-        WorldGridManager.Instance.ClearAllTilesDefensiveBuildingRange();
+        WorldGridManager.Instance.ClearAllTilesBuildingRange();
     }
 
     public static void SelectUnit(WorldUnit unit)
@@ -702,7 +702,7 @@ public static class UIHelper
 
         UnselectAll();
         Globals.m_selectedTile = tile;
-        UIHelper.SetDefensiveBuildingTiles();
+        UIHelper.SetBuildingTiles();
     }
 
     public static void ReselectUnit()
@@ -797,7 +797,7 @@ public static class UIHelper
         Globals.m_selectedAction = null;
         UnselectUnit();
 
-        UIHelper.ClearDefensiveBuildingTiles();
+        UIHelper.ClearBuildingTiles();
     }
 
     private static void CreateWorldElementNotificationImpl(string message, Color color, GameObject positionObj)

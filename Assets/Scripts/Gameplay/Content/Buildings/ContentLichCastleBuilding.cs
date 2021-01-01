@@ -6,6 +6,8 @@ public class ContentLichCastleBuilding : GameBuildingBase
 {
     public ContentLichCastleBuilding()
     {
+        m_range = 0;
+
         m_name = "Lich Castle";
         m_desc = "The necropolis of the ancient lich. Destroy it to destroy his phylactery and force him into the open.";
         m_rarity = GameRarity.Common;

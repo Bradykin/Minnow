@@ -6,6 +6,8 @@ public class ContentTempleBuilding : GameBuildingBase
 {
     public ContentTempleBuilding()
     {
+        m_range = 0;
+        
         m_name = "Temple";
         m_desc = "Faith in the gods grants you an extra energy every turn this isn't destroyed.";
         m_rarity = GameRarity.Uncommon;

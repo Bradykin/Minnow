@@ -6,8 +6,10 @@ public class ContentForestLodgeBuilding : GameBuildingBase
 {
     public ContentForestLodgeBuilding()
     {
+        m_range = 2;
+
         m_name = "Forest Lodge";
-        m_desc = "Expand the range you can summon units around the lodge.";
+        m_desc = "Allows you to play units from your hand in the area around the lodge.";
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Economic;
 

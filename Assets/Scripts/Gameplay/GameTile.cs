@@ -57,7 +57,6 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
 
         if (m_occupyingUnit.GetTeam() == Team.Player)
         {
-
             ContentLordOfShadowsEnemy lordOfShadowsEnemy = GameHelper.GetBoss<ContentLordOfShadowsEnemy>();
             if (lordOfShadowsEnemy != null)
             {
@@ -66,6 +65,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             else
             {
                 m_worldTile.ClearSurroundingFog(m_occupyingUnit.GetSightRange());
+            }
+
+            if (HasBuilding() && GetBuilding() is ContentRingOfProtectionBuilding && newUnit.GetDamageShieldKeyword() == null)
+            {
+                newUnit.AddKeyword(new GameDamageShieldKeyword(), false, false);
             }
 
             if (m_gameWorldPerk != null)
@@ -417,6 +421,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
     {
         if (checkerUnit == null)
         {
+            if (HasBuilding() && GetBuilding() is ContentMountainGatewayBuilding)
+            {
+                return true;
+            }
+
             if (!m_terrain.IsPassable(checkerUnit))
             {
                 return false;
@@ -443,6 +452,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
             }
 
             if (checkerUnit.GetFlyingKeyword() != null)
+            {
+                return true;
+            }
+
+            if (HasBuilding() && checkerUnit.GetTeam() == GetBuilding().GetTeam() && GetBuilding() is ContentMountainGatewayBuilding)
             {
                 return true;
             }

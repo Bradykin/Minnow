@@ -23,10 +23,11 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     public BuildingType m_buildingType;
 
     public int m_sightRange = 3;
-    public int m_range = 3;
+    public int m_range = 0;
 
     public bool m_isDestroyed;
     public bool m_expandsPlaceRange = false;
+    public bool m_spellcraftBuilding = false;
 
     private Sprite m_iconWhite;
 
@@ -187,8 +188,8 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
 
         UIHelper.CreateWorldElementNotification(m_name + " is destroyed!", false, m_gameTile.GetWorldTile().gameObject);
 
-        UIHelper.ClearDefensiveBuildingTiles();
-        UIHelper.SetDefensiveBuildingTiles();
+        UIHelper.ClearBuildingTiles();
+        UIHelper.SetBuildingTiles();
 
         GameHelper.DestroyPlayerBuilding(this.m_gameTile);
     }
@@ -200,6 +201,38 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
     }
 
     public abstract bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile);
+
+    public bool SpellCast(GameCard.Target targetType, GameTile targetTile) 
+    {
+        if (!m_spellcraftBuilding)
+        {
+            return false;
+        }
+
+        if (Constants.UseLocationalSpellcraft)
+        {
+            if (targetType != GameCard.Target.None)
+            {
+                if (targetTile == null)
+                {
+                    Debug.LogError("Spellcast that isn't target none received null target tile");
+                    return false;
+                }
+
+                int distanceBetween = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), targetTile);
+                if (distanceBetween > GameSpellcraftKeyword.m_spellcraftRange)
+                {
+                    return false;
+                }
+            }
+        }
+
+        OnSpellCraft();
+
+        return true;
+    }
+
+    public virtual void OnSpellCraft() { }
 
     public virtual void TriggerEndOfWave() { }
 
@@ -223,7 +256,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
 
     //============================================================================================================//
 
-    public JsonGameBuildingData SaveToJson()
+    public virtual JsonGameBuildingData SaveToJson()
     {
         JsonGameBuildingData jsonData = new JsonGameBuildingData
         {
@@ -235,7 +268,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         return jsonData;
     }
 
-    public string SaveToJsonAsString()
+    public virtual string SaveToJsonAsString()
     {
         JsonGameBuildingData jsonData = new JsonGameBuildingData
         {
@@ -249,7 +282,7 @@ public abstract class GameBuildingBase : GameElementBase, ITurns, ISave<JsonGame
         return export;
     }
 
-    public void LoadFromJson(JsonGameBuildingData jsonData)
+    public virtual void LoadFromJson(JsonGameBuildingData jsonData)
     {
         m_curHealth = jsonData.curHealth;
         m_isDestroyed = jsonData.isDestroyed;

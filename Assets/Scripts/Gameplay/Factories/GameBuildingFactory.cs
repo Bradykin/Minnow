@@ -22,6 +22,11 @@ public static class GameBuildingFactory
         m_buildings.Add(new ContentSmithyBuilding());
         m_buildings.Add(new ContentTempleBuilding());
 
+        m_buildings.Add(new ContentHillFortBuilding());
+        m_buildings.Add(new ContentManaLocusBuilding());
+        m_buildings.Add(new ContentMountainGatewayBuilding());
+        m_buildings.Add(new ContentRingOfProtectionBuilding());
+
         //Enemy Buildings
         m_buildings.Add(new ContentPowerCrystalBuilding());
 

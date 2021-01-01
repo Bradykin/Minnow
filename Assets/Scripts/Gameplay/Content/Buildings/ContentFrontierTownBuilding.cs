@@ -6,6 +6,8 @@ public class ContentFrontierTownBuilding : GameBuildingBase
 {
     public ContentFrontierTownBuilding()
     {
+        m_range = 0;
+
         m_name = "Frontier Town";
         m_desc = "A base for explorers on the frontier. Very durable to enemy attacks.";
         m_rarity = GameRarity.Common;
