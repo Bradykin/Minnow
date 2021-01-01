@@ -624,6 +624,11 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
 
     public void PlaceUnit(WorldUnit newUnit)
     {
+        if (m_occupyingUnitObj != null)
+        {
+            Recycler.Recycle<WorldUnit>(m_occupyingUnitObj);
+        }
+        
         m_occupyingUnitObj = newUnit;
     }
 
