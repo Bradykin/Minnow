@@ -687,7 +687,7 @@ public static class GameCardFactory
             }
         }
 
-        Debug.LogError("Failed to find any card when trying get one (likely caused by tag weighting issues).");
+        Debug.LogWarning("Failed to find any card when trying get one (likely caused by tag weighting issues).");
         return finalListBeforeTagWeights[UnityEngine.Random.Range(0, finalListBeforeTagWeights.Count)];
     }
 
