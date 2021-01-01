@@ -24,7 +24,7 @@ public class ContentProductionCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit <b>permanently</b> gains +" + m_stamRegenBuff + " stamina regen.";
+        return $"Target allied unit <b>permanently</b> gains +{m_stamRegenBuff} stamina regen.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

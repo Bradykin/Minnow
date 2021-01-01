@@ -33,7 +33,7 @@ public class ContentDrainPowerCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage to target enemy. If it dies, all allied units in range " + m_range + " get +" + m_powerGain + "/+0.";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy. If it dies, all allied units in range {m_range} get +{m_powerGain}/+0.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

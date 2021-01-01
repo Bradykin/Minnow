@@ -8,7 +8,7 @@ public class ContentEndCard : GameCardSpellBase
 
     public ContentEndCard()
     {
-        m_spellEffect = 20;
+        m_spellEffect = 40;
 
         m_name = "End";
         m_targetType = Target.Enemy;
@@ -30,7 +30,7 @@ public class ContentEndCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage to target enemy and all enemies in range " + m_range;
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy and all enemies in range {m_range}";
     }
 
     public override void PlayCard(GameUnit targetUnit)

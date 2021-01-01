@@ -32,7 +32,7 @@ public class ContentTrollFormCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit <b>permanently</b> gains '<b>Regen</b>: " + m_spellEffect + mpString + "'.\n" + GetModifiedByMagicPowerString();
+        return $"Target allied unit <b>permanently</b> gains '<b>Regen</b>: {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}'.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

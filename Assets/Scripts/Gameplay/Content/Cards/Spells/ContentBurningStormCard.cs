@@ -31,7 +31,7 @@ public class ContentBurningStormCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal " + m_spellEffect + mpString + " damage to target enemy and all enemies in range " + m_range;
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy and all enemies in range {m_range}";
     }
 
     public override void PlayCard(GameUnit targetUnit)

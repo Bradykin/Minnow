@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ContentProtectionCard : GameCardSpellBase
 {
-    private int m_range = 3;
-
     public ContentProtectionCard()
     {
         m_name = "Protection";
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Common;
         m_xSpell = true;
+        m_spellEffect = 2;
 
         m_cost = 0;
 
@@ -26,7 +25,13 @@ public class ContentProtectionCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return $"Target allied unit and up to X other allied units within range {m_range} gain <b>Damage Shield</b>.\n";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit and up to X other allied units within Range {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} gain <b>Damage Shield</b>.\n";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -38,7 +43,7 @@ public class ContentProtectionCard : GameCardSpellBase
 
         int xVal = GameHelper.GetPlayer().GetXValue();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), m_range, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), GetSpellValue(), 1);
 
         base.PlayCard(targetUnit);
 

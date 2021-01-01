@@ -9,8 +9,9 @@ public class ContentSummoningCard : GameCardSpellBase
         m_name = "Summoning";
         m_desc = "Add a random unit card to your hand.";
         m_targetType = Target.None;
-        m_cost = 1;
+        m_cost = 0;
         m_rarity = GameRarity.Rare;
+        m_shouldExile = true;
 
         SetupBasicData();
 

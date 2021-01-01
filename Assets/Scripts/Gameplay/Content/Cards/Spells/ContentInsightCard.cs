@@ -32,7 +32,7 @@ public class ContentInsightCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Trigger <b>Spellcraft</b> " + m_spellEffect + mpString + " times (including the trigger from this card).\n" + GetModifiedByMagicPowerString();
+        return $"Trigger <b>Spellcraft</b> {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} times (including the trigger from this card).";
     }
 
     public override void PlayCard()

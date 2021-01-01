@@ -13,19 +13,4 @@ public class GameEnrageKeyword : GameActionKeywordBase
         m_shortDesc = "On take damage";
         m_keywordParamType = KeywordParamType.ActionParam;
     }
-
-    public void DoAction(int damageAmount)
-    {
-        for (int i = 0; i < m_actions.Count; i++)
-        {
-            if (m_actions[i] is GameGainGoldEnrageAction gainGoldEnrageAction)
-            {
-                gainGoldEnrageAction.DoAction(damageAmount);
-            }
-            else
-            {
-                m_actions[i].DoAction();
-            }
-        }
-    }
 }

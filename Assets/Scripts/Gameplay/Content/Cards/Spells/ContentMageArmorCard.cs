@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ContentMageArmorCard : GameCardSpellBase
 {
-    private int m_drVal = 2;
-
     public ContentMageArmorCard()
     {
         m_name = "Mage Armor";
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
+        m_spellEffect = 2;
 
         m_cost = 0;
 
@@ -24,7 +23,13 @@ public class ContentMageArmorCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains <b>Damage Reduction</b> " + m_drVal + ".";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return "Target allied unit gains <b>Damage Reduction</b> {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -36,6 +41,6 @@ public class ContentMageArmorCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddKeyword(new GameDamageReductionKeyword(m_drVal), false, false);
+        targetUnit.AddKeyword(new GameDamageReductionKeyword(GetSpellValue()), false, false);
     }
 }

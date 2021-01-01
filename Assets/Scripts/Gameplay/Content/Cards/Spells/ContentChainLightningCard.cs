@@ -32,7 +32,7 @@ public class ContentChainLightningCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Deal "  + m_spellEffect + mpString + " damage to target enemy, and then chain to up to " + m_spellEffect + mpString + " enemies in range " + m_range + " of each other.";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy, and then chain to up to {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} enemies in range {m_range} of each other.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

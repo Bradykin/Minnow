@@ -967,6 +967,11 @@ public static class UIHelper
         }
     }
 
+    public static string GetMagicPowerColoredValue(string val)
+    {
+        return $"<color=#027FFF>{val}</color>";
+    }
+
     public static void CreateChaosTooltipStack()
     {
         for (int i = 1; i < Globals.m_curChaos+1; i++)

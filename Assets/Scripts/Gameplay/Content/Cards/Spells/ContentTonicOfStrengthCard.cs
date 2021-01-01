@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class ContentTonicOfStrengthCard : GameCardSpellBase
 {
-    private int m_powerToGain = 5;
-
     public ContentTonicOfStrengthCard()
     {
         m_name = "Tonic of Strength";
-        m_desc = "Target allied unit <b>permanently</b> gains +" + m_powerToGain + "/+0.";
         m_targetType = Target.Ally;
         m_cost = 2;
         m_rarity = GameRarity.Common;
         m_shouldExile = true;
+        m_spellEffect = 5;
 
         SetupBasicData();
 
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_onPlaySFX = AudioHelper.SmallBuff;
+    }
+
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit <b>permanently</b> gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+0.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -31,6 +40,6 @@ public class ContentTonicOfStrengthCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddStats(m_powerToGain, 0, true, true);
+        targetUnit.AddStats(GetSpellValue(), 0, true, true);
     }
 }

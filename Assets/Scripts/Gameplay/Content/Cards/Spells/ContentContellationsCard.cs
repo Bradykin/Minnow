@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentContellationsCard : GameCardSpellBase
 {
     private int m_statBuff = 5;
-    private int m_range = 2;
 
     public ContentContellationsCard()
     {
@@ -14,6 +13,7 @@ public class ContentContellationsCard : GameCardSpellBase
         m_cost = 1;
         m_rarity = GameRarity.Common;
         m_shouldExile = true;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
@@ -24,7 +24,13 @@ public class ContentContellationsCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains +" + m_statBuff + "/+" + m_statBuff + " for each enemy in range " + m_range + ".";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains +{m_statBuff}/+{m_statBuff} for each enemy in range {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -38,7 +44,7 @@ public class ContentContellationsCard : GameCardSpellBase
 
         GameTile castleTile = GameHelper.GetPlayer().GetCastleGameTile();
 
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(castleTile, m_range, 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(castleTile, GetSpellValue(), 1);
 
         int numEnemies = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)

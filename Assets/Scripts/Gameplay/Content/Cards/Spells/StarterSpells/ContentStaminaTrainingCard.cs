@@ -27,7 +27,7 @@ public class ContentStaminaTrainingCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "<b>Permanently</b> give an allied unit +" + m_spellEffect + mpString + " max Stamina.\n" + GetModifiedByMagicPowerString();
+        return $"<b>Permanently</b> give an allied unit +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} max Stamina.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

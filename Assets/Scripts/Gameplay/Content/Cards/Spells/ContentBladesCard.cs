@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class ContentBladesCard : GameCardSpellBase
 {
-    private int m_powerToGain = 8;
-
     public ContentBladesCard()
     {
         m_name = "Blades";
-        m_desc = "Target allied unit gains +" + m_powerToGain + "/+0.";
         m_targetType = Target.Ally;
         m_cost = 1;
         m_rarity = GameRarity.Common;
         m_shouldExile = true;
+        m_spellEffect = 8;
 
         SetupBasicData();
 
@@ -21,6 +19,18 @@ public class ContentBladesCard : GameCardSpellBase
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_onPlaySFX = AudioHelper.DaggerSwingSpell;
+    }
+
+
+    public override string GetDesc()
+    {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+0.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -32,6 +42,6 @@ public class ContentBladesCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddStats(m_powerToGain, 0, false, true);
+        targetUnit.AddStats(GetSpellValue(), 0, false, true);
     }
 }

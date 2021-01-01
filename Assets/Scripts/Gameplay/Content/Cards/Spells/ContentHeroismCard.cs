@@ -5,7 +5,6 @@ using UnityEngine;
 public class ContentHeroismCard : GameCardSpellBase
 {
     private int m_statBuff = 15;
-    private int m_stamRegenBuff = 1;
 
     public ContentHeroismCard()
     {
@@ -14,6 +13,7 @@ public class ContentHeroismCard : GameCardSpellBase
         m_cost = 4;
         m_rarity = GameRarity.Uncommon;
         m_shouldExile = true;
+        m_spellEffect = 1;
 
         SetupBasicData();
 
@@ -25,7 +25,13 @@ public class ContentHeroismCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains +" + m_statBuff + "/+" + m_statBuff + " and +" + m_stamRegenBuff + " stamina regen.";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit gains +{m_statBuff}/+{m_statBuff} and +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} stamina regen.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -38,6 +44,6 @@ public class ContentHeroismCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddStats(m_statBuff, m_statBuff, false, true);
-        targetUnit.AddStaminaRegen(m_stamRegenBuff, false);
+        targetUnit.AddStaminaRegen(GetSpellValue(), false);
     }
 }

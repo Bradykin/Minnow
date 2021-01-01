@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ContentMarksmanCard : GameCardSpellBase
 {
-    private int m_powerBuff = 3;
-
     public ContentMarksmanCard()
     {
         m_name = "Marksman";
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Rare;
+        m_spellEffect = 3;
 
         m_cost = 2;
 
@@ -21,7 +20,13 @@ public class ContentMarksmanCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit with at least <b>Range</b> 2 <b>permanently</b> gains +" + m_powerBuff + "/+0.";
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
+        return $"Target allied unit with at least <b>Range</b> 2 <b>permanently</b> gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}/+0.";
     }
 
     public override bool IsValidToPlay(GameUnit targetUnit)
@@ -38,6 +43,6 @@ public class ContentMarksmanCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        targetUnit.AddStats(m_powerBuff, 0, true, true);
+        targetUnit.AddStats(GetSpellValue(), 0, true, true);
     }
 }

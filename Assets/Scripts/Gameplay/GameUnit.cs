@@ -313,14 +313,14 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (enrageKeyword != null)
         {
-            enrageKeyword.DoAction(damage);
+            enrageKeyword.DoAction();
 
             //Trigger again if the player has Bestial Wrath
             if (GetTypeline() == Typeline.Monster && GetTeam() == Team.Player)
             {
                 if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                 {
-                    enrageKeyword.DoAction(damage);
+                    enrageKeyword.DoAction();
                     UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                 }
             }

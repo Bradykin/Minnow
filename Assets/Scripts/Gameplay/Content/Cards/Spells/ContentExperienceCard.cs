@@ -31,7 +31,7 @@ public class ContentExperienceCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit <b>permanently</b> gains +" + m_spellEffect + mpString + "X/+" + m_spellEffect + mpString + "X.\n" + GetModifiedByMagicPowerString();
+        return $"Target allied unit <b>permanently</b> gains +{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}X/+{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}X.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

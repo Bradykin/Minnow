@@ -9,7 +9,7 @@ public class ContentLegionOfBladesCard : GameCardSpellBase
         m_name = "Legion of Blades";
         m_desc = "Discard your hand, and gain that many shivs.";
         m_targetType = Target.None;
-        m_cost = 1;
+        m_cost = 0;
         m_rarity = GameRarity.Rare;
 
         m_keywordHolder.AddKeyword(new GameShivKeyword());

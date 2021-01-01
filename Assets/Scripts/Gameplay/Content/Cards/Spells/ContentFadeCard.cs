@@ -10,7 +10,9 @@ public class ContentFadeCard : GameCardSpellBase
         m_targetType = Target.Ally;
         m_rarity = GameRarity.Uncommon;
 
-        m_cost = 1;
+        m_cost = 2;
+
+        m_keywordHolder.AddKeyword(new GameFadeKeyword());
 
         SetupBasicData();
 
@@ -19,7 +21,7 @@ public class ContentFadeCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        return "Target allied unit gains Fade until the beginning of next turn.\n<i>(Units with fade cannot be targeted with attacks, spells, or abilities by the opposing team.)</i>";
+        return "Target allied unit gains Fade.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -32,6 +34,5 @@ public class ContentFadeCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameFadeKeyword(), false, false);
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.StartOfTurn, new GameLoseKeywordAction(targetUnit, new GameFadeKeyword()));
     }
 }

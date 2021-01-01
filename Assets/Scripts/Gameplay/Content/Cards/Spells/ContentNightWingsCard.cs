@@ -7,9 +7,9 @@ public class ContentNightWingsCard : GameCardSpellBase
     public ContentNightWingsCard()
     {
         m_name = "Night Wings";
-        m_desc = "Give a friendly unit <b>Flying</b> until end of turn.";
+        m_desc = "Give a friendly unit <b>Flying</b>.";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 4;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
 
@@ -32,6 +32,5 @@ public class ContentNightWingsCard : GameCardSpellBase
         base.PlayCard(targetUnit);
 
         targetUnit.AddKeyword(new GameFlyingKeyword(), false, false);
-        GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(targetUnit, new GameFlyingKeyword()));
     }
 }

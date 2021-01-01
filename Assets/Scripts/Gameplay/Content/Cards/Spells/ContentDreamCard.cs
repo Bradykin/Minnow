@@ -10,7 +10,7 @@ public class ContentDreamCard : GameCardSpellBase
 
         m_name = "Dream";
         m_targetType = Target.None;
-        m_cost = 1;
+        m_cost = 0;
         m_rarity = GameRarity.Common;
 
         SetupBasicData();
@@ -30,7 +30,7 @@ public class ContentDreamCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Draw " + m_spellEffect + mpString + " cards.\n" + GetModifiedByMagicPowerString();
+        return $"Draw {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} cards.";
     }
 
     public override void PlayCard()

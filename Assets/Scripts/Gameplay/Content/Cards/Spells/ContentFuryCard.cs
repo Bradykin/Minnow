@@ -46,7 +46,7 @@ public class ContentFuryCard : GameCardSpellBase
         
         if (enrageKeyword != null)
         {
-            enrageKeyword.DoAction(0);
+            enrageKeyword.DoAction();
         }
 
         if (victoriousKeyword != null)
@@ -66,7 +66,7 @@ public class ContentFuryCard : GameCardSpellBase
 
                 if (enrageKeyword != null)
                 {
-                    enrageKeyword.DoAction(0);
+                    enrageKeyword.DoAction();
                 }
 
                 if (victoriousKeyword != null)

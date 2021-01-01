@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class ContentImmolationCard : GameCardSpellBase
 {
-    private int m_multiple = 5;
-    
     public ContentImmolationCard()
     {
-        m_spellEffect = 8;
+        m_spellEffect = 5;
 
         m_name = "Immolation";
         m_targetType = Target.Enemy;
@@ -25,8 +23,14 @@ public class ContentImmolationCard : GameCardSpellBase
 
     public override string GetDesc()
     {
+        string mpString = "";
+        if (HasMagicPower())
+        {
+            mpString = GetMagicPowerString();
+        }
+
         string startingDesc = GetDamageDescString();
-        startingDesc += "x" + m_multiple + " damage if the target is on a forest.";
+        startingDesc += $"x{UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage if the target is on a forest.";
 
         return startingDesc;
     }
@@ -43,7 +47,7 @@ public class ContentImmolationCard : GameCardSpellBase
         if (targetUnit.GetGameTile().GetTerrain().IsForest() && targetUnit.GetGameTile().GetTerrain().CanBurn())
         {
             targetUnit.GetGameTile().SetTerrain(GameTerrainFactory.GetBurnedTerrainClone(targetUnit.GetGameTile().GetTerrain()));
-            targetUnit.GetHitBySpell(GetSpellValue() * m_multiple, this);
+            targetUnit.GetHitBySpell(GetSpellValue() * GetSpellValue(), this);
         }
         else
         {
