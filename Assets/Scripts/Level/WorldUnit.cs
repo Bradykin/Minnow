@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class WorldUnit : MonoBehaviour
+public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
 {
     public UIUnitAttackAnimation m_attackAnimation;
     public UIUnitDeathAnimation m_deathAnimation;
@@ -37,6 +37,9 @@ public class WorldUnit : MonoBehaviour
     private GameUnit m_unit;
 
     public bool IsMoving => m_movePath.Count > 0;
+
+    public bool IsRecycled { get => m_isRecycled; set => m_isRecycled = value; }
+    private bool m_isRecycled;
 
     public void Init(GameUnit unit)
     {
@@ -396,5 +399,11 @@ public class WorldUnit : MonoBehaviour
                 UIHelper.CreateUnitTooltip(GetUnit());
             }
         }
+    }
+
+    public void CustomRecycle(params object[] args)
+    {
+        m_isRecycled = true;
+        m_unit = null;
     }
 }
