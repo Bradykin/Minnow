@@ -16,7 +16,7 @@ public class ContentDevilishPowerEvent : GameEvent
     public override void LateInit()
     {
         m_optionOne = new GameEventCardSelectOption(new ContentLivingBombCard());
-        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldAction(15)));
+        m_optionTwo = new GameEventGiveKeywordOption(m_tile, new GameEnrageKeyword(new GameGainGoldAction(5)));
 
         base.LateInit();
     }
@@ -28,6 +28,6 @@ public class ContentDevilishPowerEvent : GameEvent
 
     public override string GetOptionTwoTooltip()
     {
-        return "Give the unit that goes here '<b>Enrage</b>: Gain 15 gold.' <b>permanently</b>.";
+        return "Give the unit that goes here '<b>Enrage</b>: Gain 5 gold.' <b>permanently</b>.";
     }
 }

@@ -11,7 +11,7 @@ public class ContentBloodMoneyCard : GameCardSpellBase
         m_cost = 2;
         m_rarity = GameRarity.Rare;
         m_shouldExile = true;
-        m_spellEffect = 10;
+        m_spellEffect = 2;
 
         m_keywordHolder.AddKeyword(new GameEnrageKeyword(null));
 
