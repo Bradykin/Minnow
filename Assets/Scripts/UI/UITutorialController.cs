@@ -8,14 +8,12 @@ public class UITutorialController : Singleton<UITutorialController>
     public GameObject m_unitTutorial;
     public GameObject m_spellTutorial;
     public GameObject m_tileTutorial;
-    public GameObject m_intermissionTutorial;
 
     public enum TutorialType
     {
         Unit,
         Spell,
-        Tile,
-        Intermission
+        Tile
     }
 
     void Update()
@@ -43,11 +41,6 @@ public class UITutorialController : Singleton<UITutorialController>
             m_tileTutorial.SetActive(true);
             PlayerDataManager.PlayerAccountData.m_tileTutorialComplete = true;
         }
-        else if (tutorialType == TutorialType.Intermission)
-        {
-            m_intermissionTutorial.SetActive(true);
-            PlayerDataManager.PlayerAccountData.m_intermissionTutorialComplete = true;
-        }
     }
 
     public void CloseTutorials()
@@ -55,6 +48,5 @@ public class UITutorialController : Singleton<UITutorialController>
         m_unitTutorial.SetActive(false);
         m_spellTutorial.SetActive(false);
         m_tileTutorial.SetActive(false);
-        //m_intermissionTutorial.SetActive(false);
     }
 }

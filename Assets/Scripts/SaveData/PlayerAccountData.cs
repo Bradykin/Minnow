@@ -74,7 +74,6 @@ public class PlayerAccountData
     public bool m_unitTutorialComplete = false;
     public bool m_spellTutorialComplete = false;
     public bool m_tileTutorialComplete = false;
-    public bool m_intermissionTutorialComplete = false;
 
     public PlayerAccountData()
     {
