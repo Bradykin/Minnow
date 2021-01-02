@@ -218,16 +218,33 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
             {
                 if (!Globals.m_selectedUnit.GetUnit().IsInRangeOfUnit(GetUnit()))
                 {
-                    if (GetUnit().GetWorldTile().IsAttackable())
-                    {
-                        AudioHelper.PlaySFX(AudioHelper.UIError);
-                        UIHelper.CreateWorldElementNotification("Move into range to attack.", false, GetUnit().m_worldUnit.gameObject);
-                    }
+                    /*if (GetUnit().GetWorldTile().IsAttackable())
+                    {*/
+                        if (WorldGridManager.Instance.GetTilesInRangeToMoveAndAttack(Globals.m_selectedUnit.GetUnit().GetGameTile(), false, false).Contains(GetUnit().GetGameTile()))
+                        {
+                            GameTile tileToMoveTo = Globals.m_selectedUnit.GetUnit().GetTileMoveInRangeToAttack(GetUnit().GetGameTile());
+                            if (tileToMoveTo != null)
+                            {
+                                Globals.m_selectedUnit.MoveTo(tileToMoveTo);
+                                Globals.m_selectedUnit.GetUnit().HitUnit(GetUnit(), Globals.m_selectedUnit.GetUnit().GetDamageToDealTo(GetUnit()));
+                            }
+                            else
+                            {
+                                AudioHelper.PlaySFX(AudioHelper.UIError);
+                                UIHelper.CreateWorldElementNotification("Out of range to attack.", false, GetUnit().m_worldUnit.gameObject);
+                            }
+                        }
+                        else
+                        {
+                            AudioHelper.PlaySFX(AudioHelper.UIError);
+                            UIHelper.CreateWorldElementNotification("Out of range to attack.", false, GetUnit().m_worldUnit.gameObject);
+                        }
+                    /*}
                     else
                     {
                         AudioHelper.PlaySFX(AudioHelper.UIError);
                         UIHelper.CreateWorldElementNotification("Out of range.", false, GetUnit().m_worldUnit.gameObject);
-                    }
+                    }*/
                 }
                 else if (!Globals.m_selectedUnit.GetUnit().HasStaminaToAttack(GetUnit()))
                 {

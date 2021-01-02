@@ -2050,6 +2050,34 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GameHelper.GetOpponent().InformHasMoved(this, startingTile, GetGameTile(), path);
     }
 
+    public GameTile GetTileMoveInRangeToAttack(GameTile targetTile)
+    {
+
+        List<GameTile> tilesInMoveAttackRange = WorldGridManager.Instance.GetTilesInMovementRangeWithStaminaToAttack(GetGameTile(), false, false);
+        List<GameTile> tilesInRangeToAttack = WorldGridManager.Instance.GetSurroundingGameTiles(targetTile, GetRange());
+
+        List<GameTile> tilesToMoveTo = tilesInMoveAttackRange.Where(t => (t == GetGameTile() || !t.IsOccupied() || t.GetOccupyingUnit().m_isDead) && tilesInRangeToAttack.Contains(t)).ToList();
+
+        if (tilesToMoveTo.Count == 0 || tilesToMoveTo.Contains(GetGameTile()))
+        {
+            return null;
+        }
+
+        int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(GetGameTile(), t, false, false, false));
+        GameTile moveDestination;
+        List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(GetGameTile(), t, false, false, false) == closestTileDistance).ToList();
+
+        if (GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
+        {
+            moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
+        }
+        else
+        {
+            moveDestination = closestGameTiles[Random.Range(0, closestGameTiles.Count)];
+        }
+        return moveDestination;
+    }
+
     public GameTile GetMoveTowardsDestination(GameTile tile, int staminaToUse, bool ignoreTerrainDifference = false, bool letPassEnemies = true)
     {
         if (tile == m_gameTile || staminaToUse <= 0)
