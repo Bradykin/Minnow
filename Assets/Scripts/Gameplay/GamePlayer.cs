@@ -804,7 +804,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             UITutorialController.Instance.ShowTutorial(UITutorialController.TutorialType.Tile);
         }
 
-        if (GameHelper.GetGameController().m_currentTurnNumber >= 5)
+        if (GameHelper.GetGameController().m_currentTurnNumber >= 9)
         {
             GameHelper.GetGameController().m_curRage += 2;
         }

@@ -29,7 +29,7 @@ public class ContentMageArmorCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return "Target allied unit gains <b>Damage Reduction</b> {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
+        return $"Target allied unit gains <b>Damage Reduction</b> {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)}.";
     }
 
     public override void PlayCard(GameUnit targetUnit)

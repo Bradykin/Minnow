@@ -10,7 +10,7 @@ public class ContentFortressBuilding : GameBuildingBase
         m_range = 3;
 
         m_name = "Fortress";
-        m_desc = "Whenever a nearby allied unit in range {m_range} attacks a target, the Fortress will also attack it for half the damage that the unit did.";
+        m_desc = $"Whenever a nearby allied unit in range {m_range} attacks a target, the Fortress will also attack it for half the damage that the unit did.";
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;
