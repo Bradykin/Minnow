@@ -63,6 +63,11 @@ public class AnalyticsManager
 
     public void RecordCardStarter(in GameCard cardStarter)
     {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
         WWWForm pickForm = new WWWForm();
         pickForm.AddField("Name", cardStarter.GetName());
         UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataPick.php", pickForm);
@@ -78,6 +83,11 @@ public class AnalyticsManager
 
     public void RecordCardChaosGiven(in GameCard chaosCard)
     {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
         WWWForm chaosForm = new WWWForm();
         chaosForm.AddField("Name", chaosCard.GetName());
         UnityWebRequest chaosWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataChaos.php", chaosForm);
