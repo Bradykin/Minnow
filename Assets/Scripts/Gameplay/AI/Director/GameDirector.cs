@@ -69,6 +69,11 @@ public class GameDirector
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public static void RecordCardStarter(in GameCard cardStarter)
+    {
+
+    }
+
     public void RecordCardChaosGiven(in GameCard chaosCard)
     {
 

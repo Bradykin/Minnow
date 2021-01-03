@@ -17,26 +17,31 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
         for (int i = 0; i < 2; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterSimpleUnitName)));
+            GameNotificationManager.RecordCardStarter(m_cards[m_cards.Count - 1]);
         }
 
         for (int i = 0; i < 1; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterAdvancedUnitName)));
+            GameNotificationManager.RecordCardStarter(m_cards[m_cards.Count - 1]);
         }
 
         for (int i = 0; i < 3; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterDamageSpellName)));
+            GameNotificationManager.RecordCardStarter(m_cards[m_cards.Count - 1]);
         }
 
         for (int i = 0; i < 2; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterDefensiveSpellName)));
+            GameNotificationManager.RecordCardStarter(m_cards[m_cards.Count - 1]);
         }
 
         for (int i = 0; i < 1; i++)
         {
             m_cards.Add(GameCardFactory.GetCardClone(GameCardFactory.GetCardByName(PlayerDataManager.PlayerAccountData.StarterExileSpellName)));
+            GameNotificationManager.RecordCardStarter(m_cards[m_cards.Count - 1]);
         }
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddCards))
