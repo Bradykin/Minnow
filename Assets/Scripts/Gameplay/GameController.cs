@@ -264,6 +264,8 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
 
     public void EndLevel(RunEndType endType)
     {
+        GameNotificationManager.EndLevel(endType, GameHelper.GetPlayer().m_deckBase);
+
         GameUnitFactory.DeInit();
         GameEventFactory.DeInit();
         

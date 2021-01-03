@@ -91,11 +91,13 @@ public static class Constants
     public static bool DevMode = true;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
+    public static bool AnalyticsOn = false;
 #else
     public static bool GameDirectorTestPrints = false;
     public static bool DevMode = false;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
+    public static bool AnalyticsOn = true;
 #endif
     public static bool SteppedOutEnemyTurnsCameraFollowMovement = true;
     public static int SteppedOutEnemyTurnsCameraFollowThreshold = 3;
