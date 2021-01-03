@@ -91,7 +91,7 @@ public static class Constants
     public static bool DevMode = true;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
-    public static bool AnalyticsOn = false;
+    public static bool AnalyticsOn = true;
 #else
     public static bool GameDirectorTestPrints = false;
     public static bool DevMode = false;

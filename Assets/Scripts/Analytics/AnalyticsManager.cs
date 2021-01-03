@@ -63,7 +63,11 @@ public class AnalyticsManager
 
     public void RecordCardChaosGiven(in GameCard chaosCard)
     {
-        Debug.Log("CHAOS GIVEN: " + chaosCard.GetName());
+        WWWForm chaosForm = new WWWForm();
+        chaosForm.AddField("Name", chaosCard.GetName());
+        UnityWebRequest chaosWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataChaos.php", chaosForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(chaosWWW));
     }
 
     public void RecordCardDuplication(in GameCard cardDuplicated)
