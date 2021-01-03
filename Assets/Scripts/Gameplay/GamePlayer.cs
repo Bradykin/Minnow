@@ -308,11 +308,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         if (GameHelper.HasRelic<ContentDominerickRefrainRelic>())
         {
-            toReturn += 3;
+            toReturn += 2;
         }
         if (GameHelper.HasRelic<ContentTomeOfDuluhainRelic>())
         {
-            toReturn -= 3;
+            toReturn -= 1;
         }
         toReturn += m_tempMagicPowerIncrease;
 

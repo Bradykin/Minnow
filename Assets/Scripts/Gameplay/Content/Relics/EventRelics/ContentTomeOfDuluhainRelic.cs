@@ -7,7 +7,7 @@ public class ContentTomeOfDuluhainRelic : GameRelic
     public ContentTomeOfDuluhainRelic()
     {
         m_name = "Tome of Duluhain";
-        m_desc = "-3 <b>Magic Power</b>, all spells cost 1 less energy.";
+        m_desc = "-1 <b>Magic Power</b>, all spells cost 1 less energy.";
         m_rarity = GameRarity.Special;
 
         LateInit();
