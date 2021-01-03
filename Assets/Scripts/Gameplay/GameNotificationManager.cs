@@ -54,6 +54,11 @@ public static class GameNotificationManager
         GameDirector.RecordRelicSingleChoice(relicOption, taken);
     }
 
+    public static void EndLevel(in RunEndType endType, in GameDeck deck)
+    {
+        AnalyticsManager.EndLevel(endType, deck);
+    }
+
     public static void RecordRelicUnlock(in GameRelic relicUnlocked)
     {
         GameDirector.RecordRelicUnlock(relicUnlocked);
