@@ -171,12 +171,12 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
         HandleSpawn(true);
     }
 
-    public void OnBeginWave()
+    public void OnBeginWave(GameMap gameMap)
     {
         m_hasSpawnedEliteThisWave = false;
         m_eliteSpawnWaveModifier = UnityEngine.Random.Range(0, 3);
 
-        HandleSpawn(false);
+        HandleSpawn(gameMap.m_haveInitialFogSpawned);
     }
 
     private void HandleSpawn(bool forceSomeFogSpawning)
@@ -415,6 +415,13 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
             }
 
             if (!tilesAtFogEdge[curTileIndex].IsPassable(newEnemyUnit, false))
+            {
+                tilesAtFogEdge.RemoveAt(curTileIndex);
+                continue;
+            }
+
+            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(tilesAtFogEdge[curTileIndex], 1);
+            if (!surroundingTiles.Any(t => !t.m_isFog && t.IsPassable(newEnemyUnit, true)))
             {
                 tilesAtFogEdge.RemoveAt(curTileIndex);
                 continue;

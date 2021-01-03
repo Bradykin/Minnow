@@ -110,7 +110,7 @@ public class GameController : ISave<JsonGameControllerData>, ILoad<JsonGameContr
     public void BeginTurnSequence()
     {
         m_player.OnBeginWave();
-        m_gameOpponent.OnBeginWave();
+        m_gameOpponent.OnBeginWave(m_map);
 
         m_randomSeed = (int)System.DateTime.Now.Ticks;
         Random.InitState(m_randomSeed);

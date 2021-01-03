@@ -22,6 +22,7 @@ public abstract class GameMap : GameElementBase
     protected int m_destroyedCrystals;
 
     public bool m_disableUnfinished;
+    public bool m_haveInitialFogSpawned = true;
 
     public AudioClip m_backgroundMusic;
 

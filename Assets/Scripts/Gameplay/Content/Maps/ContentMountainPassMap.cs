@@ -14,6 +14,8 @@ public class ContentMountainPassMap : GameMap
 
         m_id = 6;
 
+        m_haveInitialFogSpawned = false;
+
         Init();
     }
 
