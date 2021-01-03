@@ -33,6 +33,11 @@ public class ContentDesertPassMap : GameMap
 
     }
 
+    protected override void FillSpawnPool()
+    {
+
+    }
+
     protected override void FillEventPool()
     {
         FillBasicEventPool();

@@ -212,6 +212,7 @@ public static class GameCardFactory
         //m_enemyCards.Add(new ContentAngryTreantEnemyCard());
         //m_enemyCards.Add(new ContentArcticYetiEnemyCard());
         m_enemyCards.Add(new ContentBasiliskEnemyCard());
+        m_enemyCards.Add(new ContentBerserkerEnemyCard());
         m_enemyCards.Add(new ContentBlindBeastEnemyCard());
         //m_enemyCards.Add(new ContentBlueMageEnemyCard());
         m_enemyCards.Add(new ContentBurningMonstrosityEnemyCard());
@@ -259,6 +260,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentLordOfEruptionsEnemyCard());
         m_enemyCards.Add(new ContentLordOfShadowsEnemyCard());
         m_enemyCards.Add(new ContentLordOfWinterEnemyCard());
+        m_enemyCards.Add(new ContentLurkerEnemyCard());
         //m_enemyCards.Add(new ContentMageShadeEnemyCard());
         //m_enemyCards.Add(new ContentMarshSerpentEnemyCard());
         m_enemyCards.Add(new ContentMetalCyclopsEnemyCard());
@@ -268,7 +270,6 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentMummyPharaohEnemyCard());
         //m_enemyCards.Add(new ContentNagaWardenEnemyCard());
         //m_enemyCards.Add(new ContentNightmareWorkerEnemyCard());
-        //m_enemyCards.Add(new ContentNorthernBerserkerEnemyCard());
         m_enemyCards.Add(new ContentOrcEnemyCard());
         m_enemyCards.Add(new ContentOrcShamanEnemyCard());
         m_enemyCards.Add(new ContentPhoenixEnemyCard());

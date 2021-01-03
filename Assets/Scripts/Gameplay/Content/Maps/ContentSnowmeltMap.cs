@@ -57,7 +57,7 @@ public class ContentSnowmeltMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentGreatFrostlizardEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGriffonEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentIceWurmEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentBerserkerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLordOfWinterEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
@@ -77,19 +77,19 @@ public class ContentSnowmeltMap : GameMap
 
         List<GameSpawnPoolData> defaultSpawnPoolData = new List<GameSpawnPoolData>();
         //Wave 1
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 1, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 1, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentValgulaEnemy(null), 1, 2, 0.66f));
 
         //Wave 2
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 2, 1, 0.75f));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 2, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnowprowlerEnemy(null), 2, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentValgulaEnemy(null), 2, 1, 1));
 
         //Wave 3
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentFrozenImpEnemy(null), 3, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGriffonEnemy(null), 3, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSnowprowlerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentPolarWarriorEnemy(null), 3, 1, 1));
 
