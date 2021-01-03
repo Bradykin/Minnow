@@ -9,7 +9,7 @@ public class ContentLizardmanEnemy : GameEnemyUnit
 {
     public ContentLizardmanEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
-        m_maxHealth = 12;
+        m_maxHealth = 13;
         m_maxStamina = 5;
         m_staminaRegen = 3;
         m_power = 13;
@@ -23,7 +23,6 @@ public class ContentLizardmanEnemy : GameEnemyUnit
 
         AddKeyword(new GameWaterwalkKeyword(), true, false);
         m_instantWaterMovement = true;
-        AddKeyword(new GameDamageShieldKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), true, false);
