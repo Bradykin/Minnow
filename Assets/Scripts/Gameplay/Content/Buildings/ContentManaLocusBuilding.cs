@@ -24,7 +24,7 @@ public class ContentManaLocusBuilding : GameBuildingBase
 
     public override string GetDesc()
     {
-        m_desc = $"<b>Spellcraft</b>: Give all allied unitw in range {m_range} +1/+1.";
+        m_desc = $"<b>Spellcraft</b>: Give all allied units in range {m_range} +1/+1.";
 
         return m_desc;
     }

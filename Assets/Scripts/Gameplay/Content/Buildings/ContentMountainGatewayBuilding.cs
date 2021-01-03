@@ -10,7 +10,7 @@ public class ContentMountainGatewayBuilding : GameBuildingBase
         m_range = 0;
 
         m_name = "Mountain Gateway";
-        m_desc = "Your units can pas through this tile.";
+        m_desc = "Your units can pass through this tile.";
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 30;
