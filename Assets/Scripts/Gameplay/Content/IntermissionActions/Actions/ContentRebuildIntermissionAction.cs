@@ -8,7 +8,7 @@ public class ContentRebuildIntermissionAction : GameActionIntermission
 
     public ContentRebuildIntermissionAction()
     {
-        m_actionCost = 3;
+        m_actionCost = 2;
         m_name = "Rebuild";
         m_desc = "Rebuild a destroyed building.";
 
