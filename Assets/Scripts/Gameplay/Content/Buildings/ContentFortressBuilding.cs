@@ -10,7 +10,7 @@ public class ContentFortressBuilding : GameBuildingBase
         m_range = 3;
 
         m_name = "Fortress";
-        m_desc = "Whenever a nearby allied unit in range {m_range} attacks a target, the Fortress will also attack it for half the damage that the unit did.";
+        m_desc = $"Whenever a nearby allied unit in range {m_range} attacks a target, the Fortress will also attack it for half the damage that the unit did.";
         m_buildingType = BuildingType.Defensive;
 
         m_maxHealth = 40;
@@ -24,10 +24,10 @@ public class ContentFortressBuilding : GameBuildingBase
     {
         base.OnOtherAttack(attackingUnit, attackedUnit, damageAmount);
 
-        if (attackedUnit.m_isDead)
+        if (attackedUnit.m_isDead || attackingUnit.GetTeam() != GetTeam())
         {
             return;
-        }
+        }   
 
         UIHelper.CreateWorldElementNotification("Fortress launches an attack!", true, GetWorldTile().gameObject);
         attackedUnit.GetHitByAbility(damageAmount / 2);
