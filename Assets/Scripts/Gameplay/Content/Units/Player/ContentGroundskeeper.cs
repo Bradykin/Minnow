@@ -15,7 +15,7 @@ public class ContentGroundskeeper : GameUnit
         m_rarity = GameRarity.Uncommon;
 
         m_name = "Groundskeeper";
-        m_desc = "When in a forest, gains <b>Damage Reduction</b> " + m_damageReductionVal + ", <b>Thorns</b> " + m_thornsVal + ", and <b>Taunt</b>.\n\n";
+        m_desc = "When in a forest, gains <b>Damage Reduction</b> " + m_damageReductionVal + ", <b>Thorns</b> " + m_thornsVal + ", and <b>Taunt</b>.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.SlamHeavy;
