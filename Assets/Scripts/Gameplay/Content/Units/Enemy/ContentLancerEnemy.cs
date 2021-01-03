@@ -9,7 +9,7 @@ public class ContentLancerEnemy : GameEnemyUnit
         m_maxHealth = 6;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 8;
+        m_power = 5;
         m_attackSFX = AudioHelper.SpearLight;
 
         m_team = Team.Enemy;
