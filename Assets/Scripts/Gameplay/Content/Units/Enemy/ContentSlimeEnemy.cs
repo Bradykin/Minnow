@@ -11,7 +11,7 @@ public class ContentSlimeEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 1;
+        m_power = 2;
         m_attackSFX = AudioHelper.PunchLight;
 
         m_team = Team.Enemy;

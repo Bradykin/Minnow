@@ -26,7 +26,7 @@ public abstract class AIMoveStep : AIStep
             yield break;
         }
 
-        m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GetCastleTravelTile(), amountStaminaToSpend);
+        SetTargetGameTileInMoveTowardsCastle(amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination == null || moveDestination == m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
@@ -69,7 +69,7 @@ public abstract class AIMoveStep : AIStep
             return;
         }
 
-        m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GetCastleTravelTile(), amountStaminaToSpend);
+        SetTargetGameTileInMoveTowardsCastle(amountStaminaToSpend);
         GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
 
         if (moveDestination != null && moveDestination != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile())
@@ -86,6 +86,32 @@ public abstract class AIMoveStep : AIStep
     protected virtual int GetStaminaToUseToMoveToCastle()
     {
         return Mathf.Min(m_AIGameEnemyUnit.m_gameEnemyUnit.GetCurStamina(), m_AIGameEnemyUnit.m_gameEnemyUnit.GetStaminaRegen());
+    }
+
+    private void SetTargetGameTileInMoveTowardsCastle(int amountStaminaToSpend)
+    {
+        m_AIGameEnemyUnit.m_targetGameTile = m_AIGameEnemyUnit.m_gameEnemyUnit.GetMoveTowardsDestination(GetCastleTravelTile(), amountStaminaToSpend);
+
+        GameTile moveDestination = m_AIGameEnemyUnit.m_targetGameTile;
+
+        if (moveDestination.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover)
+        {
+            return;
+        }
+
+        List<GameTile> areaSurroundingDestination = WorldGridManager.Instance.GetSurroundingGameTiles(moveDestination, 4, 0);
+        if (areaSurroundingDestination.Any(t => t.IsOccupied() && t.GetOccupyingUnit().GetTeam() == Team.Player))
+        {
+            List<GameTile> candidateMoveLocations = WorldGridManager.Instance.GetSurroundingGameTiles(moveDestination, 2, 0)
+                .Where(t => t != m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile() && t.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover && m_AIGameEnemyUnit.m_gameEnemyUnit.CanMoveTo(t)).ToList();
+
+            candidateMoveLocations.OrderBy(t => WorldGridManager.Instance.GetPathLength(t, GetCastleTravelTile(), false, false, false));
+
+            if (candidateMoveLocations.Count > 0)
+            {
+                m_AIGameEnemyUnit.m_targetGameTile = candidateMoveLocations[0];
+            }
+        }
     }
 
     public override void CleanupAIStep()

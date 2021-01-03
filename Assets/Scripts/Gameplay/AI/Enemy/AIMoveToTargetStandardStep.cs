@@ -54,10 +54,15 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false));
         GameTile moveDestination;
         List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false) == closestTileDistance).ToList();
+        List<GameTile> closestGameTilesWithCover = closestGameTiles.Where(t => t.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover).ToList();
 
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
         {
             moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
+        }
+        else if (closestGameTilesWithCover.Count > 0)
+        {
+            moveDestination = closestGameTilesWithCover[Random.Range(0, closestGameTilesWithCover.Count)];
         }
         else
         {
@@ -135,10 +140,15 @@ public class AIMoveToTargetStandardStep : AIMoveStep
         int closestTileDistance = tilesToMoveTo.Min(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false));
         GameTile moveDestination;
         List<GameTile> closestGameTiles = tilesToMoveTo.Where(t => WorldGridManager.Instance.GetPathLength(m_AIGameEnemyUnit.m_gameEnemyUnit.GetGameTile(), t, false, false, false) == closestTileDistance).ToList();
+        List<GameTile> closestGameTilesWithCover = closestGameTiles.Where(t => t.GetTerrain().GetCoverType() == GameTerrainBase.CoverType.Cover).ToList();
 
         if (m_AIGameEnemyUnit.m_gameEnemyUnit.GetFlyingKeyword() != null && closestGameTiles.Any(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater()))
         {
             moveDestination = closestGameTiles.FirstOrDefault(t => t.GetTerrain().IsMountain() || t.GetTerrain().IsWater());
+        }
+        else if (closestGameTilesWithCover.Count > 0)
+        {
+            moveDestination = closestGameTilesWithCover[Random.Range(0, closestGameTilesWithCover.Count)];
         }
         else
         {

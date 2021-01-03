@@ -427,6 +427,13 @@ public class GameOpponent : ITurns, ISave<JsonGameOpponentData>, ILoad<JsonGameO
                 continue;
             }
 
+            int numAdjacentFog = surroundingTiles.Where(t => t.m_isFog).ToList().Count;
+            if (numAdjacentFog < 3)
+            {
+                tilesAtFogEdge.RemoveAt(curTileIndex);
+                continue;
+            }
+
             tilesAtFogEdge[curTileIndex].PlaceUnit(newEnemyUnit);
             newEnemyUnit.OnSummon();
             m_controlledUnits.Add(newEnemyUnit);
