@@ -73,10 +73,10 @@ public static class Constants
     {
         8,
         12,
+        14,
         16,
         20,
-        25,
-        30
+        999
     };
 
     public static int FinalWaveNum = 6;
