@@ -14,25 +14,25 @@ public class AnalyticsManager
         }
 
         WWWForm pickForm = new WWWForm();
-        pickForm.AddField("Name", cardChoice.GetName());
+        pickForm.AddField("Name", cardChoice.GetBaseName());
         UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataPick.php", pickForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
 
         WWWForm seeForm1 = new WWWForm();
-        seeForm1.AddField("Name", optionOne.GetName());
+        seeForm1.AddField("Name", optionOne.GetBaseName());
         UnityWebRequest seeWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm1);
 
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW1));
 
         WWWForm seeForm2 = new WWWForm();
-        seeForm2.AddField("Name", optionTwo.GetName());
+        seeForm2.AddField("Name", optionTwo.GetBaseName());
         UnityWebRequest seeWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm2);
 
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW2));
 
         WWWForm seeForm3 = new WWWForm();
-        seeForm3.AddField("Name", optionThree.GetName());
+        seeForm3.AddField("Name", optionThree.GetBaseName());
         UnityWebRequest seeWWW3 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm3);
 
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW3));
@@ -48,14 +48,14 @@ public class AnalyticsManager
         if (taken)
         {
             WWWForm pickForm = new WWWForm();
-            pickForm.AddField("Name", cardOption.GetName());
+            pickForm.AddField("Name", cardOption.GetBaseName());
             UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataPick.php", pickForm);
 
             FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
         }
 
         WWWForm seeForm = new WWWForm();
-        seeForm.AddField("Name", cardOption.GetName());
+        seeForm.AddField("Name", cardOption.GetBaseName());
         UnityWebRequest seeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
@@ -69,13 +69,13 @@ public class AnalyticsManager
         }
 
         WWWForm pickForm = new WWWForm();
-        pickForm.AddField("Name", cardStarter.GetName());
+        pickForm.AddField("Name", cardStarter.GetBaseName());
         UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataPick.php", pickForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
 
         WWWForm seeForm = new WWWForm();
-        seeForm.AddField("Name", cardStarter.GetName());
+        seeForm.AddField("Name", cardStarter.GetBaseName());
         UnityWebRequest seeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
@@ -89,7 +89,7 @@ public class AnalyticsManager
         }
 
         WWWForm chaosForm = new WWWForm();
-        chaosForm.AddField("Name", chaosCard.GetName());
+        chaosForm.AddField("Name", chaosCard.GetBaseName());
         UnityWebRequest chaosWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataChaos.php", chaosForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(chaosWWW));
@@ -103,7 +103,7 @@ public class AnalyticsManager
         }
 
         WWWForm dupForm = new WWWForm();
-        dupForm.AddField("Name", cardDuplicated.GetName());
+        dupForm.AddField("Name", cardDuplicated.GetBaseName());
         UnityWebRequest dupWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataDup.php", dupForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(dupWWW));
@@ -117,13 +117,13 @@ public class AnalyticsManager
         }
 
         WWWForm remTransForm = new WWWForm();
-        remTransForm.AddField("Name", cardTransformed.GetName());
+        remTransForm.AddField("Name", cardTransformed.GetBaseName());
         UnityWebRequest remTransWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataTransRem.php", remTransForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(remTransWWW));
 
         WWWForm addTransForm = new WWWForm();
-        addTransForm.AddField("Name", cardReceived.GetName());
+        addTransForm.AddField("Name", cardReceived.GetBaseName());
         UnityWebRequest addTransWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataTransAdd.php", addTransForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(addTransWWW));
@@ -137,7 +137,7 @@ public class AnalyticsManager
         }
 
         WWWForm remForm = new WWWForm();
-        remForm.AddField("Name", cardRemoved.GetName());
+        remForm.AddField("Name", cardRemoved.GetBaseName());
         UnityWebRequest remWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataRem.php", remForm);
 
         FactoryManager.Instance.StartCoroutine(UploadData(remWWW));
@@ -171,7 +171,7 @@ public class AnalyticsManager
             for (int i = 0; i < deck.Count(); i++)
             {
                 WWWForm winForm = new WWWForm();
-                winForm.AddField("Name", deck.GetCardByIndex(i).GetName());
+                winForm.AddField("Name", deck.GetCardByIndex(i).GetBaseName());
                 UnityWebRequest winWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", winForm);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(winWWW));
