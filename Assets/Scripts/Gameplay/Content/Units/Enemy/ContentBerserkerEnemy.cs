@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentSlimeEnemy : GameEnemyUnit
+public class ContentBerserkerEnemy : GameEnemyUnit
 {
-    public ContentSlimeEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentBerserkerEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
-        m_maxHealth = 4;
-        m_maxStamina = 4;
-        m_staminaRegen = 2;
-        m_power = 2;
-        m_attackSFX = AudioHelper.PunchLight;
+        m_maxHealth = 6;
+        m_maxStamina = 5;
+        m_staminaRegen = 4;
+        m_power = 5;
+        m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Slime";
+        m_name = "Berserker";
         
         m_desc = "";
 

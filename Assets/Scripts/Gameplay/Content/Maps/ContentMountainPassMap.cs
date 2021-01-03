@@ -14,6 +14,8 @@ public class ContentMountainPassMap : GameMap
 
         m_id = 6;
 
+        m_haveInitialFogSpawned = false;
+
         Init();
     }
 
@@ -34,7 +36,7 @@ public class ContentMountainPassMap : GameMap
     {
         m_totalEnemiesOnMap.Add(new ContentGoblinWarriorEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGoblinShamanEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLancerEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentBerserkerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentToadEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
@@ -63,11 +65,11 @@ public class ContentMountainPassMap : GameMap
         //Wave 2
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinShamanEnemy(null), 1, 1, 0.5f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentGoblinWarriorEnemy(null), 1, 1, 1));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 2, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 2, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 2, 1, 0.5f));
 
         //Wave 3
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentLancerEnemy(null), 3, 1, 1));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentOrcShamanEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentStoneflingerEnemy(null), 3, 2, 0.2f));

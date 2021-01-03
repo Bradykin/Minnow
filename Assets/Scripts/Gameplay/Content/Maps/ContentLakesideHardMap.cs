@@ -37,6 +37,11 @@ public class ContentLakesideHardMap : GameMap
         
     }
 
+    protected override void FillSpawnPool()
+    {
+
+    }
+
     protected override void FillEventPool()
     {
         FillBasicEventPool();
