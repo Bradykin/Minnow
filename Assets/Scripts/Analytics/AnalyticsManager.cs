@@ -61,9 +61,19 @@ public class AnalyticsManager
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
-    public static void RecordCardStarter(in GameCard cardStarter)
+    public void RecordCardStarter(in GameCard cardStarter)
     {
-        Debug.Log("STARTER CARD: " + cardStarter.GetName());
+        WWWForm pickForm = new WWWForm();
+        pickForm.AddField("Name", cardStarter.GetName());
+        UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataPick.php", pickForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+
+        WWWForm seeForm = new WWWForm();
+        seeForm.AddField("Name", cardStarter.GetName());
+        UnityWebRequest seeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataSee.php", seeForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
     public void RecordCardChaosGiven(in GameCard chaosCard)
