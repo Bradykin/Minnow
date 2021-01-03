@@ -24,10 +24,10 @@ public class ContentFortressBuilding : GameBuildingBase
     {
         base.OnOtherAttack(attackingUnit, attackedUnit, damageAmount);
 
-        if (attackedUnit.m_isDead)
+        if (attackedUnit.m_isDead || attackingUnit.GetTeam() != GetTeam())
         {
             return;
-        }
+        }   
 
         UIHelper.CreateWorldElementNotification("Fortress launches an attack!", true, GetWorldTile().gameObject);
         attackedUnit.GetHitByAbility(damageAmount / 2);
