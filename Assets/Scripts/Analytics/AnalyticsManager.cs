@@ -61,6 +61,11 @@ public class AnalyticsManager
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
+    public void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        Debug.Log("CHAOS GIVEN: " + chaosCard.GetName());
+    }
+
     public void RecordCardDuplication(in GameCard cardDuplicated)
     {
         if (!Constants.AnalyticsOn)

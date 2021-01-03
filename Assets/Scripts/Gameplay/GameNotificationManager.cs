@@ -19,6 +19,12 @@ public static class GameNotificationManager
         GameDirector.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public static void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        AnalyticsManager.RecordCardChaosGiven(chaosCard);
+        GameDirector.RecordCardChaosGiven(chaosCard);
+    }
+
     public static void RecordCardDuplication(in GameCard cardDuplicated)
     {
         AnalyticsManager.RecordCardDuplication(cardDuplicated);

@@ -69,6 +69,11 @@ public class GameDirector
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
+    public void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+
+    }
+
     public void RecordCardDuplication(in GameCard cardDuplicated)
     {
         if (Constants.GameDirectorTestPrints)

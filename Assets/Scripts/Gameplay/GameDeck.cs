@@ -46,6 +46,11 @@ public class GameDeck : ILoad<JsonGameDeckData>, ISave<JsonGameDeckData>
             GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards);
             GameCard cardFour = GameCardFactory.GetRandomStandardUnitCard(GameElementBase.GameRarity.Uncommon, GameCardFactory.m_tribalCards);
 
+            GameNotificationManager.RecordCardChaosGiven(cardOne);
+            GameNotificationManager.RecordCardChaosGiven(cardTwo);
+            GameNotificationManager.RecordCardChaosGiven(cardThree);
+            GameNotificationManager.RecordCardChaosGiven(cardFour);
+
             m_cards.Add(cardOne);
             m_cards.Add(cardTwo);
             m_cards.Add(cardThree);
