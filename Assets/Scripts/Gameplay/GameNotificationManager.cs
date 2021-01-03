@@ -63,4 +63,9 @@ public static class GameNotificationManager
     {
         GameDirector.SaveGameDirectorData();
     }
+
+    public static void ShowCardData()
+    {
+        AnalyticsManager.ShowCardData();
+    }
 }

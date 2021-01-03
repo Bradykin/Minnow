@@ -176,6 +176,12 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
+        if (cheat == "showcarddata")
+        {
+            ShowCardData();
+            return;
+        }
+
         if (cheat == "addrep")
         {
             HandleAddRep(param);
@@ -376,8 +382,13 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         GameHelper.EndLevel(RunEndType.Loss);
     }
 
+    private void ShowCardData()
+    {
+        GameNotificationManager.ShowCardData();
+    }
+
     private void TempTest()
     {
-        UIRelicController.Instance.ClearRelics();
+        GameNotificationManager.ShowCardData();
     }
 }
