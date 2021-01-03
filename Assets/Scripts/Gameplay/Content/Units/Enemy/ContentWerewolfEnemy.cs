@@ -14,7 +14,7 @@ public class ContentWerewolfEnemy : GameEnemyUnit
         m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 21;
+        m_power = 13;
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
