@@ -879,9 +879,9 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             toReturn -= lordOfShadowsEnemy.m_visionReductionAmount;
         }
 
-        if (toReturn < 0)
+        if (toReturn < 1)
         {
-            toReturn = 0;
+            toReturn = 1;
         }
 
         return toReturn;
