@@ -1715,11 +1715,17 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             {
                                 if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Humanoid)
                                 {
-                                    toReturn += 4;
+                                    if (GetTypeline() == Typeline.Humanoid)
+                                    {
+                                        toReturn += 4;
+                                    }
                                 }
                                 else if (surroundingTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                                 {
-                                    toReturn -= 4;
+                                    if (GetTypeline() == Typeline.Humanoid)
+                                    {
+                                        toReturn -= 4;
+                                    }
                                 }
                             }
                         }
@@ -2603,7 +2609,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GameHelper.HasRelic<ContentSackOfSoulsRelic>())
         {
-            player.GainGold(2);
+            player.GainGold(3);
             UIHelper.TriggerRelicAnimation<ContentSackOfSoulsRelic>();
         }
 

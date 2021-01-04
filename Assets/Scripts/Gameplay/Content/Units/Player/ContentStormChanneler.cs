@@ -11,7 +11,7 @@ public class ContentStormChanneler : GameUnit
         m_worldTilePositionAdjustment = new Vector3(0, 0.5f, 0);
 
         m_team = Team.Player;
-        m_rarity = GameRarity.Uncommon;
+        m_rarity = GameRarity.Rare;
 
         AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameSpellcraftKeyword(new GameGainTempMagicPowerAction(1)), true, false);
