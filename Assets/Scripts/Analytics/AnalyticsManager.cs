@@ -200,35 +200,39 @@ public class AnalyticsManager
         }
 
         GamePlayer player = GameHelper.GetPlayer();
+        string mapNameChaos = $"{GameHelper.GetGameController().GetCurMap().GetBaseName()} - Chaos {Globals.m_curChaos}";
 
         if (endType == RunEndType.Win)
         {
-            for (int i = 0; i < player.m_deckBase.Count(); i++)
+            if (Constants.AnalyticsOn)
             {
-                WWWForm cardWinForm = new WWWForm();
-                cardWinForm.AddField("Name", player.m_deckBase.GetCardByIndex(i).GetBaseName());
-                UnityWebRequest cardWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", cardWinForm);
+                for (int i = 0; i < player.m_deckBase.Count(); i++)
+                {
+                    WWWForm cardWinForm = new WWWForm();
+                    cardWinForm.AddField("Name", player.m_deckBase.GetCardByIndex(i).GetBaseName());
+                    UnityWebRequest cardWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", cardWinForm);
 
-                FactoryManager.Instance.StartCoroutine(UploadData(cardWinWWW));
-            }
+                    FactoryManager.Instance.StartCoroutine(UploadData(cardWinWWW));
+                }
 
-            for (int i = 0; i < player.GetRelics().GetSize(); i++)
-            {
-                WWWForm relicWinForm = new WWWForm();
-                relicWinForm.AddField("Name", player.GetRelics().GetRelicListForRead()[i].GetBaseName());
-                UnityWebRequest relicWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataWin.php", relicWinForm);
+                for (int i = 0; i < player.GetRelics().GetSize(); i++)
+                {
+                    WWWForm relicWinForm = new WWWForm();
+                    relicWinForm.AddField("Name", player.GetRelics().GetRelicListForRead()[i].GetBaseName());
+                    UnityWebRequest relicWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataWin.php", relicWinForm);
 
-                FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
+                    FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
+                }
             }
 
             WWWForm winForm = new WWWForm();
-            winForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            winForm.AddField("Name", mapNameChaos);
             UnityWebRequest winWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWin.php", winForm);
 
             FactoryManager.Instance.StartCoroutine(UploadData(winWWW));
 
             WWWForm winTimeForm = new WWWForm();
-            winTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            winTimeForm.AddField("Name", mapNameChaos);
             winTimeForm.AddField("Time", ""+Timer.Instance.GetLevelTime());
             UnityWebRequest winTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWinTime.php", winTimeForm);
 
@@ -240,7 +244,7 @@ public class AnalyticsManager
             if (endWave == 1)
             {
                 WWWForm lossForm1 = new WWWForm();
-                lossForm1.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm1.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss1.php", lossForm1);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW1));
@@ -248,7 +252,7 @@ public class AnalyticsManager
             else if (endWave == 2)
             {
                 WWWForm lossForm2 = new WWWForm();
-                lossForm2.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm2.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss2.php", lossForm2);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW2));
@@ -256,7 +260,7 @@ public class AnalyticsManager
             else if (endWave == 3)
             {
                 WWWForm lossForm3 = new WWWForm();
-                lossForm3.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm3.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW3 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss3.php", lossForm3);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW3));
@@ -264,7 +268,7 @@ public class AnalyticsManager
             else if (endWave == 4)
             {
                 WWWForm lossForm4 = new WWWForm();
-                lossForm4.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm4.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW4 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss4.php", lossForm4);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW4));
@@ -272,7 +276,7 @@ public class AnalyticsManager
             else if (endWave == 5)
             {
                 WWWForm lossForm5 = new WWWForm();
-                lossForm5.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm5.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW5 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss5.php", lossForm5);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW5));
@@ -280,14 +284,14 @@ public class AnalyticsManager
             else if (endWave == 6)
             {
                 WWWForm lossForm6 = new WWWForm();
-                lossForm6.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                lossForm6.AddField("Name", mapNameChaos);
                 UnityWebRequest lossWWW6 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss6.php", lossForm6);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW6));
             }
 
             WWWForm lossTimeForm = new WWWForm();
-            lossTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            lossTimeForm.AddField("Name", mapNameChaos);
             lossTimeForm.AddField("Time", "" + Timer.Instance.GetLevelTime());
             UnityWebRequest lossTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLossTime.php", lossTimeForm);
 
@@ -299,7 +303,7 @@ public class AnalyticsManager
             if (endWave == 1)
             {
                 WWWForm quitForm1 = new WWWForm();
-                quitForm1.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm1.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit1.php", quitForm1);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW1));
@@ -307,7 +311,7 @@ public class AnalyticsManager
             else if (endWave == 2)
             {
                 WWWForm quitForm2 = new WWWForm();
-                quitForm2.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm2.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit2.php", quitForm2);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW2));
@@ -315,7 +319,7 @@ public class AnalyticsManager
             else if (endWave == 3)
             {
                 WWWForm quitForm3 = new WWWForm();
-                quitForm3.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm3.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW3 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit3.php", quitForm3);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW3));
@@ -323,7 +327,7 @@ public class AnalyticsManager
             else if (endWave == 4)
             {
                 WWWForm quitForm4 = new WWWForm();
-                quitForm4.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm4.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW4 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit4.php", quitForm4);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW4));
@@ -331,7 +335,7 @@ public class AnalyticsManager
             else if (endWave == 5)
             {
                 WWWForm quitForm5 = new WWWForm();
-                quitForm5.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm5.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW5 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit5.php", quitForm5);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW5));
@@ -339,14 +343,14 @@ public class AnalyticsManager
             else if (endWave == 6)
             {
                 WWWForm quitForm6 = new WWWForm();
-                quitForm6.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                quitForm6.AddField("Name", mapNameChaos);
                 UnityWebRequest quitWWW6 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit6.php", quitForm6);
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW6));
             }
 
             WWWForm quitTimeForm = new WWWForm();
-            quitTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            quitTimeForm.AddField("Name", mapNameChaos);
             quitTimeForm.AddField("Time", "" + Timer.Instance.GetLevelTime());
             UnityWebRequest quitTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuitTime.php", quitTimeForm);
 
