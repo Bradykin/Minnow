@@ -192,6 +192,11 @@ public class AnalyticsManager
         FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
+    public void RecordRelicStarter(in GameRelic relicStarter)
+    {
+
+    }
+
     public void EndLevel(in RunEndType endType)
     {
         if (!Constants.AnalyticsOn)

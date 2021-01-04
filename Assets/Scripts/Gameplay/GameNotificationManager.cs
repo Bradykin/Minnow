@@ -19,18 +19,6 @@ public static class GameNotificationManager
         GameDirector.RecordCardSingleChoice(cardOption, taken);
     }
 
-    public static void RecordCardStarter(in GameCard cardStarter)
-    {
-        AnalyticsManager.RecordCardStarter(cardStarter);
-        GameDirector.RecordCardStarter(cardStarter);
-    }
-
-    public static void RecordCardChaosGiven(in GameCard chaosCard)
-    {
-        AnalyticsManager.RecordCardChaosGiven(chaosCard);
-        GameDirector.RecordCardChaosGiven(chaosCard);
-    }
-
     public static void RecordCardDuplication(in GameCard cardDuplicated)
     {
         AnalyticsManager.RecordCardDuplication(cardDuplicated);
@@ -47,6 +35,18 @@ public static class GameNotificationManager
     {
         AnalyticsManager.RecordCardRemoval(cardRemoved);
         GameDirector.RecordCardRemoval(cardRemoved);
+    }
+
+    public static void RecordCardStarter(in GameCard cardStarter)
+    {
+        AnalyticsManager.RecordCardStarter(cardStarter);
+        GameDirector.RecordCardStarter(cardStarter);
+    }
+
+    public static void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        AnalyticsManager.RecordCardChaosGiven(chaosCard);
+        GameDirector.RecordCardChaosGiven(chaosCard);
     }
 
     public static void RecordCardUnlock(in GameCard cardUnlocked)
@@ -69,6 +69,13 @@ public static class GameNotificationManager
     public static void EndLevel(in RunEndType endType)
     {
         AnalyticsManager.EndLevel(endType);
+    }
+
+
+    public static void RecordRelicStarter(in GameRelic relicStarter)
+    {
+        AnalyticsManager.RecordRelicStarter(relicStarter);
+        GameDirector.RecordRelicStarter(relicStarter);
     }
 
     public static void RecordRelicUnlock(in GameRelic relicUnlocked)

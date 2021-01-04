@@ -42,6 +42,16 @@ public class GameDirectorRun
         SubtractTagValue(cardRemoved.m_tagHolder.m_tags);
     }
 
+    public void RecordCardStarter(in GameCard cardStarter)
+    {
+        //TODO: Decide if starter cards affect tags
+    }
+
+    public void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        AddTagValue(chaosCard.m_tagHolder.m_tags);
+    }
+
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
     {
         if (relicChoice != null)
@@ -56,6 +66,11 @@ public class GameDirectorRun
         {
             AddTagValue(relicOption.m_tagHolder.m_tags);
         }
+    }
+
+    public void RecordRelicStarter(in GameRelic relicStarter)
+    {
+        //TODO: Decide if starter relics affect tags
     }
 
     private void AddTagValue(in List<GameTag> gameTags)

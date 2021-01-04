@@ -69,16 +69,6 @@ public class GameDirector
         GameDirectorRun.RecordCardSingleChoice(cardOption, taken);
     }
 
-    public void RecordCardStarter(in GameCard cardStarter)
-    {
-
-    }
-
-    public void RecordCardChaosGiven(in GameCard chaosCard)
-    {
-
-    }
-
     public void RecordCardDuplication(in GameCard cardDuplicated)
     {
         if (Constants.GameDirectorTestPrints)
@@ -107,6 +97,17 @@ public class GameDirector
         }
         GameDirectorAccount.RecordCardRemoval(cardRemoved);
         GameDirectorRun.RecordCardRemoval(cardRemoved);
+    }
+
+    public void RecordCardStarter(in GameCard cardStarter)
+    {
+        GameDirectorRun.RecordCardStarter(cardStarter);
+    }
+
+    public void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        GameDirectorAccount.RecordCardChaosGiven(chaosCard);
+        GameDirectorRun.RecordCardChaosGiven(chaosCard);
     }
 
     public void RecordCardUnlock(in GameCard cardUnlocked)
@@ -144,6 +145,11 @@ public class GameDirector
         }
         GameDirectorAccount.RecordRelicSingleChoice(relicOption, taken);
         GameDirectorRun.RecordRelicSingleChoice(relicOption, taken);
+    }
+
+    public void RecordRelicStarter(in GameRelic relicStarter)
+    {
+        GameDirectorRun.RecordRelicStarter(relicStarter);
     }
 
     public void RecordRelicUnlock(in GameRelic relicUnlocked)

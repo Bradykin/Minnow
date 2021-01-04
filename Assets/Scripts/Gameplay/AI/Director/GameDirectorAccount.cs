@@ -14,13 +14,19 @@ public class GameDirectorAccount
     private const int weightIncreaseNotOfferedCard = 1;
     private const int weightDecreaseAcceptSingleCardOption = 8;
     private const int weightDecreaseDeclineSingleCardOption = 5;
+    private const int weightDecreaseCardChaosGiven = 10;
 
-    private const int weightDecreaseAcceptRelic = 8;
+    private const int weightDecreaseCardDuplicated = 8;
+    private const int weightDecreaseCardTransformed = 10;
+    private const int weightDecreaseCardTransformReceived = 8;
+    private const int weightDecreaseCardRemoved = 10;
+
+    private const int weightDecreaseAcceptRelic = 10;
     private const int weightDecreaseDeclineAllRelicOptions = 7;
-    private const int weightDecreaseDeclineRelic = 6;
+    private const int weightDecreaseDeclineRelic = 5;
     private const int weightIncreaseNotOfferedRelic = 1;
     private const int weightDecreaseAcceptSingleRelicOption = 10;
-    private const int weightDecreaseDeclineSingleRelicOption = 3;
+    private const int weightDecreaseDeclineSingleRelicOption = 5;
 
     public List<GameDirectorCardWeight> cardWeights = new List<GameDirectorCardWeight>();
     public List<GameDirectorRelicWeight> relicWeights = new List<GameDirectorRelicWeight>();
@@ -86,24 +92,47 @@ public class GameDirectorAccount
 
     public void RecordCardDuplication(in GameCard cardDuplicated)
     {
+        GameDirectorCardWeight cardWeight = GetCardWeight(cardDuplicated);
 
+        cardWeight.curWeight -= weightDecreaseCardDuplicated;
+
+        cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
     public void RecordCardTransformation(in GameCard cardTransformed, in GameCard cardReceived)
     {
+        GameDirectorCardWeight cardWeightTransformed = GetCardWeight(cardTransformed);
+        cardWeightTransformed.curWeight -= weightDecreaseCardTransformed;
+        cardWeightTransformed.curWeight = Mathf.Clamp(cardWeightTransformed.curWeight, -tagWeightMaximums, tagWeightMaximums);
 
+        GameDirectorCardWeight cardWeightReceived = GetCardWeight(cardReceived);
+        cardWeightReceived.curWeight -= weightDecreaseCardTransformReceived;
+        cardWeightReceived.curWeight = Mathf.Clamp(cardWeightReceived.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
     public void RecordCardRemoval(in GameCard cardRemoved)
     {
+        GameDirectorCardWeight cardWeight = GetCardWeight(cardRemoved);
 
+        cardWeight.curWeight -= weightDecreaseCardRemoved;
+
+        cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
     public void RecordCardUnlock(in GameCard cardUnlocked)
     {
         GameDirectorCardWeight cardWeight = GetCardWeight(cardUnlocked);
 
-        cardWeight.curWeight = tagWeightMaximums;
+        cardWeight.curWeight = tagWeightMaximums / 2;
+    }
+
+    public void RecordCardChaosGiven(in GameCard chaosCard)
+    {
+        GameDirectorCardWeight cardWeight = GetCardWeight(chaosCard);
+
+        cardWeight.curWeight -= weightDecreaseCardChaosGiven;
+
+        cardWeight.curWeight = Mathf.Clamp(cardWeight.curWeight, -tagWeightMaximums, tagWeightMaximums);
     }
 
     public void RecordRelicChoice(in GameRelic relicChoice, in GameRelic optionOne, in GameRelic optionTwo)
@@ -169,7 +198,7 @@ public class GameDirectorAccount
     {
         GameDirectorRelicWeight relicWeight = GetRelicWeight(relicUnlocked);
 
-        relicWeight.curWeight = tagWeightMaximums;
+        relicWeight.curWeight = tagWeightMaximums / 2;
     }
 
     public GameDirectorCardWeight GetCardWeight(GameCard gameCard)
