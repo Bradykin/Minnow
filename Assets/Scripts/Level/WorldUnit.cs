@@ -85,7 +85,7 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         m_bleedingIndicator.gameObject.SetActive(GetUnit().GetBleedKeyword() != null);
         m_rootedIndicator.gameObject.SetActive(GetUnit().GetRootedKeyword() != null);
 
-        if (m_moveTarget != gameObject.transform.position)
+        if (m_movePath.Count > 0)
         {
             float movementSpeed = m_movementSpeed;
             if (!PlayerDataManager.PlayerAccountData.m_followEnemy)
