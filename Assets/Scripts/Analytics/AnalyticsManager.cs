@@ -220,6 +220,116 @@ public class AnalyticsManager
 
                 FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
             }
+
+            WWWForm winForm = new WWWForm();
+            winForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            UnityWebRequest winWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWin.php", winForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(winWWW));
+        }
+        else if (endType == RunEndType.Loss)
+        {
+            int endWave = GameHelper.GetCurrentWaveNum();
+            if (endWave == 1)
+            {
+                WWWForm lossForm1 = new WWWForm();
+                lossForm1.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss1.php", lossForm1);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW1));
+            }
+            else if (endWave == 2)
+            {
+                WWWForm lossForm2 = new WWWForm();
+                lossForm2.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss2.php", lossForm2);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW2));
+            }
+            else if (endWave == 3)
+            {
+                WWWForm lossForm3 = new WWWForm();
+                lossForm3.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW3 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss3.php", lossForm3);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW3));
+            }
+            else if (endWave == 4)
+            {
+                WWWForm lossForm4 = new WWWForm();
+                lossForm4.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW4 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss4.php", lossForm4);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW4));
+            }
+            else if (endWave == 5)
+            {
+                WWWForm lossForm5 = new WWWForm();
+                lossForm5.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW5 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss5.php", lossForm5);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW5));
+            }
+            else if (endWave == 6)
+            {
+                WWWForm lossForm6 = new WWWForm();
+                lossForm6.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest lossWWW6 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLoss6.php", lossForm6);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(lossWWW6));
+            }
+        }
+        else if (endType == RunEndType.Quit)
+        {
+            int endWave = GameHelper.GetCurrentWaveNum();
+            if (endWave == 1)
+            {
+                WWWForm quitForm1 = new WWWForm();
+                quitForm1.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit1.php", quitForm1);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW1));
+            }
+            else if (endWave == 2)
+            {
+                WWWForm quitForm2 = new WWWForm();
+                quitForm2.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit2.php", quitForm2);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW2));
+            }
+            else if (endWave == 3)
+            {
+                WWWForm quitForm3 = new WWWForm();
+                quitForm3.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW3 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit3.php", quitForm3);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW3));
+            }
+            else if (endWave == 4)
+            {
+                WWWForm quitForm4 = new WWWForm();
+                quitForm4.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW4 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit4.php", quitForm4);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW4));
+            }
+            else if (endWave == 5)
+            {
+                WWWForm quitForm5 = new WWWForm();
+                quitForm5.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW5 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit5.php", quitForm5);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW5));
+            }
+            else if (endWave == 6)
+            {
+                WWWForm quitForm6 = new WWWForm();
+                quitForm6.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+                UnityWebRequest quitWWW6 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuit6.php", quitForm6);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(quitWWW6));
+            }
         }
     }
 
