@@ -194,7 +194,22 @@ public class AnalyticsManager
 
     public void RecordRelicStarter(in GameRelic relicStarter)
     {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
 
+        WWWForm pickForm = new WWWForm();
+        pickForm.AddField("Name", relicStarter.GetBaseName());
+        UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataPick.php", pickForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+
+        WWWForm seeForm = new WWWForm();
+        seeForm.AddField("Name", relicStarter.GetBaseName());
+        UnityWebRequest seeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataSee.php", seeForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
     public void EndLevel(in RunEndType endType)
