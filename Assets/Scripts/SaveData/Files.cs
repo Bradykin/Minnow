@@ -39,6 +39,12 @@ public static class Files
 
         var loaded = JsonConvert.DeserializeObject<PlayerAccountData>(File.ReadAllText(path));
 
+        if (loaded == null)
+        {
+            PlayerAccountData data = new PlayerAccountData();
+            return data;
+        }
+
         if (loaded.JsonGameMetaProgressionRewardDatas != null)
         {
             for (int i = 0; i < loaded.JsonGameMetaProgressionRewardDatas.Count; i++)
@@ -98,6 +104,12 @@ public static class Files
 
         var loaded = JsonConvert.DeserializeObject<PlayerRunData>(File.ReadAllText(path));
 
+        if (loaded == null)
+        {
+            PlayerRunData data = new PlayerRunData();
+            return data;
+        }
+
         return loaded;
     }
 
@@ -144,6 +156,12 @@ public static class Files
 
         var loaded = JsonConvert.DeserializeObject<GameDirectorAccount>(File.ReadAllText(path));
 
+        if (loaded == null)
+        {
+            GameDirectorAccount data = new GameDirectorAccount();
+            return data;
+        }
+
         return loaded;
     }
 
@@ -189,6 +207,12 @@ public static class Files
         }
 
         var loaded = JsonConvert.DeserializeObject<GameDirectorRun>(File.ReadAllText(path));
+
+        if (loaded == null)
+        {
+            GameDirectorRun data = new GameDirectorRun();
+            return data;
+        }
 
         return loaded;
     }
