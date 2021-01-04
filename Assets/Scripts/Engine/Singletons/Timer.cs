@@ -22,5 +22,10 @@ namespace Game.Util
         {
             return m_levelTime;
         }
+
+        public void SetLevelTime(float levelTime)
+        {
+            m_levelTime = levelTime;
+        }
     }
 }

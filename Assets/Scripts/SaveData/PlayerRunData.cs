@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Game.Util;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ public class PlayerRunData
 {
     public JsonGameControllerData m_jsonGameControllerData;
     public JsonMapData m_jsonMapData;
+
+    public float m_runTimer;
     
     public PlayerRunData()
     {
@@ -17,6 +20,8 @@ public class PlayerRunData
 
     public void SaveRunData()
     {
+        m_runTimer = Timer.Instance.GetLevelTime();
+        
         if (!WorldController.Instance.m_isInGame)
         {
             Debug.LogError("Tried to save run while not in game");

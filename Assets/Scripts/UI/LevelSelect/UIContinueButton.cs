@@ -47,7 +47,7 @@ public class UIContinueButton : UIElementBase
                 Globals.loadingRun = true;
                 UILevelSelectController.Instance.m_curMap = GameMapFactory.GetMapById(mapId);
                 AudioBackgroundController.Instance.StartBackgroundMusic(UILevelSelectController.Instance.m_curMap);
-                WorldController.Instance.BeginLevel(UILevelSelectController.Instance.m_curMap);
+                WorldController.Instance.BeginLevel(UILevelSelectController.Instance.m_curMap, true);
                 SceneLoader.ActivateScene("LevelScene", "LevelSelectScene");
                 return;
             }

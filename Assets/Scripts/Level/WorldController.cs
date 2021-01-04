@@ -22,11 +22,18 @@ public class WorldController : Singleton<WorldController>
         base.Awake();
     }
 
-    public void BeginLevel(GameMap map)
+    public void BeginLevel(GameMap map, bool isContinue)
     {
         m_isInGame = true;
 
-        Timer.Instance.ResetLevelTime();
+        if (isContinue)
+        {
+            Timer.Instance.SetLevelTime(PlayerDataManager.PlayerAccountData.PlayerRunData.m_runTimer);
+        }
+        else
+        {
+            Timer.Instance.ResetLevelTime();
+        }
         m_gameController = new GameController(map);
         map.TriggerStartMap();
 
