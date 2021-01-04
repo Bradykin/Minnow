@@ -8,7 +8,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
     {
         m_name = "Assassination Contract";
         m_targetType = Target.None;
-        m_cost = 2;
+        m_cost = 3;
         m_rarity = GameRarity.Common;
         m_spellEffect = 2;
 
