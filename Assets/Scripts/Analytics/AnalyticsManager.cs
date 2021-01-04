@@ -226,6 +226,13 @@ public class AnalyticsManager
             UnityWebRequest winWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWin.php", winForm);
 
             FactoryManager.Instance.StartCoroutine(UploadData(winWWW));
+
+            WWWForm winTimeForm = new WWWForm();
+            winTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            winTimeForm.AddField("Time", ""+Timer.Instance.GetLevelTime());
+            UnityWebRequest winTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWinTime.php", winTimeForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(winTimeWWW));
         }
         else if (endType == RunEndType.Loss)
         {
@@ -278,6 +285,13 @@ public class AnalyticsManager
 
                 FactoryManager.Instance.StartCoroutine(UploadData(lossWWW6));
             }
+
+            WWWForm lossTimeForm = new WWWForm();
+            lossTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            lossTimeForm.AddField("Time", "" + Timer.Instance.GetLevelTime());
+            UnityWebRequest lossTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataLossTime.php", lossTimeForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(lossTimeWWW));
         }
         else if (endType == RunEndType.Quit)
         {
@@ -330,6 +344,13 @@ public class AnalyticsManager
 
                 FactoryManager.Instance.StartCoroutine(UploadData(quitWWW6));
             }
+
+            WWWForm quitTimeForm = new WWWForm();
+            quitTimeForm.AddField("Name", GameHelper.GetGameController().GetCurMap().GetBaseName());
+            quitTimeForm.AddField("Time", "" + Timer.Instance.GetLevelTime());
+            UnityWebRequest quitTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataQuitTime.php", quitTimeForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(quitTimeWWW));
         }
     }
 

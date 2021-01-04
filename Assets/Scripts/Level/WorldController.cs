@@ -26,9 +26,9 @@ public class WorldController : Singleton<WorldController>
     {
         m_isInGame = true;
 
+        Timer.Instance.ResetLevelTime();
         m_gameController = new GameController(map);
         map.TriggerStartMap();
-
 
         m_playerHand = new List<UICard>();
 
