@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentChainLightningCard : GameCardSpellBase
 {
-    private int m_range = 2;
+    private int m_range = 1;
 
     public ContentChainLightningCard()
     {

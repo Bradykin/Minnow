@@ -10,7 +10,7 @@ public class ContentBatteryPackCard : GameCardSpellBase
 
         m_name = "Battery Pack";
         m_targetType = Target.Ally;
-        m_cost = 1;
+        m_cost = 2;
         m_rarity = GameRarity.Uncommon;
 
         SetupBasicData();
