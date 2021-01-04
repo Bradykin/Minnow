@@ -222,6 +222,36 @@ public class AnalyticsManager
         GamePlayer player = GameHelper.GetPlayer();
         string mapNameChaos = $"{GameHelper.GetGameController().GetCurMap().GetBaseName()} - Chaos {Globals.m_curChaos}";
 
+        List<GameRelic> relicList = player.GetRelics().GetRelicListForRead();
+
+        for (int i = 0; i < relicList.Count; i++)
+        {
+            if (relicList[i].m_rarity == GameElementBase.GameRarity.Common)
+            {
+                WWWForm relicMapForm = new WWWForm();
+                relicMapForm.AddField("Name", mapNameChaos);
+                UnityWebRequest relicMapWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataRelicCommon.php", relicMapForm);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(relicMapWWW));
+            }
+            else if (relicList[i].m_rarity == GameElementBase.GameRarity.Uncommon)
+            {
+                WWWForm relicMapForm = new WWWForm();
+                relicMapForm.AddField("Name", mapNameChaos);
+                UnityWebRequest relicMapWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataRelicUncommon.php", relicMapForm);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(relicMapWWW));
+            }
+            else if (relicList[i].m_rarity == GameElementBase.GameRarity.Rare)
+            {
+                WWWForm relicMapForm = new WWWForm();
+                relicMapForm.AddField("Name", mapNameChaos);
+                UnityWebRequest relicMapWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataRelicRare.php", relicMapForm);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(relicMapWWW));
+            }
+        }
+
         if (endType == RunEndType.Win)
         {
             if (Constants.AnalyticsOn)
