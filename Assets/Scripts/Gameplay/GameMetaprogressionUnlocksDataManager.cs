@@ -206,7 +206,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_cardRewards.Add(22, CreateCardLevelReward("More Cards",
             "Newly unlocked cards - these cards can appear in future runs.\n",
-            new ContentContellationsCard(), new ContentEndCard(), new ContentPathCard()));
+            new ContentConstellationsCard(), new ContentEndCard(), new ContentPathCard()));
 
         m_cardRewards.Add(23, CreateCardLevelReward("More Cards",
             "Newly unlocked cards - these cards can appear in future runs.\n",

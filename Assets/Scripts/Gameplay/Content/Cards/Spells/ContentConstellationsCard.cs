@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentContellationsCard : GameCardSpellBase
+public class ContentConstellationsCard : GameCardSpellBase
 {
     private int m_statBuff = 5;
 
-    public ContentContellationsCard()
+    public ContentConstellationsCard()
     {
         m_name = "Constellations";
         m_targetType = Target.Ally;
@@ -42,9 +42,7 @@ public class ContentContellationsCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        GameTile castleTile = GameHelper.GetPlayer().GetCastleGameTile();
-
-        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(castleTile, GetSpellValue(), 1);
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(targetUnit.GetGameTile(), GetSpellValue(), 1);
 
         int numEnemies = 0;
         for (int i = 0; i < surroundingTiles.Count; i++)

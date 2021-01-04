@@ -92,12 +92,14 @@ public static class Constants
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
     public static bool AnalyticsOn = false;
+    public static bool TestingAnalytics = true;
 #else
     public static bool GameDirectorTestPrints = false;
     public static bool DevMode = false;
     public static bool DebugSeeAllThroughFog = false;
     public static bool UnlockAllContent = false;
     public static bool AnalyticsOn = true;
+    public static bool TestingAnalytics = false;
 #endif
     public static bool SteppedOutEnemyTurnsCameraFollowMovement = true;
     public static int SteppedOutEnemyTurnsCameraFollowThreshold = 3;

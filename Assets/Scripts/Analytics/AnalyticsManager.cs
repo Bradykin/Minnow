@@ -149,6 +149,24 @@ public class AnalyticsManager
         {
             return;
         }
+
+        WWWForm pickForm = new WWWForm();
+        pickForm.AddField("Name", relicChoice.GetBaseName());
+        UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataPick.php", pickForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+
+        WWWForm seeForm1 = new WWWForm();
+        seeForm1.AddField("Name", optionOne.GetBaseName());
+        UnityWebRequest seeWWW1 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataSee.php", seeForm1);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(seeWWW1));
+
+        WWWForm seeForm2 = new WWWForm();
+        seeForm2.AddField("Name", optionTwo.GetBaseName());
+        UnityWebRequest seeWWW2 = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataSee.php", seeForm2);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(seeWWW2));
     }
 
     public void RecordRelicSingleChoice(in GameRelic relicOption, bool taken)
@@ -157,24 +175,50 @@ public class AnalyticsManager
         {
             return;
         }
+
+        if (taken)
+        {
+            WWWForm pickForm = new WWWForm();
+            pickForm.AddField("Name", relicOption.GetBaseName());
+            UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataPick.php", pickForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+        }
+
+        WWWForm seeForm = new WWWForm();
+        seeForm.AddField("Name", relicOption.GetBaseName());
+        UnityWebRequest seeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataSee.php", seeForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(seeWWW));
     }
 
-    public void EndLevel(in RunEndType endType, in GameDeck deck)
+    public void EndLevel(in RunEndType endType)
     {
         if (!Constants.AnalyticsOn)
         {
             return;
         }
 
+        GamePlayer player = GameHelper.GetPlayer();
+
         if (endType == RunEndType.Win)
         {
-            for (int i = 0; i < deck.Count(); i++)
+            for (int i = 0; i < player.m_deckBase.Count(); i++)
             {
-                WWWForm winForm = new WWWForm();
-                winForm.AddField("Name", deck.GetCardByIndex(i).GetBaseName());
-                UnityWebRequest winWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", winForm);
+                WWWForm cardWinForm = new WWWForm();
+                cardWinForm.AddField("Name", player.m_deckBase.GetCardByIndex(i).GetBaseName());
+                UnityWebRequest cardWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", cardWinForm);
 
-                FactoryManager.Instance.StartCoroutine(UploadData(winWWW));
+                FactoryManager.Instance.StartCoroutine(UploadData(cardWinWWW));
+            }
+
+            for (int i = 0; i < player.GetRelics().GetSize(); i++)
+            {
+                WWWForm relicWinForm = new WWWForm();
+                relicWinForm.AddField("Name", player.GetRelics().GetRelicListForRead()[i].GetBaseName());
+                UnityWebRequest relicWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataWin.php", relicWinForm);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
             }
         }
     }
