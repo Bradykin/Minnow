@@ -11,7 +11,7 @@ public class ContentAncientEvilRelic : GameRelic
     {
         m_name = "Ancient Evil";
         m_desc = "When you pick this up, gain 1 gold.";
-        //If 50 enemies are killed after getting this, all allied units are monsters and allied monsters get +10/+10.
+        //If 30 enemies are killed after getting this, all allied units are monsters and allied monsters get +10/+10.
         m_rarity = GameRarity.Rare;
 
         LateInit();
@@ -21,7 +21,7 @@ public class ContentAncientEvilRelic : GameRelic
     {
         m_killCount++;
 
-        if (m_killCount == 50)
+        if (m_killCount == 30)
         {
             m_isTransformed = true;
 
@@ -29,7 +29,7 @@ public class ContentAncientEvilRelic : GameRelic
             m_desc = "All allied units are <b>Monster</b> units and allied <b>Monster</b> units get +10/+10";
             UIHelper.TriggerRelicAnimation<ContentAncientEvilRelic>();
         }
-        else if (m_killCount < 50 && m_killCount%10 == 0)
+        else if (m_killCount < 30 && m_killCount%10 == 0)
         {
             UIHelper.CreateHUDNotification("Evil Stirs", "As the blood of the enemies fall, an Ancient Evil stirs.");
             UIHelper.TriggerRelicAnimation<ContentAncientEvilRelic>();

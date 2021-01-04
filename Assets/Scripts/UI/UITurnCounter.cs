@@ -38,7 +38,13 @@ public class UITurnCounter : UIElementBase
             {
                 m_titleText.text = "Wave " + gameController.m_currentWaveNumber;
 
-                m_countText.text = "Kill " + (gameController.m_endWaveKillCount - gameController.m_curKillCount) + " more.";
+                int killCount = gameController.m_endWaveKillCount - gameController.m_curKillCount;
+                if (killCount <= 0)
+                {
+                    killCount = 0;
+                }
+
+                m_countText.text = $"Kill {killCount} more.";
             }
         }
 
