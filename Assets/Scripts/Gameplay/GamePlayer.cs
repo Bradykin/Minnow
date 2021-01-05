@@ -39,6 +39,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     public int m_tempMagicPowerIncrease = 0;
     public int m_totemOfTheWolfTurn = -1;
 
+    //Analytics Data
+    public int m_numEventsTriggered;
+    public GameAltar m_obtainedAltar;
+
     public GamePlayer()
     {
         m_hand = new List<GameCard>();
@@ -720,6 +724,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     public void GainGold(int toGain, bool showUINotification = true)
     {
+        GameNotificationManager.RecordGainGold(toGain);
+
         m_wallet.AddGold(toGain, showUINotification);
 
         if (toGain >= 75)

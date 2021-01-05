@@ -254,25 +254,22 @@ public class AnalyticsManager
 
         if (endType == RunEndType.Win)
         {
-            if (Constants.AnalyticsOn)
+            for (int i = 0; i < player.m_deckBase.Count(); i++)
             {
-                for (int i = 0; i < player.m_deckBase.Count(); i++)
-                {
-                    WWWForm cardWinForm = new WWWForm();
-                    cardWinForm.AddField("Name", player.m_deckBase.GetCardByIndex(i).GetBaseName());
-                    UnityWebRequest cardWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", cardWinForm);
+                WWWForm cardWinForm = new WWWForm();
+                cardWinForm.AddField("Name", player.m_deckBase.GetCardByIndex(i).GetBaseName());
+                UnityWebRequest cardWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelCardDataWin.php", cardWinForm);
 
-                    FactoryManager.Instance.StartCoroutine(UploadData(cardWinWWW));
-                }
+                FactoryManager.Instance.StartCoroutine(UploadData(cardWinWWW));
+            }
 
-                for (int i = 0; i < player.GetRelics().GetSize(); i++)
-                {
-                    WWWForm relicWinForm = new WWWForm();
-                    relicWinForm.AddField("Name", player.GetRelics().GetRelicListForRead()[i].GetBaseName());
-                    UnityWebRequest relicWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataWin.php", relicWinForm);
+            for (int i = 0; i < player.GetRelics().GetSize(); i++)
+            {
+                WWWForm relicWinForm = new WWWForm();
+                relicWinForm.AddField("Name", player.GetRelics().GetRelicListForRead()[i].GetBaseName());
+                UnityWebRequest relicWinWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelRelicDataWin.php", relicWinForm);
 
-                    FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
-                }
+                FactoryManager.Instance.StartCoroutine(UploadData(relicWinWWW));
             }
 
             WWWForm winForm = new WWWForm();
@@ -287,6 +284,52 @@ public class AnalyticsManager
             UnityWebRequest winTimeWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataWinTime.php", winTimeForm);
 
             FactoryManager.Instance.StartCoroutine(UploadData(winTimeWWW));
+
+            if (player.m_numEventsTriggered > 0)
+            {
+                WWWForm winEventForm = new WWWForm();
+                winEventForm.AddField("Name", mapNameChaos);
+                winEventForm.AddField("Events", player.m_numEventsTriggered);
+                UnityWebRequest winEventWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataEventWin.php", winEventForm);
+
+                FactoryManager.Instance.StartCoroutine(UploadData(winEventWWW));
+            }
+
+            if (player.m_obtainedAltar != null)
+            {
+                if (player.m_obtainedAltar.GetName() == new ContentDorphinAltar(null).GetName())
+                {
+                    WWWForm winAltarForm = new WWWForm();
+                    winAltarForm.AddField("Name", mapNameChaos);
+                    UnityWebRequest winAltarWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataAltarWinDorphin.php", winAltarForm);
+
+                    FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
+                }
+                else if (player.m_obtainedAltar.GetName() == new ContentMonAltar(null).GetName())
+                {
+                    WWWForm winAltarForm = new WWWForm();
+                    winAltarForm.AddField("Name", mapNameChaos);
+                    UnityWebRequest winAltarWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataAltarWinMon.php", winAltarForm);
+
+                    FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
+                }
+                else if (player.m_obtainedAltar.GetName() == new ContentSugoAltar(null).GetName())
+                {
+                    WWWForm winAltarForm = new WWWForm();
+                    winAltarForm.AddField("Name", mapNameChaos);
+                    UnityWebRequest winAltarWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataAltarWinSugo.php", winAltarForm);
+
+                    FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
+                }
+                else if (player.m_obtainedAltar.GetName() == new ContentTelloAltar(null).GetName())
+                {
+                    WWWForm winAltarForm = new WWWForm();
+                    winAltarForm.AddField("Name", mapNameChaos);
+                    UnityWebRequest winAltarWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelMapDataAltarWinTello.php", winAltarForm);
+
+                    FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
+                }
+            }
         }
         else if (endType == RunEndType.Loss)
         {

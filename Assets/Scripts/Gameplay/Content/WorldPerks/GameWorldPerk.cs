@@ -71,10 +71,12 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         else if (m_perkType == WorldPerkType.Event)
         {
             UIEventController.Instance.Init(m_event);
+            GameHelper.GetPlayer().m_numEventsTriggered++;
         }
         else if (m_perkType == WorldPerkType.Altar)
         {
             UIEventController.Instance.Init(m_altar);
+            GameHelper.GetPlayer().m_obtainedAltar = m_altar;
         }
         else if (m_perkType == WorldPerkType.Gold)
         {
