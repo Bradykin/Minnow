@@ -71,6 +71,10 @@ public static class GameNotificationManager
         AnalyticsManager.EndLevel(endType);
     }
 
+    public static void RecordGainGold(in int goldValue)
+    {
+        AnalyticsManager.RecordGainGold(goldValue);
+    }
 
     public static void RecordRelicStarter(in GameRelic relicStarter)
     {
