@@ -367,6 +367,11 @@ public class AnalyticsManager
         }
     }
 
+    public void RecordEventInteracted(GameEvent gameEvent, bool isFirstOption)
+    {
+
+    }
+
     public void RecordGainGold(in int goldValue)
     {
         if (!Constants.AnalyticsOn)

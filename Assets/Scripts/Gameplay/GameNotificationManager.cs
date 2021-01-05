@@ -87,6 +87,11 @@ public static class GameNotificationManager
         GameDirector.RecordRelicUnlock(relicUnlocked);
     }
 
+    public static void RecordEventInteracted(in GameEvent gameEvent, bool isFirstOption)
+    {
+        AnalyticsManager.RecordEventInteracted(gameEvent, isFirstOption);
+    }
+
     public static void SaveGameDirectorData()
     {
         GameDirector.SaveGameDirectorData();

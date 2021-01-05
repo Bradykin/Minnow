@@ -62,10 +62,12 @@ public class UIEventController : Singleton<UIEventController>
         if (m_event.m_optionOne == acceptedOption && m_event.m_optionTwo != null)
         {
             m_event.m_optionTwo.DeclineOption();
+            GameNotificationManager.RecordEventInteracted(m_event, true);
         }
         else if (m_event.m_optionTwo == acceptedOption && m_event.m_optionOne != null)
         {
             m_event.m_optionOne.DeclineOption();
+            GameNotificationManager.RecordEventInteracted(m_event, false);
         }
         
         Globals.m_canSelect = true;
