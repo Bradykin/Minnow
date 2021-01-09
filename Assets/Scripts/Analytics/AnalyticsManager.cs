@@ -392,6 +392,23 @@ public class AnalyticsManager
         }
     }
 
+    public void RecordEliteKill()
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        string mapNameChaos = $"{GameHelper.GetGameController().GetCurMap().GetBaseName()} - Chaos {Globals.m_curChaos}";
+        int wave = GameHelper.GetCurrentWaveNum();
+
+        WWWForm eliteForm = new WWWForm();
+        eliteForm.AddField("Name", mapNameChaos);
+        UnityWebRequest goldWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelMapDataEliteKill{wave}.php", eliteForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(goldWWW));
+    }
+
     public void RecordGainGold(in int goldValue)
     {
         if (!Constants.AnalyticsOn)

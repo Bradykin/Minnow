@@ -120,6 +120,8 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
             UIHelper.TriggerRelicAnimation<ContentAncientCoinsRelic>();
         }
 
+        GameNotificationManager.RecordEliteKill();
+
         base.Die(canRevive, damageType);
     }
 
