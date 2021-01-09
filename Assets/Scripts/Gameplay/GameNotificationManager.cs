@@ -81,6 +81,11 @@ public static class GameNotificationManager
         AnalyticsManager.RecordEliteKill();
     }
 
+    public static void RecordBuilding(GameBuildingBase building)
+    {
+        AnalyticsManager.RecordBuilding(building);
+    }
+
     public static void RecordRelicStarter(in GameRelic relicStarter)
     {
         AnalyticsManager.RecordRelicStarter(relicStarter);

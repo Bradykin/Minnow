@@ -37,6 +37,8 @@ public static class GameHelper
 
         UIHelper.ClearBuildingTiles();
         UIHelper.SetBuildingTiles();
+
+        GameNotificationManager.RecordBuilding(building);
     }
 
     public static void DestroyPlayerBuilding(GameTile buildingTile)

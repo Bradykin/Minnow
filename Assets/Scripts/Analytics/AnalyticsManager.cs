@@ -404,9 +404,23 @@ public class AnalyticsManager
 
         WWWForm eliteForm = new WWWForm();
         eliteForm.AddField("Name", mapNameChaos);
-        UnityWebRequest goldWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelMapDataEliteKill{wave}.php", eliteForm);
+        UnityWebRequest eliteWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelMapDataEliteKill{wave}.php", eliteForm);
 
-        FactoryManager.Instance.StartCoroutine(UploadData(goldWWW));
+        FactoryManager.Instance.StartCoroutine(UploadData(eliteWWW));
+    }
+
+    public void RecordBuilding(GameBuildingBase building)
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        WWWForm buildingForm = new WWWForm();
+        buildingForm.AddField("Name", building.GetBaseName());
+        UnityWebRequest buildingWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelBuildingDataCount.php", buildingForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(buildingWWW));
     }
 
     public void RecordGainGold(in int goldValue)
