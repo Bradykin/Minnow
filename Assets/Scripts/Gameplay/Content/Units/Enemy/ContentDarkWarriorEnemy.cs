@@ -56,6 +56,8 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
             UIHelper.TriggerRelicAnimation<ContentAncientCoinsRelic>();
         }
 
+        GameNotificationManager.RecordEliteKill();
+
         base.Die(canRevive, damageType);
     }
 

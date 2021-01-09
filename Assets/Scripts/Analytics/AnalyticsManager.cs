@@ -369,7 +369,72 @@ public class AnalyticsManager
 
     public void RecordEventInteracted(GameEvent gameEvent, bool isFirstOption)
     {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
 
+        if (isFirstOption)
+        {
+            WWWForm pickForm = new WWWForm();
+            pickForm.AddField("Name", gameEvent.GetBaseName());
+            UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelEventFirstPick.php", pickForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+        }
+        else
+        {
+            WWWForm pickForm = new WWWForm();
+            pickForm.AddField("Name", gameEvent.GetBaseName());
+            UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelEventSecondPick.php", pickForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+        }
+    }
+
+    public void RecordEliteKill()
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        string mapNameChaos = $"{GameHelper.GetGameController().GetCurMap().GetBaseName()} - Chaos {Globals.m_curChaos}";
+        int wave = GameHelper.GetCurrentWaveNum();
+
+        WWWForm eliteForm = new WWWForm();
+        eliteForm.AddField("Name", mapNameChaos);
+        UnityWebRequest eliteWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelMapDataEliteKill{wave}.php", eliteForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(eliteWWW));
+    }
+
+    public void RecordBuilding(GameBuildingBase building)
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        WWWForm buildingForm = new WWWForm();
+        buildingForm.AddField("Name", building.GetBaseName());
+        UnityWebRequest buildingWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelBuildingDataCount.php", buildingForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(buildingWWW));
+    }
+
+    public void RecordAction(GameActionIntermission action)
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        WWWForm actionForm = new WWWForm();
+        actionForm.AddField("Name", action.GetBaseName());
+        UnityWebRequest actionWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelActionsDataCount.php", actionForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(actionWWW));
     }
 
     public void RecordGainGold(in int goldValue)

@@ -138,6 +138,8 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
             UIHelper.TriggerRelicAnimation<ContentAncientCoinsRelic>();
         }
 
+        GameNotificationManager.RecordEliteKill();
+
         base.Die(canRevive, damageType);
     }
 

@@ -76,6 +76,21 @@ public static class GameNotificationManager
         AnalyticsManager.RecordGainGold(goldValue);
     }
 
+    public static void RecordEliteKill()
+    {
+        AnalyticsManager.RecordEliteKill();
+    }
+
+    public static void RecordBuilding(GameBuildingBase building)
+    {
+        AnalyticsManager.RecordBuilding(building);
+    }
+
+    public static void RecordAction(GameActionIntermission action)
+    {
+        AnalyticsManager.RecordAction(action);
+    }
+
     public static void RecordRelicStarter(in GameRelic relicStarter)
     {
         AnalyticsManager.RecordRelicStarter(relicStarter);
