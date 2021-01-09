@@ -235,7 +235,10 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         Files.ClearGameDirectorAccountData();
         Files.ClearGameDirectorRunData();
 
-        UIStarterCardSelectionController.Instance.ResetStarterCardInit();
+        if (UIStarterCardSelectionController.Instance != null)
+        {
+            UIStarterCardSelectionController.Instance.ResetStarterCardInit();
+        }
     }
 
     private void ToggleFog()
