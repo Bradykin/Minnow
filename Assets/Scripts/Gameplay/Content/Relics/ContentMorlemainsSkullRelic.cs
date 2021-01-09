@@ -12,6 +12,7 @@ public class ContentMorlemainsSkullRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.HighCost);
+        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.EnergyRegen);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.HighCost, isReceiver: false);
     }
 }

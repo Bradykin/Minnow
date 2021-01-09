@@ -18,7 +18,7 @@ public class ContentChainLightningCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 3);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);
 
         m_onPlaySFX = AudioHelper.LightningBolt;

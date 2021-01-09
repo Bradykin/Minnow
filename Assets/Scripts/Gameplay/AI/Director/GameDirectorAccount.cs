@@ -28,8 +28,8 @@ public class GameDirectorAccount
     private const int weightDecreaseAcceptSingleRelicOption = 10;
     private const int weightDecreaseDeclineSingleRelicOption = 5;
 
-    public List<GameDirectorCardWeight> cardWeights = new List<GameDirectorCardWeight>();
-    public List<GameDirectorRelicWeight> relicWeights = new List<GameDirectorRelicWeight>();
+    public List<GameDirectorCardWeight> gameCardWeights = new List<GameDirectorCardWeight>();
+    public List<GameDirectorRelicWeight> gameRelicWeights = new List<GameDirectorRelicWeight>();
 
     public void RecordCardChoice(in GameCard cardChoice, in GameCard optionOne, in GameCard optionTwo, in GameCard optionThree)
     {
@@ -55,7 +55,7 @@ public class GameDirectorAccount
                     cardWeight.curWeight -= weightDecreaseDeclineAllCardOptions;
                 }
             }
-            else
+            else if (cardWeight.curWeight < 0)
             {
                 cardWeight.curWeight += weightIncreaseNotOfferedCard;
             }
@@ -203,32 +203,32 @@ public class GameDirectorAccount
 
     public GameDirectorCardWeight GetCardWeight(GameCard gameCard)
     {
-        if (cardWeights.Any(c => c.gameCardName == gameCard.GetBaseName()))
+        if (gameCardWeights.Any(c => c.gameCardName == gameCard.GetBaseName()))
         {
-            return cardWeights.FirstOrDefault(c => c.gameCardName == gameCard.GetBaseName());
+            return gameCardWeights.FirstOrDefault(c => c.gameCardName == gameCard.GetBaseName());
         }
 
         GameDirectorCardWeight cardWeight = new GameDirectorCardWeight
         {
             gameCardName = gameCard.GetBaseName()
         };
-        cardWeights.Add(cardWeight);
+        gameCardWeights.Add(cardWeight);
 
         return cardWeight;
     }
 
     public GameDirectorRelicWeight GetRelicWeight(GameRelic gameRelic)
     {
-        if (relicWeights.Any(c => c.gameRelicName == gameRelic.GetBaseName()))
+        if (gameRelicWeights.Any(c => c.gameRelicName == gameRelic.GetBaseName()))
         {
-            return relicWeights.FirstOrDefault(c => c.gameRelicName == gameRelic.GetBaseName());
+            return gameRelicWeights.FirstOrDefault(c => c.gameRelicName == gameRelic.GetBaseName());
         }
 
         GameDirectorRelicWeight relicWeight = new GameDirectorRelicWeight
         {
             gameRelicName = gameRelic.GetBaseName()
         };
-        relicWeights.Add(relicWeight);
+        gameRelicWeights.Add(relicWeight);
 
         return relicWeight;
     }

@@ -13,7 +13,7 @@ public class ContentOverlordCard : GameUnitCard
         FillBasicData();
 
         m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen);
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.BuffSpell, 3);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Explorer);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }

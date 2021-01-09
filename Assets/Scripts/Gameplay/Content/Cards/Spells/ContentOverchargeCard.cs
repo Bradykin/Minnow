@@ -14,7 +14,7 @@ public class ContentOverchargeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Creation, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
 

@@ -17,7 +17,7 @@ public class ContentAncientTextsCard : GameCardSpellBase
 
         m_keywordHolder.AddKeyword(new GameKnowledgeableKeyword(null));
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 3);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 
         m_onPlaySFX = AudioHelper.MiscEffect;
