@@ -423,6 +423,20 @@ public class AnalyticsManager
         FactoryManager.Instance.StartCoroutine(UploadData(buildingWWW));
     }
 
+    public void RecordAction(GameActionIntermission action)
+    {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
+
+        WWWForm actionForm = new WWWForm();
+        actionForm.AddField("Name", action.GetBaseName());
+        UnityWebRequest actionWWW = UnityWebRequest.Post($"http://nmartino.com/gamescripts/citadel/CitadelActionsDataCount.php", actionForm);
+
+        FactoryManager.Instance.StartCoroutine(UploadData(actionWWW));
+    }
+
     public void RecordGainGold(in int goldValue)
     {
         if (!Constants.AnalyticsOn)

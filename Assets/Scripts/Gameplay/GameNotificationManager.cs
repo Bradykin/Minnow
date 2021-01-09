@@ -86,6 +86,11 @@ public static class GameNotificationManager
         AnalyticsManager.RecordBuilding(building);
     }
 
+    public static void RecordAction(GameActionIntermission action)
+    {
+        AnalyticsManager.RecordAction(action);
+    }
+
     public static void RecordRelicStarter(in GameRelic relicStarter)
     {
         AnalyticsManager.RecordRelicStarter(relicStarter);

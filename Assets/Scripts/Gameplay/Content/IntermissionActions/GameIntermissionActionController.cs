@@ -76,6 +76,8 @@ public class GameIntermissionActionController
             }
 
             m_action.Activate();
+
+            GameNotificationManager.RecordAction(m_action);
         }
     }
 
