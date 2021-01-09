@@ -12,6 +12,6 @@ public class ContentAncientMysteryRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable, 3);
     }
 }

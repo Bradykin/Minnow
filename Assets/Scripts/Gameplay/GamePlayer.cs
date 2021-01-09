@@ -41,7 +41,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     //Analytics Data
     public int m_numEventsTriggered;
-    public GameAltar m_obtainedAltar;
+    public string m_obtainedAltarName = "";
 
     public GamePlayer()
     {
@@ -919,7 +919,10 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             spellsPlayedThisTurn = m_spellsPlayedThisTurn,
             fletchingPowerIncrease = m_fletchingPowerIncrease,
             tempMagicPowerIncrease = m_tempMagicPowerIncrease,
-            totemOfTheWolfTurn = m_totemOfTheWolfTurn
+            totemOfTheWolfTurn = m_totemOfTheWolfTurn,
+
+            numEventsTriggered = m_numEventsTriggered,
+            obtainedAltarName = m_obtainedAltarName
         };
 
         for (int i = 0; i < m_hand.Count; i++)
@@ -1066,5 +1069,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_tempMagicPowerIncrease = jsonData.tempMagicPowerIncrease;
         m_totemOfTheWolfTurn = jsonData.totemOfTheWolfTurn;
         m_wallet.m_gold = jsonData.goldAmount;
+
+        m_numEventsTriggered = jsonData.numEventsTriggered;
+        m_obtainedAltarName = jsonData.obtainedAltarName;
     }
 }

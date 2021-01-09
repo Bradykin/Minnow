@@ -12,7 +12,7 @@ public class ContentImpaliumRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv);
     }
 }

@@ -28,4 +28,7 @@ public struct JsonGamePlayerData
     public int fletchingPowerIncrease;
     public int tempMagicPowerIncrease;
     public int totemOfTheWolfTurn;
+
+    public int numEventsTriggered;
+    public string obtainedAltarName;
 }

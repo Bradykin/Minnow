@@ -66,7 +66,7 @@ public class GameTagHolder
     public List<GameTag> m_tags = new List<GameTag>();
 
 
-    public void AddPushTag(TagType tagType, int tagWeight = 1, bool isReceiver = true)
+    public void AddPushTag(TagType tagType, int tagWeight = 2, bool isReceiver = true)
     {
         m_tags.RemoveAll(t => t.m_tagType == tagType && t.m_tagInfluence == TagInfluence.None);
 

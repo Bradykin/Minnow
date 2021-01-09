@@ -17,7 +17,7 @@ public class ContentBloodSacrificeCard : GameCardSpellBase
 
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Reanimate);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Knowledgeable);
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower, 3);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 
         m_onPlaySFX = AudioHelper.BloodSacrifice;

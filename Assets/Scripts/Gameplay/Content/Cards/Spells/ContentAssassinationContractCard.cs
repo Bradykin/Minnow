@@ -16,7 +16,7 @@ public class ContentAssassinationContractCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Shiv, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.DamageSpell);

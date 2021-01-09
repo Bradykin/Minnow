@@ -295,9 +295,9 @@ public class AnalyticsManager
                 FactoryManager.Instance.StartCoroutine(UploadData(winEventWWW));
             }
 
-            if (player.m_obtainedAltar != null)
+            if (player.m_obtainedAltarName != null && player.m_obtainedAltarName != string.Empty)
             {
-                if (player.m_obtainedAltar.GetName() == new ContentDorphinAltar(null).GetName())
+                if (player.m_obtainedAltarName == new ContentDorphinAltar(null).GetName())
                 {
                     WWWForm winAltarForm = new WWWForm();
                     winAltarForm.AddField("Name", mapNameChaos);
@@ -305,7 +305,7 @@ public class AnalyticsManager
 
                     FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
                 }
-                else if (player.m_obtainedAltar.GetName() == new ContentMonAltar(null).GetName())
+                else if (player.m_obtainedAltarName == new ContentMonAltar(null).GetName())
                 {
                     WWWForm winAltarForm = new WWWForm();
                     winAltarForm.AddField("Name", mapNameChaos);
@@ -313,7 +313,7 @@ public class AnalyticsManager
 
                     FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
                 }
-                else if (player.m_obtainedAltar.GetName() == new ContentSugoAltar(null).GetName())
+                else if (player.m_obtainedAltarName == new ContentSugoAltar(null).GetName())
                 {
                     WWWForm winAltarForm = new WWWForm();
                     winAltarForm.AddField("Name", mapNameChaos);
@@ -321,7 +321,7 @@ public class AnalyticsManager
 
                     FactoryManager.Instance.StartCoroutine(UploadData(winAltarWWW));
                 }
-                else if (player.m_obtainedAltar.GetName() == new ContentTelloAltar(null).GetName())
+                else if (player.m_obtainedAltarName == new ContentTelloAltar(null).GetName())
                 {
                     WWWForm winAltarForm = new WWWForm();
                     winAltarForm.AddField("Name", mapNameChaos);

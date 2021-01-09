@@ -12,7 +12,7 @@ public class ContentLifebringerRelic : GameRelic
 
         LateInit();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
     }

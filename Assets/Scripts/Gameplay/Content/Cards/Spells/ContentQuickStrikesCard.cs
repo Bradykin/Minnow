@@ -14,7 +14,7 @@ public class ContentQuickStrikesCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.StaminaRegen, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 

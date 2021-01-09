@@ -15,7 +15,7 @@ public class ContentEnergizeCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, 3);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.StaminaRegen);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 

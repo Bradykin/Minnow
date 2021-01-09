@@ -17,7 +17,7 @@ public class ContentInsightCard : GameCardSpellBase
 
         SetupBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 3);
         m_tagHolder.AddPushTag(GameTagHolder.TagType.MagicPower);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.UtilitySpell);
 

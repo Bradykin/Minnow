@@ -12,7 +12,7 @@ public class ContentMetalProtectorCard : GameUnitCard
 
         FillBasicData();
 
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.MaxStamina, 3);
         m_tagHolder.AddPullTag(GameTagHolder.TagType.Scaler);
     }
 }

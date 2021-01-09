@@ -18,7 +18,7 @@ public class ContentRunicBladeCard : GameCardSpellBase
         SetupBasicData();
 
         m_tagHolder.AddPushTag(GameTagHolder.TagType.Victorious);
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 2);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.Spellcraft, 3);
         m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
 
         m_onPlaySFX = AudioHelper.DaggerSwingSpell;
