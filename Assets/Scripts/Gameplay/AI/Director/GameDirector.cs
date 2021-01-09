@@ -166,7 +166,7 @@ public class GameDirector
         int directorAccountWeight = GameDirectorAccount.GetTagValueFor(checkElement);
         int directorRunWeight = GameDirectorRun.GetTagValueFor(checkElement);
         int directorFullWeight = tagWeightBaseValue + directorAccountWeight + directorRunWeight;
-        Debug.Log($"Weight for {checkElement.GetName()}: Account: {directorAccountWeight}, Run: {directorRunWeight}, Full: {directorFullWeight}");
+        //Debug.Log($"Weight for {checkElement.GetName()}: Account: {directorAccountWeight}, Run: {directorRunWeight}, Full: {directorFullWeight}");
         
         return directorFullWeight;
     }
