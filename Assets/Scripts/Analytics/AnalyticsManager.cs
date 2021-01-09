@@ -369,7 +369,27 @@ public class AnalyticsManager
 
     public void RecordEventInteracted(GameEvent gameEvent, bool isFirstOption)
     {
+        if (!Constants.AnalyticsOn)
+        {
+            return;
+        }
 
+        if (isFirstOption)
+        {
+            WWWForm pickForm = new WWWForm();
+            pickForm.AddField("Name", gameEvent.GetBaseName());
+            UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelEventFirstPick.php", pickForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+        }
+        else
+        {
+            WWWForm pickForm = new WWWForm();
+            pickForm.AddField("Name", gameEvent.GetBaseName());
+            UnityWebRequest pickWWW = UnityWebRequest.Post("http://nmartino.com/gamescripts/citadel/CitadelEventSecondPick.php", pickForm);
+
+            FactoryManager.Instance.StartCoroutine(UploadData(pickWWW));
+        }
     }
 
     public void RecordGainGold(in int goldValue)
