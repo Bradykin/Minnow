@@ -42,7 +42,6 @@ public class ContentMountainPassMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMetalCyclopsEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMetalManticoreEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSerpentineConstructEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentStoneflingerEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentGreenRockGiantEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentLavaRhinoEnemy(null));
