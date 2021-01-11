@@ -314,7 +314,35 @@ public class WorldController : Singleton<WorldController>
             exclusionCards.Add(cardOne);
             cardTwo = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
             exclusionCards.Add(cardTwo);
-            cardThree = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
+
+            int exclusionCost = -1;
+            if (cardOne.GetCost() == cardTwo.GetCost())
+            {
+                exclusionCost = cardOne.GetCost();
+            }
+            bool excludeThreeCostOrHigher = cardOne.GetCost() >= 3 && cardTwo.GetCost() >= 3;
+
+            cardThree = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards, exclusionCost, excludeThreeCostOrHigher);
+
+            bool shuffleThirdCard = excludeThreeCostOrHigher || exclusionCost >= 0;
+            if (shuffleThirdCard)
+            {
+                int randomIndex = Random.Range(0, 3);
+                GameCard temp;
+                switch (randomIndex)
+                {
+                    case 0:
+                        temp = cardOne;
+                        cardOne = cardThree;
+                        cardThree = temp;
+                        break;
+                    case 1:
+                        temp = cardTwo;
+                        cardTwo = cardThree;
+                        cardThree = temp;
+                        break;
+                }
+            }
 
             m_gameController.m_savedInIntermission = true;
             m_gameController.m_intermissionSavedCardOne = cardOne;

@@ -468,7 +468,7 @@ public static class GameCardFactory
         return GetCardFromList(checkList, exclusionList);
     }
 
-    public static GameCard GetRandomStandardUnitCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
+    public static GameCard GetRandomStandardUnitCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null, int exclusionCost = -1, bool excludeCardThreeOrHigher = false)
     {
         if (!m_hasInit)
         {
@@ -477,15 +477,15 @@ public static class GameCardFactory
 
         if (rarity == GameElementBase.GameRarity.Common)
         {
-            return GetCardFromList(m_commonUnitCards, exclusionList);
+            return GetCardFromList(m_commonUnitCards, exclusionList, exclusionCost, excludeCardThreeOrHigher);
         }
         else if (rarity == GameElementBase.GameRarity.Uncommon)
         {
-            return GetCardFromList(m_uncommonUnitCards, exclusionList);
+            return GetCardFromList(m_uncommonUnitCards, exclusionList, exclusionCost, excludeCardThreeOrHigher);
         }
         else if (rarity == GameElementBase.GameRarity.Rare)
         {
-            return GetCardFromList(m_rareUnitCards, exclusionList);
+            return GetCardFromList(m_rareUnitCards, exclusionList, exclusionCost, excludeCardThreeOrHigher);
         }
 
         Debug.LogError("Invalid rarity selected for getting a random card.");
@@ -504,7 +504,7 @@ public static class GameCardFactory
         return GetCardFromList(checkList, exclusionList);
     }
 
-    public static GameCard GetRandomStandardSpellCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null)
+    public static GameCard GetRandomStandardSpellCard(GameElementBase.GameRarity rarity, List<GameCard> exclusionList = null, int exclusionCost = -1, bool excludeCardThreeOrHigher = false, bool excludeExileCards = false)
     {
         if (!m_hasInit)
         {
@@ -513,15 +513,15 @@ public static class GameCardFactory
 
         if (rarity == GameElementBase.GameRarity.Common)
         {
-            return GetCardFromList(m_commonSpellCards, exclusionList);
+            return GetCardFromList(m_commonSpellCards, exclusionList, exclusionCost, excludeCardThreeOrHigher, excludeExileCards);
         }
         else if (rarity == GameElementBase.GameRarity.Uncommon)
         {
-            return GetCardFromList(m_uncommonSpellCards, exclusionList);
+            return GetCardFromList(m_uncommonSpellCards, exclusionList, exclusionCost, excludeCardThreeOrHigher, excludeExileCards);
         }
         else if (rarity == GameElementBase.GameRarity.Rare)
         {
-            return GetCardFromList(m_rareSpellCards, exclusionList);
+            return GetCardFromList(m_rareSpellCards, exclusionList, exclusionCost, excludeCardThreeOrHigher, excludeExileCards);
         }
 
         Debug.LogError("Invalid rarity selected for getting a random card.");
@@ -583,7 +583,7 @@ public static class GameCardFactory
         return clone;
     }
 
-    private static GameCard GetCardFromList(List<GameCard> list, List<GameCard> exclusionList)
+    private static GameCard GetCardFromList(List<GameCard> list, List<GameCard> exclusionList, int exclusionCost = -1, bool excludeCardFourOrHigher = false, bool excludeExileCards = false)
     {
         if (!m_hasInit)
         {
@@ -593,27 +593,29 @@ public static class GameCardFactory
         //Fill the list by removing anything that was excluded.
         List<GameCard> finalList = new List<GameCard>();
 
-        if (exclusionList == null)
+        for (int i = 0; i < list.Count; i++)
         {
-            for (int i = 0; i < list.Count; i++)
+            if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(list[i]))
             {
-                if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(list[i]))
-                {
-                    continue;
-                }
+                continue;
+            }
 
+            if (excludeCardFourOrHigher && list[i].GetCost() >= 4)
+            {
+                continue;
+            }
+
+            if (excludeExileCards && list[i].m_shouldExile)
+            {
+                continue;
+            }
+
+            if (exclusionList == null)
+            {
                 finalList.Add(list[i]);
             }
-        }
-        else
-        {
-            for (int i = 0; i < list.Count; i++)
+            else
             {
-                if (!Constants.UnlockAllContent && !GameMetaprogressionUnlocksDataManager.HasUnlocked(list[i]))
-                {
-                    continue;
-                }
-
                 bool hasInExclusion = false;
                 for (int c = 0; c < exclusionList.Count; c++)
                 {

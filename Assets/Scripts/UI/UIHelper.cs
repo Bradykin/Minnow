@@ -1282,7 +1282,36 @@ public static class UIHelper
         exclusionCards.Add(cardOne);
         GameCard cardTwo = GameCardFactory.GetRandomStandardSpellCard(rarity, exclusionCards);
         exclusionCards.Add(cardTwo);
-        GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(rarity, exclusionCards);
+
+        bool excludeThreeCostOrHigher = cardOne.GetCost() >= 3 && cardTwo.GetCost() >= 3;
+        int exclusionCost = -1;
+        if (cardOne.GetCost() == cardTwo.GetCost())
+        {
+            exclusionCost = cardOne.GetCost();
+        }
+        bool excludeExile = cardOne.m_shouldExile && cardTwo.m_shouldExile;
+
+        GameCard cardThree = GameCardFactory.GetRandomStandardSpellCard(rarity, exclusionCards, exclusionCost, excludeThreeCostOrHigher, excludeExile);
+
+        bool shuffleThirdCard = excludeThreeCostOrHigher || excludeExile || exclusionCost >= 0;
+        if (shuffleThirdCard)
+        {
+            int randomIndex = Random.Range(0, 3);
+            GameCard temp;
+            switch (randomIndex)
+            {
+                case 0:
+                    temp = cardOne;
+                    cardOne = cardThree;
+                    cardThree = temp;
+                    break;
+                case 1:
+                    temp = cardTwo;
+                    cardTwo = cardThree;
+                    cardThree = temp;
+                    break;
+            }
+        }
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
     }
