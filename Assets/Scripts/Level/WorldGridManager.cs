@@ -537,9 +537,9 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
     //============================================================================================================//
 
-    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile, bool letPassEnemies)
+    public int GetPathLength(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentTile, bool letPassEnemies, GameUnit unitOverride = null)
     {
-        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile, letPassEnemies, false);
+        List<GameTile> path = CalculateAStarPath(startingGridTile, targetGridTile, ignoreTerrainDifferences, getAdjacentTile, letPassEnemies, false, unitOverride);
 
         if (path == null)
         {
@@ -682,15 +682,24 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return null;
     }
 
-    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible)
+    public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible, GameUnit unitOverride = null)
     {
-        if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.GetOccupyingUnit().m_isDead)
+        GameUnit unit;
+        if (unitOverride != null)
+        {
+            unit = unitOverride;
+        }
+        else if (startingGridTile == null || !startingGridTile.IsOccupied() || startingGridTile.GetOccupyingUnit().m_isDead)
         {
             Debug.Log("NO UNIT ON TILE");
             return new List<GameTile>();
         }
+        else
+        {
+            unit = startingGridTile.GetOccupyingUnit();
+        }
 
-        if (startingGridTile.IsOccupied() && !startingGridTile.GetOccupyingUnit().m_isDead && startingGridTile.GetOccupyingUnit().GetRootedKeyword() != null)
+        if (unit.GetRootedKeyword() != null)
         {
             return null;
         }
@@ -744,7 +753,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
                         && l.Y == adjacentTile.m_gridPosition.y) != null)
                     continue;
 
-                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.GetOccupyingUnit(), letPassEnemies))
+                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(unit, letPassEnemies))
                     continue;
 
                 // if it's not in the open list...
@@ -755,7 +764,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
                 if (ignoreTerrainDifferences)
                     g = current.G + 1;
                 else
-                    g = current.G + adjacentTile.GetCostToPass(startingGridTile.GetOccupyingUnit());
+                    g = current.G + adjacentTile.GetCostToPass(unit);
 
                 if (adjacent == null)
                 {
