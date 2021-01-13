@@ -18,7 +18,7 @@ public static class GameEventFactory
     public static void DeInit()
     {
         m_events.Clear();
-
+        m_recentEvents.Clear();
     }
 
     public static GameEvent GetRandomEvent(GameTile tile)

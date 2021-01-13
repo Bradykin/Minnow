@@ -39,6 +39,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         m_gameTile = gameTile;
         m_perkType = WorldPerkType.Chest;
         m_chestRarity = chestRarity;
+        InitWorldTile();
     }
 
     public GameWorldPerk(GameTile gameTile, GameEvent gameEvent)
@@ -46,6 +47,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         m_gameTile = gameTile;
         m_perkType = WorldPerkType.Event;
         m_event = gameEvent;
+        InitWorldTile();
     }
 
     public GameWorldPerk(GameTile gameTile, GameAltar gameAltar)
@@ -53,6 +55,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         m_gameTile = gameTile;
         m_perkType = WorldPerkType.Altar;
         m_altar = gameAltar;
+        InitWorldTile();
     }
 
     public GameWorldPerk(GameTile gameTile, int goldVal)
@@ -60,6 +63,19 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         m_gameTile = gameTile;
         m_perkType = WorldPerkType.Gold;
         m_goldVal = goldVal;
+        InitWorldTile();
+    }
+
+    //TODO: Alex - Look at this during Update loop pass
+    private void InitWorldTile()
+    {
+        if (m_gameTile.GetWorldTile() != null)
+        {
+            m_gameTile.GetWorldTile().m_worldPerkIndicator.GetComponent<UIWorldPerkIndicator>().Init(this, m_gameTile.GetWorldTile());
+            return;
+        }
+
+        Debug.LogError("Creating World Perk with no World Tile");
     }
 
     public void Trigger()
@@ -214,5 +230,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
 
         m_goldVal = jsonData.goldValue;
+
+        InitWorldTile();
     }
 }
