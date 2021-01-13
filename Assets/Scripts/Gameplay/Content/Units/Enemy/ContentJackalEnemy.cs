@@ -22,7 +22,6 @@ public class ContentJackalEnemy : GameEnemyUnit
         m_aoeRange = 2;
 
         m_name = "Jackal";
-        m_desc = $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/{m_maxHealth - m_baseMaxHealth})\n";
 
         AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 10, 10)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
@@ -41,12 +40,7 @@ public class ContentJackalEnemy : GameEnemyUnit
 
     public override string GetDesc()
     {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            return $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/+{m_maxHealth - m_baseMaxHealth})\n";
-        }
-        
-        return base.GetDesc();
+        return $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/+{m_maxHealth - m_baseMaxHealth})\n";
     }
 
     protected override void LateInit()
