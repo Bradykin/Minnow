@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class GameRelicFactory
@@ -11,9 +12,11 @@ public static class GameRelicFactory
     private static List<GameRelic> m_uncommonRelics = new List<GameRelic>();
     private static List<GameRelic> m_commonRelics = new List<GameRelic>();
 
+    private static List<GameRelic> m_exclusionRelics = new List<GameRelic>();
+
     private static bool m_hasInit = false;
 
-    public static void Init()
+    public static void Init(List<GameRelic> exclusionRelics = null)
     {
         m_hasInit = true;
         
@@ -21,6 +24,12 @@ public static class GameRelicFactory
         m_rareRelics.Clear();
         m_uncommonRelics.Clear();
         m_commonRelics.Clear();
+        m_exclusionRelics.Clear();
+
+        if (exclusionRelics != null)
+        {
+            m_exclusionRelics.AddRange(exclusionRelics);
+        }
         
         //Starter Relics
         m_relics.Add(new ContentMaskOfAgesRelic());
@@ -140,6 +149,11 @@ public static class GameRelicFactory
 
         for (int i = 0; i < m_relics.Count; i++)
         {
+            if (m_exclusionRelics.Any(r => r.GetBaseName() == m_relics[i].GetBaseName()))
+            {
+                continue;
+            }
+            
             if (m_relics[i].m_rarity == GameElementBase.GameRarity.Common)
             {
                 m_commonRelics.Add(m_relics[i]);

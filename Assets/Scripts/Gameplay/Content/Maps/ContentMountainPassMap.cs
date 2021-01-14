@@ -262,7 +262,13 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillExclusionCardPool()
     {
+        m_exclusionCardPool.Add(new ContentRangerCard());
+        m_exclusionCardPool.Add(new ContentGroundskeeperCard());
+        m_exclusionCardPool.Add(new ContentWildwoodExplorerCard());
+        m_exclusionCardPool.Add(new ContentWildwoodSkirmisherCard());
 
+        m_exclusionCardPool.Add(new ContentGrowthCard());
+        m_exclusionCardPool.Add(new ContentImmolationCard());
     }
 
     protected override void FillEventPool()
@@ -272,7 +278,7 @@ public class ContentMountainPassMap : GameMap
 
     protected override void FillExclusionRelicPool()
     {
-
+        m_exclusionRelicPool.Add(new ContentSecretsOfNatureRelic());
     }
 
     public override List<GameTile> GetValidFogSpawningTiles()
