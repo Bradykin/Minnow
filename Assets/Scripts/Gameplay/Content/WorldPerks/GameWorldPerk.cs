@@ -231,5 +231,7 @@ public class GameWorldPerk : ILoad<JsonGameWorldPerkData>, ISave<JsonGameWorldPe
         }
 
         m_goldVal = jsonData.goldValue;
+
+        InitWorldTile();
     }
 }
