@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class ContentRebuildIntermissionAction : GameActionIntermission
 {
-    private GameWallet m_wallet = new GameWallet(25);
-
     public ContentRebuildIntermissionAction()
     {
-        m_actionCost = 2;
         m_name = "Rebuild";
         m_desc = "Rebuild a destroyed building.";
 

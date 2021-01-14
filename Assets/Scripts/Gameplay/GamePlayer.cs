@@ -24,9 +24,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
     private GameRelicHolder m_relics;
 
-    private int m_curActions;
-    private int m_maxActions;
-
     public List<GameCard> m_cardsToDiscard = new List<GameCard>();
     public List<GameCard> m_cardsInExile = new List<GameCard>();
 
@@ -50,8 +47,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         m_controlledBuildings = new List<GameBuildingBase>();
         m_relics = new GameRelicHolder();
         m_wallet = new GameWallet(25);
-
-        m_maxActions = Constants.StartingActions;
 
         m_deckBase = new GameDeck();
         m_curDeck = new GameDeck();
@@ -242,22 +237,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             Debug.LogWarning("Somehow spent below 0 energy.");
             m_curEnergy = 0;
         }
-    }
-
-    public void SpendActions(int toSpend)
-    {
-        m_curActions -= toSpend;
-        if (m_curActions < 0)
-        {
-            Debug.LogWarning("Somehow spent below 0 actions.");
-            m_curActions = 0;
-        }
-    }
-
-    //Bonus actions can go above the max (from things like smithies)
-    public void AddBonusActions(int toAdd)
-    {
-        m_curActions += toAdd;
     }
 
     public void ResetCurDeck()
@@ -626,37 +605,8 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         return false;
     }
 
-    public int GetCurActions()
-    {
-        return m_curActions;
-    }
-
-    public int GetMaxActions()
-    {
-        int toReturn = m_maxActions;
-
-        if (GameHelper.HasRelic<ContentHoovesOfProductionRelic>())
-        {
-            toReturn += 1;
-        }
-
-        if (GameHelper.HasRelic<ContentEyeOfTelloRelic>())
-        {
-            toReturn += 4;
-        }
-
-        return toReturn;
-    }
-
-    public void ResetActions()
-    {
-        m_curActions = GetMaxActions();
-    }
-
     public void OnEndWave()
     {
-        ResetActions();
-
         m_cardsInExile.Clear();
         m_cardsToDiscard.Clear();
 
@@ -902,8 +852,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         {
             maxEnergy = m_maxEnergy,
             curEnergy = m_curEnergy,
-            maxActions = m_maxActions,
-            curActions = m_curActions,
             magicPower = m_magicPower,
             jsonDeckBaseData = m_deckBase.SaveToJson(),
             jsonDeckCurrentData = m_curDeck.SaveToJson(),
@@ -957,8 +905,6 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     {
         m_maxEnergy = jsonData.maxEnergy;
         m_curEnergy = jsonData.curEnergy;
-        m_maxActions = jsonData.maxActions;
-        m_curActions = jsonData.curActions;
         m_magicPower = jsonData.magicPower;
 
         m_deckBase.LoadFromJson(jsonData.jsonDeckBaseData);

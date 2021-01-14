@@ -27,7 +27,6 @@ public class GameBuildingIntermission
         }
 
         player.SpendGold(m_cost.m_gold);
-        player.SpendActions(m_actionCost);
     }
 
     public bool IsValidToPlay(GameTile gameTile)
@@ -49,11 +48,6 @@ public class GameBuildingIntermission
     {
         GamePlayer player = GameHelper.GetPlayer();
         if (player == null)
-        {
-            return false;
-        }
-
-        if (player.GetCurActions() < m_actionCost)
         {
             return false;
         }

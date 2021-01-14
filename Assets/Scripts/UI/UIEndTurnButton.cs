@@ -88,20 +88,6 @@ public class UIEndTurnButton : UIElementBase
     {
         GamePlayer player = GameHelper.GetPlayer();
 
-        int lowestEnergyCostInHand = int.MaxValue;
-        for (int i = 0; i < player.m_hand.Count; i++)
-        {
-            if (player.m_hand[i].GetCost() < lowestEnergyCostInHand)
-            {
-                lowestEnergyCostInHand = player.m_hand[i].GetCost();
-            }
-        }
-
-        if (player.GetCurEnergy() >= lowestEnergyCostInHand)
-        {
-            return true;
-        }
-
         for (int i = 0; i < player.m_controlledUnits.Count; i++)
         {
             GameUnit unit = player.m_controlledUnits[i];
@@ -109,7 +95,10 @@ public class UIEndTurnButton : UIElementBase
             {
                 if (!unit.GetGameTile().HasBuilding())
                 {
-                    return true;
+                    if (unit.GetCurStamina() != unit.GetMaxStamina())
+                    {
+                        return true;
+                    }
                 }
             }
         }

@@ -6,7 +6,6 @@ public class ContentTransformUnitIntermissionAction : GameActionIntermission
 {
     public ContentTransformUnitIntermissionAction()
     {
-        m_actionCost = 3;
         m_name = "Transform Unit";
         m_desc = "Transform a unit card in your deck into a random one!";
 
@@ -16,7 +15,5 @@ public class ContentTransformUnitIntermissionAction : GameActionIntermission
     public override void Activate()
     {
         UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfUnits(), UIDeckViewController.DeckViewType.Transform, "Transform a Unit");
-
-        SpendCost();
     }
 }

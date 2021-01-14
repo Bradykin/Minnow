@@ -8,7 +8,6 @@ public static class Constants
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;
 
-    public static int StartingActions = 3;
     public static int MaxHandSize = 10;
     public static int MaxTotalStamina = 12;
     public static int SpawnEliteTurn = 2;
@@ -38,7 +37,7 @@ public static class Constants
     public static int WinterStormDamage = 3;
     public static int WinterStormVisionRange = 1;
 
-    public static int IntermissionBuffValue = 1;
+    public static int IntermissionBuffValue = 8;
 
     public static int MaxChaos = 5;
 

@@ -64,7 +64,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
                 {
                     m_worldPerkIndicator.SetActive(true);
                 }
-                m_worldPerkIndicator.GetComponent<UIWorldPerkIndicator>().Init(GetGameTile().m_gameWorldPerk, this);
             }
         }
         else
@@ -314,7 +313,6 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
         {
             if (action.GetName() == "Rebuild" && GetGameTile().GetTerrain() is ContentRubbleTerrain)
             {
-                action.SpendCost();
                 GetGameTile().RestoreBuilding();
                 UIHelper.SelectAction(action);
                 return;

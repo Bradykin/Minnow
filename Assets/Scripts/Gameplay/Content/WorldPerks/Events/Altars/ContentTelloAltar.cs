@@ -7,7 +7,7 @@ public class ContentTelloAltar : GameAltar
     public ContentTelloAltar(GameTile tile)
     {
         m_name = "Tello";
-        m_eventDesc = "An altar of Tello.  Behold the power of the eye.";
+        m_eventDesc = "An altar of Tello.  Behold the power of the eye. (DOES NOTHING)"; //nmartino - Rework this
         m_tile = tile;
         m_rarity = GameRarity.Special;
 

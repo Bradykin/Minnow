@@ -6,7 +6,6 @@ public class ContentRemovalIntermissionAction : GameActionIntermission
 {
     public ContentRemovalIntermissionAction()
     {
-        m_actionCost = 1;
         m_name = "Purge";
         m_desc = "Remove a card from your deck!";
 
@@ -18,7 +17,5 @@ public class ContentRemovalIntermissionAction : GameActionIntermission
         GamePlayer player = GameHelper.GetPlayer();
 
         UIDeckViewController.Instance.Init(player.m_deckBase.GetDeck(), UIDeckViewController.DeckViewType.Remove, "Remove a Card");
-
-        SpendCost();
     }
 }

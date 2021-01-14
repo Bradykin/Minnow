@@ -86,7 +86,7 @@ public static class GameNotificationManager
         AnalyticsManager.RecordBuilding(building);
     }
 
-    public static void RecordAction(GameActionIntermission action)
+    public static void RecordAction(GameActionIntermission action, GameActionIntermission firstAction, GameActionIntermission secondAction, GameActionIntermission thirdAction)
     {
         AnalyticsManager.RecordAction(action);
     }

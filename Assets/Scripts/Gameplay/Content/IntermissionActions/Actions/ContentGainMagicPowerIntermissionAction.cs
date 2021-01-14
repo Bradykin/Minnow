@@ -6,7 +6,6 @@ public class ContentGainMagicPowerIntermissionAction : GameActionIntermission
 {
     public ContentGainMagicPowerIntermissionAction()
     {
-        m_actionCost = 3;
         m_name = "Gain <b>Magic Power</b>";
         m_desc = $"<b>Permanently</b> gain 1 <b>Magic Power</b>!";
 
@@ -16,7 +15,5 @@ public class ContentGainMagicPowerIntermissionAction : GameActionIntermission
     public override void Activate()
     {
         GameHelper.GetPlayer().AddMagicPower(1);
-
-        SpendCost();
     }
 }

@@ -32,7 +32,11 @@ public class UICardSelectAcceptButton : UIElementBase
 
         if (Globals.m_selectedCard.m_unitCard != null)
         {
-            UIHelper.TriggerSpellCardSelction();
+            UIHelper.TriggerSpellCardSelection();
+        }
+        else
+        {
+            UIHelper.TriggerActionSelection();
         }
         
         Globals.m_selectedCard = null;

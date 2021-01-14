@@ -166,9 +166,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146484761245708570}
-  - component: {fileID: 1146484761245708571}
+  - component: {fileID: 3368213548241049307}
   m_Layer: 5
-  m_Name: IntermissionActionButton
+  m_Name: IntermissionBuildingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +194,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 280, y: 110}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1146484761245708571
+--- !u!114 &3368213548241049307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,17 +203,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146484761245708569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2304c0f9476bf48add7bfd5bbd1d19, type: 3}
+  m_Script: {fileID: 11500000, guid: 390de4e4f0a11204a83ef84138054cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_tintImage: {fileID: 3465649185259406860}
   m_iconBuildingImage: {fileID: 7551506488756572205}
-  m_iconActionImage: {fileID: 7808480297007370089}
   m_terrainImage: {fileID: 7551506489275714392}
   m_titleText: {fileID: 3590809557354052953}
   m_descText: {fileID: 9067528952546113629}
-  m_actionCostText: {fileID: 2794938484036549574}
   m_goldCostText: {fileID: 7512908202133372109}
+  m_healthText: {fileID: 2794938484036549574}
   m_resourcesCostHolder: {fileID: 2656337860302221051}
 --- !u!1 &2656337860302221051
 GameObject:
@@ -1020,7 +1019,7 @@ GameObject:
   - component: {fileID: 7551506489305559271}
   - component: {fileID: 2794938484036549574}
   m_Layer: 5
-  m_Name: ActionText
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2 Actions
+  m_text: 30 Health
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9d79e494cc98774fad7b5558664e91c, type: 2}
   m_sharedMaterial: {fileID: 5461754484199540652, guid: d9d79e494cc98774fad7b5558664e91c,

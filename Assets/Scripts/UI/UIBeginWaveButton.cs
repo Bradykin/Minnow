@@ -8,7 +8,6 @@ using TMPro;
 public class UIBeginWaveButton : UIElementBase
     , IPointerClickHandler
 {
-    public Image m_image;
     public GameObject m_holder;
 
     void Start()
@@ -16,26 +15,9 @@ public class UIBeginWaveButton : UIElementBase
         m_stopScrolling = true;
     }
 
-    void Update()
-    {
-        if (PlayerHasActions())
-        {
-            m_image.color = UIHelper.m_fadedColor;
-        }
-        else
-        {
-            m_image.color = UIHelper.m_defaultColor;
-        }
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
-
-        if (GameHelper.GetPlayer().GetCurActions() > 0)
-        {
-            return;
-        }
 
         BeginWave();
     }
@@ -52,26 +34,8 @@ public class UIBeginWaveButton : UIElementBase
         WorldController.Instance.EndIntermission();
     }
 
-    private bool PlayerHasActions()
-    {
-        GamePlayer player = GameHelper.GetPlayer();
-        if (player == null)
-        {
-            return false;
-        }
-
-        return player.GetCurActions() > 0;
-    }
-
     public override void HandleTooltip()
     {
-        if (PlayerHasActions())
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Need to spend all actions before starting the next wave.", false));
-        }
-        else
-        {
-            UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", true));
-        }
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Begin Wave", "Start the next wave of enemies!", true));
     }
 }

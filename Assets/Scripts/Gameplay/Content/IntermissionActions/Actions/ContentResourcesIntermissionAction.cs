@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ContentResourcesIntermissionAction : GameActionIntermission
 {
-    private GameWallet m_wallet = new GameWallet(25);
+    private GameWallet m_wallet = new GameWallet(50);
 
     public ContentResourcesIntermissionAction()
     {
-        m_actionCost = 1;
         m_name = "Gather Resources";
         m_desc = "Gain " + m_wallet.m_gold + " gold.";
 
@@ -25,7 +24,5 @@ public class ContentResourcesIntermissionAction : GameActionIntermission
         }
 
         player.GainGold(m_wallet.m_gold, true);
-
-        SpendCost();
     }
 }

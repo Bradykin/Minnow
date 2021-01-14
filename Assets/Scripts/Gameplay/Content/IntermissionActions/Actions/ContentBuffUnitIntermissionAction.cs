@@ -8,7 +8,6 @@ public class ContentBuffUnitIntermissionAction : GameActionIntermission
 
     public ContentBuffUnitIntermissionAction()
     {
-        m_actionCost = 1;
         m_name = "Buff Unit";
         m_desc = $"<b>Permanently</b> give a unit +{m_buffValue}/+{m_buffValue}!";
 
@@ -18,7 +17,5 @@ public class ContentBuffUnitIntermissionAction : GameActionIntermission
     public override void Activate()
     {
         UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfUnits(), UIDeckViewController.DeckViewType.Buff, $"+{m_buffValue}/+{m_buffValue} to a Unit");
-
-        SpendCost();
     }
 }

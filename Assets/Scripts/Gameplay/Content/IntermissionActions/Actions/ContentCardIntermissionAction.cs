@@ -6,7 +6,6 @@ public class ContentCardIntermissionAction : GameActionIntermission
 {
     public ContentCardIntermissionAction()
     {
-        m_actionCost = 2;
         m_name = "Gain a card";
         m_desc = "Gain a spell card from a random set of 3.";
 
@@ -15,8 +14,6 @@ public class ContentCardIntermissionAction : GameActionIntermission
 
     public override void Activate()
     {
-        UIHelper.TriggerSpellCardSelction();
-
-        SpendCost();
+        UIHelper.TriggerSpellCardSelection();
     }
 }

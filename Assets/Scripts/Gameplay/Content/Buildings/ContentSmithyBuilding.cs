@@ -9,7 +9,7 @@ public class ContentSmithyBuilding : GameBuildingBase
         m_range = 0;
 
         m_name = "Smithy";
-        m_desc = "Gain a bonus intermission action at the end of each wave.";
+        m_desc = "Placeholder; does nothing.";
         m_rarity = GameRarity.Common;
         m_buildingType = BuildingType.Economic;
 
@@ -23,18 +23,6 @@ public class ContentSmithyBuilding : GameBuildingBase
 
     public override void TriggerEndOfWave()
     {
-        if (!m_isDestroyed)
-        {
-            GamePlayer player = GameHelper.GetPlayer();
-
-            if (player == null)
-            {
-                return;
-            }
-
-            player.AddBonusActions(1);
-        }
-
         base.TriggerEndOfWave();
     }
 

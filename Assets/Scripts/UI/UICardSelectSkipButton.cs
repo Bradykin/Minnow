@@ -32,7 +32,7 @@ public class UICardSelectSkipButton : UIElementBase
 
         if (triggerSpellCardSelection)
         {
-            UIHelper.TriggerSpellCardSelction();
+            UIHelper.TriggerSpellCardSelection();
         }
 
         Globals.m_selectedCard = null;

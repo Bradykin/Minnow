@@ -7,7 +7,7 @@ public class ContentEyeOfTelloRelic : GameRelic
     public ContentEyeOfTelloRelic()
     {
         m_name = "Eye of Tello";
-        m_desc = "+4 actions during intermission phase!";
+        m_desc = "Does nothing"; //nmartino - Rework this
         m_rarity = GameRarity.Special;
 
         LateInit();

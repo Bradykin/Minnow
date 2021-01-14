@@ -6,7 +6,6 @@ public class ContentRelicIntermissionAction : GameActionIntermission
 {
     public ContentRelicIntermissionAction()
     {
-        m_actionCost = 4;
         m_name = "Find Relic";
         m_desc = "Gain a random relic!";
 
@@ -15,10 +14,6 @@ public class ContentRelicIntermissionAction : GameActionIntermission
 
     public override void Activate()
     {
-        GamePlayer player = GameHelper.GetPlayer();
-
         UIHelper.TriggerRelicSelect();
-
-        SpendCost();
     }
 }

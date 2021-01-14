@@ -492,7 +492,7 @@ public static class UIHelper
     {
         if (m_intermissionActionDictionary.ContainsKey(actionName))
         {
-            return m_terrainDictionary[actionName];
+            return m_intermissionActionDictionary[actionName];
         }
 
         Sprite loadedSprite = Resources.Load<Sprite>("Intermission/Action/" + actionName) as Sprite;
@@ -1273,7 +1273,7 @@ public static class UIHelper
         return "There are only so many turns in a run; each one is a resource, so use them wisely!";
     }
 
-    public static void TriggerSpellCardSelction()
+    public static void TriggerSpellCardSelection()
     {
         GameElementBase.GameRarity rarity = GameCardFactory.GetRandomRarity();
 
@@ -1314,5 +1314,17 @@ public static class UIHelper
         }
 
         UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
+    }
+
+    public static void TriggerActionSelection()
+    {
+        List<GameActionIntermission> exclusionActions = new List<GameActionIntermission>();
+        GameActionIntermission actionOne = GameIntermissionActionFactory.GetRandomAction(exclusionActions);
+        exclusionActions.Add(actionOne);
+        GameActionIntermission actionTwo = GameIntermissionActionFactory.GetRandomAction(exclusionActions);
+        exclusionActions.Add(actionTwo);
+        GameActionIntermission actionThree = GameIntermissionActionFactory.GetRandomAction(exclusionActions);
+
+        UIIntermissionActionSelectController.Instance.Init(actionOne, actionTwo, actionThree);
     }
 }

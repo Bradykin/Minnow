@@ -116,18 +116,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
             return;
         }
 
-        if (cheat == "addactions")
-        {
-            HandleAddActions(param);
-            return;
-        }
-
-        if (cheat == "removeactions")
-        {
-            HandleRemoveActions(param);
-            return;
-        }
-
         if (cheat == "setcastlehealth")
         {
             HandleSetCastleHealth(param);
@@ -290,16 +278,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
         GameHelper.GetPlayer().AddEnergy(int.Parse(param));
     }
 
-    private void HandleAddActions(string param)
-    {
-        GameHelper.GetPlayer().AddBonusActions(int.Parse(param));
-    }
-
-    private void HandleRemoveActions(string param)
-    {
-        GameHelper.GetPlayer().SpendActions(int.Parse(param));
-    }
-
     private void HandleDrawCard()
     {
         GameHelper.GetPlayer().DrawCard();
@@ -315,7 +293,6 @@ public class UICheatConsoleController : Singleton<UICheatConsoleController>
     {
         HandleAddGold("10000");
         HandleAddEnergy("10000");
-        HandleAddActions("10");
 
         HandleSetCastleHealth("10000");
     }
