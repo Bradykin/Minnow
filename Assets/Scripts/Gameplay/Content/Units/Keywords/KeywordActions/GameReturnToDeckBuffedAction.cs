@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameReturnToDeckBuffedAction : GameAction
 {
     private GameUnit m_retuningUnit;
-    private int m_powerBuff;
+    private int m_attackBuff;
     private int m_healthBuff;
 
-    public GameReturnToDeckBuffedAction(GameUnit returningUnit, int powerBuff, int healthBuff)
+    public GameReturnToDeckBuffedAction(GameUnit returningUnit, int attackBuff, int healthBuff)
     {
         m_retuningUnit = returningUnit;
-        m_powerBuff = powerBuff;
+        m_attackBuff = attackBuff;
         m_healthBuff = healthBuff;
 
         m_name = "Return to Deck Buffed";
@@ -20,7 +20,7 @@ public class GameReturnToDeckBuffedAction : GameAction
 
     public override string GetDesc()
     {
-        return "Return " + m_retuningUnit.GetName() + " to your discard, also giving it +" + m_powerBuff + "/+" + m_healthBuff + ".";
+        return "Return " + m_retuningUnit.GetName() + " to your discard, also giving it +" + m_attackBuff + "/+" + m_healthBuff + ".";
     }
 
     public override void DoAction()
@@ -34,7 +34,7 @@ public class GameReturnToDeckBuffedAction : GameAction
 
         m_retuningUnit.m_returnedToDeckDeath = true;
 
-        m_retuningUnit.AddStats(m_powerBuff, m_healthBuff, false, false);
+        m_retuningUnit.AddStats(m_attackBuff, m_healthBuff, false, false);
 
         GameUnitCard cardFromUnit = GameCardFactory.GetCardFromUnit(m_retuningUnit);
         GameHelper.GetPlayer().m_curDeck.AddToDiscard(cardFromUnit);
@@ -44,7 +44,7 @@ public class GameReturnToDeckBuffedAction : GameAction
     {
         GameReturnToDeckBuffedAction tempAction = (GameReturnToDeckBuffedAction)toAdd;
 
-        m_powerBuff += tempAction.m_powerBuff;
+        m_attackBuff += tempAction.m_attackBuff;
         m_healthBuff += tempAction.m_healthBuff;
     }
 
@@ -52,13 +52,13 @@ public class GameReturnToDeckBuffedAction : GameAction
     {
         GameReturnToDeckBuffedAction tempAction = (GameReturnToDeckBuffedAction)toSubtract;
 
-        m_powerBuff -= tempAction.m_powerBuff;
+        m_attackBuff -= tempAction.m_attackBuff;
         m_healthBuff -= tempAction.m_healthBuff;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_powerBuff <= 0 && m_healthBuff <= 0;
+        return m_attackBuff <= 0 && m_healthBuff <= 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -71,7 +71,7 @@ public class GameReturnToDeckBuffedAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            intValue1 = m_powerBuff,
+            intValue1 = m_attackBuff,
             intValue2 = m_healthBuff
         };
 

@@ -1217,7 +1217,7 @@ public static class UIHelper
         int endWave = WorldController.Instance.m_gameController.m_currentWaveNumber;
         int numRelics = player.GetRelics().GetRelicListForRead().Count;
         int gold = player.GetGold();
-        int maxPower = 0;
+        int maxAttack = 0;
         int maxHealth = 0;
 
         for (int i = 0; i < player.m_deckBase.Count(); i++)
@@ -1229,9 +1229,9 @@ public static class UIHelper
                 {
                     maxHealth = unitCard.GetUnit().GetMaxHealth();
                 }
-                if (unitCard.GetUnit().GetPower() > maxPower)
+                if (unitCard.GetUnit().GetAttack() > maxAttack)
                 {
-                    maxPower = unitCard.GetUnit().GetPower();
+                    maxAttack = unitCard.GetUnit().GetAttack();
                 }
             }
         }
@@ -1251,7 +1251,7 @@ public static class UIHelper
             {
                 return "Buying buildings with gold can help turn the tide of the battle!";
             }
-            else if (maxPower <= 30)
+            else if (maxAttack <= 30)
             {
                 return "Use events, spells, and ability triggers like <b>Spellcraft</b> or <b>Enrage</b> to create more powerful units to take on the hordes!";
             }

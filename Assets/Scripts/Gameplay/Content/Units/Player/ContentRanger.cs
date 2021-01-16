@@ -18,7 +18,7 @@ public class ContentRanger : GameUnit
         AddKeyword(new GameForestwalkKeyword(), true, false);
 
         m_name = "Ranger";
-        m_desc = $"When in a forest, <b>double</b> power, +{m_staminaRegenBoost} stamina regen, and +{m_rangeBoost} <b>Range</b>.\n";
+        m_desc = $"When in a forest, <b>double</b> attack, +{m_staminaRegenBoost} stamina regen, and +{m_rangeBoost} <b>Range</b>.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -38,21 +38,21 @@ public class ContentRanger : GameUnit
         return AudioHelper.BowLight;
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int returnPower = base.GetPower();
+        int returnAttack = base.GetAttack();
 
         if (m_gameTile == null)
         {
-            return returnPower;
+            return returnAttack;
         }
 
         if (m_gameTile.GetTerrain().IsForest())
         {
-            returnPower *= 2;
+            returnAttack *= 2;
         }
 
-        return returnPower;
+        return returnAttack;
     }
 
     public override int GetStaminaRegen()
@@ -104,6 +104,6 @@ public class ContentRanger : GameUnit
         m_maxHealth = 15;
         m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 9;
+        m_attack = 9;
     }
 }

@@ -23,7 +23,7 @@ public class ContentElvenRogue : GameUnit
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() <= 30)
+        if (GetAttack() <= 30)
         {
             return AudioHelper.BowLight;
         }
@@ -38,6 +38,6 @@ public class ContentElvenRogue : GameUnit
         m_maxHealth = 5;
         m_maxStamina = 6;
         m_staminaRegen = 6;
-        m_power = 1;
+        m_attack = 1;
     }
 }

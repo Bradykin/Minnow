@@ -11,7 +11,7 @@ public class ContentSnowTrollEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 3;
+        m_attack = 3;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

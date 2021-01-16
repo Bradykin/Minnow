@@ -26,6 +26,6 @@ public class ContentSandwalker : GameUnit
         m_maxHealth = 9;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 6;
+        m_attack = 6;
     }
 }

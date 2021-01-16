@@ -32,7 +32,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
     //Specific variables tracked for various spell effects
     public int m_spellsPlayedPreviousTurn = 0;
     public int m_spellsPlayedThisTurn = 0;
-    public int m_fletchingPowerIncrease = 0;
+    public int m_fletchingAttackIncrease = 0;
     public int m_tempMagicPowerIncrease = 0;
     public int m_totemOfTheWolfTurn = -1;
 
@@ -846,7 +846,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_spellsPlayedPreviousTurn = m_spellsPlayedThisTurn;
         m_spellsPlayedThisTurn = 0;
-        m_fletchingPowerIncrease = 0;
+        m_fletchingAttackIncrease = 0;
         Globals.m_canSelect = false;
     }
 
@@ -871,7 +871,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
             spellsPlayedPreviousTurn = m_spellsPlayedPreviousTurn,
             spellsPlayedThisTurn = m_spellsPlayedThisTurn,
-            fletchingPowerIncrease = m_fletchingPowerIncrease,
+            fletchingAttackIncrease = m_fletchingAttackIncrease,
             tempMagicPowerIncrease = m_tempMagicPowerIncrease,
             totemOfTheWolfTurn = m_totemOfTheWolfTurn,
 
@@ -1017,7 +1017,7 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
 
         m_spellsPlayedPreviousTurn = jsonData.spellsPlayedPreviousTurn;
         m_spellsPlayedThisTurn = jsonData.spellsPlayedThisTurn;
-        m_fletchingPowerIncrease = jsonData.fletchingPowerIncrease;
+        m_fletchingAttackIncrease = jsonData.fletchingAttackIncrease;
         m_tempMagicPowerIncrease = jsonData.tempMagicPowerIncrease;
         m_totemOfTheWolfTurn = jsonData.totemOfTheWolfTurn;
         m_wallet.m_gold = jsonData.goldAmount;

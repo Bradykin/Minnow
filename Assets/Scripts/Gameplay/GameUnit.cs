@@ -40,8 +40,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     protected int m_permStaminaRegen;
     protected int m_maxStamina;
     protected int m_permMaxStamina;
-    protected int m_power;
-    protected int m_permPower;
+    protected int m_attack;
+    protected int m_permAttack;
     protected Typeline m_typeline;
     protected GameKeywordHolder m_keywordHolder;
 
@@ -88,8 +88,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_permStaminaRegen = other.m_permStaminaRegen;
         m_maxStamina = other.m_maxStamina;
         m_permMaxStamina = other.m_permMaxStamina;
-        m_power = other.m_power;
-        m_permPower = other.m_permPower;
+        m_attack = other.m_attack;
+        m_permAttack = other.m_permAttack;
         m_typeline = other.m_typeline;
         m_attackSFX = other.m_attackSFX;
 
@@ -1068,12 +1068,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
     public virtual int GetDamageToDealTo(GameUnit target)
     {
-        return GetPower();
+        return GetAttack();
     }
 
     public virtual int GetDamageToDealTo(GameBuildingBase target)
     {
-        return GetPower();
+        return GetAttack();
     }
 
     public Team GetTeam()
@@ -1660,10 +1660,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return 1;
     }
 
-    public virtual int GetPower()
+    public virtual int GetAttack()
     {
-        int toReturn = m_power;
-        toReturn += m_permPower;
+        int toReturn = m_attack;
+        toReturn += m_permAttack;
 
         if (GetTeam() == Team.Player && GameHelper.IsInGame())
         {
@@ -1754,7 +1754,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GetRange() > 1)
             {
-                toReturn += GameHelper.GetPlayer().m_fletchingPowerIncrease;
+                toReturn += GameHelper.GetPlayer().m_fletchingAttackIncrease;
             }
         }
 
@@ -2361,21 +2361,21 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         GainStamina(staminaToRegen, true);
     }
 
-    public void AddStats(int powerToAdd, int healthToAdd, bool permanent, bool showWorldNotification)
+    public void AddStats(int attackToAdd, int healthToAdd, bool permanent, bool showWorldNotification)
     {
-        if (powerToAdd == 0 && healthToAdd == 0)
+        if (attackToAdd == 0 && healthToAdd == 0)
         {
             return;
         }
 
         if (showWorldNotification == true)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " gets +" + powerToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " gets +" + attackToAdd + "/+" + healthToAdd + ".", true, m_gameTile.GetWorldTile().gameObject);
         }
 
         if (permanent)
         {
-            m_permPower += powerToAdd;
+            m_permAttack += attackToAdd;
             m_permMaxHealth += healthToAdd;
 
             if (!HasCustomName())
@@ -2385,7 +2385,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
         else
         {
-            m_power += powerToAdd;
+            m_attack += attackToAdd;
             m_maxHealth += healthToAdd;
         }
 
@@ -2395,16 +2395,16 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
     }
 
-    public void RemoveStats(int powerToRemove, int healthToRemove, bool permanent)
+    public void RemoveStats(int attackToRemove, int healthToRemove, bool permanent)
     {
         if (!m_isDead)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " gets -" + powerToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
+            UIHelper.CreateWorldElementNotification(GetName() + " gets -" + attackToRemove + "/-" + healthToRemove + ".", false, m_gameTile.GetWorldTile().gameObject);
         }
 
         if (permanent)
         {
-            m_permPower -= powerToRemove;
+            m_permAttack -= attackToRemove;
             m_permMaxHealth -= healthToRemove;
 
             if (!HasCustomName())
@@ -2414,7 +2414,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         }
         else
         {
-            m_power -= powerToRemove;
+            m_attack -= attackToRemove;
             m_maxHealth -= healthToRemove;
         }
 
@@ -2568,35 +2568,35 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
             if (GameHelper.HasRelic<ContentAlterOfTordrimRelic>())
             {
-                int powerChange = Random.Range(-3, 8);
+                int attackChange = Random.Range(-3, 8);
                 int healthChange = Random.Range(-3, 8);
 
-                if (powerChange >= 0 && healthChange >= 0)
+                if (attackChange >= 0 && healthChange >= 0)
                 {
-                    AddStats(powerChange, healthChange, false, true);
+                    AddStats(attackChange, healthChange, false, true);
                 }
-                else if (powerChange < 0 && healthChange < 0)
+                else if (attackChange < 0 && healthChange < 0)
                 {
-                    RemoveStats(-powerChange, -healthChange, false);
+                    RemoveStats(-attackChange, -healthChange, false);
                 }
-                else if (powerChange >= 0 && healthChange < 0)
+                else if (attackChange >= 0 && healthChange < 0)
                 {
-                    AddStats(powerChange, 0, false, true);
+                    AddStats(attackChange, 0, false, true);
                     RemoveStats(0, -healthChange, false);
                 }
-                else if (powerChange < 0 && healthChange >= 0)
+                else if (attackChange < 0 && healthChange >= 0)
                 {
                     AddStats(0, healthChange, false, true);
-                    RemoveStats(-powerChange, 0, false);
+                    RemoveStats(-attackChange, 0, false);
                 }
                 UIHelper.TriggerRelicAnimation<ContentAlterOfTordrimRelic>();
             }
 
             if (GameHelper.HasRelic<ContentJugOfTordrimRelic>())
             {
-                int tempPower = GetPower();
-                m_power = GetMaxHealth();
-                m_maxHealth = tempPower;
+                int tempAttack = GetAttack();
+                m_attack = GetMaxHealth();
+                m_maxHealth = tempAttack;
                 m_curHealth = GetMaxHealth();
                 UIHelper.TriggerRelicAnimation<ContentJugOfTordrimRelic>();
             }
@@ -2627,7 +2627,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 UIHelper.TriggerRelicAnimation<ContentSpiritCatcherRelic>();
             }
 
-            if (GameHelper.HasRelic<ContentRelicOfVictoryRelic>() && GetPower() >= 20)
+            if (GameHelper.HasRelic<ContentRelicOfVictoryRelic>() && GetAttack() >= 20)
             {
                 player.DrawCards(2);
                 player.AddEnergy(2);
@@ -2744,7 +2744,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                             !adjacentTiles[i].GetOccupyingUnit().m_isDead &&
                             adjacentTiles[i].GetOccupyingUnit().GetTypeline() == Typeline.Creation)
                         {
-                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetPower(), GetMaxHealth(), false, true);
+                            adjacentTiles[i].GetOccupyingUnit().AddStats(GetAttack(), GetMaxHealth(), false, true);
                             UIHelper.TriggerRelicAnimation<ContentTokenOfTheUprisingRelic>();
                         }
                     }
@@ -2880,8 +2880,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             permStaminaRegen = m_permStaminaRegen,
             maxStamina = m_maxStamina,
             permMaxStamina = m_permMaxStamina,
-            power = m_power,
-            permPower = m_permPower,
+            attack = m_attack,
+            permAttack = m_permAttack,
             typeline = (int)m_typeline,
             jsonGameKeywordHolderData = keywordHolderJson,
             staminaToAttack = m_staminaToAttack,
@@ -2907,8 +2907,8 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         m_permStaminaRegen = jsonData.permStaminaRegen;
         m_maxStamina = jsonData.maxStamina;
         m_permMaxStamina = jsonData.permMaxStamina;
-        m_power = jsonData.power;
-        m_permPower = jsonData.permPower;
+        m_attack = jsonData.attack;
+        m_permAttack = jsonData.permAttack;
         m_typeline = (Typeline)jsonData.typeline;
         m_staminaToAttack = jsonData.staminaToAttack;
         m_sightRange = jsonData.sightRange;

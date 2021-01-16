@@ -11,7 +11,7 @@ public class ContentDjinnEnemy : GameEnemyUnit
         m_maxHealth = 60;
         m_maxStamina = 6;
         m_staminaRegen = 5;
-        m_power = 18;
+        m_attack = 18;
         m_attackSFX = AudioHelper.LazerAttack;
 
         m_team = Team.Enemy;

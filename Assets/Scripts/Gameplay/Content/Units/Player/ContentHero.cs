@@ -31,6 +31,6 @@ public class ContentHero : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_attack = 6;
     }
 }

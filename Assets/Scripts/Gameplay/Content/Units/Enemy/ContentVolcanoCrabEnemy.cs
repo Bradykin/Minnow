@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentVolcanoCrabEnemy : GameEnemyUnit
 {
-    int m_powerIncrease;
+    int m_attackIncrease;
     int m_staminaRegenIncrease = 1;
     int m_damageReductionDecrease = 1;
 
@@ -17,10 +17,10 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_maxHealth = 8 + GetHealthModByWave();
         m_maxStamina = 6;
         m_staminaRegen = 3;
-        m_power = 2 + GetPowerModByWave();
+        m_attack = 2 + GetAttackModByWave();
         m_attackSFX = AudioHelper.MetalClangAttack;
 
-        m_powerIncrease = 2 + GetPowerIncreaseModByWave();
+        m_attackIncrease = 2 + GetAttackIncreaseModByWave();
         m_maxDamageReduction = 3 + GetDamageReductionModByWave();
 
         m_team = Team.Enemy;
@@ -30,7 +30,7 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         m_name = "Volcano Crab";
         m_desc = $"An elite foe.  Defeat it and gain a relic!\n";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, 0)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_attackIncrease, 0)), true, false);
         AddKeyword(new GameEnrageKeyword(new GameGainStaminaRegenAction(this, m_staminaRegenIncrease)), true, false);
         AddKeyword(new GameEnrageKeyword(new GameLoseKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionDecrease))), true, false);
         AddKeyword(new GameDamageReductionKeyword(m_maxDamageReduction), true, false);
@@ -141,14 +141,14 @@ public class ContentVolcanoCrabEnemy : GameEnemyUnit
         return waveNum * 3;
     }
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 
         return waveNum * 2;
     }
 
-    private int GetPowerIncreaseModByWave()
+    private int GetAttackIncreaseModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

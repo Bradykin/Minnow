@@ -16,7 +16,7 @@ public class GameActionFactory
         m_actions.Add(new GameDrawCardAction(0));
         m_actions.Add(new GameGainShivAction(0));
         m_actions.Add(new GameDeathAction(null));
-        m_actions.Add(new GameDoublePowerAction(null, 0));
+        m_actions.Add(new GameDoubleAttackAction(null, 0));
         m_actions.Add(new GameExplodeAction(null, 0, 0));
         m_actions.Add(new GameFullHealAction(null));
         m_actions.Add(new GameFullHealRangeAction(null, 0));

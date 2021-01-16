@@ -13,7 +13,7 @@ public class ContentGreenRockGiantEnemy : GameEnemyUnit
         m_maxHealth = 65;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 13;
+        m_attack = 13;
         m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_team = Team.Enemy;

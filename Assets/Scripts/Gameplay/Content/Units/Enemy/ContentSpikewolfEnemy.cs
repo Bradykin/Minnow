@@ -11,7 +11,7 @@ public class ContentSpikewolfEnemy : GameEnemyUnit
         m_maxHealth = 20;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_attack = 6;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;

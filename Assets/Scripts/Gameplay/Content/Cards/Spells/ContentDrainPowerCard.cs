@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContentDrainPowerCard : GameCardSpellBase
 {
     private int m_range = 2;
-    private int m_powerGain = 3;
+    private int m_attackGain = 3;
 
     public ContentDrainPowerCard()
     {
@@ -33,7 +33,7 @@ public class ContentDrainPowerCard : GameCardSpellBase
             mpString = GetMagicPowerString();
         }
 
-        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy. If it dies, all allied units in range {m_range} get +{m_powerGain}/+0.";
+        return $"Deal {UIHelper.GetMagicPowerColoredValue(m_spellEffect + mpString)} damage to target enemy. If it dies, all allied units in range {m_range} get +{m_attackGain}/+0.";
     }
 
     public override void PlayCard(GameUnit targetUnit)
@@ -57,7 +57,7 @@ public class ContentDrainPowerCard : GameCardSpellBase
 
                 if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Player)
                 {
-                    unit.AddStats(m_powerGain, 0, false, true);
+                    unit.AddStats(m_attackGain, 0, false, true);
                 }
             }
         }

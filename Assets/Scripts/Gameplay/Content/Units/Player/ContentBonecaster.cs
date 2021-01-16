@@ -27,6 +27,6 @@ public class ContentBonecaster : GameUnit
         m_maxHealth = 25;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 2;
+        m_attack = 2;
     }
 }

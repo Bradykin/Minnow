@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentImmortalShieldEnemy : GameEnemyUnit
 {
-    private int m_powerIncreaseAmount = 10;
+    private int m_attackIncreaseAmount = 10;
     private int m_damageReductionIncrease = 3;
 
     public ContentImmortalShieldEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -14,14 +14,14 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
             m_maxHealth = 350;
             m_maxStamina = 7;
             m_staminaRegen = 7;
-            m_power = 25;
+            m_attack = 25;
         }
         else
         {
             m_maxHealth = 150;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 12;
+            m_attack = 12;
         }
 
         m_team = Team.Enemy;
@@ -31,7 +31,7 @@ public class ContentImmortalShieldEnemy : GameEnemyUnit
         m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_name = "Immortal Shield";
-        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range {m_aoeRange} get +{m_powerIncreaseAmount} Power and {m_damageReductionIncrease} Damage Reduction.\n";
+        m_desc = $"One of the final bosses. If all three Immortals die, you win. If any are alive at the start of their turn, the others will respawn.\nOther enemies in range {m_aoeRange} get +{m_attackIncreaseAmount}/+0 and {m_damageReductionIncrease} <b>Damage Reduction</b>.\n";
 
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

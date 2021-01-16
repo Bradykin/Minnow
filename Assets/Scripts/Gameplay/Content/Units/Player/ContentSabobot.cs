@@ -36,6 +36,6 @@ public class ContentSabobot : GameUnit
         m_maxHealth = 1;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 1;
+        m_attack = 1;
     }
 }

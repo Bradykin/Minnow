@@ -32,6 +32,6 @@ public class ContentMetalProtector : GameUnit
         m_maxHealth = 70;
         m_maxStamina = 1;
         m_staminaRegen = GetMaxStamina();
-        m_power = 30;
+        m_attack = 30;
     }
 }

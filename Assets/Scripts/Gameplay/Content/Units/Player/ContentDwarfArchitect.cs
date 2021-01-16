@@ -43,6 +43,6 @@ public class ContentDwarfArchitect : GameUnit
         m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 4;
+        m_attack = 4;
     }
 }

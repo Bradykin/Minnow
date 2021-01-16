@@ -8,7 +8,7 @@ public class ContentStagBear : GameUnit
     private int m_momentumStats = 2;
     private int m_victoriousStats = 3;
 
-    private int m_powerThreshhold = 60;
+    private int m_attackThreshhold = 60;
     private int m_bonusStamRegen = 2;
 
     public ContentStagBear() : base()
@@ -23,7 +23,7 @@ public class ContentStagBear : GameUnit
         AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, m_victoriousStats, m_victoriousStats)), true, false);
 
         m_name = "Stag Bear";
-        m_desc = $"If this has more than {m_powerThreshhold} power, it gains +{m_bonusStamRegen} stamina regen.\n";
+        m_desc = $"If this has more than {m_attackThreshhold} attack, it gains +{m_bonusStamRegen} stamina regen.\n";
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -32,7 +32,7 @@ public class ContentStagBear : GameUnit
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() >= m_powerThreshhold)
+        if (GetAttack() >= m_attackThreshhold)
         {
             return AudioHelper.SlamHeavy;
         }
@@ -44,7 +44,7 @@ public class ContentStagBear : GameUnit
     {
         int returnVal = base.GetStaminaRegen();
 
-        if (GetPower() > m_powerThreshhold)
+        if (GetAttack() > m_attackThreshhold)
         {
             returnVal += m_bonusStamRegen;
         }
@@ -59,6 +59,6 @@ public class ContentStagBear : GameUnit
         m_maxHealth = 20;
         m_maxStamina = 6;
         m_staminaRegen = 3;
-        m_power = 3;
+        m_attack = 3;
     }
 }

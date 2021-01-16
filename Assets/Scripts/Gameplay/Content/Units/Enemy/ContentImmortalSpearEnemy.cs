@@ -13,14 +13,14 @@ public class ContentImmortalSpearEnemy : GameEnemyUnit
             m_maxHealth = 350;
             m_maxStamina = 7;
             m_staminaRegen = 7;
-            m_power = 30;
+            m_attack = 30;
         }
         else
         {
             m_maxHealth = 150;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 20;
+            m_attack = 20;
         }
 
         m_team = Team.Enemy;

@@ -31,6 +31,6 @@ public class ContentNaturalScout : GameUnit
         m_maxHealth = 10;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 1;
+        m_attack = 1;
     }
 }

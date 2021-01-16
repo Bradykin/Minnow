@@ -28,6 +28,6 @@ public class ContentLizardSoldier : GameUnit
         m_maxHealth = 9;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 7;
+        m_attack = 7;
     }
 }

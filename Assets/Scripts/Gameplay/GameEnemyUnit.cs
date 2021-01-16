@@ -32,7 +32,7 @@ public class GameEnemyUnit : GameUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyStrength))
         {
-            m_power = Mathf.FloorToInt(m_power * 1.5f);
+            m_attack = Mathf.FloorToInt(m_attack * 1.5f);
         }
 
         SetHealthStaminaValues();
@@ -45,9 +45,9 @@ public class GameEnemyUnit : GameUnit
         }
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int toReturn = base.GetPower();
+        int toReturn = base.GetAttack();
 
         toReturn += GameHelper.GetGameController().m_curRage;
 

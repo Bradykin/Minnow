@@ -52,6 +52,6 @@ public class ContentRhinoProtector : GameUnit
         m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 4;
+        m_attack = 4;
     }
 }

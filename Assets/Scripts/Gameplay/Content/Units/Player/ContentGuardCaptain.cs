@@ -59,6 +59,6 @@ public class ContentGuardCaptain : GameUnit
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 4;
+        m_attack = 4;
     }
 }

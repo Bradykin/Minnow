@@ -17,8 +17,8 @@ public class JsonGameUnitData
     public int permStaminaRegen;
     public int maxStamina;
     public int permMaxStamina;
-    public int power;
-    public int permPower;
+    public int attack;
+    public int permAttack;
     public int typeline;
     public JsonGameKeywordHolderData jsonGameKeywordHolderData;
     public int staminaToAttack;

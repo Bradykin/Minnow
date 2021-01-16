@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentJackalEnemy : GameEnemyUnit
 {
-    public int m_basePower = 16;
+    public int m_baseAttack = 16;
     public int m_baseMaxHealth = 45;
     
     public ContentJackalEnemy(GameOpponent gameOpponent) : base(gameOpponent)
@@ -14,7 +14,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         m_maxHealth = m_baseMaxHealth;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = m_basePower;
+        m_attack = m_baseAttack;
         m_attackSFX = AudioHelper.SpearHeavy;
 
         m_team = Team.Enemy;
@@ -40,7 +40,7 @@ public class ContentJackalEnemy : GameEnemyUnit
 
     public override string GetDesc()
     {
-        return $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_power - m_basePower}/+{m_maxHealth - m_baseMaxHealth})\n";
+        return $"When this unit dies, it gives all allied units in {m_aoeRange} range stats equal to the amount of additional stats it has received (+{m_attack - m_baseAttack}/+{m_maxHealth - m_baseMaxHealth})\n";
     }
 
     protected override void LateInit()
@@ -55,7 +55,7 @@ public class ContentJackalEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.EnemyStrength))
         {
-            m_basePower = Mathf.FloorToInt(m_basePower * 1.5f);
+            m_baseAttack = Mathf.FloorToInt(m_baseAttack * 1.5f);
         }
     }
 
@@ -67,7 +67,7 @@ public class ContentJackalEnemy : GameEnemyUnit
         {
             if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead && surroundingTiles[i].GetOccupyingUnit().GetTeam() == GetTeam())
             {
-                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_power - m_basePower), Mathf.Max(m_maxHealth - m_baseMaxHealth), true, true);
+                surroundingTiles[i].GetOccupyingUnit().AddStats(Mathf.Max(0, m_attack - m_baseAttack), Mathf.Max(m_maxHealth - m_baseMaxHealth), true, true);
             }
         }
 

@@ -39,6 +39,6 @@ public class UIMagicPowerCounter : UIElementBase
 
     public override void HandleTooltip()
     {
-        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("<b>Magic Power</b>", "This is your current <b>Magic Power</b>! This affects the power of various spells you cast."));
+        UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("<b>Magic Power</b>", "This is your current <b>Magic Power</b>! This affects the strength of various spells you cast."));
     }
 }

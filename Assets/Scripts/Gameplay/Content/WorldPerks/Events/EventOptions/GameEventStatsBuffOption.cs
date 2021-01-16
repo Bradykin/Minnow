@@ -4,12 +4,12 @@ using UnityEngine;
 public class GameEventStatsBuffOption : GameEventOption
 {
     private GameTile m_tile;
-    private int m_powerIncrease;
+    private int m_attackIncrease;
     private int m_maxHealthIncrease;
 
-    public GameEventStatsBuffOption(GameTile tile, int powerIncrease, int healthIncrease)
+    public GameEventStatsBuffOption(GameTile tile, int attackIncrease, int healthIncrease)
     {
-        m_powerIncrease = powerIncrease;
+        m_attackIncrease = attackIncrease;
         m_maxHealthIncrease = healthIncrease;
 
         m_tile = tile;
@@ -17,7 +17,7 @@ public class GameEventStatsBuffOption : GameEventOption
 
     public override string GetMessage()
     {
-       m_message = "<b>Permanently</b> gain +" + m_powerIncrease + "/+" + m_maxHealthIncrease + ".";
+       m_message = "<b>Permanently</b> gain +" + m_attackIncrease + "/+" + m_maxHealthIncrease + ".";
 
         return base.GetMessage();
     }
@@ -29,7 +29,7 @@ public class GameEventStatsBuffOption : GameEventOption
             return;
         }
 
-        m_tile.GetOccupyingUnit().AddStats(m_powerIncrease, m_maxHealthIncrease, true, true);
+        m_tile.GetOccupyingUnit().AddStats(m_attackIncrease, m_maxHealthIncrease, true, true);
 
         EndEvent();
     }

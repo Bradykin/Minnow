@@ -11,7 +11,7 @@ public class ContentSandWyvernEnemy : GameEnemyUnit
         m_maxHealth = 55;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 20;
+        m_attack = 20;
         m_attackSFX = AudioHelper.BirdFlap;
 
         m_team = Team.Enemy;

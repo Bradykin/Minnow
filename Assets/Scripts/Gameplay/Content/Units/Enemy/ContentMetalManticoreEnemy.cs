@@ -11,7 +11,7 @@ public class ContentMetalManticoreEnemy : GameEnemyUnit
         m_maxHealth = 65;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 20;
+        m_attack = 20;
         m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_team = Team.Enemy;

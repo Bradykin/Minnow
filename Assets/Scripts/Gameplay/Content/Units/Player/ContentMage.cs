@@ -29,6 +29,6 @@ public class ContentMage : GameUnit
         m_maxHealth = 2;
         m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 8;
+        m_attack = 8;
     }
 }

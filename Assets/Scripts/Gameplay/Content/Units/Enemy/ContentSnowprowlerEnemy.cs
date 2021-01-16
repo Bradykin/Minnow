@@ -11,7 +11,7 @@ public class ContentSnowprowlerEnemy : GameEnemyUnit
         m_maxHealth = 14;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 5;
+        m_attack = 5;
         m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;

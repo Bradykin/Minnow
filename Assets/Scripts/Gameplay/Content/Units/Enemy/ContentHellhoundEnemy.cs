@@ -13,7 +13,7 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_maxHealth = 14;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 3;
+        m_attack = 3;
         m_attackSFX = AudioHelper.RaptorAttack;
 
         m_aoeRange = 4;
@@ -21,7 +21,7 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         m_rarity = GameRarity.Common;
 
         m_name = "Hellhound";
-        m_desc = $"Gets +{m_effectIncrease} power for each other Hellhound within {m_aoeRange} range.\n";
+        m_desc = $"Gets +{m_effectIncrease}/+0 for each other Hellhound within {m_aoeRange} range.\n";
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
@@ -37,9 +37,9 @@ public class ContentHellhoundEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int basePower = base.GetPower();
+        int baseAttack = base.GetAttack();
 
         if (GetGameTile() != null)
         {
@@ -50,11 +50,11 @@ public class ContentHellhoundEnemy : GameEnemyUnit
                 if (surroundingTiles[i].IsOccupied() && !surroundingTiles[i].GetOccupyingUnit().m_isDead &&
                     surroundingTiles[i].GetOccupyingUnit() is ContentHellhoundEnemy)
                 {
-                    basePower += m_effectIncrease;
+                    baseAttack += m_effectIncrease;
                 }
             }
         }
 
-        return basePower;
+        return baseAttack;
     }
 }

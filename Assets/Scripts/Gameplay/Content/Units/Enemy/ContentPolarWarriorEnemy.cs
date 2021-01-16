@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentPolarWarriorEnemy : GameEnemyUnit
 {
-    int m_powerIncrease = 2;
+    int m_attackIncrease = 2;
     int m_healthIncrease = 2;
     int m_regenIncrease = 2;
     int m_enrageSelfDamageAmount = 1;
@@ -16,7 +16,7 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 3;
+        m_attack = 3;
         m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
@@ -25,7 +25,7 @@ public class ContentPolarWarriorEnemy : GameEnemyUnit
         m_name = "Polar Warrior";
         m_desc = "";
 
-        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_powerIncrease, m_healthIncrease)), true, false);
+        AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, m_attackIncrease, m_healthIncrease)), true, false);
         AddKeyword(new GameEnrageKeyword(new GameGainTempKeywordAction(this, new GameRegenerateKeyword(m_regenIncrease))), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

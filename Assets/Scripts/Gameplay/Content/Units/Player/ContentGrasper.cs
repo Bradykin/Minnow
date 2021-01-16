@@ -47,6 +47,6 @@ public class ContentGrasper : GameUnit
         m_maxHealth = 12;
         m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 1;
+        m_attack = 1;
     }
 }

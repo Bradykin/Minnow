@@ -29,6 +29,6 @@ public class ContentElvenWizard : GameUnit
         m_maxHealth = 15;
         m_maxStamina = 8;
         m_staminaRegen = 2;
-        m_power = 9;
+        m_attack = 9;
     }
 }

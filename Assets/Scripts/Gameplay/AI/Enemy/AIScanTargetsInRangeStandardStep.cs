@@ -36,7 +36,7 @@ public class AIScanTargetsInRangeStandardStep : AIStep
                     continue;
                 }
                 
-                int damageAmountPerHit = tile.GetOccupyingUnit().CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower(), DamageType.Unit);
+                int damageAmountPerHit = tile.GetOccupyingUnit().CalculateDamageAmount(m_AIGameEnemyUnit.m_gameEnemyUnit.GetAttack(), DamageType.Unit);
                 if (damageAmountPerHit == 0 && ignoreTargetsCantDamage && tile.GetOccupyingUnit().GetTauntKeyword() == null)
                 {
                     continue;
@@ -75,7 +75,7 @@ public class AIScanTargetsInRangeStandardStep : AIStep
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
                 {
-                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower();
+                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetAttack();
                     numHitsToRateVulnerable--;
                 }
                 if (damageAmountInVulnerableRange >= tile.GetBuilding().GetCurHealth())

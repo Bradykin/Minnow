@@ -14,7 +14,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         m_maxHealth = 10 + GetHealthModByWave();
         m_maxStamina = 4 + GetStaminaRegenAndMaxStaminaModByWave();
         m_staminaRegen = 3 + GetStaminaRegenAndMaxStaminaModByWave();
-        m_power = 1 + GetPowerModByWave();
+        m_attack = 1 + GetAttackModByWave();
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_damageReductionAmount = 1 + GetDamageReductionModByWave();
@@ -117,7 +117,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
     }
 
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

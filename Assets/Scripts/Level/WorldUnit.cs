@@ -150,7 +150,7 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         {
             m_titleText.text = GetUnit().GetName();
         }
-        m_statsText.text = GetUnit().GetPower() + "/" + GetUnit().GetCurHealth();
+        m_statsText.text = GetUnit().GetAttack() + "/" + GetUnit().GetCurHealth();
     }
 
     void OnMouseDown()

@@ -11,7 +11,7 @@ public class ContentStoneflingerEnemy : GameEnemyUnit
         m_maxHealth = 40;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 15;
+        m_attack = 15;
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;

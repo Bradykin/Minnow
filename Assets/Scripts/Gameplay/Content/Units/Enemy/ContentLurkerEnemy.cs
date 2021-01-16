@@ -9,7 +9,7 @@ public class ContentLurkerEnemy : GameEnemyUnit
         m_maxHealth = 8;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 2;
+        m_attack = 2;
         m_attackSFX = AudioHelper.RaptorAttack;
 
         m_team = Team.Enemy;

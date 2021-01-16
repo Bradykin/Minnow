@@ -37,19 +37,19 @@ public class ContentPirateCaptain : GameUnit
         return AudioHelper.PunchLight;
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int returnPower = base.GetPower();
+        int returnAttack = base.GetAttack();
 
         if (GameHelper.IsUnitInWorld(this))
         {
             if (m_gameTile.GetTerrain().IsWater())
             {
-                returnPower += m_statBoost;
+                returnAttack += m_statBoost;
             }
         }
 
-        return returnPower;
+        return returnAttack;
     }
 
     public override GameRangeKeyword GetRangeKeyword()
@@ -84,6 +84,6 @@ public class ContentPirateCaptain : GameUnit
         m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 0;
+        m_attack = 0;
     }
 }

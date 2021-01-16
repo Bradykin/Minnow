@@ -13,14 +13,14 @@ public class ContentRiverlordEnemy : GameEnemyUnit
             m_maxHealth = 600;
             m_maxStamina = 7;
             m_staminaRegen = 7;
-            m_power = 30;
+            m_attack = 30;
         }
         else
         {
             m_maxHealth = 300;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 15;
+            m_attack = 15;
         }
 
         m_team = Team.Enemy;

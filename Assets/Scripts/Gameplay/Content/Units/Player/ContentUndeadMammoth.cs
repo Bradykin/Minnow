@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 public class ContentUndeadMammoth : GameUnit
 {
-    private int m_powerBuff = 3;
+    private int m_attackBuff = 3;
     private int m_healthBuff = 7;
 
     public ContentUndeadMammoth() : base()
@@ -20,7 +20,7 @@ public class ContentUndeadMammoth : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.SlamHeavy;
 
-        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBuff, m_healthBuff)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_attackBuff, m_healthBuff)), true, false);
 
         LateInit();
     }
@@ -32,6 +32,6 @@ public class ContentUndeadMammoth : GameUnit
         m_maxHealth = 12;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 4;
+        m_attack = 4;
     }
 }

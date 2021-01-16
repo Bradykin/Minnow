@@ -13,7 +13,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         m_maxHealth = 8 + GetHealthModByWave();
         m_maxStamina = 3 + GetStaminaRegenModByWave();
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
-        m_power = 4 + GetPowerModByWave();
+        m_attack = 4 + GetAttackModByWave();
         m_attackSFX = AudioHelper.PunchLight;
 
         m_team = Team.Enemy;
@@ -163,7 +163,7 @@ public class ContentMummyPharaohEnemy : GameEnemyUnit
         return Mathf.FloorToInt((float)waveNum / 3);
     }
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

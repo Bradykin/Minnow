@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSkeleton : GameUnit
 {
-    private int m_powerBonus = 5;
+    private int m_attackBonus = 5;
     private int m_healthBonus = 12;
 
     public ContentSkeleton() : base()
@@ -19,7 +19,7 @@ public class ContentSkeleton : GameUnit
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.SwordHeavy;
 
-        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_powerBonus, m_healthBonus)), true, false);
+        AddKeyword(new GameDeathKeyword(new GameReturnToDeckBuffedAction(this, m_attackBonus, m_healthBonus)), true, false);
 
         LateInit();
     }
@@ -31,6 +31,6 @@ public class ContentSkeleton : GameUnit
         m_maxHealth = 5;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 3;
+        m_attack = 3;
     }
 }

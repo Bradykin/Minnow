@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSandVortexEnemy : GameEnemyUnit
 {
-    private int dunesPowerIncrease = 10;
+    private int dunesAttackIncrease = 10;
     
     public ContentSandVortexEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -13,19 +13,19 @@ public class ContentSandVortexEnemy : GameEnemyUnit
         m_maxHealth = 18;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 8;
+        m_attack = 8;
         m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
         m_name = "Sand Vortex";
-        m_desc = $"Get +{dunesPowerIncrease}/+0 when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";
+        m_desc = $"Get +{dunesAttackIncrease}/+0 when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";
 
         AddKeyword(new GameDuneswalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            m_desc = $"Get +{dunesPowerIncrease}/+0 and is invulnerable when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";
+            m_desc = $"Get +{dunesAttackIncrease}/+0 and is invulnerable when on a dunes tile.\nWhen this unit dies, it will turn the terrain it is on into Sand Dunes.";
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -36,13 +36,13 @@ public class ContentSandVortexEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int toReturn = base.GetPower();
+        int toReturn = base.GetAttack();
 
         if (GetGameTile().GetTerrain().IsDunes())
         {
-            toReturn += dunesPowerIncrease;
+            toReturn += dunesAttackIncrease;
         }
         
         return toReturn;

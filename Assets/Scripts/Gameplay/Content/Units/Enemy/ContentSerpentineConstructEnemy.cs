@@ -11,7 +11,7 @@ public class ContentSerpentineConstructEnemy : GameEnemyUnit
         m_maxHealth = 38;
         m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 18;
+        m_attack = 18;
         m_attackSFX = AudioHelper.MetalClangAttack;
 
         m_team = Team.Enemy;

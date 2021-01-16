@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentGoblinLegend : GameUnit
 {
-    private int m_powerToGain = 10;
+    private int m_attackToGain = 10;
     private int m_healthToGain = 10;
     
     public ContentGoblinLegend() : base()
@@ -18,14 +18,14 @@ public class ContentGoblinLegend : GameUnit
         m_typeline = Typeline.Monster;
         m_icon = UIHelper.GetIconUnit(m_name);
 
-        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, m_powerToGain, m_healthToGain)), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, m_attackToGain, m_healthToGain)), true, false);
 
         LateInit();
     }
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() >= 40)
+        if (GetAttack() >= 40)
         {
             return AudioHelper.SpearHeavy;
         }
@@ -40,6 +40,6 @@ public class ContentGoblinLegend : GameUnit
         m_maxHealth = 15;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 2;
+        m_attack = 2;
     }
 }

@@ -29,6 +29,6 @@ public class ContentWanderer : GameUnit
         m_maxHealth = 30;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 15;
+        m_attack = 15;
     }
 }

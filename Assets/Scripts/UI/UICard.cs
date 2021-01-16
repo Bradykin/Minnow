@@ -198,7 +198,7 @@ public class UICard : MonoBehaviour
 
         if (m_unitCard != null)
         {
-            m_statsText.text = m_unitCard.m_unit.GetPower() + "/" + m_unitCard.m_unit.GetMaxHealth();
+            m_statsText.text = m_unitCard.m_unit.GetAttack() + "/" + m_unitCard.m_unit.GetMaxHealth();
 
             if (m_unitObj != null)
             {

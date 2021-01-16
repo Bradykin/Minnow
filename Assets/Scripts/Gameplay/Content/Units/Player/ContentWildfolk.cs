@@ -46,6 +46,6 @@ public class ContentWildfolk : GameUnit
         m_maxHealth = 1;
         m_maxStamina = 3;
         m_staminaRegen = 1;
-        m_power = 1;
+        m_attack = 1;
     }
 }

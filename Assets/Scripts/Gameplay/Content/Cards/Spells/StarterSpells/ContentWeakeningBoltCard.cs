@@ -20,7 +20,7 @@ public class ContentWeakeningBoltCard : GameCardSpellBase
 
     public override string GetDesc()
     {
-        string description = GetDamageDescString(false) + "Drain " + m_spellEffect + " Power from the target. Does not scale with <b>Magic Power</b>.\n";
+        string description = GetDamageDescString(false) + $"Target enemy unit gets -{m_spellEffect}/-0.\n";
 
         if (GameHelper.HasRelic<ContentTraditionalMethodsRelic>())
         {
