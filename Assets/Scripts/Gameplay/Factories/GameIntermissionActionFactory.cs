@@ -37,7 +37,10 @@ public static class GameIntermissionActionFactory
             bool hasInExclusion = false;
             if (exclusionList == null)
             {
-                actions.Add(m_intermissionActions[i]);
+                if (m_intermissionActions[i].IsValidToSpawn())
+                {
+                    actions.Add(m_intermissionActions[i]);
+                }
             }
             else
             {
@@ -52,7 +55,10 @@ public static class GameIntermissionActionFactory
 
                 if (!hasInExclusion)
                 {
-                    actions.Add(m_intermissionActions[i]);
+                    if (m_intermissionActions[i].IsValidToSpawn())
+                    {
+                        actions.Add(m_intermissionActions[i]);
+                    }
                 }
             }
         }

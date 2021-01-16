@@ -263,11 +263,6 @@ public class WorldController : Singleton<WorldController>
 
         GamePlayer player = m_gameController.m_player;
 
-        List<GameCard> exclusionCards = new List<GameCard>();
-        GameCard cardOne;
-        GameCard cardTwo;
-        GameCard cardThree;
-
         if (!Globals.loadingRun)
         {
             player.m_spellsPlayedPreviousTurn = 0;
@@ -306,59 +301,6 @@ public class WorldController : Singleton<WorldController>
             }
 
             m_gameController.GetCurMap().TriggerMapEvents(m_gameController.m_currentWaveNumber, ScheduledActionTime.StartIntermission);
-
-            //Choose unit rarity
-            GameElementBase.GameRarity gameRarity = SelectIntermissionUnitRarity();
-
-            cardOne = GameCardFactory.GetRandomStandardUnitCard(gameRarity);
-            exclusionCards.Add(cardOne);
-            cardTwo = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
-            exclusionCards.Add(cardTwo);
-
-            int exclusionCost = -1;
-            if (cardOne.GetCost() == cardTwo.GetCost())
-            {
-                exclusionCost = cardOne.GetCost();
-            }
-            bool excludeThreeCostOrHigher = cardOne.GetCost() >= 3 && cardTwo.GetCost() >= 3;
-
-            cardThree = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards, exclusionCost, excludeThreeCostOrHigher);
-
-            bool shuffleThirdCard = excludeThreeCostOrHigher || exclusionCost >= 0;
-            if (shuffleThirdCard)
-            {
-                int randomIndex = Random.Range(0, 3);
-                GameCard temp;
-                switch (randomIndex)
-                {
-                    case 0:
-                        temp = cardOne;
-                        cardOne = cardThree;
-                        cardThree = temp;
-                        break;
-                    case 1:
-                        temp = cardTwo;
-                        cardTwo = cardThree;
-                        cardThree = temp;
-                        break;
-                }
-            }
-
-            m_gameController.m_savedInIntermission = true;
-            m_gameController.m_intermissionSavedCardOne = cardOne;
-            m_gameController.m_intermissionSavedCardTwo = cardTwo;
-            m_gameController.m_intermissionSavedCardThree = cardThree;
-            PlayerDataManager.PlayerAccountData.SaveRunData();
-            GameNotificationManager.SaveGameDirectorData();
-        }
-        else
-        {
-            cardOne = m_gameController.m_intermissionSavedCardOne;
-            exclusionCards.Add(cardOne);
-            cardTwo = m_gameController.m_intermissionSavedCardTwo;
-            exclusionCards.Add(cardTwo);
-            cardThree = m_gameController.m_intermissionSavedCardThree;
-            Globals.loadingRun = false;
         }
 
         Globals.m_canScroll = true;
@@ -366,40 +308,6 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedCard = null;
 
         Globals.m_selectedUnit = null;
-
-        UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
-    }
-
-    private GameElementBase.GameRarity SelectIntermissionUnitRarity()
-    {
-        GameElementBase.GameRarity gameRarity;
-
-        if ((m_gameController.m_currentWaveNumber == 2) ||
-            (m_gameController.m_previousRareUnitOptionWave == 3 && m_gameController.m_currentWaveNumber == 4) ||
-            (m_gameController.m_numRareUnitOptionsOffered == 2))
-        {
-            gameRarity = GameCardFactory.GetRandomRarity();
-            while (gameRarity == GameElementBase.GameRarity.Rare)
-            {
-                gameRarity = GameCardFactory.GetRandomRarity();
-            }
-        }
-        else if (m_gameController.m_numRareUnitOptionsOffered == 0 && m_gameController.m_currentWaveNumber == 6)
-        {
-            gameRarity = GameElementBase.GameRarity.Rare;
-        }
-        else
-        {
-            gameRarity = GameCardFactory.GetRandomRarity();
-        }
-
-        if (gameRarity == GameElementBase.GameRarity.Rare)
-        {
-            m_gameController.m_numRareUnitOptionsOffered++;
-            m_gameController.m_previousRareUnitOptionWave = m_gameController.m_currentWaveNumber;
-        }
-
-        return gameRarity;
     }
 
     public void EndIntermission()

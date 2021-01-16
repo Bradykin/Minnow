@@ -332,6 +332,40 @@ public static class GameHelper
         return true;
     }
 
+    public static GameElementBase.GameRarity SelectIntermissionUnitRarity()
+    {
+        GameController gameController = GameHelper.GetGameController();
+
+        GameElementBase.GameRarity gameRarity;
+
+        if ((gameController.m_currentWaveNumber == 2) ||
+            (gameController.m_previousRareUnitOptionWave == 3 && gameController.m_currentWaveNumber == 4) ||
+            (gameController.m_numRareUnitOptionsOffered == 2))
+        {
+            gameRarity = GameCardFactory.GetRandomRarity();
+            while (gameRarity == GameElementBase.GameRarity.Rare)
+            {
+                gameRarity = GameCardFactory.GetRandomRarity();
+            }
+        }
+        else if (gameController.m_numRareUnitOptionsOffered == 0 && gameController.m_currentWaveNumber == 6)
+        {
+            gameRarity = GameElementBase.GameRarity.Rare;
+        }
+        else
+        {
+            gameRarity = GameCardFactory.GetRandomRarity();
+        }
+
+        if (gameRarity == GameElementBase.GameRarity.Rare)
+        {
+            gameController.m_numRareUnitOptionsOffered++;
+            gameController.m_previousRareUnitOptionWave = gameController.m_currentWaveNumber;
+        }
+
+        return gameRarity;
+    }
+
     public static bool IsCurrentMapLakeside()
     {
         return GetGameController().GetCurMap().m_id == 0;

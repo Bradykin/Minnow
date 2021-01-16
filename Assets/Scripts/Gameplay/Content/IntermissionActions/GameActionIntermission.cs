@@ -15,5 +15,10 @@ public abstract class GameActionIntermission : GameElementBase
     {
         return m_icon;
     }
+
+    public virtual bool IsValidToSpawn()
+    {
+        return true;
+    }
 }
 

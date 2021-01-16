@@ -1273,6 +1273,73 @@ public static class UIHelper
         return "There are only so many turns in a run; each one is a resource, so use them wisely!";
     }
 
+    public static void TriggerUnitCardSelection()
+    {
+        GameController gameController = GameHelper.GetGameController();
+        List<GameCard> exclusionCards = new List<GameCard>();
+        GameCard cardOne;
+        GameCard cardTwo;
+        GameCard cardThree;
+
+        if (!Globals.loadingRun)
+        {
+            //Choose unit rarity
+            GameElementBase.GameRarity gameRarity = GameHelper.SelectIntermissionUnitRarity();
+
+            cardOne = GameCardFactory.GetRandomStandardUnitCard(gameRarity);
+            exclusionCards.Add(cardOne);
+            cardTwo = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards);
+            exclusionCards.Add(cardTwo);
+
+            int exclusionCost = -1;
+            if (cardOne.GetCost() == cardTwo.GetCost())
+            {
+                exclusionCost = cardOne.GetCost();
+            }
+            bool excludeThreeCostOrHigher = cardOne.GetCost() >= 3 && cardTwo.GetCost() >= 3;
+
+            cardThree = GameCardFactory.GetRandomStandardUnitCard(gameRarity, exclusionCards, exclusionCost, excludeThreeCostOrHigher);
+
+            bool shuffleThirdCard = excludeThreeCostOrHigher || exclusionCost >= 0;
+            if (shuffleThirdCard)
+            {
+                int randomIndex = Random.Range(0, 3);
+                GameCard temp;
+                switch (randomIndex)
+                {
+                    case 0:
+                        temp = cardOne;
+                        cardOne = cardThree;
+                        cardThree = temp;
+                        break;
+                    case 1:
+                        temp = cardTwo;
+                        cardTwo = cardThree;
+                        cardThree = temp;
+                        break;
+                }
+            }
+
+            gameController.m_savedInIntermission = true;
+            gameController.m_intermissionSavedCardOne = cardOne;
+            gameController.m_intermissionSavedCardTwo = cardTwo;
+            gameController.m_intermissionSavedCardThree = cardThree;
+            PlayerDataManager.PlayerAccountData.SaveRunData();
+            GameNotificationManager.SaveGameDirectorData();
+        }
+        else
+        {
+            cardOne = gameController.m_intermissionSavedCardOne;
+            exclusionCards.Add(cardOne);
+            cardTwo = gameController.m_intermissionSavedCardTwo;
+            exclusionCards.Add(cardTwo);
+            cardThree = gameController.m_intermissionSavedCardThree;
+            Globals.loadingRun = false;
+        }
+
+        UICardSelectController.Instance.Init(cardOne, cardTwo, cardThree);
+    }
+
     public static void TriggerSpellCardSelection()
     {
         GameElementBase.GameRarity rarity = GameCardFactory.GetRandomRarity();

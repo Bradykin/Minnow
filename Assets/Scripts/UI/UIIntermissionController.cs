@@ -5,6 +5,15 @@ using Game.Util;
 
 public class UIIntermissionController : Singleton<UIIntermissionController>
 {
+    public enum SelectionOptions
+    {
+        Unit,
+        Spell,
+        Action
+    }
+
+    public List<SelectionOptions> m_selectionStack = new List<SelectionOptions>();
+
     public UIBuildingController m_buildingOne;
     public UIBuildingController m_buildingTwo;
     public UIBuildingController m_buildingThree;
@@ -39,6 +48,38 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
 
 
         UpdateActions();
+    }
+
+    void OnEnable()
+    {
+        m_selectionStack.Add(SelectionOptions.Unit);
+        m_selectionStack.Add(SelectionOptions.Spell);
+        m_selectionStack.Add(SelectionOptions.Action);
+
+        TriggerNextSelection();
+    }
+
+    public void TriggerNextSelection()
+    {
+        if (m_selectionStack.Count == 0)
+        {
+            return;
+        }
+
+        if (m_selectionStack[0] == SelectionOptions.Unit)
+        {
+            UIHelper.TriggerUnitCardSelection();
+        }
+        else if (m_selectionStack[0] == SelectionOptions.Spell)
+        {
+            UIHelper.TriggerSpellCardSelection();
+        }
+        else if (m_selectionStack[0] == SelectionOptions.Action)
+        {
+            UIHelper.TriggerActionSelection();
+        }
+
+        m_selectionStack.RemoveAt(0);
     }
 
     public void SetIndex(int val)

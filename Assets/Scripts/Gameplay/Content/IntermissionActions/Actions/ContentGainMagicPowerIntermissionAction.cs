@@ -6,7 +6,7 @@ public class ContentGainMagicPowerIntermissionAction : GameActionIntermission
 {
     public ContentGainMagicPowerIntermissionAction()
     {
-        m_name = "Gain <b>Magic Power</b>";
+        m_name = "Gain Magic Power";
         m_desc = $"<b>Permanently</b> gain 1 <b>Magic Power</b>!";
 
         m_icon = UIHelper.GetIconIntermissionAction(m_name);

@@ -16,4 +16,24 @@ public class ContentRebuildIntermissionAction : GameActionIntermission
     {
         UIHelper.SelectAction(this);
     }
+
+    public override bool IsValidToSpawn()
+    {
+        if (!base.IsValidToSpawn())
+        {
+            return false;
+        }
+
+        WorldTile[] worldTiles = WorldGridManager.Instance.m_gridArray;
+
+        for (int i = 0; i < worldTiles.Length; i++)
+        {
+            if (worldTiles[i].GetGameTile().m_destroyedBuilding != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
