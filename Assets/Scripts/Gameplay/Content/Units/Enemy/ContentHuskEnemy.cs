@@ -11,7 +11,7 @@ public class ContentHuskEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 4;
+        m_attack = 4;
         m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;
@@ -41,7 +41,7 @@ public class ContentHuskEnemy : GameEnemyUnit
         m_maxHealth = deadUnit.GetMaxHealth();
         m_maxStamina = deadUnit.GetMaxStamina();
         m_staminaRegen = deadUnit.GetStaminaRegen();
-        m_power = deadUnit.GetPower();
+        m_attack = deadUnit.GetAttack();
 
         IReadOnlyList<GameKeywordBase> deadUnitKeywords = deadUnit.GetKeywordHolderForRead().GetKeywordsForRead();
         for (int i = 0; i < deadUnitKeywords.Count; i++)

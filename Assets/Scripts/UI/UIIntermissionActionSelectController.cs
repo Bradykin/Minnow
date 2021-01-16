@@ -34,6 +34,7 @@ public class UIIntermissionActionSelectController : Singleton<UIIntermissionActi
     {
         Globals.m_canSelect = true;
         m_holder.SetActive(false);
+        UIIntermissionController.Instance.TriggerNextSelection();
     }
 
     public void AcceptAction(GameActionIntermission action)

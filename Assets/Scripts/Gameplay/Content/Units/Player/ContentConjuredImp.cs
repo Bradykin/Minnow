@@ -24,7 +24,7 @@ public class ContentConjuredImp : GameUnit
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() >= 30)
+        if (GetAttack() >= 30)
         {
             return AudioHelper.SlamHeavy;
         }
@@ -72,6 +72,6 @@ public class ContentConjuredImp : GameUnit
         m_maxHealth = 15;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 6;
+        m_attack = 6;
     }
 }

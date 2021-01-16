@@ -6,13 +6,13 @@ using System.Linq;
 public class GameExplodeEnemiesAction : GameAction
 {
     private GameUnit m_explodingUnit;
-    private int m_explodePower;
+    private int m_explodeAttack;
     private List<int> m_explodeRanges;
 
-    public GameExplodeEnemiesAction(GameUnit explodingUnit, int explodePower, int explodeRange)
+    public GameExplodeEnemiesAction(GameUnit explodingUnit, int explodeAttack, int explodeRange)
     {
         m_explodingUnit = explodingUnit;
-        m_explodePower = explodePower;
+        m_explodeAttack = explodeAttack;
         m_explodeRanges = new List<int>();
         m_explodeRanges.Add(explodeRange);
 
@@ -20,10 +20,10 @@ public class GameExplodeEnemiesAction : GameAction
         m_actionParamType = ActionParamType.UnitIntListIntParam;
     }
 
-    public GameExplodeEnemiesAction(GameUnit explodingUnit, int explodePower, List<int> explodeRanges)
+    public GameExplodeEnemiesAction(GameUnit explodingUnit, int explodeAttack, List<int> explodeRanges)
     {
         m_explodingUnit = explodingUnit;
-        m_explodePower = explodePower;
+        m_explodeAttack = explodeAttack;
         m_explodeRanges = new List<int>();
         m_explodeRanges.AddRange(explodeRanges);
 
@@ -33,7 +33,7 @@ public class GameExplodeEnemiesAction : GameAction
 
     public override string GetDesc()
     {
-        return "Explode for " + m_explodePower + " damage to enemy units and enemy buildings in range " + m_explodeRanges.Max();
+        return "Explode for " + m_explodeAttack + " damage to enemy units and enemy buildings in range " + m_explodeRanges.Max();
     }
 
     public override void DoAction()
@@ -49,12 +49,12 @@ public class GameExplodeEnemiesAction : GameAction
 
             if (building != null && !building.m_isDestroyed && building.GetTeam() == Team.Enemy)
             {
-                building.GetHit(m_explodePower);
+                building.GetHit(m_explodeAttack);
             }
 
             if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Enemy)
             {
-                unit.GetHitByAbility(m_explodePower);
+                unit.GetHitByAbility(m_explodeAttack);
             }
         }
 
@@ -72,7 +72,7 @@ public class GameExplodeEnemiesAction : GameAction
     {
         GameExplodeEnemiesAction tempAction = (GameExplodeEnemiesAction)toAdd;
 
-        m_explodePower += tempAction.m_explodePower;
+        m_explodeAttack += tempAction.m_explodeAttack;
         m_explodeRanges.AddRange(tempAction.m_explodeRanges);
     }
 
@@ -80,7 +80,7 @@ public class GameExplodeEnemiesAction : GameAction
     {
         GameExplodeEnemiesAction tempAction = (GameExplodeEnemiesAction)toAdd;
 
-        m_explodePower -= tempAction.m_explodePower;
+        m_explodeAttack -= tempAction.m_explodeAttack;
         for (int i = 0; i < tempAction.m_explodeRanges.Count; i++)
         {
             m_explodeRanges.Remove(tempAction.m_explodeRanges[i]);
@@ -89,7 +89,7 @@ public class GameExplodeEnemiesAction : GameAction
 
     public override bool ShouldBeRemoved()
     {
-        return m_explodePower <= 0 || m_explodeRanges.Count == 0;
+        return m_explodeAttack <= 0 || m_explodeRanges.Count == 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -102,7 +102,7 @@ public class GameExplodeEnemiesAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            intValue1 = m_explodePower,
+            intValue1 = m_explodeAttack,
             intListValue1 = m_explodeRanges
         };
 

@@ -13,7 +13,7 @@ public class ContentDemonMagicianEnemy : GameEnemyUnit
         m_maxHealth = 24;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 8;
+        m_attack = 8;
         m_attackSFX = AudioHelper.SpellAttackMedium;
 
         m_team = Team.Enemy;

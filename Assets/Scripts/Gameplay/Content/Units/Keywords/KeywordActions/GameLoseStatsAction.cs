@@ -6,13 +6,13 @@ using UnityEngine;
 public class GameLoseStatsAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_powerToLose;
+    private int m_attackToLose;
     private int m_healthToLose;
 
-    public GameLoseStatsAction(GameUnit unit, int powerToLose, int healthToLose)
+    public GameLoseStatsAction(GameUnit unit, int attackToLose, int healthToLose)
     {
         m_unit = unit;
-        m_powerToLose = powerToLose;
+        m_attackToLose = attackToLose;
         m_healthToLose = healthToLose;
 
         m_name = "Lose Stats";
@@ -22,19 +22,19 @@ public class GameLoseStatsAction : GameAction
 
     public override string GetDesc()
     {
-        return "-" + m_powerToLose + "/-" + m_healthToLose + ".";
+        return "-" + m_attackToLose + "/-" + m_healthToLose + ".";
     }
 
     public override void DoAction()
     {
-        m_unit.RemoveStats(m_powerToLose, m_healthToLose, false);
+        m_unit.RemoveStats(m_attackToLose, m_healthToLose, false);
     }
 
     public override void AddAction(GameAction toAdd)
     {
         GameLoseStatsAction tempAction = (GameLoseStatsAction)toAdd;
 
-        m_powerToLose += tempAction.m_powerToLose;
+        m_attackToLose += tempAction.m_attackToLose;
         m_healthToLose += tempAction.m_healthToLose;
     }
 
@@ -42,13 +42,13 @@ public class GameLoseStatsAction : GameAction
     {
         GameLoseStatsAction tempAction = (GameLoseStatsAction)toSubtract;
 
-        m_powerToLose -= tempAction.m_powerToLose;
+        m_attackToLose -= tempAction.m_attackToLose;
         m_healthToLose -= tempAction.m_healthToLose;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_powerToLose <= 0 && m_healthToLose <= 0;
+        return m_attackToLose <= 0 && m_healthToLose <= 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -61,7 +61,7 @@ public class GameLoseStatsAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            intValue1 = m_powerToLose,
+            intValue1 = m_attackToLose,
             intValue2 = m_healthToLose
         };
 

@@ -9,7 +9,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         m_maxHealth = 10 + GetHealthModByWave();
         m_maxStamina = 6;
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
-        m_power = 4 + GetPowerModByWave();
+        m_attack = 4 + GetAttackModByWave();
         m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
@@ -22,7 +22,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             m_maxHealth = Mathf.FloorToInt(m_maxHealth * 2f);
-            m_power = Mathf.FloorToInt(m_power * 1.5f);
+            m_attack = Mathf.FloorToInt(m_attack * 1.5f);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -81,7 +81,7 @@ public class ContentDarkWarriorEnemy : GameEnemyUnit
         return Mathf.FloorToInt((float)waveNum * 0.5f);
     }
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

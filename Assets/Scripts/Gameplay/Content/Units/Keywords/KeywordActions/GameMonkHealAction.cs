@@ -31,7 +31,7 @@ public class GameMonkHealAction : GameAction
 
     public override string GetDesc()
     {
-        return $"Heal all allied units (including self) in range {m_ranges.Max()} for an amount equal to {m_unit.GetName()}'s power, then remove bonus power.";
+        return $"Heal all allied units (including self) in range {m_ranges.Max()} for an amount equal to {m_unit.GetName()}'s attack, then remove bonus attack.";
     }
 
     public override void DoAction()
@@ -42,11 +42,11 @@ public class GameMonkHealAction : GameAction
         {
             if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].GetOccupyingUnit().Heal(m_unit.GetPower());
+                tilesInRange[i].GetOccupyingUnit().Heal(m_unit.GetAttack());
             }
         }
 
-        ((ContentArmouredMonk)m_unit).ResetPower();
+        ((ContentArmouredMonk)m_unit).ResetAttack();
     }
 
     public override void AddAction(GameAction toAdd)

@@ -9,7 +9,7 @@ public class ContentShadeEnemy : GameEnemyUnit
         m_maxHealth = 10;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 10;
+        m_attack = 10;
         m_attackSFX = AudioHelper.DaggerLight;
 
         m_team = Team.Enemy;

@@ -37,6 +37,6 @@ public class ContentInjuredTroll : GameUnit
         m_maxHealth = 45;
         m_maxStamina = 8;
         m_staminaRegen = 4;
-        m_power = 12;
+        m_attack = 12;
     }
 }

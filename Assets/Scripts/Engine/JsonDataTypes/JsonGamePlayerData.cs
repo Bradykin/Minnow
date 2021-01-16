@@ -25,7 +25,7 @@ public struct JsonGamePlayerData
 
     public int spellsPlayedPreviousTurn;
     public int spellsPlayedThisTurn;
-    public int fletchingPowerIncrease;
+    public int fletchingAttackIncrease;
     public int tempMagicPowerIncrease;
     public int totemOfTheWolfTurn;
 

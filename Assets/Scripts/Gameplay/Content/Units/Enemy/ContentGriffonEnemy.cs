@@ -13,7 +13,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
         m_maxHealth = 20;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 12;
+        m_attack = 12;
         m_attackSFX = AudioHelper.BirdFlap;
 
         m_team = Team.Enemy;

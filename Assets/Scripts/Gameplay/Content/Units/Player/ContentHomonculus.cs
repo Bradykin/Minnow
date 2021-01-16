@@ -31,6 +31,6 @@ public class ContentHomonculus : GameUnit
         m_maxHealth = 4;
         m_maxStamina = 6;
         m_staminaRegen = 2;
-        m_power = 2;
+        m_attack = 2;
     }
 }

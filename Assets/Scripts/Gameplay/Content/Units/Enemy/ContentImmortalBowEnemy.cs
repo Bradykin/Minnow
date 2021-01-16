@@ -11,14 +11,14 @@ public class ContentImmortalBowEnemy : GameEnemyUnit
             m_maxHealth = 350;
             m_maxStamina = 7;
             m_staminaRegen = 7;
-            m_power = 25;
+            m_attack = 25;
         }
         else
         {
             m_maxHealth = 100;
             m_maxStamina = 5;
             m_staminaRegen = 5;
-            m_power = 15;
+            m_attack = 15;
         }
 
         m_team = Team.Enemy;

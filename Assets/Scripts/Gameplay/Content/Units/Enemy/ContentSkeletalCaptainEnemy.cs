@@ -9,7 +9,7 @@ public class ContentSkeletalCaptainEnemy : GameEnemyUnit
         m_maxHealth = 4 + GetHealthModByWave();
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 1 + GetPowerModByWave();
+        m_attack = 1 + GetAttackModByWave();
         m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;
@@ -45,7 +45,7 @@ public class ContentSkeletalCaptainEnemy : GameEnemyUnit
         return scalingValue * 7;
     }
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

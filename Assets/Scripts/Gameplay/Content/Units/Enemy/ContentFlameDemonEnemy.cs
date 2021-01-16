@@ -11,7 +11,7 @@ public class ContentFlameDemonEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 4;
+        m_attack = 4;
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;

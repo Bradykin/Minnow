@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentArmouredMonk : GameUnit
 {
-    private int m_basePower = 3;
+    private int m_baseAttack = 3;
 
     public int m_qiVal;
 
@@ -27,7 +27,7 @@ public class ContentArmouredMonk : GameUnit
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() >= 30)
+        if (GetAttack() >= 30)
         {
             return AudioHelper.SlamHeavy;
         }
@@ -42,12 +42,12 @@ public class ContentArmouredMonk : GameUnit
         m_maxHealth = 40;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = m_basePower;
+        m_attack = m_baseAttack;
     }
 
-    public void ResetPower()
+    public void ResetAttack()
     {
-        m_power = m_basePower;
-        UIHelper.CreateWorldElementNotification($"The power leaves {GetName()}'s body.", false, GetWorldTile().gameObject);
+        m_attack = m_baseAttack;
+        UIHelper.CreateWorldElementNotification($"The attack leaves {GetName()}'s body.", false, GetWorldTile().gameObject);
     }
 }

@@ -36,7 +36,7 @@ public class ContentGemsOfProphecyEvent : GameEvent
 public class GameEventProphecyOfAdventureOption : GameEventOption
 {
     private GameTile m_tile;
-    private int m_powerGain = 5;
+    private int m_attackGain = 5;
 
     public GameEventProphecyOfAdventureOption(GameTile tile)
     {
@@ -45,12 +45,12 @@ public class GameEventProphecyOfAdventureOption : GameEventOption
 
     public override void Init()
     {
-        m_message = $"Receive the prophecy of adventure: {m_tile.GetOccupyingUnit().GetName()} <b>permanently</b> gains '<b>Victorious</b>: gain +{m_powerGain}/+0.'";
+        m_message = $"Receive the prophecy of adventure: {m_tile.GetOccupyingUnit().GetName()} <b>permanently</b> gains '<b>Victorious</b>: gain +{m_attackGain}/+0.'";
     }
 
     public override void AcceptOption()
     {
-        m_tile.GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_powerGain, 0)), true, true);
+        m_tile.GetOccupyingUnit().AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(m_tile.GetOccupyingUnit(), m_attackGain, 0)), true, true);
 
         EndEvent();
     }

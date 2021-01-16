@@ -28,6 +28,6 @@ public class ContentGolemProtector : GameUnit
         m_maxHealth = 300;
         m_maxStamina = 3;
         m_staminaRegen = 3;
-        m_power = 200;
+        m_attack = 200;
     }
 }

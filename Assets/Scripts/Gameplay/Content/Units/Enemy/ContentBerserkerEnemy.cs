@@ -11,7 +11,7 @@ public class ContentBerserkerEnemy : GameEnemyUnit
         m_maxHealth = 6;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 5;
+        m_attack = 5;
         m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;

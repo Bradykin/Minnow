@@ -26,6 +26,6 @@ public class ContentDwarfforgedConstruct : GameUnit
         m_maxHealth = 90;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 12;
+        m_attack = 12;
     }
 }

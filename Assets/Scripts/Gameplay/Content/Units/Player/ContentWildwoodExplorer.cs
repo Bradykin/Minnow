@@ -29,6 +29,6 @@ public class ContentWildwoodExplorer : GameUnit
         m_maxHealth = 18;
         m_maxStamina = 5;
         m_staminaRegen = 2;
-        m_power = 15;
+        m_attack = 15;
     }
 }

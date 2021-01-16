@@ -31,7 +31,7 @@ public class AILavaRhinoScanTargetsInRangeStep : AIScanTargetsInRangeStandardSte
                 int damageAmountInVulnerableRange = 0;
                 while (numHitsToRateVulnerable > 0)
                 {
-                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetPower();
+                    damageAmountInVulnerableRange += m_AIGameEnemyUnit.m_gameEnemyUnit.GetAttack();
                     numHitsToRateVulnerable--;
                 }
                 if (damageAmountInVulnerableRange >= tile.GetBuilding().GetCurHealth())

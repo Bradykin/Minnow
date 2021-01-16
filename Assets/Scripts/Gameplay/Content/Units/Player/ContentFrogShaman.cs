@@ -30,6 +30,6 @@ public class ContentFrogShaman : GameUnit
         m_maxHealth = 25;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 9;
+        m_attack = 9;
     }
 }

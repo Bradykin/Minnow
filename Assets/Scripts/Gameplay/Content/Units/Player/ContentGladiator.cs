@@ -29,6 +29,6 @@ public class ContentGladiator : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 8;
         m_staminaRegen = 1;
-        m_power = 6;
+        m_attack = 6;
     }
 }

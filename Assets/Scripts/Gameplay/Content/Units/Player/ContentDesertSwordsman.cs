@@ -28,6 +28,6 @@ public class ContentDesertSwordsman : GameUnit
         m_maxHealth = 10;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 30;
+        m_attack = 30;
     }
 }

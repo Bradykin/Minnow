@@ -11,7 +11,7 @@ public class ContentBasiliskEnemy : GameEnemyUnit
         m_maxHealth = 16;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 6;
+        m_attack = 6;
         m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;

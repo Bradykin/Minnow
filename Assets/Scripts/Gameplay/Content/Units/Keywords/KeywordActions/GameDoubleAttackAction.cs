@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDoublePowerAction : GameAction
+public class GameDoubleAttackAction : GameAction
 {
     private GameUnit m_unit;
     private int m_numTimesToTrigger;
 
-    public GameDoublePowerAction(GameUnit unit, int numTimesToTrigger)
+    public GameDoubleAttackAction(GameUnit unit, int numTimesToTrigger)
     {
         m_unit = unit;
         m_numTimesToTrigger = numTimesToTrigger;
 
-        m_name = "Double Power";
+        m_name = "Double Attack";
 
         m_actionParamType = ActionParamType.UnitIntParam;
     }
@@ -22,11 +22,11 @@ public class GameDoublePowerAction : GameAction
     {
         if (m_numTimesToTrigger == 1)
         {
-            return "Double this unit's power.";
+            return "Double this unit's attack.";
         }
         else
         {
-            return "Double this unit's power " + m_numTimesToTrigger + " times.";
+            return "Double this unit's attack " + m_numTimesToTrigger + " times.";
         }
     }
 
@@ -34,20 +34,20 @@ public class GameDoublePowerAction : GameAction
     {
         for (int i = 0; i < m_numTimesToTrigger; i++)
         {
-            m_unit.AddStats(m_unit.GetPower(), 0, false, true);
+            m_unit.AddStats(m_unit.GetAttack(), 0, false, true);
         }
     }
 
     public override void AddAction(GameAction toAdd)
     {
-        GameDoublePowerAction tempAction = (GameDoublePowerAction)toAdd;
+        GameDoubleAttackAction tempAction = (GameDoubleAttackAction)toAdd;
 
         m_numTimesToTrigger += tempAction.m_numTimesToTrigger;
     }
 
     public override void SubtractAction(GameAction toSubtract)
     {
-        GameDoublePowerAction tempAction = (GameDoublePowerAction)toSubtract;
+        GameDoubleAttackAction tempAction = (GameDoubleAttackAction)toSubtract;
 
         m_numTimesToTrigger -= tempAction.m_numTimesToTrigger;
     }

@@ -29,6 +29,6 @@ public class ContentCyclops : GameUnit
         m_maxHealth = 100;
         m_maxStamina = 3;
         m_staminaRegen = 1;
-        m_power = 70;
+        m_attack = 70;
     }
 }

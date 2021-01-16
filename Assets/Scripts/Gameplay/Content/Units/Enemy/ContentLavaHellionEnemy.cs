@@ -11,7 +11,7 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_maxHealth = 70;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 12;
+        m_attack = 12;
         m_attackSFX = AudioHelper.PunchLight;
 
         m_team = Team.Enemy;
@@ -21,7 +21,7 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
         m_desc = "";
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
-        AddKeyword(new GameVictoriousKeyword(new GameDoublePowerAction(this, 1)), true, false);
+        AddKeyword(new GameVictoriousKeyword(new GameDoubleAttackAction(this, 1)), true, false);
         AddKeyword(new GameDamageReductionKeyword(3), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

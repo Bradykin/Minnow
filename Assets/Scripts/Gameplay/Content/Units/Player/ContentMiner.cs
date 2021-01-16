@@ -42,6 +42,6 @@ public class ContentMiner : GameUnit
         m_maxHealth = 1;
         m_maxStamina = 8;
         m_staminaRegen = 4;
-        m_power = 1;
+        m_attack = 1;
     }
 }

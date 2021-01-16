@@ -54,6 +54,6 @@ public class ContentWarriorPriestess : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 5;
+        m_attack = 5;
     }
 }

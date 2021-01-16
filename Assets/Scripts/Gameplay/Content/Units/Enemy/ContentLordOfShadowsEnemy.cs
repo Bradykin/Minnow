@@ -17,14 +17,14 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
             m_maxHealth = 900;
             m_maxStamina = 9;
             m_staminaRegen = 9;
-            m_power = 40;
+            m_attack = 40;
         }
         else
         {
             m_maxHealth = 600;
             m_maxStamina = 8;
             m_staminaRegen = 8;
-            m_power = 20;
+            m_attack = 20;
         }
 
         m_team = Team.Enemy;

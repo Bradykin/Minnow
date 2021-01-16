@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentEnergyConstruct : GameUnit
 {
-    private int m_powerGain = 8;
+    private int m_attackGain = 8;
     private int m_staminaGain = 4;
 
     public ContentEnergyConstruct() : base()
@@ -16,16 +16,16 @@ public class ContentEnergyConstruct : GameUnit
 
         m_name = "Energy Construct";
         m_typeline = Typeline.Creation;
-        m_desc = $"Gets +{m_powerGain}/+0 and +{m_staminaGain} stamina regen for each unspent energy.\n";
+        m_desc = $"Gets +{m_attackGain}/+0 and +{m_staminaGain} stamina regen for each unspent energy.\n";
         m_icon = UIHelper.GetIconUnit(m_name);
         m_attackSFX = AudioHelper.MetalClangAttack;
 
         LateInit();
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int returnVal = base.GetPower();
+        int returnVal = base.GetAttack();
 
         if (m_gameTile == null)
         {
@@ -34,7 +34,7 @@ public class ContentEnergyConstruct : GameUnit
 
         if (GameHelper.IsUnitInWorld(this))
         {
-            returnVal += GameHelper.GetPlayer().GetCurEnergy() * m_powerGain;
+            returnVal += GameHelper.GetPlayer().GetCurEnergy() * m_attackGain;
         }
 
         return returnVal;
@@ -64,6 +64,6 @@ public class ContentEnergyConstruct : GameUnit
         m_maxHealth = 40;
         m_maxStamina = 6;
         m_staminaRegen = 0;
-        m_power = 5;
+        m_attack = 5;
     }
 }

@@ -12,7 +12,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         m_maxHealth = 7 + GetHealthModByWave();
         m_maxStamina = 6;
         m_staminaRegen = 3 + GetStaminaRegenModByWave();
-        m_power = 1 + GetPowerModByWave();
+        m_attack = 1 + GetAttackModByWave();
         m_shipBombardDamage += GetBombardModByWave();
         m_attackSFX = AudioHelper.MetalClangAttack;
 
@@ -145,7 +145,7 @@ public class ContentZombieCrabEnemy : GameEnemyUnit
         return Mathf.FloorToInt((float)waveNum * 0.5f);
     }
 
-    private int GetPowerModByWave()
+    private int GetAttackModByWave()
     {
         int waveNum = GameHelper.GetCurrentWaveNum();
 

@@ -13,7 +13,7 @@ public class ContentBurningMonstrosityEnemy : GameEnemyUnit
         m_maxHealth = 10;
         m_maxStamina = 5;
         m_staminaRegen = 5;
-        m_power = 1;
+        m_attack = 1;
         m_attackSFX = AudioHelper.PunchLight;
 
         m_team = Team.Enemy;

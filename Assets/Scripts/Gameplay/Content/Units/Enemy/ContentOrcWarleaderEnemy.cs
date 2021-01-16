@@ -14,14 +14,14 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
             m_maxHealth = 600;
             m_maxStamina = 11;
             m_staminaRegen = 7;
-            m_power = 40;
+            m_attack = 40;
         }
         else
         {
             m_maxHealth = 250;
             m_maxStamina = 8;
             m_staminaRegen = 6;
-            m_power = 20;
+            m_attack = 20;
         }
 
         m_team = Team.Enemy;

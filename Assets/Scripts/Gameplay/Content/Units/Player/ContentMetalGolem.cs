@@ -40,6 +40,6 @@ public class ContentMetalGolem : GameUnit
         m_maxHealth = 40;
         m_maxStamina = 6;
         m_staminaRegen = 5;
-        m_power = 15;
+        m_attack = 15;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSabertoothWyvernEnemy : GameEnemyUnit
 {
-    private int m_powerToGain = 3;
+    private int m_attackToGain = 3;
     
     public ContentSabertoothWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -13,7 +13,7 @@ public class ContentSabertoothWyvernEnemy : GameEnemyUnit
         m_maxHealth = 45;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 16;
+        m_attack = 16;
         m_attackSFX = AudioHelper.BirdFlap;
 
         m_team = Team.Enemy;
@@ -25,7 +25,7 @@ public class ContentSabertoothWyvernEnemy : GameEnemyUnit
         AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, m_powerToGain, 0)), true, false);
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, m_attackToGain, 0)), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

@@ -33,19 +33,19 @@ public class ContentWildwoodSkirmisher : GameUnit
         return AudioHelper.SwordLight;
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int returnPower = base.GetPower();
+        int returnAttack = base.GetAttack();
 
         if (GameHelper.IsUnitInWorld(this))
         {
             if (m_gameTile.GetTerrain().IsForest())
             {
-                returnPower += m_statBoost;
+                returnAttack += m_statBoost;
             }
         }
 
-        return returnPower;
+        return returnAttack;
     }
 
     public override GameVictoriousKeyword GetVictoriousKeyword()
@@ -80,6 +80,6 @@ public class ContentWildwoodSkirmisher : GameUnit
         m_maxHealth = 15;
         m_maxStamina = 5;
         m_staminaRegen = 4;
-        m_power = 5;
+        m_attack = 5;
     }
 }

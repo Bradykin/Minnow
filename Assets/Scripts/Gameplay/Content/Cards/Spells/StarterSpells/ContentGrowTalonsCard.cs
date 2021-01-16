@@ -46,7 +46,6 @@ public class ContentGrowTalonsCard : GameCardSpellBase
 
         base.PlayCard(targetUnit);
 
-        int powerToAdd = GetSpellValue();
-        targetUnit.AddStats(powerToAdd, 0, true, true);
+        targetUnit.AddStats(GetSpellValue(), 0, true, true);
     }
 }

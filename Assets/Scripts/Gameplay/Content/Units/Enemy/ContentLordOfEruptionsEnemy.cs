@@ -13,14 +13,14 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
             m_maxHealth = 900;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 25;
+            m_attack = 25;
         }
         else
         {
             m_maxHealth = 600;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 12;
+            m_attack = 12;
         }
 
         m_team = Team.Enemy;

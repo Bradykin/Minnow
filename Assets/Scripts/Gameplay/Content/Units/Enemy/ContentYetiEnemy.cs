@@ -13,7 +13,7 @@ public class ContentYetiEnemy : GameEnemyUnit
         m_maxHealth = 25;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 9;
+        m_attack = 9;
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;

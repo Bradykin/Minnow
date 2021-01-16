@@ -39,6 +39,6 @@ public class ContentFletchingCard : GameCardSpellBase
 
         base.PlayCard();
 
-        GameHelper.GetPlayer().m_fletchingPowerIncrease += GetSpellValue();
+        GameHelper.GetPlayer().m_fletchingAttackIncrease += GetSpellValue();
     }
 }

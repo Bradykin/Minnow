@@ -26,6 +26,6 @@ public class ContentEtherealStag : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 6;
         m_staminaRegen = 5;
-        m_power = 20;
+        m_attack = 20;
     }
 }

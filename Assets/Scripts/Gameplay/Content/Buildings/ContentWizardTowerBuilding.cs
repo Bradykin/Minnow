@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContentWizardTowerBuilding : GameBuildingBase
 {
-    private int m_powerBase = 10;
+    private int m_attackBase = 10;
     private int m_spellcraftStacks = 0;
     private int m_spellcraftStacksIncreaseAmount = 2;
 
@@ -31,11 +31,11 @@ public class ContentWizardTowerBuilding : GameBuildingBase
     {
         if (GetGameTile() == null)
         {
-            m_desc = $"Damage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+            m_desc = $"Damage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
         }
         else
         {
-            m_desc = $"Current Damage: {m_powerBase + m_spellcraftStacks}\nDamage a random enemy unit in a range {m_range} for {m_powerBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+            m_desc = $"Current Damage: {m_attackBase + m_spellcraftStacks}\nDamage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
         }
 
         return m_desc;
@@ -66,7 +66,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
         int highestHealthAmount = surroundingTiles.Max(t => t.GetOccupyingUnit().GetCurHealth());
         GameTile highestHealthTile = surroundingTiles.FirstOrDefault(t => t.GetOccupyingUnit().GetCurHealth() == highestHealthAmount);
 
-        highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_powerBase + m_spellcraftStacks);
+        highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_attackBase + m_spellcraftStacks);
         AudioHelper.PlaySFX(AudioHelper.SpellAttackMedium);
     }
 

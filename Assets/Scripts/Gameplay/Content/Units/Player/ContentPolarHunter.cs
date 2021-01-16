@@ -15,7 +15,7 @@ public class ContentPolarHunter : GameUnit
         AddKeyword(new GameRangeKeyword(2), true, false);
 
         m_name = "Polar Hunter";
-        m_desc = $"Has power equal to the total power of all other allied units in range {m_aoeRange}.\n";
+        m_desc = $"Has attack equal to the total attack of all other allied units in range {m_aoeRange}.\n";
         m_typeline = Typeline.Humanoid;
         m_icon = UIHelper.GetIconUnit(m_name);
 
@@ -24,7 +24,7 @@ public class ContentPolarHunter : GameUnit
 
     public override AudioClip GetAttackSFX()
     {
-        if (GetPower() >= 30)
+        if (GetAttack() >= 30)
         {
             return AudioHelper.SpearHeavy;
         }
@@ -32,9 +32,9 @@ public class ContentPolarHunter : GameUnit
         return AudioHelper.SpearLight;
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int returnPower = 0;
+        int returnAttack = 0;
 
         if (GameHelper.IsUnitInWorld(this))
         {
@@ -51,12 +51,12 @@ public class ContentPolarHunter : GameUnit
 
                 if (unit != null && !unit.m_isDead && unit.GetTeam() == Team.Player)
                 {
-                    returnPower += unit.GetPower();
+                    returnAttack += unit.GetAttack();
                 }
             }
         }
 
-        return returnPower;
+        return returnAttack;
     }
 
     protected override void ResetToBase()
@@ -66,6 +66,6 @@ public class ContentPolarHunter : GameUnit
         m_maxHealth = 10;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 0;
+        m_attack = 0;
     }
 }

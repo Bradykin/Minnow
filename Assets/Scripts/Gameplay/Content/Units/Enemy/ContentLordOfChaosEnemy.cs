@@ -26,14 +26,14 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
             m_maxHealth = 1000;
             m_maxStamina = 7;
             m_staminaRegen = 7;
-            m_power = 40;
+            m_attack = 40;
         }
         else
         {
             m_maxHealth = 600;
             m_maxStamina = 6;
             m_staminaRegen = 6;
-            m_power = 20;
+            m_attack = 20;
         }
 
         m_team = Team.Enemy;

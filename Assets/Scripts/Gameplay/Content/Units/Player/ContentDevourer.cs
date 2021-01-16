@@ -27,6 +27,6 @@ public class ContentDevourer : GameUnit
         m_maxHealth = 20;
         m_maxStamina = 6;
         m_staminaRegen = 4;
-        m_power = 5;
+        m_attack = 5;
     }
 }

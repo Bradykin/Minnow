@@ -15,7 +15,7 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         m_maxHealth = 24;
         m_maxStamina = 4;
         m_staminaRegen = 4;
-        m_power = 8;
+        m_attack = 8;
         m_attackSFX = AudioHelper.SlamHeavy;
 
         m_team = Team.Enemy;
@@ -39,9 +39,9 @@ public class ContentIcefisherEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int GetPower()
+    public override int GetAttack()
     {
-        int toReturn = base.GetPower();
+        int toReturn = base.GetAttack();
 
         if (!GameHelper.IsInGame() || GetGameTile() == null)
         {

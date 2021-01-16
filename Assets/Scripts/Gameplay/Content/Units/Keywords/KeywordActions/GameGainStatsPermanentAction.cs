@@ -6,13 +6,13 @@ using UnityEngine;
 public class GameGainStatsPermanentAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_powerToGain;
+    private int m_attackToGain;
     private int m_healthToGain;
 
-    public GameGainStatsPermanentAction(GameUnit unit, int powerToGain, int healthToGain)
+    public GameGainStatsPermanentAction(GameUnit unit, int attackToGain, int healthToGain)
     {
         m_unit = unit;
-        m_powerToGain = powerToGain;
+        m_attackToGain = attackToGain;
         m_healthToGain = healthToGain;
 
         m_name = "Gain Stats Permanent";
@@ -22,19 +22,19 @@ public class GameGainStatsPermanentAction : GameAction
 
     public override string GetDesc()
     {
-        return "+" + m_powerToGain + "/+" + m_healthToGain + " (<b>permanent</b>)";
+        return "+" + m_attackToGain + "/+" + m_healthToGain + " (<b>permanent</b>)";
     }
 
     public override void DoAction()
     {
-        m_unit.AddStats(m_powerToGain, m_healthToGain, true, true);
+        m_unit.AddStats(m_attackToGain, m_healthToGain, true, true);
     }
 
     public override void AddAction(GameAction toAdd)
     {
         GameGainStatsPermanentAction tempAction = (GameGainStatsPermanentAction)toAdd;
 
-        m_powerToGain += tempAction.m_powerToGain;
+        m_attackToGain += tempAction.m_attackToGain;
         m_healthToGain += tempAction.m_healthToGain;
     }
 
@@ -42,13 +42,13 @@ public class GameGainStatsPermanentAction : GameAction
     {
         GameGainStatsPermanentAction tempAction = (GameGainStatsPermanentAction)toSubtract;
 
-        m_powerToGain -= tempAction.m_powerToGain;
+        m_attackToGain -= tempAction.m_attackToGain;
         m_healthToGain -= tempAction.m_healthToGain;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return m_powerToGain <= 0 && m_healthToGain <= 0;
+        return m_attackToGain <= 0 && m_healthToGain <= 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -61,7 +61,7 @@ public class GameGainStatsPermanentAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            intValue1 = m_powerToGain,
+            intValue1 = m_attackToGain,
             intValue2 = m_healthToGain
         };
 

@@ -29,6 +29,6 @@ public class ContentAlphaBoar : GameUnit
         m_maxHealth = 35;
         m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 5;
+        m_attack = 5;
     }
 }

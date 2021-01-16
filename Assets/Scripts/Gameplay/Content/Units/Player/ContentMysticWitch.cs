@@ -27,6 +27,6 @@ public class ContentMysticWitch : GameUnit
         m_maxHealth = 5;
         m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 1;
+        m_attack = 1;
     }
 }

@@ -55,6 +55,6 @@ public class ContentStoneGolem : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 3;
         m_staminaRegen = 2;
-        m_power = 0;
+        m_attack = 0;
     }
 }

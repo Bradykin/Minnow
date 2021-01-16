@@ -7,14 +7,14 @@ using UnityEngine;
 public class GameGainStatsRangeAction : GameAction
 {
     private GameUnit m_unit;
-    private int m_powerToGain;
+    private int m_attackToGain;
     private int m_healthToGain;
     private List<int> m_ranges;
 
-    public GameGainStatsRangeAction(GameUnit unit, int powerToGain, int healthToGain, int range)
+    public GameGainStatsRangeAction(GameUnit unit, int attackToGain, int healthToGain, int range)
     {
         m_unit = unit;
-        m_powerToGain = powerToGain;
+        m_attackToGain = attackToGain;
         m_healthToGain = healthToGain;
         m_ranges = new List<int>();
         m_ranges.Add(range);
@@ -23,10 +23,10 @@ public class GameGainStatsRangeAction : GameAction
         m_actionParamType = ActionParamType.UnitTwoIntListIntParam;
     }
 
-    public GameGainStatsRangeAction(GameUnit unit, int powerToGain, int healthToGain, List<int> ranges)
+    public GameGainStatsRangeAction(GameUnit unit, int attackToGain, int healthToGain, List<int> ranges)
     {
         m_unit = unit;
-        m_powerToGain = powerToGain;
+        m_attackToGain = attackToGain;
         m_healthToGain = healthToGain;
         m_ranges = new List<int>();
         m_ranges.AddRange(ranges);
@@ -37,7 +37,7 @@ public class GameGainStatsRangeAction : GameAction
 
     public override string GetDesc()
     {
-        return $"All allied units within range {m_ranges.Max()} gain +{m_powerToGain}/+{m_healthToGain}";
+        return $"All allied units within range {m_ranges.Max()} gain +{m_attackToGain}/+{m_healthToGain}";
     }
 
     public override void DoAction()
@@ -48,7 +48,7 @@ public class GameGainStatsRangeAction : GameAction
         {
             if (tilesInRange[i].IsOccupied() && !tilesInRange[i].GetOccupyingUnit().m_isDead && tilesInRange[i].GetOccupyingUnit().GetTeam() == m_unit.GetTeam())
             {
-                tilesInRange[i].GetOccupyingUnit().AddStats(m_powerToGain, m_healthToGain, false, false);
+                tilesInRange[i].GetOccupyingUnit().AddStats(m_attackToGain, m_healthToGain, false, false);
             }
         }
     }
@@ -57,7 +57,7 @@ public class GameGainStatsRangeAction : GameAction
     {
         GameGainStatsRangeAction tempAction = (GameGainStatsRangeAction)toAdd;
 
-        m_powerToGain += tempAction.m_powerToGain;
+        m_attackToGain += tempAction.m_attackToGain;
         m_healthToGain += tempAction.m_healthToGain;
     }
 
@@ -65,13 +65,13 @@ public class GameGainStatsRangeAction : GameAction
     {
         GameGainStatsRangeAction tempAction = (GameGainStatsRangeAction)toSubtract;
 
-        m_powerToGain -= tempAction.m_powerToGain;
+        m_attackToGain -= tempAction.m_attackToGain;
         m_healthToGain -= tempAction.m_healthToGain;
     }
 
     public override bool ShouldBeRemoved()
     {
-        return (m_powerToGain <= 0 && m_healthToGain <= 0) || m_ranges.Count == 0;
+        return (m_attackToGain <= 0 && m_healthToGain <= 0) || m_ranges.Count == 0;
     }
 
     public override GameUnit GetGameUnit()
@@ -84,7 +84,7 @@ public class GameGainStatsRangeAction : GameAction
         JsonGameActionData jsonData = new JsonGameActionData
         {
             name = m_name,
-            intValue1 = m_powerToGain,
+            intValue1 = m_attackToGain,
             intValue2 = m_healthToGain,
             intListValue1 = m_ranges
         };

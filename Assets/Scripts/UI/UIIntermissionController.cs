@@ -18,9 +18,13 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
     public UIBuildingController m_buildingTwo;
     public UIBuildingController m_buildingThree;
 
+    public GameObject m_holder;
+
     private List<GameBuildingIntermission> m_intermissionBuildings;
 
     private int m_index;
+
+    private bool m_doneSelections = false;
 
     void Start()
     {
@@ -50,8 +54,15 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         UpdateActions();
     }
 
+    void Update()
+    {
+        m_holder.SetActive(m_doneSelections);    
+    }
+
     public void StartSelectionMenus()
     {
+        m_doneSelections = false;
+
         m_selectionStack.Add(SelectionOptions.Unit);
         m_selectionStack.Add(SelectionOptions.Spell);
         m_selectionStack.Add(SelectionOptions.Action);
@@ -63,6 +74,7 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
     {
         if (m_selectionStack.Count == 0)
         {
+            m_doneSelections = true;
             return;
         }
 

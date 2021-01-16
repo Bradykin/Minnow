@@ -13,7 +13,7 @@ public class ContentToadEnemy : GameEnemyUnit
         m_maxHealth = 7;
         m_maxStamina = 5;
         m_staminaRegen = 3;
-        m_power = 2;
+        m_attack = 2;
         m_attackSFX = AudioHelper.SlurpAttack;
 
         m_team = Team.Enemy;

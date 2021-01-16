@@ -11,7 +11,7 @@ public class ContentRedDragonEnemy : GameEnemyUnit
         m_maxHealth = 4;
         m_maxStamina = 4;
         m_staminaRegen = 2;
-        m_power = 3;
+        m_attack = 3;
         m_attackSFX = AudioHelper.Roar;
 
         m_team = Team.Enemy;

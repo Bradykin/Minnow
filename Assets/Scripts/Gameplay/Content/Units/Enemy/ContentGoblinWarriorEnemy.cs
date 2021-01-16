@@ -11,7 +11,7 @@ public class ContentGoblinWarriorEnemy : GameEnemyUnit
         m_maxHealth = 6;
         m_maxStamina = 4;
         m_staminaRegen = 3;
-        m_power = 4;
+        m_attack = 4;
         m_attackSFX = AudioHelper.SwordHeavy;
 
         m_team = Team.Enemy;

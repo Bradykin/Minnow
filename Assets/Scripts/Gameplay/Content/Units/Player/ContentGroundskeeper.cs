@@ -95,6 +95,6 @@ public class ContentGroundskeeper : GameUnit
         m_maxHealth = 50;
         m_maxStamina = 4;
         m_staminaRegen = 1;
-        m_power = 5;
+        m_attack = 5;
     }
 }
