@@ -7,7 +7,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerAccountData
 {
-    public readonly Version VERSION = new Version(1, 0, 0, 0);
+    [JsonProperty]
+    public Version VERSION;
 
     [JsonIgnore]
     public PlayerRunData PlayerRunData
@@ -109,6 +110,17 @@ public class PlayerAccountData
         {
             m_goldCardNames.Add(cardName);
         }
+    }
+
+    public void CheckVersionConflict()
+    {
+        if (VERSION == Constants.VERSION)
+        {
+            return;
+        }
+
+        ClearRunData();
+        VERSION = Constants.VERSION;
     }
 
     public void SaveGameMetaProgressionRewardDatas()

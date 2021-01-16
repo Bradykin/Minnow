@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public static class Constants
 {
+    public static Version VERSION = new Version(1, 0, 0, 0);
+
     //Game Data
     public static int InitialHandSize = 4;
     public static int StartingEnergy = 3;

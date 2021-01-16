@@ -34,6 +34,7 @@ public static class Files
         if (!File.Exists(path))
         {
             PlayerAccountData data = new PlayerAccountData();
+            data.VERSION = Constants.VERSION;
             return data;
         }
 
@@ -42,8 +43,11 @@ public static class Files
         if (loaded == null)
         {
             PlayerAccountData data = new PlayerAccountData();
+            data.VERSION = Constants.VERSION;
             return data;
         }
+
+        loaded.CheckVersionConflict();
 
         if (loaded.JsonGameMetaProgressionRewardDatas != null)
         {
