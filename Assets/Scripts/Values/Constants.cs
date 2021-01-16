@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Constants
 {
-    public static Version VERSION = new Version(1, 0, 0, 0);
+    public static Version VERSION = new Version(1, 1, 0, 0);
 
     //Game Data
     public static int InitialHandSize = 5;
