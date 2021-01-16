@@ -20,6 +20,7 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
 
     public GameObject m_holder;
     public GameObject m_titleBlock;
+    public RectTransform m_titleHolderRectTransform;
 
     private bool m_isHovered;
     private bool m_isShowingTooltip;
@@ -78,6 +79,22 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         if (GetUnit() == null)
         {
             return;
+        }
+
+        if (m_titleHolderRectTransform != null)
+        {
+            if (this == Globals.m_selectedUnit)
+            {
+                m_titleHolderRectTransform.localPosition = new Vector3(m_titleHolderRectTransform.localPosition.x, m_titleHolderRectTransform.localPosition.y, -2);
+            }
+            else if (m_isHovered)
+            {
+                m_titleHolderRectTransform.localPosition = new Vector3(m_titleHolderRectTransform.localPosition.x, m_titleHolderRectTransform.localPosition.y, -1);
+            }
+            else
+            {
+                m_titleHolderRectTransform.localPosition = new Vector3(m_titleHolderRectTransform.localPosition.x, m_titleHolderRectTransform.localPosition.y, 0);
+            }
         }
 
         m_damageShieldIndicator.gameObject.SetActive(GetUnit().GetDamageShieldKeyword() != null);

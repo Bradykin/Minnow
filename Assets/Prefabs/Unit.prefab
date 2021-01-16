@@ -316,6 +316,7 @@ MonoBehaviour:
   m_statsText: {fileID: 4607475077602181633}
   m_holder: {fileID: 8314870443433369702}
   m_titleBlock: {fileID: 976151315011736090}
+  m_titleHolderRectTransform: {fileID: 4587806600927777649}
   m_indicatorMask: {fileID: 692011314231815388}
   m_damageShieldIndicator: {fileID: 391321573}
   m_rootedIndicator: {fileID: 1409887348722826810}
@@ -369,7 +370,7 @@ GameObject:
   - component: {fileID: 4587806600927777649}
   - component: {fileID: 4789039342081209628}
   - component: {fileID: 7358162320965632908}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TitleFrame
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
@@ -558,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8401346903398050859}
   - component: {fileID: 8750817364552629158}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StaminaContainer
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
@@ -609,7 +610,7 @@ GameObject:
   - component: {fileID: 4853070031593542119}
   - component: {fileID: 6768549724035438775}
   - component: {fileID: 4607475077602181633}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StatText
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
@@ -988,7 +989,7 @@ GameObject:
   - component: {fileID: 5209630644929535431}
   - component: {fileID: 4942688219189091081}
   - component: {fileID: 1346651478687119673}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TitleText
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}

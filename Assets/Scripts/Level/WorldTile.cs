@@ -24,6 +24,7 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     private WorldUnit m_occupyingUnitObj;
 
     public GameObject m_titleHolder;
+    public RectTransform m_titleHolderRectTransform;
     public TMP_Text m_nameText;
     public TMP_Text m_healthText;
 
@@ -51,6 +52,18 @@ public class WorldTile : MonoBehaviour, ICustomRecycle
     void Update()
     {
         HandleFogUpdate();
+
+        if (m_titleHolderRectTransform != null)
+        {
+            if (this == Globals.m_selectedTile)
+            {
+                m_titleHolderRectTransform.localPosition = new Vector3(m_titleHolderRectTransform.localPosition.x, m_titleHolderRectTransform.localPosition.y, -3);
+            }
+            else
+            {
+                m_titleHolderRectTransform.localPosition = new Vector3(m_titleHolderRectTransform.localPosition.x, m_titleHolderRectTransform.localPosition.y, 0);
+            }
+        }
 
         if (GetGameTile().m_gameWorldPerk != null)
         {

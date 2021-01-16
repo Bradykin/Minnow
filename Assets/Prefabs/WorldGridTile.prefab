@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 8815612477522747988}
   - component: {fileID: 8815612477522747978}
   - component: {fileID: 8815612477522747989}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TitleFrame
   m_TagString: IgnoreUIBlocker
   m_Icon: {fileID: 0}
@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_spawnText: {fileID: 1025461040}
   m_specialTileText: {fileID: 1248123030}
   m_titleHolder: {fileID: 549068398}
+  m_titleHolderRectTransform: {fileID: 8815612477522747988}
   m_nameText: {fileID: 3955198233501772353}
   m_healthText: {fileID: 5513609603287952991}
   m_shouldAlertTint: 0
