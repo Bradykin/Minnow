@@ -308,6 +308,8 @@ public class WorldController : Singleton<WorldController>
         Globals.m_selectedCard = null;
 
         Globals.m_selectedUnit = null;
+
+        UIIntermissionController.Instance.StartSelectionMenus();
     }
 
     public void EndIntermission()

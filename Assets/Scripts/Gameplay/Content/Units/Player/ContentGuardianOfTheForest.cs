@@ -21,8 +21,6 @@ public class ContentGuardianOfTheForest : GameUnit
         LateInit();
     }
 
-
-
     protected override void ResetToBase()
     {
         ResetKeywords(true);

@@ -31,14 +31,12 @@ public static class GameRelicFactory
             m_exclusionRelics.AddRange(exclusionRelics);
         }
         
-        //Starter Relics
+        //General Relics
         m_relics.Add(new ContentMaskOfAgesRelic());
         m_relics.Add(new ContentOrbOfEnergyRelic());
         m_relics.Add(new ContentLoadedChestRelic());
         m_relics.Add(new ContentWolvenFangRelic());
         m_relics.Add(new ContentHoovesOfProductionRelic());
-
-        //General Relics
         m_relics.Add(new ContentLivingStoneRelic());
         m_relics.Add(new ContentBestialWrathRelic());
         m_relics.Add(new ContentHourglassOfSpeedRelic());
