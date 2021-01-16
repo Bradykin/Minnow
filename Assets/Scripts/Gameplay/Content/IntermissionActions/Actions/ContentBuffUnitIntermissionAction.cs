@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,8 @@ public class ContentBuffUnitIntermissionAction : GameActionIntermission
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
-    public override void Activate()
+    public override void Activate(Action action)
     {
-        UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfUnits(), UIDeckViewController.DeckViewType.Buff, $"+{m_buffValue}/+{m_buffValue} to a Unit");
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfUnits(), UIDeckViewController.DeckViewType.Buff, $"+{m_buffValue}/+{m_buffValue} to a Unit", action);
     }
 }

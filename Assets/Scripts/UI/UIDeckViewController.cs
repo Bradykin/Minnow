@@ -4,6 +4,7 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIDeckViewController : Singleton<UIDeckViewController>
 {
@@ -32,15 +33,18 @@ public class UIDeckViewController : Singleton<UIDeckViewController>
     private List<GameCard> m_deck;
     public DeckViewType m_viewType;
 
+    public Action m_onInteractCallBack = null;
+
     public void CloseDeckView()
     {
         m_holder.SetActive(false);
     }
 
-    public void Init(List<GameCard> deck, DeckViewType viewType, string displayString)
+    public void Init(List<GameCard> deck, DeckViewType viewType, string displayString, Action OnInteractCallBack = null)
     {
         m_deck = deck;
         m_viewType = viewType;
+        m_onInteractCallBack = OnInteractCallBack;
 
         m_deckViewText.text = displayString;
 

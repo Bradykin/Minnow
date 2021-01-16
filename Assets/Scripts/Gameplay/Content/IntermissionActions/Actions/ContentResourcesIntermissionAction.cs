@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class ContentResourcesIntermissionAction : GameActionIntermission
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
-    public override void Activate()
+    public override void Activate(Action action)
     {
         GamePlayer player = GameHelper.GetPlayer();
 
@@ -24,5 +25,6 @@ public class ContentResourcesIntermissionAction : GameActionIntermission
         }
 
         player.GainGold(m_wallet.m_gold, true);
+        action.Invoke();
     }
 }

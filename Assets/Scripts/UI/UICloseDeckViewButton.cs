@@ -11,7 +11,7 @@ public class UICloseDeckViewButton : UIElementBase
 
     void Update()
     {
-        m_holder.SetActive(UIDeckViewController.Instance.m_viewType == UIDeckViewController.DeckViewType.View);
+        //m_holder.SetActive(UIDeckViewController.Instance.m_viewType == UIDeckViewController.DeckViewType.View);
     }
 
     public override void HandleTooltip()
