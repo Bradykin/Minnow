@@ -61,7 +61,6 @@ public class PlayerAccountData
     public string StarterDamageSpellName = new ContentFireboltCard().GetBaseName();
     public string StarterDefensiveSpellName = new ContentAegisCard().GetBaseName();
     public string StarterExileSpellName = new ContentGrowTalonsCard().GetBaseName();
-    public string StarterRelicName = new ContentMaskOfAgesRelic().GetBaseName();
 
     public int m_playerExperience;
     public int m_numPlaySessions;

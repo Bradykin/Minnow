@@ -7,11 +7,11 @@ public class ContentHoovesOfProductionRelic : GameRelic
     public ContentHoovesOfProductionRelic()
     {
         m_name = "Hooves of Production";
-        m_desc = "Does nothing."; //nmartino - Rework this
-        m_rarity = GameRarity.Starter;
+        m_desc = "Increase max energy by 2.";
+        m_rarity = GameRarity.Rare;
 
         LateInit();
 
-        m_tagHolder.AddPullTag(GameTagHolder.TagType.Gold);
+        m_tagHolder.AddPushTag(GameTagHolder.TagType.HighCost, 3);
     }
 }

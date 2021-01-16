@@ -22,7 +22,6 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
     public GameObject m_mainMenu;
 
     public GameObject m_starterCardSelection;
-    public GameObject m_starterRelicSelection;
 
     void Update()
     {
@@ -71,7 +70,6 @@ public class UILevelSelectController : Singleton<UILevelSelectController>, IRese
             m_mainMenu.SetActive(false);
 
             m_starterCardSelection.SetActive(GameMetaprogressionUnlocksDataManager.GetNumStarterCardsUnlocked() > 0);
-            m_starterRelicSelection.SetActive(GameMetaprogressionUnlocksDataManager.GetNumStarterRelicsUnlocked() > 0);
         }
     }
 

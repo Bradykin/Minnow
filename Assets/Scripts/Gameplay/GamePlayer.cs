@@ -511,6 +511,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
             toReturn += 1;
         }
 
+        if (GameHelper.HasRelic<ContentHoovesOfProductionRelic>())
+        {
+            toReturn += 2;
+        }
+
         return toReturn;
     }
 
@@ -540,6 +545,11 @@ public class GamePlayer : ITurns, ISave<JsonGamePlayerData>, ILoad<JsonGamePlaye
         if (GameHelper.HasRelic<ContentMaskOfAgesRelic>())
         {
             toReturn += 1;
+        }
+
+        if (GameHelper.HasRelic<ContentMemoryOfTheDefenderRelic>())
+        {
+            toReturn += 3;
         }
 
         if (GameHelper.HasRelic<ContentTacticsOfMonRelic>())

@@ -12,7 +12,6 @@ public class UIRelic : UIElementBase
     {
         View,
         Select,
-        SelectStarter,
         ViewNoTooltip
     }
 
@@ -24,34 +23,9 @@ public class UIRelic : UIElementBase
     public Image m_image;
     public Image m_rarityFrame;
 
-    public bool m_isLocked;
-    public GameObject m_lockIcon;
-
     public bool m_usesText = false;
     public TMP_Text m_titleText;
     public TMP_Text m_descText;
-
-    void Update()
-    {
-        if (m_selectionType == RelicSelectionType.SelectStarter)
-        {
-            if (PlayerDataManager.PlayerAccountData.StarterRelicName == m_relic.GetName())
-            {
-                m_tintImage.color = UIHelper.GetSelectTintColor(true);
-            }
-            else
-            {
-                if (m_isShowingTooltip)
-                {
-                    m_tintImage.color = UIHelper.GetValidTintColor(true);
-                }
-                else
-                {
-                    m_tintImage.color = UIHelper.GetDefaultTintColor();
-                }
-            }
-        }
-    }
 
     public void Init(GameRelic newRelic, RelicSelectionType selectionType)
     {
@@ -81,20 +55,6 @@ public class UIRelic : UIElementBase
 
             m_pickupAnimation.PlayAnim();
         }
-
-        if (m_selectionType == RelicSelectionType.SelectStarter)
-        {
-            m_isLocked = (!GameMetaprogressionUnlocksDataManager.HasUnlockedStarterRelic(m_relic) && !Constants.UnlockAllContent);
-        }
-        else
-        {
-            m_isLocked = false;
-        }
-
-        if (m_lockIcon != null)
-        {
-            m_lockIcon.SetActive(m_isLocked);
-        }
     }
 
     public void OnTrigger()
@@ -104,19 +64,7 @@ public class UIRelic : UIElementBase
 
     public override void HandleTooltip()
     {
-        if (m_isLocked && m_selectionType == RelicSelectionType.SelectStarter)
-        {
-            GameMap neededMap = GameMetaprogressionUnlocksDataManager.GetMapForStarterRelic(m_relic);
-            if (neededMap == null)
-            {
-                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("WIP", "Relic not yet available in this version of the game"));
-            }
-            else
-            {
-                UITooltipController.Instance.AddTooltipToStack(UIHelper.CreateSimpleTooltip("Locked Relic", "Unlock this relic by beating Chaos 2 on " + neededMap.GetBaseName()));
-            }
-        }
-        else if (m_selectionType == RelicSelectionType.View || m_selectionType == RelicSelectionType.SelectStarter)
+        if (m_selectionType == RelicSelectionType.View)
         {
             UIHelper.CreateRelicTooltip(m_relic);
         }
@@ -129,21 +77,10 @@ public class UIRelic : UIElementBase
             return;
         }
 
-        if (m_isLocked)
-        {
-            return;
-        }
-
         if (m_selectionType == RelicSelectionType.Select)
         {
             UIRelicSelectController.Instance.AcceptRelic(m_relic);
             UITooltipController.Instance.ClearTooltipStack();
-            AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
-        }
-
-        if (m_selectionType == RelicSelectionType.SelectStarter)
-        {
-            PlayerDataManager.PlayerAccountData.StarterRelicName = m_relic.GetBaseName();
             AudioSFXController.Instance.PlaySFX(AudioHelper.UIClick);
         }
     }

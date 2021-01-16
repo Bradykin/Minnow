@@ -30,6 +30,7 @@ public static class GameMetaprogressionUnlocksDataManager
         GameMap lakesideHardMap = new ContentLakesideHardMap();
         GameMap themarshlands = new ContentTheMarshlandsMap();
         GameMap frozenLake = new ContentFrozenLakeMap();
+        GameMap spreadingCorruption = new ContentSpreadingCorruptionMap();
 
         GameCard lizardSoldierCard = new ContentLizardSoldierCard();
         GameCard undeadMammothCard = new ContentUndeadMammothCard();
@@ -38,18 +39,13 @@ public static class GameMetaprogressionUnlocksDataManager
         GameCard mechanizedBeastCard = new ContentMechanizedBeastCard();
 
         GameCard cureWoundsCard = new ContentCureWoundsCard();
-        GameCard joltCard = new ContentJoltCard(); //nmartino - still needs a map
+        GameCard joltCard = new ContentJoltCard();
 
         GameCard drainingBoltCard = new ContentDrainingBoltCard();
-        GameCard weakeningBoltCard = new ContentWeakeningBoltCard(); //nmartino - still needs a map
+        GameCard weakeningBoltCard = new ContentWeakeningBoltCard();
 
         GameCard staminaTrainingCard = new ContentStaminaTrainingCard();
-        GameCard optimizeCard = new ContentOptimizeCard(); //nmartino - still needs a map
-
-        GameRelic wolvenFangRelic = new ContentWolvenFangRelic();
-        GameRelic orbOfEnergyRelic = new ContentOrbOfEnergyRelic();
-        GameRelic loadedChestRelic = new ContentLoadedChestRelic();  //nmartino - still needs a map
-        GameRelic hoovesOfProductionRelic = new ContentHoovesOfProductionRelic(); //nmartino - still needs a map
+        GameCard optimizeCard = new ContentOptimizeCard();
 
         FillMapData(deltaMap, lizardSoldierCard);
         FillMapData(mountainPass, sandwalkerCard);
@@ -58,8 +54,9 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(desertPassMap, staminaTrainingCard);
         FillMapData(volcanoRun, undeadMammothCard);
         FillMapData(lakesideHardMap, mechanizedBeastCard);
-        FillMapData(themarshlands, wolvenFangRelic);
-        FillMapData(frozenLake, orbOfEnergyRelic);
+        FillMapData(themarshlands, joltCard);
+        FillMapData(frozenLake, optimizeCard);
+        FillMapData(spreadingCorruption, weakeningBoltCard);
 
         //2
         AddCardRewards();
@@ -89,17 +86,21 @@ public static class GameMetaprogressionUnlocksDataManager
             crimsonIslandsMap.GetDesc(),
             crimsonIslandsMap));
 
-        m_mapRewards.Add(22, CreateMapLevelReward(themarshlands.GetBaseName(),
+        m_mapRewards.Add(20, CreateMapLevelReward(themarshlands.GetBaseName(),
             themarshlands.GetDesc(),
             themarshlands));
 
-        m_mapRewards.Add(29, CreateMapLevelReward(desertPassMap.GetBaseName(),
+        m_mapRewards.Add(25, CreateMapLevelReward(desertPassMap.GetBaseName(),
             desertPassMap.GetDesc(),
             desertPassMap));
 
-        m_mapRewards.Add(35, CreateMapLevelReward(lakesideHardMap.GetBaseName(),
+        m_mapRewards.Add(30, CreateMapLevelReward(lakesideHardMap.GetBaseName(),
             lakesideHardMap.GetDesc(),
-            lakesideHardMap));*/
+            lakesideHardMap));
+        
+         m_mapRewards.Add(35, CreateMapLevelReward(spreadingCorruption.GetBaseName(),
+            spreadingCorruption.GetDesc(),
+            spreadingCorruption));*/
 
         m_isInit = true;
     }
@@ -330,11 +331,7 @@ public static class GameMetaprogressionUnlocksDataManager
 
         m_relicRewards.Add(23, CreateRelicLevelReward("More Relics",
             "Newly unlocked relics - these relics can appear in future runs.\n",
-            new ContentCursedAmuletRelic(), new ContentMemoryOfTheDefenderRelic(), new ContentBeadsOfProphecyRelic()));
-
-        m_relicRewards.Add(24, CreateRelicLevelReward("More Relics",
-            "Newly unlocked relics - these relics can appear in future runs.\n",
-            new ContentPinnacleOfFearRelic(), new ContentCursedAmuletRelic(), new ContentCursedAmuletRelic()));
+            new ContentPinnacleOfFearRelic(), new ContentCursedAmuletRelic(), new ContentBeadsOfProphecyRelic()));
     }
 
     private static void FillMapData(GameMap map, GameCard rewardCard)
@@ -414,16 +411,6 @@ public static class GameMetaprogressionUnlocksDataManager
                             "A new card option for use in your starter deck.",
                             card));
                     }
-
-                    GameRelic relic = m_dataElements[i].GetRelic();
-                    if (relic != null)
-                    {
-                        accountData.m_starterRelicUnlockLevels.Add(relic.GetBaseName(), 0);
-                        UIMetaprogressionNotificationController.AddReward(
-                            new GameMetaprogressionReward("Starter Relic",
-                            "A new relic option you can start with.",
-                            relic));
-                    }
                 }
             }
         }
@@ -437,9 +424,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialCards.Add(new ContentFireboltCard());
         m_initialCards.Add(new ContentAegisCard());
         m_initialCards.Add(new ContentGrowTalonsCard());
-
-        //Starter Relics
-        m_initialRelics.Add(new ContentMaskOfAgesRelic());
 
         //Initial Maps
         m_initialMaps.Add(new ContentLakesideMap());
@@ -521,6 +505,13 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialRelics.Add(new ContentGoldenFeatherRelic());
         m_initialRelics.Add(new ContentNaturalProtectionRelic());
         m_initialRelics.Add(new ContentMarkOfTordrimRelic());
+        m_initialRelics.Add(new ContentMaskOfAgesRelic());
+        m_initialRelics.Add(new ContentOrbOfEnergyRelic());
+        m_initialRelics.Add(new ContentHoovesOfProductionRelic());
+        m_initialRelics.Add(new ContentLoadedChestRelic());
+        m_initialRelics.Add(new ContentWolvenFangRelic());
+        m_initialRelics.Add(new ContentHoovesOfProductionRelic());
+        m_initialRelics.Add(new ContentMemoryOfTheDefenderRelic());
     }
 
     public static bool HasUnlocked(GameRelic toCheck)
@@ -646,50 +637,11 @@ public static class GameMetaprogressionUnlocksDataManager
         return false;
     }
 
-    public static bool HasUnlockedStarterRelic(GameRelic toCheck)
-    {
-        if (!m_isInit)
-        {
-            InitData();
-        }
-
-        if (IsInitialUnlock(toCheck))
-        {
-            return true;
-        }
-
-        GameMap map = GetMapForStarterRelic(toCheck);
-
-        if (map == null)
-        {
-            return false;
-        }
-
-        if (PlayerDataManager.PlayerAccountData.HasPreviouslyBeatenMapChaosLevel(map.m_id, 2))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     public static GameMap GetMapForStarterCard(GameCard toCheck)
     {
         for (int i = 0; i < m_dataElements.Count; i++)
         {
             if (m_dataElements[i].GetCard() != null && m_dataElements[i].GetCard().GetBaseName() == toCheck.GetBaseName())
-            {
-                return m_dataElements[i].GetMap();
-            }
-        }
-        return null;
-    }
-
-    public static GameMap GetMapForStarterRelic(GameRelic toCheck)
-    {
-        for (int i = 0; i < m_dataElements.Count; i++)
-        {
-            if (m_dataElements[i].GetRelic() != null && m_dataElements[i].GetRelic().GetBaseName() == toCheck.GetBaseName())
             {
                 return m_dataElements[i].GetMap();
             }
@@ -784,40 +736,6 @@ public static class GameMetaprogressionUnlocksDataManager
         for (int i = 0; i < starterCards.Count; i++)
         {
             if (HasUnlockedStarterCard(starterCards[i]))
-            {
-                toReturn++;
-            }
-        }
-
-        return toReturn;
-    }
-
-    public static int GetNumStarterRelicsUnlocked()
-    {
-        if (!m_isInit)
-        {
-            InitData();
-        }
-
-        List<GameRelic> starterRelics = new List<GameRelic>();
-
-        for (int i = 0; i < m_dataElements.Count; i++)
-        {
-            if (m_dataElements[i].GetRelic() != null)
-            {
-                starterRelics.Add(m_dataElements[i].GetRelic());
-            }
-        }
-
-        if (Constants.UnlockAllContent)
-        {
-            return starterRelics.Count;
-        }
-
-        int toReturn = 0;
-        for (int i = 0; i < starterRelics.Count; i++)
-        {
-            if (HasUnlockedStarterRelic(starterRelics[i]))
             {
                 toReturn++;
             }
