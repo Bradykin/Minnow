@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,9 +13,10 @@ public class ContentRebuildIntermissionAction : GameActionIntermission
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
-    public override void Activate()
+    public override void Activate(Action action)
     {
         UIHelper.SelectAction(this);
+        action.Invoke();
     }
 
     public override bool IsValidToSpawn()

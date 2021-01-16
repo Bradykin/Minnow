@@ -91,6 +91,11 @@ public class UICardDeckView : MonoBehaviour
             ((GameUnitCard)m_uiCard.m_card).GetUnit().AddStats(Constants.IntermissionBuffValue, Constants.IntermissionBuffValue, true, false);
         }
 
+        if (UIDeckViewController.Instance.m_onInteractCallBack != null)
+        {
+            UIDeckViewController.Instance.m_onInteractCallBack.Invoke();
+        }
+
         UIDeckViewController.Instance.Init(GameHelper.GetPlayer().m_deckBase.GetCardsForRead(), UIDeckViewController.DeckViewType.View, "Base Deck");
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GameActionIntermission : GameElementBase
 {
-    public abstract void Activate();
+    public abstract void Activate(Action action);
 
     public string GetDesc()
     {

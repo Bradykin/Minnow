@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ public class ContentDuplicateSpellIntermissionAction : GameActionIntermission
         m_icon = UIHelper.GetIconIntermissionAction(m_name);
     }
 
-    public override void Activate()
+    public override void Activate(Action action)
     {
-        UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfSpells(), UIDeckViewController.DeckViewType.Duplicate, "Duplicate a Spell");
+        UIDeckViewController.Instance.Init(GameHelper.GetPlayerBaseDeckOfSpells(), UIDeckViewController.DeckViewType.Duplicate, "Duplicate a Spell", action);
     }
 }

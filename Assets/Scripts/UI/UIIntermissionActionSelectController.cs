@@ -4,6 +4,7 @@ using UnityEngine;
 using Game.Util;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIIntermissionActionSelectController : Singleton<UIIntermissionActionSelectController>
 {
@@ -43,10 +44,11 @@ public class UIIntermissionActionSelectController : Singleton<UIIntermissionActi
             return;
         }
 
-        GameNotificationManager.RecordAction(action, m_firstButton.m_action, m_secondButton.m_action, m_thirdButton.m_action);
+        action.Activate(() =>
+        {
+            GameNotificationManager.RecordAction(action, m_firstButton.m_action, m_secondButton.m_action, m_thirdButton.m_action);
 
-        action.Activate();
-
-        EndSelection();
+            EndSelection();
+        });
     }
 }
