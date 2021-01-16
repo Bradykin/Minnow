@@ -30,10 +30,7 @@ public class UICardSelectSkipButton : UIElementBase
         bool triggerSpellCardSelection = UICardSelectController.Instance.SkipSelection();
         m_tintImage.color = UIHelper.GetDefaultTintColor();
 
-        if (triggerSpellCardSelection)
-        {
-            UIHelper.TriggerSpellCardSelection();
-        }
+        UIIntermissionController.Instance.TriggerNextSelection();
 
         Globals.m_selectedCard = null;
     }

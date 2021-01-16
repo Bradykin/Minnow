@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Constants
 {
     //Game Data
-    public static int InitialHandSize = 4;
+    public static int InitialHandSize = 5;
     public static int StartingEnergy = 3;
 
     public static int MaxHandSize = 10;

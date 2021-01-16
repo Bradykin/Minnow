@@ -50,7 +50,7 @@ public class UIIntermissionController : Singleton<UIIntermissionController>
         UpdateActions();
     }
 
-    void OnEnable()
+    public void StartSelectionMenus()
     {
         m_selectionStack.Add(SelectionOptions.Unit);
         m_selectionStack.Add(SelectionOptions.Spell);

@@ -368,6 +368,11 @@ public static class GameHelper
 
     public static bool IsCurrentMapLakeside()
     {
+        if (GetGameController() == null)
+        {
+            return false;
+        }
+
         return GetGameController().GetCurMap().m_id == 0;
     }
 
