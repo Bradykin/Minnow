@@ -54,7 +54,6 @@ public class PlayerAccountData
     public Dictionary<int, int> m_mapChaosUIAutoset;
 
     public Dictionary<string, int> m_starterCardUnlockLevels;
-    public Dictionary<string, int> m_starterRelicUnlockLevels;
 
     public string StarterSimpleUnitName = new ContentDwarvenSoldier().GetBaseName();
     public string StarterAdvancedUnitName = new ContentAlphaBoar().GetBaseName();
@@ -80,7 +79,6 @@ public class PlayerAccountData
         m_mapChaosLevels = new Dictionary<int, int>();
         m_mapChaosUIAutoset = new Dictionary<int, int>();
         m_starterCardUnlockLevels = new Dictionary<string, int>();
-        m_starterRelicUnlockLevels = new Dictionary<string, int>();
     }
 
     public bool HasPreviouslyBeatenMapChaosLevel(int mapID, int chaos)
