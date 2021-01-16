@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class GameCardFactory
@@ -28,9 +29,11 @@ public static class GameCardFactory
 
     public static List<GameCard> m_exileSpells = new List<GameCard>();
 
+    private static List<GameCard> m_exclusionCards = new List<GameCard>();
+
     private static bool m_hasInit = false;
 
-    public static void Init()
+    public static void Init(List<GameCard> exclusionCards = null)
     {
         m_hasInit = true;
 
@@ -54,6 +57,12 @@ public static class GameCardFactory
         m_commonSpellCards = new List<GameCard>();
 
         m_tribalCards = new List<GameCard>();
+        m_exclusionCards.Clear();
+
+        if (exclusionCards != null)
+        {
+            m_exclusionCards.AddRange(exclusionCards);
+        }
 
         //Unit Cards
         m_cards.Add(new ContentArmouredMonkCard());
@@ -104,10 +113,7 @@ public static class GameCardFactory
         m_cards.Add(new ContentMysticWitchCard());
         m_cards.Add(new ContentEtherealStagCard());
         m_cards.Add(new ContentStagBearCard());
-        m_cards.Add(new ContentGolemProtectorCard());
-        
-
-        m_cards.Add(new ContentGuardianOfTheForestCard());
+        m_cards.Add(new ContentGolemProtectorCard());   
 
         //Starter Cards
         m_cards.Add(new ContentLizardSoldierCard());
@@ -323,6 +329,11 @@ public static class GameCardFactory
 
         for (int i = 0; i < m_cards.Count; i++)
         {
+            if (m_exclusionCards.Any(c => c.GetBaseName() == m_cards[i].GetBaseName()))
+            {
+                continue;
+            }
+            
             bool isUnit = m_cards[i] is GameUnitCard;
             if (isUnit)
             {

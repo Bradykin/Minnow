@@ -43,10 +43,10 @@ public abstract class GameMap : GameElementBase
         GameUnitFactory.Init(m_totalEnemiesOnMap, m_defaultSpawnPool, m_spawnPointSpawnPools);
 
         FillExclusionCardPool();
-        GameCardFactory.Init();
+        GameCardFactory.Init(m_exclusionCardPool);
 
         FillExclusionRelicPool();
-        GameRelicFactory.Init();
+        GameRelicFactory.Init(m_exclusionRelicPool);
 
         FillEventPool();
         GameEventFactory.Init(m_eventPool);
