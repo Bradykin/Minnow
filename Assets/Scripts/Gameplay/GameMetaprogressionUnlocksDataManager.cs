@@ -325,13 +325,9 @@ public static class GameMetaprogressionUnlocksDataManager
             "Newly unlocked relics - these relics can appear in future runs.\n",
             new ContentTauntingPipeRelic(), new ContentBondOfFamilyRelic(), new ContentChargingRingRelic()));
 
-        m_relicRewards.Add(22, CreateRelicLevelReward("More Tanks",
-            "Newly unlocked relics - these relics can appear in future runs.\nEven more toughness!",
-            new ContentCarapaceOfTutuiun(), new ContentCanvasOfHistoryRelic(), new ContentPrimeRibRelic()));
-
-        m_relicRewards.Add(23, CreateRelicLevelReward("More Relics",
+        m_relicRewards.Add(22, CreateRelicLevelReward("More Relics",
             "Newly unlocked relics - these relics can appear in future runs.\n",
-            new ContentPinnacleOfFearRelic(), new ContentCursedAmuletRelic(), new ContentBeadsOfProphecyRelic()));
+            new ContentCarapaceOfTutuiun(), new ContentCursedAmuletRelic(), new ContentTheGreatestGiftRelic()));
     }
 
     private static void FillMapData(GameMap map, GameCard rewardCard)
@@ -491,7 +487,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialRelics.Add(new ContentSackOfManyShapesRelic());
         m_initialRelics.Add(new ContentLegendaryFragmentRelic());
         m_initialRelics.Add(new ContentCallOfTheSeaRelic());
-        m_initialRelics.Add(new ContentTheGreatestGiftRelic());
         m_initialRelics.Add(new ContentImpaliumRelic());
         m_initialRelics.Add(new ContentStarOfDenumainRelic());
         m_initialRelics.Add(new ContentHarvestOfTelumRelic());
@@ -501,8 +496,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialRelics.Add(new ContentHealthFlaskRelic());
         m_initialRelics.Add(new ContentToolOfTheDeadmanRelic());
         m_initialRelics.Add(new ContentAngelicFeatherRelic());
-        m_initialRelics.Add(new ContentBloodFeatherRelic());
-        m_initialRelics.Add(new ContentGoldenFeatherRelic());
         m_initialRelics.Add(new ContentNaturalProtectionRelic());
         m_initialRelics.Add(new ContentMarkOfTordrimRelic());
         m_initialRelics.Add(new ContentMaskOfAgesRelic());
@@ -512,6 +505,10 @@ public static class GameMetaprogressionUnlocksDataManager
         m_initialRelics.Add(new ContentWolvenFangRelic());
         m_initialRelics.Add(new ContentHoovesOfProductionRelic());
         m_initialRelics.Add(new ContentMemoryOfTheDefenderRelic());
+        m_initialRelics.Add(new ContentBeadsOfProphecyRelic());
+        m_initialRelics.Add(new ContentPinnacleOfFearRelic());
+        m_initialRelics.Add(new ContentPrimeRibRelic());
+        m_initialRelics.Add(new ContentCanvasOfHistoryRelic());
     }
 
     public static bool HasUnlocked(GameRelic toCheck)

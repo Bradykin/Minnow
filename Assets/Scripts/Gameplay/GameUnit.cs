@@ -300,18 +300,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 AddKeyword(new GameDamageShieldKeyword(), false, false);
                 UIHelper.TriggerRelicAnimation<ContentAngelicFeatherRelic>();
             }
-
-            if (GameHelper.HasRelic<ContentBloodFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 10)
-            {
-                AddStats(10, 0, false, true);
-                UIHelper.TriggerRelicAnimation<ContentBloodFeatherRelic>();
-            }
-
-            if (GameHelper.HasRelic<ContentGoldenFeatherRelic>() && m_curHealth > 0 && m_curHealth <= 6)
-            {
-                GameHelper.GetPlayer().GainGold(15, true);
-                UIHelper.TriggerRelicAnimation<ContentGoldenFeatherRelic>();
-            }
         }
 
         GameEnrageKeyword enrageKeyword = GetEnrageKeyword();

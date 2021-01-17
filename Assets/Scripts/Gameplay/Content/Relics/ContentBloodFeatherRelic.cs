@@ -7,12 +7,9 @@ public class ContentBloodFeatherRelic : GameRelic
     public ContentBloodFeatherRelic()
     {
         m_name = "Blood Feather";
-        m_desc = "When an allied unit survives a hit with 10 health or less; it gets +10/+0.";
+        m_desc = "DOES NOTHING.";
         m_rarity = GameRarity.Uncommon;
 
         LateInit();
-
-        m_tagHolder.AddPushTag(GameTagHolder.TagType.Healing, isReceiver: false);
-        m_tagHolder.AddReceiverOnlyTag(GameTagHolder.TagType.BuffSpell);
     }
 }
