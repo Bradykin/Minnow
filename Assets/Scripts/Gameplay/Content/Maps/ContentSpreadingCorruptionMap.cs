@@ -15,8 +15,6 @@ public class ContentSpreadingCorruptionMap : GameMap
 
         m_id = 10;
 
-        m_spawnCrystals = false;
-
         Init();
     }
 

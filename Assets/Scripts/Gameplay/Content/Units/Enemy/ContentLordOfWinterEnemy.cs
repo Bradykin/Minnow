@@ -82,18 +82,6 @@ public class ContentLordOfWinterEnemy : GameEnemyUnit
         StormFogUpdate();
     }
 
-    public override string GetDesc()
-    {
-        string descString = m_desc;
-
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = $"<b>Invulnerable:</b> Crystals still remain.\n{descString}";
-        }
-
-        return descString;
-    }
-
     public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)
     {
         int toReturn = base.HitUnit(other, damageAmount, spendStamina, shouldThorns, canCleave);
@@ -113,11 +101,6 @@ public class ContentLordOfWinterEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 
     private void StormFogUpdate()

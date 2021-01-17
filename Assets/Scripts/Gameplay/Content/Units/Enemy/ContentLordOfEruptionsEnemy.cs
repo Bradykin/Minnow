@@ -54,18 +54,6 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         UIHelper.CreateHUDNotification("Boss Arrived", "The Lord of Eruptions has emerged from the lava to spread his domain!");
     }
 
-    public override string GetDesc()
-    {
-        string descString = m_desc;
-
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
-        }
-
-        return descString;
-    }
-
     public override void EndTurn()
     {
         base.EndTurn();
@@ -78,10 +66,5 @@ public class ContentLordOfEruptionsEnemy : GameEnemyUnit
         base.Die(canRevive, damageType);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 }

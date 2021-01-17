@@ -13,8 +13,6 @@ public class ContentLakesideMap : GameMap
 
         m_id = 0;
 
-        m_spawnCrystals = false;
-
         Init();
     }
 

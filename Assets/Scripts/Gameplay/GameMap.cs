@@ -18,7 +18,6 @@ public abstract class GameMap : GameElementBase
     protected List<GameEvent> m_eventPool = new List<GameEvent>();
     protected List<GameRelic> m_exclusionRelicPool = new List<GameRelic>();
 
-    protected bool m_spawnCrystals = false;
     protected int m_destroyedCrystals;
 
     public bool m_disableUnfinished;
@@ -61,8 +60,8 @@ public abstract class GameMap : GameElementBase
     {
         m_destroyedCrystals++;
     }
-
-    public virtual bool AllCrystalsDestroyed()
+    
+    /*public virtual bool AllCrystalsDestroyed()
     {
         if (!m_spawnCrystals)
         {
@@ -75,7 +74,7 @@ public abstract class GameMap : GameElementBase
         }
 
         return false;
-    }
+    }*/
 
     protected abstract void FillMapEvents();
 
@@ -135,7 +134,7 @@ public abstract class GameMap : GameElementBase
         m_eventPool.Add(new ContentSugoAltar(null));
     }
 
-    public virtual int GetNumCrystals()
+    /*public virtual int GetNumCrystals()
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
@@ -148,7 +147,7 @@ public abstract class GameMap : GameElementBase
     public bool GetShouldSpawnCrystals()
     {
         return m_spawnCrystals;
-    }
+    }*/
 
     public virtual bool TrySpawnElite(List<GameTile> tilesAtFogEdge)
     {

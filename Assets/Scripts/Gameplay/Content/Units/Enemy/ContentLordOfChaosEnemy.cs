@@ -70,11 +70,6 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
 
         descString += $"<b>Chaos Warp:</b> {GetChaosWarpString()}";
 
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = $"<b>Invulnerable:</b> Crystals still remain.\n{descString}";
-        }
-
         return descString;
     }
 
@@ -150,11 +145,6 @@ public class ContentLordOfChaosEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 
     //============================================================================================================//

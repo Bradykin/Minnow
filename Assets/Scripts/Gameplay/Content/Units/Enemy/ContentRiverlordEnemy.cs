@@ -57,20 +57,6 @@ public class ContentRiverlordEnemy : GameEnemyUnit
         }
     }
 
-    public override string GetDesc()
-    {
-        string descString = m_desc;
-
-        descString += $"Any player units that die within range {m_aoeRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
-
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
-        }
-
-        return descString;
-    }
-
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         base.Die(canRevive, damageType);
@@ -78,10 +64,5 @@ public class ContentRiverlordEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 }

@@ -184,11 +184,6 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
 
         descString += $"<b>Brightness Level:</b> {m_brightnessLevel}\n";
 
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = $"<b>Invulnerable:</b> Crystals still remain.\n{descString}";
-        }
-
         return descString;
     }
 
@@ -199,11 +194,6 @@ public class ContentLordOfShadowsEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 
     //============================================================================================================//

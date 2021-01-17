@@ -30,7 +30,7 @@ public class ContentLichEnemy : GameEnemyUnit
         m_attackSFX = AudioHelper.SpellAttackMedium;
 
         m_name = "Lich";
-        m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_aoeRange} is instead converted into damage.\n";
+        m_desc = $"The final boss. Kill it, and win.\nAll healing done to player units within range {m_aoeRange} is instead converted into damage.\nAny player units that die within range {m_aoeRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.\n";
 
         AddKeyword(new GameRangeKeyword(2), true, false);
         AddKeyword(new GameFlyingKeyword(), true, false);
@@ -55,20 +55,6 @@ public class ContentLichEnemy : GameEnemyUnit
         {
             UIHelper.CreateHUDNotification("Boss Arrived", "The Lich has arrived and brought death to the world!");
         }
-    }
-
-    public override string GetDesc()
-    {
-        string descString = m_desc;
-
-        descString += $"Any player units that die within range {m_aoeRange} are reanimated as a <b>Husk</b> that gains their stats and <b>keywords</b>.";
-
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
-        }
-
-        return descString;
     }
 
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
@@ -122,10 +108,5 @@ public class ContentLichEnemy : GameEnemyUnit
             validTiles[r].ClearSurroundingFog(3);
             UIHelper.CreateHUDNotification("Lich Escaped", "The Lich has retreated to his ancient necropolis that stores his phylactery. You'll need to hunt him down and destroy the phylactery to defeat him once and for all!");
         }
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 }

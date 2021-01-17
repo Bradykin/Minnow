@@ -100,18 +100,6 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         }
     }
 
-    public override string GetDesc()
-    {
-        string descString = m_desc;
-
-        if (!WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed())
-        {
-            descString = "<b>Invulnerable:</b> Crystals still remain.\n" + descString;
-        }
-
-        return descString;
-    }
-
     public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
     {
         base.Die(canRevive, damageType);
@@ -119,10 +107,5 @@ public class ContentOrcWarleaderEnemy : GameEnemyUnit
         GameHelper.GetGameController().m_activeBossUnits.Remove(this);
 
         GameHelper.EndLevel(RunEndType.Win);
-    }
-
-    public override bool IsInvulnerable()
-    {
-        return !WorldController.Instance.m_gameController.m_map.AllCrystalsDestroyed();
     }
 }

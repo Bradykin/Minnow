@@ -62,7 +62,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return m_gridArray[gridPosition.x + m_gridSizeX * gridPosition.y];
     }
 
-    private void PlaceCrystals()
+    /*private void PlaceCrystals()
     {
         List<WorldTile> validTiles = new List<WorldTile>();
         List<WorldTile> tilesInRange = WorldGridManager.Instance.GetSurroundingWorldTiles(GameHelper.GetPlayer().GetCastleWorldTile(), Constants.GridSizeX, 12);
@@ -81,7 +81,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             validTiles[r].GetGameTile().PlaceBuilding(new ContentPowerCrystalBuilding());
             validTiles.RemoveAt(r);
         }
-    }
+    }*/
 
     private void PlaceChests()
     {
@@ -535,10 +535,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         if (!Globals.loadingRun)
         {
-            if (WorldController.Instance.m_gameController.GetCurMap().GetShouldSpawnCrystals())
-            {
-                PlaceCrystals();
-            }
             PlaceChests();
             PlaceGold();
         }
@@ -604,93 +600,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         return distance + Math.Abs(currentPosition.x - targetPosition.x);
     }
-
-    //What is this function?
-    /*public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
-    {
-        if (startingGridTile.IsOccupied() && !startingGridTile.GetOccupyingUnit().m_isDead && startingGridTile.GetOccupyingUnit().GetRootedKeyword() != null)
-        {
-            return null;
-        }
-
-        Location current = null;
-        var start = new Location(startingGridTile, targetGridTile, 0, null);
-        var target = new Location(targetGridTile);
-        var openList = new List<Location>();
-        var closedList = new List<Location>();
-
-        var adjacentTiles = new List<GameTile>();
-        if (getAdjacentPosition)
-        {
-            adjacentTiles = targetGridTile.AdjacentTiles();
-        }
-
-        // start by adding the original position to the open list
-        openList.Add(start);
-
-        while (openList.Count > 0)
-        {
-            // get the tile with the lowest F score
-            current = GetNextTileFromOpenList(openList);
-
-            // add the current tile to the closed list
-            closedList.Add(current);
-
-            // remove it from the open list
-            openList.Remove(current);
-
-            // if the current position is the target position, we have a path
-            if (current.X == target.X && current.Y == target.Y
-                || (getAdjacentPosition && adjacentTiles.Find(t => t.m_gridPosition.x == current.X && t.m_gridPosition.y == current.Y) != null))
-            {
-                List<GameTile> path = new List<GameTile>();
-                while (current != null)
-                {
-                    path.Add(current.GameTile);
-                    current = current.Parent;
-                }
-                path.Reverse();
-                return path;
-            }
-
-            List<GameTile> adjacentSquares = current.GameTile.AdjacentTiles();
-
-            foreach (var adjacentTile in adjacentSquares)
-            {
-                // if this adjacent square is already in the closed list, ignore it
-                if (closedList.Find(l => l.X == adjacentTile.m_gridPosition.x
-                        && l.Y == adjacentTile.m_gridPosition.y) != null)
-                    continue;
-
-                if (!ignoreTerrainDifferences && !adjacentTile.IsPassable(startingGridTile.GetOccupyingUnit(), current.F >= curStamina))
-                    continue;
-
-                // if it's not in the open list...
-                var adjacent = openList.Find(l => l.X == adjacentTile.m_gridPosition.x
-                        && l.Y == adjacentTile.m_gridPosition.y);
-
-                int g;
-                if (ignoreTerrainDifferences)
-                    g = current.G + 1;
-                else
-                    g = current.G + adjacentTile.GetCostToPass(startingGridTile.GetOccupyingUnit());
-
-                if (adjacent == null)
-                {
-                    Location adjacentLocation = new Location(adjacentTile, targetGridTile, g, current);
-                    openList.Insert(0, adjacentLocation);
-                }
-                else if (g < adjacent.G)
-                {
-                    adjacent.G = g;
-                    adjacent.F = adjacent.G + adjacent.H;
-                    adjacent.Parent = current;
-                }
-            }
-        }
-
-        return null;
-    }*/
 
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible, GameUnit unitOverride = null)
     {
