@@ -51,6 +51,17 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         m_setup = true;
     }
 
+    public WorldTile GetTileAtGridPosition(Vector2Int gridPosition)
+    {
+        if (gridPosition.x >= m_gridSizeX || gridPosition.y >= m_gridSizeY)
+        {
+            Debug.LogWarning("Trying to get tile that is outside of the grid array");
+            return null;
+        }
+
+        return m_gridArray[gridPosition.x + m_gridSizeX * gridPosition.y];
+    }
+
     private void PlaceCrystals()
     {
         List<WorldTile> validTiles = new List<WorldTile>();
@@ -593,7 +604,6 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
         return distance + Math.Abs(currentPosition.x - targetPosition.x);
     }
-
 
     //What is this function?
     /*public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
