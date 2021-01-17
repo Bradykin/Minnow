@@ -15,7 +15,7 @@ public class Location
 
     public bool inClosedList;
 
-    public Location(GameTile gameTile, GameTile targetGameTile, int g, Location parent)
+    public Location(GameTile gameTile, GameTile targetGameTile, int g, Location parent, GameUnit gameUnit)
     {
         X = gameTile.m_gridPosition.x;
         Y = gameTile.m_gridPosition.y;
@@ -24,7 +24,15 @@ public class Location
         inClosedList = false;
 
         G = g;
-        H = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(gameTile, targetGameTile);
+
+        if (gameUnit.m_instantDunesMovement || gameUnit.m_instantForestMovement || gameUnit.m_instantWaterMovement)
+        {
+            H = 0;
+        }
+        else
+        {
+            H = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(gameTile, targetGameTile);
+        }
         F = G + H;
     }
 

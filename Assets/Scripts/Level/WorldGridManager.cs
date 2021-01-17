@@ -596,7 +596,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
 
     //What is this function?
-    public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
+    /*public List<GameTile> CalculatePathTowards(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, int curStamina)
     {
         if (startingGridTile.IsOccupied() && !startingGridTile.GetOccupyingUnit().m_isDead && startingGridTile.GetOccupyingUnit().GetRootedKeyword() != null)
         {
@@ -680,7 +680,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         return null;
-    }
+    }*/
 
     public List<GameTile> CalculateAStarPath(GameTile startingGridTile, GameTile targetGridTile, bool ignoreTerrainDifferences, bool getAdjacentPosition, bool letPassEnemies, bool getClosestPositionPossible, GameUnit unitOverride = null)
     {
@@ -705,7 +705,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         }
 
         Location current = null;
-        var start = new Location(startingGridTile, targetGridTile, 0, null);
+        var start = new Location(startingGridTile, targetGridTile, 0, null, unit);
         var target = new Location(targetGridTile);
         var openList = new List<Location>();
         var closedList = new List<Location>();
@@ -722,7 +722,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         while (openList.Count > 0)
         {
             // get the tile with the lowest F score
-            current = GetNextTileFromOpenList(openList);
+            current = GetNextTileFromOpenList(openList, ignoreTerrainDifferences, unit);
 
             // add the current tile to the closed list
             closedList.Add(current);
@@ -768,7 +768,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
 
                 if (adjacent == null)
                 {
-                    Location adjacentLocation = new Location(adjacentTile, targetGridTile, g, current);
+                    Location adjacentLocation = new Location(adjacentTile, targetGridTile, g, current, unit);
                     openList.Insert(0, adjacentLocation);
                 }
                 else if (g < adjacent.G)
@@ -790,7 +790,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return null;
     }
 
-    private Location GetNextTileFromOpenList(List<Location> openList)
+    private Location GetNextTileFromOpenList(List<Location> openList, bool ignoreTerrainDifferences, GameUnit unit)
     {
         if (openList.Count == 0)
         {
