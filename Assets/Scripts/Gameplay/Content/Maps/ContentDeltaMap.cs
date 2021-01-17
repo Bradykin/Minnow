@@ -64,7 +64,6 @@ public class ContentDeltaMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentJackalEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentCrumblingAncientEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentSnakeEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentSandVortexEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentDjinnEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMummyEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentMummyPharaohEnemy(null));
@@ -95,15 +94,15 @@ public class ContentDeltaMap : GameMap
         //Wave 3
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 3, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 0.5f));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 3, 1, 0.75f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 3, 1, 0.75f));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 3, 1, 0.5f));
 
         //Wave 4
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 4, 1, 0.5f));
-        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentSandVortexEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentCrumblingAncientEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentShadeEnemy(null), 4, 1, 1));
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 6, 1, 0.2f));
+        defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 6, 1, 0.33f));
 
         //Wave 5
         defaultSpawnPoolData.Add(new GameSpawnPoolData(new ContentDemonMagicianEnemy(null), 5, 1, 1));
@@ -134,6 +133,7 @@ public class ContentDeltaMap : GameMap
         //Wave 3
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentBerserkerEnemy(null), 3, 1, 1));
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentBasiliskEnemy(null), 3, 1, 1));
+        riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentToadEnemy(null), 3, 1, 1));
 
         //Wave 4
         riverShoresSpawnPoolData.Add(new GameSpawnPoolData(new ContentDjinnEnemy(null), 4, 1, 0.2f));
