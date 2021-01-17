@@ -709,6 +709,8 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
             unit = startingGridTile.GetOccupyingUnit();
         }
 
+        bool hasInstantMovement = unit.m_instantDunesMovement || unit.m_instantForestMovement || unit.m_instantWaterMovement;
+
         if (unit.GetRootedKeyword() != null)
         {
             return null;
@@ -732,7 +734,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         while (openList.Count > 0)
         {
             // get the tile with the lowest F score
-            current = GetNextTileFromOpenList(openList, ignoreTerrainDifferences, unit);
+            current = GetNextTileFromOpenList(openList, ignoreTerrainDifferences, targetGridTile, hasInstantMovement);
 
             // add the current tile to the closed list
             closedList.Add(current);
@@ -800,7 +802,7 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         return null;
     }
 
-    private Location GetNextTileFromOpenList(List<Location> openList, bool ignoreTerrainDifferences, GameUnit unit)
+    private Location GetNextTileFromOpenList(List<Location> openList, bool ignoreTerrainDifferences, GameTile targetTile, bool hasInstantMovementLogic)
     {
         if (openList.Count == 0)
         {
@@ -812,7 +814,31 @@ public class WorldGridManager : Singleton<WorldGridManager>, ISave<JsonMapData>,
         int curH = openList[indexToReturn].H;
         for (int i = 1; i < openList.Count; i++)
         {
-            if (openList[i].F < curF || (openList[i].F == curF && openList[i].H < curH))
+            bool useNewIndex = false;
+
+            if (openList[i].F < curF)
+            {
+                useNewIndex = true;
+            }
+            else if (openList[i].F == curF)
+            {
+                if (openList[i].H < curH)
+                {
+                    useNewIndex = true;
+                }
+                else if (hasInstantMovementLogic)
+                {
+                    int firstAbsoluteDistance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(openList[i].GameTile, targetTile);
+                    int secondAbsoluteDistance = WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(openList[indexToReturn].GameTile, targetTile);
+
+                    if (firstAbsoluteDistance <= secondAbsoluteDistance)
+                    {
+                        useNewIndex = true;
+                    }
+                }
+            }
+            
+            if (useNewIndex)
             {
                 indexToReturn = i;
                 curF = openList[indexToReturn].F;
