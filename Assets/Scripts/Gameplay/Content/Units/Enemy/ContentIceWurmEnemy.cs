@@ -42,14 +42,17 @@ public class ContentIceWurmEnemy : GameEnemyUnit
     {
         base.OnMoveEnd();
 
-        List<GameTile> gameTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
-
-        for (int i = 0; i < gameTiles.Count; i++)
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            if (gameTiles[i].IsOccupied() && gameTiles[i].GetOccupyingUnit().GetTeam() != GetTeam() && gameTiles[i].GetOccupyingUnit().GetRootedKeyword() == null)
+            List<GameTile> gameTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_aoeRange);
+
+            for (int i = 0; i < gameTiles.Count; i++)
             {
-                gameTiles[i].GetOccupyingUnit().AddKeyword(new GameRootedKeyword(), false, false);
-                GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(gameTiles[i].GetOccupyingUnit(), new GameRootedKeyword()));
+                if (gameTiles[i].IsOccupied() && gameTiles[i].GetOccupyingUnit().GetTeam() != GetTeam() && gameTiles[i].GetOccupyingUnit().GetRootedKeyword() == null)
+                {
+                    gameTiles[i].GetOccupyingUnit().AddKeyword(new GameRootedKeyword(), false, false);
+                    GameHelper.GetPlayer().AddScheduledAction(ScheduledActionTime.EndOfTurn, new GameLoseKeywordAction(gameTiles[i].GetOccupyingUnit(), new GameRootedKeyword()));
+                }
             }
         }
     }
