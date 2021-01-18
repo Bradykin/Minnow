@@ -74,6 +74,19 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
         StormFogUpdate();
     }
 
+    public override void Die(bool canRevive = true, DamageType damageType = DamageType.None)
+    {
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_stormRadius, 0);
+        for (int i = 0; i < surroundingTiles.Count; i++)
+        {
+            surroundingTiles[i].m_numCauseStorm--;
+        }
+
+        StormFogUpdate();
+
+        base.Die(canRevive, damageType);
+    }
+
     public override int GetHitByUnit(int damage, GameUnit gameUnit, bool canReturnThorns)
     {
         int toReturn = base.GetHitByUnit(damage, gameUnit, canReturnThorns);
