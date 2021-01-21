@@ -468,7 +468,7 @@ public class AnalyticsManager
 
         if (www.isNetworkError || www.isHttpError)
         {
-            Debug.LogError("Analytics Error: " + www.error);
+            Debug.LogWarning("Analytics Error: " + www.error);
         }
         else
         {
@@ -492,7 +492,7 @@ public class AnalyticsManager
 
         if (www.isNetworkError || www.isHttpError)
         {
-            Debug.LogError("Analytics Error: " + www.error);
+            Debug.LogWarning("Analytics Error: " + www.error);
         }
         else
         {

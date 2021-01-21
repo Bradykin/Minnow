@@ -34,6 +34,6 @@ public class ContentMechanizeCard : GameCardSpellBase
 
         int curStamina = targetUnit.GetCurStamina();
         targetUnit.SpendStamina(curStamina);
-        targetUnit.AddStats(curStamina, curStamina, true, false);
+        targetUnit.AddStats(curStamina, curStamina, true, true);
     }
 }
