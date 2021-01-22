@@ -18,11 +18,9 @@ public class ContentSkeletalCaptainEnemy : GameEnemyUnit
         m_name = "Skeletal Captain";
         m_desc = "This unit is part of the pirate crew.\n";
 
-        AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword())), true, false);
-
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            //TODO Alex make a chaos ability
+            AddKeyword(new GameMomentumKeyword(new GameApplyKeywordToOtherOnMomentumAction(this, new GameBleedKeyword())), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);

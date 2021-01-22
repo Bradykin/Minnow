@@ -18,7 +18,7 @@ public class ContentGriffonEnemy : GameEnemyUnit
 
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
-        m_aoeRange = 2;
+        m_aoeRange = 4;
 
         m_name = "Griffon";
         m_desc = $"When this unit dies, all other {m_name}s within range {m_aoeRange} gain +{m_statBoostAmount}/{m_statBoostAmount}.\n";

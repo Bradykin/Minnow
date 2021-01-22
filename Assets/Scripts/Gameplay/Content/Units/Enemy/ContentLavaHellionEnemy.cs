@@ -22,10 +22,9 @@ public class ContentLavaHellionEnemy : GameEnemyUnit
 
         AddKeyword(new GameLavawalkKeyword(), true, false);
         AddKeyword(new GameVictoriousKeyword(new GameDoubleAttackAction(this, 1)), true, false);
-        AddKeyword(new GameDamageReductionKeyword(3), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 1, 0)), true, false);
+            AddKeyword(new GameDamageReductionKeyword(3), true, false);
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
