@@ -25,7 +25,7 @@ public static class GameMetaprogressionUnlocksDataManager
         GameMap mountainPass = new ContentMountainPassMap();
         GameMap crimsonIslandsMap = new ContentCrimsonIslandsMap();
         GameMap snowmeltMap = new ContentSnowmeltMap();
-        GameMap desertPassMap = new ContentDesertPassMap();
+        GameMap shiftingDunesMap = new ContentShiftingDunesMap();
         GameMap volcanoRun = new ContentVolcanoRunMap();
         GameMap lakesideHardMap = new ContentLakesideHardMap();
         GameMap themarshlands = new ContentTheMarshlandsMap();
@@ -51,7 +51,7 @@ public static class GameMetaprogressionUnlocksDataManager
         FillMapData(mountainPass, sandwalkerCard);
         FillMapData(crimsonIslandsMap, cureWoundsCard);
         FillMapData(snowmeltMap, drainingBoltCard);
-        FillMapData(desertPassMap, staminaTrainingCard);
+        FillMapData(shiftingDunesMap, staminaTrainingCard);
         FillMapData(volcanoRun, undeadMammothCard);
         FillMapData(lakesideHardMap, mechanizedBeastCard);
         FillMapData(themarshlands, joltCard);
@@ -82,6 +82,10 @@ public static class GameMetaprogressionUnlocksDataManager
             frozenLake.GetDesc(),
             frozenLake));
 
+        m_mapRewards.Add(16, CreateMapLevelReward(shiftingDunesMap.GetBaseName(),
+            shiftingDunesMap.GetDesc(),
+            shiftingDunesMap));
+
         /*m_mapRewards.Add(13, CreateMapLevelReward(crimsonIslandsMap.GetBaseName(),
             crimsonIslandsMap.GetDesc(),
             crimsonIslandsMap));
@@ -89,10 +93,6 @@ public static class GameMetaprogressionUnlocksDataManager
         m_mapRewards.Add(20, CreateMapLevelReward(themarshlands.GetBaseName(),
             themarshlands.GetDesc(),
             themarshlands));
-
-        m_mapRewards.Add(25, CreateMapLevelReward(desertPassMap.GetBaseName(),
-            desertPassMap.GetDesc(),
-            desertPassMap));
 
         m_mapRewards.Add(30, CreateMapLevelReward(lakesideHardMap.GetBaseName(),
             lakesideHardMap.GetDesc(),

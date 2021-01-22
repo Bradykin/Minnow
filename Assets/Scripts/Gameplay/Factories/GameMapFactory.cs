@@ -15,7 +15,7 @@ public static class GameMapFactory
         m_maps.Add(new ContentLakesideMap());
         m_maps.Add(new ContentLakesideHardMap());
         m_maps.Add(new ContentSnowmeltMap());
-        m_maps.Add(new ContentDesertPassMap());
+        m_maps.Add(new ContentShiftingDunesMap());
         m_maps.Add(new ContentCrimsonIslandsMap());
         m_maps.Add(new ContentDeltaMap());
         m_maps.Add(new ContentMountainPassMap());
