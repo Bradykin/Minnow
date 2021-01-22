@@ -264,6 +264,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentLizardmanEnemyCard());
         m_enemyCards.Add(new ContentLordOfChaosEnemyCard());
         m_enemyCards.Add(new ContentLordOfEruptionsEnemyCard());
+        m_enemyCards.Add(new ContentLordOfFrostEnemyCard());
         m_enemyCards.Add(new ContentLordOfShadowsEnemyCard());
         m_enemyCards.Add(new ContentLordOfWinterEnemyCard());
         m_enemyCards.Add(new ContentLurkerEnemyCard());

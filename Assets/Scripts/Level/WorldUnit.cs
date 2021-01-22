@@ -197,8 +197,8 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         {
             if (Globals.m_selectedCard.m_card.IsValidToPlay(GetUnit()))
             {
-                GameHelper.PlayCardOnUnit(Globals.m_selectedCard, GetUnit());
                 m_tintRenderer.color = UIHelper.GetDefaultTintColorForTeam(GetUnit().GetTeam());
+                GameHelper.PlayCardOnUnit(Globals.m_selectedCard, GetUnit());
             }
             else
             {
@@ -327,7 +327,7 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         m_isHovered = true;
         UIHelper.SetAoeTiles(GetUnit());
 
-        if (Globals.m_selectedUnit != null)
+        if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit() != null)
         {
             bool canHit = Globals.m_selectedUnit.GetUnit().CanHitUnit(GetUnit());
             if (GetUnit().GetTeam() == Team.Player && canHit)

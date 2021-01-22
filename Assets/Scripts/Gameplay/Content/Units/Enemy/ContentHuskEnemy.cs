@@ -28,9 +28,12 @@ public class ContentHuskEnemy : GameEnemyUnit
         LateInit();
     }
 
-    public override int Heal(int toHeal)
+    public override int Heal(int toHeal, bool showNotification = true)
     {
-        UIHelper.CreateWorldElementNotification("The Husk is burned by healing power!", true, m_worldUnit.gameObject);
+        if (showNotification)
+        {
+            UIHelper.CreateWorldElementNotification("The Husk is burned by healing power!", true, m_worldUnit.gameObject);
+        }
         GetHitByAbility(toHeal);
 
         return 0;

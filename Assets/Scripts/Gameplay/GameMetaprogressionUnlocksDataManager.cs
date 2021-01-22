@@ -74,15 +74,15 @@ public static class GameMetaprogressionUnlocksDataManager
             volcanoRun.GetDesc(),
             volcanoRun));
 
+        m_mapRewards.Add(11, CreateMapLevelReward(snowmeltMap.GetBaseName(),
+            snowmeltMap.GetDesc(),
+            snowmeltMap));
+
         m_mapRewards.Add(13, CreateMapLevelReward(frozenLake.GetBaseName(),
             frozenLake.GetDesc(),
             frozenLake));
 
-        /*m_mapRewards.Add(9, CreateMapLevelReward(snowmeltMap.GetBaseName(),
-            snowmeltMap.GetDesc(),
-            snowmeltMap));
-
-        m_mapRewards.Add(13, CreateMapLevelReward(crimsonIslandsMap.GetBaseName(),
+        /*m_mapRewards.Add(13, CreateMapLevelReward(crimsonIslandsMap.GetBaseName(),
             crimsonIslandsMap.GetDesc(),
             crimsonIslandsMap));
 

@@ -23,9 +23,9 @@ public class ContentWarriorPriestess : GameUnit
         LateInit();
     }
 
-    public override int Heal(int toHeal)
+    public override int Heal(int toHeal, bool showNotification = true)
     {
-        int healVal = base.Heal(toHeal);
+        int healVal = base.Heal(toHeal, showNotification);
 
         GameHelper.GetGameController().AddIntermissionLock();
 

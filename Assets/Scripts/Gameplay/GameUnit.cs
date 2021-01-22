@@ -291,7 +291,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             AddKeyword(new GameBleedKeyword(), false, false);
         }
 
-        m_curHealth -= damage;
+        m_curHealth = Mathf.Max(0, m_curHealth - damage);
 
         if (GetTeam() == Team.Player)
         {
@@ -546,12 +546,15 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
     }
 
     //Returns the amount actually healed
-    public virtual int Heal(int toHeal)
+    public virtual int Heal(int toHeal, bool showNotification = true)
     {
         ContentLichEnemy lichEnemy = GameHelper.GetBoss<ContentLichEnemy>();
         if (lichEnemy != null && WorldGridManager.Instance.CalculateAbsoluteDistanceBetweenPositions(GetGameTile(), lichEnemy.GetGameTile()) <= lichEnemy.GetAoeRange())
         {
-            UIHelper.CreateWorldElementNotification("The Lich converts healing into damage!", true, m_worldUnit.gameObject);
+            if (showNotification)
+            {
+                UIHelper.CreateWorldElementNotification("The Lich converts healing into damage!", true, m_worldUnit.gameObject);
+            }
             GetHitByAbility(toHeal);
             return 0;
         }
@@ -580,7 +583,10 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (realHealVal > 0)
         {
-            UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_worldUnit.gameObject);
+            if (showNotification)
+            {
+                UIHelper.CreateWorldElementNotification(GetName() + " heals " + realHealVal, true, m_worldUnit.gameObject);
+            }
 
             if (GameHelper.HasRelic<ContentLifebringerRelic>())
             {

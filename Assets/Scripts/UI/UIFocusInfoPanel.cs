@@ -22,11 +22,11 @@ public class UIFocusInfoPanel : UIElementBase
         {
             UpdateFocusData(Globals.m_selectedCard);
         } 
-        else if (Globals.m_selectedEnemy != null)
+        else if (Globals.m_selectedEnemy != null && Globals.m_selectedEnemy.GetUnit() != null)
         {
             UpdateFocusData(Globals.m_selectedEnemy);
         }
-        else if (Globals.m_selectedUnit != null)
+        else if (Globals.m_selectedUnit != null && Globals.m_selectedUnit.GetUnit() != null)
         {
             UpdateFocusData(Globals.m_selectedUnit);
         }

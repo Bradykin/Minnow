@@ -58,7 +58,7 @@ public class ContentSnowmeltMap : GameMap
         m_totalEnemiesOnMap.Add(new ContentGriffonEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentIceWurmEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentBerserkerEnemy(null));
-        m_totalEnemiesOnMap.Add(new ContentLordOfWinterEnemy(null));
+        m_totalEnemiesOnMap.Add(new ContentLordOfFrostEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentOrcShamanEnemy(null));
         m_totalEnemiesOnMap.Add(new ContentPolarWarriorEnemy(null));
