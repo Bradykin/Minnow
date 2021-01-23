@@ -291,7 +291,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
             AddKeyword(new GameBleedKeyword(), false, false);
         }
 
-        m_curHealth = Mathf.Max(0, m_curHealth - damage);
+        m_curHealth -= damage;
 
         if (GetTeam() == Team.Player)
         {
