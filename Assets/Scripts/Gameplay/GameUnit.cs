@@ -784,6 +784,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
 
         if (GetMaxStamina() >= Constants.MaxTotalStamina)
         {
+            UIHelper.CreateWorldElementNotification("This unit cannot gain any more max stamina", false, m_worldUnit.gameObject);
             return;
         }
 
