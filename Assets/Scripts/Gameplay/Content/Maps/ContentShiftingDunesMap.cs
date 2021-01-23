@@ -9,8 +9,6 @@ public class ContentShiftingDunesMap : GameMap
         m_name = "Shifting Dunes";
         m_desc = "In this hostile desert, the dunes are your greatest enemy. Can you find somewhere safe from them?";
 
-        m_disableUnfinished = true;
-
         m_difficulty = MapDifficulty.Medium;
 
         m_id = 2;
@@ -25,7 +23,12 @@ public class ContentShiftingDunesMap : GameMap
 
     protected override void FillMapEvents()
     {
-        //Need to fill
+        AddMapEvent(new ContentDeployCaravanShiftingDunesEvent(0), 1);
+        AddMapEvent(new ContentSpreadDunesMapEvent(0), 2);
+        AddMapEvent(new ContentSpreadDunesMapEvent(0), 3);
+        AddMapEvent(new ContentSpreadDunesMapEvent(0), 4);
+        AddMapEvent(new ContentSpreadDunesMapEvent(0), 5);
+        AddMapEvent(new ContentSpreadDunesMapEvent(0), 6);
     }
 
     protected override void FillExclusionCardPool()

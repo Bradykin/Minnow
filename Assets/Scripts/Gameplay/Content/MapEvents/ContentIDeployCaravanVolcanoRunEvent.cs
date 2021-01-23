@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentDeployCaravanEvent : GameMapEvent
+public class ContentDeployCaravanVolcanoRunEvent : GameMapEvent
 {
     private int m_markerToCheck;
 
-    public ContentDeployCaravanEvent(int markerToCheck)
+    public ContentDeployCaravanVolcanoRunEvent(int markerToCheck)
     {
         m_name = "Deploy Caravan";
         m_desc = "Volcanic eruptions loom on the horizon. Your court has fled to the royal caravan, and needs to run now!";

@@ -23,7 +23,7 @@ public class ContentVolcanoRunMap : GameMap
 
     protected override void FillMapEvents()
     {
-        AddMapEvent(new ContentDeployCaravanEvent(0), 2);
+        AddMapEvent(new ContentDeployCaravanVolcanoRunEvent(0), 2);
 
         AddMapEvent(new ContentVolcanoEruptionEvent(1, true), 2);
         AddMapEvent(new ContentVolcanoEruptionEvent(1, false), 3);
@@ -31,14 +31,14 @@ public class ContentVolcanoRunMap : GameMap
         AddMapEvent(new ContentVolcanoEruptionEvent(2, true), 3);
         AddMapEvent(new ContentVolcanoEruptionEvent(2, false), 4);
 
-        /*if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
-        {*/
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
             AddMapEvent(new ContentVolcanoEruptionEvent(3, true), 4);
             AddMapEvent(new ContentVolcanoEruptionEvent(3, false), 5);
 
             AddMapEvent(new ContentVolcanoEruptionEvent(4, true), 5);
             AddMapEvent(new ContentVolcanoEruptionEvent(4, false), 6);
-        //}
+        }
     }
 
     public override bool TrySpawnBoss(List<GameTile> tilesAtFogEdge)

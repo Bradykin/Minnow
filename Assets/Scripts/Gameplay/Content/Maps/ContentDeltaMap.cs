@@ -25,6 +25,7 @@ public class ContentDeltaMap : GameMap
     {
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
         {
+            
             AddMapEvent(new ContentFloodingMapEvent(0), 2);
             AddMapEvent(new ContentFloodReceedingMapEvent(0), 4);
         }
