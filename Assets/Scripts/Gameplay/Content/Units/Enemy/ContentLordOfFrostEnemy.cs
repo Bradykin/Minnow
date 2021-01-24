@@ -69,7 +69,7 @@ public class ContentLordOfFrostEnemy : GameEnemyUnit
 
             UIHelper.CreateWorldElementNotification("The Lord of Frost revives and gains power!", false, GetWorldTile().gameObject);
 
-            Heal(GetMaxHealth(), false);
+            FullHeal(false);
             AddStats(GetAttack() / 2, 0, true, false);
             List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_respawnDamageRadius);
             for (int i = 0; i < surroundingTiles.Count; i++)

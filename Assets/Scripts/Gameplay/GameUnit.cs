@@ -607,6 +607,12 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         return realHealVal;
     }
 
+    public virtual void FullHeal(bool showNotification = true)
+    {
+        int toHeal = GetMaxHealth() - GetCurHealth();
+        Heal(toHeal, showNotification);
+    }
+
     public virtual bool CanHitUnit(GameUnit other, bool checkRange = true)
     {
         if (GetTeam() == other.GetTeam()) //Can't attack your own team
