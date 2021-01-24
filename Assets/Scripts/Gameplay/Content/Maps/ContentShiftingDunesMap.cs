@@ -11,6 +11,8 @@ public class ContentShiftingDunesMap : GameMap
 
         m_difficulty = MapDifficulty.Medium;
 
+        m_disableUnfinished = true;
+
         m_id = 2;
 
         Init();

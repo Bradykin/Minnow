@@ -27,20 +27,6 @@ public class ContentRoyalCaravan : GameUnit
         GameHelper.EndLevel(RunEndType.Loss);
     }
 
-    public override void OnMoveBegin()
-    {
-        base.OnMoveBegin();
-
-        GetWorldTile().ReducePlaceRange(2);
-    }
-
-    public override void OnMoveEnd()
-    {
-        base.OnMoveEnd();
-
-        GetWorldTile().ExpandPlaceRange(2);
-    }
-
     protected override void ResetToBase()
     {
         ResetKeywords(true);

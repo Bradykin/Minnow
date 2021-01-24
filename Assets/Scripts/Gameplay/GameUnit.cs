@@ -932,7 +932,7 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
                 {
                     if (GameHelper.HasRelic<ContentBestialWrathRelic>())
                     {
-                        momentumKeyword.DoAction();
+                        momentumKeyword.DoAction(other);
                         UIHelper.TriggerRelicAnimation<ContentBestialWrathRelic>();
                     }
                 }

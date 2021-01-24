@@ -37,7 +37,7 @@ public class GameRoarOfVictoryAction : GameAction
         {
             if (momentumKeyword != null)
             {
-                momentumKeyword.DoAction();
+                momentumKeyword.DoAction(null);
             }
 
             if (enrageKeyword != null)
@@ -52,7 +52,7 @@ public class GameRoarOfVictoryAction : GameAction
                 {
                     if (momentumKeyword != null)
                     {
-                        momentumKeyword.DoAction();
+                        momentumKeyword.DoAction(null);
                     }
 
                     if (enrageKeyword != null)

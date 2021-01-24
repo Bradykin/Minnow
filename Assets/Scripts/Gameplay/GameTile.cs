@@ -97,6 +97,11 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
                     surroundingTiles[i].m_isSoftFog = true;
                 }
             }
+
+            if (m_occupyingUnit is ContentRoyalCaravan)
+            {
+                m_worldTile.ExpandPlaceRange(2);
+            }
         }
 
         GetWorldTile().TryAddOccupyingUnit();
@@ -138,6 +143,12 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         if (!IsOccupied())
         {
             Debug.LogWarning("Clearing unit on a tile, but no unit currently exists on this tile.");
+            return;
+        }
+
+        if (m_occupyingUnit is ContentRoyalCaravan)
+        {
+            m_worldTile.ReducePlaceRange(2);
         }
 
         m_occupyingUnit = null;
@@ -148,11 +159,17 @@ public class GameTile : GameElementBase, ISave<JsonGameTileData>, ILoad<JsonGame
         if (!HasBuilding())
         {
             Debug.LogWarning("Clearing building on a tile, but no building currently exists on this tile.");
+            return;
         }
 
         if (GameHelper.GetPlayer() != null)
         {
             GameHelper.GetPlayer().RemoveControlledBuilding(m_building);
+        }
+
+        if (m_building.m_expandsPlaceRange)
+        {
+            m_worldTile.ReducePlaceRange(2);
         }
 
         m_building = null;

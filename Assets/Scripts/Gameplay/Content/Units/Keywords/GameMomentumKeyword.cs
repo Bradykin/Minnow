@@ -30,7 +30,10 @@ public class GameMomentumKeyword : GameActionKeywordBase
 
             if (m_actions[i] is GameApplyKeywordToOtherOnMomentumAction applyKeywordToOtherOnMomentumAction)
             {
-                applyKeywordToOtherOnMomentumAction.DoAction(targetUnit);
+                if (targetUnit != null)
+                {
+                    applyKeywordToOtherOnMomentumAction.DoAction(targetUnit);
+                }
             }
             else
             {

@@ -41,7 +41,7 @@ public class ContentFuryCard : GameCardSpellBase
 
         if (momentumKeyword != null)
         {
-            momentumKeyword.DoAction();
+            momentumKeyword.DoAction(null);
         }
         
         if (enrageKeyword != null)
@@ -61,7 +61,7 @@ public class ContentFuryCard : GameCardSpellBase
             {
                 if (momentumKeyword != null)
                 {
-                    momentumKeyword.DoAction();
+                    momentumKeyword.DoAction(null);
                 }
 
                 if (enrageKeyword != null)
