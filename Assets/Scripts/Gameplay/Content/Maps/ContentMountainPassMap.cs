@@ -140,7 +140,7 @@ public class ContentMountainPassMap : GameMap
 
             for (int i = 0; i < tilesInRange.Count; i++)
             {
-                if (!tilesInRange[i].GetGameTile().IsOccupied() && !tilesInRange[i].GetGameTile().HasBuilding() && tilesInRange[i].GetGameTile().IsPassable(null, false))
+                if (!tilesInRange[i].GetGameTile().IsOccupied() && !tilesInRange[i].GetGameTile().HasBuilding() && tilesInRange[i].GetGameTile().IsPassable(null, false) && !tilesInRange[i].GetGameTile().HasEventMarker(1))
                 {
                     validTiles.Add(tilesInRange[i]);
                 }
