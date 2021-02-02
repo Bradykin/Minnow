@@ -39,6 +39,11 @@ public class ContentSpreadDunesMapEvent : GameMapEvent
                     continue;
                 }
 
+                if (surroundingTiles[k].m_isFog && !surroundingTiles[k].m_isSoftFog)
+                {
+                    continue;
+                }
+
                 GameTerrainBase gameTerrain = surroundingTiles[k].GetTerrain();
                 if (gameTerrain.IsDunes())
                 {

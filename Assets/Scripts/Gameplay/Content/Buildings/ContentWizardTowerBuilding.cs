@@ -7,7 +7,7 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 {
     private int m_attackBase = 10;
     private int m_spellcraftStacks = 0;
-    private int m_spellcraftStacksIncreaseAmount = 2;
+    private int m_spellcraftStacksIncreaseAmount = 3;
 
     public ContentWizardTowerBuilding()
     {
@@ -31,11 +31,11 @@ public class ContentWizardTowerBuilding : GameBuildingBase
     {
         if (GetGameTile() == null)
         {
-            m_desc = $"Damage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+            m_desc = $"Damage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: increase the damage this tower does by {m_spellcraftStacksIncreaseAmount} until end of wave.";
         }
         else
         {
-            m_desc = $"Current Damage: {m_attackBase + m_spellcraftStacks}\nDamage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: <b>Permanently</b> increase the damage this tower does by {m_spellcraftStacksIncreaseAmount}.";
+            m_desc = $"Current Damage: {m_attackBase + m_spellcraftStacks}\nDamage a random enemy unit in a range {m_range} for {m_attackBase + m_spellcraftStacks} at the start of your turn.\n<b>Spellcraft</b>: increase the damage this tower does by {m_spellcraftStacksIncreaseAmount} until end of wave.";
         }
 
         return m_desc;
@@ -68,6 +68,13 @@ public class ContentWizardTowerBuilding : GameBuildingBase
 
         highestHealthTile.GetOccupyingUnit().GetHitByAbility(m_attackBase + m_spellcraftStacks);
         AudioHelper.PlaySFX(AudioHelper.SpellAttackMedium);
+    }
+
+    public override void TriggerEndOfWave()
+    {
+        base.TriggerEndOfWave();
+
+        m_spellcraftStacks = 0;
     }
 
     public override bool IsValidTerrainToPlace(GameTerrainBase terrain, GameTile tile)
