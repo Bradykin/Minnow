@@ -281,14 +281,9 @@ public abstract class GameTerrainBase : GameElementBase, ISave<JsonGameTerrainDa
             description += "\n\nRanged units on this tile get +" + m_rangeModifier + " increased range.\n";
         }
 
-        if (this is ContentIceTerrain)
-        {
-            description += "\n\nIf an adjacent cracked tile breaks, this tile will break into cracked ice.\n";
-        }
-
         if (this is ContentIceCrackedTerrain)
         {
-            description += "\n\nIf any unit dies while on this tile, this tile and all adjacent ice and cracked tiles will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
+            description += "\n\nIf any unit dies while on this tile, the ice will break.\nIf a unit is standing on this tile when it breaks, they die.\n";
         }
 
         if (this is ContentLavaFieldActiveTerrain)

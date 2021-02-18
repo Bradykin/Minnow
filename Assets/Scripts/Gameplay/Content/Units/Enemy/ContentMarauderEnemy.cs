@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContentMetalCyclopsEnemy : GameEnemyUnit
+public class ContentMarauderEnemy : GameEnemyUnit
 {
-    public ContentMetalCyclopsEnemy(GameOpponent gameOpponent) : base(gameOpponent)
+    public ContentMarauderEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_worldTilePositionAdjustment = new Vector3(0, -0.3f, 0);
 
@@ -17,7 +17,7 @@ public class ContentMetalCyclopsEnemy : GameEnemyUnit
         m_team = Team.Enemy;
         m_rarity = GameRarity.Common;
 
-        m_name = "Metal Cyclops";
+        m_name = "Marauder";
         
         m_desc = "When this unit gets attacked, if it survives, it attacks back instantly.\n";
 

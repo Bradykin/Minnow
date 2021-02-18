@@ -477,22 +477,6 @@ public abstract class GameUnit : GameElementBase, ITurns, ISave<JsonGameUnitData
         if (GetGameTile().GetTerrain().IsIceCracked())
         {
             GetGameTile().SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(GetGameTile().GetTerrain()));
-            List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), 1);
-            for (int i = 0; i < surroundingTiles.Count; i++)
-            {
-                if (surroundingTiles[i].GetTerrain().IsIceCracked() && surroundingTiles[i].IsOccupied() && 
-                    surroundingTiles[i].GetOccupyingUnit().GetFlyingKeyword() == null && 
-                    surroundingTiles[i].GetOccupyingUnit().GetWaterwalkKeyword() == null && 
-                    surroundingTiles[i].GetOccupyingUnit().GetFrostwalkKeyword() == null && 
-                    surroundingTiles[i].GetOccupyingUnit().GetWaterboundKeyword() == null)
-                {
-                    surroundingTiles[i].GetOccupyingUnit().Die();
-                }
-                else if (surroundingTiles[i].GetTerrain().IsIce())
-                {                    
-                    surroundingTiles[i].SetTerrain(GameTerrainFactory.GetIceCrackedTerrainClone(surroundingTiles[i].GetTerrain()));
-                }
-            }
         }
 
         if (GetBleedKeyword() != null)

@@ -23,6 +23,7 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         AddKeyword(new GameFlyingKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
+            m_staminaToAttack = 1;
             m_desc = "Only takes 1 stamina to attack. When this unit attacks another, it knocks that unit 1 tile away from itself.\n";
         }
 
@@ -32,18 +33,6 @@ public class ContentScorchingSerpentEnemy : GameEnemyUnit
         m_AIGameEnemyUnit.AddAIStep(new AIAttackUntilOutOfStaminaStandardStep(m_AIGameEnemyUnit), false);
 
         LateInit();
-    }
-
-    public override int GetStaminaToAttack(GameElementBase targetToAttack)
-    {
-        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
-        {
-            return 1;
-        }
-        else
-        {
-            return base.GetStaminaToAttack(targetToAttack);
-        }
     }
 
     public override int HitUnit(GameUnit other, int damageAmount, bool spendStamina = true, bool shouldThorns = true, bool canCleave = true)

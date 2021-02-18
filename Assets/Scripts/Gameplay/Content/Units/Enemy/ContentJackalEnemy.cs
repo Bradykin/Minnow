@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ContentJackalEnemy : GameEnemyUnit
 {
-    public int m_baseAttack = 16;
-    public int m_baseMaxHealth = 45;
+    public int m_baseAttack = 14;
+    public int m_baseMaxHealth = 40;
     
     public ContentJackalEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
@@ -23,8 +23,12 @@ public class ContentJackalEnemy : GameEnemyUnit
 
         m_name = "Jackal";
 
-        AddKeyword(new GameVictoriousKeyword(new GameGainStatsAction(this, 10, 10)), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
+        {
+            AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 4, 0)), true, false);
+            AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 0, 4)), true, false);
+        }
+        else
         {
             AddKeyword(new GameMomentumKeyword(new GameGainStatsAction(this, 2, 0)), true, false);
             AddKeyword(new GameEnrageKeyword(new GameGainStatsAction(this, 0, 2)), true, false);

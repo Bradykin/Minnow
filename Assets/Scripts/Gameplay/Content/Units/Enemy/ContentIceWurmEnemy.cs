@@ -20,7 +20,7 @@ public class ContentIceWurmEnemy : GameEnemyUnit
 
         m_name = "Ice Wurm";
         
-        m_desc = "Ignores difficult terrain.\n";
+        m_desc = "Ignores movement costs from difficult terrain.\n";
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {

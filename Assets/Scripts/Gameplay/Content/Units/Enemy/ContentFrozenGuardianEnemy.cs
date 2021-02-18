@@ -29,6 +29,7 @@ public class ContentFrozenGuardianEnemy : GameEnemyUnit
         m_name = "Frozen Guardian";
         m_desc = $"An elite foe.  Defeat it and gain a relic!\nAt the end of this unit's turn, nearby enemies in range {m_aoeRange} lose {m_staminaLossAmount} stamina. Gain +{m_statGain}/{m_statGain} for each enemy drained this way.";
 
+        AddKeyword(new GameFrostwalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.BossStrength))
         {
             AddKeyword(new GameEnrageKeyword(new GameGainTempKeywordAction(this, new GameDamageReductionKeyword(m_damageReductionAmount))), true, false);

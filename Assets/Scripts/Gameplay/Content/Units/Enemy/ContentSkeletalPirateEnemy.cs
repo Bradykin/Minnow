@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ContentSkeletalPirateEnemy : GameEnemyUnit
 {
+    private int m_deathRange = 2;
+    
     public ContentSkeletalPirateEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {
         m_maxHealth = 2 + GetHealthModByWave();
@@ -20,7 +23,7 @@ public class ContentSkeletalPirateEnemy : GameEnemyUnit
 
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
-            //TODO ALEX - make a chaos ability
+            m_desc += $"So long as there is any Skeletal Captains or Zombie Crabs within range {m_deathRange}, this unit cannot die"; 
         }
 
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
@@ -48,5 +51,20 @@ public class ContentSkeletalPirateEnemy : GameEnemyUnit
         int waveNum = GameHelper.GetCurrentWaveNum();
 
         return waveNum * 3;
+    }
+
+    protected override bool ShouldRevive(out int healthSurviveAt)
+    {
+        bool shouldRevive = base.ShouldRevive(out int surviveAt);
+        healthSurviveAt = surviveAt;
+
+        List<GameTile> surroundingTiles = WorldGridManager.Instance.GetSurroundingGameTiles(GetGameTile(), m_deathRange);
+
+        if (surroundingTiles.Any(t => t.IsOccupied() && (t.GetOccupyingUnit() is ContentSkeletalCaptainEnemy || t.GetOccupyingUnit() is ContentZombieCrabEnemy)))
+        {
+            shouldRevive = true;
+        }
+
+        return shouldRevive;
     }
 }

@@ -49,7 +49,14 @@ public class ContentChillflameBeastEnemy : GameEnemyUnit
         {
             if (surroundingTiles[i].GetTerrain().IsIce())
             {
-                surroundingTiles[i].SetTerrain(new ContentIceWaterTerrain(), true);
+                if (surroundingTiles[i].GetTerrain().IsIceCracked())
+                {
+                    surroundingTiles[i].SetTerrain(new ContentIceWaterTerrain(), true);
+                }
+                else
+                {
+                    surroundingTiles[i].SetTerrain(new ContentIceCrackedTerrain(), true);
+                }
             }
         }
     }

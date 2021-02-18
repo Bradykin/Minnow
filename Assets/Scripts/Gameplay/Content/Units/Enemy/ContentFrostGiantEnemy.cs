@@ -24,6 +24,7 @@ public class ContentFrostGiantEnemy : GameEnemyUnit
 
         m_desc = $"Emits a powerful storm around itself at range {m_stormRadius}. Whenever a player unit moves inside the storm, they take {Constants.WinterStormDamage} damage. While inside the storm, their vision range is reduce to {Constants.WinterStormVisionRange}.\n";
 
+        AddKeyword(new GameFrostwalkKeyword(), true, false);
         if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.AddEnemyAbility))
         {
             m_desc += "If this is killed by another unit, that unit loses 1 stamina regen.";

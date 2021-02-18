@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentSabertoothWyvernEnemy : GameEnemyUnit
 {
-    private int m_attackToGain = 3;
+    private int m_attackToGain = 5;
     
     public ContentSabertoothWyvernEnemy(GameOpponent gameOpponent) : base(gameOpponent)
     {

@@ -33,6 +33,8 @@ public class ContentLordOfWinterEnemy : GameEnemyUnit
         m_name = "Lord of Winter";
         m_desc = $"The final boss. Kill it, and win.\nTakes {m_staminaToAttack} Stamina to attack.\nEmits a powerful storm around itself at range {m_stormRadius}. Whenever a player unit moves inside the storm, they take {Constants.WinterStormDamage} damage. While inside the storm, their vision range is reduce to {Constants.WinterStormVisionRange}.\nWhen this unit attacks, the target loses 1 max Stamina.\n";
 
+        AddKeyword(new GameFrostwalkKeyword(), true, false);
+
         m_AIGameEnemyUnit.AddAIStep(new AIScanTargetsInRangeStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIChooseTargetToAttackStandardStep(m_AIGameEnemyUnit), true);
         m_AIGameEnemyUnit.AddAIStep(new AIMoveToTargetStandardStep(m_AIGameEnemyUnit), false);

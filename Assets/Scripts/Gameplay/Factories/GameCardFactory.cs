@@ -270,7 +270,7 @@ public static class GameCardFactory
         m_enemyCards.Add(new ContentLurkerEnemyCard());
         //m_enemyCards.Add(new ContentMageShadeEnemyCard());
         //m_enemyCards.Add(new ContentMarshSerpentEnemyCard());
-        m_enemyCards.Add(new ContentMetalCyclopsEnemyCard());
+        m_enemyCards.Add(new ContentMarauderEnemyCard());
         m_enemyCards.Add(new ContentMetalManticoreEnemyCard());
         m_enemyCards.Add(new ContentMobolaEnemyCard());
         m_enemyCards.Add(new ContentMummyEnemyCard());
