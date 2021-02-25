@@ -27,9 +27,15 @@ public class ContentShiftingDunesMap : GameMap
     {
         AddMapEvent(new ContentDeployCaravanShiftingDunesEvent(0), 1);
         AddMapEvent(new ContentSpreadDunesMapEvent(0), 2);
-        AddMapEvent(new ContentSpreadDunesMapEvent(0), 3);
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
+            AddMapEvent(new ContentSpreadDunesMapEvent(0), 3);
+        }
         AddMapEvent(new ContentSpreadDunesMapEvent(0), 4);
-        AddMapEvent(new ContentSpreadDunesMapEvent(0), 5);
+        if (GameHelper.IsValidChaosLevel(Globals.ChaosLevels.MapEvents))
+        {
+            AddMapEvent(new ContentSpreadDunesMapEvent(0), 5);
+        }
         AddMapEvent(new ContentSpreadDunesMapEvent(0), 6);
     }
 
