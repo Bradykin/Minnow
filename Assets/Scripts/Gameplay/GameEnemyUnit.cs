@@ -108,6 +108,12 @@ public class GameEnemyUnit : GameUnit
             GameHelper.GetGameController().AddKillExp(m_experienceAmount);
         }
         m_gameOpponentController.m_controlledUnits.Remove(this);
+
+        int currentEnemyKills;
+        Steamworks.SteamUserStats.GetStat("Enemies_Killed", out currentEnemyKills);
+        currentEnemyKills++;
+        Steamworks.SteamUserStats.SetStat("Enemies_Killed", currentEnemyKills);
+        Steamworks.SteamUserStats.StoreStats();
     }
 
     protected override void ResetToBase()
