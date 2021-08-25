@@ -14,6 +14,10 @@ public class UIWorldElementNotification : MonoBehaviour, IReset
 
     private float m_floatingSpeed = 0.01f;
 
+    public Image m_backgroundImage;
+    public Sprite m_blueIcon;
+    public Sprite m_redIcon;
+
     void Update()
     {
         m_displayTimer += Time.deltaTime;
@@ -40,6 +44,14 @@ public class UIWorldElementNotification : MonoBehaviour, IReset
     public void Init(string message, Color color)
     {
         m_notificationText.text = message;
-        m_notificationText.color = color;
+
+        if (color == Color.red)
+        {
+            m_backgroundImage.sprite = m_redIcon;
+        }
+        else if (color == Color.blue)
+        {
+            m_backgroundImage.sprite = m_blueIcon;
+        }
     }
 }

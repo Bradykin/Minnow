@@ -36,17 +36,17 @@ namespace Game.Util
 
             if (inWorld)
             {
-                obj.transform.localPosition = new Vector3(-62.5f + (12.5f * index), 4.0f, 0.0f);
+                obj.transform.localPosition = new Vector3(-60f + (22.5f * index), 4.0f, 0.0f);
             }
             else
             {
                 if (index < 6)
                 {
-                    obj.transform.localPosition = new Vector3(4.0f + index * 15f, -10.0f, 0.0f);
+                    obj.transform.localPosition = new Vector3(10.0f + index * 22.5f, 0f, 0.0f);
                 }
                 else
                 {
-                    obj.transform.localPosition = new Vector3(4.0f + (index - 6f) * 15f, 4.0f, 0.0f);
+                    obj.transform.localPosition = new Vector3(10.0f + (index - 6f) * 22.5f, 18.0f, 0.0f);
                 }
             }
 

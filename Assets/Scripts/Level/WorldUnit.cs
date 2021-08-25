@@ -15,7 +15,8 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
     public SpriteRenderer m_renderer;
     public UIStaminaContainer m_staminaContainer;
     public TMP_Text m_titleText;
-    public TMP_Text m_statsText;
+    public TMP_Text m_powerText;
+    public TMP_Text m_healthText;
     private BoxCollider2D m_collider;
 
     public GameObject m_holder;
@@ -167,7 +168,8 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
         {
             m_titleText.text = GetUnit().GetName();
         }
-        m_statsText.text = GetUnit().GetAttack() + "/" + GetUnit().GetCurHealth();
+        m_powerText.text = $"{GetUnit().GetAttack()}";
+        m_healthText.text = $"{GetUnit().GetCurHealth()}";
     }
 
     void OnMouseDown()

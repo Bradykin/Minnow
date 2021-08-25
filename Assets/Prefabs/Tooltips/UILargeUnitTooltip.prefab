@@ -607,6 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_image: {fileID: 8267984803587357344}
+  m_backgroundImage: {fileID: 0}
   m_tintImage: {fileID: 0}
   m_lockedObj: {fileID: 0}
   m_enemyObj: {fileID: 0}
