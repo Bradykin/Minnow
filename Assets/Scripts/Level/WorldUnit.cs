@@ -55,7 +55,7 @@ public class WorldUnit : MonoBehaviour, IRecycled, ICustomRecycle
 
         if (GetUnit().GetTeam() == Team.Player && !Globals.loadingRun)
         {
-            //Not ideal - this is calling SetHealthValues twice in init. This is done to make sure that the stamina value is correct before selecting tiles
+            //Not ideal - this is calling SetHealthValues twice in init. This is done to make sure that the stamina value is correct before selecting tiles.
             m_unit.SetHealthStaminaValues();
 
             UIHelper.SelectUnit(this);
