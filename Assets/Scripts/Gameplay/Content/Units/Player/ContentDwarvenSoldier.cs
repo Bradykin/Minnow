@@ -24,8 +24,8 @@ public class ContentDwarvenSoldier : GameUnit
         ResetKeywords(true);
 
         m_maxHealth = 20;
-        m_maxStamina = 5;
-        m_staminaRegen = 3;
+        m_maxStamina = 10; //nmartino - should be 5
+        m_staminaRegen = 10; //nmartino - should be 3
         m_attack = 6;
     }
 }

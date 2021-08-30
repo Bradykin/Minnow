@@ -35,7 +35,8 @@ public class UICard : MonoBehaviour
     public TMP_Text m_costText;
     public TMP_Text m_typelineText;
     public TMP_Text m_descText;
-    public TMP_Text m_statsText;
+    public TMP_Text m_powerText;
+    public TMP_Text m_healthText;
 
     public UIStaminaContainer m_staminaContainer;
 
@@ -198,7 +199,8 @@ public class UICard : MonoBehaviour
 
         if (m_unitCard != null)
         {
-            m_statsText.text = m_unitCard.m_unit.GetAttack() + "/" + m_unitCard.m_unit.GetMaxHealth();
+            m_powerText.text = $"{m_unitCard.m_unit.GetAttack()}";
+            m_healthText.text = $"{m_unitCard.m_unit.GetMaxHealth()}";
 
             if (m_unitObj != null)
             {
@@ -209,7 +211,8 @@ public class UICard : MonoBehaviour
         }
         else
         {
-            m_statsText.text = "";
+            m_powerText.text = "";
+            m_healthText.text = "";
 
             if (m_unitObj != null)
             {
